@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"set_lastroom",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"set_lastroom",
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

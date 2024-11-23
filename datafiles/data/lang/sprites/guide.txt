@@ -1,0 +1,18 @@
+The "en" folder name corresponds with the value set in english.txt. If you have a Spanish translation with <lang = "spa"> in it, you make a folder just named "spa", without the quotes.
+
+You can only replace the sprites that are in the existing "en" folder. Just copy them over to your own folder.
+
+The replacement sprite needs be exported as a sprite sheet, with the same canvas width and frame count as the original sprite. That is, unless you add extra info into the data.ini:
+
+[sprite_name]
+images = <frame count>
+xoffset = <horizontal center/origin point>
+yoffset = <vertical center/origin point>
+
+Doing that bypasses the requirements before. They basically work like CYOP sprites, if you're used to those.
+
+You can also use GIFs but they're extremely slow. Don't use GIFs unless you're willing to wait 2 minutes for your language to load each time.
+
+* Make sure custom_graphics in the .txt is set to true
+* spr_lang_flag.png for the flag shown in the menu
+* Make a spr_lang_name.png to make the name in the menu a sprite instead of text (194x57)

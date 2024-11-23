@@ -1,0 +1,1 @@
+targetRoom = entryway_3

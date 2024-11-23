@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_destroy_destructibles",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_destroy_destructibles",
+  "parent":{
+    "name":"Shortcuts",
+    "path":"folders/Scripts/General/Shortcuts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,53 @@
+{
+  "$GMTileSet":"v1",
+  "%Name":"tileset_secret_to_ss",
+  "autoTileSets":[
+    {"$GMAutoTileSet":"","%Name":"Base","closed_edge":false,"name":"Base","resourceType":"GMAutoTileSet","resourceVersion":"2.0","tiles":[51,68,66,18,36,33,0,17,34,0,37,21,82,81,85,0,],},
+    {"$GMAutoTileSet":"","%Name":"Platform","closed_edge":false,"name":"Platform","resourceType":"GMAutoTileSet","resourceVersion":"2.0","tiles":[
+        3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,1,0,5,4,
+      ],},
+    {"$GMAutoTileSet":"","%Name":"autotile_1","closed_edge":false,"name":"autotile_1","resourceType":"GMAutoTileSet","resourceVersion":"2.0","tiles":[
+        578,617,613,578,549,578,578,578,553,578,578,578,578,578,578,578,560,560,560,560,545,545,545,545,564,
+        564,564,564,611,611,611,611,578,578,544,544,548,548,612,612,608,608,578,578,578,578,578,
+      ],},
+  ],
+  "macroPageTiles":{
+    "SerialiseHeight":9,
+    "SerialiseWidth":9,
+    "TileCompressedData":[
+      -38,0,15,631,632,0,0,663,664,0,145,0,647,648,0,0,679,686,-10,0,18,624,625,0,626,627,628,0,629,726,640,
+      641,0,642,643,644,0,645,646,
+    ],
+    "TileDataFormat":1,
+  },
+  "name":"tileset_secret_to_ss",
+  "out_columns":20,
+  "out_tilehborder":2,
+  "out_tilevborder":2,
+  "parent":{
+    "name":"Sugary Spire",
+    "path":"folders/Tile Sets/Sugary Spire.yy",
+  },
+  "resourceType":"GMTileSet",
+  "resourceVersion":"2.0",
+  "spriteId":{
+    "name":"tile_secret_to_ss",
+    "path":"sprites/tile_secret_to_ss/tile_secret_to_ss.yy",
+  },
+  "spriteNoExport":true,
+  "textureGroupId":{
+    "name":"mod_sugaryspire",
+    "path":"texturegroups/mod_sugaryspire",
+  },
+  "tileAnimationFrames":[
+    {"$GMTileAnimation":"","%Name":"animation_1","frames":[17,18,27,28,],"name":"animation_1","resourceType":"GMTileAnimation","resourceVersion":"2.0",},
+  ],
+  "tileAnimationSpeed":15.0,
+  "tileHeight":32,
+  "tilehsep":0,
+  "tilevsep":0,
+  "tileWidth":32,
+  "tilexoff":0,
+  "tileyoff":0,
+  "tile_count":410,
+}

@@ -1,0 +1,51 @@
+function cutscene_move_player(_player, _xto, _hsp, _threshold)
+{
+	var player = _player;
+	var x_to = _xto;
+	var max_hsp = _hsp;
+	var threshold = _threshold;
+	
+	var finish = false;
+	with (player)
+	{
+		sprite_index = spr_move;
+		image_speed = 0.6;
+		if (x < (x_to - threshold))
+		{
+			xscale = 1;
+			if (hsp < max_hsp)
+				hsp += 0.5;
+			else
+				hsp = max_hsp;
+		}
+		else if (x > (x_to + threshold))
+		{
+			xscale = -1;
+			if (hsp > -max_hsp)
+				hsp -= 0.5;
+			else
+				hsp = -max_hsp;
+		}
+		else
+		{
+			hsp = 0;
+			finish = true;
+		}
+		if (check_solid(x + hsp, y))
+			finish = true;
+	}
+	if (finish)
+		cutscene_end_action();
+	with (player)
+	{
+		if (move != 0 && (floor(image_index) == 3 || floor(image_index) == 8) && steppy == 0 && character != "V")
+		{
+			create_particle(x, y + 43, part.cloudeffect);
+			steppy = true;
+		}
+		if (move != 0 && floor(image_index) != 3 && floor(image_index) != 8)
+			steppy = false;
+	}
+}
+//if !code_is_compiled() && GM_build_type == "exe"
+//	funny_room(); // this is really not a good idea.

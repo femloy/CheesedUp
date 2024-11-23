@@ -1,0 +1,43 @@
+{
+  "$GMTileSet":"v1",
+  "%Name":"tile_bosecret",
+  "autoTileSets":[],
+  "ConfigValues":{
+    "Dev":{
+      "textureGroupId":"{\"name\":\"backgroundgroup\",\"path\":\"texturegroups/backgroundgroup\"}",
+    },
+  },
+  "macroPageTiles":{
+    "SerialiseHeight":0,
+    "SerialiseWidth":0,
+    "TileSerialiseData":[],
+  },
+  "name":"tile_bosecret",
+  "out_columns":21,
+  "out_tilehborder":2,
+  "out_tilevborder":2,
+  "parent":{
+    "name":"Midway",
+    "path":"folders/Tile Sets/CheesyPizza/Midway.yy",
+  },
+  "resourceType":"GMTileSet",
+  "resourceVersion":"2.0",
+  "spriteId":{
+    "name":"spr_bosecrettile",
+    "path":"sprites/spr_bosecrettile/spr_bosecrettile.yy",
+  },
+  "spriteNoExport":true,
+  "textureGroupId":{
+    "name":"mod_bonoise",
+    "path":"texturegroups/mod_bonoise",
+  },
+  "tileAnimationFrames":[],
+  "tileAnimationSpeed":6.0,
+  "tileHeight":32,
+  "tilehsep":0,
+  "tilevsep":0,
+  "tileWidth":32,
+  "tilexoff":0,
+  "tileyoff":0,
+  "tile_count":450,
+}

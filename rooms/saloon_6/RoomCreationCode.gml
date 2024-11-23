@@ -1,0 +1,1 @@
+global.roommessage = "DRUNKEN PILLAR";

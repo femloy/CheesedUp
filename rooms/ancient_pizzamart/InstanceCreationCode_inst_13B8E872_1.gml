@@ -1,0 +1,2 @@
+targetRoom = ancient_17
+

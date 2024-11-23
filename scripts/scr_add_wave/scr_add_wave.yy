@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_add_wave",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_add_wave",
+  "parent":{
+    "name":"Baddies",
+    "path":"folders/Scripts/Baddies.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

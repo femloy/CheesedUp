@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"shd_secrettile",
+  "name":"shd_secrettile",
+  "parent":{
+    "name":"Level",
+    "path":"folders/Shaders/Level.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

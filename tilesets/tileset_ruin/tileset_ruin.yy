@@ -1,0 +1,38 @@
+{
+  "$GMTileSet":"v1",
+  "%Name":"tileset_ruin",
+  "autoTileSets":[],
+  "macroPageTiles":{
+    "SerialiseHeight":0,
+    "SerialiseWidth":0,
+    "TileSerialiseData":[],
+  },
+  "name":"tileset_ruin",
+  "out_columns":19,
+  "out_tilehborder":2,
+  "out_tilevborder":2,
+  "parent":{
+    "name":"Ruin",
+    "path":"folders/Tile Sets/Pizza Tower/Ruin.yy",
+  },
+  "resourceType":"GMTileSet",
+  "resourceVersion":"2.0",
+  "spriteId":{
+    "name":"tile_ruin",
+    "path":"sprites/tile_ruin/tile_ruin.yy",
+  },
+  "spriteNoExport":false,
+  "textureGroupId":{
+    "name":"ruingroup",
+    "path":"texturegroups/ruingroup",
+  },
+  "tileAnimationFrames":[],
+  "tileAnimationSpeed":15.0,
+  "tileHeight":32,
+  "tilehsep":0,
+  "tilevsep":0,
+  "tileWidth":32,
+  "tilexoff":0,
+  "tileyoff":0,
+  "tile_count":350,
+}

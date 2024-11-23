@@ -1,0 +1,10 @@
+targetRoom = beach_1;
+level = "beach";
+sprite_index = spr_gate_plage;
+bgsprite = spr_gate_plageBG;
+titlecard_sprite = spr_titlecards_new;
+titlecard_index = 12;
+title_sprite = spr_titlecards_newtitles;
+title_index = 12;
+title_music = "event:/music/w3/beachtitle";
+group_arr = ["beachgroup"];

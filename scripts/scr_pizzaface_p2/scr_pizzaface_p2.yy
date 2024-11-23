@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_pizzaface_p2",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_pizzaface_p2",
+  "parent":{
+    "name":"Boss",
+    "path":"folders/Scripts/Baddies/Boss.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"cutscene_entrance_middle",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"cutscene_entrance_middle",
+  "parent":{
+    "name":"Cutscene",
+    "path":"folders/Scripts/Cutscene.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

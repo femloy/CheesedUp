@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"texturegroup_free",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"texturegroup_free",
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,1 @@
+global.roommessage = "MERRILY SIMILAR";

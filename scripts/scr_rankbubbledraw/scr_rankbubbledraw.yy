@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_rankbubbledraw",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_rankbubbledraw",
+  "parent":{
+    "name":"HUD",
+    "path":"folders/Scripts/CheesyPizza/HUD.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

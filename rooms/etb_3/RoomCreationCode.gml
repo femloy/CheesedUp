@@ -1,0 +1,2 @@
+
+global.roommessage = "SMOKEY PATHWAY";

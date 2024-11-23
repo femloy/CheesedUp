@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_soundtest_secret",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_soundtest_secret",
+  "parent":{
+    "name":"Shortcuts",
+    "path":"folders/Scripts/General/Shortcuts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

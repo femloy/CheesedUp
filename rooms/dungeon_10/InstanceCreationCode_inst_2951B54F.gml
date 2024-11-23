@@ -1,0 +1,1 @@
+targetRoom = snick_challengeend;

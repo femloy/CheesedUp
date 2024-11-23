@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"sh_room",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sh_room",
+  "parent":{
+    "name":"Shell",
+    "path":"folders/Scripts/CheesyPizza/Shell.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

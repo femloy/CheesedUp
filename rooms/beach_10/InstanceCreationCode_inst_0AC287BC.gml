@@ -1,0 +1,1 @@
+cooldownmax = 200;

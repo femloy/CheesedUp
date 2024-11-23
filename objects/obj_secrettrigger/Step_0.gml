@@ -1,0 +1,2 @@
+if (stepfunc != noone)
+	stepfunc();

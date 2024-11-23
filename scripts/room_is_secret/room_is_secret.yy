@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"room_is_secret",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"room_is_secret",
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

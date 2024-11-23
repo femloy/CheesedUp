@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_mathlibs",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_mathlibs",
+  "parent":{
+    "name":"Utilities",
+    "path":"folders/Scripts/General/Utilities.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

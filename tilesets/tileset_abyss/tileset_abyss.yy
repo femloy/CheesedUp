@@ -1,0 +1,38 @@
+{
+  "$GMTileSet":"v1",
+  "%Name":"tileset_abyss",
+  "autoTileSets":[],
+  "macroPageTiles":{
+    "SerialiseHeight":0,
+    "SerialiseWidth":0,
+    "TileSerialiseData":[],
+  },
+  "name":"tileset_abyss",
+  "out_columns":35,
+  "out_tilehborder":2,
+  "out_tilevborder":2,
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Tile Sets/CheesyPizza.yy",
+  },
+  "resourceType":"GMTileSet",
+  "resourceVersion":"2.0",
+  "spriteId":{
+    "name":"tile_abyss",
+    "path":"sprites/tile_abyss/tile_abyss.yy",
+  },
+  "spriteNoExport":false,
+  "textureGroupId":{
+    "name":"abyssgroup",
+    "path":"texturegroups/abyssgroup",
+  },
+  "tileAnimationFrames":[],
+  "tileAnimationSpeed":15.0,
+  "tileHeight":32,
+  "tilehsep":0,
+  "tilevsep":0,
+  "tileWidth":32,
+  "tilexoff":0,
+  "tileyoff":0,
+  "tile_count":1242,
+}

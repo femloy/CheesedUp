@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"NekoPresence",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"NekoPresence",
+  "parent":{
+    "name":"Extensions",
+    "path":"folders/Extensions.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

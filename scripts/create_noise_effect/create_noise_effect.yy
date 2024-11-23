@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"create_noise_effect",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"create_noise_effect",
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

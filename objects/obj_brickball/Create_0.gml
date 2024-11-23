@@ -1,0 +1,18 @@
+notification_push(notifs.brickball, [room]);
+image_speed = 0.5;
+init_collision();
+xoffset = 0;
+movespeed = 0;
+bounce = true;
+blur_effect = 2;
+paletteselect = 0;
+spr_palette = noone;
+alarm[0] = 200;
+alarm[1] = 5;
+kicked = false;
+depth = obj_player1.depth + 1;
+up = false;
+hitbox = false;
+dashcloudtimer = 0;
+speedline = false;
+buffed = check_char("G");

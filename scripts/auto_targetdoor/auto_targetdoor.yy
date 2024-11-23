@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"auto_targetdoor",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"auto_targetdoor",
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,1 @@
+targetRoom = steamy_7

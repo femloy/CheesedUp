@@ -1,0 +1,67 @@
+live_auto_call;
+
+depth = obj_drawcontroller.depth + 1;
+mask_index = spr_player_mask;
+
+queue = ds_queue_create();
+image_speed = 0;
+target_object = obj_player1;
+is_visible = true;
+
+state = states.normal;
+grace_period = 10;
+tracker = noone;
+
+init_collision();
+
+surf = -1;
+surf_size = [100, 100];
+color1 = shader_get_uniform(shd_mach3effect, "color1");
+color2 = shader_get_uniform(shd_mach3effect, "color2");
+layer_4_index = 0;
+layers = [
+	spr_cosmicclone_layer1,
+	spr_cosmicclone_layer2,
+	spr_cosmicclone_layer3,
+	spr_cosmicclone_layer4
+]
+layer_offsets = [
+	0,
+	0,
+	0,
+	0
+];
+
+// queue size
+distance = 40;
+
+random_color = function()
+{
+	return choose(#280040, #03205c, #000078);
+}
+
+// sounds
+switch obj_player1.character
+{
+	default:
+		snd_jump = fmod_event_create_instance(sfx_jump);
+		break;
+	case "V":
+		snd_jump = fmod_event_create_instance("event:/modded/playerV/jump");
+		break;
+}
+switch obj_player1.character
+{
+	case "P":
+		snd_voicehurt = fmod_event_create_instance(obj_player1.isgustavo ? "event:/sfx/voice/gushurt" : "event:/sfx/voice/hurt");
+		break;
+	case "N":
+		snd_voicehurt = fmod_event_create_instance(sfx_hurt);
+		break;
+	case "V":
+		snd_voicehurt = fmod_event_create_instance("event:/sfx/voice/vigiduel");
+		break;
+	default:
+		snd_voicehurt = fmod_event_create_instance("event:/nosound");
+		break;
+}

@@ -1,0 +1,6 @@
+*.bank
+PizzaTower_CHEESEDUP.resource_order
+*.new
+scripts/scr_numbers/*.gml
+*.sfk
+drm_places.txt

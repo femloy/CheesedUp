@@ -1,0 +1,38 @@
+{
+  "$GMTileSet":"v1",
+  "%Name":"tile_storage",
+  "autoTileSets":[],
+  "macroPageTiles":{
+    "SerialiseHeight":0,
+    "SerialiseWidth":0,
+    "TileSerialiseData":[],
+  },
+  "name":"tile_storage",
+  "out_columns":22,
+  "out_tilehborder":2,
+  "out_tilevborder":2,
+  "parent":{
+    "name":"Kid's Party",
+    "path":"folders/Tile Sets/Pizza Tower/Kid's Party.yy",
+  },
+  "resourceType":"GMTileSet",
+  "resourceVersion":"2.0",
+  "spriteId":{
+    "name":"spr_storagetile",
+    "path":"sprites/spr_storagetile/spr_storagetile.yy",
+  },
+  "spriteNoExport":false,
+  "textureGroupId":{
+    "name":"kidspartygroup",
+    "path":"texturegroups/kidspartygroup",
+  },
+  "tileAnimationFrames":[],
+  "tileAnimationSpeed":15.0,
+  "tileHeight":32,
+  "tilehsep":0,
+  "tilevsep":0,
+  "tileWidth":32,
+  "tilexoff":0,
+  "tileyoff":0,
+  "tile_count":495,
+}

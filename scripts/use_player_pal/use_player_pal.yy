@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"use_player_pal",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"use_player_pal",
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"check_lap_mode",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"check_lap_mode",
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

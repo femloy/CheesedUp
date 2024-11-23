@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_grannypizzasign",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_grannypizzasign",
+  "parent":{
+    "name":"Utilities",
+    "path":"folders/Scripts/General/Utilities.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

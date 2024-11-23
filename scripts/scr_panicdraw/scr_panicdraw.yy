@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_panicdraw",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_panicdraw",
+  "parent":{
+    "name":"HUD",
+    "path":"folders/Scripts/CheesyPizza/HUD.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

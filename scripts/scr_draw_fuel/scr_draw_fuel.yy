@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_draw_fuel",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_draw_fuel",
+  "parent":{
+    "name":"HUD",
+    "path":"folders/Scripts/CheesyPizza/HUD.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

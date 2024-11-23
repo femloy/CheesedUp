@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"global_message",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"global_message",
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

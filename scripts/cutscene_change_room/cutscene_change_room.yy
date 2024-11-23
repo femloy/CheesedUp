@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"cutscene_change_room",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"cutscene_change_room",
+  "parent":{
+    "name":"Cutscene",
+    "path":"folders/Scripts/Cutscene.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

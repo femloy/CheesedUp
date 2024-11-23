@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"is_holiday",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"is_holiday",
+  "parent":{
+    "name":"General",
+    "path":"folders/Scripts/General.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_game_struct",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_game_struct",
+  "parent":{
+    "name":"Saves",
+    "path":"folders/Scripts/Systems/Saves.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

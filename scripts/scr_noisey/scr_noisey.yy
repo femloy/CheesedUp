@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_noisey",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_noisey",
+  "parent":{
+    "name":"States",
+    "path":"folders/Scripts/Baddies/States.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

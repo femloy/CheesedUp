@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_pausedraw_ss",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_pausedraw_ss",
+  "parent":{
+    "name":"HUD",
+    "path":"folders/Scripts/CheesyPizza/HUD.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

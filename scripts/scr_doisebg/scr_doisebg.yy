@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_doisebg",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_doisebg",
+  "parent":{
+    "name":"Background",
+    "path":"folders/Scripts/General/Background.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

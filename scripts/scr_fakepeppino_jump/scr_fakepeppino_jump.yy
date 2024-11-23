@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_fakepeppino_jump",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_fakepeppino_jump",
+  "parent":{
+    "name":"Fakepep",
+    "path":"folders/Scripts/Baddies/Fakepep.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

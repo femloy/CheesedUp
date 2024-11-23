@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"check_skin",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"check_skin",
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

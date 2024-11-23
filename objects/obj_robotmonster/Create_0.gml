@@ -1,0 +1,11 @@
+init_collision();
+movespeed = 8;
+step_sound = false;
+event_inherited();
+state = states.robotidle;
+use_hallway = true;
+idlespr = spr_monstershroom_idle;
+walkspr = spr_monstershroom_walk;
+chasespr = spr_monstershroom_chase;
+yscale = 1;
+steppy = false;

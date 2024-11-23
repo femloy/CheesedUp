@@ -1,0 +1,10 @@
+init_collision();
+vsp = -10;
+movespeed = 6;
+image_speed = 0.35;
+countdown = 120;
+depth = -10;
+playercollision = true;
+obj_explosion = obj_dynamiteexplosion;
+kick = false;
+mask_index = spr_player_mask;

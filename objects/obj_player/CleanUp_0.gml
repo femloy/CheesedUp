@@ -1,0 +1,91 @@
+ds_list_destroy(transformation);
+ds_list_destroy(hitlist);
+ds_list_destroy(animlist);
+
+ds_list_destroy(global.saveroom);
+ds_list_destroy(global.escaperoom);
+ds_list_destroy(global.instancelist);
+ds_list_destroy(global.followerlist);
+ds_list_destroy(global.baddieroom);
+
+player_destroy_sounds();
+destroy_sounds([
+	machsnd,
+	jumpsnd,
+	machrollsnd,
+	weeniebumpsnd,
+	knightslidesnd,
+	gravecorpsesnd,
+	barrelslidesnd,
+	barrelbumpsnd,
+	waterslidesnd,
+	mrpinchsnd,
+	hamkuffsnd,
+	ratmountmachsnd,
+	ratmountballsnd,
+	ratmountgroundpoundsnd,
+	ratmountpunchsnd,
+	cheeseballsnd,
+	boxxedspinsnd,
+	pizzapeppersnd,
+	ratdeflatesnd,
+	ghostspeedsnd,
+	freefallsnd,
+	rollgetupsnd,
+	tumblesnd,
+	snd_dive,
+	snd_crouchslide,
+	snd_dashpad,
+	animatronicsnd,
+	burpsnd,
+	superjumpsnd,
+	suplexdashsnd,
+	gallopingsnd,
+	snd_jetpackloop,
+	sjumpcancelsnd,
+
+	snd_wallbounce,
+	snd_divebomb,
+	snd_airspin,
+	snd_noisemach,
+	snd_noiseSjump,
+	snd_noiseSjumprelease,
+	snd_noisedoublejump,
+	snd_noisepunch,
+	snd_minijetpack,
+	snd_noisefiremouth,
+	snd_rushdown,
+	snd_rushdownhit,
+	snd_minigun,
+	snd_ghostdash,
+	snd_bossdeathN,
+	snd_noiseanimatronic,
+
+	global.snd_escaperumble,
+	global.snd_johndead,
+	global.snd_fakesanta,
+	global.snd_rankup,
+	global.snd_pizzafacemoving,
+	global.snd_rankdown,
+	global.snd_breakblock,
+	global.snd_bellcollect,
+	global.snd_cardflip,
+	global.snd_explosion,
+	global.snd_cheesejump,
+	global.snd_ventilator,
+	global.snd_trashjump1,
+	global.snd_thunder,
+	global.snd_captaingoblinshoot,
+	global.snd_golfjingle,
+	global.snd_mrstickhat,
+	global.snd_alarm,
+	global.snd_slidersfx,
+	global.snd_slidermusic,
+	global.snd_slidermaster,
+	global.snd_bossbeaten,
+
+	global.snd_secretwall,
+	flippingsnd,
+	spindashsnd,
+	snd_vigislide
+]);

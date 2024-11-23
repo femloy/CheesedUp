@@ -1,0 +1,38 @@
+{
+  "$GMTileSet":"v1",
+  "%Name":"tile_entrancedeco",
+  "autoTileSets":[],
+  "macroPageTiles":{
+    "SerialiseHeight":0,
+    "SerialiseWidth":0,
+    "TileSerialiseData":[],
+  },
+  "name":"tile_entrancedeco",
+  "out_columns":26,
+  "out_tilehborder":2,
+  "out_tilevborder":2,
+  "parent":{
+    "name":"Entrance",
+    "path":"folders/Tile Sets/Pizza Tower/Entrance.yy",
+  },
+  "resourceType":"GMTileSet",
+  "resourceVersion":"2.0",
+  "spriteId":{
+    "name":"spr_entrancedeco",
+    "path":"sprites/spr_entrancedeco/spr_entrancedeco.yy",
+  },
+  "spriteNoExport":false,
+  "textureGroupId":{
+    "name":"entrancegroup",
+    "path":"texturegroups/entrancegroup",
+  },
+  "tileAnimationFrames":[],
+  "tileAnimationSpeed":15.0,
+  "tileHeight":32,
+  "tilehsep":0,
+  "tilevsep":0,
+  "tileWidth":32,
+  "tilexoff":0,
+  "tileyoff":0,
+  "tile_count":700,
+}

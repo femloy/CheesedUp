@@ -1,0 +1,1 @@
+global.longintro = true;

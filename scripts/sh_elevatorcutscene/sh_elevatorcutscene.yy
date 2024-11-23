@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"sh_elevatorcutscene",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sh_elevatorcutscene",
+  "parent":{
+    "name":"Shell",
+    "path":"folders/Scripts/CheesyPizza/Shell.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

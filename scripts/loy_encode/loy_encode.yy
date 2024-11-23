@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"loy_encode",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"loy_encode",
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

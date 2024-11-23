@@ -1,0 +1,2 @@
+content = obj_bigcollect;
+

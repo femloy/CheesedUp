@@ -1,0 +1,69 @@
+lang = "en"
+
+# --------------------
+# CUSTOM FONT SUPPORT
+# --------------------
+# smallfont_ss_dir = "fonts/smallfont_ss_en.png"
+# smallfont_ss_map = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!.:?1234567890-"
+# smallfont_ss_sep = "0"
+# bigfont_ss_dir = "fonts/bigfont_ss_en.png"
+# bigfont_ss_map = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!.0123456789:- "
+# bigfont_ss_sep = "-1"
+
+sugarypromptfont = "sugarypromptfont_en"
+smallfont_ss = "smallfont_ss_en"
+bigfont_ss = "bigfont_ss_en"
+
+# -------------
+# OPTIONS TEXT
+# -------------
+option_lap_parry_sugary = "PARRY CONEBALL"
+option_coneball = "Coneball"
+
+# ----------
+# MISC TEXT
+# ----------
+toppin_text1ss = "{u}You have found % Confecti out of %!/"
+toppin_text2ss = "{u}You have found % Confecti out of %!/"
+sugarygate_line1 = "% POINTS - % LAPS"
+sugarygate_line2 = "% OF % SECRETS"
+
+# -----------
+# MOD CONFIG
+# -----------
+mod_title_sugaryoverride = "Sugary Overrides"
+mod_desc_sugaryoverride = "Makes normal levels Sugary Spire themed when playing as Pizzelle or Pizzano."
+
+# ---------------
+# WINDOW CAPTIONS
+# ---------------
+caption_towersugary = "So this is the Sugary Spire"
+caption_rank_ss = "You did it! Sugary Spire!"
+caption_entryway = "Construction underway at the Sugary Spire"
+caption_steamy = "Downtown Sugary Spire"
+caption_molasses = "Sugary Spire's natural habitat"
+caption_sucrose = "A Sugary storm in the Spire"
+
+# ----------------
+# TRANSFOTIP TEXT
+# ----------------
+cottontip = "{u}[J][J] Double Jump [G] Attack/"
+
+# -----------------------
+# ROOM NAMES (not levels)
+# -----------------------
+room_towersugary = "THE SUGARY SPIRE"
+
+# -----------------
+# HUB TIPS
+# -----------------
+grannysugary = "This floor may contain spoilers for Sugary Spire. Proceed with caution!"
+
+# -------------
+# LEVEL TITLES
+# -------------
+level_entryway = "Crunchy Construction"
+level_steamy = "Cottontown"
+level_molasses = "Molasses Swamp"
+level_sucrose = "Sucrose Snowstorm"
+

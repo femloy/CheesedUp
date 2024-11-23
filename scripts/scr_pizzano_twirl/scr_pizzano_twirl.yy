@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_pizzano_twirl",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_pizzano_twirl",
+  "parent":{
+    "name":"States",
+    "path":"folders/Scripts/Player/States.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

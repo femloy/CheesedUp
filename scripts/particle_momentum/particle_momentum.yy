@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"particle_momentum",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"particle_momentum",
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"get_savefile_ini",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"get_savefile_ini",
+  "parent":{
+    "name":"Saves",
+    "path":"folders/Scripts/Systems/Saves.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

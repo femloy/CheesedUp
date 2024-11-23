@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"cutscene_player_pos_lerp",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"cutscene_player_pos_lerp",
+  "parent":{
+    "name":"Cutscene",
+    "path":"folders/Scripts/Cutscene.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

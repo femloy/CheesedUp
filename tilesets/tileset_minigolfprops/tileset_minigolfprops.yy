@@ -1,0 +1,38 @@
+{
+  "$GMTileSet":"v1",
+  "%Name":"tileset_minigolfprops",
+  "autoTileSets":[],
+  "macroPageTiles":{
+    "SerialiseHeight":0,
+    "SerialiseWidth":0,
+    "TileSerialiseData":[],
+  },
+  "name":"tileset_minigolfprops",
+  "out_columns":32,
+  "out_tilehborder":2,
+  "out_tilevborder":2,
+  "parent":{
+    "name":"Golf",
+    "path":"folders/Tile Sets/Pizza Tower/Golf.yy",
+  },
+  "resourceType":"GMTileSet",
+  "resourceVersion":"2.0",
+  "spriteId":{
+    "name":"spr_minigolfprops",
+    "path":"sprites/spr_minigolfprops/spr_minigolfprops.yy",
+  },
+  "spriteNoExport":false,
+  "textureGroupId":{
+    "name":"minigolfgroup",
+    "path":"texturegroups/minigolfgroup",
+  },
+  "tileAnimationFrames":[],
+  "tileAnimationSpeed":15.0,
+  "tileHeight":32,
+  "tilehsep":0,
+  "tilevsep":0,
+  "tileWidth":32,
+  "tilexoff":0,
+  "tileyoff":0,
+  "tile_count":1032,
+}

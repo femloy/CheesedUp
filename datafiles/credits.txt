@@ -1,0 +1,44 @@
+PIZZA TOWER: CHEESED UP!
+CREDITS (WIP)
+
+
+
+- Programmers -
+Loy
+
+- Spriters -
+Red
+Tictorian
+
+- Music/SFX -
+Loy
+
+- Layouts -
+Loy (QA)
+
+- Other Mod Content -
+Pizza Tower Online
+LAP HELL + Egg's Lap Mod
+Create Your Own Pizza
+
+- Contributions -
+Red - Missing base game room names
+PT:CU Discord - Palettes, cosmetics and suggestions
+Ven - A couple of sprites
+TerrAvery - Translation spriting help
+Rosabella - Lap numbers, lap blocks
+
+- Spanish Translation -
+Loy - Translation
+TerrAvery - Spriting
+Red - Spriting
+
+- Extensions Used -
+GMLive - YellowAfterLife
+Gameframe - YellowAfterLife
+sprite_add_gif - YellowAfterLife
+url_encode - YellowAfterLife
+NekoPresence - nkrapivin
+
+- Special Thanks -
+You, for checking out the mod.

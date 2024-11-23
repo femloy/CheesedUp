@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_cameradraw",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_cameradraw",
+  "parent":{
+    "name":"HUD",
+    "path":"folders/Scripts/CheesyPizza/HUD.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

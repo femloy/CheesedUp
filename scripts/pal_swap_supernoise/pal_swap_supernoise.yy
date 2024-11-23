@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"pal_swap_supernoise",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"pal_swap_supernoise",
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

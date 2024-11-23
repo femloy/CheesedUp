@@ -1,0 +1,1 @@
+global.roommessage = "WEAK STOMACH";

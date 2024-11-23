@@ -1,0 +1,38 @@
+{
+  "$GMTileSet":"v1",
+  "%Name":"ts_estate2",
+  "autoTileSets":[],
+  "macroPageTiles":{
+    "SerialiseHeight":0,
+    "SerialiseWidth":0,
+    "TileSerialiseData":[],
+  },
+  "name":"ts_estate2",
+  "out_columns":24,
+  "out_tilehborder":2,
+  "out_tilevborder":2,
+  "parent":{
+    "name":"Sugary Spire",
+    "path":"folders/Tile Sets/Sugary Spire.yy",
+  },
+  "resourceType":"GMTileSet",
+  "resourceVersion":"2.0",
+  "spriteId":{
+    "name":"tile_estate2",
+    "path":"sprites/tile_estate2/tile_estate2.yy",
+  },
+  "spriteNoExport":true,
+  "textureGroupId":{
+    "name":"mod_sugaryspire",
+    "path":"texturegroups/mod_sugaryspire",
+  },
+  "tileAnimationFrames":[],
+  "tileAnimationSpeed":15.0,
+  "tileHeight":32,
+  "tilehsep":0,
+  "tilevsep":0,
+  "tileWidth":32,
+  "tilexoff":0,
+  "tileyoff":0,
+  "tile_count":576,
+}

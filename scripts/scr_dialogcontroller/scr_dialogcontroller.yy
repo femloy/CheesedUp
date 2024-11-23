@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_dialogcontroller",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_dialogcontroller",
+  "parent":{
+    "name":"Systems",
+    "path":"folders/Scripts/Systems.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

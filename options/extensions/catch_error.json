@@ -1,0 +1,9 @@
+{
+  "resourceType": "GMExtensionConfigSet",
+  "configurables": null,
+  "extensionId": {
+    "name": "catch_error",
+    "path": "extensions/catch_error/catch_error.yy"
+  },
+  "resourceVersion": "1.0"
+}

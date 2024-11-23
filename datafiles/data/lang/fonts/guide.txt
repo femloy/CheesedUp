@@ -1,0 +1,23 @@
+This is a base game feature.
+Check english.txt
+
+TIP: Requires "custom_fonts = true"
+
+[font]_dir: The relative file path to the font PNG
+[font]_map: String of characters, in order of appearance in the sheet (left to right)
+[font]_sep: Padding between letters
+
+Allowed fonts:
+- bigfont
+- smallfont
+- tutorialfont
+- creditsfont
+- captionfont
+- font_small (Modded)
+
+Example:
+font_small_dir = "fonts/font_small_en.(png/ttf)"
+font_small_map = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz¡!._1234567890:;¿?▯|*/',\"()=-+@█%~ÁÉÍÓÚáéíóúÑñ[]<>${}"
+font_small_sep = "-1"
+
+This doesn't add fonts, it replaces existing ones, for now. Adding new fonts isn't useful yet anyways.

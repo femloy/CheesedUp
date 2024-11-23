@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"base_game_levels",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"base_game_levels",
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

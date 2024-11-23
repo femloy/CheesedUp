@@ -1,0 +1,48 @@
+{
+  "$GMTileSet":"v1",
+  "%Name":"tileset_steamy2",
+  "autoTileSets":[
+    {"$GMAutoTileSet":"","%Name":"Tiles","closed_edge":false,"name":"Tiles","resourceType":"GMAutoTileSet","resourceVersion":"2.0","tiles":[51,68,66,18,36,33,0,17,34,0,37,21,82,81,85,0,],},
+    {"$GMAutoTileSet":"","%Name":"Platforms","closed_edge":false,"name":"Platforms","resourceType":"GMAutoTileSet","resourceVersion":"2.0","tiles":[
+        4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,1,0,3,4,
+      ],},
+  ],
+  "macroPageTiles":{
+    "SerialiseHeight":0,
+    "SerialiseWidth":0,
+    "TileSerialiseData":[],
+  },
+  "name":"tileset_steamy2",
+  "out_columns":29,
+  "out_tilehborder":2,
+  "out_tilevborder":2,
+  "parent":{
+    "name":"Sugary Spire",
+    "path":"folders/Tile Sets/Sugary Spire.yy",
+  },
+  "resourceType":"GMTileSet",
+  "resourceVersion":"2.0",
+  "spriteId":{
+    "name":"tile_steamy2",
+    "path":"sprites/tile_steamy2/tile_steamy2.yy",
+  },
+  "spriteNoExport":true,
+  "textureGroupId":{
+    "name":"mod_sugaryspire",
+    "path":"texturegroups/mod_sugaryspire",
+  },
+  "tileAnimationFrames":[
+    {"$GMTileAnimation":"","%Name":"animation_1","frames":[429,461,493,525,],"name":"animation_1","resourceType":"GMTileAnimation","resourceVersion":"2.0",},
+    {"$GMTileAnimation":"","%Name":"animation_2","frames":[445,477,509,541,],"name":"animation_2","resourceType":"GMTileAnimation","resourceVersion":"2.0",},
+    {"$GMTileAnimation":"","%Name":"animation_3","frames":[430,462,494,526,],"name":"animation_3","resourceType":"GMTileAnimation","resourceVersion":"2.0",},
+    {"$GMTileAnimation":"","%Name":"animation_4","frames":[446,478,510,542,],"name":"animation_4","resourceType":"GMTileAnimation","resourceVersion":"2.0",},
+  ],
+  "tileAnimationSpeed":15.0,
+  "tileHeight":32,
+  "tilehsep":0,
+  "tilevsep":0,
+  "tileWidth":32,
+  "tilexoff":0,
+  "tileyoff":0,
+  "tile_count":848,
+}

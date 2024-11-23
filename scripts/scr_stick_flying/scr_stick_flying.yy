@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_stick_flying",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_stick_flying",
+  "parent":{
+    "name":"States",
+    "path":"folders/Scripts/Player/States.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

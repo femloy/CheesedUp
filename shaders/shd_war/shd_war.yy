@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"shd_war",
+  "name":"shd_war",
+  "parent":{
+    "name":"Level",
+    "path":"folders/Shaders/Level.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

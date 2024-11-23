@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"hud_is_hidden",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"hud_is_hidden",
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

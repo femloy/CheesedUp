@@ -1,0 +1,12 @@
+state = states.normal;
+maxhp = 8;
+hp = maxhp;
+fishcount = 1;
+oldattackstate = -1;
+spawnpool = [obj_forknight, obj_cheeseslime];
+bombtimer = 0;
+hasbomb = false;
+shot = false;
+explosionhit = false;
+bombgrabID = noone;
+init_collision();

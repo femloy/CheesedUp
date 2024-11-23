@@ -1,0 +1,18 @@
+scr_fakepep_init_sounds();
+init_collision();
+paletteselect = 0;
+bodyslam = false;
+flash = false;
+hitboxID = noone;
+attack = -4;
+attacked = false;
+spawnerID = noone;
+throwing = false;
+attackspeed = 0;
+state = states.transition;
+headID = noone;
+cooldown = 0;
+sound_play_3d("event:/sfx/fakepep/reform", x, y);
+sprite_index = spr_fakepeppino_reform;
+image_index = 0;
+image_speed = 0.35;

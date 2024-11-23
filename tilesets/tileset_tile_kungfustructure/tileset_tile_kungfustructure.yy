@@ -1,0 +1,38 @@
+{
+  "$GMTileSet":"v1",
+  "%Name":"tileset_tile_kungfustructure",
+  "autoTileSets":[],
+  "macroPageTiles":{
+    "SerialiseHeight":0,
+    "SerialiseWidth":0,
+    "TileSerialiseData":[],
+  },
+  "name":"tileset_tile_kungfustructure",
+  "out_columns":16,
+  "out_tilehborder":2,
+  "out_tilevborder":2,
+  "parent":{
+    "name":"Street",
+    "path":"folders/Tile Sets/Pizza Tower/Street.yy",
+  },
+  "resourceType":"GMTileSet",
+  "resourceVersion":"2.0",
+  "spriteId":{
+    "name":"sprite_tile_kungfustructure",
+    "path":"sprites/sprite_tile_kungfustructure/sprite_tile_kungfustructure.yy",
+  },
+  "spriteNoExport":false,
+  "textureGroupId":{
+    "name":"kungfugroup",
+    "path":"texturegroups/kungfugroup",
+  },
+  "tileAnimationFrames":[],
+  "tileAnimationSpeed":15.0,
+  "tileHeight":32,
+  "tilehsep":0,
+  "tilevsep":0,
+  "tileWidth":32,
+  "tilexoff":0,
+  "tileyoff":0,
+  "tile_count":256,
+}

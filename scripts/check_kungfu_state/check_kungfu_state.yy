@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"check_kungfu_state",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"check_kungfu_state",
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

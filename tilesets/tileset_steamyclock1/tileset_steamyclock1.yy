@@ -1,0 +1,38 @@
+{
+  "$GMTileSet":"v1",
+  "%Name":"tileset_steamyclock1",
+  "autoTileSets":[],
+  "macroPageTiles":{
+    "SerialiseHeight":0,
+    "SerialiseWidth":0,
+    "TileSerialiseData":[],
+  },
+  "name":"tileset_steamyclock1",
+  "out_columns":39,
+  "out_tilehborder":2,
+  "out_tilevborder":2,
+  "parent":{
+    "name":"Sugary Spire",
+    "path":"folders/Tile Sets/Sugary Spire.yy",
+  },
+  "resourceType":"GMTileSet",
+  "resourceVersion":"2.0",
+  "spriteId":{
+    "name":"tile_steamy3",
+    "path":"sprites/tile_steamy3/tile_steamy3.yy",
+  },
+  "spriteNoExport":true,
+  "textureGroupId":{
+    "name":"mod_sugaryspire",
+    "path":"texturegroups/mod_sugaryspire",
+  },
+  "tileAnimationFrames":[],
+  "tileAnimationSpeed":15.0,
+  "tileHeight":32,
+  "tilehsep":0,
+  "tilevsep":0,
+  "tileWidth":32,
+  "tilexoff":0,
+  "tileyoff":0,
+  "tile_count":1488,
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"clear_particles",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"clear_particles",
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

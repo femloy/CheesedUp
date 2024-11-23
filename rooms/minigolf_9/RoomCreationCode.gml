@@ -1,0 +1,1 @@
+global.roommessage = "BOWLING GOLFING SOCCERING BASKETBALLING";
