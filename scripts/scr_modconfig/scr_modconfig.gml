@@ -211,7 +211,7 @@ function load_mod_config()
 	global.record_replay = false;
 	global.replay_limit = 1000000 * 5; // in bytes, 5 MB
 	
-	// convert from islam (PTT)
+	// convert from islam (PTT 1.0)
 	if ini_key_exists("Modded", "pizzellesugaryoverride")
 	{
 		if SUGARY_SPIRE

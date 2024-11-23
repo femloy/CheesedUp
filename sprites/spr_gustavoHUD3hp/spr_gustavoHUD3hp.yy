@@ -38,7 +38,7 @@
   "origin":4,
   "parent":{
     "name":"Old Gustavo",
-    "path":"folders/Sprites/CheesyPizza/HUD/Old Gustavo.yy",
+    "path":"folders/Sprites/Together/HUD/Old Gustavo.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

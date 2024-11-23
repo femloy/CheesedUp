@@ -31,7 +31,6 @@ incubic = animcurve_get_channel(curve_menu, "incubic");
 
 // check availability
 req = -1;
-net = true ? os_is_network_connected(true) : true;
 str = lstr("disclaimer_no_internet");
 
 if file_exists(game_save_id + "crash_log.txt") && (!PLAYTEST or global.disclaimer_section != 0)
@@ -56,7 +55,7 @@ if file_exists(game_save_id + "crash_log.txt") && (!PLAYTEST or global.disclaime
 	}
 	buffer_delete(file);
 }
-else if (!YYC && !PLAYTEST) or global.disclaimer_section != 0
+else if !PLAYTEST or global.disclaimer_section != 0
 {
 	net = true;
 	state = 2;
@@ -69,13 +68,4 @@ else if PLAYTEST
 	state = 1;
 	net = true;
 	str = "This is a playtester build for the mod.\nDo not share it anywhere.";
-}
-else if YYC
-{
-	menu = 4;
-	if !net
-	{
-		t = -.5;
-		state = 1;
-	}
 }

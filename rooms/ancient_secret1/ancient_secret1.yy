@@ -93,7 +93,7 @@
   "name":"ancient_secret1",
   "parent":{
     "name":"Ancient Tower",
-    "path":"folders/Rooms/CheesyPizza/Ancient Tower.yy",
+    "path":"folders/Rooms/Together/Ancient Tower.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

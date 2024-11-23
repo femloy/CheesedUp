@@ -28,7 +28,7 @@
   "origin":4,
   "parent":{
     "name":"Sandbox Menu",
-    "path":"folders/Sprites/CheesyPizza/Sandbox Menu.yy",
+    "path":"folders/Sprites/Together/Sandbox Menu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -36,7 +36,7 @@
   "origin":4,
   "parent":{
     "name":"Doggy",
-    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Baddie/Doggy.yy",
+    "path":"folders/Sprites/Together/Sugary Spire/Baddie/Doggy.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

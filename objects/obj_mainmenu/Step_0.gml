@@ -104,7 +104,7 @@ switch state
 				else
 				{
 					var c = extramenusel;
-					extramenusel = clamp(extramenusel + _move_v, 0, 1 + !YYC);
+					extramenusel = clamp(extramenusel + _move_v, 0, 2);
 					
 					if c != extramenusel
 						sound_play(sfx_step);
@@ -120,7 +120,7 @@ switch state
 						exit;
 					case 1:
 						sound_play_centered(sfx_collecttoppin);
-						url_open("https://www.youtube.com/@CheesyPT");
+						//url_open("https://www.youtube.com/@CheesyPT");
 						break;
 					case 2:
 						sound_play_centered(sfx_collecttoppin);

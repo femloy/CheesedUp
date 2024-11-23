@@ -458,7 +458,22 @@ alpha = lerp(alpha, 1, 0.25);
 // making preset transfotip
 var t = "";
 if mode == 1
-	t = lstr("mod_config_mode1");
+{
+	if state == 1
+	{
+		if section[$ "make_presets"] != undefined
+		{
+			if ds_list_size(preset_options) == 0
+				t = lstr("mod_config_mode4");
+			else
+				t = lstr("mod_config_mode7");
+		}
+		else
+			t = lstr("mod_config_mode6");
+	}
+	else
+		t = lstr("mod_config_mode5");
+}
 if mode == 2
 	t = lstr("mod_config_mode2");
 if mode == 3
@@ -486,5 +501,3 @@ if t != ""
 		fadeout = false;
 	}
 }
-
-if YYC ANTI_LEAK_CHECK;

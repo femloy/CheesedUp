@@ -9,36 +9,8 @@ function toggle_texture_debug(enable)
 }
 toggle_texture_debug(false);
 
-// anti modding
-if YYC
-{
-	// room order check
-	if room_first != Loadiingroom or room_next(room_first) != Initroom
-	{
-		report_in_game_error(room_get_name(room_first), room_get_name(room_next(room_first)), "none");
-		show_message("Please do not modify this version of the game.\nError 0: report this to Loy if it was a mistake.");
-		game_end();
-		exit;
-	}
-	
-	// drm
-	global._ = array_create(8, false);
-	
-	// nekopresence dll integrity
-	var integ = np_checkintegrity();
-	if integ != rich_username()
-	{
-		report_in_game_error(integ, rich_username(), "none");
-		show_message("Please do not modify this version of the game.\nError 1: report this to Loy if it was a mistake.");
-		game_end();
-		exit;
-	}
-}
-else
-{
+if DEBUG
 	debug_event("OutputDebugOn");
-	np_checkintegrity();
-}
 
 // crash handler
 exception_unhandled_handler
@@ -84,7 +56,7 @@ exception_unhandled_handler
 		
 		// show and log the crash
 	    show_debug_message(string(e));
-		show_message($"The Cheese fucked Up!\n\n---\n\n{e.longMessage}\n---\n\nstacktrace: {e.stacktrace}");
+		show_message($"The game crashed!\n\n---\n\n{e.longMessage}\n---\n\nstacktrace: {e.stacktrace}");
 		
 		// save it to a file
 		var _f = file_text_open_write(game_save_id + "crash_log.txt");
@@ -103,7 +75,7 @@ if GM_build_type == "run"
 	global.debug_mode = true;
 
 #macro DEBUG (GM_build_type == "run" && global[$ "debug_mode"])
-#macro YYC 0
+#macro YYC code_is_compiled()
 #macro PLAYTEST 0
 
 if !YYC
@@ -232,15 +204,6 @@ for(var key = ds_map_find_first(global.lang_map); key != undefined; key = ds_map
 
 global.custom_palettes = [];
 global.custom_patterns = ds_map_create();
-
-// antileak
-if YYC
-{
-	global.__ = [];
-	repeat 8
-		array_push(global.__, irandom(255));
-}
-#macro ANTI_LEAK_CHECK { for(var i = 0; i < 8; i++) { if global._[i] != global.__[i] then with all instance_destroy() } }
 
 // etc
 globalvar CHEESE;

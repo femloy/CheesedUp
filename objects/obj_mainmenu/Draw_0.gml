@@ -169,9 +169,7 @@ draw_rectangle_color(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0, 0, 0, false);
 draw_set_alpha((1 - extramenualpha));
 draw_set_font(lang_get_font("creditsfont"));
 
-var extramenu_opts = [lstr("menu_transfer"), "YouTube"];
-if !YYC
-	array_push(extramenu_opts, "Discord");
+var extramenu_opts = [lstr("menu_transfer"), "YouTube (TODO)", "Discord"];
 for(var i = 0, n = array_length(extramenu_opts); i < n; i++)
 {
 	var c = extramenusel == i ? c_white : c_gray;
@@ -191,11 +189,11 @@ draw_set_alpha(1);
 var icon = -1;
 switch charselect
 {
-	case 0: icon = spr_mainmenu_cheeseicon; break;
+	case 0: icon = spr_mainmenu_sandboxicon; break;
 	case 1: icon = spr_mainmenu_storyicon; break;
 	case 2: icon = spr_mainmenu_optsicon; break;
 }
 if icon != -1
 	draw_sprite_ext(icon, game_icon_index, status_x - 100, status_y + 195 + game_icon_y, 1, 1, 0, c_white, extrauialpha);
-if charselect == 0
-	draw_sprite_ext(spr_cheese, 0, -20 + (status_x - 100), -10 + (status_y + 195 + game_icon_y), .5, .5, 0, c_white, extrauialpha);
+//if charselect == 0
+//	draw_sprite_ext(spr_cheese, 0, -20 + (status_x - 100), -10 + (status_y + 195 + game_icon_y), .5, .5, 0, c_white, extrauialpha);

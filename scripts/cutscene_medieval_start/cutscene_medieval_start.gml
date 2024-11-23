@@ -31,5 +31,3 @@ function cutscene_medieval_start2()
 	}
 	cutscene_end_action();
 }
-//if !code_is_compiled() && GM_build_type == "exe"
-//	funny_room(); // think about what you're doing.

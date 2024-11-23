@@ -30,8 +30,8 @@
   ],
   "name":"editor_entrance",
   "parent":{
-    "name":"CheesyPizza",
-    "path":"folders/Rooms/CheesyPizza.yy",
+    "name":"Together",
+    "path":"folders/Rooms/Together.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

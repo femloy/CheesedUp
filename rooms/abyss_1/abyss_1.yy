@@ -45,7 +45,7 @@
   "name":"abyss_1",
   "parent":{
     "name":"John's Abyss",
-    "path":"folders/Rooms/CheesyPizza/John's Abyss.yy",
+    "path":"folders/Rooms/Together/John's Abyss.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

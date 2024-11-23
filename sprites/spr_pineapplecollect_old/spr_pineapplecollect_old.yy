@@ -28,7 +28,7 @@
   "origin":0,
   "parent":{
     "name":"OLD ASSET",
-    "path":"folders/Sprites/CheesyPizza/OLD ASSET.yy",
+    "path":"folders/Sprites/Together/OLD ASSET.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

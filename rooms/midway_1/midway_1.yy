@@ -17,7 +17,7 @@
   "name":"midway_1",
   "parent":{
     "name":"Midway",
-    "path":"folders/Rooms/CheesyPizza/Midway.yy",
+    "path":"folders/Rooms/Together/Midway.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

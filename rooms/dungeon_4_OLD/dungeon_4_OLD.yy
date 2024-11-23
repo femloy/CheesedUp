@@ -603,7 +603,7 @@
   "name":"dungeon_4_OLD",
   "parent":{
     "name":"Dungeon",
-    "path":"folders/Rooms/CheesyPizza/Snick's Challenge/Dungeon.yy",
+    "path":"folders/Rooms/Together/Snick's Challenge/Dungeon.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

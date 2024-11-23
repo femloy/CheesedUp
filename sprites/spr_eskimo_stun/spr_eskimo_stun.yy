@@ -28,7 +28,7 @@
   "origin":9,
   "parent":{
     "name":"Eskimo",
-    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Baddie/Eskimo.yy",
+    "path":"folders/Sprites/Together/Sugary Spire/Baddie/Eskimo.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -98,7 +98,7 @@
   "name":"tower_cheftaskextra",
   "parent":{
     "name":"Tower",
-    "path":"folders/Rooms/CheesyPizza/Tower.yy",
+    "path":"folders/Rooms/Together/Tower.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

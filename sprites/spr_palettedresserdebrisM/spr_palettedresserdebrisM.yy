@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"HUB",
-    "path":"folders/Sprites/CheesyPizza/HUB.yy",
+    "path":"folders/Sprites/Together/HUB.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

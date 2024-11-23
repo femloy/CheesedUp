@@ -132,8 +132,8 @@
   ],
   "name":"cyop_main",
   "parent":{
-    "name":"CheesyPizza",
-    "path":"folders/Rooms/CheesyPizza.yy",
+    "name":"Together",
+    "path":"folders/Rooms/Together.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

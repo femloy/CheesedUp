@@ -163,7 +163,7 @@
   "name":"sugarytut_2",
   "parent":{
     "name":"Tutorial",
-    "path":"folders/Rooms/CheesyPizza/Sugary Spire/Tutorial.yy",
+    "path":"folders/Rooms/Together/Sugary Spire/Tutorial.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

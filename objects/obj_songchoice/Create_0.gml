@@ -139,8 +139,6 @@ with new JukeboxSection("Pizza Tower")
 			["event:/soundtest/base/secretentrance SN", "lol funny - Loy"]
 		);
 	}
-	if BO_NOISE
-		array_push(e, ["event:/soundtest/base/secretentrance BN", "how bo unlock the secret - Jessie Productions"]);
 	array_push(songs, e);
 	
 	add_secretsong("event:/soundtest/base/secretpizzascape", "hmmm look what u done did you found a secret :) - ClascyJitto", SUGARY_SPIRE ? "RodMod" : "", BO_NOISE ? "Jessie Productions" : "");
@@ -169,17 +167,15 @@ with new JukeboxSection("Pizza Tower")
 	add_song("event:/soundtest/base/halloweenrace", "The Runner - PostElvis");
 }
 
-with new JukeboxSection("Cheesed Up")
+with new JukeboxSection("Together")
 {
-	add_song("event:/soundtest/pto/saturdays", "Saturdays - Loy",
-		"The remix in the latter half of this song was taken from PT Online's ARCADE song.");
+	add_song("event:/soundtest/pto/serverlist", "Server List - Loy");
+	add_song("event:/soundtest/pto/serverlistold", "Server List (OLD) - PaperKitty");
 	
+	add_song("event:/soundtest/pto/saturdays", "Saturdays - Loy");
 	add_song("event:/soundtest/pto/sundays", "Sundays - Loy");
-	
-	add_song("event:/soundtest/pto/shop", "Weekend Delight - Loy",
-		"The bassline is taken from PT Online's \"Credits\" song.");
-	
-	add_song("event:/soundtest/pto/credits", "Credits - Loy");
+	add_song("event:/soundtest/pto/shop", "Weekend Delight - Loy");
+	//add_song("event:/soundtest/pto/credits", "Credits - Loy");
 	
 	add_multisong("event:/soundtest/pto/cosmicclone", "Cosmic Chaos - Loy",
 		"event:/soundtest/pto/cosmiccloneescape", "Cosmic Chaos (Escape) - Loy",
@@ -187,47 +183,17 @@ with new JukeboxSection("Cheesed Up")
 		"event:/soundtest/pto/cosmiccloneescapeN", "Cosmic Chaos (Noise, Escape) - Loy");
 	
 	add_song("event:/soundtest/pto/editor", "Choosing The Toppings - MrSauceman");
-	
-	add_song("event:/soundtest/pto/quintessence", "Quintessence - ClascyJitto",
-		"This was supposed to be one of the hub songs, judging by the filename \"pt-hub-world-draft-2\".");
-	
-	add_song("event:/soundtest/pto/strongcold", "Teeth Dust In The Strongcold - ClascyJitto",
-		"Strongcold was gonna have a remix of Grinch's Ultimatum instead, but they didn't get permission.");
-	
-	add_song("event:/soundtest/pto/mansion", "Ground Bound - MrSauceman",
-		"In an old version of this song, instead of saying \"Bring me ravioli\", it would say \"Suck my D\"...");
-	
-	add_song("event:/soundtest/pto/snickchallenge", "Spooky Apartment Escape - ClascyJitto",
-		"This was supposed to be the escape song for a scrapped Spooky Apartment level. It was reused for Snick's Challenge.");
-	
-	add_song("event:/soundtest/pto/dragonlair", "Tarragon Pizza - ClascyJitto",
-		"This song has a time signature of 9/8. Try to track the beat!");
-	
-	add_song("event:/soundtest/pto/hallelujah", "Hallelujah Mama-Mia - ClascyJitto",
-		"This song was never finished. This is a WIP, apparently.");
-	
-	add_song("event:/soundtest/pto/funiculario", "Funiculario - Dim Widdy",
-		"This song was commissioned by McPig all the way back in 2018. He posted this high quality version on the Discord.");
-	
+	add_song("event:/soundtest/pto/quintessence", "Quintessence - ClascyJitto");
+	add_song("event:/soundtest/pto/strongcold", "Teeth Dust In The Strongcold - ClascyJitto");
+	add_song("event:/soundtest/pto/mansion", "Ground Bound - MrSauceman");
+	add_song("event:/soundtest/pto/snickchallenge", "Spooky Apartment Escape - ClascyJitto");
+	add_song("event:/soundtest/pto/dragonlair", "Tarragon Pizza - ClascyJitto");
+	add_song("event:/soundtest/pto/hallelujah", "Hallelujah Mama-Mia - ClascyJitto");
+	add_song("event:/soundtest/pto/funiculario", "Funiculario - Dim Widdy");
 	add_song("event:/soundtest/pto/oldruin", "One Pizza At A Time - MrSauceman");
-	
-	add_song("event:/soundtest/pto/grinch", "Grinch's Ultimatum - PilotRedSun",
-		"PilotRedSun never gave anyone permission to use his music.");
-	
-	add_song("event:/soundtest/pto/forafewtoppings", "For A Few Toppings More - MrSauceman",
-		"This is Vigilante's trailer theme, first heard in 2020. This full version was released 3 years later.");
-	
-	add_song("event:/soundtest/pto/leaningnightmare", "Leaning Nightmare - ClascyJitto",
-		"Deep-Dish-9's escape theme. Wish I was joking.");
-	
-	if BO_NOISE
-	{
-		add_song("event:/soundtest/pto/midway", "bad to the bo - Jessie Productions");
-		add_song("event:/soundtest/pto/escapeBN", "bo noise escape theme 1 - Jessie Productions");
-		add_song("event:/soundtest/pto/lapBN", "bo noise rap - Fuckface",
-			"Vir is a fuckface.");
-	}
-	
+	add_song("event:/soundtest/pto/grinch", "Grinch's Ultimatum - PilotRedSun");
+	add_song("event:/soundtest/pto/forafewtoppings", "For A Few Toppings More - MrSauceman");
+	add_song("event:/soundtest/pto/leaningnightmare", "Leaning Nightmare - ClascyJitto");
 	add_song("event:/soundtest/pto/lap3", "Pillar John's Revenge - Vozaxhi");
 	add_song("event:/soundtest/pto/italianpredicament", "Italian Predicament - Loy");
 	add_song("event:/soundtest/pto/thevigilantesfavoritesongthathelistenstowhenhedoesit", "THE VIGILANTE'S FAVORITE SONG THAT HE LISTENS TO WHEN HE DOES IT - Loy");

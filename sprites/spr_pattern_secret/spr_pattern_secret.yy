@@ -76,7 +76,7 @@
   "origin":0,
   "parent":{
     "name":"Patterns",
-    "path":"folders/Sprites/CheesyPizza/Patterns.yy",
+    "path":"folders/Sprites/Together/Patterns.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

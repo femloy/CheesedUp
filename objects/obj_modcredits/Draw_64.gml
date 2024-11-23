@@ -27,10 +27,10 @@ if con >= 1
 	if !dark
 	{
 		var timer = floor(current_time / 35) * 35;
-		if con < 3
+		/*if con < 3
 			draw_sprite_ext(spr_cheese, 0, x + random_range(-1, 1), yy + random_range(-1, 1), 1, 1, 0, c_white, 1);
 		else
-			draw_sprite_ext(spr_cheese, 0, x + random_range(-1, 1), yy + random_range(-1, 1), 1 + sin(timer / 50) * .5, 1 + sin(timer / 60 + pi) * .5, sin(timer / 200 + pi / 2) * 25, c_white, 1);
+			draw_sprite_ext(spr_cheese, 0, x + random_range(-1, 1), yy + random_range(-1, 1), 1 + sin(timer / 50) * .5, 1 + sin(timer / 60 + pi) * .5, sin(timer / 200 + pi / 2) * 25, c_white, 1);*/
 	}
 	draw_sprite_ext(spr_title, 1, x - 395 / 2, yy + 120, 1, 1, 0, c_white, y / 50 - 0.5);
 	

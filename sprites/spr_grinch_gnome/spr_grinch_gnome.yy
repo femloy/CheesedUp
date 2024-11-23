@@ -56,7 +56,7 @@
   "origin":0,
   "parent":{
     "name":"Grinch",
-    "path":"folders/Sprites/CheesyPizza/Level Assets/Grinch.yy",
+    "path":"folders/Sprites/Together/Level Assets/Grinch.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -1,4 +1,4 @@
-PIZZA TOWER: CHEESED UP!
+PIZZA TOWER TOGETHER
 CREDITS (WIP)
 
 
@@ -13,20 +13,17 @@ Tictorian
 - Music/SFX -
 Loy
 
-- Layouts -
-Loy (QA)
-
 - Other Mod Content -
 Pizza Tower Online
+Pizza Tower: Cheesed Up!
 LAP HELL + Egg's Lap Mod
 Create Your Own Pizza
 
 - Contributions -
 Red - Missing base game room names
-PT:CU Discord - Palettes, cosmetics and suggestions
+The Discord - Palettes, cosmetics and suggestions
 Ven - A couple of sprites
 TerrAvery - Translation spriting help
-Rosabella - Lap numbers, lap blocks
 
 - Spanish Translation -
 Loy - Translation

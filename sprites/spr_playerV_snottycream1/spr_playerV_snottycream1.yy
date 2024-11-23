@@ -57,7 +57,7 @@
   "origin":9,
   "parent":{
     "name":"Green cream",
-    "path":"folders/Sprites/CheesyPizza/Green cream.yy",
+    "path":"folders/Sprites/Together/Green cream.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -86,7 +86,7 @@
   "name":"mansion_stairway",
   "parent":{
     "name":"September",
-    "path":"folders/Rooms/CheesyPizza/Mansion/September.yy",
+    "path":"folders/Rooms/Together/Mansion/September.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

@@ -1,13 +1,4 @@
 global.longintro = true;
-if YYC
-{
-	if !variable_global_exists("_")
-	{
-		trace("FUNNYROOM - globalvar doesn't exist (Loadiingroom)");
-		instance_create(0, 0, obj_softlockcrash);
-	}
-}
-
 global.swapmode = false; // disclaimer uses input
 tdp_text_init();
 

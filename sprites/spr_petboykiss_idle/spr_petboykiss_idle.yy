@@ -30,7 +30,7 @@
   "origin":4,
   "parent":{
     "name":"Removed",
-    "path":"folders/Sprites/CheesyPizza/Pets/Removed.yy",
+    "path":"folders/Sprites/Together/Pets/Removed.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

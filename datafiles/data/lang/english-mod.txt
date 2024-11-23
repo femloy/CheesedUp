@@ -1,7 +1,7 @@
 # ---------------
 # IMPORTANT NOTE
 # ---------------
-# This file is updated between versions. (B1.4.7 now)
+# This file is updated between versions. (B1.0.0 now)
 # Keep that in mind if you want to maintain translations.
 # It might also contain some secrets... so tread lightly.
 # 
@@ -78,6 +78,7 @@ granny_birthday = "Happy birthday!"
 # MOD CONFIG
 # -----------
 mod_section_gameplay = "Gameplay"
+mod_section_online = "Online"
 mod_section_input = "Input"
 mod_section_visual = "Visual"
 mod_section_misc = "Misc"
@@ -178,6 +179,11 @@ mod_desc_chasekind_1 = "Changes the layout on certain rooms on Lap 3, like ELM."
 mod_desc_chasekind_2 = "Slows down Pizzaface on certain rooms on Lap 3, like Lap Hell."
 mod_desc_keyalpha = "Transparency of the input display."
 
+mod_title_online_player_opacity = "Player Opacity"
+mod_desc_online_player_opacity = "The opacity used to show other players to you."
+mod_title_online_streamer_mode = "Streamer Mode"
+mod_desc_online_streamer_mode = "Hides player names."
+
 mod_condition_lapping = "Go back to the lobby\nto change this!"
 mod_condition_lapping2 = "AFOM towers have custom\nlapping settings!"
 mod_condition_holidayoverride = "Go back to the main menu\nto change this!"
@@ -225,8 +231,8 @@ mod_preset_default = "Default"
 mod_preset_default_desc = "This will reset the mod config to factory settings."
 mod_preset_vanilla = "Vanilla"
 mod_preset_vanilla_desc = "Base game settings, no modded stuff."
-mod_preset_loy = "Loy's Choice"
-mod_preset_loy_desc = "Play like me!"
+mod_preset_loy = "Speed Demon"
+mod_preset_loy_desc = "Don't worry, it's balanced."
 mod_preset_jayleno = "Jay Leno"
 mod_preset_jayleno_desc = "Oh my Horrible Gameplay!"
 mod_preset_new_desc = "A custom preset."
@@ -300,7 +306,6 @@ mod_desc_suddendeath = "Getting hurt or hitting walls will kill you!"
 # ---------------
 caption_soundtest = "A rave in the Pizza Tower"
 caption_serious = "Pizza Tower"
-caption_towerextra = "Can't get enough Pizza Tower"
 caption_towerbasement = "The deepest layer of the Pizza Tower"
 caption_undefined = "undefined"
 caption_editormenu = "Select your Pizza Tower"
@@ -328,25 +333,20 @@ caption_cyop = "Create your own Pizza Tower"
 # -----------------------
 # ROOM NAMES (not levels)
 # -----------------------
-room_towerextra = "OUTERFLOOR"
 room_towerbasement = "ROCK BOTTOM"
 room_towermeta = "SLOP ZONE"
 room_freerun = "FREERUNNING"
 room_hubroomE = "ABANDONED LOBBY"
 room_towersage = "SAGE"
 room_towershop = "WEEKEND DELIGHT"
-room_towertaskextra = "OUTER ACHIEVEMENTS"
 room_towertaskbasement = "SUB ACHIEVEMENTS"
 
 # -----------------
 # HUB TIPS
 # -----------------
-grannyextra = "WAIT!! The gates past this point were restored from older iterations of the tower, most of which don't fit very well anymore. While some of them have been refurbished, most are pretty tedious to go through!"
-grannyextra2 = "This part of the floor contains old blueprints and concepts brought to life, collaborations with other projects, and even brand new original levels in the future. It's a bit lacking right now though, but maybe you could help with that...?"
-
 hubtips10 = "Once you've beaten a level, try pressing [T] while looking at its entrance gate! This will open a handy menu where you can add difficulty with bonus game-changing modifiers!"
 hubtips11 = "Have you noticed any shiny new coins in your pocket? Those are Pizzacoins! Use them to buy clothes, pets and hats!"
-hubtips12 = "Hey, you should consider playing on Story Mode! After beating the base game, the elevator upgrades with both extra floors."
+hubtips12 = "Hey, you should consider playing on story or online mode! After beating Pizzaface, the elevator will upgrade with this extra floor."
 hubtips13 = "Did you know that the quickest way to get Mach Run speed is with [G][D]? Remember to keep holding [M] and [F]!"
 hubtips14 = "You can cancel out of a Super Jump with [G] or [M], but you already knew that."
 
@@ -409,6 +409,10 @@ rankcontinue = "{u}[c] Continue/"
 mod_config_mode1 = "{u}[c] Select options/"
 mod_config_mode2 = "{u}Type and press enter to save/"
 mod_config_mode3 = "{u}[c] Delete [b] Back/"
+mod_config_mode4 = "{u}[b] Categories/"
+mod_config_mode5 = "{u}[c] Select [b] Cancel/"
+mod_config_mode6 = "{u}[c] Select [b] Back/"
+mod_config_mode7 = "{u}Select New Preset to save/"
 attackstyletip = "{u}[%] % [%] Grab/"
 attackstyle1 = "Kung-Fu"
 attackstyle2 = "Shoulder Bash"
@@ -603,17 +607,9 @@ level_custom = "Custom Levels"
 disclaimer_crash1 = "The game crashed last time."
 disclaimer_crash2 = "{u}Press [c] to play/"
 
-disclaimer_no_internet = "This is an anti-leaking measure.\n\nPlease connect to the internet to continue.\nYou may have the game blocked on your firewall."
-disclaimer_availability = "Checking availability%"
-disclaimer_waiting_discord = "Waiting for Discord%\n\nThis is an anti-leaking measure.\nThe mod uses Rich Presence to check if\nthe person playing is verified.\n\nIf you don't have Discord open, this will fail.\nIt may take a bit on bad connections."
-disclaimer_discord_error = "Discord Rich Presence failed to run!\nTry booting up Discord if it's not running.\n\nThis is an anti-leaking measure.\n\nThe mod uses Rich Presence to check if\nthe person playing is verified."
-disclaimer_discord_error2 = "Discord check timed out!\nCheck the FAQ channel in the Discord."
-disclaimer_tryagain = "Press R to try again"
-
 disclaimer_title = "{s}Disclaimer/"
-disclaimer = "For any unsuspecting newcomers, this mod's community has a\nbunch of drama, due to the owner (Loy) having misinformation spread about\nthem everywhere. So if you're planning to make content about this\nmod, keep in mind that some people are really not going to like it."
-disclaimer_non_yyc = "This mod is only shared through our Discord.\nIf you got this mod through any other means, please report it.\n\n\n\n"
-disclaimer_link = "PT:CU Discord"
+disclaimer = "This mod is a FREE patch for Pizza Tower, only shared through our\nDiscord and GameBanana. If you got it through any other means, please report it."
+disclaimer_link = "Discord Server"
 disclaimer_continue = "Continue"
 
 disclaimer_new_ver = "There's a new version available!\nhttps://discord.gg/thenoise"
@@ -625,7 +621,7 @@ disclaimer_error2 = "Please check your internet connection."
 # SAVE TRANSFER
 # ---------------
 transfer_settings = "SETTINGS"
-transfer_ptt = "Has PTT settings"
+transfer_ptt = "Has PTT 1.0 stuff"
 transfer_swap = "Swap Mode unlocked"
 transfer_clothes = "% clothes"
 transfer_completion = "$% completion"

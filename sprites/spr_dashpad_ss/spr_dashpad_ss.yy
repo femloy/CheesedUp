@@ -34,7 +34,7 @@
   "origin":4,
   "parent":{
     "name":"Level Objects",
-    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Level Structure/Level Objects.yy",
+    "path":"folders/Sprites/Together/Sugary Spire/Level Structure/Level Objects.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

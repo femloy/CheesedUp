@@ -44,7 +44,7 @@
   "origin":4,
   "parent":{
     "name":"Old Noise",
-    "path":"folders/Sprites/CheesyPizza/HUD/Old Noise.yy",
+    "path":"folders/Sprites/Together/HUD/Old Noise.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

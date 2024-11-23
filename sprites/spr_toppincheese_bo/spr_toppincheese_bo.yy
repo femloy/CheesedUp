@@ -33,7 +33,7 @@
   "origin":4,
   "parent":{
     "name":"Toppin",
-    "path":"folders/Sprites/CheesyPizza/Level Assets/Midway/Toppin.yy",
+    "path":"folders/Sprites/Together/Level Assets/Midway/Toppin.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

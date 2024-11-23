@@ -39,7 +39,7 @@
   "origin":0,
   "parent":{
     "name":"Level Structure",
-    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Level Structure.yy",
+    "path":"folders/Sprites/Together/Sugary Spire/Level Structure.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

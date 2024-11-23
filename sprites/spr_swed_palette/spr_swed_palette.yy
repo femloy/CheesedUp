@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Swed",
-    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Baddie/Swed.yy",
+    "path":"folders/Sprites/Together/Sugary Spire/Baddie/Swed.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

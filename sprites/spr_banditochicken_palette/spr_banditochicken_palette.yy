@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Palettes",
-    "path":"folders/Sprites/CheesyPizza/Baddie/Palettes.yy",
+    "path":"folders/Sprites/Together/Baddie/Palettes.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

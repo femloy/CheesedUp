@@ -49,7 +49,7 @@ if sandbox
 		draw_rectangle_color(xx, yy, xx + sprite_get_width(clipspr), yy + sprite_get_height(clipspr), #d07808, #d07808, #d07808, #d07808, false);
 		
 		var timer = floor(current_time / 35) * 35;
-		draw_sprite_ext(spr_cheese, noisehead, xx + noisexoffset + random_range(-1, 1), yy + noiseyoffset + random_range(-1, 1), noisescale + sin(timer / 50) * .5, noisescale + sin(timer / 60 + pi) * .5, sin(timer / 200 + pi / 2) * 25, c_white, 1);
+		//draw_sprite_ext(spr_cheese, noisehead, xx + noisexoffset + random_range(-1, 1), yy + noiseyoffset + random_range(-1, 1), noisescale + sin(timer / 50) * .5, noisescale + sin(timer / 60 + pi) * .5, sin(timer / 200 + pi / 2) * 25, c_white, 1);
 	}
 	if sprite_index == confirmspr
 	{
@@ -58,7 +58,7 @@ if sandbox
 		var c = merge_color(#d07808, c_red, time);
 		draw_rectangle_color(xx, yy, xx + sprite_get_width(clipspr), yy + sprite_get_height(clipspr), c, c, c, c, false);
 		var scale = noisescale + abs(sin(current_time / 200) * time) * 2;
-		draw_sprite_ext(spr_cheese, noisehead, xx + noisexoffset + random_range(-1, 1), yy + noiseyoffset + random_range(-1, 1), scale, scale, 0, c_white, 1);
+		//draw_sprite_ext(spr_cheese, noisehead, xx + noisexoffset + random_range(-1, 1), yy + noiseyoffset + random_range(-1, 1), scale, scale, 0, c_white, 1);
 	}
 	draw_set_mask(tvx, tvy, clipspr);
 	draw_surface_ext(surface, tvx, tvy, 1, 1, 0, make_color_hsv(((current_time - x) / 20) % 255, 200, 255), 1);

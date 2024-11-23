@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Chunks",
-    "path":"folders/Sprites/CheesyPizza/Sugary Spire/BGs and Tiles/Sucrose/Chunks.yy",
+    "path":"folders/Sprites/Together/Sugary Spire/BGs and Tiles/Sucrose/Chunks.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

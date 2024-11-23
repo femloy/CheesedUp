@@ -45,7 +45,7 @@
   "origin":4,
   "parent":{
     "name":"Hats",
-    "path":"folders/Sprites/CheesyPizza/Hats.yy",
+    "path":"folders/Sprites/Together/Hats.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

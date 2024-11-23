@@ -33,67 +33,16 @@ draw_surface(surf, 0, 0);
 // disclaimer
 if menu == 0
 	draw_rectangle_color(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0, 0, 0, false);
-if YYC
-{
-	if state == 0 && menu == 4
-	{
-		draw_set_align(fa_center, fa_middle);
-		draw_set_font(lang_get_font("font_small"));
-		draw_set_colour(c_white);
-	
-		var dots = ".";
-		if (current_time / 500) % 3 >= 1
-			dots += ".";
-		if (current_time / 500) % 3 >= 2
-			dots += ".";
-	
-		var str = "disclaimer_availability";
-		if !obj_richpresence.active
-			str = "disclaimer_waiting_discord";
-		str = embed_value_string(lstr(str), [dots]);
-	
-		var xx = SCREEN_WIDTH / 2, yy = SCREEN_HEIGHT / 2;
-		draw_set_alpha(0.75);
-		draw_roundrect_color_ext(xx - string_width(str) / 2 - 32, yy - string_height(str) / 2 - 16, xx + string_width(str) / 2 + 32, yy + string_height(str) / 2 + 16, 10, 10, 0, 0, false);
-		draw_set_alpha(1);
-		draw_text(xx, yy, str);
-	}
-}
 
 if t >= 1 or menu == 3
 {
 	switch menu
 	{
-		case 4:
-			if YYC
-			{
-				if state == 1
-				{
-					// fabled disclaimer lock
-					draw_set_halign(fa_center);
-	
-					// actual text
-					draw_set_valign(fa_middle);
-					draw_set_colour(c_white);
-					draw_set_font(lfnt("tvbubblefont"));
-					draw_text(960 / 2, 540 / 2 - 16, self.str);
-		
-					if req != -2
-					{
-						draw_set_font(lfnt("font_small"));
-						draw_text(960 / 2, 420, lstr("disclaimer_tryagain"));
-					}
-				}
-				if state == 2
-					draw_sprite(spr_noisecongratition, 0, 0, 0);
-			}
-			break;
-		
 		case 0:
 			if state == 1
 			{
 				// disclaimer
-				draw_set_halign(fa_left);
+				draw_set_align(fa_left);
 				draw_set_colour(c_white);
 			
 				var disclaimer_alpha = clamp((room_speed * 3 - disclaimer.wait - 20) / 20, 0, 1);
@@ -103,23 +52,18 @@ if t >= 1 or menu == 3
 				scr_draw_text_arr(SCREEN_WIDTH / 2 - disclaimer.header_size[0] / 2, 100, disclaimer.header, merge_colour(c_red, c_white, 0.25), disclaimer_alpha);
 			
 				draw_set_font(lfnt("tvbubblefont"));
-				draw_set_halign(fa_center);
+				draw_set_align(fa_center);
 				
 				var disc_text = lstr("disclaimer");
-				if !YYC
-					disc_text = lstr("disclaimer_non_yyc") + disc_text;
 				draw_text(SCREEN_WIDTH / 2, 180, disc_text);
 				
 				// blatant advertisement
-				if !YYC
+				if text_button(SCREEN_WIDTH / 2, 180 + string_height(disc_text), concat("\n    ", lstr("disclaimer_link"), "    \n\n"), #5865F2, c_white) == 2
 				{
-					if text_button(SCREEN_WIDTH / 2, 220, concat("\n    ", lstr("disclaimer_link"), "    \n\n"), #5865F2, c_white) == 2
-					{
-						sound_play(sfx_collect);
-						url_open("https://discord.gg/thenoise");
-					}
+					sound_play(sfx_collect);
+					url_open("https://discord.gg/thenoise");
 				}
-			
+				
 				// continue button
 				if disclaimer.wait-- <= 0// or PLAYTEST
 				{

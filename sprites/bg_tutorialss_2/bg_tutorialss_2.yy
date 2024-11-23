@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Tutorial",
-    "path":"folders/Sprites/CheesyPizza/Sugary Spire/BGs and Tiles/Tutorial.yy",
+    "path":"folders/Sprites/Together/Sugary Spire/BGs and Tiles/Tutorial.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -27,8 +27,8 @@
   ],
   "name":"room_chasekind",
   "parent":{
-    "name":"Rooms",
-    "path":"folders/Rooms.yy",
+    "name":"Together",
+    "path":"folders/Rooms/Together.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

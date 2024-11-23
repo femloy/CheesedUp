@@ -26,7 +26,7 @@
   "origin":9,
   "parent":{
     "name":"Checkpoint",
-    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Level Structure/Checkpoint.yy",
+    "path":"folders/Sprites/Together/Sugary Spire/Level Structure/Checkpoint.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

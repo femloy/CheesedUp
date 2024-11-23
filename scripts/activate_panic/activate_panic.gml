@@ -9,8 +9,6 @@ function calculate_panic_timer(_minutes = 5, _seconds = 30)
 }
 function activate_panic(instapanic = false, debris = noone)
 {
-	if YYC ANTI_LEAK_CHECK;
-	
 	if room == tower_finalhallway
 		global.leveltosave = "exit";
 	

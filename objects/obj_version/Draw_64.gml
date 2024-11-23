@@ -4,4 +4,4 @@ draw_set_valign(fa_bottom);
 var a = 0;
 with obj_mainmenu
 	a = extrauialpha;
-draw_text_color(SCREEN_WIDTH - 8, SCREEN_HEIGHT - 8, concat("CU ", ver, "\n", "PT ", lstr("game_version")), c_white, c_white, c_white, c_white, a);
+draw_text_color(SCREEN_WIDTH - 8, SCREEN_HEIGHT - 8, concat("PTT ", ver, "\n", "PT ", lstr("game_version")), c_white, c_white, c_white, c_white, a);

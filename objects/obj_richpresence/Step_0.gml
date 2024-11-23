@@ -15,15 +15,18 @@ var state = "", details = "", largeimage = "", smallimage = "";
 largeimage = "big_icon";
 
 // player character
-if instance_exists(obj_player1)
+if room != Mainmenu && room != Longintro && room != Realtitlescreen && room != Finalintro
 {
-	character = obj_player1.character;
-	if obj_player1.isgustavo && character != "N"
-		character = character == "V" ? "MORT" : "G";
-}
+	if instance_exists(obj_player1)
+	{
+		character = obj_player1.character;
+		if obj_player1.isgustavo && character != "N"
+			character = character == "V" ? "MORT" : "G";
+	}
 
-smallimage = $"char_{string_lower(character)}";
-smallimagetext = $"Playing as {scr_charactername(character, character == "G")}";
+	smallimage = $"char_{string_lower(character)}";
+	smallimagetext = $"Playing as {scr_charactername(character, character == "G")}";
+}
 
 // status
 if room == Mainmenu or room == Longintro or room == characterselect or room == Finalintro

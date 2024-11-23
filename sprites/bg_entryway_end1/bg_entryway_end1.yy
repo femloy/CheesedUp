@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Entryway",
-    "path":"folders/Sprites/CheesyPizza/Sugary Spire/BGs and Tiles/Entryway.yy",
+    "path":"folders/Sprites/Together/Sugary Spire/BGs and Tiles/Entryway.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

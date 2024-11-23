@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"ETB",
-    "path":"folders/Sprites/CheesyPizza/Level Assets/ETB.yy",
+    "path":"folders/Sprites/Together/Level Assets/ETB.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

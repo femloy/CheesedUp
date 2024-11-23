@@ -45,7 +45,7 @@
   "origin":0,
   "parent":{
     "name":"Flag Pack",
-    "path":"folders/Sprites/CheesyPizza/Patterns/Flag Pack.yy",
+    "path":"folders/Sprites/Together/Patterns/Flag Pack.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

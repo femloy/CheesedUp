@@ -33,7 +33,7 @@
   "origin":4,
   "parent":{
     "name":"Pizzelle",
-    "path":"folders/Sprites/CheesyPizza/OLD ASSET/Pizzelle.yy",
+    "path":"folders/Sprites/Together/OLD ASSET/Pizzelle.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

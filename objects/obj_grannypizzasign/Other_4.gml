@@ -44,7 +44,7 @@ switch room
 			scr_add_grannypizzalevel("exit", 23, false, false, false, true);
 		break;
 	
-	case tower_extra:
+	case tower_basement:
 		scr_add_grannypizzalevel("strongcold", 0);
 		//scr_add_grannypizzalevel("mansion", 13);
 		//scr_add_grannypizzalevel("sky", 7);
@@ -54,13 +54,8 @@ switch room
 		scr_add_grannypizzalevel("etb", 4, true, true, false, true);
 		scr_add_grannypizzalevel("snickchallenge", 5, false, false, false, true);
 		scr_add_grannypizzalevel("grinch", 2, false, true, false, true);
-		break;
-	case tower_basement:
-		scr_add_grannypizzalevel("abyss", 8);
-		scr_add_grannypizzalevel("careful", 9);
-		scr_add_grannypizzalevel("bunker", 10);
-		scr_add_grannypizzalevel("knightmare", 11);
-		scr_add_grannypizzalevel("b_mrstick", 12, false, false, false, true);
+		
+		// you can add more. it will add a new page to it
 		break;
 }
 if array_length(levelarray) > 5

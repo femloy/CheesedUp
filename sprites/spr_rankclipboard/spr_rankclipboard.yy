@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"Rank Screen",
-    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Rank Screen.yy",
+    "path":"folders/Sprites/Together/Sugary Spire/Rank Screen.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

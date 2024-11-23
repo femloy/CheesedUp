@@ -29,8 +29,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"CheesyPizza",
-    "path":"folders/Sprites/CheesyPizza.yy",
+    "name":"Together",
+    "path":"folders/Sprites/Together.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

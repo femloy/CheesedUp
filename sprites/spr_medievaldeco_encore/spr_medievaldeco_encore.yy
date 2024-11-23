@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Medieval",
-    "path":"folders/Sprites/CheesyPizza/Level Assets/Encore/Medieval.yy",
+    "path":"folders/Sprites/Together/Level Assets/Encore/Medieval.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -47,5 +47,3 @@ function cutscene_move_player(_player, _xto, _hsp, _threshold)
 			steppy = false;
 	}
 }
-//if !code_is_compiled() && GM_build_type == "exe"
-//	funny_room(); // this is really not a good idea.

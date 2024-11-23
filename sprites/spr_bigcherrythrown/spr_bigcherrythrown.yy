@@ -28,7 +28,7 @@
   "origin":4,
   "parent":{
     "name":"Big Cherry",
-    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Baddie/Big Cherry.yy",
+    "path":"folders/Sprites/Together/Sugary Spire/Baddie/Big Cherry.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

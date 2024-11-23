@@ -33,7 +33,7 @@
   "origin":4,
   "parent":{
     "name":"Two Liter Dog",
-    "path":"folders/Sprites/CheesyPizza/Level Assets/Midway/Two Liter Dog.yy",
+    "path":"folders/Sprites/Together/Level Assets/Midway/Two Liter Dog.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

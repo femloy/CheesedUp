@@ -1,1 +1,1 @@
-text = lstr("hubtips13");
+text = lstr("hubtips10");

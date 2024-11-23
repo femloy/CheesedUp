@@ -28,7 +28,7 @@
   "origin":9,
   "parent":{
     "name":"Cotton Witch",
-    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Baddie/Cotton Witch.yy",
+    "path":"folders/Sprites/Together/Sugary Spire/Baddie/Cotton Witch.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -28,7 +28,7 @@
   "origin":4,
   "parent":{
     "name":"Cracker Kicker",
-    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Baddie/Cracker Kicker.yy",
+    "path":"folders/Sprites/Together/Sugary Spire/Baddie/Cracker Kicker.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -191,7 +191,7 @@ function ModSection(name, icon = 0, array = obj_modconfig.sections_array) constr
 					break;
 			
 				case modconfig.slider:
-					var value = opt.vari_target[$ opt.vari];
+					var value = opt.vari_target[$ opt.vari] ?? 0;
 					opt.value = (value - opt.range[0]) / (opt.range[1] - opt.range[0]);
 					break;
 			}
@@ -970,6 +970,19 @@ with new ModSection("gameplay", 0)
 	refresh_options();
 }
 
+with new ModSection("online", 4)
+{
+	var player_preview = function()
+	{
+		
+	}
+	
+	add_slider("online_player_opacity", , player_preview);
+	add_option("online_streamer_mode", player_preview);
+	
+	refresh_options();
+}
+
 with new ModSection("input", 1)
 {
 	icon_offset[0] = 10;
@@ -1594,7 +1607,7 @@ with new ModSection("visual", 2)
 			draw_sprite_ext(spr_discord_big_icon, 0, 16, 64, 1, 1, 0, c_white, 1);
 			
 			draw_set_font(lang_get_font("font_small"));
-			draw_text(146, 100, concat("Pizza Tower Cheesed Up!\n", lstr("mod_drpc3")));
+			draw_text(146, 100, concat("Pizza Tower Together\n", lstr("mod_drpc3")));
 		}
 		else
 		{

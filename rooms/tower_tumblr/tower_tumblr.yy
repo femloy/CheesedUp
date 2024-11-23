@@ -43,7 +43,7 @@
   "name":"tower_tumblr",
   "parent":{
     "name":"Tower",
-    "path":"folders/Rooms/CheesyPizza/Tower.yy",
+    "path":"folders/Rooms/Together/Tower.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

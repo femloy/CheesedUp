@@ -372,7 +372,7 @@
   "name":"steamy_1",
   "parent":{
     "name":"Cottontown",
-    "path":"folders/Rooms/CheesyPizza/Sugary Spire/Cottontown.yy",
+    "path":"folders/Rooms/Together/Sugary Spire/Cottontown.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

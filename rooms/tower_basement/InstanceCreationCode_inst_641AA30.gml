@@ -1,1 +1,1 @@
-text = lstr("garbage17");
+text = lstr(global.sandbox ? "hubtips12" : "hubtips11");

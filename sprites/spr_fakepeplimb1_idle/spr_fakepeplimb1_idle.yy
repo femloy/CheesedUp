@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"Mansion",
-    "path":"folders/Sprites/CheesyPizza/Level Assets/Mansion.yy",
+    "path":"folders/Sprites/Together/Level Assets/Mansion.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

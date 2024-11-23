@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"Midway",
-    "path":"folders/Sprites/CheesyPizza/Level Assets/Midway.yy",
+    "path":"folders/Sprites/Together/Level Assets/Midway.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

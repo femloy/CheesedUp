@@ -63,12 +63,8 @@ if !instance_exists(obj_cyop_loader)
 	add_floor(4, tower_5, "E", "E");
 	
 	if !global.goodmode
-		add_floor(5, tower_extra, "G", "G");
-	if !global.goodmode && DEBUG
-		add_floor(6, tower_basement, "A", "A");
-	
-	if !global.goodmode
 	{
+		add_floor(6, tower_basement, "A", "A");
 		if SUGARY_SPIRE
 			add_floor(-1, tower_sugary, "A");
 		//if DEBUG

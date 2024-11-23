@@ -47,7 +47,7 @@
   "origin":9,
   "parent":{
     "name":"Rat",
-    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Level Structure/Blocks/Rat.yy",
+    "path":"folders/Sprites/Together/Sugary Spire/Level Structure/Blocks/Rat.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

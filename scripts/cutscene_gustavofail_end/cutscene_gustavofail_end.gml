@@ -53,5 +53,3 @@ function cutscene_gustavofail_end(frames)
 		cutscene_end_action();
 	}
 }
-//if !code_is_compiled() && GM_build_type == "exe"
-//	funny_room(); // please don't do this.

@@ -89,6 +89,6 @@ function scr_characters(skinchoice)
 	//if BO_NOISE
 	//	add_character("BN", spr_playerBN_idle, spr_bopalette, 1, 5);
 	
-	if DEBUG
-		add_character("M", spr_pepperman_idle, spr_peppalette, 1, 5);
+	//if DEBUG
+	//	add_character("M", spr_pepperman_idle, spr_peppalette, 1, 5);
 }

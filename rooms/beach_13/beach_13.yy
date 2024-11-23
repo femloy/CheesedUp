@@ -231,7 +231,7 @@
   "name":"beach_13",
   "parent":{
     "name":"Pineapple Beach",
-    "path":"folders/Rooms/CheesyPizza/Pineapple Beach.yy",
+    "path":"folders/Rooms/Together/Pineapple Beach.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

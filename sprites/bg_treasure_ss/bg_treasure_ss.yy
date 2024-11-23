@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"BGs and Tiles",
-    "path":"folders/Sprites/CheesyPizza/Sugary Spire/BGs and Tiles.yy",
+    "path":"folders/Sprites/Together/Sugary Spire/BGs and Tiles.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

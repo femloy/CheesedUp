@@ -241,7 +241,7 @@
   "name":"grinch_1",
   "parent":{
     "name":"Grinch",
-    "path":"folders/Rooms/CheesyPizza/Grinch.yy",
+    "path":"folders/Rooms/Together/Grinch.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

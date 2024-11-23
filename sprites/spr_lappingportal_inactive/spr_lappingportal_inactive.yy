@@ -28,7 +28,7 @@
   "origin":4,
   "parent":{
     "name":"Lap Portal",
-    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Level Structure/Lap Portal.yy",
+    "path":"folders/Sprites/Together/Sugary Spire/Level Structure/Lap Portal.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

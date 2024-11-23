@@ -28,7 +28,7 @@
   "origin":4,
   "parent":{
     "name":"Old Vigilante",
-    "path":"folders/Sprites/CheesyPizza/HUD/Old Vigilante.yy",
+    "path":"folders/Sprites/Together/HUD/Old Vigilante.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -1337,8 +1337,6 @@ if !attackstyletip && state == states.normal && !cutscene && global.attackstyle 
 if character == "V" && state == states.rocket && (x < -300 or x > room_width + 300)
 	respawn_player();
 
-if YYC ANTI_LEAK_CHECK;
-
 // good mode activation
 /*
 if room != Longintro && room != Realtitlescreen && room != Mainmenu && room != hub_loadingscreen && room != characterselect && room != Finalintro && !global.goodmode
