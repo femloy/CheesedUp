@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"net_event_test",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"net_event_test",
+  "parent":{
+    "name":"Events",
+    "path":"folders/Online/Events.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
