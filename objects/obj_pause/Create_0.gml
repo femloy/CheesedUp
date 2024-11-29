@@ -15,7 +15,7 @@ pause_menu = ["pause_resume", "pause_options", "pause_restart", "pause_exit"];
 pause_menu_map = ds_map_create();
 ds_map_set(pause_menu_map, "pause_resume", [0, function()
 {
-	scr_pause_activate_objects();
+	scr_pause_activate_objects(true, true);
 	pause_unpause_music();
 	instance_destroy(obj_option);
 	instance_destroy(obj_keyconfig);
@@ -45,7 +45,7 @@ ds_map_set(pause_menu_map, "pause_restart", [2, function()
 		
 		pause_unpause_music();
 		stop_music();
-		scr_pause_activate_objects();
+		scr_pause_activate_objects(true, true);
 		scr_pause_stop_sounds();
 		
 		roomtorestart = rm;
@@ -94,10 +94,8 @@ var exit_function = function()
 	
 	with textures_offload(offload)
 	{
-		ds_list_clear(sound_list);
 		ds_list_clear(instance_list);
 		ds_list_copy(instance_list, other.instance_list);
-		ds_list_copy(sound_list, other.sound_list);
 		
 		instance_deactivate_object(other.id);
 		ds_list_add(instance_list, other.id);
@@ -129,7 +127,7 @@ ds_map_set(pause_menu_map, "pause_checkpoint", [6, function()
 	
 	pause_unpause_music();
 	stop_music();
-	scr_pause_activate_objects();
+	scr_pause_activate_objects(true, true);
 	scr_pause_stop_sounds();
 	
 	if global.timeattack
@@ -174,7 +172,6 @@ screensprite2 = noone;
 screensize = 0;
 guisprite = -4;
 instance_list = ds_list_create();
-sound_list = ds_list_create();
 priest_list = ds_list_create();
 start = false;
 pause_icons = array_create(0);
@@ -190,3 +187,4 @@ alarm[1] = 1;
 spr_palette = spr_peppalette;
 paletteselect = 1;
 character = "P";
+pause_buffer = 0;

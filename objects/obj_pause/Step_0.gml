@@ -10,6 +10,8 @@ if (pause && !instance_exists(obj_loadingscreen) && alarm[3] == -1)
 	}
 }
 
+if pause_buffer > 0
+	pause_buffer--;
 if (!pause && instance_exists(obj_player1) && alarm[3] == -1 && (obj_player1.key_start or (!window_has_focus() && global.unfocus_pause)) && room != Mainmenu && room != Finalintro && room != hub_loadingscreen && room != Endingroom && room != Creditsroom && room != Johnresurrectionroom && room != Longintro && room != Realtitlescreen && room != rank_room)
 {
 	with (obj_player1)
@@ -64,6 +66,10 @@ if (!pause && instance_exists(obj_player1) && alarm[3] == -1 && (obj_player1.key
 			_cutscenehandler = true;
 	}
 	with obj_elevatorcutscene
+		_cutscenehandler = true;
+	with obj_netchat
+		if open _cutscenehandler = true;
+	if pause_buffer > 0
 		_cutscenehandler = true;
 	
 	// pause
@@ -152,7 +158,7 @@ if (!pause && instance_exists(obj_player1) && alarm[3] == -1 && (obj_player1.key
 			secretcount = 0;
 		}
 		scr_delete_pause_image();
-		scr_create_pause_image();
+		scr_create_pause_image(true);
 		cursor_x = -60;
 		cursor_y = -300;
 		cursor_index = 0;

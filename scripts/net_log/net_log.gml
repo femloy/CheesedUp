@@ -3,7 +3,8 @@ function net_alert(str) { // Loy, do something better for this please.
 }
 
 function net_log(str) {
-	show_debug_message("LOG | {0}", str);	
+	trace(str);
+	//net_add_chat_message("LOG", str);
 }
 
 function net_log_buffer(_buf, _per_row = 16) {

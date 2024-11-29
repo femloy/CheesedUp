@@ -63,7 +63,6 @@ instance_destroy(obj_noiseanimatroniceffect);
 instance_destroy(obj_swapmodegrab);
 instance_destroy(obj_swapplayergrabbable, false);
 instance_list = ds_list_create();
-sound_list = ds_list_create();
 scr_pause_deactivate_objects(false);
 instance_deactivate_object(obj_pause);
 depth = -999;

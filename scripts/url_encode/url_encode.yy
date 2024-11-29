@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"url_encode",
   "parent":{
-    "name":"CheesyPizza",
-    "path":"folders/Scripts/CheesyPizza.yy",
+    "name":"Together",
+    "path":"folders/Scripts/Together.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

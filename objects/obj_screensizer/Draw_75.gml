@@ -3,7 +3,6 @@ live_auto_call;
 global.Pattern_Texture_Indexed = -4;
 
 surface_reset_target();
-shader_reset();
 draw_set_alpha(1);
 draw_set_colour(c_white);
 
@@ -12,6 +11,23 @@ if !surface_exists(gui_surf)
 	gpu_set_blendmode(bm_normal);
 	exit;
 }
+
+#region CHAT
+
+if !surface_exists(chat_surf)
+	chat_surf = surface_create(GUI_WIDTH, GUI_HEIGHT);
+else if surface_get_width(chat_surf) != GUI_WIDTH || surface_get_height(chat_surf) != GUI_HEIGHT
+	surface_resize(chat_surf, GUI_WIDTH, GUI_HEIGHT);
+
+surface_set_target(chat_surf);
+draw_clear_alpha(c_black, 0);
+
+with obj_netchat
+	event_user(0);
+
+surface_reset_target();
+
+#endregion
 
 var shd = false;
 if (frac(app_scale) > 0 && global.option_texfilter)
@@ -27,23 +43,24 @@ if (frac(app_scale) > 0 && global.option_texfilter)
 }
 
 // draw it
-reset_blendmode();
+gpu_set_blendmode_ext(bm_one, bm_inv_src_alpha);
+var _x = 0, _y = 0, _xscale = 1, _yscale = 1;
 if global.option_scale_mode != 2
 {
 	var _w = display_get_gui_width() * app_scale;
 	var _h = display_get_gui_height() * app_scale;
-	draw_surface_ext(gui_surf, floor(window_to_gui_x((window_get_width() / 2) - (_w / 2))), floor(window_to_gui_y((window_get_height() / 2) - (_h / 2))), window_to_gui_xscale(app_scale), window_to_gui_yscale(app_scale), 0, c_white, 1);
+	var _x = floor(window_to_gui_x((window_get_width() / 2) - (_w / 2)));
+	var _y = floor(window_to_gui_y((window_get_height() / 2) - (_h / 2)));
+	var _xscale = window_to_gui_xscale(app_scale);
+	var _yscale = window_to_gui_yscale(app_scale);
 }
-else
-	draw_surface(gui_surf, 0, 0);
+draw_surface_ext(gui_surf, _x, _y, _xscale, _yscale, 0, c_white, 1);
+draw_surface_ext(chat_surf, _x, _y, _xscale, _yscale, 0, c_white, 1);
 
-gpu_set_blendmode(bm_normal);
+toggle_alphafix(false);
 gpu_set_texfilter(false);
 
-shader_reset();
-if (lang_init)
+if lang_init
 	gameframe_caption_font = lang_get_font("captionfont");
 if window_has_focus() && global.gameframe_enabled
 	gameframe_draw();
-
-//draw_sprite(spr_player_idle, 0, mx - camera_get_view_x(view_camera[0]), my - camera_get_view_y(view_camera[0]));

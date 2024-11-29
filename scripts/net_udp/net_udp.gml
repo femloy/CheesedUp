@@ -14,9 +14,9 @@ function net_udp(async_load) {
 
 			if packet.reply == 0
 				net_event_string(packet.type, packet);
-			else if ds_map_exists(requests, string(packet.reply)) {
-				requests[?string(packet.reply)](packet);
-				ds_map_delete(requests, string(packet.reply))
+			else if ds_map_exists(requests, net_int_string(packet.reply)) {
+				requests[? net_int_string(packet.reply)](packet);
+				ds_map_delete(requests, net_int_string(packet.reply))
 			}
 		} catch (e) {
 			net_log(e);

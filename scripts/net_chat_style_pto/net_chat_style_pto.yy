@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"net_chat_style_pto",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"net_chat_style_pto",
+  "parent":{
+    "name":"Chat",
+    "path":"folders/Online/Chat.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

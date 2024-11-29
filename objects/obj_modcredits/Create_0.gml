@@ -1,7 +1,6 @@
 live_auto_call;
 
 instance_list = ds_list_create();
-sound_list = ds_list_create();
 sound_pause_all(true);
 scr_pause_deactivate_objects(false);
 instance_deactivate_object(obj_globaltimer);

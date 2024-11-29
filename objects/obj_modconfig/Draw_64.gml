@@ -480,12 +480,13 @@ if drawer
 		draw_sprite_ext(spr_modconfig_frame, 0, 5 + xx, 5 + yy - ht / 2, 1, 1, 0, 0, 0.25 * alpha);
 		
 		draw_surface_ext(global.modsurf, 5 + xx - wd / 2, 5 + yy - ht / 2, 1, 1, 0, 0, 0.25 * alpha);
-		if do_alphafix
-			toggle_alphafix(true);
-		else
-			shader_reset();
+		if !do_alphafix
+			gpu_set_blendmode_ext(bm_one, bm_inv_src_alpha);
 		draw_surface_ext(global.modsurf, xx - wd / 2, yy - ht / 2, 1, 1, 0, c_white, alpha);
 		
 		draw_sprite_ext(spr_modconfig_frame, 0, xx, yy - ht / 2, 1, 1, 0, c_white, alpha);
 	}
+	
+	if !do_alphafix
+		reset_blendmode();
 }

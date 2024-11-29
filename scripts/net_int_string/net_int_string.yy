@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"net_int_string",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"net_int_string",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Online/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

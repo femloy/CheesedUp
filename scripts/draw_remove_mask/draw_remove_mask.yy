@@ -6,7 +6,7 @@
   "name":"draw_remove_mask",
   "parent":{
     "name":"Clipping",
-    "path":"folders/Scripts/CheesyPizza/Clipping.yy",
+    "path":"folders/Scripts/Together/Clipping.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

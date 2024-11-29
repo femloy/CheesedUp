@@ -114,7 +114,7 @@ refresh_sequence = function()
 				surface_set_target(global.modsurf);
 				draw_clear_alpha(c_black, 0);
 				
-				reset_blendmode();
+				gpu_set_blendmode_ext(bm_one, bm_inv_src_alpha);
 				shader_set(global.Pal_Shader);
 				pal_swap_set(spr_peppalette, 1, false);
 			}
@@ -1370,7 +1370,7 @@ with new ModSection("visual", 2)
 		shader_set_uniform_f(u_bounds, 373 - 200, 0, 960 / 2.5, 540 / 2.5);
 		shader_set_uniform_f(u_alpha, 1 - alpha);
 		shader_set_uniform_f(u_remix, val == 1);
-		shader_set_uniform_f(u_alphafix, 1);
+		shader_set_uniform_f(u_alphafix, 0);
 	
 		if val == 1
 		{

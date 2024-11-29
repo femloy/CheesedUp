@@ -51,8 +51,8 @@ function net_intermediate_to_struct(buffer) {
 					net_log($"Intermediate version {packet.version} isn't supported by this client.");
 					return noone;
 				}
-				packet.id = floor(buffer_read(buffer, buffer_u32));
-				packet.reply = buffer_read(buffer, buffer_u32);
+				packet.id = int64(buffer_read(buffer, buffer_u32));
+				packet.reply = int64(buffer_read(buffer, buffer_u32));
 				packet.type = buffer_read(buffer, buffer_string);
 				break;
 			case net_intermediate_control.variable:
@@ -87,7 +87,7 @@ function net_struct_to_intermediate(type, event, reply) {
 	var keys = variable_struct_get_names(event);
 	for (var i = array_length(keys)-1; i >= 0; --i) {
 	    var k = keys[i];
-	    var v = event[$k];
+	    var v = event[$ k];
 		
 		var vtype;
 		if is_real(v)
@@ -153,8 +153,8 @@ function net_intermediate_type_buffer(type) {
 	}
 }
 
-function net_event_string(event, packet) {    
+function net_event_string(event, packet) {
     var func = asset_get_index($"net_event_{event}");
-    if (is_undefined(func)) throw ("Unknown Event: '" + type + "'");
+    if (func == -1) throw ("Unknown Event: '" + type + "'");
     return script_execute_ext(func, [packet]);
 }

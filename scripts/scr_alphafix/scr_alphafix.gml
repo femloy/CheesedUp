@@ -30,24 +30,25 @@ function surface_reset_target_hook()
 
 function reset_blendmode()
 {
-	gpu_set_blendmode_ext(bm_one, bm_inv_src_alpha);
+	gpu_set_blendmode_ext_sepalpha(bm_src_alpha, bm_inv_src_alpha, bm_one, bm_one);
 }
 function reset_shader_fix()
 {
-	shader_set(shd_alphafix);
+	shader_reset();
+	//shader_set(shd_alphafix);
 }
 function toggle_alphafix(toggle)
 {
 	if toggle
 	{
 		reset_blendmode();
-		if shader_current() == -1
-			reset_shader_fix();
+		//if shader_current() == -1
+		//	reset_shader_fix();
 	}
 	else
 	{
 		gpu_set_blendmode(bm_normal);
-		if shader_current() == shd_alphafix
-			shader_reset();
+		//if shader_current() == shd_alphafix
+		//	shader_reset();
 	}
 }

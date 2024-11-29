@@ -6,7 +6,7 @@
   "name":"draw_reset_clip",
   "parent":{
     "name":"Clipping",
-    "path":"folders/Scripts/CheesyPizza/Clipping.yy",
+    "path":"folders/Scripts/Together/Clipping.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

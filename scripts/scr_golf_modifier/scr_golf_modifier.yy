@@ -6,7 +6,7 @@
   "name":"scr_golf_modifier",
   "parent":{
     "name":"Modifiers",
-    "path":"folders/Scripts/CheesyPizza/Modifiers.yy",
+    "path":"folders/Scripts/Together/Modifiers.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

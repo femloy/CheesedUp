@@ -18,6 +18,9 @@ or instance_exists(obj_cyop_loader)
 ini_close();
 
 // elevator here
+with instance_create(0, 0, obj_hubelevator_ui)
+	elevator = other.id;
+
 scr_create_uparrowhitbox();
 depth = 99;
 

@@ -3,7 +3,7 @@ function scr_pauseicon_draw(index, x, y)
 	var icon = pause_icons[index];
 	draw_sprite_ext(icon.sprite_index, icon.image_index, x + icon.sprite_xoffset + icon.shake_x, y + icon.sprite_yoffset + icon.shake_y, 1, 1, 0, c_white, icon.image_alpha);
 }
-function scr_create_pause_image()
+function scr_create_pause_image(allow_blur = false)
 {
 	//if live_call() return live_result;
 	
@@ -40,7 +40,7 @@ function scr_create_pause_image()
 		screensprite = sprite_create_from_surface(surface, 0, 0, wd, ht, false, false, 0, 0);
 		
 		// second surface, to fade in the blur
-		if REMIX
+		if REMIX && allow_blur
 		{
 			var surface2 = surface_create(wd, ht);
 			surface_set_target(surface2);
@@ -78,13 +78,15 @@ function scr_pause_stop_sounds()
 }
 function scr_delete_pause_image()
 {
-	if variable_instance_exists(id, "screensprite") && sprite_exists(screensprite)
+	if sprite_exists(self[$ "screensprite"] ?? noone)
 		sprite_delete(screensprite);
-	if variable_instance_exists(id, "screensprite2") && sprite_exists(screensprite2)
-		sprite_delete(screensprite2);
-	
 	screensprite = noone;
-	screensprite2 = noone;
+	
+	if sprite_exists(self[$ "screensprite2"] ?? noone)
+	{
+		sprite_delete(screensprite2);
+		screensprite2 = noone;
+	}
 }
 function scr_pauseicon_add(sprite, index, xoffset = 0, yoffset = 0)
 {
@@ -120,15 +122,19 @@ function scr_pauseicons_update(selected)
 		}
 	}
 }
-function scr_pause_activate_objects(unpause_sounds = true)
+function scr_pause_activate_objects(unpause_sounds = true, is_obj_pause = false)
 {
-	for (var i = 0; i < ds_list_size(instance_list); i++)
-		instance_activate_object(ds_list_find_value(instance_list, i));
+	if ds_exists(instance_list, ds_type_list)
+	{
+		for (var i = 0; i < ds_list_size(instance_list); i++)
+			instance_activate_object(ds_list_find_value(instance_list, i));
+		ds_list_clear(instance_list);
+	}
+	else
+		trace("[scr_pause_activate_objects] instance_list did not exist");
+	
 	if unpause_sounds
 	{
-		for (i = 0; i < ds_list_size(sound_list); i++)
-			fmod_event_instance_set_paused(ds_list_find_value(sound_list, i), false);
-		
 		if !instance_exists(obj_music)
 			sound_pause_all(false);
 		else
@@ -138,11 +144,13 @@ function scr_pause_activate_objects(unpause_sounds = true)
 				fmod_set_parameter("musicmuffle", savedmusicmuffle, false);
 		}
 	}
-	ds_list_clear(instance_list);
-	ds_list_clear(sound_list);
-	fadein = false;
-	pause = false;
-	event_perform(ev_alarm, 2);
+	
+	if is_obj_pause
+	{
+		fadein = false;
+		pause = false;
+		event_perform(ev_alarm, 2);
+	}
 }
 function scr_pause_deactivate_objects(pause_sounds = true)
 {
@@ -162,7 +170,9 @@ function scr_pause_deactivate_objects(pause_sounds = true)
 	var exclude = [obj_eventorder, obj_fmod, obj_inputAssigner, obj_savesystem,
 		obj_pause, obj_screensizer, obj_music, obj_persistent, obj_shell,
 		obj_richpresence, obj_inputdisplay, obj_gmlive, obj_globaltimer,
-		obj_langload, obj_cyop_loader];
+		obj_langload, obj_cyop_loader, obj_loadingscreen,
+		
+		obj_netclient, obj_netchat];
 	
 	ds_list_clear(instance_list);
 	for (var i = 0; i < instance_count; i++)
@@ -172,8 +182,9 @@ function scr_pause_deactivate_objects(pause_sounds = true)
 			ds_list_add(instance_list, obj);
 	}
 	
-	instance_deactivate_all(true);
+	trace("[scr_pause_deactivate_objects] instance_count: ", instance_count, " ds_list: ", ds_list_size(instance_list));
 	
+	instance_deactivate_all(true);
 	for(var i = 0; i < array_length(exclude); i++)
 		instance_activate_object(exclude[i]);
 }

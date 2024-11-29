@@ -4,3 +4,4 @@ destroy_sounds([music, txtsnd]);
 sound_pause_all(false);
 scr_pause_activate_objects(false);
 instance_activate_object(obj_globaltimer);
+ds_list_destroy(instance_list);

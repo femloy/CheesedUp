@@ -6,7 +6,7 @@
   "name":"scr_filltotime",
   "parent":{
     "name":"HUD",
-    "path":"folders/Scripts/CheesyPizza/HUD.yy",
+    "path":"folders/Scripts/Together/HUD.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

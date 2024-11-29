@@ -1,4 +1,7 @@
-function net_event_chat_message(packet) {
-	if !object_exists(obj_chatshell) exit;
-	ds_list_add(obj_chatshell.messages, packet);
+function net_event_chat_message(packet)
+{
+	with net_add_chat_message(packet.name, packet.message)
+	{
+		name_color = net_parse_css_color(packet.name_color);
+	}
 }

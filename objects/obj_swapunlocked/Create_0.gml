@@ -4,4 +4,3 @@ alarm[1] = 2;
 fade = 1;
 fadein = false;
 instance_list = ds_list_create();
-sound_list = ds_list_create();

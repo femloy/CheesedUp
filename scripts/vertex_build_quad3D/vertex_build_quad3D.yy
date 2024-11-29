@@ -6,7 +6,7 @@
   "name":"vertex_build_quad3D",
   "parent":{
     "name":"Vertex",
-    "path":"folders/Scripts/CheesyPizza/Vertex.yy",
+    "path":"folders/Scripts/Together/Vertex.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

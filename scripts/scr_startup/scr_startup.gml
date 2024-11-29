@@ -93,6 +93,7 @@ if !YYC
 #macro CAMW camera_get_view_width(view_camera[0])
 #macro CAMH camera_get_view_height(view_camera[0])
 #macro DATE_TIME_NOW concat(current_year, "-", current_month, "-", current_day, "__", current_hour, "-", current_minute, "-", current_second)
+#macro GAME_PAUSED (instance_exists(obj_pause) && obj_pause.pause) or (instance_exists(obj_netchat) && obj_netchat.style.game_paused())
 
 #macro PANIC check_panic()
 function check_panic()
@@ -123,7 +124,7 @@ global.lapfont2 = font_add_sprite_ext(spr_lapfontbig, "0123456789", true, -2);
 global.tutorialfont = font_add_sprite_ext(spr_tutorialfont, "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz!¡,.:0123456789'?¿-áäãàâæéèêëíìîïóöõôòúùûüÿŸÁÄÃÀÂÉÈÊËÍÌÎÏÓÖÕÔÒÚÙÛÜÇçœß;«»+", true, 2);
 global.creditsfont = font_add_sprite_ext(spr_creditsfont, "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz.:!¡0123456789?'\"ÁÄÃÀÂÉÈÊËÍÌÎÏÓÖÕÔÒÚÙÛÜáäãàâéèêëíìîïóöõôòúùûüÇç_-[]▼()&#风雨廊桥전태양*яиБжидГзвбнльœ«»+ß", true, 2);
 global.moneyfont = font_add_sprite_ext(spr_stickmoney_font, "0123456789$-", true, 0);
-global.font_small = font_add_sprite_ext(spr_smallfont, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz¡!._1234567890:;¿?▯|*/',\"()=-+@█%~ÁÄÃÀÂÉËÈÊÍÏÌÎÓÖÕÒÔÚÜÙÛáäãàâéëèêíïìîóöõòôúüùûÑñ[]<>${}«»", true, -1);
+global.font_small = font_add_sprite_ext(spr_smallfont, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz¡!._1234567890:;¿?▯|*/',\"()=-+@█%~ÁÄÃÀÂÉËÈÊÍÏÌÎÓÖÕÒÔÚÜÙÛáäãàâéëèêíïìîóöõòôúüùûÑñ[]<>${}«»#", true, -1);
 global.collectfont = font_add_sprite_ext(spr_font_collect, "0123456789", true, 0);
 global.combofont = font_add_sprite_ext(spr_font_combo, "0123456789/:", true, 0);
 global.combofont2 = font_add_sprite_ext(spr_tv_combobubbletext, "0123456789", true, 0);

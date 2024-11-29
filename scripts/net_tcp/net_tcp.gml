@@ -12,9 +12,9 @@ function net_tcp(async_load) {
 				net_log_buffer(buffer);	
 			}
 
-			if packet.reply != 0 && ds_map_exists(requests, string(packet.reply)) {
-				requests[?string(packet.reply)](packet);
-				ds_map_delete(requests, string(packet.reply))
+			if packet.reply != 0 && ds_map_exists(requests, net_int_string(packet.reply)) {
+				requests[? net_int_string(packet.reply)](packet);
+				ds_map_delete(requests, net_int_string(packet.reply))
 			} else net_event_string(packet.type, packet);
 		} catch (e) {
 			net_log(e);
@@ -37,7 +37,8 @@ function net_send_tcp(type, packet) {
 function net_request(type, packet, callback) {
 	online {
 		var inter = net_struct_to_intermediate(type, packet, 0);
-		requests[?string(floor(inter.id))] = callback;
+		requests[? net_int_string(inter.id)] = callback;
+		trace("BALLSACK NUMBER: ", net_int_string(inter.id), " originally ", inter.id);
 		if network_send_raw(connection.tcp, inter.data, buffer_get_size(inter.data), {}) < 0 {
 			net_alert($"Failed to send TCP request.");
 			buffer_delete(inter.data);

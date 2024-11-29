@@ -19,7 +19,6 @@ press_start = false;
 deactivated = false;
 device_to_reconnect = 0;
 instance_list = ds_list_create();
-sound_list = ds_list_create();
 prevstate[0] = states.titlescreen;
 prevstate[1] = states.titlescreen;
 vibration[0][0] = 0;

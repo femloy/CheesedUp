@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"net_chat",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"net_chat",
+  "parent":{
+    "name":"Chat",
+    "path":"folders/Online/Chat.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -7,7 +7,6 @@ x = 0;
 y = 0;
 
 instance_list = ds_list_create();
-sound_list = ds_list_create();
 sound_pause_all(true);
 scr_pause_deactivate_objects(false);
 instance_deactivate_object(obj_globaltimer);
