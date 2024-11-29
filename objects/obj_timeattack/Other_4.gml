@@ -8,6 +8,7 @@ with obj_player
 		global.tatime = 0;
 		global.prank_cankillenemy = true;
 		instance_create(exitgate_x, exitgate_y, obj_lapportalentrance);
+		scr_level_gimmicks_persist();
 		
 		switch global.leveltosave
 		{

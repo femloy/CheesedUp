@@ -5,7 +5,7 @@ function scr_pauseicon_draw(index, x, y)
 }
 function scr_create_pause_image(allow_blur = false)
 {
-	//if live_call() return live_result;
+	if live_call(allow_blur) return live_result;
 	
 	screensprite = noone;
 	screensprite2 = noone;
@@ -26,11 +26,15 @@ function scr_create_pause_image(allow_blur = false)
 	surface_set_target(surface);
 	draw_clear(c_black);
 	
-	reset_blendmode();
+	if REMIX
+		gpu_set_blendmode_ext(bm_one, bm_inv_src_alpha);
+	else
+		reset_blendmode();
 	scr_draw_screen(0, 0, 1, 1, 1, true);
 	
 	if !(SUGARY_SPIRE && check_sugary()) or object_index != obj_pause
 		draw_surface(obj_screensizer.gui_surf, 0, 0);
+	reset_blendmode();
 	
 	surface_reset_target();
 	

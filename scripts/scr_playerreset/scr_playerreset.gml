@@ -494,10 +494,13 @@ function scr_playerreset(roomstart = false, restart = false)
 		burning = 0;
 		exitgate_room = noone;
 	}
-	with (obj_followcharacter)
+	with obj_followcharacter
 	{
-		if (persistent && object_index != obj_swapmodefollow)
+		if persistent && object_index != obj_swapmodefollow
 			instance_destroy();
 	}
 	instance_destroy(obj_shotgunback);
+	
+	if global.timeattack
+		scr_level_gimmicks_persist();
 }

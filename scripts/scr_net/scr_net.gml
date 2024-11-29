@@ -8,17 +8,24 @@
 function net_connect(address, sport) {
 	var port = CLIENT_PORT;
 	
-	var tcp_socket = network_create_socket_ext(network_socket_tcp, port);
-	var udp_socket = network_create_socket_ext(network_socket_udp, port);
-	while tcp_socket < 0 || udp_socket < 0 {
-		network_destroy(tcp_socket);
-		network_destroy(udp_socket);
-		port++;
+	var tcp_socket = -1, udp_socket = -1;
+	do {
+		if (port <= 0 || port >= 65535) {
+			net_alert("WHAT THE FUCK");
+			return noone;
+		}
 		
-		tcp_socket = network_create_socket_ext(network_socket_tcp, port);
-		udp_socket = network_create_socket_ext(network_socket_udp, port);
+		if (tcp_socket < 0) {
+			tcp_socket = network_create_socket_ext(network_socket_tcp, port);
+		}
+		if (udp_socket < 0) {
+			udp_socket = network_create_socket_ext(network_socket_udp, port);
+		}
+		
+		port++;
 	}
-
+	until (tcp_socket >= 0 && udp_socket >= 0);
+	
 	if (network_connect_raw(tcp_socket, address, sport) < 0) {
 		net_alert($"Failed to connect to {address}:{sport}.");
 		return noone;
@@ -31,6 +38,9 @@ function net_connect(address, sport) {
 }
 
 function net_disconnect(connection) {
+	if (connection == noone) {
+		return;
+	}
 	net_send_tcp("goodbye", {});
 	network_destroy(connection.tcp);
 	network_destroy(connection.udp);

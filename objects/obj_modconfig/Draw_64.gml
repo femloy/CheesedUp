@@ -118,6 +118,13 @@ for(var i = 0, n = array_length(options_array); i < n; ++i)
 	if opt.type == modconfig.button && opt.small
 		_opt_type = modconfig.option;
 	
+	var col = c_white;
+	if mode == 1
+	{
+		if ds_list_find_index(preset_options, opt) > -1
+			col = #99FF99;
+	}
+	
 	switch _opt_type
 	{
 		default:
@@ -125,13 +132,6 @@ for(var i = 0, n = array_length(options_array); i < n; ++i)
 			{
 				tdp_draw_set_align();
 				tdp_draw_set_font(lang_get_font("font_small"));
-				
-				var col = c_white;
-				if mode == 1
-				{
-					if ds_list_find_index(preset_options, opt) > -1
-						col = #99FF99;
-				}
 				
 				if section.sel == i
 					draw_sprite(spr_cursor, image_index, 40 + xo, yy + 8 + yo);

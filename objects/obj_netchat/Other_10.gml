@@ -1,2 +1,0 @@
-// DRAW
-style.draw();

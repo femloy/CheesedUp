@@ -14,18 +14,20 @@ if !surface_exists(gui_surf)
 
 #region CHAT
 
-if !surface_exists(chat_surf)
-	chat_surf = surface_create(GUI_WIDTH, GUI_HEIGHT);
-else if surface_get_width(chat_surf) != GUI_WIDTH || surface_get_height(chat_surf) != GUI_HEIGHT
-	surface_resize(chat_surf, GUI_WIDTH, GUI_HEIGHT);
-
-surface_set_target(chat_surf);
-draw_clear_alpha(c_black, 0);
-
 with obj_netchat
-	event_user(0);
-
-surface_reset_target();
+{
+	if !surface_exists(other.chat_surf)
+		other.chat_surf = surface_create(GUI_WIDTH, GUI_HEIGHT);
+	else if surface_get_width(other.chat_surf) != GUI_WIDTH || surface_get_height(other.chat_surf) != GUI_HEIGHT
+		surface_resize(other.chat_surf, GUI_WIDTH, GUI_HEIGHT);
+	
+	surface_set_target(other.chat_surf);
+	draw_clear_alpha(c_black, 0);
+	
+	style.draw();
+	
+	surface_reset_target();
+}
 
 #endregion
 
@@ -49,13 +51,19 @@ if global.option_scale_mode != 2
 {
 	var _w = display_get_gui_width() * app_scale;
 	var _h = display_get_gui_height() * app_scale;
-	var _x = floor(window_to_gui_x((window_get_width() / 2) - (_w / 2)));
-	var _y = floor(window_to_gui_y((window_get_height() / 2) - (_h / 2)));
+	var _x = window_to_gui_x((window_get_width() / 2) - (_w / 2));
+	var _y = window_to_gui_y((window_get_height() / 2) - (_h / 2));
 	var _xscale = window_to_gui_xscale(app_scale);
 	var _yscale = window_to_gui_yscale(app_scale);
 }
 draw_surface_ext(gui_surf, _x, _y, _xscale, _yscale, 0, c_white, 1);
-draw_surface_ext(chat_surf, _x, _y, _xscale, _yscale, 0, c_white, 1);
+
+// CHAT
+with obj_netchat
+{
+	style.pre_draw(_x, _y, _xscale, _yscale);
+	draw_surface_ext(other.chat_surf, _x, _y, _xscale, _yscale, 0, c_white, 1);
+}
 
 toggle_alphafix(false);
 gpu_set_texfilter(false);

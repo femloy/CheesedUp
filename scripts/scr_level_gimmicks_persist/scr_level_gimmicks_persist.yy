@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_level_gimmicks_persist",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_level_gimmicks_persist",
+  "parent":{
+    "name":"Together",
+    "path":"folders/Scripts/Together.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

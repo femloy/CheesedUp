@@ -70,7 +70,7 @@ function scr_panicbg_start()
 
 function scr_panicbg_draw()
 {
-	//if live_call() return live_result;
+	if live_call() return live_result;
 	
 	var panic = PANIC && global.panicbg && global.leveltosave != "sucrose";
 	if event_type == ev_draw && event_number == 0 && !safe_get(obj_pause, "pause")

@@ -438,11 +438,11 @@ with new ModSection("gameplay", 0)
 	var opt = add_option("iteration", function(val)
 	{
 		if val == IT.FINAL
-			draw_sprite_ext(spr_player_longjumpend, super.image_index, width / 2, height / 2, 1, 1, 0, c_white, 1);
+			draw_sprite_ext(spr_player_longjumpend, super.image_index, width / 2, height / 2, 2, 2, 0, c_white, 1);
 		if val == IT.APRIL
-			draw_sprite_ext(spr_player_mach2jump, super.image_index, width / 2, height / 2, 1, 1, 0, c_white, 1);
+			draw_sprite_ext(spr_player_mach2jump, super.image_index, width / 2, height / 2, 2, 2, 0, c_white, 1);
 		if val == IT.BNF
-			draw_sprite_ext(spr_player_suplexgrabjump, super.image_index, width / 2 - 15, height / 2, 1, 1, 0, c_white, 1);
+			draw_sprite_ext(spr_player_suplexgrabjump, super.image_index, width / 2 - 15, height / 2, 2, 2, 0, c_white, 1);
 	});
 	opt.opts = [
 		//["old", IT.BNF],
@@ -870,9 +870,31 @@ with new ModSection("gameplay", 0)
 	
 	var opt = add_option("banquet", function(val)
 	{
-		
-		
-		draw_sprite_ext(spr_player_secondjump2, super.image_index, width / 2, height / 2, -1, 1, 0, c_white, 1);
+		if val
+		{
+			draw_sprite_ext(spr_player_mach4, super.image_index, width * 0.25, height * 0.25, -1, 1, 0, c_white, 1);
+			draw_sprite_ext(spr_player_secondjump2, super.image_index, width * 0.25, height * 0.65, -1, 1, 0, c_white, 1);
+			
+			var slap_key = tdp_get_icon(tdp_input_get("player_slap").actions[0]);
+			var cx = width / 2 - 12, cy = height * 0.7 - 12;
+			draw_sprite(slap_key.sprite_index, slap_key.image_index, cx, cy);
+			
+			if slap_key.str != ""
+			{
+				draw_set_align(1, 1);
+				draw_set_font(lang_get_font("tutorialfont"));
+				draw_text_color_new(cx + 16, cy + 18, slap_key.str, c_black, c_black, c_black, c_black, 1);
+				draw_set_align();
+			}
+			
+			draw_sprite_ext(spr_palettearrow, 0, width / 2, height * 0.3, 1, 1, 90, c_white, 1);
+		}
+		else
+		{
+			draw_sprite_ext(spr_palettearrow, 0, width / 2, height / 2, 1, 1, 90, c_white, 1);
+			draw_sprite_ext(spr_player_mach4, super.image_index, width * 0.25, height / 2, -1, 1, 0, c_white, 1);
+		}
+		draw_sprite_ext(spr_player_climbwall, super.image_index, width * 0.75, height / 2, -1, 1, 0, c_white, 1);
 	});
 	
 	#endregion
@@ -972,13 +994,39 @@ with new ModSection("gameplay", 0)
 
 with new ModSection("online", 4)
 {
+	icon_offset[0] = 20;
+	
 	var player_preview = function()
 	{
+		var opacity = options_array[1].value;
+		var name_opacity = options_array[2].value;
+		var streamer_mode = options_array[3].value;
 		
+		draw_set_font(global.font_small);
+		draw_set_align(fa_center);
+		draw_set_color(c_white);
+		draw_sprite_ext(spr_player_idle, simuplayer.image, width / 2, height / 2, 2, 2, 0, c_white, opacity);
+		draw_text_transformed_color(width / 2, height / 2 - 80, streamer_mode ? "Player72103" : "COOLSKELETON95", 2, 2, 0, c_white, c_white, c_white, c_white, opacity * name_opacity);
+		
+		return false;
 	}
 	
-	add_slider("online_player_opacity", , player_preview);
-	add_option("online_streamer_mode", player_preview);
+	add_section("online"); // 0
+	add_slider("online_player_opacity", , player_preview); // 1
+	add_slider("online_name_opacity", , player_preview); // 2
+	add_option("online_streamer_mode", player_preview); // 3
+	
+	add_section("online_chat");
+	add_option("online_raw_chat", function(val)
+	{
+		draw_set_font(global.font_small);
+		draw_set_align(fa_center, fa_middle);
+		draw_set_color(!val ? #ff7777 : c_white);
+		
+		var streamer_mode = options_array[3].value;
+		var name = streamer_mode ? "Player72103" : "COOLSKELETON95";
+		draw_text_special(width / 2, height / 2, !val ? "Hello!" : "<shake><#ff7777>Hello!", { shake: !val ? 1 : 0 });
+	});
 	
 	refresh_options();
 }
@@ -991,24 +1039,45 @@ with new ModSection("input", 1)
 
 	add_option("swapgrab", function(val)
 	{
+		static grab_pos = 280, kungfu_pos = 100;
+		
+		var slap_key = tdp_get_icon(tdp_input_get("player_slap").actions[0]);
+		var chainsaw_key = tdp_get_icon(tdp_input_get("player_chainsaw").actions[0]);
+		
 		var cx = 80, cy = 50;
-		draw_sprite(spr_tutorialkey, 0, cx, cy);
+		draw_sprite(slap_key.sprite_index, slap_key.image_index, cx, cy);
 		draw_set_align(1, 1);
 		draw_set_font(lang_get_font("tutorialfont"));
-		draw_text_color_new(cx + 16, cy + 18, chr(global.key_slap), c_black, c_black, c_black, c_black, 1);
-		draw_set_align();
+		if slap_key.str != ""
+			draw_text_color_new(cx + 16, cy + 18, slap_key.str, c_black, c_black, c_black, c_black, 1);
 	
 		var cx = 260, cy = 50;
-		draw_sprite(spr_tutorialkey, 0, cx, cy);
-		draw_set_align(1, 1);
-		draw_text_color_new(cx + 16, cy + 18, chr(global.key_chainsaw), c_black, c_black, c_black, c_black, 1);
+		draw_sprite(chainsaw_key.sprite_index, chainsaw_key.image_index, cx, cy);
+		if chainsaw_key.str != ""
+			draw_text_color_new(cx + 16, cy + 18, chr(global.key_chainsaw), c_black, c_black, c_black, c_black, 1);
 		draw_set_align();
-	
-		shader_set(global.Pal_Shader);
-		pal_swap_set(spr_peppalette, 1, false);
-		draw_sprite(val ? spr_player_suplexdash : spr_player_kungfu1, 6, 100, 130);
-		draw_sprite(val ? spr_player_kungfu1 : spr_player_suplexdash, 6, 280, 130);
-		pal_swap_reset();
+		
+		if simuplayer.state == states.titlescreen
+		{
+			simuplayer.state = states.actor;
+			grab_pos = val ? 100 : 280;
+			kungfu_pos = val ? 280 : 100;
+		}
+		else
+		{
+			grab_pos = lerp(grab_pos, val ? 100 : 280, 0.35);
+			kungfu_pos = lerp(kungfu_pos, val ? 280 : 100, 0.35);
+		}
+		
+		if simuplayer.state == states.titlescreen or simuplayer.image >= sprite_get_number(simuplayer.sprite)
+		{
+			simuplayer.sprite = choose(spr_player_kungfu1, spr_player_kungfu2, spr_player_kungfu3);
+			simuplayer.image = 0;
+		}
+		simuplayer.image += 0.35;
+		
+		draw_sprite(spr_player_suplexdash, super.image_index, grab_pos, 130);
+		draw_sprite(simuplayer.sprite, simuplayer.image, kungfu_pos, 130);
 	});
 
 	#endregion
@@ -1016,6 +1085,12 @@ with new ModSection("input", 1)
 
 	var opt = add_option("shootbutton", function(val)
 	{
+		static grab_pos = 0, shotgun_pos = 0, pistol_pos = 0;
+		var grab_target_pos = 0, shotgun_target_pos = 0, pistol_target_pos = 0;
+		
+		var slap_key = tdp_get_icon(tdp_input_get("player_slap").actions[0]);
+		var shoot_key = tdp_get_icon(tdp_input_get("player_shoot").actions[0]);
+		
 		shader_set(global.Pal_Shader);
 		pal_swap_set(spr_peppalette, 1, false);
 	
@@ -1023,49 +1098,71 @@ with new ModSection("input", 1)
 		if val == 0
 		{
 			var cx = 180, cy = 50;
-			draw_sprite(spr_tutorialkey, 0, cx, cy);
+			draw_sprite(slap_key.sprite_index, slap_key.image_index, cx, cy);
 			draw_set_align(1, 1);
-			draw_text_color_new(cx + 16, cy + 18, chr(global.key_slap), c_black, c_black, c_black, c_black, 1);
+			draw_text_color_new(cx + 16, cy + 18, slap_key.str, c_black, c_black, c_black, c_black, 1);
 			draw_set_align();
-	
-			draw_sprite(spr_player_shotgun, 0, 200, 130);
+			
+			shotgun_target_pos = 200 + 100;
+			grab_target_pos = 200 - 100;
+			pistol_target_pos = 200;
 		}
 		else if val == 1
 		{
 			var cx = 80, cy = 50;
-			draw_sprite(spr_tutorialkey, 0, cx, cy);
+			draw_sprite(slap_key.sprite_index, slap_key.image_index, cx, cy);
 			draw_set_align(1, 1);
-			draw_text_color_new(cx + 16, cy + 18, chr(global.key_slap), c_black, c_black, c_black, c_black, 1);
+			draw_text_color_new(cx + 16, cy + 18, slap_key.str, c_black, c_black, c_black, c_black, 1);
 			draw_set_align();
-	
-			draw_sprite(spr_player_suplexdash, 5, 100, 130);
-		
-			var cx = 260, cy = 50;
-			draw_sprite(spr_tutorialkey, 0, cx, cy);
+			
+			grab_target_pos = cx;
+			
+			var cx = width - 120, cy = 50;
+			draw_sprite(shoot_key.sprite_index, shoot_key.image_index, cx, cy);
 			draw_set_align(1, 1);
-			draw_text_color_new(cx + 16, cy + 18, chr(global.key_shoot), c_black, c_black, c_black, c_black, 1);
+			draw_text_color_new(cx + 16, cy + 18, shoot_key.str, c_black, c_black, c_black, c_black, 1);
 			draw_set_align();
-		
-			draw_sprite(spr_player_shotgun, 0, 260, 130);
+			
+			pistol_target_pos = cx - 25;
+			shotgun_target_pos = cx + 50;
 		}
 		else if val == 2
 		{
 			var cx = 80, cy = 50;
-			draw_sprite(spr_tutorialkey, 0, cx, cy);
+			draw_sprite(slap_key.sprite_index, slap_key.image_index, cx, cy);
 			draw_set_align(1, 1);
-			draw_text_color_new(cx + 16, cy + 18, chr(global.key_shoot), c_black, c_black, c_black, c_black, 1);
+			draw_text_color_new(cx + 16, cy + 18, slap_key.str, c_black, c_black, c_black, c_black, 1);
 			draw_set_align();
-		
-			draw_sprite(spr_player_shotgun, 0, 100, 130);
-		
-			var cx = 260, cy = 50;
-			draw_sprite(spr_tutorialkey, 0, cx, cy);
+			
+			grab_target_pos = cx - 20;
+			pistol_target_pos = cx + 50;
+			
+			var cx = width - 120, cy = 50;
+			draw_sprite(shoot_key.sprite_index, shoot_key.image_index, cx, cy);
 			draw_set_align(1, 1);
-			draw_text_color_new(cx + 16, cy + 18, chr(global.key_slap), c_black, c_black, c_black, c_black, 1);
+			draw_text_color_new(cx + 16, cy + 18, shoot_key.str, c_black, c_black, c_black, c_black, 1);
 			draw_set_align();
-		
-			draw_sprite(spr_player_pistolshot, 1, 280, 130);
+			
+			shotgun_target_pos = cx + 20;
 		}
+		
+		if simuplayer.state == states.titlescreen
+		{
+			simuplayer.state = states.normal;
+			shotgun_pos = shotgun_target_pos;
+			grab_pos = grab_target_pos;
+			pistol_pos = pistol_target_pos;
+		}
+		else
+		{
+			shotgun_pos = lerp(shotgun_pos, shotgun_target_pos, 0.35);
+			grab_pos = lerp(grab_pos, grab_target_pos, 0.35);
+			pistol_pos = lerp(pistol_pos, pistol_target_pos, 0.35);
+		}
+		
+		draw_sprite(spr_shotgun_idle, simuplayer.image, shotgun_pos, 130);
+		draw_sprite(spr_player_suplexdash, simuplayer.image, grab_pos, 130);
+		draw_sprite(spr_player_pistolidle, simuplayer.image, pistol_pos, 130);
 	
 		shader_reset();
 	});
@@ -1601,13 +1698,13 @@ with new ModSection("visual", 2)
 		{
 			draw_set_font(lfnt("tvbubblefont"));
 			draw_set_align();
-			draw_text(16, 16, lstr("mod_drpc1"));
+			draw_text(8 + 16, 8 + 16, lstr("mod_drpc1"));
 			
-			draw_sprite_ext(spr_discord_big_icon, 0, 16 + 2, 64 + 2, 1, 1, 0, c_black, 0.25);
-			draw_sprite_ext(spr_discord_big_icon, 0, 16, 64, 1, 1, 0, c_white, 1);
+			draw_sprite_ext(spr_discord_big_icon, 0, 8 + 16 + 2, 8 + 64 + 2, 1, 1, 0, c_black, 0.25);
+			draw_sprite_ext(spr_discord_big_icon, 0, 8 + 16, 8 + 64, 1, 1, 0, c_white, 1);
 			
 			draw_set_font(lang_get_font("font_small"));
-			draw_text(146, 100, concat("Pizza Tower Together\n", lstr("mod_drpc3")));
+			draw_text(8 + 146, 8 + 100, concat("Pizza Tower Together\n", lstr("mod_drpc3")));
 		}
 		else
 		{

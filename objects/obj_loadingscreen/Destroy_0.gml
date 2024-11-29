@@ -1,4 +1,4 @@
-scr_pause_activate_objects(false);
+scr_pause_activate_objects();
 with pauseID
 {
 	event_perform(ev_alarm, 3);

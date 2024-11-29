@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"net_event_goodbye",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"net_event_goodbye",
+  "parent":{
+    "name":"Events",
+    "path":"folders/Online/Events.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
