@@ -1,9 +1,9 @@
-#macro ADDRESS "127.0.0.1"
+#macro SERVER_ADDRESS "127.0.0.1"
 #macro SERVER_PORT 5060
 #macro CLIENT_PORT 5070
 
 #macro net_debug true
-#macro online if instance_exists(obj_netclient) and os_is_network_connected() and obj_netclient.connection != noone with (obj_netclient)
+#macro online if (instance_exists(obj_netclient) and os_is_network_connected() and obj_netclient.connection != noone) with (obj_netclient)
 
 function net_connect(address, sport) {
 	var port = CLIENT_PORT;
@@ -24,12 +24,16 @@ function net_connect(address, sport) {
 		
 		port++;
 	}
+<<<<<<< Updated upstream
 	until (tcp_socket >= 0 && udp_socket >= 0);
 	
 	if (network_connect_raw(tcp_socket, address, sport) < 0) {
 		net_alert($"Failed to connect to {address}:{sport}.");
+=======
+
+	if network_connect_raw(tcp_socket, address, sport) < 0
+>>>>>>> Stashed changes
 		return noone;
-	}
 	
 	return {
 		tcp: tcp_socket,
@@ -38,6 +42,7 @@ function net_connect(address, sport) {
 }
 
 function net_disconnect(connection) {
+<<<<<<< Updated upstream
 	if (connection == noone) {
 		return;
 	}
@@ -45,3 +50,13 @@ function net_disconnect(connection) {
 	network_destroy(connection.tcp);
 	network_destroy(connection.udp);
 }
+=======
+	online {
+		net_send_tcp("goodbye", {});
+		if connection.tcp >= 0 network_destroy(connection.tcp);
+		if connection.udp >= 0 network_destroy(connection.udp);
+	}
+	
+	return noone;
+}
+>>>>>>> Stashed changes

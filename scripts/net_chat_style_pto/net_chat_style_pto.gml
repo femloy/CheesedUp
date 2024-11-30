@@ -213,7 +213,7 @@ function chat_style_pto() constructor
 	{
 		if !created
 			create();
-		
+	
 		if DEBUG && keyboard_check_pressed(ord("R")) && !typing
 		{
 			with obj_netchat
@@ -269,7 +269,7 @@ function chat_style_pto() constructor
 				if keyboard_check_pressed(vk_enter)
 				{
 					// send message
-					var player_name = "todo";
+					var player_name = obj_netclient.username;
 					var str = string_trim(keyboard_string, [" ", "\t", "\n"]);
 					if str != ""
 					{
@@ -314,7 +314,7 @@ function chat_style_pto() constructor
 						if send_over
 						{
 							trace("Sent: \"", str, "\"");
-							net_send_chat_message(player_name, str);
+							net_send_chat_message(str);
 						}
 						typing_box_height = 0;
 					}
@@ -363,6 +363,134 @@ function chat_style_pto() constructor
 			
 			shader_reset();
 		}
+<<<<<<< Updated upstream
+=======
+		return [false];
+	}
+	
+	render_chat_text = function(xx, yy, chat_sep, xscale, yscale, message, preview)
+	{
+		with message
+		{
+			var sw = string_width(message.text);
+			var sh = string_height(message.text);
+			if mouse_x > xx and mouse_x < xx + sw and mouse_y > yy and mouse_y < yy + sh
+				hovering = message;
+			
+			draw_set_colour(name_color);
+			draw_set_alpha(pending ? 0.5 : 1);
+			
+			var name_prefix = concat(name, ": ");
+			if name == ""
+				name_prefix = "";
+			
+			for(var c = 1; c <= string_length(name_prefix); c++)
+			{
+				var char = string_char_at(name_prefix, c);
+				if char == ":"
+					draw_set_color(c_white);
+				
+				draw_text_transformed(xx, yy, char, xscale, yscale, 0);
+				
+				xx += string_width(char);
+			}
+			
+			var effect = 0;
+			var color = c_white;
+			
+			for(var c = 1; c <= string_length(text); c++)
+			{
+				var r = other.do_text_effect(xx, yy, chat_sep, xscale, yscale, "</>", c, self, preview);
+				if r[0]
+				{
+					xx = r[1];
+					yy = r[2];
+					c = r[3];
+					color = c_white;
+					effect = 0;
+					continue;
+				}
+				
+				var r = other.do_text_effect(xx, yy, chat_sep, xscale, yscale, "<wave>", c, self, preview);
+				if r[0]
+				{
+					xx = r[1];
+					yy = r[2];
+					c = r[3];
+					effect = 1;
+					continue;
+				}
+				
+				var r = other.do_text_effect(xx, yy, chat_sep, xscale, yscale, "<shake>", c, self, preview);
+				if r[0]
+				{
+					xx = r[1];
+					yy = r[2];
+					c = r[3];
+					effect = 2;
+					continue;
+				}
+				
+				var r = other.do_text_effect(xx, yy, chat_sep, xscale, yscale, "<rainbow>", c, self, preview);
+				if r[0]
+				{
+					xx = r[1];
+					yy = r[2];
+					c = r[3];
+					color = -1;
+					continue;
+				}
+				
+				if string_pos_ext("<#", text, c) == c && string_pos_ext(">", text, c) > c
+				{
+					var hex_effect = string_copy(text, c, string_pos_ext(">", text, c));
+					var hex = string_copy(hex_effect, 3, string_length(hex_effect) - 3);
+					
+					var temp_color = net_parse_css_color(hex, true);
+					if !is_string(temp_color)
+						color = temp_color;
+					
+					if preview
+					{
+						var preview_color = is_string(temp_color) ? c_red : c_gray;
+						draw_text_transformed_color(xx, yy, hex_effect, xscale, yscale, 0, preview_color, preview_color, preview_color, preview_color, 1);
+						xx += string_width(hex_effect);
+						c += string_length(hex_effect) - 1;
+						continue;
+					}
+					else if !is_string(temp_color)
+					{
+						c += string_length(hex_effect) - 1;
+						continue;
+					}
+				}
+				
+				var char = string_char_at(text, c);
+				
+				var draw_x = xx, draw_y = yy;
+				if effect == 1
+				{
+					draw_x += cos(current_time / 100 + c);
+					draw_y += sin(current_time / 100 + c);
+				}
+				if effect == 2
+				{
+					draw_x += random_range(-1, 1);
+					draw_y += random_range(-1, 1);
+				}
+				
+				var final_color = color;
+				if color == -1
+					final_color = make_color_hsv((current_time / 20 + (-c * 5)) % 255, 200, 255);
+				
+				draw_text_transformed_color(draw_x, draw_y, char, xscale, yscale, 0, final_color, final_color, final_color, final_color, draw_get_alpha());
+				xx += string_width(char);
+			}
+			
+			yy -= chat_sep;
+		}
+		return yy;
+>>>>>>> Stashed changes
 	}
 	
 	draw = function()
@@ -371,7 +499,12 @@ function chat_style_pto() constructor
 		{
 			draw_set_font(global.font_small);
 			
+<<<<<<< Updated upstream
 			var player_name = "todo";
+=======
+			var player_name = obj_netclient.username;
+			var helper_height = 100;
+>>>>>>> Stashed changes
 			
 			// background
 			draw_set_color(c_black);

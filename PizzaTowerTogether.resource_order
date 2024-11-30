@@ -58,12 +58,15 @@
     {"name":"Player","order":6,"path":"folders/Scripts/Player.yy",},
     {"name":"Systems","order":7,"path":"folders/Scripts/Systems.yy",},
     {"name":"Together","order":9,"path":"folders/Scripts/Together.yy",},
+<<<<<<< Updated upstream
     {"name":"Clipping","order":77,"path":"folders/Scripts/Together/Clipping.yy",},
     {"name":"HUD","order":78,"path":"folders/Scripts/Together/HUD.yy",},
     {"name":"Level Editor","order":79,"path":"folders/Scripts/Together/Level Editor.yy",},
     {"name":"Modifiers","order":80,"path":"folders/Scripts/Together/Modifiers.yy",},
     {"name":"Shell","order":81,"path":"folders/Scripts/Together/Shell.yy",},
     {"name":"Vertex","order":82,"path":"folders/Scripts/Together/Vertex.yy",},
+=======
+>>>>>>> Stashed changes
     {"name":"Tour De Pizza Library","order":8,"path":"folders/Scripts/Tour De Pizza Library.yy",},
     {"name":"Sequences","order":7,"path":"folders/Sequences.yy",},
     {"name":"Shaders","order":8,"path":"folders/Shaders.yy",},
@@ -179,12 +182,17 @@
     {"name":"loy_util","order":16,"path":"scripts/loy_util/loy_util.yy",},
     {"name":"message_show","order":5,"path":"scripts/message_show/message_show.yy",},
     {"name":"net_chat_style_pto","order":1,"path":"scripts/net_chat_style_pto/net_chat_style_pto.yy",},
+<<<<<<< Updated upstream
     {"name":"net_event_goodbye","order":3,"path":"scripts/net_event_goodbye/net_event_goodbye.yy",},
+=======
+    {"name":"net_event_kick","order":3,"path":"scripts/net_event_kick/net_event_kick.yy",},
+>>>>>>> Stashed changes
     {"name":"net_event_test","order":1,"path":"scripts/net_event_test/net_event_test.yy",},
     {"name":"net_event_welcome","order":2,"path":"scripts/net_event_welcome/net_event_welcome.yy",},
     {"name":"net_int_string","order":5,"path":"scripts/net_int_string/net_int_string.yy",},
     {"name":"net_log","order":1,"path":"scripts/net_log/net_log.yy",},
     {"name":"net_parse_css_color","order":6,"path":"scripts/net_parse_css_color/net_parse_css_color.yy",},
+    {"name":"net_state","order":7,"path":"scripts/net_state/net_state.yy",},
     {"name":"net_tcp","order":2,"path":"scripts/net_tcp/net_tcp.yy",},
     {"name":"net_udp","order":3,"path":"scripts/net_udp/net_udp.yy",},
     {"name":"pal_swap_supernoise","order":72,"path":"scripts/pal_swap_supernoise/pal_swap_supernoise.yy",},

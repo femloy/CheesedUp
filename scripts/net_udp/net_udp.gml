@@ -28,7 +28,8 @@ function net_send_udp(type, packet) {
 	online {
 		var buffer = net_struct_to_intermediate(type, packet, 0);
 		if network_send_udp_raw(connection.udp, ADDRESS, SERVER_PORT, buffer, buffer_get_size(buffer)) < 0 {
-			net_alert($"Failed to send UDP event.");
+			if net_debug
+				net_log($"Failed to send UDP event.");
 			buffer_delete(buffer);
 			return;
 		}
