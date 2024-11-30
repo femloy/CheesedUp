@@ -15,7 +15,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Player",
-    "path":"folders/Objects/CheesyPizza/Player.yy",
+    "path":"folders/Objects/Together/Player.yy",
   },
   "parentObjectId":{
     "name":"obj_shotgunbullet",

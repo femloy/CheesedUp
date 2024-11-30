@@ -7,6 +7,7 @@ function chat_style_pto() constructor
 	
 	created = false;
 	typing = false;
+	paused = false;
 	screensprite = noone;
 	instance_list = noone;
 	typing_box_height = 0;
@@ -183,6 +184,22 @@ function chat_style_pto() constructor
 	}
 	
 	// The internals. Mmmppghhghf.....
+	pause = function()
+	{
+		dispose(true);
+		instance_list = ds_list_create();
+		scr_create_pause_image();
+		scr_pause_deactivate_objects(false);
+		paused = true;
+	}
+	
+	unpause = function()
+	{
+		scr_pause_activate_objects(false);
+		dispose(true);
+		paused = false;
+	}
+	
 	create = function()
 	{
 		with obj_netchat
@@ -213,7 +230,7 @@ function chat_style_pto() constructor
 	{
 		if !created
 			create();
-	
+		
 		if DEBUG && keyboard_check_pressed(ord("R")) && !typing
 		{
 			with obj_netchat
@@ -230,10 +247,12 @@ function chat_style_pto() constructor
 		if room == Mainmenu or room == Longintro or room == Initroom or room == characterselect
 			quit = true;
 		with obj_shell if isOpen quit = true;
+		with obj_popupscreen if type == 0 quit = true;
 		
-		if quit
+		if quit && !game_paused()
 		{
 			obj_netchat.open = false;
+			typing = false;
 			exit;
 		}
 		if instance_exists(obj_loadingscreen)
@@ -253,11 +272,7 @@ function chat_style_pto() constructor
 		{
 			if !typing && keyboard_check_pressed(vk_enter)
 			{
-				dispose(true);
-				
-				instance_list = ds_list_create();
-				scr_create_pause_image();
-				scr_pause_deactivate_objects(false);
+				pause();
 				typing = true;
 				
 				keyboard_string = "";
@@ -299,14 +314,13 @@ function chat_style_pto() constructor
 									net_clear_chat();
 									break;
 								
+								// serverside
 								default:
+									/*
 									net_add_chat_message(player_name, str, true);
 									with net_add_chat_message("", "Command not found!")
 										name_color = CHAT_ERROR_COLOR;
-									break;
-								
-								// serverside
-								case ":lua":
+									*/
 									send_over = true;
 									break;
 							}
@@ -320,10 +334,8 @@ function chat_style_pto() constructor
 					}
 				}
 				
-				scr_pause_activate_objects(false);
+				unpause();
 				typing = false;
-				
-				dispose(true);
 				
 				keyboard_string = "";
 				with obj_shell
@@ -347,7 +359,7 @@ function chat_style_pto() constructor
 	{
 		if obj_netchat.open
 		{
-			if typing
+			if typing && sprite_exists(screensprite)
 				draw_sprite_ext(screensprite, 0, x, y, xscale, yscale, 0, c_white, 1);
 			
 			shader_set(shd_blur);
@@ -356,138 +368,14 @@ function chat_style_pto() constructor
 			if !typing
 			{
 				draw_surface_part_ext(application_surface, 0, SCREEN_HEIGHT - helper_height, SCREEN_WIDTH, helper_height, x, y + SCREEN_HEIGHT - helper_height, xscale, yscale, c_white, 1);
-				draw_surface_part_ext(obj_screensizer.gui_surf, 0, SCREEN_HEIGHT - helper_height, SCREEN_WIDTH, helper_height, x, y + SCREEN_HEIGHT - helper_height, xscale, yscale, c_white, 1);
+				if surface_exists(obj_screensizer.gui_surf)
+					draw_surface_part_ext(obj_screensizer.gui_surf, 0, SCREEN_HEIGHT - helper_height, SCREEN_WIDTH, helper_height, x, y + SCREEN_HEIGHT - helper_height, xscale, yscale, c_white, 1);
 			}
-			else
+			else if sprite_exists(screensprite)
 				draw_sprite_part_ext(screensprite, 0, 0, SCREEN_HEIGHT - helper_height, SCREEN_WIDTH, helper_height, x, y + SCREEN_HEIGHT - helper_height, xscale, yscale, c_white, 1);
 			
 			shader_reset();
 		}
-		return [false];
-	}
-	
-	render_chat_text = function(xx, yy, chat_sep, xscale, yscale, message, preview)
-	{
-		with message
-		{
-			var sw = string_width(message.text);
-			var sh = string_height(message.text);
-			if mouse_x > xx and mouse_x < xx + sw and mouse_y > yy and mouse_y < yy + sh
-				hovering = message;
-			
-			draw_set_colour(name_color);
-			draw_set_alpha(pending ? 0.5 : 1);
-			
-			var name_prefix = concat(name, ": ");
-			if name == ""
-				name_prefix = "";
-			
-			for(var c = 1; c <= string_length(name_prefix); c++)
-			{
-				var char = string_char_at(name_prefix, c);
-				if char == ":"
-					draw_set_color(c_white);
-				
-				draw_text_transformed(xx, yy, char, xscale, yscale, 0);
-				
-				xx += string_width(char);
-			}
-			
-			var effect = 0;
-			var color = c_white;
-			
-			for(var c = 1; c <= string_length(text); c++)
-			{
-				var r = other.do_text_effect(xx, yy, chat_sep, xscale, yscale, "</>", c, self, preview);
-				if r[0]
-				{
-					xx = r[1];
-					yy = r[2];
-					c = r[3];
-					color = c_white;
-					effect = 0;
-					continue;
-				}
-				
-				var r = other.do_text_effect(xx, yy, chat_sep, xscale, yscale, "<wave>", c, self, preview);
-				if r[0]
-				{
-					xx = r[1];
-					yy = r[2];
-					c = r[3];
-					effect = 1;
-					continue;
-				}
-				
-				var r = other.do_text_effect(xx, yy, chat_sep, xscale, yscale, "<shake>", c, self, preview);
-				if r[0]
-				{
-					xx = r[1];
-					yy = r[2];
-					c = r[3];
-					effect = 2;
-					continue;
-				}
-				
-				var r = other.do_text_effect(xx, yy, chat_sep, xscale, yscale, "<rainbow>", c, self, preview);
-				if r[0]
-				{
-					xx = r[1];
-					yy = r[2];
-					c = r[3];
-					color = -1;
-					continue;
-				}
-				
-				if string_pos_ext("<#", text, c) == c && string_pos_ext(">", text, c) > c
-				{
-					var hex_effect = string_copy(text, c, string_pos_ext(">", text, c));
-					var hex = string_copy(hex_effect, 3, string_length(hex_effect) - 3);
-					
-					var temp_color = net_parse_css_color(hex, true);
-					if !is_string(temp_color)
-						color = temp_color;
-					
-					if preview
-					{
-						var preview_color = is_string(temp_color) ? c_red : c_gray;
-						draw_text_transformed_color(xx, yy, hex_effect, xscale, yscale, 0, preview_color, preview_color, preview_color, preview_color, 1);
-						xx += string_width(hex_effect);
-						c += string_length(hex_effect) - 1;
-						continue;
-					}
-					else if !is_string(temp_color)
-					{
-						c += string_length(hex_effect) - 1;
-						continue;
-					}
-				}
-				
-				var char = string_char_at(text, c);
-				
-				var draw_x = xx, draw_y = yy;
-				if effect == 1
-				{
-					draw_x += cos(current_time / 100 + c);
-					draw_y += sin(current_time / 100 + c);
-				}
-				if effect == 2
-				{
-					draw_x += random_range(-1, 1);
-					draw_y += random_range(-1, 1);
-				}
-				
-				var final_color = color;
-				if color == -1
-					final_color = make_color_hsv((current_time / 20 + (-c * 5)) % 255, 200, 255);
-				
-				draw_text_transformed_color(draw_x, draw_y, char, xscale, yscale, 0, final_color, final_color, final_color, final_color, draw_get_alpha());
-				xx += string_width(char);
-			}
-			
-			yy -= chat_sep;
-		}
-		return yy;
 	}
 	
 	draw = function()
@@ -497,7 +385,6 @@ function chat_style_pto() constructor
 			draw_set_font(global.font_small);
 			
 			var player_name = obj_netclient.username;
-			var helper_height = 100;
 			
 			// background
 			draw_set_color(c_black);
@@ -597,6 +484,6 @@ function chat_style_pto() constructor
 	
 	game_paused = function()
 	{
-		return typing;
+		return paused;
 	}
 }

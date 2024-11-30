@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"net_state",
+  "%Name":"scr_popupscreen",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"net_state",
+  "name":"scr_popupscreen",
   "parent":{
-    "name":"Scripts",
-    "path":"folders/Online/Scripts.yy",
+    "name":"Together",
+    "path":"folders/Scripts/Together.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -156,7 +156,7 @@ function scr_pause_activate_objects(unpause_sounds = true, is_obj_pause = false)
 		event_perform(ev_alarm, 2);
 	}
 }
-function scr_pause_deactivate_objects(pause_sounds = true)
+function scr_pause_deactivate_objects(pause_sounds = true, extra_exclude_array = [])
 {
 	if pause_sounds
 	{
@@ -171,12 +171,16 @@ function scr_pause_deactivate_objects(pause_sounds = true)
 		}
 	}
 	
-	var exclude = [obj_eventorder, obj_fmod, obj_inputAssigner, obj_savesystem,
+	var exclude =
+	[
+		obj_eventorder, obj_fmod, obj_inputAssigner, obj_savesystem,
 		obj_pause, obj_screensizer, obj_music, obj_persistent, obj_shell,
 		obj_richpresence, obj_inputdisplay, obj_gmlive, obj_globaltimer,
 		obj_langload, obj_cyop_loader, obj_loadingscreen,
 		
-		obj_netclient, obj_netchat];
+		obj_netclient, obj_netchat, obj_popupscreen
+	];
+	array_copy(exclude, array_length(exclude), extra_exclude_array, 0, array_length(extra_exclude_array));
 	
 	ds_list_clear(instance_list);
 	for (var i = 0; i < instance_count; i++)

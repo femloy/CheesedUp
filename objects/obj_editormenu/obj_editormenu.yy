@@ -15,7 +15,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"CYOP",
-    "path":"folders/Objects/CheesyPizza/CYOP.yy",
+    "path":"folders/Objects/Together/CYOP.yy",
   },
   "parentObjectId":null,
   "persistent":false,

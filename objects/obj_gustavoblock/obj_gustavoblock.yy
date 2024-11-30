@@ -11,7 +11,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Level objects",
-    "path":"folders/Objects/CheesyPizza/Level objects.yy",
+    "path":"folders/Objects/Together/Level objects.yy",
   },
   "parentObjectId":{
     "name":"obj_solid",

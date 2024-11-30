@@ -12,7 +12,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"UI",
-    "path":"folders/Objects/CheesyPizza/UI.yy",
+    "path":"folders/Objects/Together/UI.yy",
   },
   "parentObjectId":null,
   "persistent":false,

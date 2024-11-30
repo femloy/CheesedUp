@@ -1,6 +1,8 @@
 /// @description Notify server of room
-if instance_exists(obj_player) {
-	net_send_tcp("room_change", {
+if instance_exists(obj_player)
+{
+	net_send_tcp("room_change",
+	{
 		previous: last_room,
 		current: room,
 		

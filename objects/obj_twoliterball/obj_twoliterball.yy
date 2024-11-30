@@ -11,7 +11,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Midway",
-    "path":"folders/Objects/CheesyPizza/Midway.yy",
+    "path":"folders/Objects/Together/Midway.yy",
   },
   "parentObjectId":null,
   "persistent":false,

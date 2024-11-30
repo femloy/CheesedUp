@@ -25,8 +25,10 @@ function net_add_chat_message(name, text, pending = false)
 	if live_call(name, text, pending) return live_result;
 	
 	var c = c_white;
-	online {
-		if admin c = #FFD36B;
+	online
+	{
+		if admin
+			c = #FFD36B;
 	}
 
 	var msg = {

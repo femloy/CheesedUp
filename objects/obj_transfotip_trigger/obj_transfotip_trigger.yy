@@ -9,8 +9,8 @@
   "name":"obj_transfotip_trigger",
   "overriddenProperties":[],
   "parent":{
-    "name":"CheesyPizza",
-    "path":"folders/Objects/CheesyPizza.yy",
+    "name":"Together",
+    "path":"folders/Objects/Together.yy",
   },
   "parentObjectId":null,
   "persistent":false,

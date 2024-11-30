@@ -153,8 +153,8 @@ function net_intermediate_type_buffer(type) {
 	}
 }
 
-function net_event_string(event, packet) {
-    var func = asset_get_index($"net_event_{event}");
-    if (func == -1) throw ("Unknown Event: '" + type + "'");
+function net_event_string(type, packet) {
+    var func = asset_get_index($"net_event_{type}");
+    if func == -1 return; //throw ("Unknown Event: '" + type + "'");
     return script_execute_ext(func, [packet]);
 }

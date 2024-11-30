@@ -5,41 +5,44 @@
 #macro net_debug true
 #macro online if (instance_exists(obj_netclient) and os_is_network_connected() and obj_netclient.connection != noone) with (obj_netclient)
 
-function net_connect(address, sport) {
+function net_connect(address, sport)
+{
 	var port = CLIENT_PORT;
 	
 	var tcp_socket = -1, udp_socket = -1;
-	do {
-		if (port <= 0 || port >= 65535) {
+	do
+	{
+		if port <= 0 || port >= 65535
+		{
 			net_alert("WHAT THE FUCK");
 			return noone;
 		}
 		
-		if (tcp_socket < 0) {
+		if tcp_socket < 0
 			tcp_socket = network_create_socket_ext(network_socket_tcp, port);
-		}
-		if (udp_socket < 0) {
+		if udp_socket < 0
 			udp_socket = network_create_socket_ext(network_socket_udp, port);
-		}
 		
 		port++;
-	} until (tcp_socket >= 0 && udp_socket >= 0);
-
+	}
+	until (tcp_socket >= 0 && udp_socket >= 0);
+	
 	if network_connect_raw(tcp_socket, address, sport) < 0
 		return noone;
 	
-	return {
+	return
+	{
 		tcp: tcp_socket,
 		udp: udp_socket,
 	};
 }
 
-function net_disconnect(connection) {
-	if connection != noone {
-		net_send_tcp("goodbye", {});
-		if connection.tcp >= 0 network_destroy(connection.tcp);
-		if connection.udp >= 0 network_destroy(connection.udp);
-	}
-	
+function net_disconnect(connection)
+{
+	if connection == noone
+		return noone;
+	net_send_tcp("goodbye", {});
+	if connection.tcp >= 0 network_destroy(connection.tcp);
+	if connection.udp >= 0 network_destroy(connection.udp);
 	return noone;
 }

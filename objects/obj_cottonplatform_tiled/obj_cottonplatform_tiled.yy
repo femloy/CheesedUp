@@ -10,7 +10,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Blocks",
-    "path":"folders/Objects/CheesyPizza/Sugary Spire/Blocks.yy",
+    "path":"folders/Objects/Together/Sugary Spire/Blocks.yy",
   },
   "parentObjectId":{
     "name":"obj_platform",

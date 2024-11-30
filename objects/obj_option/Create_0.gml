@@ -217,7 +217,8 @@ add_option_press(window_menu, 3, "option_borderless", function() {
 
 var sca = [
 	create_option_value("option_scaling_fit", 0),
-	create_option_value("option_scaling_pp", 1)
+	create_option_value("option_scaling_pp", 1),
+	create_option_value("option_scaling_expand", 2)
 ];
 
 add_option_multiple(window_menu, 4, "option_scaling", sca, function(val)
@@ -258,6 +259,9 @@ add_option_toggle(window_menu, 5, "option_gameframe", function(val)
 	    ini_write_real("Modded", "gameframe", val);
 	    obj_savesystem.ini_str_options = ini_close();
 		toggle_gameframe(val);
+		
+		with obj_screensizer
+			disappearbuffer = 100;
 	//}
 }).value = global.gameframe_enabled;
 

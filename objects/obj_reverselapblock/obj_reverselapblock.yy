@@ -9,7 +9,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Modifiers",
-    "path":"folders/Objects/CheesyPizza/Modifiers.yy",
+    "path":"folders/Objects/Together/Modifiers.yy",
   },
   "parentObjectId":{
     "name":"obj_lapblock",
