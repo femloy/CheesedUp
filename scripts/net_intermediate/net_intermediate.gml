@@ -108,30 +108,30 @@ function net_struct_to_intermediate(type, event, reply) {
 }
 
 function net_number_size(value) {
-  var type;
-  var is_float = value % 1;
-  
-  if is_float 
-    type = value > F32_MAX ? { intermediate: net_intermediate_type.f64, buffer: buffer_f64 } : { intermediate: net_intermediate_type.f32, buffer: buffer_f32 };
-  else {
-    if value > 0 {
-      type = { intermediate: net_intermediate_type.u8, buffer: buffer_u8 };
-      if value > U8_MAX
-        type = { intermediate: net_intermediate_type.u16, buffer: buffer_u16 };
-      if value > U16_MAX
-        type = { intermediate: net_intermediate_type.u32, buffer: buffer_u32 };
-      if value > U32_MAX
-        type = { intermediate: net_intermediate_type.u64, buffer: buffer_u64 };
-    } else {
-      type = { intermediate: net_intermediate_type.s8, buffer: buffer_s8 };
-      if value < S8_MIN
-        type = { intermediate: net_intermediate_type.s16, buffer: buffer_s16 };
-      if value < S16_MIN
-        type = { intermediate: net_intermediate_type.s32, buffer: buffer_s32 };
-    }
-  }
-  
-  return type;
+	if value % 1 
+		return value > F32_MAX ? { intermediate: net_intermediate_type.f64, buffer: buffer_f64 } : { intermediate: net_intermediate_type.f32, buffer: buffer_f32 };
+	
+	// UINT
+	if value >= 0 {
+		if value > U32_MAX
+			return { intermediate: net_intermediate_type.u64, buffer: buffer_u64 };
+		if value > U8_MAX
+			return { intermediate: net_intermediate_type.u16, buffer: buffer_u16 };
+		if value > U16_MAX
+			return { intermediate: net_intermediate_type.u32, buffer: buffer_u32 };
+			
+		return { intermediate: net_intermediate_type.u8, buffer: buffer_u8 };
+	}
+	
+	// INT
+	if value < 0 {
+		if value < S16_MIN
+			return { intermediate: net_intermediate_type.s32, buffer: buffer_s32 };
+		if value < S8_MIN
+			return { intermediate: net_intermediate_type.s16, buffer: buffer_s16 };
+			
+		return { intermediate: net_intermediate_type.s8, buffer: buffer_s8 };
+	}
 }
 
 function net_intermediate_type_buffer(type) {

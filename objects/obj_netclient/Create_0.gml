@@ -5,10 +5,8 @@ reconnecting_text = "Reconnecting";
 paused = false;
 connection = net_connect(address, port);
 requests = ds_map_create();
-<<<<<<< Updated upstream
-admin = false;
+last_room = room;
 instance_create_unique(0, 0, obj_netchat);
-=======
 
 heart_rate = 1;
 heart_delay = 4;
@@ -18,4 +16,3 @@ username = "Player";
 admin = false;
 
 instance_create_unique(0, 0, obj_netchat);
->>>>>>> Stashed changes

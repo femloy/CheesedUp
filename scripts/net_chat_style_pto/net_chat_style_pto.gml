@@ -363,8 +363,6 @@ function chat_style_pto() constructor
 			
 			shader_reset();
 		}
-<<<<<<< Updated upstream
-=======
 		return [false];
 	}
 	
@@ -490,7 +488,6 @@ function chat_style_pto() constructor
 			yy -= chat_sep;
 		}
 		return yy;
->>>>>>> Stashed changes
 	}
 	
 	draw = function()
@@ -499,12 +496,8 @@ function chat_style_pto() constructor
 		{
 			draw_set_font(global.font_small);
 			
-<<<<<<< Updated upstream
-			var player_name = "todo";
-=======
 			var player_name = obj_netclient.username;
 			var helper_height = 100;
->>>>>>> Stashed changes
 			
 			// background
 			draw_set_color(c_black);

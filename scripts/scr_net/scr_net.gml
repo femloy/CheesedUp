@@ -23,16 +23,9 @@ function net_connect(address, sport) {
 		}
 		
 		port++;
-	}
-<<<<<<< Updated upstream
-	until (tcp_socket >= 0 && udp_socket >= 0);
-	
-	if (network_connect_raw(tcp_socket, address, sport) < 0) {
-		net_alert($"Failed to connect to {address}:{sport}.");
-=======
+	} until (tcp_socket >= 0 && udp_socket >= 0);
 
 	if network_connect_raw(tcp_socket, address, sport) < 0
->>>>>>> Stashed changes
 		return noone;
 	
 	return {
@@ -42,16 +35,7 @@ function net_connect(address, sport) {
 }
 
 function net_disconnect(connection) {
-<<<<<<< Updated upstream
-	if (connection == noone) {
-		return;
-	}
-	net_send_tcp("goodbye", {});
-	network_destroy(connection.tcp);
-	network_destroy(connection.udp);
-}
-=======
-	online {
+	if connection != noone {
 		net_send_tcp("goodbye", {});
 		if connection.tcp >= 0 network_destroy(connection.tcp);
 		if connection.udp >= 0 network_destroy(connection.udp);
@@ -59,4 +43,3 @@ function net_disconnect(connection) {
 	
 	return noone;
 }
->>>>>>> Stashed changes
