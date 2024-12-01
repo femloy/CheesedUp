@@ -1,12 +1,16 @@
-function net_alert(str) { // Loy, do something better for this please.
+function net_alert(str) 
+{
 	show_message(str);
 }
 
-function net_log(str) {
-	net_add_chat_message("LOG", str);
+function net_log(str) 
+{
+	if net_debug
+		net_add_chat_message("LOG", str);
 }
 
-function net_log_buffer(_buf, _per_row = 16) {
+function net_log_buffer(_buf, _per_row = 16) 
+{
     static _out = buffer_create(16, buffer_grow, 1);
     static _chars = buffer_create(16, buffer_grow, 1);
     buffer_seek(_out, buffer_seek_start, 0);
@@ -20,7 +24,8 @@ function net_log_buffer(_buf, _per_row = 16) {
     buffer_write(_out, buffer_text, " | tell: ");
     buffer_write(_out, buffer_text, string(_tell));
     buffer_write(_out, buffer_text, " | type: ");
-    switch (buffer_get_type(_buf)) {
+    switch (buffer_get_type(_buf)) 
+	{
         case buffer_fixed:   buffer_write(_out, buffer_text, "buffer_fixed"  ); break;
         case buffer_grow:    buffer_write(_out, buffer_text, "buffer_grow"   ); break;
         case buffer_fast:    buffer_write(_out, buffer_text, "buffer_fast"   ); break;
@@ -29,9 +34,12 @@ function net_log_buffer(_buf, _per_row = 16) {
         default: buffer_write(_out, buffer_text, string(buffer_get_type(_buf))); break;
     }
     
-    for (var i = 0; i < _size; i++) {
-        if (i % _per_row == 0) { // row start
-            if (i > 0) { // printable chars
+    for (var i = 0; i < _size; i++) 
+	{
+        if (i % _per_row == 0) 
+		{ // row start
+            if (i > 0) 
+			{ // printable chars
                 buffer_write(_out, buffer_text, " | ");
                 buffer_write(_chars, buffer_u8, 0);
                 buffer_seek(_chars, buffer_seek_start, 0);
@@ -47,11 +55,10 @@ function net_log_buffer(_buf, _per_row = 16) {
         var _byte = buffer_peek(_buf, i, buffer_u8);
         
         // write byte if in printable range or an "unknown" symbol otherwise
-        if (_byte >= 32 && _byte < 128) {
-            buffer_write(_chars, buffer_u8, _byte);
-        } else {
+        if (_byte >= 32 && _byte < 128) 
+            buffer_write(_chars, buffer_u8, _byte); 
+		else 
             buffer_write(_chars, buffer_text, "·");
-        }
         
         // write the hexadecimal presentation:
         var _hex = _byte >> 4;
@@ -61,8 +68,10 @@ function net_log_buffer(_buf, _per_row = 16) {
     }
     
     // last row's spaces and printable chars:
-    if (_size % _per_row != 0) {
-        repeat (_per_row - (_size % _per_row)) {
+    if (_size % _per_row != 0) 
+	{
+        repeat (_per_row - (_size % _per_row)) 
+		{
             buffer_write(_out, buffer_text, "   ");
         }
     }
