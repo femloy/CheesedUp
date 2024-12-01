@@ -1,6 +1,7 @@
 condition = function()
 {
-    return place_meeting(x, y, obj_player1) && obj_player1.state == states.freefallland;
+	var p = instance_place(x, y, obj_player);
+    return p && (p.state == states.freefallland or p.state == states.ratmountbounce);
 }
 
 output = function()
@@ -19,7 +20,7 @@ output = function()
 		
 		if REMIX
 		{
-			fmod_event_instance_set_parameter(global.snd_secretwall, "state", check_sugarychar(), false);
+			//fmod_event_instance_set_parameter(global.snd_secretwall, "state", check_sugarychar(), false);
 			fmod_event_instance_play(global.snd_secretwall);
 		}
     }

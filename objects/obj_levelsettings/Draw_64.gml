@@ -10,6 +10,9 @@ if keyboard_check_pressed(ord("R")) && DEBUG
 image_alpha = Approach(image_alpha, 1, 0.1);
 gpu_set_blendmode_ext(bm_one, bm_inv_src_alpha);
 
+var opt_spr = SUGARY ? bg_options_ss : spr_optionsBG;
+var opt_img = SUGARY ? 1 : 6;
+
 draw_set_alpha(1);
 switch menu
 {
@@ -118,7 +121,7 @@ switch menu
 				surface_reset_target();
 				
 				draw_clear_alpha(0, 0);
-				draw_sprite_tiled_ext(SUGARY ? bg_options_ss : spr_optionsBG, 6, ++x, x, 1, 1, bgcolor, 1);
+				draw_sprite_tiled_ext(opt_spr, opt_img, ++x, x, 1, 1, bgcolor, 1);
 				
 				gpu_set_blendmode(bm_subtract);
 				draw_surface(clip_surface, 0, 0);
@@ -172,7 +175,7 @@ switch menu
 					surface_reset_target();
 					
 					draw_clear_alpha(0, 0);
-					draw_sprite_tiled_ext(SUGARY ? bg_options_ss : spr_optionsBG, 6, ++x, x, 1, 1, bgcolor, 1);
+					draw_sprite_tiled_ext(opt_spr, opt_img, ++x, x, 1, 1, bgcolor, 1);
 					
 					gpu_set_blendmode(bm_subtract);
 					draw_surface(clip_surface, 0, 0);
@@ -186,7 +189,7 @@ switch menu
 			}
 			anim_t = 1;
 		}
-		draw_sprite_tiled_ext(SUGARY ? bg_options_ss : spr_optionsBG, 6, ++x, x, 1, 1, bgcolor, 1);
+		draw_sprite_tiled_ext(opt_spr, opt_img, ++x, x, 1, 1, bgcolor, 1);
 		
 		#region MODIFIERS
 		

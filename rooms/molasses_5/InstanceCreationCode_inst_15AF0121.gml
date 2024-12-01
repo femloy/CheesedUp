@@ -12,7 +12,7 @@ condition = function()
 
 output = function()
 {
-    with obj_geyserCutscene
+    with obj_geyser_cutscene
     {
         sprite_index = spr_geysercutscene_active;
         image_index = 0;

@@ -11,9 +11,9 @@ if SUGARY_SPIRE && check_char("SP")
 	
 	if global.blockstyle == blockstyles.old
 	{
-		// old
 		sprite_index = spr_bigbreakableSP_old;
 		particlespr = spr_bigcandydebris;
+		spr_dead = -1;
 	}
 }
 else if BO_NOISE && check_char("BN")
@@ -23,7 +23,6 @@ else if BO_NOISE && check_char("BN")
 }
 else if global.blockstyle == blockstyles.old
 {
-	// old
 	sprite_index = spr_bigbreakable_old;
 	particlespr = spr_bigpizzadebris;
 	spr_dead = -1;

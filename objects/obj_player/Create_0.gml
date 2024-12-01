@@ -69,15 +69,7 @@ function player_init_sounds()
 	}
 	
 	// the voices
-	if SUGARY_SPIRE && character == "SP"
-	{
-		snd_voiceok = fmod_event_create_instance("event:/modded/sfx/voice/okSP");
-		snd_voicetransfo = fmod_event_create_instance("event:/modded/sfx/voice/transfoSP");
-		snd_voiceouttransfo = fmod_event_create_instance("event:/modded/sfx/voice/outtransfoSP");
-		snd_voicehurt = fmod_event_create_instance("event:/modded/sfx/voice/hurtSP");
-		snd_voicemyea = "event:/modded/sfx/voice/myeaSP";
-	}
-	else if character != "S"
+	if character != "S"
 	{
 		var g = isgustavo && character != "N";
 		snd_voiceok = fmod_event_create_instance(g ? "event:/sfx/voice/gusok" : "event:/sfx/voice/ok");
@@ -96,7 +88,9 @@ function player_init_sounds()
 	}
 	
 	// fireass
-	if character != "S"
+	if character == "SP"
+		global.snd_fireass = fmod_event_create_instance(concat("event:/modded/sfx/fireass", character));
+	else if character != "S"
 		global.snd_fireass = fmod_event_create_instance(concat("event:/sfx/pep/fireass", character));
 	else
 		global.snd_fireass = fmod_event_create_instance("event:/sfx/pep/fireass");
@@ -110,13 +104,13 @@ function player_init_sounds()
 	if BO_NOISE && character == "BN"
 		global.snd_supertaunt = fmod_event_create_instance("event:/modded/sfx/supertauntBN");
 	else if SUGARY_SPIRE && (character == "SP" or character == "SN")
-		global.snd_supertaunt = fmod_event_create_instance("event:/modded/sfx/pizzysupertaunt");
+		global.snd_supertaunt = fmod_event_create_instance("event:/modded/sfx/supertauntSP");
 	else
 		global.snd_supertaunt = fmod_event_create_instance("event:/sfx/pep/supertaunt");
 	
 	// rank
 	if SUGARY_SPIRE && (character == "SP" or character == "SN")
-		global.snd_rank = fmod_event_create_instance("event:/music/rankSP");
+		global.snd_rank = fmod_event_create_instance("event:/modded/sugary/rankSP");
 	else if BO_NOISE && character == "BN"
 		global.snd_rank = fmod_event_create_instance("event:/music/rankBN");
 	else

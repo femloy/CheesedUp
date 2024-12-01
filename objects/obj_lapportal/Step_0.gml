@@ -11,7 +11,6 @@ if (global.panic or instance_exists(obj_wartimer) or time_attack) && sprite_inde
 			
 			if (other.playerid == noone && place_meeting(x, y, other))
 			{
-				sound_play_3d("event:/sfx/misc/secretenter", x, y);
 				with obj_camera
 					lock = true;
 				state = states.actor;
@@ -23,7 +22,10 @@ if (global.panic or instance_exists(obj_wartimer) or time_attack) && sprite_inde
 				if SUGARY_SPIRE && other.sugary
 					sound_play_3d("event:/modded/sfx/secretenterSP", x, y);
 				else
+				{
+					sound_play_3d("event:/sfx/misc/secretenter", x, y);
 					sound_play_3d("event:/sfx/misc/lapenter", x, y);
+				}
 				
 				if !other.time_attack
 				{

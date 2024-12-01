@@ -1,5 +1,1 @@
-activateRegion = false
-activationCode = function()
-{
-    return activateRegion;
-}
+active = false;

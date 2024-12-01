@@ -12,11 +12,9 @@ if global.blockstyle == blockstyles.september
 	particlespr = spr_harddoughblockdead;
 }
 
-/*
-if SUGARY
+if SUGARY_SPIRE && SUGARY
 {
 	sprite_index = spr_metalblock_ss;
 	particlespr = spr_metaldebris_ss;
 	superjumpable = true;
 }
-*/

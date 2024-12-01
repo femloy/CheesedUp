@@ -2,7 +2,7 @@ SS_CODE_START;
 
 if !global.panic
 {	
-	if REMIX
+	if REMIX && global.jukebox == noone
 	{
 		anim_t = Approach(anim_t, 1, .065);
 		image_angle = lerp(desired_angle - degree_per_beat, desired_angle, animcurve_channel_evaluate(outback, anim_t));

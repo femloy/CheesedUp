@@ -2,7 +2,7 @@
   "$GMSprite":"",
   "%Name":"spr_pizzypalette",
   "bboxMode":0,
-  "bbox_bottom":9,
+  "bbox_bottom":11,
   "bbox_left":0,
   "bbox_right":31,
   "bbox_top":0,
@@ -16,7 +16,7 @@
   ],
   "gridX":0,
   "gridY":0,
-  "height":10,
+  "height":12,
   "HTile":false,
   "layers":[
     {"$GMImageLayer":"","%Name":"84f47a4b-c54d-4e54-baac-556678413837","blendMode":0,"displayName":"default","isLocked":false,"name":"84f47a4b-c54d-4e54-baac-556678413837","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},

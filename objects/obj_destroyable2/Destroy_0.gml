@@ -4,13 +4,16 @@ if !in_saveroom()
 {
 	fail_modifier(MOD.NoToppings);
 	
-	if (sprite_exists(particlespr))
+	if sprite_exists(particlespr)
 	{
 		repeat (6)
 			create_debris(x + 16, y + 16, particlespr);
 	}
-	with (instance_create(x + 16, y + 16, obj_parryeffect))
-		sprite_index = other.spr_dead;
+	if spr_dead != -1
+	{
+		with instance_create(x + 16, y + 16, obj_parryeffect)
+			sprite_index = other.spr_dead;
+	}
 	
 	scr_sleep(5);
 	create_baddiegibsticks(x + 16, y + 16);

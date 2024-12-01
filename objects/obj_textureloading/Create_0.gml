@@ -1,6 +1,8 @@
-group_arr = ["hudgroup", "playergroup", "introgroup", "smallgroup", "levelstructuregroup", "baddiegroup"];
-//if DEBUG
-	array_push(group_arr, "debuggroup");
+group_arr = ["hudgroup", "playergroup", "introgroup", "smallgroup", "levelstructuregroup", "baddiegroup", "debuggroup"];
+if SUGARY_SPIRE
+	array_push(group_arr, "mod_sugaryspire");
+if BO_NOISE
+	array_push(group_arr, "mod_bonoise");
 
 tex_list = array_create(0);
 tex_pos = 0;

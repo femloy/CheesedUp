@@ -11,7 +11,7 @@ if (state != states.backbreaker)
 			image_xscale = -sign(xprevious - x);
 		else if (playerid.hsp == 0)
 			image_xscale = playerid.xscale;
-		if (obj_player1.state == states.backbreaker)
+		if (obj_player1.state == states.backbreaker && sprite_exists(tauntspr))
 		{
 			sprite_index = tauntspr;
 			image_index = irandom(sprite_get_number(sprite_index) - 1);

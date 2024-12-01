@@ -418,8 +418,8 @@ if global.panic or global.snickchallenge
 		{
 			if global.leveltosave != "sucrose" && !instance_exists(obj_ghostcollectibles)
 			{
-				var time = 3.5 * clamp(global.wave / global.maxwave, 0, 1);
-				var range = 65 - (5 * clamp(global.wave / global.maxwave, 0, 1));
+				var range = 3.5 * clamp(global.wave / global.maxwave, 0, 1);
+				var time = 65 - (5 * clamp(global.wave / global.maxwave, 0, 1));
 				panicangle = sin(scr_current_time() / (time * 100)) * range;
 			}
 			else

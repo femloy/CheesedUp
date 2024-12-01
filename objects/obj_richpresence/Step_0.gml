@@ -255,6 +255,7 @@ if state == ""
 			case tower_soundtest: state = "Sound Test"; break;
 			case tower_outside: state = "Tower Outside"; break;
 			case tower_1up: case tower_2up: case tower_3up: case tower_4up: state = "Next floor!"; break;
+			case tower_sugary: state = "The Sugary Spire"; break;
 			
 			// cutscenes
 			case Loadiingroom: state = "Loading..."; break;

@@ -67,7 +67,7 @@ exception_unhandled_handler
 
 // drama
 #macro DEATH_MODE 0
-#macro SUGARY_SPIRE 0
+#macro SUGARY_SPIRE 1
 #macro BO_NOISE 0
 
 // macros

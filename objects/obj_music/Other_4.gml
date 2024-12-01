@@ -1,7 +1,10 @@
 if global.jukebox != noone or instance_exists(obj_elevatorcutscene)
 	exit;
 if MOD.CosmicClones or (DEATH_MODE && MOD.DeathMode) or global.timeattack
+{
+	music = noone;
 	exit;
+}
 warstart = false;
 
 var fucker = (global.panic && global.leveltosave != "dragonlair" && global.leveltosave != "grinch" && global.leveltosave != "sucrose" && global.leveltosave != "war"

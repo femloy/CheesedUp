@@ -84,7 +84,7 @@ function scr_characters(skinchoice)
 	if SUGARY_SPIRE
 	{
 		add_character("SP", spr_playerSP_idle, spr_pizzypalette, 1, 3, 1);
-		add_character("SN", spr_pizzano_idle, spr_pizzanopalette, 1, 5);
+		//add_character("SN", spr_pizzano_idle, spr_pizzanopalette, 1, 5);
 	}
 	//if BO_NOISE
 	//	add_character("BN", spr_playerBN_idle, spr_bopalette, 1, 5);

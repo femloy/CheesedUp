@@ -15,7 +15,7 @@ if object_index == obj_escapecollectbig
 	if sprite_index != spr_escapecollectbig_ss
 		sound_play_3d("event:/sfx/misc/bellcollectbig", x, y);
 	else
-		sound_play_3d("event:/modded/sfx/bellcollectbig_ss", x, y);
+		sound_play_3d("event:/modded/sfx/bellcollectbigSP", x, y);
 }
 
 if (obj_player1.character == "V")

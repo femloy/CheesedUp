@@ -122,7 +122,7 @@ if instance_exists(obj_player1) && !obj_pause.pause
 		cyop_music();
 	else if (global.panic && global.leveltosave != "dragonlair" && global.leveltosave != "grinch" && global.leveltosave != "sucrose"
 	&& (global.leveltosave != "freezer" or !REMIX or global.lap) && custom_panic < 0)
-	or ((global.snickchallenge or (DEATH_MODE && MOD.DeathMode) or (MOD.CosmicClones && instance_exists(obj_cosmicclone)) or global.timeattack) && !instance_exists(obj_levelsettings) && !instance_exists(obj_titlecard))
+	or ((global.snickchallenge or (DEATH_MODE && MOD.DeathMode) or (MOD.CosmicClones && instance_exists(obj_cosmicclone)) or global.timeattack) && !instance_exists(obj_levelsettings) && !instance_exists(obj_titlecard) && !instance_exists(obj_rank))
 	{
 		if !panicstart
 		{
@@ -143,6 +143,7 @@ if instance_exists(obj_player1) && !obj_pause.pause
 				{
 					default: panicmusicID = fmod_event_create_instance("event:/music/pizzatime"); break;
 					case "N": panicmusicID = fmod_event_create_instance("event:/music/pizzatimenoise"); break;
+					case "SP": panicmusicID = fmod_event_create_instance("event:/modded/sugary/escapeSP"); break;
 				}
 			}
 			cyop_freemusic();
@@ -181,6 +182,8 @@ if instance_exists(obj_player1) && !obj_pause.pause
 				var secs = 56;
 				if obj_player1.character == "N"
 					secs = 65;
+				if obj_player1.character == "SP"
+					secs = 44;
 				if global.fill <= secs * 12
 					fmod_event_instance_set_parameter(panicmusicID, "state", 1, true);
 			}

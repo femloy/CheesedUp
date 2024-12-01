@@ -11,7 +11,7 @@ function scr_panicdraw()
 	
 	if (global.panic or global.snickchallenge) && !(DEATH_MODE && MOD.DeathMode) && !global.timeattack
 	{
-		// smooth timer
+		// smooth timerº
 		var gaining_time = true;
 		if global.fill <= fill_lerp
 		{

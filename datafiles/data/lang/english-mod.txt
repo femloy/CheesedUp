@@ -969,18 +969,6 @@ dresser_M0 = "Pepperman"
 dresser_M0D = "A giant red pepper with limbs."
 
 # ------------------
-# DRESSER FAKE PEP
-# ------------------
-dresser_F0 = "Fake Peppino"
-dresser_F0D = "Placeholder."
-
-# ------------------
-# DRESSER MR STICK
-# ------------------
-dresser_MS0 = "Mr. Stick"
-dresser_MS0D = "The shrewd businessman."
-
-# ------------------
 # DRESSER PATTERNS
 # ------------------
 pattern_1 = "Funny Polka"

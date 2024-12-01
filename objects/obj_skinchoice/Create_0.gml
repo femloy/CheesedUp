@@ -346,6 +346,10 @@ select = function()
 						spr_palette = spr_peppalette;
 						sprite_index = spr_palettedresserdebris;
 						break;
+					case "SP":
+						spr_palette = spr_pizzypalette;
+						sprite_index = spr_palettedresserdebris;
+						break;
 					case "N":
 						spr_palette = spr_noisepalette;
 						sprite_index = spr_palettedresserdebrisN;
@@ -377,6 +381,8 @@ select = function()
 						case "G": sprite_index = spr_player_ratmounthurt; break;
 						case "S": sprite_index = spr_snick_stunned; break;
 						case "M": sprite_index = spr_pepperman_hurtplayer; break;
+						case "SP": sprite_index = spr_playerSP_hurt; break;
+						case "SN": sprite_index = spr_pizzano_hurt; break;
 					}
 				}
 				

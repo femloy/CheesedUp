@@ -111,6 +111,8 @@ switch state
 		break;
 	
 	case states.dead:
+		is_visible = true;
+		
 		image_speed = 0.35;
 		x = room_width / 2 + random_range(-5, 5);
 		y = room_height / 2 + random_range(-5, 5);
@@ -138,8 +140,6 @@ switch state
 
 if struct != noone
 {
-	var sprite_prev = sprite_index;
-	
 	if state == states.hurt && is_visible
 	{
 		repeat 5

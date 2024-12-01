@@ -85,8 +85,8 @@
   "swatchColours":null,
   "swfPrecision":0.5,
   "textureGroupId":{
-    "name":"Default",
-    "path":"texturegroups/Default",
+    "name":"hudgroup",
+    "path":"texturegroups/hudgroup",
   },
   "type":0,
   "VTile":false,

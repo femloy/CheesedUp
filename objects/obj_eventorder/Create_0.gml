@@ -19,6 +19,7 @@ room_order = [
 	obj_persistent,
 	obj_player,
 	obj_followcharacter,
+	obj_spookeyfollow,
 	obj_pizzaface,
 	obj_deathmode,
 	obj_doornexthub,

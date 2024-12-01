@@ -37,7 +37,7 @@ function state_player_cottonroll()
 			copy_player_scale(other);
 			sprite_index = spr_cottonpoof;
 		}
-		sound_play_3d("event:/modded/sfx/cottondoublejump", x, y);
+		sound_play_3d("event:/modded/sfx/cotton/doublejump", x, y);
 	}
 	if (key_jump && grounded && !scr_solid(x, y - 16) && !scr_solid(x, y - 32))
 	{
@@ -48,7 +48,7 @@ function state_player_cottonroll()
 		image_index = 0;
 		sprite_index = spr_cotton_jump;
 		instance_create(x, y, obj_highjumpcloud2);
-		sound_play_3d("event:/modded/sfx/cottonjump", x, y);
+		sound_play_3d("event:/modded/sfx/cotton/jump", x, y);
 	}
 	
 	var _xscale = xscale;

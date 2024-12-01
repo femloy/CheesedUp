@@ -11,7 +11,7 @@ if instance_exists(obj_player1)
 	y = obj_player1.y;
 }
 treasure = instance_exists(obj_treasure);
-if (room == rank_room)
+if room == rank_room
 	instance_destroy();
 
 // lap 3

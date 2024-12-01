@@ -1,1 +1,2 @@
-targetRoom = molasses_3
+targetRoom = molasses_3;
+targetDoor = "B";

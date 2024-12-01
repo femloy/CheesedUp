@@ -321,6 +321,11 @@ function lang_get_custom_font(fontname, language)
 
 function lang_get_font(fontname)
 {
+	if live_call(fontname) return live_result;
+	
+	if fontname == "bigfont" && check_sugary()
+		fontname = "bigfont_ss";
+	
 	var n = ds_map_find_value(global.font_map, lang_get_value(fontname));
 	if !is_undefined(n)
 		return n;

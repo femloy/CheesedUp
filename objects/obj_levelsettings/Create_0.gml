@@ -586,7 +586,8 @@ switch level
 	case "street": case "industrial": case "sewer": case "freezer":
 	case "chateau": case "kidsparty": case "war": case "secretworld":
 	case "dragonlair": case "mansion": case "strongcold": case "sky":
-	case "snickchallenge": case "grinch":
+	case "snickchallenge": case "grinch": case "entryway": case "steamy":
+	case "molasses": case "sucrose": case "mines":
 		song = level;
 		break;
 	case "aprilmansion": case "oldmansion":

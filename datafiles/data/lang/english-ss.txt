@@ -1,0 +1,219 @@
+lang = "en"
+
+# --------------------
+# CUSTOM FONT SUPPORT
+# --------------------
+# smallfont_ss_dir = "fonts/smallfont_ss_en.png"
+# smallfont_ss_map = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!.:?1234567890-"
+# smallfont_ss_sep = "0"
+# bigfont_ss_dir = "fonts/bigfont_ss_en.png"
+# bigfont_ss_map = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!.0123456789:- "
+# bigfont_ss_sep = "-1"
+
+sugarypromptfont = "sugarypromptfont_en"
+smallfont_ss = "smallfont_ss_en"
+bigfont_ss = "bigfont_ss_en"
+
+# ----------
+# MISC TEXT
+# ----------
+toppin_text1ss = "{u}You have found % Confecti out of %!/"
+toppin_text2ss = "{u}You have found % Confecti out of %!/"
+sugarygate_line1 = "% POINTS - % LAPS"
+sugarygate_line2 = "% OF % SECRETS"
+
+# -------------
+# OLD MESSAGES
+# -------------
+message_toppin1ss = "YOU HAVE ALL CONFECTI!"
+message_toppin2ss = "YOU ARE MISSING % CONFECTI!"
+message_toppin3ss = "YOU ARE MISSING % CONFECTI!"
+
+# -----------
+# MOD CONFIG
+# -----------
+mod_title_sugaryoverride = "Sugary Overrides"
+mod_desc_sugaryoverride = "Makes normal levels Sugary Spire themed when playing as a Sugary Spire character."
+
+# ---------------
+# WINDOW CAPTIONS
+# ---------------
+caption_towersugary = "So this is the Sugary Spire"
+caption_rank_ss = "You did it! Sugary Spire!"
+caption_entryway = "Construction underway at the Sugary Spire"
+caption_steamy = "Downtown Sugary Spire"
+caption_molasses = "Sugary Spire's natural habitat"
+caption_sucrose = "A Sugary storm in the Spire"
+
+# ----------------
+# TRANSFOTIP TEXT
+# ----------------
+cottontip = "{u}[J][J] Double Jump [G] Attack/"
+
+# -----------------------
+# ROOM NAMES (not levels)
+# -----------------------
+room_towersugary = "THE SUGARY SPIRE"
+
+# -----------------
+# HUB TIPS
+# -----------------
+grannysugary = "This floor contain spoilers for a very outdated version Sugary Spire. Nothing will be upgraded unless the PTT team is given permission to use a recreation's assets. Proceed with caution!"
+
+# -------------
+# LEVEL TITLES
+# -------------
+level_entryway = "Crunchy Construction"
+level_steamy = "Cottontown"
+level_molasses = "Molasses Swamp"
+level_sucrose = "Sucrose Snowstorm"
+
+# ------------------
+# DRESSER PIZZELLE
+# ------------------
+dresser_SP1 = "Pizzelle"
+dresser_SP1D = "It's the Candy-making patisje!"
+dresser_SP2 = "Sugar"
+dresser_SP2D = "I forgot the reason it's green."
+dresser_SP3 = "Familiar Gremlin"
+dresser_SP3D = "Something's wrong."
+dresser_SP4 = "Massacre"
+dresser_SP4D = "SUGARY SPIRE 2: Fatass's Genocide."
+dresser_SP5 = "Rivals"
+dresser_SP5D = "Pizzelle for Smash!"
+dresser_SP6 = "Gum"
+dresser_SP6D = "Don't actually chew them, please."
+dresser_SP7 = "Old School"
+dresser_SP7D = "Also known as... grayscale."
+dresser_SP7_mix = "GRAYSCALE"
+dresser_SP8 = "Zombified"
+dresser_SP8D = "The inspiration-ception bullet ricocheted into my skull."
+dresser_SP9 = "Forestation"
+dresser_SP9D = "Deforestation rather, considering they're wearing it."
+dresser_SP10 = "Lamda"
+dresser_SP10D = "If only the demo 1 palettes had descriptions so I could know the reference."
+dresser_SP10_mix = "LAMDA"
+dresser_SP11 = "Gnome Wizard"
+dresser_SP11D = "Really diving deep into the gremlin persona."
+dresser_SP11_mix = "GNOME"
+dresser_SP13 = "Oversweetened"
+dresser_SP13D = "Get that candy off-a there!"
+dresser_SP13_mix = "SWEETENED"
+dresser_SP14 = "Candy Cane"
+dresser_SP14D = "It's the Candy        !"
+dresser_SP14_mix = "CANDY"
+dresser_SP15 = "Pumpkin"
+dresser_SP15D = "Now with 30% less fiber."
+dresser_SP15_mix = "PUMPKIN"
+dresser_SP16 = "SAGE"
+dresser_SP16D = "Do upside down slopes make it a Sonic game?"
+dresser_SP17 = "DOOM"
+dresser_SP17D = "It's the rip-n-tearing patisje!"
+dresser_SP17_mix = "SLAYER"
+dresser_SP18 = "Demolitions Expert"
+dresser_SP18D = "It's ball-busting time."
+dresser_SP18_mix = "DYNAMITE"
+dresser_SP19 = "Scooter"
+dresser_SP19D = "Turning a sphere outside in."
+dresser_SP19_mix = "SCOOTER"
+dresser_SP20 = "Blurple"
+dresser_SP20D = "Also known as \"test\"."
+dresser_SP21 = "Paintlad"
+dresser_SP21D = "Fittingly looked drawn in MS Paint."
+dresser_SP21_mix = "PAINTLAD"
+dresser_SP22 = "Cotton Candy"
+dresser_SP22D = "Delicious colors. I want to eat them."
+dresser_SP22_mix = "COTTON"
+dresser_SP23 = "Green Apple"
+dresser_SP23D = "The least favorite candy flavor."
+dresser_SP23_mix = "COATED"
+dresser_SP24 = "Secret"
+dresser_SP24D = "Lookie! You've found a pretty sweet surprise."
+dresser_SP24_mix = "SECRET"
+dresser_SP25 = "Stupid Rat"
+dresser_SP25D = "An otherwordly creature in this case."
+dresser_SP25_mix = "RAT"
+dresser_SP26 = "Pastel"
+dresser_SP26D = "Soft on the eyes."
+dresser_SP26_mix = "PASTEL"
+dresser_SP27 = "Burnt"
+dresser_SP27D = "But what went wrong?"
+dresser_SP27_mix = "BURNT"
+dresser_SP28 = "Crazy Frog"
+dresser_SP28D = "Ding ding!"
+dresser_SP28_mix = "CRAZY"
+dresser_SP29 = "Factory"
+dresser_SP29D = "PLEASE. I BEG YOU."
+dresser_SP29_mix = "MAN-MADE"
+dresser_SP30 = "Harsh Pink"
+dresser_SP30D = "Bismuth subsalicylate."
+dresser_SP30_mix = "PINK"
+dresser_SP31 = "Shadow"
+dresser_SP31D = "SHUT UP! My dad works at Sugary Spire and can give you PREGNANT."
+dresser_SP31_mix = "SHADOW"
+
+# ------------------
+# DRESSER PIZZANO
+# ------------------
+dresser_SN1 = "Pizzano"
+dresser_SN1D = "The voice of the people."
+dresser_SN2 = "Familiar Gremlin"
+dresser_SN2D = "Close enough, but not quite."
+dresser_SN3 = "Familiar Chef"
+dresser_SN3D = "A somewhat overweight Italian accident."
+dresser_SN4 = "Lasagna"
+dresser_SN4D = "Mondays."
+dresser_SN5 = "Spice"
+dresser_SN5D = "The secret ingredient to all candy."
+dresser_SN6 = "Plumber"
+dresser_SN6D = "As seen on TV!"
+dresser_SN7 = "Green Apple"
+dresser_SN7D = "Blue orange."
+dresser_SN8 = "Grape Soda"
+dresser_SN8D = "Grape? Like the"
+dresser_SN8_mix = "GRAPE"
+dresser_SN9 = "Antipathic"
+dresser_SN9D = "Isn't it anti-pathetic?"
+dresser_SN9_mix = "PATHIC"
+dresser_SN10 = "Gummy Bear"
+dresser_SN10D = "Tastes like... blood?"
+dresser_SN10_mix = "GUMMY"
+dresser_SN11 = "Lime"
+dresser_SN11D = "With just a slight hint of sweetness."
+dresser_SN11_mix = "LIME"
+dresser_SN13 = "Crystalized"
+dresser_SN13D = "You're the goddamn iron chef!"
+dresser_SN13_mix = "CRYSTAL"
+dresser_SN14 = "Virtual Boy"
+dresser_SN14D = "Ultimate classic system!"
+dresser_SN14_mix = "VB"
+dresser_SN15 = "Sucrose Snowstorm"
+dresser_SN15D = "A little sweetness never hurts."
+dresser_SN15_mix = "SWEET"
+dresser_SN16 = "Classic Plumber"
+dresser_SN16D = "This is so retro, right guys? Please laugh! I'm funny!"
+dresser_SN16_mix = "CLASSIC"
+dresser_SN17 = "Massacre"
+dresser_SN17D = "This time, the chainsaw is built-in."
+
+# ------------------
+# DRESSER PATTERNS
+# ------------------
+pattern_alright = "Alright"
+pattern_alrightD = "That combo was..."
+pattern_smooth = "Smooth"
+pattern_smoothD = "How do you call this smooth?"
+pattern_lookingood = "Lookin' Good"
+pattern_lookingoodD = "Why, thank you!"
+pattern_fruity = "Fruity"
+pattern_fruityD = "I love fruits! I'm very fruity with other men."
+pattern_mesmerizing = "Mesmerizing"
+pattern_mesmerizingD = "Truly a sight to behold."
+pattern_striking = "Striking"
+pattern_strikingD = "Keep your cool with these shades!"
+pattern_soulcrushing = "Soul Crushing"
+pattern_soulcrushingD = "Ouch..."
+pattern_awesome = "Awesome"
+pattern_awesomeD = "Incredible, incredible."
+pattern_wtf = "WTF!!!"
+pattern_wtfD = "Stop saying cuss words, guys!"

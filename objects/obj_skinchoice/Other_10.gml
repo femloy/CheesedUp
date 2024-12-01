@@ -1,6 +1,8 @@
 palettes = [];
 mixables = [];
+
 sel.pal = 0;
+sel.mix = 0;
 
 var character = characters[sel.char].char;
 switch character
@@ -148,6 +150,72 @@ switch character
 	case "M":
 		add_palette(0);
 		break;
+	
+	case "SP":
+		if SUGARY_SPIRE
+		{
+			// add_palette\((\d+), ([^,]+), (.+)\)
+			// ->
+			// dresser_SP\1 = \2\ndresser_SP\1D = \3
+			
+			// add_palette\((\d+), "[^,]+", "[^\)]+"\)
+			// -> 
+			// add_palette\(\1\)
+			
+			add_palette(1).set_prefix("");
+			add_palette(2);
+			add_palette(3);
+			add_palette(4);
+			add_palette(5);
+			add_palette(6);
+			add_palette(7).set_prefix();
+			add_palette(8);
+			add_palette(9);
+			add_palette(10).set_prefix();
+			add_palette(11).set_prefix();
+			add_palette(13).set_prefix();
+			add_palette(14).set_prefix();
+			add_palette(15).set_prefix();
+			add_palette(16);
+			add_palette(17).set_prefix();
+			add_palette(18).set_prefix();
+			add_palette(19).set_prefix();
+			add_palette(20);
+			add_palette(21).set_prefix();
+			add_palette(22).set_prefix();
+			add_palette(23).set_prefix();
+			add_palette(24).set_prefix();
+			add_palette(25).set_prefix();
+			add_palette(26).set_prefix();
+			add_palette(27).set_prefix();
+			add_palette(28).set_prefix();
+			add_palette(29).set_prefix();
+			add_palette(30).set_prefix();
+			add_palette(31).set_prefix();
+		}
+		break;
+	
+	case "SN":
+		if SUGARY_SPIRE
+		{
+			add_palette(1).set_prefix("");
+			add_palette(2);
+			add_palette(3);
+			add_palette(4);
+			add_palette(5);
+			add_palette(6);
+			add_palette(7);
+			add_palette(8).set_prefix();
+			add_palette(9).set_prefix();
+			add_palette(10).set_prefix();
+			add_palette(11).set_prefix();
+			add_palette(13).set_prefix();
+			add_palette(14).set_prefix();
+			add_palette(15).set_prefix();
+			add_palette(16).set_prefix();
+			add_palette(17);
+		}
+		break;
 }
 
 if global.sandbox or character == "P"
@@ -207,6 +275,23 @@ if global.sandbox
 	add_palette(spr_pattern_marble); // beebawp
 	add_palette(spr_pattern_time); // beebawp
 	add_palette(spr_pattern_arrows); // beebawp
+}
+
+// sugary
+if SUGARY_SPIRE
+{
+	if character == "SP" or character == "SN"
+	{
+		add_palette(spr_pattern_alright);
+	    add_palette(spr_pattern_smooth);
+	    add_palette(spr_pattern_lookingood);
+	    add_palette(spr_pattern_fruity);
+	    add_palette(spr_pattern_mesmerizing);
+	    add_palette(spr_pattern_striking);
+	    add_palette(spr_pattern_soulcrushing);
+	    add_palette(spr_pattern_awesome);
+	    add_palette(spr_pattern_wtf);
+	}
 }
 
 // pride pack
@@ -271,141 +356,3 @@ else
 	}
 }
 
-/*
-var map = global.skin_map[? global.lang];
-if is_undefined(map)
-	map = global.skin_map[? "en"];
-
-try
-{
-	var arr = map[$ character];
-	for(var i = 0, n = array_length(arr); i < n; i++)
-	{
-		var pal = struct_get(arr[i], "palette") ?? "";
-		var entry = struct_get(arr[i], "entry") ?? "";
-		var prefix = struct_get(arr[i], "prefix");
-		var pattern = noone;
-		
-		if is_string(pal)
-		{
-			pattern = asset_get_index(pal);
-			pal = 12;
-		}
-		
-		add_palette(pal, entry, pattern, arr[i].name, arr[i].description, prefix);
-	}
-	sel.pal = min(characters[sel.char].default_palette, array_length(palettes) - 1);
-}
-catch (e)
-{
-	trace(e);
-	add_palette(0, "", noone, "FAILSAFE", "Palette json is missing or broken!");
-	sel.pal = 0;
-}
-*/
-
-/*
-case "SP":
-	if SUGARY_SPIRE
-	{
-		add_palette(1, "Pizzelle", "It's the Candy-making patisje!").set_prefix("");
-		add_palette(2, "Sugar", "Because sugar is green-- oh. I get it.");
-		add_palette(3, "Familiar Gremlin", "Something's wrong...");
-		add_palette(4, "Massacre", "SUGARY SPIRE 2: A Patisje's Genocide.");
-		add_palette(5, "Rivals", "Pizzelle for Smash!");
-		add_palette(6, "Gum", "Don't actually chew them, please.");
-		add_palette(7, "Old School", "Also known as... grayscale.").set_prefix("GRAYSCALE");
-		add_palette(8, "Zombified", "Ricochet, eh? I sense some inspiration-ception.");
-		add_palette(9, "Forestation", "Made of sugarcane plants.");
-		add_palette(10, "Lamda", "I have nothing to say about this.").set_prefix("LAMDA");
-		add_palette(11, "Gnome Wizard", "Really diving deep into the gremlin persona.").set_prefix("GNOME");
-		add_palette(13, "Oversweetened", "Get that candy off-a there!").set_prefix("SWEETENED");
-		add_palette(14, "Candy Cane", "It's the Candy        !").set_prefix("CANDY");
-		add_palette(15, "Pumpkin", "Now with 30% less fiber.").set_prefix("PUMPKIN");
-		add_palette(16, "SAGE", "Do upside down slopes make it a Sonic game?");
-		add_palette(17, "DOOM", "It's the rip-n-tearing patisje!").set_prefix("SLAYER");
-		add_palette(18, "Annie", "It's ball-busting time.").set_prefix("BALL-BUSTING");
-		add_palette(19, "Scooter", "I-- ... wh... what?").set_prefix("SCOOTER");
-		add_palette(20, "Blurple", "Also known as \"test\".");
-		add_palette(21, "Paintlad", "Very original name there.").set_prefix("PAINTLAD");
-		add_palette(22, "Cotton Candy", "Delicious colors. I love them.").set_prefix("COTTON");
-		add_palette(23, "Green Apple", "The least favorite candy flavor.").set_prefix("COATED");
-		add_palette(24, "Secret", "Lookie! You've found a pretty sweet surprise.").set_prefix("SECRET");
-		add_palette(25, "Stupid Rat", "An otherwordly creature in this case.").set_prefix("RAT");
-		add_palette(26, "Pastel", "Soft on the eyes.").set_prefix("PASTEL");
-		add_palette(27, "Burnt", "But what went wrong?").set_prefix("BURNT");
-		add_palette(28, "Crazy Frog", "Ding ding!").set_prefix("CRAZY");
-		add_palette(29, "Factory", "PLEASE. I BEG YOU.").set_prefix("INDUSTRIAL");
-		add_palette(30, "Harsh Pink", "Bismuth subsalicylate.").set_prefix("PINK");
-		add_palette(31, "Shadow", "SHUT UP! My dad works at Sugary Spire and can give you PREGNANT.").set_prefix("SHADOW");
-	}
-	break;
-	
-case "SN":
-	if SUGARY_SPIRE
-	{
-		add_palette(1, "Pizzano", "The voice of the people.").set_prefix("");
-		add_palette(2, "Familiar Gremlin", "Close enough, but not quite.");
-		add_palette(3, "Familiar Chef", "A somewhat overweight Italian accident.");
-		add_palette(4, "Lasagna", "Mondays.");
-		add_palette(5, "Spice", "The secret ingredient to all candy.");
-		add_palette(6, "Plumber", "As seen on TV!");
-		add_palette(7, "Green Apple", "Blue orange.");
-		add_palette(8, "Grape Soda", "Grape? Like the").set_prefix("GRAPE");
-		add_palette(9, "Antipathic", "Isn't it anti-pathetic?").set_prefix("PATHIC");
-		add_palette(10, "Gummy Bear", "Tastes like... blood?").set_prefix("GUMMY");
-		add_palette(11, "Lime", "With just a slight hint of sweetness.").set_prefix("LIME");
-		add_palette(13, "Crystalized", "You're the goddamn iron chef!").set_prefix("CRYSTAL");
-		add_palette(14, "Virtual Boy", "Ultimate classic system!").set_prefix("VB");
-		add_palette(15, "Sucrose Snowstorm", "A little sweetness never hurts.").set_prefix("SWEET");
-		add_palette(16, "Classic Plumber", "This is so retro, right guys? Please laugh! I'm funny!").set_prefix("CLASSIC");
-		add_palette(17, "Massacre", "This time, the chainsaw is built-in.");
-	}
-	break;
-	
-case "BN":
-	if BO_NOISE
-	{
-		add_palette(0, "Bo Noise", "The Bo-Ginning of The End.").set_prefix("");
-		add_palette(2, "Familiar Chef", "The one and only...?");
-		add_palette(3, "Familiar Porcupine", "It's him...?").set_prefix("PURPLE");
-		add_palette(4, "Grinch", "IIIIIIT'S CHRIMMAAAAAAAA").set_prefix("GRINCH");
-		add_palette(5, "Inverted", "Ooo... scary...!");
-		add_palette(6, "Naked", "Wow. Yikes.");
-		add_palette(7, "The Groise", "Piss Chuggers Association.");
-		add_palette(8, "ARG", "I got the key piece!").set_prefix("VILE");
-		add_palette(10, "Spicy", "This adds a whole new layer to the heat meter.").set_prefix("SPICED");
-		add_palette(11, "Mad Milk", "That's not milk.").set_prefix("MILKY");
-		add_palette(13, "Minted", "Scraped from under the table.").set_prefix("MINTY");
-		add_palette(14, "Ralsei", "The prince of darkness.\n... cutest boy.").set_prefix("DARKNER");
-		add_palette(15, "Snoid", "Snot really funny when it happens to you, is it?").set_prefix("SNOTTY");
-		add_palette(16, "Mr. Orange", "I'm seeing double! Four Noise!");
-		add_palette(17, "Inkplot", "Straight outta the 1920's.").set_prefix("INKY");
-		add_palette(18, "Eggplant", "Have we, uh, set those ranks yet...?").set_prefix("EGGPLANT");
-		add_palette(19, "Hardoween", "When the ween is hard!");
-		add_palette(20, "The Doise", "Do not steal.").set_prefix("DOISE");
-		add_palette(21, "Noisette", "Can you out-noise The Noise?");
-		add_palette(22, "The Noid", "Better avoid him.").set_prefix("NOID");
-		add_palette(23, "Galaxy", "Wow it is Just like the Samsung Galaxy S23").set_prefix("GALACTIC");
-		add_palette(24, "Concept", "The original.");
-		add_palette(25, "Pink Hat", "I'm getting so VIRDESERT V2 right now.");
-	}
-	break;
-
-if SUGARY_SPIRE
-{
-	if character == "SP" or character == "SN"
-	{
-		add_palette(spr_pattern_alright, "Alright", "That combo was...");
-	    add_palette(spr_pattern_smooth, "Smooth", "How do you call this smooth?");
-	    add_palette(spr_pattern_lookingood, "Lookin' Good", "Why, thank you!");
-	    add_palette(spr_pattern_fruity, "Fruity", "I love fruits! I'm very fruity with other men.");
-	    add_palette(spr_pattern_mesmerizing, "Mesermizing", "Truly, a sight to behold.");
-	    add_palette(spr_pattern_carpet, "Solid", "Go instance_destroy() yourself.");
-	    add_palette(spr_pattern_striking, "Striking", "Keep your cool with these shades!");
-	    add_palette(spr_pattern_soulcrushing, "Soul Crushing", "Ouch...");
-	    add_palette(spr_pattern_awesome, "Awesome", "Incredible, incredible.");
-	    add_palette(spr_pattern_wtf, "WTF!!!", "Stop saying cuss words, guys!");
-	}
-}
-*/

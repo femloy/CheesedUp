@@ -251,7 +251,7 @@ function scr_player_mach3()
 			state = states.machslide;
 			image_index = 0;
 		}
-		if (scr_mach_check_dive() && fightball == 0 && sprite_index != spr_dashpadmach)
+		if (scr_mach_check_dive() && fightball == 0 && (sprite_index != spr_dashpadmach or SUGARY))
 		{
 			particle_set_scale(part.jumpdust, xscale, 1);
 			create_particle(x, y, part.jumpdust, 0);

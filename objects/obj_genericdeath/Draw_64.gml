@@ -27,7 +27,7 @@ with death
 	if other.t >= 220
 	{
 		var scale = lerp(12, 0, (other.t - 220) / 100);
-		draw_sprite_ext(spr_greendemondeath, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, scale, scale, 0, c_black, clamp((other.t - 220) / 20, 0, 1));
+		draw_sprite_ext(spr_greendemondeath, check_sugary(), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, scale, scale, 0, c_black, clamp((other.t - 220) / 20, 0, 1));
 		draw_set_colour(c_black);
 		
 		if scale > 0

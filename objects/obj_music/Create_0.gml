@@ -87,18 +87,21 @@ add_music(boss_pizzaface, "event:/music/boss/pizzaface", noone, false, function(
 var entrance_func = function(room, event, event_secret)
 {
 	var s = 0, t = 0;
+	
+	var char = "P";
 	if instance_exists(obj_player)
+		char = obj_player1.character;
+	
+	switch char
 	{
-		switch obj_player1.character
-		{
-			case "P": t = 1; break;
-			case "N": t = 2; break;
-			case "V": s = 2; t = 3; break;
-		}
+		case "P": t = 1; break;
+		case "N": t = 2; break;
+		case "V": s = 2; t = 3; break;
+		case "SP": s = 3; t = 4; break;
 	}
 	
 	fmod_event_instance_set_parameter(event, "state", s, true);
-	fmod_event_instance_set_parameter(event_secret, "state", REMIX ? t : 0, true);
+	fmod_event_instance_set_parameter(event_secret, "state", REMIX or char == "SP" ? t : 0, true);
 }
 add_music(entrance_1, "event:/music/w1/entrance", "event:/music/w1/entrancesecret", false, entrance_func);
 
@@ -120,7 +123,7 @@ add_music(medieval_1, "event:/music/w1/medieval", "event:/music/w1/medievalsecre
 			break
 	}
 
-	if (s != -1)
+	if s != -1
 		fmod_event_instance_set_parameter(event, "state", s, true)
 });
 
@@ -285,9 +288,9 @@ if BO_NOISE
 if SUGARY_SPIRE
 {
 	#region SUGARY
-
+	
 	add_music(sugarytut_1, "event:/modded/sugary/tutorial", noone, false);
-
+	
 	add_music(entryway_1, "event:/music/w1/entrance", "event:/music/w1/entrancesecret", false, entrance_func);
 	add_music(steamy_1, "event:/modded/sugary/cotton", "event:/modded/sugary/cottonsecret", false, function(room, event, event_secret)
 	{
@@ -298,7 +301,7 @@ if SUGARY_SPIRE
 			case steamy_7:
 				s = 0;
 				break;
-		
+			
 			case steamy_8:
 				s = 1;
 				break;
@@ -325,7 +328,7 @@ if SUGARY_SPIRE
 			fmod_event_instance_set_parameter(event, "state", s, false);
 	});
 	add_music(sucrose_1, "event:/modded/sugary/sucrose", "event:/modded/sugary/sucrosesecret", false);
-
+	
 	#endregion
 }
 #region OLD LEVELS
@@ -458,15 +461,7 @@ add_music(e_medieval_1, "event:/modded/encore/w1/medieval", "event:/music/w1/med
 	switch room
 	{
 		case e_medieval_1:
-		case e_medieval_2:
 			s = 0
-			break
-		case medieval_3:
-		case medieval_5:
-			s = 0
-			break
-		case medieval_6:
-			s = 2
 			break
 	}
 

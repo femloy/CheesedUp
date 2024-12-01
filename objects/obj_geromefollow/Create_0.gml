@@ -11,16 +11,16 @@ tauntID = noone;
 playerid = obj_player1;
 if SUGARY
 {
-	collectedspr = spr_gerome_collected_ss
-	idlespr = spr_gerome_idle_ss
-	movespr = spr_gerome_keymove_ss
-	tauntspr = spr_gerome_taunt
+	collectedspr = spr_gerome_collected_ss;
+	idlespr = spr_gerome_idle_ss;
+	movespr = spr_gerome_keymove_ss;
+	tauntspr = noone;
 }
 else
 {
-	collectedspr = spr_gerome_collected
-	idlespr = spr_gerome_keyidle
-	movespr = spr_gerome_keymove
-	tauntspr = REMIX ? spr_gerome_taunt_NEW : spr_gerome_taunt
+	collectedspr = spr_gerome_collected;
+	idlespr = spr_gerome_keyidle;
+	movespr = spr_gerome_keymove;
+	tauntspr = REMIX ? spr_gerome_taunt_NEW : spr_gerome_taunt;
 }
-sprite_index = collectedspr
+sprite_index = collectedspr;

@@ -13,7 +13,8 @@ asset_parallax = [[0.1, 0.1], [0.05, 0.05], [0.1, 0.1], [0.05, 0], [-0.1, -0.1],
 //room_started = false;
 
 portal_offset = {x: 0, y: 0};
-sucrose_state = 0;
+if SUGARY_SPIRE
+	sucrose_state = 0;
 behind_tile_depth = 1;
 
 function layer_get_parallax(lay)

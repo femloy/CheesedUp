@@ -2,7 +2,7 @@ SS_CODE_START;
 
 // Process input
 var _check = false;
-with par_logicobjects
+with par_ss_logicobjects
 {
 	if outputID == other.gateID && logicOutput
 		_check = true;

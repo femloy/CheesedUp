@@ -5,6 +5,7 @@ CREDITS (WIP)
 
 - Programmers -
 Loy
+James
 
 - Spriters -
 Red
@@ -18,6 +19,7 @@ Pizza Tower Online
 Pizza Tower: Cheesed Up!
 LAP HELL + Egg's Lap Mod
 Create Your Own Pizza
+Sugary Spire, unfortunately
 
 - Contributions -
 Red - Missing base game room names

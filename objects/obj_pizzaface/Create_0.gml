@@ -57,7 +57,7 @@ vsp = 0;
 state = states.chase;
 flash = false;
 
-if REMIX
+if REMIX && (spr_idle == spr_pizzaface or spr_idle == spr_pizzaface_edit)
 {
 	depth = obj_drawcontroller.depth + 1;
 	sprite_index = spr_pizzaface_spawn;

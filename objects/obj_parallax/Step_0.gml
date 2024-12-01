@@ -8,7 +8,7 @@ array_foreach(room_get_bg_layers(), function(l, i)
 	
 	// Backgrounds_stillH1-4 mistakingly use the layer X as the yoffset
 	var still_bgs = ["Backgrounds_stillH1", "Backgrounds_stillH2", "Backgrounds_stillH3", "Backgrounds_stillH4"];
-	var base_game_bug = /*array_contains(scr_getallrooms(), room, 0, infinity) && */array_contains(still_bgs, layer_get_name(l.layer_id), 0, infinity);
+	var base_game_bug = !(SUGARY_SPIRE && SUGARY) && array_contains(still_bgs, layer_get_name(l.layer_id), 0, infinity);
 	
 	// do it
 	l.x += layer_get_hspeed(l.layer_id);

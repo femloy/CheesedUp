@@ -58,24 +58,22 @@ if place_meeting(x, y, obj_player) && sprite_index != spr_pizzaboxopen
 		{
 			if REMIX or (SUGARY_SPIRE && sugary)
 			{
-				text = global.toppintotal == 2 ? "toppin_text2" : "toppin_text1";
+				var text = global.toppintotal == 2 ? "toppin_text2" : "toppin_text1";
 				if SUGARY_SPIRE && sugary
 					text += "ss";
-			
+				
 				text = embed_value_string(lstr(text), [global.toppintotal - 1, 5]);
 				create_transformation_tip(text);
 			}
 		}
 		else
 		{
-			// counts from 1
-			if global.toppintotal - 1 >= 5
-				old_hud_message(lstr("message_toppin1"), 150);
+			var text, val = 5 - (global.toppintotal - 1);;
+			if val <= 0
+				text = "message_toppin1";
 			else
-			{
-				var val = 5 - (global.toppintotal - 1);
-				old_hud_message(embed_value_string(lstr(val == 1 ? "message_toppin3" : "message_toppin2"), [val]), 150);
-			}
+				text = val == 1 ? "message_toppin3" : "message_toppin2";
+			old_hud_message(embed_value_string(lstr(text + ((SUGARY_SPIRE && sugary) ? "ss" : "")), [val]), 150);
 		}
 	}
 	if (content == obj_noisey)

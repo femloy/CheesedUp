@@ -10,7 +10,7 @@ else
 	if sprite_index != spr_escapecollect_ss
 		scr_sound_multiple("event:/sfx/misc/bellcollect", x, y);
 	else
-		scr_sound_multiple("event:/modded/sfx/bellcollect_ss", x, y);
+		scr_sound_multiple("event:/modded/sfx/bellcollectSP", x, y);
 }
 
 if (obj_player1.character == "V")

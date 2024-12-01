@@ -5,10 +5,13 @@ if !in_saveroom()
 	fail_modifier(MOD.NoToppings);
 	
 	scr_sleep(5);
-	with (instance_create(x + 32, y + 32, obj_parryeffect))
-		sprite_index = other.spr_dead;
 	
-	if (sprite_exists(particlespr))
+	if spr_dead != -1
+	{
+		with instance_create(x + 32, y + 32, obj_parryeffect)
+			sprite_index = other.spr_dead;
+	}
+	if sprite_exists(particlespr)
 	{
 		repeat (6)
 			create_debris(x + sprite_width / 2, y + sprite_height / 2, particlespr);

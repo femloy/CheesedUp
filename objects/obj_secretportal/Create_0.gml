@@ -27,7 +27,7 @@ if DEATH_MODE
 
 if SUGARY_SPIRE
 {
-	sugary = !global.sugaryoverride or (DEATH_MODE && (death ? SUGARY : check_sugarychar()));
+	sugary = (!global.sugaryoverride && SUGARY) or (global.sugaryoverride && check_sugarychar());
 	if sugary
 	{
 		spr_open = spr_secretportal_open_ss;

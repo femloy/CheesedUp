@@ -176,10 +176,6 @@ if REMIX
 }
 shader_reset();
 
-// wait for button
-do_wait = !(SUGARY_SPIRE && sugary) && (global.timeattack or global.sandbox);
-continue_state = 0;
-
 // sugary spire
 if SUGARY_SPIRE
 {
@@ -224,3 +220,7 @@ if SUGARY_SPIRE
 		shader_set_uniform_f(colorblend2, realcol.r2 / 255, realcol.g2 / 255, realcol.b2 / 255);
 	};
 }
+
+// wait for button
+do_wait = !(SUGARY_SPIRE && sugary) && (global.timeattack or global.sandbox);
+continue_state = 0;

@@ -15,7 +15,7 @@ output = function(player)
 		sound_play_3d("event:/sfx/pep/slip", x, y);
 		sprite_index = spr_slipbanan1;
 		vsp = -11;
-		movespeed = abs(movespeed);
+		movespeed = 12;
 		hsp = movespeed * xscale;
 		image_index = 0;
 		state = states.slipbanan;

@@ -21,23 +21,14 @@ function scr_player_climbwall()
 			var unclimbable = 0;
 			if place_meeting(x + xscale, y, obj_unclimbablewall)
 				unclimbable = 1;
-			if place_meeting(x + xscale, y, obj_molassesWall)
-				unclimbable = 2;
+			if place_meeting(x + xscale, y, obj_molasses_wall)
+				unclimbable = 1;
 			
 			if unclimbable
 			{
-				if unclimbable == 2
-				{
-					wallspeed -= grav;
-					if wallspeed > 8
-						wallspeed = 8;
-				}
-				else
-				{
-					wallspeed -= grav / 2;
-					if wallspeed > 8
-						wallspeed = 8;
-				}
+				wallspeed -= grav / 2;
+				if wallspeed > 8
+					wallspeed = 8;
 				
 				if grounded
 				{
