@@ -5,6 +5,8 @@
 #macro net_debug true
 #macro online if (instance_exists(obj_netclient) and os_is_network_connected() and obj_netclient.connection != noone) with (obj_netclient)
 
+global.builtins = ["id", "room", "sprite_width", "sprite_height"];
+
 function net_connect(address, sport)
 {
 	var port = CLIENT_PORT;
@@ -18,10 +20,13 @@ function net_connect(address, sport)
 			return noone;
 		}
 		
-		if tcp_socket < 0
-			tcp_socket = network_create_socket_ext(network_socket_tcp, port);
-		if udp_socket < 0
-			udp_socket = network_create_socket_ext(network_socket_udp, port);
+		if tcp_socket >= 0
+			network_destroy(tcp_socket);
+		tcp_socket = network_create_socket_ext(network_socket_tcp, port);
+			
+		if udp_socket >= 0
+			network_destroy(udp_socket);
+		udp_socket = network_create_socket_ext(network_socket_udp, port);
 		
 		port++;
 	}

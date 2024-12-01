@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"net_event_kick",
   "parent":{
-    "name":"Events",
-    "path":"folders/Online/Events.yy",
+    "name":"Player",
+    "path":"folders/Online/Events/Player.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

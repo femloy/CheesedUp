@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"net_event_chat_message",
   "parent":{
-    "name":"Events",
-    "path":"folders/Online/Events.yy",
+    "name":"Chat",
+    "path":"folders/Online/Events/Chat.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

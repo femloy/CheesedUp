@@ -9,14 +9,16 @@
 
 #macro F32_MAX (3.40282347 * power(10, 38))
 
-enum net_intermediate_control {
+enum net_intermediate_control 
+{
 	none,
 	header,
 	variable,
 	footer
 };
 
-enum net_intermediate_type {
+enum net_intermediate_type 
+{
     string,
 
     s8,
@@ -33,21 +35,26 @@ enum net_intermediate_type {
     f64,
 };
 
-function net_intermediate_to_struct(buffer) {
+function net_intermediate_to_struct(buffer) 
+{
 	var size = buffer_get_size(buffer);
 	var cc = net_intermediate_control.none;
 	var packet = {};
-	while (buffer_tell(buffer) < size) {
-		switch (buffer_read(buffer, buffer_u8)) {
+	while (buffer_tell(buffer) < size) 
+	{
+		switch (buffer_read(buffer, buffer_u8)) 
+		{
 			case net_intermediate_control.header:
-				if cc != net_intermediate_control.none {
+				if cc != net_intermediate_control.none 
+				{
 					net_log("Intermediate data was out of order.");
 					return noone;
 				}
 				cc = net_intermediate_control.header;
 				
 				packet.version = buffer_read(buffer, buffer_f32);
-				if packet.version != INTERMEDIATE_VERSION {
+				if packet.version != INTERMEDIATE_VERSION 
+				{
 					net_log($"Intermediate version {packet.version} isn't supported by this client.");
 					return noone;
 				}
@@ -56,7 +63,8 @@ function net_intermediate_to_struct(buffer) {
 				packet.type = buffer_read(buffer, buffer_string);
 				break;
 			case net_intermediate_control.variable:
-				if cc != net_intermediate_control.header && cc != net_intermediate_control.variable {
+				if cc != net_intermediate_control.header && cc != net_intermediate_control.variable 
+				{
 					net_log("Intermediate data was out of order.");
 					return noone;
 				}
@@ -74,18 +82,20 @@ function net_intermediate_to_struct(buffer) {
 	return noone;
 }
 
-function net_struct_to_intermediate(type, event, reply) {
+function net_struct_to_intermediate(type, event, reply) 
+{
 	var buffer = buffer_create(0, buffer_grow, 1);
 	var pid = random_range(1, U32_MAX);
-	
+
 	buffer_write(buffer, buffer_u8, net_intermediate_control.header);
 	buffer_write(buffer, buffer_f32, INTERMEDIATE_VERSION);
 	buffer_write(buffer, buffer_u32, pid);
 	buffer_write(buffer, buffer_u32, reply);
 	buffer_write(buffer, buffer_string, type);
-	
-	var keys = variable_struct_get_names(event);
-	for (var i = array_length(keys)-1; i >= 0; --i) {
+
+	var keys = struct_get_names(event);
+	for (var i = array_length(keys)-1; i >= 0; --i) 
+	{
 	    var k = keys[i];
 	    var v = event[$ k];
 		
@@ -94,7 +104,7 @@ function net_struct_to_intermediate(type, event, reply) {
 			vtype = net_number_size(v);
 		else if is_string(v)
 			vtype = { intermediate: net_intermediate_type.string, buffer: buffer_string };
-		else continue;
+		else vtype = net_number_size(real(v));
 		
 		buffer_write(buffer, buffer_u8, net_intermediate_control.variable);
 		buffer_write(buffer, buffer_string, k);
@@ -107,12 +117,14 @@ function net_struct_to_intermediate(type, event, reply) {
 	return { data: buffer, id: pid };
 }
 
-function net_number_size(value) {
+function net_number_size(value) 
+{
 	if value % 1 
 		return value > F32_MAX ? { intermediate: net_intermediate_type.f64, buffer: buffer_f64 } : { intermediate: net_intermediate_type.f32, buffer: buffer_f32 };
 	
 	// UINT
-	if value >= 0 {
+	if value >= 0 
+	{
 		if value > U32_MAX
 			return { intermediate: net_intermediate_type.u64, buffer: buffer_u64 };
 		if value > U8_MAX
@@ -124,7 +136,8 @@ function net_number_size(value) {
 	}
 	
 	// INT
-	if value < 0 {
+	if value < 0 
+	{
 		if value < S16_MIN
 			return { intermediate: net_intermediate_type.s32, buffer: buffer_s32 };
 		if value < S8_MIN
@@ -134,8 +147,10 @@ function net_number_size(value) {
 	}
 }
 
-function net_intermediate_type_buffer(type) {
-	switch (type) {
+function net_intermediate_type_buffer(type)
+{
+	switch (type)
+	{
 		case net_intermediate_type.string: return buffer_string;
 
 	    case net_intermediate_type.s8: return buffer_s8;
@@ -153,8 +168,26 @@ function net_intermediate_type_buffer(type) {
 	}
 }
 
-function net_event_string(type, packet) {
+function net_event_string(type, packet)
+{
     var func = asset_get_index($"net_event_{type}");
     if func == -1 return; //throw ("Unknown Event: '" + type + "'");
     return script_execute_ext(func, [packet]);
+}
+
+function net_copy(packet, object)
+{
+	var names = struct_get_names(packet);
+	for (var i = 0; i < array_length(names); ++i)
+	{
+		var name = names[i];
+		if array_contains(global.builtins, name)
+			continue;
+			
+		object[$ name] = packet[$ name];
+	}
+}
+
+function net_exists(packet, varname) {
+	return struct_exists(packet, varname);	
 }
