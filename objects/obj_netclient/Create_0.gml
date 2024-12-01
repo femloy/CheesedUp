@@ -7,7 +7,7 @@ requests = ds_map_create();
 players = ds_map_create();
 last_room = room;
 
-online_delay = 3;
+online_delay = 2;
 heart_rate = 1;
 heart_delay = 4;
 disconnected = false;
