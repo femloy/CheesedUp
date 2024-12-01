@@ -11,6 +11,10 @@ function net_event_welcome(packet)
 		});
 		
 		ds_map_clear(players);
-		instance_destroy(obj_otherplayer);
+		
+		// instance activation quirk, try now?
+		instance_activate_object(obj_otherplayer);
+		with obj_otherplayer
+			instance_destroy();
     }
 }
