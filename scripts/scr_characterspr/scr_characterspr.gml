@@ -8,6 +8,8 @@ function scr_color_array(char)
 			return [1, 2, 3, 4];
 		case "N":
 			return [1, 2, 10, 11];
+		case "SP":
+			return [1, 2, 10, 11];
 	}
 }
 function scr_characterspr()

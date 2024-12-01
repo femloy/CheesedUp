@@ -211,7 +211,7 @@ function draw_superslam_enemy()
 }
 function draw_player()
 {
-	//if live_call() return live_result;
+	if live_call() return live_result;
 	
 	if MOD.Golf
 	{

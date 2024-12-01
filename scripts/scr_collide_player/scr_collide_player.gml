@@ -164,7 +164,7 @@ function scr_collide_player()
 	// snap on top of sloped platforms
 	if grounded && vsp >= 0 && flip > 0
 	{
-		while inside_slope(obj_slope_platform)
-			y--;
+		//while inside_slope(obj_slope_platform)
+		//	y--;
 	}
 }

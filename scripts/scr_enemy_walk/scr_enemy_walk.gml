@@ -1,5 +1,7 @@
 function scr_enemy_walk()
 {
+	if live_call() return live_result;
+	
 	if (object_index != obj_robot && object_index != obj_pizzice && object_index != obj_spitcheese && object_index != obj_ninja && object_index != obj_camerapatrol && object_index != obj_trash && object_index != obj_fencer && object_index != obj_rancher && object_index != obj_banditochicken && object_index != obj_ancho && object_index != obj_pickle && object_index != obj_thug_red && object_index != obj_thug_green && object_index != obj_thug_blue)
 		hsp = (image_xscale * movespeed * global.baddiespeed) + railmovespeed;
 	else if (object_index == obj_robot)
@@ -36,8 +38,10 @@ function scr_enemy_walk()
 	if (turntimer > 0 && turner)
 		turntimer--;
 	
-	if ((scr_solid(x + image_xscale, y) || place_meeting(x + hsp, y, obj_hallway) || (x + hsp) > (room_width + 50) || (x + hsp) < -50) || (turntimer <= 0 && turner))
-	&& !place_meeting(x + sign(hsp), y, obj_slope)
+	
+	if ((check_solid(x + image_xscale, y) || place_meeting(x + hsp, y, obj_hallway)
+	|| (x + hsp) > (room_width + 50) || (x + hsp) < -50) || (turntimer <= 0 && turner))
+	//&& (!check_slope(x + sign(hsp), y) or scr_solid_slope(x + sign(hsp), y))
 	{
 		if (object_index == obj_forknight)
 		{
@@ -100,7 +104,8 @@ function scr_enemy_walk()
 	
 	if (object_index != obj_ancho && object_index != obj_camerapatrol)
 	{
-		if (!(scr_solid(x + (image_xscale * 15), y + 31) || place_meeting(x + (image_xscale * 15), y + 31, obj_platform)) || (x + hsp) > (room_width + 50) || (x + hsp) < -50)
+		if !(scr_solid(x + (image_xscale * 15), y + 31) || place_meeting(x + (image_xscale * 15), y + 31, obj_platform) || place_meeting(x + (image_xscale * 15), y, obj_slope_platform))
+		|| (x + hsp) > (room_width + 50) || (x + hsp) < -50
 		{
 			if (movespeed > 0 && grounded)
 			{

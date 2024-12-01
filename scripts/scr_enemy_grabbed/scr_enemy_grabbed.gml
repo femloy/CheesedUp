@@ -234,13 +234,13 @@ function scr_enemy_grabbed()
 			scr_enemy_grabpos(_obj_player);
 		if (_obj_player.sprite_index == _obj_player.spr_piledriverland && floor(_obj_player.image_index) == (_obj_player.image_number - 1))
 		{
-			var lag = 5;
-			
 			instance_create(_obj_player.x, _obj_player.y, obj_parryeffect);
 			check_grabbed_solid(_obj_player);
 			
 			if (!elite || elitehit <= 0)
 				mach3destroy = true;
+			if (!important)
+				global.style += 5 + floor(global.combo / heat_nerf);
 			
 			image_xscale = -_obj_player.xscale;
 			repeat 3
@@ -249,6 +249,8 @@ function scr_enemy_grabbed()
 				create_baddiegibs(x, y);
 			}
 			shake_camera(3, 3 / room_speed);
+			
+			var lag = 5;
 			with (_obj_player)
 			{
 				scr_hitstun_player(lag);

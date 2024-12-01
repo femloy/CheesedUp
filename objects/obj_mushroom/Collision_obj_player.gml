@@ -41,10 +41,10 @@ if (!other.cutscene && sprite_index != spr_bounce && other.state != states.gotop
 			if (!other.brick)
 				other.sprite_index = other.spr_lonegustavodashjump;
 		}
+		if other.state == states.tumble
+			other.movespeed = abs(other.movespeed) * other.xscale;
 		other.jumpAnim = true;
 		other.state = states.ratmountjump;
 		other.image_index = 0;
-		if other.state == states.tumble
-			other.movespeed *= other.xscale;
 	}
 }
