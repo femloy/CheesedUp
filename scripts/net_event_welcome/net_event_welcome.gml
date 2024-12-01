@@ -9,5 +9,8 @@ function net_event_welcome(packet)
 			previous: last_room,
 			current: room,
 		});
+		
+		ds_map_clear(players);
+		instance_destroy(obj_otherplayer);
     }
 }
