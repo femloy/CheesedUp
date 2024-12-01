@@ -18,6 +18,8 @@ if REMIX
 
 if global.modifier_failed or (DEATH_MODE && MOD.DeathMode)
 	sprite_index = spr_modfailed;
+if SUGARY_SPIRE && check_sugary()
+	sprite_index = spr_timesup_ss;
 
 snd = fmod_event_create_instance("event:/music/timesup");
 fmod_event_instance_play(snd);

@@ -38,6 +38,9 @@
     "name":"spr_timesup",
     "path":"sprites/spr_timesup/spr_timesup.yy",
   },
-  "spriteMaskId":null,
+  "spriteMaskId":{
+    "name":"spr_timesup",
+    "path":"sprites/spr_timesup/spr_timesup.yy",
+  },
   "visible":true,
 }
