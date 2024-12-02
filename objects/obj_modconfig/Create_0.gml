@@ -1006,7 +1006,7 @@ with new ModSection("online", 4)
 		draw_set_align(fa_center);
 		draw_set_color(c_white);
 		draw_sprite_ext(spr_player_idle, simuplayer.image, width / 2, height / 2, 2, 2, 0, c_white, opacity);
-		draw_text_transformed_color(width / 2, height / 2 - 80, streamer_mode ? "Player72103" : "COOLSKELETON95", 2, 2, 0, c_white, c_white, c_white, c_white, opacity * name_opacity);
+		draw_text_transformed_color(width / 2, height / 2 - 80, streamer_mode ? "Player pnmFFtZtbIUY6MB_" : "COOLSKELETON95", 2, 2, 0, c_white, c_white, c_white, c_white, opacity * name_opacity);
 		
 		return false;
 	}
@@ -1024,7 +1024,7 @@ with new ModSection("online", 4)
 		draw_set_color(!val ? #ff7777 : c_white);
 		
 		var streamer_mode = options_array[3].value;
-		var name = streamer_mode ? "Player72103" : "COOLSKELETON95";
+		var name = streamer_mode ? "Player ReYN9P7uoetLSNfF" : "COOLSKELETON95";
 		draw_text_special(width / 2, height / 2, !val ? "Hello!" : "<shake><#ff7777>Hello!", { shake: !val ? 1 : 0 });
 	});
 	

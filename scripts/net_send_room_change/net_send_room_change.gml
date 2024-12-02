@@ -2,7 +2,11 @@ function net_send_room_change()
 {
 	online
 	{
-		if instance_exists(obj_player1)
+		if room != room_empty && room != Mainmenu && room != characterselect 
+		&& room != Mainmenu && room != Realtitlescreen && room != Initroom 
+		&& room != Longintro && room != Creditsroom && room != Endingroom 
+		&& room != rank_room && room != Finalintro && room != timesuproom
+		&& room != Johnresurrectionroom && Scootertransition && instance_exists(obj_player1)
 		{
 			net_send_tcp("room_change",
 			{

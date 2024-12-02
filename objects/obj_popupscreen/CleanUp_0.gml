@@ -12,3 +12,6 @@ while array_length(surfaces)
 	if surface_exists(s)
 		surface_free(s);
 }
+
+if is_method(on_close)
+	on_close();

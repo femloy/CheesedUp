@@ -225,6 +225,11 @@ function load_mod_config()
 	global.record_replay = false;
 	global.replay_limit = 1000000 * 5; // in bytes, 5 MB
 	
+	// Online (James)
+	global.online_player_opacity = ini_read_real("Modded", "online_player_opacity", 1);
+	global.online_name_opacity = ini_read_real("Modded", "online_name_opacity", 1);
+	global.online_streamer_mode = ini_read_real("Modded", "online_streamer_mode", 0);
+	
 	// convert from islam (PTT 1.0)
 	if ini_key_exists("Modded", "pizzellesugaryoverride")
 	{

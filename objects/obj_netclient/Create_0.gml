@@ -12,6 +12,9 @@ heart_rate = 1;
 heart_delay = 4;
 disconnected = false;
 
+paletteselect = 1;
+spr_palette = noone;
+
 username = "Player";
 admin = false;
 

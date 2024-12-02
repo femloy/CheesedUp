@@ -46,7 +46,6 @@ function net_disconnect(connection)
 {
 	if connection == noone
 		return noone;
-	net_send_tcp("goodbye", {});
 	if connection.tcp >= 0 network_destroy(connection.tcp);
 	if connection.udp >= 0 network_destroy(connection.udp);
 	return noone;
