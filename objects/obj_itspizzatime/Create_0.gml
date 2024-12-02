@@ -1,8 +1,7 @@
 up = SCREEN_HEIGHT + 20;
-image_speed = 0.35;
+sprite_index = spr_itspizzatime;
 
-spr = spr_itspizzatime;
 if SUGARY_SPIRE && check_sugarychar()
-	spr = spr_sugarrush;
+	sprite_index = spr_sugarrush;
 if BO_NOISE && check_char("BN")
-	spr = spr_tuctime;
+	sprite_index = spr_tuctime;

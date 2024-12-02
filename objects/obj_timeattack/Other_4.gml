@@ -74,6 +74,10 @@ with obj_player
 				global.tasrank = ((2 * 60) + 40) * 60; // 2:40
 				break;
 			
+			case "entryway":
+				global.tasrank = ((1 * 60) + 55) * 60; // 1:55
+				break;
+			
 			default:
 				global.tasrank = 10 * 60; // 0:10
 				break;

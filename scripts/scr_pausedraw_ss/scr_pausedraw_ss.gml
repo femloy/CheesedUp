@@ -1,5 +1,7 @@
 function scr_pausedraw_ss()
 {
+	live_auto_call;
+	
 	if SUGARY_SPIRE
 	{
 		if fade > 0
@@ -81,8 +83,10 @@ function scr_pausedraw_ss()
 					case "pause_restart": str = "RETRY"; break;
 					case "pause_exit": str = "EXIT\n  STAGE"; break;
 					case "pause_exit_title": str = "EXIT\n  STAGE"; break;
-					case "pause_jukebox": str = "CLEAR\n JUKEBOX"; break;
+					case "pause_jukebox": str = "STOP\n  MUSIC"; break;
 					case "pause_achievements": str = "CHEF\n TASKS"; break;
+					case "pause_exit_menu": str = "EXIT\n  MENU"; break;
+					case "pause_checkpoint": str = "CHECKPOINT"; break;
 					default: str = string_upper(str); break;
 				}
 			

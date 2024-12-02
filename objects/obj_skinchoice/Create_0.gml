@@ -102,7 +102,7 @@ function DresserPalette() constructor
 	{
 		if prefix == undefined
 			prefix = lstr(mix_prefix);
-		if !string_pos("-", prefix)
+		if string_pos("-", prefix) != string_length(prefix)
 			prefix = prefix + " ";
 		
 		array_push(obj_skinchoice.mixables, {

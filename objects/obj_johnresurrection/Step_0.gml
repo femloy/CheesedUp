@@ -1,6 +1,7 @@
 with obj_player
 	state = states.titlescreen;
 whitefade = Approach(whitefade, 0, 0.1);
+
 var PLAYER_MOVESPEED = 5;
 if !fadein
 {

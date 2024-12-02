@@ -28,11 +28,15 @@ if SUGARY_SPIRE
 sprite_index = spr_idle;
 ID = id;
 
-var allowed_ta_levels = ["entrance", "medieval", "ruin", "dungeon",
+var allowed_ta_levels = [
+	"entrance", "medieval", "ruin", "dungeon",
 	"badland", "farm", "graveyard", "saloon",
 	"plage", "forest", "space", "minigolf",
 	"street", "industrial", "sewer", "freezer",
-	"chateau", "kidsparty", "war"];
+	"chateau", "kidsparty", "war",
+	
+	"entryway", "steamy", "molasses", "sucrose"
+];
 
 time_attack = !global.panic && !global.timeattack && !global.in_cyop && array_contains(allowed_ta_levels, global.leveltosave);
 if time_attack && !global.can_timeattack //(global.combo > 0 or global.combodropped or global.prank_enemykilled)
