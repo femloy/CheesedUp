@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"net_event_create_player",
   "parent":{
-    "name":"Other Players",
-    "path":"folders/Online/Events/Other Players.yy",
+    "name":"Player",
+    "path":"folders/Online/Events/Incoming/Player.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

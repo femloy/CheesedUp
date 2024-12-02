@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"net_event_kick",
+  "%Name":"net_event_info",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"net_event_kick",
+  "name":"net_event_info",
   "parent":{
-    "name":"Player",
-    "path":"folders/Online/Events/Incoming/Player.yy",
+    "name":"Incoming",
+    "path":"folders/Online/Events/Incoming.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

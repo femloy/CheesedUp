@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"net_event_player_data",
+  "%Name":"net_event_dresser",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"net_event_player_data",
+  "name":"net_event_dresser",
   "parent":{
     "name":"Player",
     "path":"folders/Online/Events/Incoming/Player.yy",

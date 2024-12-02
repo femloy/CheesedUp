@@ -6,7 +6,7 @@
   "name":"net_event_chat_message",
   "parent":{
     "name":"Chat",
-    "path":"folders/Online/Events/Chat.yy",
+    "path":"folders/Online/Events/Incoming/Chat.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

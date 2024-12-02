@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"net_send_player_data",
   "parent":{
-    "name":"Scripts",
-    "path":"folders/Online/Scripts.yy",
+    "name":"Player",
+    "path":"folders/Online/Events/Outgoing/Player.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

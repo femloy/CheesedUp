@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"net_event_welcome",
   "parent":{
-    "name":"Events",
-    "path":"folders/Online/Events.yy",
+    "name":"Incoming",
+    "path":"folders/Online/Events/Incoming.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

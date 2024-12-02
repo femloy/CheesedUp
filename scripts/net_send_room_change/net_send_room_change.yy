@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"net_send_room_change",
   "parent":{
-    "name":"Scripts",
-    "path":"folders/Online/Scripts.yy",
+    "name":"Outgoing",
+    "path":"folders/Online/Events/Outgoing.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

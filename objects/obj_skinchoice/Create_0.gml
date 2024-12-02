@@ -409,6 +409,8 @@ select = function()
 			sound_play(sfx_back);
 	}
 	anim_con = 2;
+	
+	net_send_dresser();
 }
 postdraw = function(curve)
 {

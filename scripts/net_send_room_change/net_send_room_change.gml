@@ -12,7 +12,7 @@ function net_send_room_change()
 				y: obj_player1.y,
 		
 				sprite: player_sprite(obj_player1),
-				xscale: image_xscale
+				xscale: image_xscale,
 			});
 		}
 		else	

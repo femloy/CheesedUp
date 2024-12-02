@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"net_event_player_data",
+  "%Name":"net_send_dresser",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"net_event_player_data",
+  "name":"net_send_dresser",
   "parent":{
     "name":"Player",
-    "path":"folders/Online/Events/Incoming/Player.yy",
+    "path":"folders/Online/Events/Outgoing/Player.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
