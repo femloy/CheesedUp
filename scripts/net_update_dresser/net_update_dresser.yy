@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"net_send_dresser",
+  "%Name":"net_update_dresser",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"net_send_dresser",
+  "name":"net_update_dresser",
   "parent":{
     "name":"Player",
     "path":"folders/Online/Events/Outgoing/Player.yy",

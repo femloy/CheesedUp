@@ -26,6 +26,8 @@ if (room == hub_loadingscreen && state != 2)
 			player_patterntexture[1] = scr_get_texture_palette(_texture2);
 			global.palettetexture = player_patterntexture[0];
 			
+			
+			
 			if (_intro or global.sandbox)
 			{
 				targetRoom = tower_entrancehall;
@@ -76,6 +78,8 @@ if (room == hub_loadingscreen && state != 2)
 				obj_savesystem.ini_str = ini_close();
 				gamesave_async_save();
 			}
+			
+			net_update_dresser();
 		}
 		with (instance_create(x, y, obj_fadeout))
 		{

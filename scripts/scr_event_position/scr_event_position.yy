@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"net_event_welcome",
+  "%Name":"scr_event_position",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"net_event_welcome",
+  "name":"scr_event_position",
   "parent":{
-    "name":"Incoming",
-    "path":"folders/Online/Events/Incoming.yy",
+    "name":"Player",
+    "path":"folders/Online/Events/Incoming/Player.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

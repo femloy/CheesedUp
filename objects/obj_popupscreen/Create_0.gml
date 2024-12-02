@@ -16,7 +16,9 @@ if pause
 	scr_pause_deactivate_objects(do_sounds);
 }
 type = 0;
-callback = noone;
+
+on_open = noone;
+on_close = noone;
 callback_buffer = 1;
 
 scr_init_input();

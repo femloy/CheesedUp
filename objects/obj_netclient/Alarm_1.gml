@@ -21,4 +21,15 @@ var recon = function()
 	connection = net_disconnect(connection);
 	connection = net_connect(address, port);
 };
-wait_popup = popup_net_reconnect(method(self, recon));
+
+var oncon = function()
+{
+	instance_activate_object(obj_otherplayer);
+	with obj_otherplayer
+		instance_destroy();
+	players = {};
+
+	net_send_room_change();
+	net_update_dresser();
+};
+wait_popup = popup_net_reconnect(method(self, recon), method(self, oncon));

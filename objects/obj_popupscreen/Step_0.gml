@@ -30,10 +30,10 @@ if state == 1
 		
 		// Reconnecting
 		case 0:
-			if callback_buffer <= 0 && is_method(callback)
+			if callback_buffer <= 0 && is_method(on_open)
 			{
-				callback();
-				callback = noone;
+				on_open();
+				on_open = noone;
 			}
 			if !instance_exists(obj_netclient) or !obj_netclient.disconnected
 			{
