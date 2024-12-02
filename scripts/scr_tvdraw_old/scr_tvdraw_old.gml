@@ -117,13 +117,6 @@ function scr_tvdraw_old()
 			
 		draw_sprite_part_ext(def, image_index, wd, 0, sprite_get_width(sprite), sprite_get_height(sprite), tvx + wd - sprite_get_xoffset(sprite), tvy - sprite_get_yoffset(sprite), 1, 1, c_white, alpha);
 		draw_sprite_part_ext(combo, global.combo - 1, 0, 0, wd, sprite_get_height(sprite), tvx - sprite_get_xoffset(sprite), tvy - sprite_get_yoffset(sprite), 1, 1, c_white, alpha);
-		
-		// propeller
-		if SUGARY_SPIRE
-		{
-			if sugary
-				draw_sprite_ext(spr_tvempty_ss, image_index, tvx, tvy, 1, 1, 0, c_white, alpha);
-		}
 	}
 	else
 		draw_sprite_ext(sprite, image_index, tvx, tvy, 1, 1, 0, c_white, alpha);
@@ -142,6 +135,17 @@ function scr_tvdraw_old()
 		draw_text_new(tvx - 4, tvy - 14, string(global.collect));
 	draw_set_alpha(1);
 	draw_set_align();
+	
+	// frame
+	var tv_palette = global.tvcolor;
+	if tv_palette == 0
+		tv_palette = sugary ? 3 : 0;
+	if (SUGARY_SPIRE && sugary) or tv_palette != 0
+	{
+		pal_swap_set(spr_tv_palette, tv_palette);
+		draw_sprite_ext(!sugary ? spr_tvempty : spr_tvempty_ss, image_index, tvx, tvy, 1, 1, 0, c_white, alpha);
+		pal_swap_reset();
+	}
 	
 	// timer
 	scr_panicdraw_old();

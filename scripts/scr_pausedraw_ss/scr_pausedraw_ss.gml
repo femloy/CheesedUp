@@ -27,7 +27,8 @@ function scr_pausedraw_ss()
 			draw_reset_clip();
 		
 			draw_sprite(spr_pause_ss, 0, xx, yy);
-		
+			lang_draw_sprite(spr_pause_ss_text, 0, xx, yy);
+			
 			// confecti
 			if global.leveltosave != noone
 			{

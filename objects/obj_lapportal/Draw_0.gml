@@ -12,13 +12,17 @@ else if sprite_index == spr_outline
 else
 {
 	draw_self();
-	if !(SUGARY_SPIRE && sugary)
+	
+	var xx = x, yy = y + Wave(-5, 5, 0.5, 5);
+	if time_attack
+		lang_draw_sprite(spr_timeattackwarning, 0, xx, yy);
+	else if !(SUGARY_SPIRE && sugary)
 	{
 		if !global.lap
-			lang_draw_sprite(time_attack ? spr_timeattackwarning : spr_lap2warning, 0, x, y + Wave(-5, 5, 0.5, 5));
+			lang_draw_sprite(spr_lap2warning, 0, xx, yy);
 		else if check_lap_mode(lapmodes.laphell)
-			lang_draw_sprite(global.laps >= 2 ? spr_lap4warning : spr_lap3warning, 0, x, y + Wave(-5, 5, 0.5, 5));
+			lang_draw_sprite(global.laps >= 2 ? spr_lap4warning : spr_lap3warning, 0, xx, yy);
 		else
-			lang_draw_sprite(spr_lap2warning, 1, x, y + Wave(-5, 5, 0.5, 5));
+			lang_draw_sprite(spr_lap2warning, 1, xx, yy);
 	}
 }

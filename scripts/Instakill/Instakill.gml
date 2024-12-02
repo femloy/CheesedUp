@@ -50,7 +50,7 @@ function Instakill()
 			}
 		}
 	}
-	if (state == states.mach3 && (!SUGARY_SPIRE or character != "SP") && sprite_index != spr_Sjumpcancel && sprite_index != spr_mach3hit && sprite_index != spr_playerN_jetpackboost && sprite_index != spr_playerN_jetpackslide)
+	if (state == states.mach3 && sprite_index != spr_Sjumpcancel && sprite_index != spr_mach3hit && sprite_index != spr_playerN_jetpackboost && sprite_index != spr_playerN_jetpackslide)
 	{
 		if (sprite_index != spr_fightball)
 			sprite_index = spr_mach3hit;

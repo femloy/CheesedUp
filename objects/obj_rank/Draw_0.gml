@@ -24,6 +24,7 @@ if SUGARY_SPIRE && sugary
 	
 	// clipboard
 	draw_sprite_ext(spr_rankclipboard, 0, 716, 271 + clipy, 1, 1, 0, c_white, 1);
+	lang_draw_sprite_ext(spr_rankclipboard_text, 0, 716, 271 + clipy, 1, 1, 0, c_white, 1);
 	
 	// D C B A S P
 	var r = obj_endlevelfade.rank;

@@ -3,7 +3,7 @@
   "%Name":"spr_playerSP_machslideboost3fall",
   "bboxMode":0,
   "bbox_bottom":96,
-  "bbox_left":19,
+  "bbox_left":0,
   "bbox_right":95,
   "bbox_top":32,
   "collisionKind":1,
@@ -12,9 +12,9 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"ddbb104c-b604-4b54-b690-03dcb9254c01","name":"ddbb104c-b604-4b54-b690-03dcb9254c01","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"a03f0c5d-2409-4968-8ac6-314b1dbafe40","name":"a03f0c5d-2409-4968-8ac6-314b1dbafe40","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"dc344fa1-78f6-4c94-8e53-dcacbdcd5c35","name":"dc344fa1-78f6-4c94-8e53-dcacbdcd5c35","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"66d6d0f1-964c-49ed-b6ba-32d7946c2825","name":"66d6d0f1-964c-49ed-b6ba-32d7946c2825","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"1abeaa55-6d23-436a-872d-59c1a02ce36a","name":"1abeaa55-6d23-436a-872d-59c1a02ce36a","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"eabfe727-908f-4484-9988-093980194924","name":"eabfe727-908f-4484-9988-093980194924","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
@@ -71,14 +71,14 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ddbb104c-b604-4b54-b690-03dcb9254c01","path":"sprites/spr_playerSP_machslideboost3fall/spr_playerSP_machslideboost3fall.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"7c527325-efac-4a6a-bebe-afde657367d5","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"66d6d0f1-964c-49ed-b6ba-32d7946c2825","path":"sprites/spr_playerSP_machslideboost3fall/spr_playerSP_machslideboost3fall.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"fb05a37e-3b97-4933-95dd-bb48e3d2b99d","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"a03f0c5d-2409-4968-8ac6-314b1dbafe40","path":"sprites/spr_playerSP_machslideboost3fall/spr_playerSP_machslideboost3fall.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"dbcd4e08-347d-4359-aafd-35664af3c5b9","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"1abeaa55-6d23-436a-872d-59c1a02ce36a","path":"sprites/spr_playerSP_machslideboost3fall/spr_playerSP_machslideboost3fall.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"1131bc77-1d76-4849-aee4-d421986ad218","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"dc344fa1-78f6-4c94-8e53-dcacbdcd5c35","path":"sprites/spr_playerSP_machslideboost3fall/spr_playerSP_machslideboost3fall.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"b652e1d6-8024-406e-b149-8ca94649d3f8","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"eabfe727-908f-4484-9988-093980194924","path":"sprites/spr_playerSP_machslideboost3fall/spr_playerSP_machslideboost3fall.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"8f1dafcf-8d2b-49e2-843c-11873a48ba93","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

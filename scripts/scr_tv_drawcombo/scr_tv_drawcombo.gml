@@ -1,4 +1,4 @@
-function scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, style = 0)
+function scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, style, tv_palette)
 {
 	static combo_shake = 0;
 	if REMIX
@@ -43,32 +43,20 @@ function scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, style = 0)
 				combobubblefill = spr_tv_combobubblefill;
 				combobubble = spr_tv_combobubble;
 				combofont = global.combofont2;
-				
 				combofillpalette = spr_tv_combofillpalette;
-				combopalette = spr_tv_combopalette;
 			}
 			else if BO_NOISE
 			{
 				combobubblefill = spr_tv_combobubblefillBN;
 				combobubble = spr_tv_combobubbleBN;
 				combofont = global.combofont2BN;
-				
 				combofillpalette = spr_tv_combofillpalette;
-				combopalette = spr_tv_combopalette;
-			
 				draw_sprite(spr_tv_combobubblehandBN, image_index, _cx, _cy);
-			}
-			
-			var combopalette_index = 0;
-			switch obj_player1.character
-			{
-				case "N": combopalette_index = 1; break;
-				case "V": combopalette_index = 2; break;
 			}
 			
 			pal_swap_set(combofillpalette, scr_can_p_rank() ? 2 : 1, false);
 			draw_sprite(combobubblefill, combofill_index, combofill_x, combofill_y);
-			pal_swap_set(combopalette, combopalette_index, false);
+			pal_swap_set(spr_tv_palette, tv_palette, false);
 			lang_draw_sprite(combobubble, image_index, _cx, _cy);
 			
 			draw_set_font(combofont);
@@ -117,7 +105,8 @@ function scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, style = 0)
 				draw_set_mask(_cx - 50, _cy - 91, spr_tv_combometercutSP);
 				draw_sprite(spr_tv_combometergooSP, propeller_index, xx, yy);
 				draw_reset_clip();
-			
+				
+				pal_swap_set(spr_tv_palette, tv_palette);
 				draw_sprite(spr_tv_combobubbleSP, image_index, _cx, _cy);
 				draw_sprite(spr_tv_combometerhandSP, image_index, _cx + hand_x + 80, max(_cy, 60 + hud_posY) + min(hand_y, 20) + 24);
 			
@@ -125,6 +114,7 @@ function scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, style = 0)
 				draw_set_align(fa_center);
 				draw_set_color(c_white);
 				draw_text(_cx, _cy - 90, string(visualcombo) + "x");
+				pal_swap_reset();
 			}
 			break;
 		

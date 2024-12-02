@@ -1122,7 +1122,10 @@ function scr_characterspr()
 			spr_cottonidle = spr_cotton_idle;
 			spr_attackdash = spr_playerSP_attackdash;
 			spr_ratballoonp = spr_playerSP_ratballoon;
-			spr_golfidle = spr_playerSP_golfidle;
+			spr_mach3hit = spr_playerSP_mach3hit;
+			spr_breakdancemove = spr_playerSP_breakdancestart;
+			spr_buttattack = spr_playerSP_buttattack;
+			spr_buttattackstart = spr_playerSP_buttattackstart;
 			spr_palette = spr_pizzypalette;
 		}
 	

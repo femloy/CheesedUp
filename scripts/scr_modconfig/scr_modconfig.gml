@@ -75,6 +75,20 @@ enum vigishoot
 	pto,
 	vanilla
 }
+enum tvcolors
+{
+	normal,
+	purple,
+	yellow,
+	brown,
+	pink,
+	red,
+	green,
+	orange,
+	blue,
+	metal,
+	gutter
+}
 
 // default / presets
 function ModPreset(name = "PRESET", desc = "Wow that's Cray Zay!") constructor
@@ -151,7 +165,7 @@ function ModPreset(name = "PRESET", desc = "Wow that's Cray Zay!") constructor
 		roomnames = false;
 		if SUGARY_SPIRE
 			sugaryoverride = false;
-		enemyrot = false;
+		tvcolor = tvcolors.normal;
 		
 		// lapping style
 		lapmode = lapmodes.normal;

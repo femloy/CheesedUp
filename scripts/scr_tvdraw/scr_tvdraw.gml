@@ -26,6 +26,27 @@ function scr_tvdraw()
 	var collect_x = irandom_range(-collect_shake, collect_shake);
 	var collect_y = irandom_range(-collect_shake, collect_shake);
 	
+	// palette
+	var tv_palette = global.tvcolor;
+	if tv_palette == tvcolors.normal
+	{
+		if global.hud == hudstyles.final
+		{
+			switch char
+			{
+				default: tv_palette = 1; break;
+				case "N": tv_palette = 2; break;
+				case "V": tv_palette = 3; break;
+				case "SP": tv_palette = 4; break;
+				case "S": tv_palette = 5; break;
+				case "M": tv_palette = 6; break;
+				case "MS": tv_palette = 7; break;
+			}
+		}
+		else
+			tv_palette = sugary ? 4 : 1;
+	}
+	
 	// sugary bobbing
 	if SUGARY_SPIRE
 	{
@@ -40,11 +61,11 @@ function scr_tvdraw()
 	if global.hud != hudstyles.april
 	{
 		if SUGARY_SPIRE && sugary
-			scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, 1);
+			scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, 1, tv_palette);
 		else if BO_NOISE && char == "BN"
-			scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, 2);
+			scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, 2, tv_palette);
 		else
-			scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, 0);
+			scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, 0, tv_palette);
 	}
 	
 	if room != strongcold_endscreen
@@ -151,15 +172,6 @@ function scr_tvdraw()
 		}
 		
 		// player
-		var tv_palette = 0;
-		if global.hud == hudstyles.final
-		{
-			if char == "N"
-				tv_palette = 1;
-			if char == "V"
-				tv_palette = 2;
-		}
-		
 		pal_swap_player_palette();
 		pal_swap_supernoise();
 		draw_sprite_ext(sprite_index, image_index, tv_x + collect_x, tv_y + collect_y + hud_posY, 1, 1, 0, c_white, alpha);
@@ -178,8 +190,8 @@ function scr_tvdraw()
 		if tv_palette != 0
 		{
 			pal_swap_set(spr_tv_palette, tv_palette, false);
-			var spr = spr_tv_empty;
-			if sprite_index == spr_tv_open
+			var spr = sugary ? spr_tv_emptySP : spr_tv_empty;
+			if sprite_index == spr_tv_open or sprite_index == spr_tv_openSP
 				spr = sprite_index;
 			draw_sprite_ext(spr, image_index, tv_x + collect_x, tv_y + collect_y + hud_posY, 1, 1, 0, c_white, alpha);
 		}

@@ -31,4 +31,9 @@ switch chara
 		sprite = choose(spr_technicaldifficulty1V, spr_technicaldifficulty2V, spr_technicaldifficulty3V);
 		topleft = true;
 		break;
+	case "SP":
+		if SUGARY_SPIRE
+			sprite = choose(spr_technicaldifficulty1SP, spr_technicaldifficulty2SP, spr_technicaldifficulty3SP);
+		topleft = true;
+		break;
 }

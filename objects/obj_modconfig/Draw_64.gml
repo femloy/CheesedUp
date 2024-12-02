@@ -274,6 +274,10 @@ if mode != 1
 	draw_text_special(right_x, desc_y, desc, {sepV: 18, w: 440});
 }
 
+var old_backdrop = opt.type == modconfig.option && array_length(opt.opts) > 8;
+if old_backdrop
+	tdp_draw_text(right_x, title_y + 36, $"{lstr("mod_" + opt.opts[opt.value][0])} ({opt.value + 1}/{array_length(opt.opts)})");
+
 /*
 if opt.type == modconfig.option or opt.type == modconfig.modifier
 {
@@ -434,7 +438,7 @@ if drawer
 	
 	// frame backdrop
 	var back_target_width = 0;
-	if opt.type == modconfig.option
+	if opt.type == modconfig.option && !old_backdrop
 	{
 		var opts = array_length(opt.opts);
 		var pad = 50;
@@ -445,7 +449,7 @@ if drawer
 	if back_target_width > 0
 		back_extra_width = lerp(back_extra_width, back_target_width, 0.75);
 	
-	if opt.type == modconfig.option or opt.type == modconfig.slider
+	if !old_backdrop && (opt.type == modconfig.option or opt.type == modconfig.slider)
 		back_hide_y = Approach(back_hide_y, 0, 10);
 	else
 		back_hide_y = Approach(back_hide_y, 50, 10);
@@ -454,7 +458,7 @@ if drawer
 	draw_sprite_stretched_ext(spr_modconfig_frame, 1, xx - sprite_get_xoffset(spr_modconfig_frame) - back_extra_width / 2, yy - ht / 2 - sprite_get_yoffset(spr_modconfig_frame) + back_hide_y, sprite_get_width(spr_modconfig_frame) + back_extra_width, sprite_get_height(spr_modconfig_frame), c_white, alpha);
 	
 	// frame buttons
-	if opt.type == modconfig.option
+	if opt.type == modconfig.option && !old_backdrop
 	{
 		var fucked_pad = pad * (back_extra_width / back_target_width);
 		for(var i = 0; i < opts; i++)

@@ -94,17 +94,23 @@ brown = false;
 brownfade = 0;
 alarm[2] = 400;
 
-var sugary_char = check_sugarychar();
-if sugary_char
+if SUGARY_SPIRE
 {
-	alarm[2] = room_speed * 2;
-	if global.rank == "p" or obj_endlevelfade.sugary
-		alarm[2] = room_speed * 2.5;
-	if global.rank == "d"
-		alarm[2] = room_speed * 4.2;
+	var sugary_char = check_sugarychar();
+	if sugary_char
+	{
+		alarm[2] = room_speed * 2;
+		if global.rank == "p" or obj_endlevelfade.sugary
+			alarm[2] = room_speed * 2.5;
+		if global.rank == "d" or global.rank == "f"
+			alarm[2] = room_speed * 4.2;
+	}
 }
-if obj_player.character == "BN" && (global.rank == "d" or global.rank == "c" or global.rank == "b")
-	alarm[2] = room_speed * 2;
+if BO_NOISE
+{
+	if obj_player.character == "BN" && (global.rank == "d" or global.rank == "c" or global.rank == "b")
+		alarm[2] = room_speed * 2;
+}
 depth = -8;
 
 // figure out rank sprite

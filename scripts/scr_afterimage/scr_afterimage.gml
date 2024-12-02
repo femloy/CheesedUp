@@ -127,16 +127,17 @@ function create_blue_afterimage(_x, _y, _sprite, _image_index, _xscale)
 	if global.afterimage == 1 && (object_index == obj_player1 && character == "N")
 		return create_noise_afterimage(_x, _y, _sprite, _image_index, _xscale);
 	
-	var _yscale = 1;
+	var _yscale = 1, _character = "P";
 	if object_index == obj_player1
 	{
 		if _sprite == sprite_index
 			_sprite = player_sprite();
 		_xscale *= col_scale;
 		_yscale = yscale * col_scale;
+		_character = character;
 	}
 	
-	if global.afterimage == 1
+	if global.afterimage == 1 or _character == "SP"
 	{
 		var b = create_afterimage(_x, _y, _sprite, _image_index);
 		with b

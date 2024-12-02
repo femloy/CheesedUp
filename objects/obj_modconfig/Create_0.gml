@@ -462,7 +462,7 @@ with new ModSection("gameplay", 0)
 			tdp_draw_set_font(lang_get_font("font_small"));
 			tdp_draw_set_align(fa_center, fa_middle);
 			tdp_draw_text(width / 2, height / 1.2, lstr("mod_disabled")); // Experimental's off!
-			tdp_text_commit();
+			tdp_text_commit(0, 0, width, height);
 		}
 	});
 	opt.allow_preset = false;
@@ -849,7 +849,7 @@ with new ModSection("gameplay", 0)
 			tdp_draw_set_font(lang_get_font("font_small"));
 			tdp_draw_set_align(fa_center, fa_middle);
 			tdp_draw_text(width / 2, height / 1.2, lstr("mod_disabled"));
-			tdp_text_commit();
+			tdp_text_commit(0, 0, width, height);
 		}
 		return false;
 	});
@@ -1199,6 +1199,66 @@ with new ModSection("input", 1)
 
 with new ModSection("visual", 2)
 {
+	#region RICH PRESENCE
+	
+	var opt = add_option("richpresence", function(val)
+	{
+		var wd = 960 / 2.5;
+		var ht = 540 / 2.5;
+	
+		draw_clear($E66054);
+		gpu_set_blendmode(bm_normal);
+		
+		if val
+		{
+			draw_set_font(lfnt("tvbubblefont"));
+			draw_set_align();
+			draw_text(8 + 16, 8 + 16, lstr("mod_drpc1"));
+			
+			draw_sprite_ext(spr_discord_big_icon, 0, 8 + 16 + 2, 8 + 64 + 2, 1, 1, 0, c_black, 0.25);
+			draw_sprite_ext(spr_discord_big_icon, 0, 8 + 16, 8 + 64, 1, 1, 0, c_white, 1);
+			
+			draw_set_font(lang_get_font("font_small"));
+			draw_text(8 + 146, 8 + 100, concat("Pizza Tower Together\n", lstr("mod_drpc3")));
+		}
+		else
+		{
+			draw_set_font(lfnt("comicsans"));
+			draw_set_align(fa_center);
+			draw_text_transformed(wd / 2, ht / 2 - 20, lstr("mod_drpc2"), 2, 2, 0);
+		}
+	});
+	opt.allow_preset = false;
+	
+	#endregion
+	#region PANIC BG
+
+	if !global.performance
+	{
+		var opt = add_option("panicbg", function(val)
+		{
+			if val
+			{
+				shader_set(shd_panicbg);
+		
+				shader_set_uniform_f(shader_get_uniform(shd_panicbg, "panic"), 1);
+				shader_set_uniform_f(shader_get_uniform(shd_panicbg, "time"), current_time / 1000);
+		
+				draw_sprite_tiled_ext(bg_desertescape, super.image_index, 0, 0, 0.4, 0.4, c_white, 1);
+		
+				shader_reset();
+			}
+			else
+				draw_sprite_ext(bg_desertescape, super.image_index, 0, 0, 0.4, 0.4, 0, c_white, 1);
+		});
+		opt.opts = [
+			["off", false],
+			["on", true],
+			["onblur", 2]
+		]
+	}
+
+	#endregion
 	#region SMOOTH CAM
 
 	add_slider("smoothcam", [0, 0.75], function(val)
@@ -1245,32 +1305,190 @@ with new ModSection("visual", 2)
 	});
 
 	#endregion
-	#region PANIC BG
+	#region HUD
 
-	if !global.performance
+	var opt = add_option("hud", function(val)
 	{
-		var opt = add_option("panicbg", function(val)
+		var xx = width / 2;
+		var yy = height / 2;
+		
+		if val == hudstyles.final
 		{
-			if val
-			{
-				shader_set(shd_panicbg);
+			draw_sprite_ext(spr_tv_bgfinal, 1, xx, yy, 1, 1, 0, c_white, 1);
+			draw_sprite(spr_tv_idle, super.image_index, xx, yy);
+		}
+		if val == hudstyles.old
+		{
+			draw_sprite(spr_pepinoHUD, super.image_index, xx, yy - 8);
+			draw_sprite(spr_speedbar, 0, xx, yy + 32);
+		}
+		if val == hudstyles.april
+		{
+			draw_sprite_ext(spr_tv_aprilbg, 0, xx, yy, 1, 1, 0, c_white, 1);
+			draw_sprite(spr_tv_idle_NEW, super.image_index, xx, yy);
+		}
+		if val == hudstyles.minimal
+		{
+			yy -= 10;
+			var pad = 20;
+			
+			draw_set_font(global.minimal_number);
+			draw_set_align(fa_center);
+			draw_text(xx, round(yy - pad), "1230");
+			
+			var wd = sprite_get_width(spr_combobar_minimal), ht = sprite_get_height(spr_combobar_minimal);
+			draw_set_mask(xx - wd / 2, yy - ht / 2 + pad, spr_combobar_minimal, 1);
+			draw_sprite_tiled(spr_combofill_minimal, 0, -current_time / 100, yy - ht / 2 + pad);
+			draw_reset_clip();
+			
+			draw_sprite(spr_combobar_minimal, 0, xx - wd / 2, round(yy - ht / 2 + pad));
+			draw_sprite(spr_combocursor_minimal, 0, xx + wd / 2 - 12, round(yy - ht / 2 + 3 + pad));
+			
+			pal_swap_set(spr_numpalette_minimal, 3);
+			draw_text(xx, round(yy - ht / 2 + pad + 2), "30");
+			pal_swap_reset();
+		}
+	});
+	opt.opts = [
+		["old", hudstyles.old],
+		["april", hudstyles.april],
+		["minimal", hudstyles.minimal],
+		["final", hudstyles.final],
+	]
+
+	#endregion
+	#region TV COLOR
+	
+	if !ds_map_exists(global.Pal_Map, spr_tv_palette)
+		pal_swap_index_palette(spr_tv_palette);
+	var opt = add_option("tvcolor", function(val)
+	{
+		var xx = width / 2, yy = height / 2;
+		var hud = global.hud;
 		
-				shader_set_uniform_f(shader_get_uniform(shd_panicbg, "panic"), 1);
-				shader_set_uniform_f(shader_get_uniform(shd_panicbg, "time"), current_time / 1000);
+		if hud == hudstyles.final
+		{
+			draw_sprite_ext(spr_tv_bgfinal, 1, xx, yy, 1, 1, 0, c_white, 1);
+			draw_sprite(spr_tv_idle, super.image_index, xx, yy);
+		}
+		if hud == hudstyles.april
+		{
+			draw_sprite_ext(spr_tv_aprilbg, 0, xx, yy, 1, 1, 0, c_white, 1);
+			draw_sprite(spr_tv_idle_NEW, super.image_index, xx, yy);
+		}
 		
-				draw_sprite_tiled_ext(bg_desertescape, super.image_index, 0, 0, 0.4, 0.4, c_white, 1);
+		var c = val == tvcolors.normal ? 0 : val;
+		pal_swap_set(spr_tv_palette, c);
 		
-				shader_reset();
-			}
-			else
-				draw_sprite_ext(bg_desertescape, super.image_index, 0, 0, 0.4, 0.4, 0, c_white, 1);
-		});
-		opt.opts = [
-			["off", false],
-			["on", true],
-			["onblur", 2]
-		]
-	}
+		if hud == hudstyles.final
+			draw_sprite(spr_tv_empty, 0, xx, yy);
+		if hud == hudstyles.old
+			draw_sprite(spr_tvdefault, 0, xx, yy);
+		if hud == hudstyles.april
+			draw_sprite(spr_tv_empty, 0, xx, yy);
+		if hud == hudstyles.minimal
+		{
+			draw_set_font(lfnt("font_small"));
+			draw_set_align(fa_center, fa_middle);
+			var c = (val == tvcolors.normal ? c_white : pal_swap_get_pal_color(spr_tv_palette, val, 0));
+			draw_set_color(merge_color(c, c_white, 0.5));
+			tdp_draw_text(xx, yy, "(Incompatible with Minimal HUD)");
+			tdp_text_commit(0, 0, width, height);
+		}
+		
+		pal_swap_reset();
+	});
+	opt.opts = [
+		["normal", tvcolors.normal],
+		["purple", tvcolors.purple],
+		["yellow", tvcolors.yellow],
+		["brown", tvcolors.brown],
+		["red", tvcolors.red],
+		["green", tvcolors.green],
+		["orange", tvcolors.orange],
+		["pink", tvcolors.pink],
+		["blue", tvcolors.blue],
+		["metal", tvcolors.metal],
+		["gutter", tvcolors.gutter],
+	]
+	
+	#endregion
+	#region CUSTOMIZE
+	
+	var opt = add_button("hudcustomize", function()
+	{
+		super.visible = false;
+		instance_create_depth(0, 0, super.depth - 1, obj_hudcustomizer);
+	},
+	function()
+	{
+		static timer = 0;
+		timer += 0.03;
+		
+		var xx = width / 2 + cos(current_time / 500) * 50;
+		var yy = height / 2 + sin(current_time / 500) * 50;
+		
+		switch floor(timer)
+		{
+			default:
+				timer = 0;
+			
+			case 0:
+				draw_sprite(spr_tv_empty, 0, xx, yy);
+				break;
+			
+			case 1:
+				draw_sprite(spr_fuelHUD, 0, xx, yy);
+				break;
+			
+			case 2:
+				draw_sprite(spr_heatmeter, current_time / 50, xx, yy);
+				break;
+			
+			case 3:
+				draw_sprite(spr_pizzascore, current_time / 50, xx, yy);
+				break;
+			
+			case 4:
+				draw_sprite(spr_combobar_minimal, 0, xx, yy);
+				break;
+			
+			case 5:
+				draw_sprite(spr_pepinoHUD, current_time / 50, xx, yy);
+				break;
+		}
+	});
+	opt.allow_preset = false;
+	
+	#endregion
+	#region BLOCKS
+
+	var opt = add_option("blockstyle", function(val)
+	{
+		if val == 0
+		{
+			draw_sprite(spr_towerblock, 0, 960 / 5 - 32 - 80, 540 / 5 - 32);
+			draw_sprite(spr_towerblocksmall, 0, 960 / 5 - 16, 540 / 5 - 16);
+			draw_sprite(spr_metaltowerblock, 0, 960 / 5 - 32 + 80, 540 / 5 - 32);
+		}
+		if val == 1
+		{
+			draw_sprite(spr_bigdestroy, super.image_index, 960 / 5 - 32 - 80, 540 / 5 - 32);
+			draw_sprite(spr_destroyable, super.image_index, 960 / 5 - 16, 540 / 5 - 16);
+			draw_sprite(spr_metalb, super.image_index, 960 / 5 - 32 + 80, 540 / 5 - 32);
+		}
+		if val == 2
+		{
+			draw_sprite(spr_bigdestroy_old, 0, 960 / 5 - 32 - 80, 540 / 5 - 32);
+			draw_sprite(spr_destroyable_old, 0, 960 / 5 - 16, 540 / 5 - 16);
+			draw_sprite(spr_metaltowerblock, 0, 960 / 5 - 32 + 80, 540 / 5 - 32);
+		}
+	}, true);
+	opt.opts = [
+		["old", 2],
+		["september", 1],
+		["final", 0],
+	]
 
 	#endregion
 	#region ROOM NAMES
@@ -1299,7 +1517,7 @@ with new ModSection("visual", 2)
 		draw_set_color(c_white);
 		
 		tdp_draw_text_ext(xi, yy + yo, lstr("mod_ballsack"), 14, 300); // BALLSACK CITY
-		tdp_text_commit();
+		tdp_text_commit(0, 0, width, height);
 		
 		draw_set_align();
 	});
@@ -1366,6 +1584,58 @@ with new ModSection("visual", 2)
 	]
 
 	#endregion
+	if SUGARY_SPIRE
+	{
+		#region SUGARY OVERRIDES
+	
+		var opt = add_option("sugaryoverride", function(val)
+		{
+			var wd = 960 / 2.5, ht = 540 / 2.5;
+	
+			/*
+			var seconds = (60 * 10) - ((current_time / 1000) % (60 * 10));
+			var minutes = floor(seconds / 60);
+			seconds = floor(seconds % 60);
+			*/
+	
+			if val
+			{
+				draw_sprite(spr_escapecollect_ss, super.image_index, 80, 50);
+				draw_sprite(spr_escapecollectbig_ss, super.image_index, 250, 50 - 16);
+		
+				draw_sprite(spr_bartimer_normalBack, super.image_index, wd / 2, ht - 50);
+				draw_sprite(spr_bartimer_normalFront, super.image_index, wd / 2, ht - 50);
+		
+				/*
+				draw_set_align(1, 1);
+				draw_set_font(lang_get_font("sugarypromptfont"));
+				draw_text(wd / 2 - 11, ht - 50 - 20, concat(minutes, ":", seconds < 10 ? "0" : "", seconds));
+				*/
+			}
+			else
+			{
+				draw_sprite(spr_escapecollect, super.image_index, 80, 50);
+				draw_sprite(spr_escapecollectbig, super.image_index, 250, 50 - 16);
+		
+				var _barpos = 100;
+		
+				var timer_x = wd / 2 - sprite_get_width(spr_timer_bar) / 2 - 30, timer_y = ht - 70;
+		
+				var clip_x = timer_x + 3;
+				var clip_y = timer_y + 5;
+		
+				draw_set_bounds(clip_x, clip_y, clip_x + _barpos, clip_y + 30, true);
+				draw_sprite_tiled(spr_timer_barfill, 0, clip_x + -current_time / 200, clip_y);
+				draw_reset_clip();
+		
+				draw_sprite(spr_timer_bar, super.image_index, timer_x, timer_y);
+				draw_sprite(spr_timer_johnface, super.image_index, timer_x + 13 + _barpos, timer_y + 20);
+				draw_sprite(spr_timer_pizzaface1, super.image_index, timer_x + 320, timer_y + 10);
+			}
+		});
+
+		#endregion
+	}
 	#region ENEMY SPIN
 
 	/*
@@ -1490,189 +1760,6 @@ with new ModSection("visual", 2)
 	]
 
 	#endregion
-	#region HUD
-
-	var opt = add_option("hud", function(val)
-	{
-		var xx = width / 2;
-		var yy = height / 2;
-		
-		if val == hudstyles.final
-		{
-			draw_sprite_ext(spr_tv_bgfinal, 1, xx, yy, 1, 1, 0, c_white, 1);
-			draw_sprite(spr_tv_idle, super.image_index, xx, yy);
-		}
-		if val == hudstyles.old
-		{
-			draw_sprite(spr_pepinoHUD, super.image_index, xx, yy - 8);
-			draw_sprite(spr_speedbar, 0, xx, yy + 32);
-		}
-		if val == hudstyles.april
-		{
-			draw_sprite_ext(spr_tv_aprilbg, 0, xx, yy, 1, 1, 0, c_white, 1);
-			draw_sprite(spr_tv_idle_NEW, super.image_index, xx, yy);
-		}
-		if val == hudstyles.minimal
-		{
-			yy -= 10;
-			var pad = 20;
-			
-			draw_set_font(global.minimal_number);
-			draw_set_align(fa_center);
-			draw_text(xx, round(yy - pad), "1230");
-			
-			var wd = sprite_get_width(spr_combobar_minimal), ht = sprite_get_height(spr_combobar_minimal);
-			draw_set_mask(xx - wd / 2, yy - ht / 2 + pad, spr_combobar_minimal, 1);
-			draw_sprite_tiled(spr_combofill_minimal, 0, -current_time / 100, yy - ht / 2 + pad);
-			draw_reset_clip();
-			
-			draw_sprite(spr_combobar_minimal, 0, xx - wd / 2, round(yy - ht / 2 + pad));
-			draw_sprite(spr_combocursor_minimal, 0, xx + wd / 2 - 12, round(yy - ht / 2 + 3 + pad));
-			
-			pal_swap_set(spr_numpalette_minimal, 3);
-			draw_text(xx, round(yy - ht / 2 + pad + 2), "30");
-			pal_swap_reset();
-		}
-	});
-	opt.opts = [
-		["old", hudstyles.old],
-		["april", hudstyles.april],
-		["minimal", hudstyles.minimal],
-		["final", hudstyles.final],
-	]
-
-	#endregion
-	#region CUSTOMIZE
-	
-	var opt = add_button("hudcustomize", function()
-	{
-		super.visible = false;
-		instance_create_depth(0, 0, super.depth - 1, obj_hudcustomizer);
-	},
-	function()
-	{
-		static timer = 0;
-		timer += 0.03;
-		
-		var xx = width / 2 + cos(current_time / 500) * 50;
-		var yy = height / 2 + sin(current_time / 500) * 50;
-		
-		switch floor(timer)
-		{
-			default:
-				timer = 0;
-			
-			case 0:
-				draw_sprite(spr_tv_empty, 0, xx, yy);
-				break;
-			
-			case 1:
-				draw_sprite(spr_fuelHUD, 0, xx, yy);
-				break;
-			
-			case 2:
-				draw_sprite(spr_heatmeter, current_time / 50, xx, yy);
-				break;
-			
-			case 3:
-				draw_sprite(spr_pizzascore, current_time / 50, xx, yy);
-				break;
-			
-			case 4:
-				draw_sprite(spr_combobar_minimal, 0, xx, yy);
-				break;
-			
-			case 5:
-				draw_sprite(spr_pepinoHUD, current_time / 50, xx, yy);
-				break;
-		}
-	});
-	opt.allow_preset = false;
-	
-	#endregion
-	#region BLOCKS
-
-	var opt = add_option("blockstyle", function(val)
-	{
-		if val == 0
-		{
-			draw_sprite(spr_towerblock, 0, 960 / 5 - 32 - 80, 540 / 5 - 32);
-			draw_sprite(spr_towerblocksmall, 0, 960 / 5 - 16, 540 / 5 - 16);
-			draw_sprite(spr_metaltowerblock, 0, 960 / 5 - 32 + 80, 540 / 5 - 32);
-		}
-		if val == 1
-		{
-			draw_sprite(spr_bigdestroy, super.image_index, 960 / 5 - 32 - 80, 540 / 5 - 32);
-			draw_sprite(spr_destroyable, super.image_index, 960 / 5 - 16, 540 / 5 - 16);
-			draw_sprite(spr_metalb, super.image_index, 960 / 5 - 32 + 80, 540 / 5 - 32);
-		}
-		if val == 2
-		{
-			draw_sprite(spr_bigdestroy_old, 0, 960 / 5 - 32 - 80, 540 / 5 - 32);
-			draw_sprite(spr_destroyable_old, 0, 960 / 5 - 16, 540 / 5 - 16);
-			draw_sprite(spr_metaltowerblock, 0, 960 / 5 - 32 + 80, 540 / 5 - 32);
-		}
-	}, true);
-	opt.opts = [
-		["old", 2],
-		["september", 1],
-		["final", 0],
-	]
-
-	#endregion
-	
-	if SUGARY_SPIRE
-	{
-		#region SUGARY OVERRIDES
-	
-		var opt = add_option("sugaryoverride", function(val)
-		{
-			var wd = 960 / 2.5, ht = 540 / 2.5;
-	
-			/*
-			var seconds = (60 * 10) - ((current_time / 1000) % (60 * 10));
-			var minutes = floor(seconds / 60);
-			seconds = floor(seconds % 60);
-			*/
-	
-			if val
-			{
-				draw_sprite(spr_escapecollect_ss, super.image_index, 80, 50);
-				draw_sprite(spr_escapecollectbig_ss, super.image_index, 250, 50 - 16);
-		
-				draw_sprite(spr_bartimer_normalBack, super.image_index, wd / 2, ht - 50);
-				draw_sprite(spr_bartimer_normalFront, super.image_index, wd / 2, ht - 50);
-		
-				/*
-				draw_set_align(1, 1);
-				draw_set_font(lang_get_font("sugarypromptfont"));
-				draw_text(wd / 2 - 11, ht - 50 - 20, concat(minutes, ":", seconds < 10 ? "0" : "", seconds));
-				*/
-			}
-			else
-			{
-				draw_sprite(spr_escapecollect, super.image_index, 80, 50);
-				draw_sprite(spr_escapecollectbig, super.image_index, 250, 50 - 16);
-		
-				var _barpos = 100;
-		
-				var timer_x = wd / 2 - sprite_get_width(spr_timer_bar) / 2 - 30, timer_y = ht - 70;
-		
-				var clip_x = timer_x + 3;
-				var clip_y = timer_y + 5;
-		
-				draw_set_bounds(clip_x, clip_y, clip_x + _barpos, clip_y + 30, true);
-				draw_sprite_tiled(spr_timer_barfill, 0, clip_x + -current_time / 200, clip_y);
-				draw_reset_clip();
-		
-				draw_sprite(spr_timer_bar, super.image_index, timer_x, timer_y);
-				draw_sprite(spr_timer_johnface, super.image_index, timer_x + 13 + _barpos, timer_y + 20);
-				draw_sprite(spr_timer_pizzaface1, super.image_index, timer_x + 320, timer_y + 10);
-			}
-		});
-
-		#endregion
-	}
 	
 	#region PERFORMANCE
 
@@ -1683,38 +1770,6 @@ with new ModSection("visual", 2)
 	});
 	*/
 
-	#endregion
-	#region RICH PRESENCE
-	
-	var opt = add_option("richpresence", function(val)
-	{
-		var wd = 960 / 2.5;
-		var ht = 540 / 2.5;
-	
-		draw_clear($E66054);
-		gpu_set_blendmode(bm_normal);
-		
-		if val
-		{
-			draw_set_font(lfnt("tvbubblefont"));
-			draw_set_align();
-			draw_text(8 + 16, 8 + 16, lstr("mod_drpc1"));
-			
-			draw_sprite_ext(spr_discord_big_icon, 0, 8 + 16 + 2, 8 + 64 + 2, 1, 1, 0, c_black, 0.25);
-			draw_sprite_ext(spr_discord_big_icon, 0, 8 + 16, 8 + 64, 1, 1, 0, c_white, 1);
-			
-			draw_set_font(lang_get_font("font_small"));
-			draw_text(8 + 146, 8 + 100, concat("Pizza Tower Together\n", lstr("mod_drpc3")));
-		}
-		else
-		{
-			draw_set_font(lfnt("comicsans"));
-			draw_set_align(fa_center);
-			draw_text_transformed(wd / 2, ht / 2 - 20, lstr("mod_drpc2"), 2, 2, 0);
-		}
-	});
-	opt.allow_preset = false;
-	
 	#endregion
 	
 	refresh_options();

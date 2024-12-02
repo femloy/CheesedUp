@@ -6,7 +6,7 @@ if start
 	
 	draw_clear(c_black);
 	draw_sprite_ext(info.bginfo[0], 0, bgX * xscale, bgY * yscale, xscale, yscale, 0, c_white, 1);
-	draw_sprite_ext(info.titleinfo[0], 0, titleX * xscale, titleY * yscale, xscale, yscale, 0, c_white, 1);
+	lang_draw_sprite_ext(info.titleinfo[0], 0, titleX * xscale, titleY * yscale, xscale, yscale, 0, c_white, 1);
 	
 	for (var i = 0; i < array_length(noisehead); i++)
 	{

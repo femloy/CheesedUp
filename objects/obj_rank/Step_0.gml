@@ -7,7 +7,7 @@ if SUGARY_SPIRE && sugary
 	alarm[3] = 0;
 	if floor(image_index) == max(image_number - 3, 0) && obj_endlevelfade.rank == 0
 	{
-		if global.rank == "d" or global.rank == "f"
+		if global.rank == "d"
 		{
 			obj_endlevelfade.rank = 1;
 			setcolors(109, 121, 134, 84, 87, 99);
@@ -39,6 +39,11 @@ if SUGARY_SPIRE && sugary
 				setcolors(188, 108, 143, 134, 40, 66);
 			else
 				setcolors(152, 80, 248, 80, 0, 184);
+		}
+		if global.rank == "f"
+		{
+			obj_endlevelfade.rank = 8;
+			setcolors(208, 136, 32, 120, 56, 0);
 		}
 		
 		with obj_endlevelfade

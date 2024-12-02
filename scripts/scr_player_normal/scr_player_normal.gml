@@ -117,6 +117,8 @@ function state_player_normal()
 			{
 				if other.character == "V"
 					sprite_index = spr_breakdancenotes_vigi;
+				if other.character == "SP"
+					sprite_index = spr_breakdancenotes_pizzelle;
 			}
 			notecreate = 10;
 		}

@@ -14,6 +14,9 @@ switch playerid.character
 		sprite_index = spr_beatboxV;
 		fmod_event_instance_set_parameter(snd, "state", 2, true);
 		break;
+	case "SP":
+		sprite_index = spr_beatboxSP;
+		break;
 }
 
 sound_instance_move(snd, x, y);

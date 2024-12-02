@@ -1,6 +1,6 @@
 function pal_swap_index_palette(_spr)
 {
-	if (!ds_map_exists(global.Pal_Map, _spr))
+	if !ds_map_exists(global.Pal_Map, _spr)
 	{
 		var _colors = sprite_get_height(_spr);
 		var _palettes = ds_list_create();
@@ -23,6 +23,6 @@ function pal_swap_index_palette(_spr)
 		surface_reset_target();
 		surface_free(_surface);
 	}
-	else
-		show_debug_message("That palette has already been indexed.");
+	//else
+	//	show_debug_message("That palette has already been indexed.");
 }

@@ -24,18 +24,39 @@ function scr_player_faceplant()
 	}
 	
 	// dive
-	if scr_mach_check_dive() && (!CHAR_POGONOISE)
+	if scr_mach_check_dive() && !CHAR_POGONOISE
 	{
-		particle_set_scale(part.jumpdust, xscale, 1);
-		create_particle(x, y, part.jumpdust, 0);
-		state = states.tumble;
-		image_index = 0;
-				
 		if !grounded
 		{
-			sprite_index = spr_mach2jump;
-			flash = false;
-			vsp = 10;
+			if SUGARY_SPIRE && character == "SP"
+			{
+				if vsp < 8
+					vsp = 8;
+			}
+			else
+			{
+				particle_set_scale(part.jumpdust, xscale, 1);
+				create_particle(x, y, part.jumpdust, 0);
+				state = states.tumble;
+				image_index = 0;
+				sprite_index = spr_mach2jump;
+				flash = false;
+				vsp = 10;
+			}
+		}
+		else
+		{
+			particle_set_scale(part.jumpdust, xscale, 1);
+			create_particle(x, y, part.jumpdust);
+				
+			movespeed = max(movespeed, 12);
+			crouchslipbuffer = 25;
+			grav = 0.5;
+			sprite_index = spr_crouchslip;
+			image_index = 0;
+			machhitAnim = false;
+			state = states.tumble;
+			fmod_event_instance_play(snd_crouchslide);
 		}
 	}
 	
@@ -68,26 +89,36 @@ function scr_player_faceplant()
 		if !key_attack or CHAR_POGONOISE
 			state = states.normal;
 		else
-			state = states.mach2;
+		{
+			if movespeed > 12
+			{
+				state = states.mach3;
+				sprite_index = spr_mach4;
+			}
+			else
+				state = states.mach2;
+		}
 	}
-	if (scr_mach_check_dive() && grounded && vsp > 0)
+	if !instance_exists(obj_dashcloud2) && grounded && movespeed > 5
 	{
-		particle_set_scale(part.jumpdust, xscale, 1);
-		create_particle(x, y, part.jumpdust);
-		
-		movespeed = max(movespeed, 12);
-		crouchslipbuffer = 25;
-		grav = 0.5;
-		sprite_index = spr_crouchslip;
-		image_index = 0;
-		machhitAnim = false;
-		state = states.tumble;
-		fmod_event_instance_play(snd_crouchslide);
-	}
-	if (!instance_exists(obj_dashcloud2) && grounded && movespeed > 5)
-	{
-		with (instance_create(x, y, obj_dashcloud2))
+		with instance_create(x, y, obj_dashcloud2)
 			copy_player_scale(other);
 	}
+	
+	if SUGARY_SPIRE && character == "SP" && vsp < 4
+	{
+		if punch_afterimage > 0
+			punch_afterimage--;
+		else
+		{
+			punch_afterimage = 5;
+			with create_blue_afterimage(x, y, sprite_index, image_index, xscale)
+			{
+				playerid = other.id;
+				vertical = true;
+			}
+		}
+	}
+	
 	image_speed = 0.5;
 }

@@ -69,7 +69,7 @@
     },
     "name":"spr_playerSP_faceplant",
     "playback":1,
-    "playbackSpeed":0.6,
+    "playbackSpeed":0.8,
     "playbackSpeedType":1,
     "resourceType":"GMSequence",
     "resourceVersion":"2.0",
