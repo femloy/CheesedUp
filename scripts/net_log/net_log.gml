@@ -7,6 +7,7 @@ function net_log(str)
 {
 	if net_debug
 		net_add_chat_message("LOG", str);
+	trace("[LOG] ", str);
 }
 
 function net_log_buffer(_buf, _per_row = 16) 

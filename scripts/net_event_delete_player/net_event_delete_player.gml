@@ -2,9 +2,14 @@ function net_event_delete_player(packet)
 {
 	online
 	{
-		if ds_map_exists(players, packet.uuid) {
-			instance_destroy(players[? packet.uuid]);
-			ds_map_delete(players, packet.uuid);
+		trace("Deleting player ", packet.uuid);
+		var player = players[$ packet.uuid];
+		if player != undefined
+		{
+			instance_destroy(player);
+			struct_remove(players, packet.uuid);
 		}
+		else
+			trace("Failed. Sorry!");
 	}
 }

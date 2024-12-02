@@ -4,7 +4,7 @@ port = SERVER_PORT;
 paused = false;
 connection = net_connect(address, port);
 requests = ds_map_create();
-players = ds_map_create();
+players = {};
 last_room = room;
 
 online_delay = 2;
@@ -22,3 +22,5 @@ if connection == noone
 
 alarm[0] = floor(heart_rate * room_speed);
 alarm[2] = online_delay;
+
+pending_room_change = false;

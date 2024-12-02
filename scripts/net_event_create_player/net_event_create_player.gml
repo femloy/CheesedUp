@@ -1,15 +1,18 @@
 function net_event_create_player(packet)
 {
+	//trace("Create: ", packet);
 	online
 	{
-		if ds_map_exists(players, packet.uuid)
-		{
-			instance_destroy(players[? packet.uuid]);
-			ds_map_delete(players, packet.uuid);
-		}
+		var old_player = players[$ packet.uuid];
+		if old_player != undefined
+			instance_destroy(old_player);
 		
 		net_log("Creating client '" + packet.uuid + "'");
-		ds_map_add(players, packet.uuid, instance_create(packet.x, packet.y, obj_otherplayer));
-		net_copy(packet, players[? packet.uuid]);
+		
+		var p = instance_create(packet.x, packet.y, obj_otherplayer);
+		players[$ packet.uuid] = p;
+		net_copy(packet, p);
+		
+		trace("Created client ", players);
 	}
 }

@@ -1,0 +1,21 @@
+function net_send_room_change()
+{
+	online
+	{
+		if instance_exists(obj_player1)
+		{
+			net_send_tcp("room_change",
+			{
+				room: room,
+		
+				x: obj_player1.x,
+				y: obj_player1.y,
+		
+				sprite: player_sprite(obj_player1),
+				xscale: image_xscale
+			});
+		}
+		else	
+			pending_room_change = true;
+	}
+}

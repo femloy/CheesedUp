@@ -2,7 +2,8 @@ if global.jukebox != noone or instance_exists(obj_elevatorcutscene)
 	exit;
 if MOD.CosmicClones or (DEATH_MODE && MOD.DeathMode) or global.timeattack
 {
-	music = noone;
+	if panicstart
+		music = noone;
 	exit;
 }
 warstart = false;

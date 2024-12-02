@@ -32,7 +32,7 @@ function scr_create_pause_image(allow_blur = false)
 		reset_blendmode();
 	scr_draw_screen(0, 0, 1, 1, 1, true);
 	
-	if !(SUGARY_SPIRE && check_sugary()) or object_index != obj_pause
+	if !(SUGARY_SPIRE && check_sugary()) or self[$ "object_index"] != obj_pause
 		draw_surface(obj_screensizer.gui_surf, 0, 0);
 	reset_blendmode();
 	

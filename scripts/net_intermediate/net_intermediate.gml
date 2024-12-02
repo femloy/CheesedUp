@@ -183,11 +183,14 @@ function net_copy(packet, object)
 		var name = names[i];
 		if array_contains(global.builtins, name)
 			continue;
-			
+		
+		if DEBUG && keyboard_check(ord("E"))
+			trace(name);
 		object[$ name] = packet[$ name];
 	}
 }
 
-function net_exists(packet, varname) {
+function net_exists(packet, varname)
+{
 	return struct_exists(packet, varname);	
 }

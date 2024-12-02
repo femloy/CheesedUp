@@ -1,4 +1,4 @@
 ds_map_destroy(requests);
-ds_map_destroy(players);
+delete players;
 instance_destroy(obj_netchat);
 net_disconnect(connection);

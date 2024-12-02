@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"net_udp",
+  "%Name":"net_send_room_change",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"net_udp",
+  "name":"net_send_room_change",
   "parent":{
-    "name":"Internal",
-    "path":"folders/Online/Internal.yy",
+    "name":"Scripts",
+    "path":"folders/Online/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

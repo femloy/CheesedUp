@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"net_tcp",
   "parent":{
-    "name":"Scripts",
-    "path":"folders/Online/Scripts.yy",
+    "name":"Internal",
+    "path":"folders/Online/Internal.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

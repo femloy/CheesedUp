@@ -16,7 +16,10 @@ with obj_persistent
 }
 
 with obj_player
-	x = -1000;
+{
+	if targetDoor != "HUB"
+		x = -1000;
+}
 
 try
 {

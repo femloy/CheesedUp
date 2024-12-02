@@ -10,14 +10,21 @@ function net_udp(async_load)
 		try 
 		{
 			var packet = net_intermediate_to_struct(buffer);
-			if packet == noone 
+			if packet == noone
+			{
+				net_log_buffer(buffer);
 				return;
+			}
+			else if net_debug
+				trace(json_stringify(packet, true));
 			
+			/*
 			if net_debug
 			{
 				show_debug_message($"       | Packet #{packet.id}");
 				net_log_buffer(buffer);	
 			}
+			*/
 			
 			net_event_string(packet.type, packet);
 		} 

@@ -103,12 +103,12 @@ if instance_exists(obj_hungrypillar) && (global.leveltosave != "freezer" or !REM
 	fmod_event_instance_set_parameter(pillarmusicID, "state", SUGARY ? 20 : 0, true);
 	
 	var p = false;
-	with (obj_hungrypillar)
+	with obj_hungrypillar
 	{
-		if (bbox_in_camera(view_camera[0], 0))
+		if bbox_in_camera(view_camera[0], 0)
 			p = true;
 	}
-	if (p != pillar_on_camera)
+	if p != pillar_on_camera
 		pillar_on_camera = p;
 }
 else
@@ -183,7 +183,7 @@ if instance_exists(obj_player1) && !obj_pause.pause
 				if obj_player1.character == "N"
 					secs = 65;
 				if obj_player1.character == "SP"
-					secs = 44;
+					secs = 43;
 				if global.fill <= secs * 12
 					fmod_event_instance_set_parameter(panicmusicID, "state", 1, true);
 			}
