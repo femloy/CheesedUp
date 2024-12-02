@@ -9,8 +9,8 @@
   "name":"obj_netchat",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Online/Objects.yy",
+    "name":"Chat",
+    "path":"folders/Online/Chat.yy",
   },
   "parentObjectId":null,
   "persistent":true,
