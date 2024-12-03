@@ -4,13 +4,15 @@ depth = obj_drawcontroller.depth + 1;
 mask_index = spr_player_mask;
 
 queue = ds_queue_create();
-image_speed = 0;
+image_speed = 0.35;
 target_object = obj_player1;
 is_visible = true;
+sprite_previous = sprite_index;
 
 state = states.normal;
 grace_period = 10;
 tracker = noone;
+parried = false;
 
 init_collision();
 
@@ -52,7 +54,7 @@ switch obj_player1.character
 }
 switch obj_player1.character
 {
-	case "P":
+	case "P": case "SP":
 		snd_voicehurt = fmod_event_create_instance(obj_player1.isgustavo ? "event:/sfx/voice/gushurt" : "event:/sfx/voice/hurt");
 		break;
 	case "N":
@@ -63,5 +65,23 @@ switch obj_player1.character
 		break;
 	default:
 		snd_voicehurt = fmod_event_create_instance("event:/nosound");
+		break;
+}
+switch obj_player1.character
+{
+	default:
+		snd_jump = fmod_event_create_instance(sfx_jump);
+		break;
+	case "V":
+		snd_jump = fmod_event_create_instance("event:/modded/playerV/jump");
+		break;
+}
+switch obj_player1.character
+{
+	default:
+		snd_taunt = fmod_event_create_instance(sfx_taunt);
+		break;
+	case "SP":
+		snd_taunt = fmod_event_create_instance("event:/modded/sfx/pizzytaunt");
 		break;
 }

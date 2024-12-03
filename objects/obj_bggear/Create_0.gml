@@ -1,7 +1,6 @@
 SS_CODE_START;
 
 rotspd = 2;
-depth = 500;
 
 degree_per_beat = 22.5;
 desired_angle = 0;

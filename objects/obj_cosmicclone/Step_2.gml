@@ -25,22 +25,27 @@ else
 
 var pitch = 1 + sin(current_time / 10) * .1;
 sound_instance_move(snd_voicehurt, x, y);
-fmod_event_instance_set_pitch(snd_voicehurt, pitch);
 sound_instance_move(snd_jump, x, y);
+
+fmod_event_instance_set_pitch(snd_voicehurt, pitch);
 fmod_event_instance_set_pitch(snd_jump, pitch);
+fmod_event_instance_set_pitch(snd_taunt, pitch * .9);
 
 var struct = noone;
 while ds_queue_size(queue) >= distance
 	struct = ds_queue_dequeue(queue);
 
+var parry_sprites = [obj_player1.spr_parry1, obj_player1.spr_parry2, obj_player1.spr_parry3];
 switch state
 {
 	case states.normal:
 		if struct == noone
 		{
-			x = obj_player1.x;
-			y = obj_player1.y;
-			
+			if is_visible
+			{
+				x = obj_player1.x;
+				y = obj_player1.y;
+			}
 			grace_period = 10;
 			is_visible = false;
 			break;
@@ -58,14 +63,17 @@ switch state
 		{
 			if grace_period > 0
 				grace_period--;
-		
+			
 			if grace_period > 0
 			{
 				if global.time % 3 == 0
 					is_visible = !is_visible;
 			}
 			else
+			{
+				parried = false;
 				is_visible = true;
+			}
 		}
 		
 		// parry
@@ -97,6 +105,7 @@ switch state
 			instance_create(x, y, obj_spikehurteffect);
 			
 			fmod_event_instance_play(snd_voicehurt);
+			parried = true;
 		}
 		break;
 	
@@ -142,24 +151,33 @@ if struct != noone
 {
 	if state == states.hurt && is_visible
 	{
-		repeat 5
+		repeat 10
 		{
 			with instance_create(x, y, obj_debris)
 			{
 				sprite_index = spr_keyparticles;
 				image_blend = other.random_color();
-				vsp = -4;
+				vsp -= 4;
+				hsp *= 1.5;
 			}
 		}
+		is_visible = false;
 	}
 	
 	x = struct.x;
 	y = struct.y;
 	sprite_index = struct.sprite_index;
-	image_index = struct.image_index;
 	image_xscale = struct.image_xscale;
+	image_yscale = struct.image_yscale;
 	
-	if sprite_index == obj_player1.spr_hurt or sprite_index == obj_player1.spr_hurtjump
+	if (!scr_solid(x, y + image_yscale) && struct.grounded)
+	or (!scr_solid(x + image_xscale, y) && (sprite_index == obj_player1.spr_climbwall))
+		sprite_index = obj_player1.spr_air;
+	else
+		image_index = struct.image_index;
+	
+	if (sprite_index == obj_player1.spr_hurt or sprite_index == obj_player1.spr_hurtjump)
+	&& obj_player1.state != states.secretenter && !instance_exists(obj_secretportalstart)
 	{
 		sprite_index = obj_player1.spr_air;
 		if x - xprevious != 0
@@ -167,13 +185,17 @@ if struct != noone
 	}
 	
 	if state == states.hurt
-	{
 		state = states.normal;
+	
+	if parried && array_contains(parry_sprites, sprite_index, 0, infinity)
+		is_visible = false;
+	else if parried && array_contains(parry_sprites, sprite_previous, 0, infinity)
+	{
 		with instance_create(x, y, obj_parryeffect)
 			image_blend = other.random_color();
 	}
 	
-	if vsp >= 0 && y - yprevious < 0 && is_visible
+	if vsp >= 0 && y - yprevious < 0 && is_visible && !scr_solid(x, y + 1)
 	{
 		fmod_event_instance_play(snd_jump);
 		if scr_solid(x, yprevious + 1)
@@ -183,9 +205,19 @@ if struct != noone
 		}
 	}
 	vsp = y - yprevious;
+	
+	if sprite_index == obj_player1.spr_taunt && sprite_previous != sprite_index
+	{
+		sound_instance_move(snd_taunt, x, y);
+		fmod_event_instance_play(snd_taunt);
+		
+		with instance_create(x, y, obj_baddietaunteffect)
+			image_blend = other.random_color();
+	}
+	sprite_previous = sprite_index;
 }
 
-if global.time % 5 == 0
+if global.time % 5 == 0 or !is_visible
 {
 	with instance_create(x + random_range(-50, 50), y + random_range(-50, 50), obj_keyeffect)
 		image_blend = other.random_color();
@@ -193,11 +225,13 @@ if global.time % 5 == 0
 
 ds_queue_enqueue(queue, 
 {
-	x : target_object.x, 
+	x : target_object.x + target_object.smoothx, 
 	y : target_object.y, 
 	sprite_index : player_sprite(target_object),
 	image_index : target_object.image_index,
-	image_xscale : target_object == obj_player1 ? target_object.xscale : target_object.image_xscale
+	image_xscale : target_object == obj_player1 ? target_object.xscale * target_object.scale_xs : target_object.image_xscale,
+	image_yscale : target_object == obj_player1 ? target_object.yscale * target_object.scale_ys : target_object.image_yscale,
+	grounded : target_object.grounded
 });
 
 layer_4_index = (layer_4_index + 0.1) % sprite_get_number(spr_cosmicclone_layer4);

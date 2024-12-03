@@ -44,6 +44,15 @@ function player_init_sounds()
 		stepsnd = "event:/modded/playerV/step";
 		landsnd = "event:/modded/playerV/land";
 	}
+	else if SUGARY_SPIRE && character == "SP"
+	{
+		machsnd = fmod_event_create_instance("event:/sfx/pep/mach");
+		jumpsnd = fmod_event_create_instance("event:/sfx/pep/jump");
+		breaksnd = "event:/sfx/playerN/break";
+		machslidesnd = "event:/sfx/playerN/machslide";
+		stepsnd = "event:/sfx/pep/step";
+		landsnd = "event:/sfx/pep/step";
+	}
 	else
 	{
 		machsnd = fmod_event_create_instance("event:/sfx/pep/mach");

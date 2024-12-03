@@ -7,4 +7,5 @@ if surface_exists(surf)
 destroy_sounds([
 	snd_voicehurt,
 	snd_jump,
+	snd_taunt
 ]);

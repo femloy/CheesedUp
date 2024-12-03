@@ -104,11 +104,15 @@ if (!isOpen) {
 	}
 	
 	// rt shell
-	if (keyboard_check_pressed(vk_escape)) {
-		if (isAutocompleteOpen) {
+	if (keyboard_check_pressed(vk_escape))
+	{
+		if (isAutocompleteOpen)
 			self._close_autocomplete();
-		} else {
-			array_push(output, lstr("shell_close"));
+		else
+		{
+			self.close();
+			with obj_pause
+				pause_buffer = 1;
 		}
 	}
 	else if (self._key_combo_pressed([metaKey], ord("A")) or keyboard_check_pressed(vk_home)) {

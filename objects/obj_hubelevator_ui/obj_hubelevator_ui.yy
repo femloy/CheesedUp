@@ -10,8 +10,8 @@
   "name":"obj_hubelevator_ui",
   "overriddenProperties":[],
   "parent":{
-    "name":"Together",
-    "path":"folders/Objects/Together.yy",
+    "name":"UI",
+    "path":"folders/Objects/Together/UI.yy",
   },
   "parentObjectId":null,
   "persistent":false,

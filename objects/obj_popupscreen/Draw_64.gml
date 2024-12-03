@@ -82,7 +82,25 @@ if t >= 1
 			if global.leveltosave != noone
 				draw_text_color(xx + 960 / 2, yy + 220, "\n\nYou will be kicked out of the current level.", #ff3333, #ff3333, #ff3333, #ff3333, 1);
 			
-			pto_button(xx + 960 / 2 - 100, yy + 380, 200, , true, , , "Log out");
+			if pto_button(xx + 960 / 2 - 100, yy + 380, 200, , true, , , "Log out") == 2
+			{
+				sound_play("event:/modded/sfx/diagcancel");
+				state = 2;
+				
+				on_close = function()
+				{
+					instance_destroy(obj_netclient);
+					with obj_pause
+					{
+						hub = false;
+						instance_destroy(obj_cyop_loader);
+						
+						event_perform(ev_alarm, 3);
+						pause = false;
+						fadein = false;
+					}
+				}
+			}
 			break;
 	}
 	if callback_buffer > 0

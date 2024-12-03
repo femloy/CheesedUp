@@ -1,4 +1,10 @@
 /// @description EXIT LEVEL
+
+/*
+	this is called in the loading screen object -Loy
+	I should probably improve that at some point
+*/
+
 instance_destroy(obj_option);
 instance_destroy(obj_keyconfig);
 

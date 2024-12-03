@@ -8,10 +8,13 @@ if global.performance
 	exit;
 }
 
-var xo = abs(sprite_xoffset);
-var yo = abs(sprite_yoffset);
-var sprw = abs(sprite_width);
-var sprh = abs(sprite_height);
+var sprw = abs(sprite_width), sprh = abs(sprite_height);
+var xo = abs(sprite_xoffset), yo = abs(sprite_yoffset);
+
+if image_xscale < 0
+	xo = sprw - xo;
+if image_yscale < 0
+	yo = sprh - yo;
 
 if !surface_exists(surf) or surf_size[0] != sprw or surf_size[1] != sprh
 {

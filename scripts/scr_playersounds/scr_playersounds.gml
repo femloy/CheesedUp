@@ -2,6 +2,9 @@ function scr_playersounds()
 {
 	with obj_player1
 	{
+		var noise_mach = character == "N" or character == "SP";
+		var noise_sjump = character == "N";
+		
 		// pizzaface moving
 		if (instance_exists(obj_pizzaface))
 		{
@@ -81,7 +84,7 @@ function scr_playersounds()
 			fmod_event_instance_stop(freefallsnd, true);
 	
 		// mach
-		if character != "N" && (state == states.mach1 or state == states.mach2 || state == states.mach3 || state == states.climbwall || state == states.rocket or (character == "S" && visible))
+		if !noise_mach && (state == states.mach1 or state == states.mach2 || state == states.mach3 || state == states.climbwall || state == states.rocket or (character == "S" && visible))
 		{
 			if sprite_index == spr_playerN_jetpackboost
 			{
@@ -135,7 +138,7 @@ function scr_playersounds()
 	
 		// superjump
 		var sjumpsnd = superjumpsnd;
-		if (character != "N")
+		if !noise_sjump
 		{
 			if (state == states.Sjumpprep)
 			{
@@ -418,30 +421,10 @@ function scr_playersounds()
 		}
 		else if (fmod_event_instance_is_playing(ghostspeedsnd))
 			fmod_event_instance_stop(ghostspeedsnd, false);
-	
-		if character == "N"
+		
+		// superjump
+		if noise_sjump
 		{
-			// noise minigun
-			if (sprite_index == spr_playerN_minigunshoot || sprite_index == spr_playerN_minigundown)
-			{
-				if (!fmod_event_instance_is_playing(snd_minigun))
-					fmod_event_instance_play(snd_minigun)
-				sound_instance_move(snd_minigun, x, y)
-				fmod_event_instance_set_parameter(snd_minigun, "state", 0, true)
-			}
-			else if fmod_event_instance_is_playing(snd_minigun)
-				fmod_event_instance_set_parameter(snd_minigun, "state", 1, true)
-		
-			// noise ghost dash
-			if (state == states.ghost || (state == states.chainsaw && tauntstoredstate == states.ghost))
-			{
-				sound_instance_move(snd_ghostdash, x, y)
-				fmod_event_instance_set_parameter(snd_ghostdash, "state", min(ghostpepper, 2), true)
-			}
-			else
-				fmod_event_instance_stop(snd_ghostdash, true)
-		
-			// superjump
 			if state == states.Sjumpprep
 			{
 				if (!fmod_event_instance_is_playing(snd_noiseSjump))
@@ -452,16 +435,14 @@ function scr_playersounds()
 		
 			sound_instance_move(snd_noiseSjump, x, y)
 			sound_instance_move(snd_noiseSjumprelease, x, y)
+		}
+		else
+			fmod_event_instance_stop(snd_noiseSjump, true)
 		
-			// various noise sounds
-			sound_instance_move(snd_noisedoublejump, x, y)
-			sound_instance_move(snd_noisepunch, x, y)
-			sound_instance_move(snd_bossdeathN, x, y)
-			if sprite_index == spr_playerN_sidewayspin
-				fmod_event_instance_stop(snd_noiseSjumprelease, true)
-		
-			// noise mach
-			if (state == states.mach1 or state == states.mach2 || state == states.mach3 || state == states.climbwall)
+		// noise mach
+		if noise_mach
+		{
+			if state == states.mach1 or state == states.mach2 || state == states.mach3 || state == states.climbwall
 			{
 				if (!fmod_event_instance_is_playing(snd_noisemach))
 					fmod_event_instance_play(snd_noisemach)
@@ -481,6 +462,38 @@ function scr_playersounds()
 			}
 			else
 				fmod_event_instance_stop(snd_noisemach, true)
+		}
+		else
+			fmod_event_instance_stop(snd_noisemach, true)
+		
+		if character == "N"
+		{
+			// noise minigun
+			if (sprite_index == spr_playerN_minigunshoot || sprite_index == spr_playerN_minigundown)
+			{
+				if (!fmod_event_instance_is_playing(snd_minigun))
+					fmod_event_instance_play(snd_minigun)
+				sound_instance_move(snd_minigun, x, y)
+				fmod_event_instance_set_parameter(snd_minigun, "state", 0, true)
+			}
+			else if fmod_event_instance_is_playing(snd_minigun)
+				fmod_event_instance_set_parameter(snd_minigun, "state", 1, true)
+			
+			// noise ghost dash
+			if (state == states.ghost || (state == states.chainsaw && tauntstoredstate == states.ghost))
+			{
+				sound_instance_move(snd_ghostdash, x, y)
+				fmod_event_instance_set_parameter(snd_ghostdash, "state", min(ghostpepper, 2), true)
+			}
+			else
+				fmod_event_instance_stop(snd_ghostdash, true)
+			
+			// various noise sounds
+			sound_instance_move(snd_noisedoublejump, x, y)
+			sound_instance_move(snd_noisepunch, x, y)
+			sound_instance_move(snd_bossdeathN, x, y)
+			if sprite_index == spr_playerN_sidewayspin
+				fmod_event_instance_stop(snd_noiseSjumprelease, true)
 		
 			// drill and wallbounce
 			if (state == states.machcancel || (state == states.chainsaw && tauntstoredstate == states.machcancel))
@@ -573,8 +586,6 @@ function scr_playersounds()
 			if fmod_event_instance_get_paused(snd_wallbounce)
 				fmod_event_instance_set_paused(snd_wallbounce, false)
 			fmod_event_instance_stop(snd_wallbounce, true)
-			fmod_event_instance_stop(snd_noisemach, true)
-			fmod_event_instance_stop(snd_noiseSjump, true)
 			fmod_event_instance_stop(snd_minigun, true)
 			fmod_event_instance_stop(snd_noisefiremouth, true)
 			fmod_event_instance_stop(snd_airspin, true)
