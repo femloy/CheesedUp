@@ -314,6 +314,10 @@ function chat_style_pto() constructor
 									net_clear_chat();
 									break;
 								
+								case ":ping":
+									net_send_ping();
+									break;
+								
 								// serverside
 								default:
 									/*

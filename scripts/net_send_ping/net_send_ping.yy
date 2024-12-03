@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"net_send_ping",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"net_send_ping",
+  "parent":{
+    "name":"Outgoing",
+    "path":"folders/Online/Events/Outgoing.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1035,6 +1035,8 @@ with new ModSection("input", 1)
 {
 	icon_offset[0] = 10;
 	
+	#region 
+	
 	#region SWAP GRAB
 
 	add_option("swapgrab", function(val)

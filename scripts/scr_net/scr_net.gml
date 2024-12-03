@@ -1,4 +1,4 @@
-#macro SERVER_ADDRESS "127.0.0.1"
+#macro SERVER_ADDRESS "play.pizzatowertogether.com"
 #macro SERVER_PORT 5060
 #macro CLIENT_PORT 5070
 

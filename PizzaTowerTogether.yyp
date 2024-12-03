@@ -3515,6 +3515,7 @@
     {"id":{"name":"net_intermediate","path":"scripts/net_intermediate/net_intermediate.yy",},},
     {"id":{"name":"net_log","path":"scripts/net_log/net_log.yy",},},
     {"id":{"name":"net_parse_css_color","path":"scripts/net_parse_css_color/net_parse_css_color.yy",},},
+    {"id":{"name":"net_send_ping","path":"scripts/net_send_ping/net_send_ping.yy",},},
     {"id":{"name":"net_send_player_data","path":"scripts/net_send_player_data/net_send_player_data.yy",},},
     {"id":{"name":"net_send_room_change","path":"scripts/net_send_room_change/net_send_room_change.yy",},},
     {"id":{"name":"net_tcp","path":"scripts/net_tcp/net_tcp.yy",},},

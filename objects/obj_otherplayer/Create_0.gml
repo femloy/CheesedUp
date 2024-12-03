@@ -16,3 +16,7 @@ lerp_time_max = 3;
 
 xprev = x;
 yprev = y;
+
+frames_per_second = 0;
+packets_this_frame = 0;
+alarm[0] = room_speed;

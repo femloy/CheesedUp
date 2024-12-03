@@ -4,7 +4,9 @@ function net_event_player_data(packet)
 	online
 	{
 		var player = players[$ packet.uuid];
-		if player != undefined
+		if player != undefined {
 			net_copy(packet, player);
+			player.packets_this_frame++;
+		}
 	}
 }

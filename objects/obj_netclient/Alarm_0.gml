@@ -1,5 +1,5 @@
 /// @description Send heartbeat message
-net_request("heartbeat", {}, function(res)
+net_request("heartbeat", { time: current_time }, function(res)
 {
 	online
 	{
