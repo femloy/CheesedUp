@@ -10,7 +10,7 @@ function net_udp(async_load)
 		try 
 		{
 			var packet = net_intermediate_to_struct(buffer);
-			if packet == noone
+			if /*packet == noone*/ true
 			{
 				net_log_buffer(buffer);
 				return;
