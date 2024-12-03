@@ -8653,6 +8653,7 @@
     {"id":{"name":"spr_playerSP_breakdancestart","path":"sprites/spr_playerSP_breakdancestart/spr_playerSP_breakdancestart.yy",},},
     {"id":{"name":"spr_playerSP_bump","path":"sprites/spr_playerSP_bump/spr_playerSP_bump.yy",},},
     {"id":{"name":"spr_playerSP_buttattack","path":"sprites/spr_playerSP_buttattack/spr_playerSP_buttattack.yy",},},
+    {"id":{"name":"spr_playerSP_buttattackend","path":"sprites/spr_playerSP_buttattackend/spr_playerSP_buttattackend.yy",},},
     {"id":{"name":"spr_playerSP_buttattackstart","path":"sprites/spr_playerSP_buttattackstart/spr_playerSP_buttattackstart.yy",},},
     {"id":{"name":"spr_playerSP_ceilingcrash","path":"sprites/spr_playerSP_ceilingcrash/spr_playerSP_ceilingcrash.yy",},},
     {"id":{"name":"spr_playerSP_climbwall","path":"sprites/spr_playerSP_climbwall/spr_playerSP_climbwall.yy",},},

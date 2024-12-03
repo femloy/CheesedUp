@@ -1126,6 +1126,7 @@ function scr_characterspr()
 			spr_breakdancemove = spr_playerSP_breakdancestart;
 			spr_buttattack = spr_playerSP_buttattack;
 			spr_buttattackstart = spr_playerSP_buttattackstart;
+			spr_buttattackend = spr_playerSP_buttattackend;
 			spr_palette = spr_pizzypalette;
 		}
 	
