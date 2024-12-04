@@ -3,8 +3,8 @@ live_auto_call;
 if !sprite_exists(sprite)
 	sprite = default_spr;
 
-var xx = x, yy = y;
-net_log($"x: {xx}, y: {yy}");
+xx = lerp(xprev, x, lerp_time / lerp_time_max);
+yy = lerp(yprev, y, lerp_time / lerp_time_max);
 
 pal_swap_set(spr_palette == noone ? spr_peppalette : spr_palette, paletteselect);
 pattern_set([1, 2], sprite, frame, xscale, yscale, palettetexture);
