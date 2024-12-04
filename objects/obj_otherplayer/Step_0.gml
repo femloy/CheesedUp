@@ -7,7 +7,7 @@ live_auto_call;
 	yprev = y;
 }*/
 lerp_time++;
-if lerp_time > lerp_time_max || x == xprev
+if lerp_time > lerp_time_max
 {
 	lerp_time = 0;
 	xprev = x;
