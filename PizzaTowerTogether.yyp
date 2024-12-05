@@ -10470,6 +10470,8 @@
     {"id":{"name":"spr_waterdrop","path":"sprites/spr_waterdrop/spr_waterdrop.yy",},},
     {"id":{"name":"spr_watereffect","path":"sprites/spr_watereffect/spr_watereffect.yy",},},
     {"id":{"name":"spr_wateroverlay","path":"sprites/spr_wateroverlay/spr_wateroverlay.yy",},},
+    {"id":{"name":"spr_weaponmachine_custom_press","path":"sprites/spr_weaponmachine_custom_press/spr_weaponmachine_custom_press.yy",},},
+    {"id":{"name":"spr_weaponmachine_custom","path":"sprites/spr_weaponmachine_custom/spr_weaponmachine_custom.yy",},},
     {"id":{"name":"spr_weaponmachine","path":"sprites/spr_weaponmachine/spr_weaponmachine.yy",},},
     {"id":{"name":"spr_weekenddelight","path":"sprites/spr_weekenddelight/spr_weekenddelight.yy",},},
     {"id":{"name":"spr_weeniemount_dead","path":"sprites/spr_weeniemount_dead/spr_weeniemount_dead.yy",},},
