@@ -119,7 +119,7 @@ function net_struct_to_intermediate(type, event, reply)
 
 function net_number_size(value) 
 {
-	if value % 1 
+	if value != floor(value)
 		return value > F32_MAX ? { intermediate: net_intermediate_type.f64, buffer: buffer_f64 } : { intermediate: net_intermediate_type.f32, buffer: buffer_f32 };
 	
 	// UINT
@@ -127,10 +127,10 @@ function net_number_size(value)
 	{
 		if value > U32_MAX
 			return { intermediate: net_intermediate_type.u64, buffer: buffer_u64 };
-		if value > U8_MAX
-			return { intermediate: net_intermediate_type.u16, buffer: buffer_u16 };
 		if value > U16_MAX
 			return { intermediate: net_intermediate_type.u32, buffer: buffer_u32 };
+		if value > U8_MAX
+			return { intermediate: net_intermediate_type.u16, buffer: buffer_u16 };
 			
 		return { intermediate: net_intermediate_type.u8, buffer: buffer_u8 };
 	}
