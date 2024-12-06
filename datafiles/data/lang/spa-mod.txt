@@ -998,6 +998,8 @@ pattern_time = "Fichate"
 pattern_timeD = "¡A paso lijero, gordinflón!"
 pattern_arrows = "Direcciones mixtas"
 pattern_arrowsD = "¿Qué derecha es la correcta?"
+pattern_cosmic = "Cósmico"
+pattern_cosmicD = "Sé tu propia sombra."
 
 pattern_trans = "Trans"
 pattern_transD = "¿Qué país es éste y por qué toda la gente linda viene de allí?"

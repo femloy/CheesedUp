@@ -233,7 +233,3 @@ ds_queue_enqueue(queue,
 	image_yscale : target_object == obj_player1 ? target_object.yscale * target_object.scale_ys : target_object.image_yscale,
 	grounded : target_object.grounded
 });
-
-layer_4_index = (layer_4_index + 0.1) % sprite_get_number(spr_cosmicclone_layer4);
-for (var i = 0; i < array_length(layers); i++)
-	layer_offsets[i] = layer_offsets[i] + (i * .1) % 64;

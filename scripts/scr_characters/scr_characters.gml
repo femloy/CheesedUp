@@ -41,9 +41,9 @@ function check_sugarychar()
 	}
 	return false;
 }
-function scr_characters(skinchoice)
+function scr_characters(type)
 {
-	if skinchoice
+	if type == 1
 	{
 		characters = [];
 		var add_character = function(char, spr_idle, spr_palette, color_index, mixing_color, default_palette = 0, color_count = noone)
@@ -63,6 +63,14 @@ function scr_characters(skinchoice)
 					pattern_color_array: scr_color_array(char)
 				});
 			}
+		}
+	}
+	else if type == 2
+	{
+		characters = {};
+		var add_character = function(char, spr_idle, spr_palette, color_index)
+		{
+			characters[$ char] = { spr_palette: spr_palette, paletteselect: color_index };
 		}
 	}
 	else
@@ -86,6 +94,7 @@ function scr_characters(skinchoice)
 		add_character("SP", spr_playerSP_idle, spr_pizzypalette, 1, 3, 1);
 		//add_character("SN", spr_pizzano_idle, spr_pizzanopalette, 1, 5);
 	}
+	
 	//if BO_NOISE
 	//	add_character("BN", spr_playerBN_idle, spr_bopalette, 1, 5);
 	

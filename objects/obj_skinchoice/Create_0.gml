@@ -61,6 +61,7 @@ function DresserPalette() constructor
 	mix_color = c_black;
 	mix_prefix = "";
 	unlock_desc = lstr("dresser_sandbox");
+	mixable = false;
 	
 	set_entry = function(entry)
 	{
@@ -143,6 +144,7 @@ function add_palette(palette, lang_entry = undefined)
 		{
 			self.palette = 12;
 			self.texture = palette;
+			self.mixable = true;
 		}
 		else
 			self.palette = palette;
@@ -468,8 +470,11 @@ draw_skin_palette = function(_x, _y, _color, _alpha)
 
 player_draw = function(charx, chary, sel_char, pal, sel_mix)
 {
+	var wd = 256, ht = 256;
+	var xx = wd / 2, yy = ht / 2;
+	
 	if !surface_exists(player_surface)
-		player_surface = surface_create(256, 256);
+		player_surface = surface_create(wd, ht);
 	
 	surface_set_target(player_surface);
 	draw_clear_alpha(c_white, 0);
@@ -507,20 +512,22 @@ player_draw = function(charx, chary, sel_char, pal, sel_mix)
 				characters[sel_char].spr_idle = spr_player_petah;
 		}
 		
-		if pal != noone or submenu == 1
+		if check_skin(SKIN.cosmic, undefined, undefined, pal.texture)
+			draw_cosmic_clone(characters[sel_char].spr_idle, image_index, xx, yy, 1, 1, 0, c_white, 1);
+		else if pal != noone or submenu == 1
 		{
 			shader_set(global.Pal_Shader);
 			if pal.texture != noone
 				pattern_set(characters[sel_char].pattern_color_array, characters[sel_char].spr_idle, image_index, 1, 1, pal.texture);
 			pal_swap_set(characters[sel_char].spr_palette, sel_mix > 0 ? mixables[sel_mix].palette : pal.palette, false);
 			
-			draw_sprite(characters[sel_char].spr_idle, image_index, 128, 128);
+			draw_sprite(characters[sel_char].spr_idle, image_index, xx, yy);
 			
 			pattern_reset();
 			pal_swap_reset();
 		}
 		else
-			draw_sprite_ext(characters[sel_char].spr_idle, 0, 128, 128, 1, 1, 0, c_black, 1);
+			draw_sprite_ext(characters[sel_char].spr_idle, 0, xx, yy, 1, 1, 0, c_black, 1);
 	}
 	surface_reset_target();
 	toggle_alphafix(false);
@@ -698,17 +705,9 @@ draw = function(curve)
 					
 					// special skins
 					var special_icon = -1;
-					for(var j = 0; j < SKIN.enum_size; j++)
-					{
-						if j == SKIN.n_paper
-							continue;
-						if check_skin(j, characters[sel.char].char, array[i].palette)
-						{
-							special_icon = j;
-							break;
-						}
-					}
-				
+					if check_skin(SKIN.p_peter, characters[sel.char].char, array[i].palette)
+						special_icon = 0;
+					
 					// draw it
 					if flashpal[0] != i
 					{

@@ -329,7 +329,7 @@ function ratmount_dotaunt()
 		if (!supercharged || !key_up)
 		{
 			scr_create_parryhitbox();
-			if global.palettetexture == spr_pattern_supreme
+			if check_skin(SKIN.supreme)
 				sound_play_3d("event:/modded/sfx/instinct", x, y);
 			else
 				sound_play_3d("event:/sfx/pep/taunt", x, y);

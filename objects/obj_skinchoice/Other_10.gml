@@ -275,6 +275,7 @@ if global.sandbox
 	add_palette(spr_pattern_marble); // beebawp
 	add_palette(spr_pattern_time); // beebawp
 	add_palette(spr_pattern_arrows); // beebawp
+	add_palette(spr_pattern_cosmic).mixable = false; // ameliako
 }
 
 // sugary

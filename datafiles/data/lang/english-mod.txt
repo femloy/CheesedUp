@@ -1067,6 +1067,8 @@ pattern_time = "Clock In"
 pattern_timeD = "Pick up the pace, fatass!"
 pattern_arrows = "Mixed Directions"
 pattern_arrowsD = "Which right is right?"
+pattern_cosmic = "Cosmic"
+pattern_cosmicD = "Be your own shadow."
 
 pattern_trans = "Transgender"
 pattern_transD = "What country is this, and why do all the cute people come from there?"

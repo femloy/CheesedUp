@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"draw_cosmic_clone",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"draw_cosmic_clone",
+  "parent":{
+    "name":"Together",
+    "path":"folders/Scripts/Together.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

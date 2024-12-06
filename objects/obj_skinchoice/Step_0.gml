@@ -139,7 +139,7 @@ if submenu == 0
 					}
 					
 					// reset palette mix
-					if !mixing && palettes[sel.pal].texture == noone
+					if !mixing && !palettes[sel.pal].mixable
 					{
 						sel.mix = 0;
 						mixing = false;
@@ -209,7 +209,7 @@ if submenu == 0
 	#endregion
 	#region palette mixing
 
-	if array_length(mixables) > 1 && sel.side == 1 && palettes[sel.pal].texture != noone
+	if array_length(mixables) > 1 && sel.side == 1 && palettes[sel.pal].mixable
 	{
 		create_transformation_tip(lstr("mixingtip"), "palettemixing",,true);
 		if key_attack2

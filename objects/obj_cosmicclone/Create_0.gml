@@ -16,24 +16,6 @@ parried = false;
 
 init_collision();
 
-surf = -1;
-surf_size = [100, 100];
-color1 = shader_get_uniform(shd_mach3effect, "color1");
-color2 = shader_get_uniform(shd_mach3effect, "color2");
-layer_4_index = 0;
-layers = [
-	spr_cosmicclone_layer1,
-	spr_cosmicclone_layer2,
-	spr_cosmicclone_layer3,
-	spr_cosmicclone_layer4
-]
-layer_offsets = [
-	0,
-	0,
-	0,
-	0
-];
-
 // queue size
 distance = 40;
 

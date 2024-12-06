@@ -61,8 +61,12 @@ for (var i = 0; i < ds_list_size(global.afterimage_list); i++)
 				else if instance_exists(playerid)
 				{
 					shd = true;
-					
-					if playerid.object_index == obj_vigibullet
+					if playerid.object_index == obj_player1 && check_skin(SKIN.cosmic, playerid.character, playerid.paletteselect)
+					{
+						b = #280040;
+						draw_set_flash(b);
+					}
+					else if playerid.object_index == obj_vigibullet
 						pal_swap_player_palette();
 					else if playerid.usepalette
 					{
@@ -122,7 +126,7 @@ for (var i = 0; i < ds_list_size(global.afterimage_list); i++)
 				}
 			}
 			draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, image_angle, b, a);
-			if (shd)
+			if shd
 			{
 				cuspal_reset();
 				pattern_reset();

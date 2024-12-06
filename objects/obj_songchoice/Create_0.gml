@@ -170,8 +170,8 @@ with new JukeboxSection("Pizza Tower")
 
 with new JukeboxSection("Together")
 {
-	add_multisong("event:/soundtest/pto/serverlist", "Server List - Loy",
-		"event:/soundtest/pto/serverlistchristmas", "Server List (Jolly) - Loy",
+	add_multisong("event:/soundtest/pto/serverlist", "Welcome Back - Loy",
+		"event:/soundtest/pto/serverlistchristmas", "Welcome Back (Jolly) - Loy",
 		"event:/soundtest/pto/serverlistold", "Server List (OLD) - PaperKitty");
 	
 	add_song("event:/soundtest/pto/saturdays", "Saturdays - Loy");

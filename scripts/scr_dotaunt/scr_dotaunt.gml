@@ -57,7 +57,7 @@ function scr_dotaunt()
 			else
 			{
 				scr_create_parryhitbox();
-				if global.palettetexture == spr_pattern_supreme
+				if check_skin(SKIN.supreme)
 					sound_play_3d("event:/modded/sfx/instinct", x, y);
 				else if SUGARY_SPIRE && character == "SP"
 					sound_play_3d("event:/modded/sfx/pizzytaunt", x, y);

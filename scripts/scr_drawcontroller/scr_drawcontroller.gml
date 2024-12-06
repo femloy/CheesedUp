@@ -259,51 +259,53 @@ function draw_player()
 	var xs = xscale * scale_xs * col_scale;
 	var ys = yscale * scale_ys * col_scale;
 	
-	var b = get_dark(image_blend, obj_drawcontroller.use_dark);
-	if obj_drawcontroller.use_dark && SUGARY
-		draw_set_flash(b);
+	if check_skin(SKIN.cosmic)
+		draw_cosmic_clone(_sprite_index, _image_index, xx, yy, xs, ys, angle, c_white, image_alpha);
 	else
 	{
-		var pattern = global.palettetexture;
-		var ps = paletteselect;
-		var spr = spr_palette;
-		
-		if character != "N" && room == boss_noise && (sprite_index == spr_playerN_doiseintro1 || sprite_index == spr_playerN_doiseintro2 || sprite_index == spr_playerN_doiseintro3)
+		var b = get_dark(image_blend, obj_drawcontroller.use_dark);
+		if obj_drawcontroller.use_dark && SUGARY
+			draw_set_flash(b);
+		else
 		{
-			var info = get_noise_palette_info();
-			pattern = info.patterntexture;
-			ps = info.paletteselect;
-			spr = info.spr_palette;
-		}
-		pattern_set(global.Base_Pattern_Color, _sprite_index, _image_index, xs, ys, pattern);
+			var pattern = global.palettetexture;
+			var ps = paletteselect;
+			var spr = spr_palette;
 		
-		if isgustavo && spr != spr_peppalette
-		{
-			var info = get_pep_palette_info();
-			spr = info.spr_palette;
-			ps = info.paletteselect;
-			pattern = info.patterntexture;
-		}
-		else if custom_palette
-			cuspal_set(custom_palette_array);
+			if character != "N" && room == boss_noise && (sprite_index == spr_playerN_doiseintro1 || sprite_index == spr_playerN_doiseintro2 || sprite_index == spr_playerN_doiseintro3)
+			{
+				var info = get_noise_palette_info();
+				pattern = info.patterntexture;
+				ps = info.paletteselect;
+				spr = info.spr_palette;
+			}
+			pattern_set(global.Base_Pattern_Color, _sprite_index, _image_index, xs, ys, pattern);
 		
-		pal_swap_supernoise();
-		pal_swap_set(spr, ps % sprite_get_width(spr), false);
-	}
-	
-	draw_sprite_ext(_sprite_index, _image_index, xx, yy, xs, ys, angle, b, image_alpha);
-	cuspal_reset();
-	
-	if (global.noisejetpack && (character != "N" || noisepizzapepper))
-	{
-		pal_swap_set(spr_palette, 2, false);
+			if isgustavo && spr != spr_peppalette
+			{
+				var info = get_pep_palette_info();
+				spr = info.spr_palette;
+				ps = info.paletteselect;
+				pattern = info.patterntexture;
+			}
+		
+			pal_swap_supernoise();
+			pal_swap_set(spr, ps % sprite_get_width(spr), false);
+		}
 		draw_sprite_ext(_sprite_index, _image_index, xx, yy, xs, ys, angle, b, image_alpha);
+	
+		if global.noisejetpack && (character != "N" || noisepizzapepper)
+		{
+			pal_swap_set(spr_palette, 2, false);
+			draw_sprite_ext(_sprite_index, _image_index, xx, yy, xs, ys, angle, b, image_alpha);
+		}
 	}
 	draw_superslam_enemy();
-	if (global.pistol)
+	
+	if global.pistol
 	{
 		pal_swap_set(spr_peppalette, 0, false);
-		if (pistolcharge >= 4)
+		if pistolcharge >= 4
 			draw_sprite(spr_revolvercharge, pistolcharge, xx, yy - 70);
 	}
 	
