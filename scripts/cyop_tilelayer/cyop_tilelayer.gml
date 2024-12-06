@@ -32,7 +32,8 @@ function cyop_tilelayer(_x, _y, _tilelayer, _depth, _secret) constructor
 			}
 				
 			// figure out sprite
-			this.size = 32;
+			if this[$ "size"] == undefined
+				this.size = 32;
 			if is_string(this.tileset)
 			{
 				var sprite = global.cyop_base_sprites[? this.tileset];

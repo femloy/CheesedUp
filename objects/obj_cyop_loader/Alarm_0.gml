@@ -17,7 +17,16 @@ with obj_persistent
 
 with obj_player
 {
-	if targetDoor != "HUB"
+	var dont = true;
+	with obj_doorX
+	{
+		if targetDoor == other.targetDoor
+		{
+			dont = false;
+			break;
+		}
+	}
+	if !dont
 		x = -1000;
 }
 
