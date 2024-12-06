@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_event_position",
+  "%Name":"net_event_position",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_event_position",
+  "name":"net_event_position",
   "parent":{
     "name":"Player",
     "path":"folders/Online/Events/Incoming/Player.yy",
