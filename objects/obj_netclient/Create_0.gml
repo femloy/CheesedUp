@@ -7,7 +7,8 @@ requests = ds_map_create();
 players = {};
 last_room = room;
 
-online_delay = 2;
+delay_timer = 0;
+online_delay = 1;
 heart_rate = 1;
 heart_delay = 4;
 disconnected = false;
@@ -24,6 +25,5 @@ if connection == noone
 	instance_destroy();
 
 alarm[0] = floor(heart_rate * room_speed);
-alarm[2] = online_delay;
 
 pending_room_change = false;

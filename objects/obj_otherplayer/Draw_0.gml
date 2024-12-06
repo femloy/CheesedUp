@@ -13,7 +13,7 @@ pal_swap_reset();
 
 draw_set_align(fa_center, fa_bottom);
 draw_set_alpha(global.online_name_opacity);
-draw_set_colour(c_white);
+draw_set_colour(net_parse_css_color(name_color));
 draw_set_font(global.font_small);
 draw_text(xx, yy - sprite_height / 2 + sprite_get_bbox_top(sprite), global.online_streamer_mode ? $"Player {uuid}" : username);
 

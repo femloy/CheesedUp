@@ -1,11 +1,12 @@
 function net_event_player_data(packet)
 {
-	//trace("My balls: ", packet);
 	online
 	{
 		var player = players[$ packet.uuid];
 		if player != undefined {
-			net_copy(packet, player);
+			array_push(player.packets, packet);
+			if array_length(player.packets) > player.packet_max
+				array_shift(player.packets);
 			player.packets_this_frame++;
 		}
 	}

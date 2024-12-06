@@ -1,6 +1,6 @@
 function net_update_dresser()
 {
-	online net_send_tcp("player_data", 
+	online net_send_tcp("dresser", 
 	{
 		paletteselect: paletteselect,
 		palettetexture: global.palettetexture,

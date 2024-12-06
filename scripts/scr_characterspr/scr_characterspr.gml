@@ -1614,4 +1614,6 @@ function scr_characterspr()
 	#endregion
 	
 	//player_paletteselect[player_index] = paletteselect;
+	
+	net_update_dresser();
 }

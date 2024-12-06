@@ -1,4 +1,4 @@
-function scr_event_position(packet)
+function net_event_position(packet)
 {
 	if packet.room != undefined
 		room_goto(packet.room);

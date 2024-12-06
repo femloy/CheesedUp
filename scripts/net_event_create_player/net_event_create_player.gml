@@ -12,7 +12,5 @@ function net_event_create_player(packet)
 		var p = instance_create(packet.x, packet.y, obj_otherplayer);
 		players[$ packet.uuid] = p;
 		net_copy(packet, p);
-		
-		trace("Created client ", players);
 	}
 }
