@@ -54,17 +54,23 @@ function draw_cosmic_clone(sprite, image, x, y, xscale, yscale, rot, blend, alph
 	
 	surface_reset_target();
 	
-	var x_pos = x - xo;
-	var y_pos = y - yo;
-	
-	draw_set_mask_texture(x_pos, y_pos, surface_get_texture(surf));
+	var xx = x - xo, yy = y - yo;
+	draw_set_mask_texture(xx, yy, surface_get_texture(surf));
 	
 	for(var i = 0; i < array_length(layers); i++)
 	{
-		var x_offset = -CAMX * (i * .05);
-		var y_offset = -CAMY * (i * .05);
-		draw_sprite_stretched(layers[i], cosmic_index, floor(x_pos + (-cosmic_scroll[i] + x_offset) % 64), y_pos + (y_offset % 64), surf_size[0], surf_size[1]);
+		var wd = sprite_get_width(layers[i]), ht = sprite_get_height(layers[i]);
+		
+		var x_offset = -cosmic_scroll[i] + (-CAMX * (i * .05)) % wd;
+		var y_offset = (-CAMY * (i * .05)) % ht;
+		
+		if x_offset > 0
+			x_offset -= wd;
+		if y_offset > 0
+			y_offset -= ht;
+		
+		draw_sprite_stretched(layers[i], cosmic_index, floor(xx + x_offset), floor(yy + y_offset), surf_size[0] - x_offset, surf_size[1] - y_offset);
 	}
-	
+	 
 	draw_reset_clip();
 }

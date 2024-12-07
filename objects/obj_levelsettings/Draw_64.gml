@@ -195,10 +195,11 @@ switch menu
 		
 		// icons
 		var xx = SCREEN_WIDTH / 2, yy = screen_center_y(340);
-		var sect = 7;
+		var sect = 8;
 		var sep = 360 / sect;
 		var center = round(sect / 2);
 		
+		reset_blendmode();
 		for(var i = 1; i <= sect; i++)
 		{
 			var this = i - center + sel;
@@ -250,7 +251,7 @@ switch menu
 		else
 			opt = options_array[sel];
 		var text_x = SCREEN_WIDTH / 2;
-		var text_y = screen_center_y(430);
+		var text_y = screen_center_y(425);
 		
 		draw_set_colour(c_white);
 		tdp_draw_set_font(lang_get_font("bigfont"));
@@ -272,7 +273,7 @@ switch menu
 		tdp_draw_set_font(lang_get_font("font_small"));
 		draw_set_color(c_white);
 		//draw_text_ext_color(2 + text_x, 2 + text_y + 40, opt.desc, 18, 600, 0, 0, 0, 0, 0.25 * alpha);
-		tdp_draw_text_ext(text_x, text_y + 40, opt.desc, 18, 600);
+		tdp_draw_text_ext(text_x, text_y + 45, opt.desc, 18, 600);
 		draw_set_alpha(1);
 		
 		tdp_text_commit();

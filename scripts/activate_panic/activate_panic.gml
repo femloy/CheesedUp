@@ -157,7 +157,7 @@ function activate_panic(instapanic = false, debris = noone)
 	}
 	
 	// if a hard modifier is on, extend timer a lot.
-	if (MOD.Pacifist) or (MOD.NoToppings)
+	if MOD.Pacifist or MOD.NoToppings
 		global.fill *= 3;
 	
 	with obj_tv

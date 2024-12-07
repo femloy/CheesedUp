@@ -63,7 +63,7 @@ for (var i = 0; i < ds_list_size(global.afterimage_list); i++)
 					shd = true;
 					if playerid.object_index == obj_player1 && check_skin(SKIN.cosmic, playerid.character, playerid.paletteselect)
 					{
-						b = #280040;
+						b = COSMIC_PURPLE;
 						draw_set_flash(b);
 					}
 					else if playerid.object_index == obj_vigibullet

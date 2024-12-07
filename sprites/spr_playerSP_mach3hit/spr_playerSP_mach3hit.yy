@@ -19,6 +19,7 @@
     {"$GMSpriteFrame":"","%Name":"05aa4802-5cd2-45f3-9ed1-1ee564fa9143","name":"05aa4802-5cd2-45f3-9ed1-1ee564fa9143","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"","%Name":"3556a3f5-19a0-448d-8324-2397b39889ae","name":"3556a3f5-19a0-448d-8324-2397b39889ae","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"","%Name":"c1cee497-8cdf-45a7-94b2-882a2c19d685","name":"c1cee497-8cdf-45a7-94b2-882a2c19d685","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"583b809e-6a1a-41f3-901a-d2ae4ca639c3","name":"583b809e-6a1a-41f3-901a-d2ae4ca639c3","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
@@ -29,7 +30,7 @@
   ],
   "name":"spr_playerSP_mach3hit",
   "nineSlice":null,
-  "origin":4,
+  "origin":9,
   "parent":{
     "name":"Pizzelle",
     "path":"folders/Sprites/Player/Pizzelle.yy",
@@ -55,7 +56,7 @@
     },
     "eventStubScript":null,
     "eventToFunction":{},
-    "length":7.0,
+    "length":8.0,
     "lockOrigin":false,
     "moments":{
       "$KeyframeStore<MomentsEventKeyframe>":"",
@@ -95,11 +96,14 @@
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"c1cee497-8cdf-45a7-94b2-882a2c19d685","path":"sprites/spr_playerSP_mach3hit/spr_playerSP_mach3hit.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"28a1d50c-d456-411d-a5bb-5c05e4b87697","IsCreationKey":false,"Key":6.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"583b809e-6a1a-41f3-901a-d2ae4ca639c3","path":"sprites/spr_playerSP_mach3hit/spr_playerSP_mach3hit.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"ad8ada2a-e72c-453f-9375-4d24213cf0da","IsCreationKey":false,"Key":7.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,
     "volume":1.0,
-    "xorigin":78,
+    "xorigin":83,
     "yorigin":50,
   },
   "swatchColours":null,

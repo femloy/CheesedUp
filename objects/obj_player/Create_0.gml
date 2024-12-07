@@ -1,40 +1,119 @@
-if (instance_number(object_index) > 1)
+// super failsafe bros
+if instance_number(object_index) > 1
 {
-	if DEBUG repeat 20
-		trace("!! NEW obj_player INSTANCE !! room: ", room);
+	if DEBUG
+		show_message(concat("!! NEW obj_player INSTANCE !! room: ", room));
 	else
 	{
 		instance_destroy();
 		exit;
 	}
 }
-global.current_level = -4;
 
+// sounds
 soundinit = false;
+player_sounds =
+[
+	{ e: "snd_voiceok" },
+	{ e: "snd_voicetransfo" },
+	{ e: "snd_voiceouttransfo" },
+	{ e: "snd_voicehurt" },
+	{ s: global, e: "snd_fireass" },
+	{ s: global, e: "snd_parry" },
+	{ s: global, e: "snd_supertaunt" },
+	{ s: global, e: "snd_rank" },
+	{ e: "snd_uppercut" },
+	{ s: global, e: "snd_spaceship" },
+	{ e: "machsnd" },
+	{ e: "jumpsnd" },
+	
+	{ e: "machrollsnd" },
+	{ e: "weeniebumpsnd" },
+	{ e: "knightslidesnd" },
+	{ e: "gravecorpsesnd" },
+	{ e: "barrelslidesnd" },
+	{ e: "barrelbumpsnd" },
+	{ e: "waterslidesnd" },
+	{ e: "mrpinchsnd" },
+	{ e: "hamkuffsnd" },
+	{ e: "ratmountmachsnd" },
+	{ e: "ratmountballsnd" },
+	{ e: "ratmountgroundpoundsnd" },
+	{ e: "ratmountpunchsnd" },
+	{ e: "cheeseballsnd" },
+	{ e: "boxxedspinsnd" },
+	{ e: "pizzapeppersnd" },
+	{ e: "ratdeflatesnd" },
+	{ e: "ghostspeedsnd" },
+	{ e: "freefallsnd" },
+	{ e: "rollgetupsnd" },
+	{ e: "tumblesnd" },
+	{ e: "snd_dive" },
+	{ e: "snd_crouchslide" },
+	{ e: "snd_dashpad" },
+	{ e: "animatronicsnd" },
+	{ e: "burpsnd" },
+	{ e: "superjumpsnd" },
+	{ e: "suplexdashsnd" },
+	{ e: "gallopingsnd" },
+	{ e: "snd_jetpackloop" },
+	{ e: "sjumpcancelsnd" },
+	
+	{ e: "snd_wallbounce" },
+	{ e: "snd_divebomb" },
+	{ e: "snd_airspin" },
+	{ e: "snd_noisemach" },
+	{ e: "snd_noiseSjump" },
+	{ e: "snd_noiseSjumprelease" },
+	{ e: "snd_noisedoublejump" },
+	{ e: "snd_noisepunch" }, 
+	{ e: "snd_minijetpack" },
+	{ e: "snd_noisefiremouth" },
+	{ e: "snd_rushdown" },
+	{ e: "snd_rushdownhit" },
+	{ e: "snd_minigun" },
+	{ e: "snd_ghostdash" },
+	{ e: "snd_bossdeathN" },
+	{ e: "snd_noiseanimatronic" },
+	
+	{ s: global, e: "snd_secretwall" },
+	{ e: "flippingsnd" },
+	{ e: "spindashsnd" },
+	{ e: "snd_vigislide" },
+	{ e: "breakdancesnd" },
+	{ e: "breakdancecancelsnd" },
+	{ e: "tauntsnd" },
+];
+
+function player_list_sounds()
+{
+	var p = [];
+	for(var i = 0; i < array_length(player_sounds); i++)
+	{
+		var this = player_sounds[i];
+		var s = this[$ "s"] ?? self;
+		array_push(p, s[$ this.e]);
+	}
+	return p;
+}
+
 function player_destroy_sounds()
 {
 	if !soundinit exit;
-	
-	destroy_sounds([
-		snd_voiceok,
-		snd_voicetransfo,
-		snd_voiceouttransfo,
-		snd_voicehurt,
-		global.snd_fireass,
-		global.snd_parry,
-		global.snd_supertaunt,
-		global.snd_rank,
-		snd_uppercut,
-		global.snd_spaceship,
-		machsnd,
-		jumpsnd,
-	]);
+	destroy_sounds(player_list_sounds());
 }
 
 function player_init_sounds()
 {
 	soundinit = true;
 	
+	// taunt
+	if SUGARY_SPIRE && character == "SP"
+		tauntsnd = fmod_event_create_instance("event:/modded/sfx/pizzytaunt");
+	else
+		tauntsnd = fmod_event_create_instance("event:/sfx/pep/taunt");
+	
+	// general
 	if character == "V"
 	{
 		machsnd = fmod_event_create_instance("event:/modded/playerV/mach");
@@ -148,8 +227,91 @@ function player_init_sounds()
 		global.snd_spaceship = fmod_event_create_instance("event:/sfx/misc/spaceship");
 	else
 		global.snd_spaceship = fmod_event_create_instance("event:/sfx/misc/spaceshiptemp");
+    
+    // normal sounds
+    machrollsnd = fmod_event_create_instance("event:/sfx/pep/machroll");
+    weeniebumpsnd = fmod_event_create_instance("event:/sfx/weenie/bump");
+    knightslidesnd = fmod_event_create_instance("event:/sfx/knight/slide");
+    gravecorpsesnd = fmod_event_create_instance("event:/sfx/pep/gravecorpse");
+    barrelslidesnd = fmod_event_create_instance("event:/sfx/barrel/slide");
+    barrelbumpsnd = fmod_event_create_instance("event:/sfx/barrel/bump");
+    waterslidesnd = fmod_event_create_instance("event:/sfx/misc/waterslide");
+    mrpinchsnd = fmod_event_create_instance("event:/sfx/misc/mrpinch");
+    hamkuffsnd = fmod_event_create_instance("event:/sfx/misc/hamkuff");
+    ratmountmachsnd = fmod_event_create_instance("event:/sfx/ratmount/mach");
+    ratmountballsnd = fmod_event_create_instance("event:/sfx/ratmount/ball");
+    ratmountgroundpoundsnd = fmod_event_create_instance("event:/sfx/ratmount/groundpound");
+    ratmountpunchsnd = fmod_event_create_instance("event:/sfx/ratmount/punch");
+    cheeseballsnd = fmod_event_create_instance("event:/sfx/cheese/ball");
+    boxxedspinsnd = fmod_event_create_instance("event:/sfx/boxxed/spin");
+    pizzapeppersnd = fmod_event_create_instance("event:/sfx/pep/pizzapepper");
+    ratdeflatesnd = fmod_event_create_instance("event:/sfx/rat/deflate");
+    ghostspeedsnd = fmod_event_create_instance("event:/sfx/pep/ghostspeed");
+    freefallsnd = fmod_event_create_instance("event:/sfx/pep/freefall");
+    rollgetupsnd = fmod_event_create_instance("event:/sfx/pep/rollgetup");
+    tumblesnd = fmod_event_create_instance("event:/sfx/pep/tumble");
+    snd_dive = fmod_event_create_instance("event:/sfx/pep/dive");
+    snd_crouchslide = fmod_event_create_instance("event:/sfx/pep/crouchslide");
+    snd_dashpad = fmod_event_create_instance("event:/sfx/misc/dashpad");
+    animatronicsnd = fmod_event_create_instance("event:/sfx/pep/animatronic");
+    burpsnd = fmod_event_create_instance("event:/sfx/enemies/burp");
+    superjumpsnd = fmod_event_create_instance("event:/sfx/pep/superjump");
+    suplexdashsnd = fmod_event_create_instance("event:/sfx/pep/suplexdash");
+    gallopingsnd = fmod_event_create_instance("event:/sfx/misc/galloping");
+    snd_jetpackloop = fmod_event_create_instance("event:/sfx/noise/jetpackloop");
+    sjumpcancelsnd = fmod_event_create_instance("event:/sfx/pep/superjumpcancel");
+    
+    snd_wallbounce = fmod_event_create_instance("event:/sfx/playerN/wallbounce");
+    snd_divebomb = fmod_event_create_instance("event:/sfx/playerN/divebomb");
+    snd_airspin = fmod_event_create_instance("event:/sfx/playerN/airspin");
+    snd_noisemach = fmod_event_create_instance("event:/sfx/playerN/mach");
+    snd_noiseSjump = fmod_event_create_instance("event:/sfx/playerN/superjump");
+    snd_noiseSjumprelease = fmod_event_create_instance("event:/sfx/playerN/superjumprelease");
+    snd_noisedoublejump = fmod_event_create_instance("event:/sfx/playerN/doublejump");
+    snd_noisepunch = fmod_event_create_instance("event:/sfx/playerN/punch");
+    snd_minijetpack = fmod_event_create_instance("event:/sfx/playerN/minijetpack");
+    snd_noisefiremouth = fmod_event_create_instance("event:/sfx/playerN/firemouthjump");
+    snd_rushdown = fmod_event_create_instance("event:/sfx/playerN/rushdownloop");
+    snd_rushdownhit = fmod_event_create_instance("event:/sfx/playerN/rushdownhit");
+    snd_minigun = fmod_event_create_instance("event:/sfx/playerN/minigunloop");
+    snd_ghostdash = fmod_event_create_instance("event:/sfx/playerN/ghostdash");
+    snd_bossdeathN = fmod_event_create_instance("event:/sfx/playerN/bossdeath");
+    snd_noiseanimatronic = fmod_event_create_instance("event:/Sfx/playerN/animatronic");
+    
+    // pto extra
+    global.snd_secretwall = fmod_event_create_instance("event:/modded/sfx/secretwall");
+    flippingsnd = fmod_event_create_instance("event:/modded/sfx/pizzyflip");
+    spindashsnd = fmod_event_create_instance("event:/modded/sfx/snick/spindashrev");
+    snd_vigislide = fmod_event_create_instance("event:/sfx/vigilante/slide");
+    breakdancesnd = fmod_event_create_instance("event:/sfx/misc/breakdance");
+    breakdancecancelsnd = fmod_event_create_instance("event:/modded/sfx/breakdancecancel");
 }
 
+global.snd_escaperumble = fmod_event_create_instance("event:/sfx/misc/escaperumble");
+global.snd_johndead = fmod_event_create_instance("event:/sfx/enemies/johndead");
+global.snd_fakesanta = fmod_event_create_instance("event:/sfx/enemies/fakesanta");
+global.snd_rankup = fmod_event_create_instance("event:/sfx/ui/rankup");
+global.snd_pizzafacemoving = fmod_event_create_instance("event:/sfx/pizzaface/moving");
+global.snd_rankdown = fmod_event_create_instance("event:/sfx/ui/rankdown");
+global.snd_breakblock = fmod_event_create_instance("event:/sfx/misc/breakblock");
+global.snd_bellcollect = fmod_event_create_instance("event:/sfx/misc/bellcollect");
+global.snd_cardflip = fmod_event_create_instance("event:/sfx/misc/cardflip");
+global.snd_explosion = fmod_event_create_instance("event:/sfx/misc/explosion");
+global.snd_cheesejump = fmod_event_create_instance("event:/sfx/pep/cheesejump");
+global.snd_ventilator = fmod_event_create_instance("event:/sfx/misc/ventilator");
+global.snd_trashjump1 = fmod_event_create_instance("event:/sfx/misc/trashjump1");
+global.snd_thunder = fmod_event_create_instance("event:/sfx/knight/thunder");
+global.snd_captaingoblinshoot = fmod_event_create_instance("event:/sfx/misc/captaingoblinshoot");
+global.snd_golfjingle = fmod_event_create_instance("event:/sfx/misc/golfjingle");
+global.snd_mrstickhat = fmod_event_create_instance("event:/sfx/misc/mrstickhat");
+global.snd_alarm = fmod_event_create_instance("event:/sfx/enemies/alarm");
+global.snd_alarm_baddieID = noone;
+global.snd_slidersfx = fmod_event_create_instance("event:/sfx/ui/slidersfx");
+global.snd_slidermusic = fmod_event_create_instance("event:/sfx/ui/slidermusic");
+global.snd_slidermaster = fmod_event_create_instance("event:/sfx/ui/slidersfxmaster");
+global.snd_bossbeaten = fmod_event_create_instance("event:/sfx/misc/bossbeaten");
+
+// init my ballsack
 init_collision();
 target_vsp = 0;
 target_hsp = 0;
@@ -228,79 +390,6 @@ tumbleintro = false;
 rocketsnd = -1;
 superjumpholdsnd = -1;
 superjumpprepsnd = -1;
-
-machrollsnd = fmod_event_create_instance("event:/sfx/pep/machroll");
-weeniebumpsnd = fmod_event_create_instance("event:/sfx/weenie/bump");
-knightslidesnd = fmod_event_create_instance("event:/sfx/knight/slide");
-gravecorpsesnd = fmod_event_create_instance("event:/sfx/pep/gravecorpse");
-barrelslidesnd = fmod_event_create_instance("event:/sfx/barrel/slide");
-barrelbumpsnd = fmod_event_create_instance("event:/sfx/barrel/bump");
-waterslidesnd = fmod_event_create_instance("event:/sfx/misc/waterslide");
-mrpinchsnd = fmod_event_create_instance("event:/sfx/misc/mrpinch");
-hamkuffsnd = fmod_event_create_instance("event:/sfx/misc/hamkuff");
-ratmountmachsnd = fmod_event_create_instance("event:/sfx/ratmount/mach");
-ratmountballsnd = fmod_event_create_instance("event:/sfx/ratmount/ball");
-ratmountgroundpoundsnd = fmod_event_create_instance("event:/sfx/ratmount/groundpound");
-ratmountpunchsnd = fmod_event_create_instance("event:/sfx/ratmount/punch");
-cheeseballsnd = fmod_event_create_instance("event:/sfx/cheese/ball");
-boxxedspinsnd = fmod_event_create_instance("event:/sfx/boxxed/spin");
-pizzapeppersnd = fmod_event_create_instance("event:/sfx/pep/pizzapepper");
-ratdeflatesnd = fmod_event_create_instance("event:/sfx/rat/deflate");
-ghostspeedsnd = fmod_event_create_instance("event:/sfx/pep/ghostspeed");
-freefallsnd = fmod_event_create_instance("event:/sfx/pep/freefall");
-rollgetupsnd = fmod_event_create_instance("event:/sfx/pep/rollgetup");
-tumblesnd = fmod_event_create_instance("event:/sfx/pep/tumble");
-snd_dive = fmod_event_create_instance("event:/sfx/pep/dive");
-snd_crouchslide = fmod_event_create_instance("event:/sfx/pep/crouchslide");
-snd_dashpad = fmod_event_create_instance("event:/sfx/misc/dashpad");
-animatronicsnd = fmod_event_create_instance("event:/sfx/pep/animatronic");
-burpsnd = fmod_event_create_instance("event:/sfx/enemies/burp");
-superjumpsnd = fmod_event_create_instance("event:/sfx/pep/superjump");
-suplexdashsnd = fmod_event_create_instance("event:/sfx/pep/suplexdash");
-gallopingsnd = fmod_event_create_instance("event:/sfx/misc/galloping");
-snd_jetpackloop = fmod_event_create_instance("event:/sfx/noise/jetpackloop");
-sjumpcancelsnd = fmod_event_create_instance("event:/sfx/pep/superjumpcancel");
-
-snd_wallbounce = fmod_event_create_instance("event:/sfx/playerN/wallbounce");
-snd_divebomb = fmod_event_create_instance("event:/sfx/playerN/divebomb");
-snd_airspin = fmod_event_create_instance("event:/sfx/playerN/airspin");
-snd_noisemach = fmod_event_create_instance("event:/sfx/playerN/mach");
-snd_noiseSjump = fmod_event_create_instance("event:/sfx/playerN/superjump");
-snd_noiseSjumprelease = fmod_event_create_instance("event:/sfx/playerN/superjumprelease");
-snd_noisedoublejump = fmod_event_create_instance("event:/sfx/playerN/doublejump");
-snd_noisepunch = fmod_event_create_instance("event:/sfx/playerN/punch");
-snd_minijetpack = fmod_event_create_instance("event:/sfx/playerN/minijetpack");
-snd_noisefiremouth = fmod_event_create_instance("event:/sfx/playerN/firemouthjump");
-snd_rushdown = fmod_event_create_instance("event:/sfx/playerN/rushdownloop");
-snd_rushdownhit = fmod_event_create_instance("event:/sfx/playerN/rushdownhit");
-snd_minigun = fmod_event_create_instance("event:/sfx/playerN/minigunloop");
-snd_ghostdash = fmod_event_create_instance("event:/sfx/playerN/ghostdash");
-snd_bossdeathN = fmod_event_create_instance("event:/sfx/playerN/bossdeath");
-snd_noiseanimatronic = fmod_event_create_instance("event:/Sfx/playerN/animatronic");
-
-global.snd_escaperumble = fmod_event_create_instance("event:/sfx/misc/escaperumble");
-global.snd_johndead = fmod_event_create_instance("event:/sfx/enemies/johndead");
-global.snd_fakesanta = fmod_event_create_instance("event:/sfx/enemies/fakesanta");
-global.snd_rankup = fmod_event_create_instance("event:/sfx/ui/rankup");
-global.snd_pizzafacemoving = fmod_event_create_instance("event:/sfx/pizzaface/moving");
-global.snd_rankdown = fmod_event_create_instance("event:/sfx/ui/rankdown");
-global.snd_breakblock = fmod_event_create_instance("event:/sfx/misc/breakblock");
-global.snd_bellcollect = fmod_event_create_instance("event:/sfx/misc/bellcollect");
-global.snd_cardflip = fmod_event_create_instance("event:/sfx/misc/cardflip");
-global.snd_explosion = fmod_event_create_instance("event:/sfx/misc/explosion");
-global.snd_cheesejump = fmod_event_create_instance("event:/sfx/pep/cheesejump");
-global.snd_ventilator = fmod_event_create_instance("event:/sfx/misc/ventilator");
-global.snd_trashjump1 = fmod_event_create_instance("event:/sfx/misc/trashjump1");
-global.snd_thunder = fmod_event_create_instance("event:/sfx/knight/thunder");
-global.snd_captaingoblinshoot = fmod_event_create_instance("event:/sfx/misc/captaingoblinshoot");
-global.snd_golfjingle = fmod_event_create_instance("event:/sfx/misc/golfjingle");
-global.snd_mrstickhat = fmod_event_create_instance("event:/sfx/misc/mrstickhat");
-global.snd_alarm = fmod_event_create_instance("event:/sfx/enemies/alarm");
-global.snd_alarm_baddieID = -4;
-global.snd_slidersfx = fmod_event_create_instance("event:/sfx/ui/slidersfx");
-global.snd_slidermusic = fmod_event_create_instance("event:/sfx/ui/slidermusic");
-global.snd_slidermaster = fmod_event_create_instance("event:/sfx/ui/slidersfxmaster");
-global.snd_bossbeaten = fmod_event_create_instance("event:/sfx/misc/bossbeaten");
 
 uncrouch = 0;
 parryID = noone;
@@ -827,13 +916,7 @@ tornadolandanim = 0;
 bombthrow = false;
 
 // pto new
-global.snd_secretwall = fmod_event_create_instance("event:/modded/sfx/secretwall");
-flippingsnd = fmod_event_create_instance("event:/modded/sfx/pizzyflip");
-spindashsnd = fmod_event_create_instance("event:/modded/sfx/snick/spindashrev");
-snd_vigislide = fmod_event_create_instance("event:/sfx/vigilante/slide");
-breakdancesnd = fmod_event_create_instance(sfx_breakdance);
-breakdancecancelsnd = fmod_event_create_instance("event:/modded/sfx/breakdancecancel");
-
+global.current_level = -4;
 secretportalID = noone;
 smoothx = 0;
 oldHallway = false;

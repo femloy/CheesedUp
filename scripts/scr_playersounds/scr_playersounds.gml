@@ -1,5 +1,6 @@
 function scr_playersounds()
 {
+	static did_cosmic = false;
 	with obj_player1
 	{
 		var noise_mach = character == "N" or character == "SP";
@@ -610,6 +611,33 @@ function scr_playersounds()
 		// breakdance
 		fmod_event_instance_set_3d_attributes(breakdancesnd, x, y);
 		fmod_event_instance_set_3d_attributes(breakdancecancelsnd, x, y);
+		
+		// cosmic
+		var pitch = noone;
+		if check_skin(SKIN.cosmic, character, paletteselect)
+		{
+			if global.time % 5 == 0 && visible
+			{
+				with instance_create(x + random_range(-50, 50), y + random_range(-50, 50), obj_keyeffect)
+					image_blend = random_cosmic_color();
+			}
+			
+			pitch = 1 + sin(current_time / 10) * .1;
+			did_cosmic = true;
+		}
+		else if did_cosmic
+		{
+			pitch = 1;
+			did_cosmic = false;
+		}
+		
+		if pitch != noone
+		{
+			array_foreach(player_list_sounds(), method({pitch: pitch}, function(value, index)
+			{
+				fmod_event_instance_set_pitch(value, pitch);
+			}));
+		}
 	}
 	
 	// dead doise sound

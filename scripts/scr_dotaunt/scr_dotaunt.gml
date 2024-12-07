@@ -57,14 +57,8 @@ function scr_dotaunt()
 			else
 			{
 				scr_create_parryhitbox();
-				if check_skin(SKIN.supreme)
-					sound_play_3d("event:/modded/sfx/instinct", x, y);
-				else if SUGARY_SPIRE && character == "SP"
-					sound_play_3d("event:/modded/sfx/pizzytaunt", x, y);
-				else if SUGARY_SPIRE && character == "SN"
-					sound_play_3d("event:/modded/sfx/pizzanotaunt", x, y);
-				else
-					sound_play_3d("event:/sfx/pep/taunt", x, y);
+				scr_dotauntsound();
+				
 				taunttimer = 20;
 				sprite_index = spr_taunt;
 				if character == "P" && !isgustavo && !REMIX
@@ -75,6 +69,16 @@ function scr_dotaunt()
 			with (instance_create(x, y, obj_taunteffect))
 				player = other.id;
 		}
+	}
+}
+function scr_dotauntsound()
+{
+	if check_skin(SKIN.supreme)
+		sound_play_3d("event:/modded/sfx/instinct", x, y);
+	else
+	{
+		sound_instance_move(tauntsnd, x, y);
+		fmod_event_instance_play(tauntsnd);
 	}
 }
 function scr_create_parryhitbox()

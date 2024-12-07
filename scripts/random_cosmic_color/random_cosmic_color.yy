@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"random_cosmic_color",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"random_cosmic_color",
+  "parent":{
+    "name":"Together",
+    "path":"folders/Scripts/Together.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

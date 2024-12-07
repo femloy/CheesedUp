@@ -139,7 +139,7 @@ function scr_tvdraw_old()
 	// frame
 	var tv_palette = global.tvcolor;
 	if tv_palette == 0
-		tv_palette = sugary ? 3 : 0;
+ 		tv_palette = sugary ? 4 : 0;
 	if (SUGARY_SPIRE && sugary) or tv_palette != 0
 	{
 		pal_swap_set(spr_tv_palette, tv_palette);

@@ -18,11 +18,7 @@ init_collision();
 
 // queue size
 distance = 40;
-
-random_color = function()
-{
-	return choose(#280040, #03205c, #000078);
-}
+random_color = random_cosmic_color;
 
 // sounds
 switch obj_player1.character

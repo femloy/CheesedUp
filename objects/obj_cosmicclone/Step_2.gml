@@ -1,5 +1,6 @@
 live_auto_call;
 
+var is_cosmic = !check_skin(SKIN.cosmic);
 if !MOD.CosmicClones or room == timesuproom
 {
 	instance_destroy();
@@ -27,9 +28,12 @@ var pitch = 1 + sin(current_time / 10) * .1;
 sound_instance_move(snd_voicehurt, x, y);
 sound_instance_move(snd_jump, x, y);
 
-fmod_event_instance_set_pitch(snd_voicehurt, pitch);
-fmod_event_instance_set_pitch(snd_jump, pitch);
-fmod_event_instance_set_pitch(snd_taunt, pitch * .9);
+if is_cosmic
+{
+	fmod_event_instance_set_pitch(snd_voicehurt, pitch);
+	fmod_event_instance_set_pitch(snd_jump, pitch);
+	fmod_event_instance_set_pitch(snd_taunt, pitch * .9);
+}
 
 var struct = noone;
 while ds_queue_size(queue) >= distance
@@ -192,7 +196,10 @@ if struct != noone
 	else if parried && array_contains(parry_sprites, sprite_previous, 0, infinity)
 	{
 		with instance_create(x, y, obj_parryeffect)
-			image_blend = other.random_color();
+		{
+			if is_cosmic
+				image_blend = other.random_color();
+		}
 	}
 	
 	if vsp >= 0 && y - yprevious < 0 && is_visible && !scr_solid(x, y + 1)
@@ -201,7 +208,10 @@ if struct != noone
 		if scr_solid(x, yprevious + 1)
 		{
 			with instance_create(x, yprevious, obj_highjumpcloud2)
-				image_blend = other.random_color();
+			{
+				if is_cosmic
+					image_blend = other.random_color();
+			}
 		}
 	}
 	vsp = y - yprevious;
@@ -212,12 +222,15 @@ if struct != noone
 		fmod_event_instance_play(snd_taunt);
 		
 		with instance_create(x, y, obj_baddietaunteffect)
-			image_blend = other.random_color();
+		{
+			if is_cosmic
+				image_blend = COSMIC_PURPLE;
+		}
 	}
 	sprite_previous = sprite_index;
 }
 
-if global.time % 5 == 0 or !is_visible
+if (global.time % 5 == 0 or !is_visible) && is_cosmic
 {
 	with instance_create(x + random_range(-50, 50), y + random_range(-50, 50), obj_keyeffect)
 		image_blend = other.random_color();

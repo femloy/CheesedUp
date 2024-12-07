@@ -71,7 +71,7 @@ function scr_tvdraw()
 	if room != strongcold_endscreen
 	{
 		// sugary tv background
-		if SUGARY_SPIRE && (SUGARY or (check_sugary() && instance_exists(obj_ghostcollectibles))) && global.hud == hudstyles.final
+		if SUGARY_SPIRE && (SUGARY or (check_sugary() && instance_exists(obj_ghostcollectibles)))
 		{
 			// secrets
 			var bgindex = tv_bg_index, bgcol = c_white;
@@ -159,7 +159,7 @@ function scr_tvdraw()
 			if SUGARY_SPIRE && sugary
 				tv_bg_sprite = spr_tv_bgfinalSP;
 			
-			if global.hud != hudstyles.final
+			if global.hud != hudstyles.final && !sugary
 			{
 				tv_bg_sprite = spr_tv_aprilbg;
 				
@@ -196,8 +196,22 @@ function scr_tvdraw()
 			draw_sprite_ext(spr, image_index, tv_x + collect_x, tv_y + collect_y + hud_posY, 1, 1, 0, c_white, alpha);
 		}
 		
+		// Fucking Sugary
+		if SUGARY_SPIRE
+		{
+			propeller_index += 0.35;
+			
+			// propeller
+			if sugary && targetspr != spr_tv_off && targetspr != spr_tv_open
+				draw_sprite_ext(spr_pizzytvpropeller, propeller_index, tv_x + collect_x, tv_y + collect_y + hud_posY, 1, 1, 0, c_white, alpha);
+			
+			// escape line
+			if sugary && PANIC
+				draw_sprite_ext(spr_tv_panicoverlaySP, propeller_index, tv_x + collect_x, tv_y + collect_y + hud_posY, 1, 1, 0, c_white, alpha);
+		}
+		
 		// static
-		if (state == states.tv_whitenoise)
+		if state == states.tv_whitenoise
 		{
 			pal_swap_set(spr_tv_palette, tv_palette, false);
 			
@@ -224,19 +238,9 @@ function scr_tvdraw()
 		}
 		pal_swap_reset();
 		
-		if SUGARY_SPIRE
-		{
-			// propeller
-			if sugary && targetspr != spr_tv_off && targetspr != spr_tv_open
-			{
-				propeller_index += 0.35;
-				draw_sprite_ext(spr_pizzytvpropeller, propeller_index, tv_x + collect_x, tv_y + collect_y + hud_posY, 1, 1, 0, c_white, alpha);
-			}
-		}
-		
 		// april combo
 		if global.hud == hudstyles.april
-			scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, 3);
+			scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, sugary ? 4 : 3, tv_palette);
 	}
 	
 	// bubble prompt

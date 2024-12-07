@@ -1,9 +1,10 @@
 function scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, style, tv_palette)
 {
-	static combo_shake = 0;
+	if live_call(tv_x, tv_y, collect_x, collect_y, style, tv_palette) return live_result;
+	
+	static combo_shake = 0, combo_prev = 0;
 	if REMIX
 	{
-		static combo_prev = 0;
 		if combo_prev != visualcombo
 		{
 			if combo_prev < visualcombo
@@ -15,13 +16,13 @@ function scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, style, tv_palette)
 	else
 		combo_shake = 0;
 	
+	var _perc = global.combotime / 60;
 	switch style
 	{
 		case 0: // PIZZA TOWER
 		case 2: // BO NOISE
 			var _cx = tv_x + combo_posX;
 			var _cy = tv_y + 117 + hud_posY + combo_posY;
-			var _perc = global.combotime / 60;
 			var _minX = _cx - 56;
 			var _maxX = _cx + 59;
 		
@@ -84,8 +85,7 @@ function scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, style, tv_palette)
 				var _cx = tv_x + combo_posX - 170 - 13;
 				var _cy = tv_y + 16 + 6 + hud_posY + combo_posY;
 				var _hy = hand_y;
-	
-				var _perc = global.combotime / 60;
+				
 				if global.combo <= 0
 				{
 					hand_x = Approach(hand_x, 80, 8);
@@ -146,12 +146,59 @@ function scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, style, tv_palette)
 				draw_sprite(spr_barpop, 0, barxx, baryy);
 				var sw = sprite_get_width(spr_barpop);
 				var sh = sprite_get_height(spr_barpop);
-				var b = (global.combotime / 55);
 				
 				var col = c_white;
 				if scr_can_p_rank()
 					col = #9850F8;
-				draw_sprite_part_ext(spr_barpop, 1, 0, 0, sw * b, sh, barxx, baryy, 1, 1, col, 1);
+				draw_sprite_part_ext(spr_barpop, 1, 0, 0, sw * _perc, sh, barxx, baryy, 1, 1, col, 1);
+			}
+			break;
+		
+		case 4: // DEMO 1 PIZZELLE
+			if SUGARY_SPIRE
+			{
+				static bar_x = 0, combo_fade = 0;
+				bar_x ??= 0;
+				combo_fade ??= 0;
+				
+				// bg
+				var tvx = round(tv_x + collect_x), tvy = round(tv_y + collect_y + hud_posY);
+				
+				combo_fade = Approach(combo_fade, global.combo != 0, global.combo != 0 ? 0.25 : 0.05);
+				draw_sprite_ext(spr_tv_comboSP_shadow, 0, tvx, tvy, 1, 1, 0, c_white, combo_fade);
+				
+				if global.combo != 0
+				{
+					draw_sprite_ext(spr_tv_comboSP, image_index, tvx, tvy, 1, 1, 0, c_white, alpha);
+				
+					var str = string(global.combo);
+				    if global.combo < 10
+				        str = concat("0", str);
+				
+				    draw_set_align(fa_center);
+				    draw_set_font(global.combofont);
+				    var num = string_length(str);
+				    var w = string_width(str) / num;
+				    for (var i = 0; i < num; i++)
+				    {
+				        var char = string_char_at(str, i + 1);
+				        var xx = (-string_width(str) / 2) + (i * w) + random_range(-combo_shake, combo_shake);
+				        var yy = (i * -4) + random_range(-combo_shake, combo_shake);
+				        draw_text(tvx + xx + 6, tvy + yy - 24, char);
+				    }
+					
+					// bar
+					var xx = round(tvx - 69), yy = round(tvy + 33), wd = 112, ht = 32;
+					draw_set_bounds(xx, yy, xx + wd * _perc, yy + ht);
+					draw_set_mask(xx, yy, spr_tv_comboSP_barpop, 1);
+					draw_sprite_tiled(spr_tv_comboSP_barpop2, 0, xx + bar_x, yy);
+					draw_set_bounds(xx, yy, xx + wd, yy + ht);
+					draw_sprite_ext(spr_tv_comboSP_barpop3, 0, xx + (wd * _perc), yy - 64, 1, 5, 0, c_white, 1);
+					draw_reset_clip();
+				
+					bar_x += (-0.5 + 0.45 * (global.combotimepause / 30));
+					draw_sprite_ext(spr_tv_comboSP_barpop, 0, xx, yy, 1, 1, 0, c_white, alpha);
+				}
 			}
 			break;
 	}

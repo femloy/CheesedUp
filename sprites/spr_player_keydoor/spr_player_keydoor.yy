@@ -53,8 +53,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"Modded",
-    "path":"folders/Sprites/Player/Peppino/Modded.yy",
+    "name":"Peppino",
+    "path":"folders/Sprites/Player/Peppino.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
