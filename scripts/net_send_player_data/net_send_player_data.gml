@@ -14,7 +14,8 @@ function net_send_player_data()
 			xscale: obj_player1.xscale,
 			yscale: obj_player1.yscale,
 		
-			state: obj_player1.state
+			state: obj_player1.state,
+			character: obj_player1.character,
 		});
 	}
 	else

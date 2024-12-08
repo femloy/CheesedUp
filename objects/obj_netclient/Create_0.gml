@@ -16,14 +16,14 @@ disconnected = false;
 paletteselect = 1;
 spr_palette = noone;
 
+name_color = "#FFFFFF";
 username = "Player";
+account = 0;
 admin = false;
 
 instance_create_unique(0, 0, obj_netchat);
 
 if connection == noone
 	instance_destroy();
-
-alarm[0] = floor(heart_rate * room_speed);
 
 pending_room_change = false;

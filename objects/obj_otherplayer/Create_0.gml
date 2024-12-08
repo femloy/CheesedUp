@@ -8,6 +8,7 @@ yscale = 1;
 palettetexture = noone;
 paletteselect = 1;
 spr_palette = spr_peppalette;
+character = "P";
 
 state_prev = states.normal;
 state = states.normal;

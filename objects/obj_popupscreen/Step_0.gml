@@ -28,14 +28,15 @@ if state == 1
 			}
 			break;
 		
-		// Reconnecting
+		// Reconnecting & Login
 		case 0:
+		case 1:
 			if callback_buffer <= 0 && is_method(on_open)
 			{
 				on_open();
 				on_open = noone;
 			}
-			if !instance_exists(obj_netclient) or !obj_netclient.disconnected
+			if !instance_exists(obj_netclient) or (type ? obj_netclient.account : !obj_netclient.disconnected)
 			{
 				sound_play("event:/modded/sfx/diagclose");
 				state = 2;

@@ -102,6 +102,47 @@ if t >= 1
 				}
 			}
 			break;
+		case 1:
+			if !instance_exists(obj_netclient)
+				break;
+		
+			draw_set_align(fa_center);
+		
+			draw_set_colour(c_white);
+			draw_set_font(lang_get_font("creditsfont"));
+		
+			var time = 1 - (obj_netclient.alarm[1] / (obj_netclient.heart_delay * room_speed));
+			draw_text(xx + 960 / 2, yy + 100, concat("Logging In", string_copy("...", 1, floor((time + 0.1) * 3))));
+			
+			draw_set_font(lfnt("font_small"));
+			draw_text(xx + 960 / 2, yy + 220, "Please log in using the Discord link opened in your browser.");
+				
+			if pto_button(xx + 960 / 2 - 250, yy + 380, 200, , true, , , "Cancel") == 2
+			{
+				sound_play("event:/modded/sfx/diagcancel");
+				state = 2;
+				
+				on_close = function()
+				{
+					instance_destroy(obj_netclient);
+					with obj_pause
+					{
+						hub = false;
+						instance_destroy(obj_cyop_loader);
+						
+						event_perform(ev_alarm, 3);
+						pause = false;
+						fadein = false;
+					}
+				}
+			}
+			
+			if pto_button(xx + 960 / 2 + 50, yy + 380, 200, , true, , , "Retry") == 2
+			{
+				sound_play("event:/modded/sfx/diagcancel");
+				url_open(obj_netclient.verify_url);
+			}
+			break;
 	}
 	if callback_buffer > 0
 		callback_buffer--;

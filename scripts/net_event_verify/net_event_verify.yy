@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"net_event_verify",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"net_event_verify",
+  "parent":{
+    "name":"Incoming",
+    "path":"folders/Online/Events/Incoming.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

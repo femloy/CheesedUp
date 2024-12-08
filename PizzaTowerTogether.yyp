@@ -3522,6 +3522,7 @@
     {"id":{"name":"net_event_kick","path":"scripts/net_event_kick/net_event_kick.yy",},},
     {"id":{"name":"net_event_player_data","path":"scripts/net_event_player_data/net_event_player_data.yy",},},
     {"id":{"name":"net_event_position","path":"scripts/net_event_position/net_event_position.yy",},},
+    {"id":{"name":"net_event_verify","path":"scripts/net_event_verify/net_event_verify.yy",},},
     {"id":{"name":"net_int_string","path":"scripts/net_int_string/net_int_string.yy",},},
     {"id":{"name":"net_intermediate","path":"scripts/net_intermediate/net_intermediate.yy",},},
     {"id":{"name":"net_log","path":"scripts/net_log/net_log.yy",},},
