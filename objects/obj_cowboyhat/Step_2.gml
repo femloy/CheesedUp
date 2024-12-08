@@ -9,20 +9,12 @@ if !instance_exists(playerid) or playerid.hat < 0
 var yo = 0, xscale = playerid.xscale;
 switch playerid.hat
 {
-	case HAT.cowboy: sprite_index = spr_cowboyhat; break;
-	case HAT.dunce:
-		sprite_index = spr_duncehat;
+	case HAT.dunce: case HAT.boobs:
 		xscale = MOD.Mirror ? -1 : 1;
 		break;
-	case HAT.crown: sprite_index = spr_crownhat; break;
-	case HAT.uwunya: sprite_index = spr_catearshat; break;
-	case HAT.dougdimmadome: sprite_index = spr_dougdimmadome; break;
-	case HAT.boobs:
-		sprite_index = spr_boobshat;
-		xscale = MOD.Mirror ? -1 : 1;
-		break;
-	case HAT.dunit: sprite_index = spr_dunithat; break;
 }
+
+sprite_index = scr_hat_sprites(playerid.hat);
 if prev != sprite_index
 {
 	with instance_create(x, y - 50 + yo, obj_genericpoofeffect)

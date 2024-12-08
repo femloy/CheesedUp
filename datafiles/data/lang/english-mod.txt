@@ -1084,3 +1084,14 @@ pattern_asexual = "Asexual"
 pattern_asexualD = "If you like hot sexy sex GET OUT!"
 pattern_pansexual = "Pansexual"
 pattern_pansexualD = "Not two, all of them."
+
+# ------
+# SHOP
+# ------
+shop_hat_cowboy = "The hat of rooters and tooters."
+shop_hat_dunce = "An accurate description. I mean, an INACCURATE one, of course!"
+shop_hat_golden = "Gold isn't cheap you know, pay up."
+shop_hat_uwunya = "Ughhhh..."
+shop_hat_dougdimmadome = "Owner of the Dimmsdale Dimmadome."
+shop_hat_boobs = "If you really wanna put it out there, go ahead."
+shop_hat_dunit = "Found it in a dumpster outside a movie studio."

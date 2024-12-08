@@ -1,3 +1,5 @@
+live_auto_call;
+
 palettes = [];
 mixables = [];
 

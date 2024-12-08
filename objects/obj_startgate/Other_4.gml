@@ -58,7 +58,7 @@ switch targetRoom
 if (targetRoom == boss_pepperman || targetRoom == boss_vigilante || targetRoom == boss_noise || targetRoom == boss_fakepep)
 	boss = true;
 
-if (object_index != obj_bossdoor && sprite_index != spr_snickchallengecomputer)
+if (object_index != obj_bossdoor && sprite_index != spr_gate_snickchallenge)
 {
 	var old_y = y;
 	if (scr_solid(x, y))

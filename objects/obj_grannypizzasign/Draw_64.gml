@@ -37,7 +37,10 @@ for (var i = scroll; i < min(array_length(levelarray), scroll + 5); i++)
 	var b = levelarray[i];
 	y1 = yy + 37;
 	xx = round(xx);
-	draw_sprite(extra_room ? spr_list6 : spr_list5, b.icon, xx, y1);
+	if instance_exists(obj_cyop_loader) && sprite_exists(b.icon)
+		draw_sprite(b.icon, 0, xx, y1);
+	else
+		draw_sprite(extra_room ? spr_list6 : spr_list5, b.icon, xx, y1);
 	y1 += 47;
 	
 	if b.rank

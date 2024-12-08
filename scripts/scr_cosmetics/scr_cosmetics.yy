@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_cosmetics",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_cosmetics",
+  "parent":{
+    "name":"Together",
+    "path":"folders/Scripts/Together.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

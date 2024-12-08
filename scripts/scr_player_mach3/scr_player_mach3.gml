@@ -319,7 +319,7 @@ function scr_player_mach3()
 			}
 		}
 		
-		if character == "MS" && input_buffer_slap > 0
+		if character == "MS" && scr_slapbuffercheck()
 			scr_stick_doattack();
 			
 		if character != "V" && character != "S" && character != "MS" && IT_FINAL

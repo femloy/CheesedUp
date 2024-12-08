@@ -1,2 +1,3 @@
-targetRoom = tower_extra;
+targetRoom = tower_basement;
 offload_arr = ["entrancegroup"];
+targetDoor = "C";

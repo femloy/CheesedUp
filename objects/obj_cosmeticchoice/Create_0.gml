@@ -125,32 +125,49 @@ draw = function(curve)
 charshift = [0, 0, 1, 1];
 handx = 0;
 
-function add_hat(hat, sprite, local)
+add_hat = function(hat, local, unlockable = true)
 {
-	array_push(hats, {hat: hat, sprite: sprite, name: lstr($"hat_{local}title"), desc: lstr($"hat_{local}")});
+	var s = 
+	{
+		hat: hat,
+		sprite: scr_hat_sprites(hat),
+		name: lstr($"hat_{local}title"),
+		desc: lstr($"hat_{local}"),
+		unlockable: unlockable
+	};
+	array_push(hats, s);
+	return s;
 }
-function add_pet(pet, sprite, local)
+add_pet = function(pet, local, unlockable = true)
 {
-	array_push(pets, {pet: pet, sprite: sprite, name: lstr($"pet_{local}title"), desc: lstr($"pet_{local}")});
+	var s =
+	{
+		pet: pet,
+		sprite: scr_pet_sprites(pet).spr_idle,
+		name: lstr($"pet_{local}title"),
+		desc: lstr($"pet_{local}"),
+		unlockable: unlockable
+	};
+	array_push(pets, s);
+	return s;
 }
 
 // hats
-add_hat(-1, spr_nocosmetic, "none");
-add_hat(HAT.cowboy, spr_cowboyhat, "cowboy");
-add_hat(HAT.dunce, spr_duncehat, "dunce");
-add_hat(HAT.crown, spr_crownhat, "golden");
-add_hat(HAT.uwunya, spr_catearshat, "uwunya");
-add_hat(HAT.dougdimmadome, spr_dougdimmadome, "dougdimmadome");
-add_hat(HAT.boobs, spr_boobshat, "boobs");
-add_hat(HAT.dunit, spr_dunithat, "dunit");
+add_hat(-1, "none", false);
+add_hat(HAT.cowboy, "cowboy", false);
+add_hat(HAT.dunce, "dunce");
+add_hat(HAT.crown, "golden");
+add_hat(HAT.uwunya, "uwunya");
+add_hat(HAT.dougdimmadome, "dougdimmadome");
+add_hat(HAT.boobs, "boobs");
+add_hat(HAT.dunit, "dunit");
 
 // pets
-add_pet(-1, spr_nocosmetic, "none");
-add_pet(PET.noiserat, spr_playerN_cheesedidle, "noiserat");
-add_pet(PET.berry, spr_petberry_idle, "berry");
-//add_pet(PET.boykiss, spr_petboykiss_idle, "boykiss");
-add_pet(PET.vivian, spr_petvivi_idle, "vivian");
-add_pet(PET.gooch, spr_petgooch_idle, "gooch");
+add_pet(-1, "none", false);
+add_pet(PET.noiserat, "noiserat");
+add_pet(PET.berry, "berry");
+add_pet(PET.vivian, "vivian");
+add_pet(PET.gooch, "gooch");
 
 // auto select
 for(var i = 0; i < array_length(hats); i++)

@@ -330,7 +330,7 @@ function state_player_jump()
 		shake_camera(10, 30 / room_speed);
 	}
 	
-	if character == "MS" && input_buffer_slap > 0
+	if character == "MS" && scr_slapbuffercheck()
 		scr_stick_doattack();
 	
 	if character != "V" && character != "S" && character != "MS"

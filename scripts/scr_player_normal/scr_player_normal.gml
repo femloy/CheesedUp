@@ -429,7 +429,7 @@ function state_player_normal()
 		state = states.jump;
 	}
 	
-	if character == "MS" && input_buffer_slap > 0
+	if character == "MS" && scr_slapbuffercheck()
 		scr_stick_doattack();
 	
 	if character != "V" && character != "S" && character != "MS"

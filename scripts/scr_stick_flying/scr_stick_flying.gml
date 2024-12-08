@@ -51,7 +51,7 @@ function scr_stick_flying()
 	}
 	*/
 	
-	if input_buffer_slap > 0
+	if scr_slapbuffercheck()
 		scr_stick_doattack();
 	
 	image_speed = 0.35;
@@ -171,7 +171,7 @@ function scr_stick_doattack()
 	if move != 0
 		xscale = move;
 	
-	input_buffer_slap = 0;
+	scr_resetslapbuffer();
 	if state != states.stick_flying
 		movespeed = 4; //abs(movespeed);
 	else
