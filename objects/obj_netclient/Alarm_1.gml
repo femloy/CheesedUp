@@ -30,6 +30,6 @@ var oncon = function()
 	players = {};
 
 	net_send_room_change();
-	net_update_dresser();
+	
 };
 wait_popup = popup_net_reconnect(method(self, recon), method(self, oncon));

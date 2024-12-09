@@ -2,7 +2,7 @@
 #macro SERVER_PORT 5060
 #macro CLIENT_PORT 5070
 
-#macro net_debug true
+#macro net_debug false
 #macro online if (instance_exists(obj_netclient) and os_is_network_connected() and obj_netclient.connection != noone) with (obj_netclient)
 
 global.builtins = ["id", "room", "sprite_width", "sprite_height"];

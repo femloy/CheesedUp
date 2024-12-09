@@ -8,8 +8,5 @@ switch state
 }
 state_prev = state;
 
-if x_prev != x
-	net_log($"{x_prev}->{x}");
-
 x_prev = x;
 y_prev = y;

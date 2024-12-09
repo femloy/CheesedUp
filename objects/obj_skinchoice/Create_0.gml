@@ -412,7 +412,7 @@ select = function()
 	}
 	anim_con = 2;
 	
-	net_update_dresser();
+	
 }
 postdraw = function(curve)
 {

@@ -303,7 +303,11 @@ switch state
 									exit;
 								}
 								
-								state = states.victory;
+                                // netclient title screen
+                                if !instance_exists(obj_netclient)
+                                    instance_create(0, 0, obj_netclient);
+                                
+								/*state = states.victory;
 								alarm[0] = 250;
 								
 								if game.character == "N"
@@ -315,7 +319,7 @@ switch state
 									sound_play("event:/sfx/ui/menuexplosions");
 								}
 								if game.character == "V"
-									alarm[3] = 1.85 * 60;
+									alarm[3] = 1.85 * 60;*/
 							}
 							
 							with obj_music

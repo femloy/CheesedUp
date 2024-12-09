@@ -79,7 +79,7 @@ if (room == hub_loadingscreen && state != 2)
 				gamesave_async_save();
 			}
 			
-			net_update_dresser();
+			
 		}
 		with (instance_create(x, y, obj_fadeout))
 		{

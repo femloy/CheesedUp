@@ -1616,5 +1616,5 @@ function scr_characterspr()
 	
 	//player_paletteselect[player_index] = paletteselect;
 	
-	net_update_dresser();
+	
 }

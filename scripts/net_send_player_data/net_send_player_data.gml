@@ -16,6 +16,10 @@ function net_send_player_data()
 		
 			state: obj_player1.state,
 			character: obj_player1.character,
+
+            paletteselect: obj_player1.paletteselect,
+            palettetexture: global.palettetexture,
+            spr_palette: obj_player1.spr_palette,
 		});
 	}
 	else
