@@ -1,5 +1,5 @@
 function net_event_verify(packet) {
-	url_open(packet.url);
+	net_url_open(packet.url);
     
 	obj_netclient.verify_url = packet.url;
     obj_netclient.alarm[0] = -1;

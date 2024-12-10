@@ -12,6 +12,7 @@ seen_warning = false;
 _room = noone;
 room_name = "";
 room_ind = -1;
+hash = "";
 
 global.cyop_sprites = ds_map_create();
 global.cyop_tiles = ds_map_create();

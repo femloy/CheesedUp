@@ -9,7 +9,7 @@ function net_send_room_change()
 		&& room != Johnresurrectionroom && Scootertransition && instance_exists(obj_player1)
 		{
 			net_send_tcp("room_change",
-			{
+            {
 				room: room,
 		
 				x: obj_player1.x,
@@ -17,6 +17,9 @@ function net_send_room_change()
 		
 				sprite: player_sprite(obj_player1),
 				xscale: image_xscale,
+
+                cyop: instance_exists(obj_cyop_loader),
+                hash: instance_exists(obj_cyop_loader) ? obj_cyop_loader.hash : "",
 			});
 		}
 		else	

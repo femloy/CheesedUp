@@ -11,3 +11,5 @@ global.leveltorestart = noone;
 global.leveltosave = noone;
 global.startgate = false;
 global.exitrank = false;
+
+instance_destroy(obj_netclient);

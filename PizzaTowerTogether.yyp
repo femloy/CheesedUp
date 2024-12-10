@@ -3531,6 +3531,7 @@
     {"id":{"name":"net_send_room_change","path":"scripts/net_send_room_change/net_send_room_change.yy",},},
     {"id":{"name":"net_tcp","path":"scripts/net_tcp/net_tcp.yy",},},
     {"id":{"name":"net_udp","path":"scripts/net_udp/net_udp.yy",},},
+    {"id":{"name":"net_url_open","path":"scripts/net_url_open/net_url_open.yy",},},
     {"id":{"name":"noise_aftimg_set_pal","path":"scripts/noise_aftimg_set_pal/noise_aftimg_set_pal.yy",},},
     {"id":{"name":"noise_aftimg_set_pattern","path":"scripts/noise_aftimg_set_pattern/noise_aftimg_set_pattern.yy",},},
     {"id":{"name":"object_get_depth","path":"scripts/object_get_depth/object_get_depth.yy",},},

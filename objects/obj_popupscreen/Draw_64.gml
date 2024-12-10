@@ -140,7 +140,7 @@ if t >= 1
 			if pto_button(xx + 960 / 2 + 50, yy + 380, 200, , true, , , "Retry") == 2
 			{
 				sound_play("event:/modded/sfx/diagcancel");
-				url_open(obj_netclient.verify_url);
+				net_url_open(obj_netclient.verify_url);
 			}
 			break;
 	}
