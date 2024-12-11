@@ -117,8 +117,8 @@
   "swatchColours":null,
   "swfPrecision":0.5,
   "textureGroupId":{
-    "name":"Default",
-    "path":"texturegroups/Default",
+    "name":"mod_sugaryspire",
+    "path":"texturegroups/mod_sugaryspire",
   },
   "type":0,
   "VTile":false,

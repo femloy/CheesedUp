@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_debugdraw",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_debugdraw",
+  "parent":{
+    "name":"HUD",
+    "path":"folders/Scripts/Together/HUD.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -2,7 +2,11 @@ draw_set_font(lang_get_font("bigfont"));
 draw_set_align(fa_center, fa_bottom);
 draw_set_color(c_white);
 
-if !hud_is_forcehidden()
+if global.hud == hudstyles.debug
+{
+	
+}
+else if !hud_is_forcehidden()
 {
 	if global.hud == hudstyles.old
 		scr_tvdraw_old();

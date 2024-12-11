@@ -42,7 +42,7 @@
   "origin":4,
   "parent":{
     "name":"Timer",
-    "path":"folders/Sprites/Together/Sugary Spire/Timer.yy",
+    "path":"folders/Sprites/Together/Sugary Spire/HUD/Timer.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

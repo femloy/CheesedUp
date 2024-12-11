@@ -1305,10 +1305,10 @@ with new ModSection("visual", 2)
 	
 		draw_simuplayer();
 	});
-
+	
 	#endregion
 	#region HUD
-
+	
 	var opt = add_option("hud", function(val)
 	{
 		var xx = width / 2;
@@ -1354,10 +1354,11 @@ with new ModSection("visual", 2)
 	opt.opts = [
 		["old", hudstyles.old],
 		["april", hudstyles.april],
-		["minimal", hudstyles.minimal],
 		["final", hudstyles.final],
+		["minimal", hudstyles.minimal],
+		["debug", hudstyles.debug],
 	]
-
+	
 	#endregion
 	#region TV COLOR
 	

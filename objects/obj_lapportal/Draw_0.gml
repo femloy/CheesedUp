@@ -11,6 +11,7 @@ else if sprite_index == spr_outline
 	draw_sprite_ext(sprite_index, image_index, x, y + Wave(-2, 2, 1, 5), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
 else
 {
+	draw_set_color(c_white);
 	draw_self();
 	
 	var xx = x, yy = y + Wave(-5, 5, 0.5, 5);

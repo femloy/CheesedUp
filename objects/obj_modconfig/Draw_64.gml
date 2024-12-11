@@ -222,7 +222,7 @@ if section.sel == -1
 }
 
 var title_y = 70 + min(back_hide_y, 20);
-var desc_y = 410;
+var desc_y = 440;
 
 var opt = options_array[section.sel];
 if opt.type == modconfig.preset
@@ -377,7 +377,7 @@ if drawer
 {
 	// roundrect background
 	var xx = right_x, wd = preview_width;
-	var yy = 260, ht = preview_height;
+	var yy = 260 + Wave(-2, 2, 3, 0), ht = preview_height;
 	
 	// DRAW IT
 	var condition = [true];
@@ -480,7 +480,7 @@ if drawer
 	// draw surface
 	if surface_exists(global.modsurf)
 	{
-		sprite_set_live(spr_modconfig_frame, true);
+		draw_sprite_ext(spr_modconfig_propeller, current_time / 50, 5 + xx, 5 + yy - ht / 2, 1, 1, 0, 0, 0.25 * alpha);
 		draw_sprite_ext(spr_modconfig_frame, 0, 5 + xx, 5 + yy - ht / 2, 1, 1, 0, 0, 0.25 * alpha);
 		
 		draw_surface_ext(global.modsurf, 5 + xx - wd / 2, 5 + yy - ht / 2, 1, 1, 0, 0, 0.25 * alpha);
@@ -488,6 +488,7 @@ if drawer
 			gpu_set_blendmode_ext(bm_one, bm_inv_src_alpha);
 		draw_surface_ext(global.modsurf, xx - wd / 2, yy - ht / 2, 1, 1, 0, c_white, alpha);
 		
+		draw_sprite_ext(spr_modconfig_propeller, current_time / 50, xx, yy - ht / 2, 1, 1, 0, c_white, alpha);
 		draw_sprite_ext(spr_modconfig_frame, 0, xx, yy - ht / 2, 1, 1, 0, c_white, alpha);
 	}
 	

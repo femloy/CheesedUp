@@ -2,6 +2,8 @@ live_auto_call;
 
 if room == rank_room or !global.option_hud
 	exit;
+if global.hud == hudstyles.debug
+	exit;
 
 if global.timeattack
 {

@@ -24,7 +24,8 @@ enum hudstyles
 	final,
 	old,
 	april,
-	minimal
+	minimal,
+	debug
 }
 enum attackstyles
 {

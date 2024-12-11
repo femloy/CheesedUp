@@ -28,7 +28,7 @@
   "origin":1,
   "parent":{
     "name":"HUD",
-    "path":"folders/Sprites/Together/HUD.yy",
+    "path":"folders/Sprites/Together/Sugary Spire/HUD.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

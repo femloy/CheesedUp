@@ -221,6 +221,7 @@ mod_infinite = "INFINITE"
 mod_laphell = "LAP 3"
 mod_levelchanges = "LAP BLOCKS"
 mod_slowdown = "SLOW DOWN"
+mod_debug = "DEBUG"
 
 mod_old = "EARLY"
 mod_bnf = "JULY 2020"

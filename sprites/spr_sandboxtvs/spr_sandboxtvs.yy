@@ -27,8 +27,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"Together",
-    "path":"folders/Sprites/Together.yy",
+    "name":"Sandbox Menu",
+    "path":"folders/Sprites/Together/Sandbox Menu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
