@@ -13,7 +13,8 @@ custom_palette = array_create(64, 1);
 // selection
 show_unlock = false;
 noisetype = noisetype.base;
-sel = {
+sel =
+{
 	pal: 1,
 	char: 0,
 	mix: 0,
@@ -21,11 +22,12 @@ sel = {
 	page: 0,
 	mixpage: 0
 };
-sel_p2 = {
+sel_p2 =
+{
 	pal: 1,
 	char: 0,
 	mix: 0
-}
+};
 flashpal = [-1, 0];
 swapmode = false;
 
@@ -163,11 +165,12 @@ self.add_palette = add_palette;
 
 function add_custom_palette(name = "CUSTOM PALETTE", description = "", color_array = array_create(64, 1))
 {
-	var st = {
+	var st =
+	{
 		name: name,
 		description: description,
 		color_array: color_array
-	}
+	};
 	array_push(custom_palettes, st);
 	array_push(global.custom_palettes, st);
 }
@@ -394,25 +397,26 @@ select = function()
 			}
 			
 			// save
-			var pat = global.palettetexture;
-			if !sprite_exists(pat)
-				pat = "none";
-			else
-				pat = sprite_get_name(pat);
+			if character != "D"
+			{
+				var pat = global.palettetexture;
+				if !sprite_exists(pat)
+					pat = "none";
+				else
+					pat = sprite_get_name(pat);
 			
-			ini_open_from_string(obj_savesystem.ini_str);
-			ini_write_string("Game", "character", character);
-			ini_write_real("Game", "palette", paletteselect);
-			ini_write_string("Game", "palettetexture", pat);
-			obj_savesystem.ini_str = ini_close();
-			gamesave_async_save();
+				ini_open_from_string(obj_savesystem.ini_str);
+				ini_write_string("Game", "character", character);
+				ini_write_real("Game", "palette", paletteselect);
+				ini_write_string("Game", "palettetexture", pat);
+				obj_savesystem.ini_str = ini_close();
+				gamesave_async_save();
+			}
 		}
 		else
 			sound_play(sfx_back);
 	}
 	anim_con = 2;
-	
-	
 }
 postdraw = function(curve)
 {

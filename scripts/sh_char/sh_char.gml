@@ -37,7 +37,7 @@ function meta_char()
 		suggestions: [
 			function()
 			{
-				var array = ["P", "N", "V", "S", "G", "M", "F", "MS"];
+				var array = ["P", "N", "V", "S", "G", "M", "F", "MS", "D"];
 				if SUGARY_SPIRE
 					array_push(array, "SP", "SN");
 				if BO_NOISE

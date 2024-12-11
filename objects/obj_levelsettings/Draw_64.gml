@@ -195,7 +195,7 @@ switch menu
 		
 		// icons
 		var xx = SCREEN_WIDTH / 2, yy = screen_center_y(340);
-		var sect = 8;
+		var sect = 7;
 		var sep = 360 / sect;
 		var center = round(sect / 2);
 		

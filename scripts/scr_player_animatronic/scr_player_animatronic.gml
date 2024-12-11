@@ -3,7 +3,7 @@ function scr_player_animatronic()
 	sprite_index = spr_animatronic;
 	image_speed = 0.35;
 	
-	if character == "N"
+	if character == "N" or character == "D"
 	{
 		xscale = 1;
 		if !grounded
@@ -11,7 +11,7 @@ function scr_player_animatronic()
 		
 		if animatronic_buffer > 0
 			animatronic_buffer--;
-		else if grounded
+		else if grounded && character != "D"
 			instance_create_unique(x, y, obj_noiseanimatroniceffect);
 		
 		exit;

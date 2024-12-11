@@ -5060,6 +5060,7 @@
     {"id":{"name":"spr_candle_lit","path":"sprites/spr_candle_lit/spr_candle_lit.yy",},},
     {"id":{"name":"spr_candle_off","path":"sprites/spr_candle_off/spr_candle_off.yy",},},
     {"id":{"name":"spr_candle","path":"sprites/spr_candle/spr_candle.yy",},},
+    {"id":{"name":"spr_candlefontpalette","path":"sprites/spr_candlefontpalette/spr_candlefontpalette.yy",},},
     {"id":{"name":"spr_candleground","path":"sprites/spr_candleground/spr_candleground.yy",},},
     {"id":{"name":"spr_candy_idle","path":"sprites/spr_candy_idle/spr_candy_idle.yy",},},
     {"id":{"name":"spr_candy_intro","path":"sprites/spr_candy_intro/spr_candy_intro.yy",},},

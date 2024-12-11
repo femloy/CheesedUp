@@ -73,15 +73,11 @@ function get_velocity(a, b)
 {
 	return a / b;
 }
-function Wave(from, to, duration, offset, time = noone)
+function Wave(from, to, duration, offset, time = undefined)
 {
 	// STOLEN! https://forum.gamemaker.io/index.php?threads/wave-script.62475/
 	var a4 = (to - from) * 0.5;
-	
-	var t = scr_current_time();
-	if time != noone
-		t = time;
-	
+	var t = time ?? scr_current_time();
 	return from + a4 + (sin((((t * 0.001) + (duration * offset)) / duration) * (pi * 2)) * a4);
 }
 function distance_to_pos(x1, y1, x2, y2, threshold_x, threshold_y)

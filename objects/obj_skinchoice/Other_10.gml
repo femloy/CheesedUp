@@ -218,6 +218,11 @@ switch character
 			add_palette(17);
 		}
 		break;
+	
+	case "D":
+		add_palette(17);
+		sel.pal = 0;
+		exit;
 }
 
 if global.sandbox or character == "P"

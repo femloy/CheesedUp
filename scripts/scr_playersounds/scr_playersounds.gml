@@ -335,9 +335,9 @@ function scr_playersounds()
 			fmod_event_instance_stop(ratmountgroundpoundsnd, true);
 	
 		// animatronic creaking
-		if (state == states.animatronic)
+		if state == states.animatronic && character != "N" && character != "D"
 		{
-			if (!fmod_event_instance_is_playing(animatronicsnd))
+			if !fmod_event_instance_is_playing(animatronicsnd)
 				fmod_event_instance_play(animatronicsnd);
 			sound_instance_move(animatronicsnd, x + hsp, y + vsp);
 		}
@@ -641,35 +641,35 @@ function scr_playersounds()
 	}
 	
 	// dead doise sound
-	if (instance_exists(obj_noiseanimatroniceffect) && ((!instance_exists(obj_jumpscare)) || obj_jumpscare.sprite_index == spr_tvstatic))
+	if instance_exists(obj_noiseanimatroniceffect) && (!instance_exists(obj_jumpscare) || obj_jumpscare.sprite_index == spr_tvstatic)
 	{
-		if (!fmod_event_instance_is_playing(snd_noiseanimatronic))
-			fmod_event_instance_play(snd_noiseanimatronic)
-		sound_instance_move(snd_noiseanimatronic, obj_noiseanimatroniceffect.x, obj_noiseanimatroniceffect.ystart)
+		if !fmod_event_instance_is_playing(snd_noiseanimatronic)
+			fmod_event_instance_play(snd_noiseanimatronic);
+		sound_instance_move(snd_noiseanimatronic, obj_noiseanimatroniceffect.x, obj_noiseanimatroniceffect.ystart);
 	}
-	else if (state == states.animatronic && (!instance_exists(obj_noiseanimatroniceffect)) && ((!instance_exists(obj_jumpscare)) || obj_jumpscare.sprite_index == spr_tvstatic))
+	else if (character == "N" or character == "D") && state == states.animatronic && !instance_exists(obj_noiseanimatroniceffect) && (!instance_exists(obj_jumpscare) || obj_jumpscare.sprite_index == spr_tvstatic)
 	{
-		if (!fmod_event_instance_is_playing(snd_noiseanimatronic))
-			fmod_event_instance_play(snd_noiseanimatronic)
-		sound_instance_move(snd_noiseanimatronic, x, y)
+		if !fmod_event_instance_is_playing(snd_noiseanimatronic)
+			fmod_event_instance_play(snd_noiseanimatronic);
+		sound_instance_move(snd_noiseanimatronic, x, y);
 	}
 	else if instance_exists(obj_noiseboss)
 	{
-		if (obj_noiseboss.sprite_index == spr_doise_deadair || obj_noiseboss.sprite_index == spr_playerN_animatronic)
+		if obj_noiseboss.sprite_index == spr_doise_deadair || obj_noiseboss.sprite_index == spr_playerN_animatronic
 		{
-			if (!fmod_event_instance_is_playing(snd_noiseanimatronic))
-				fmod_event_instance_play(snd_noiseanimatronic)
-			sound_instance_move(snd_noiseanimatronic, obj_noiseboss.x, obj_noiseboss.y)
+			if !fmod_event_instance_is_playing(snd_noiseanimatronic)
+				fmod_event_instance_play(snd_noiseanimatronic);
+			sound_instance_move(snd_noiseanimatronic, obj_noiseboss.x, obj_noiseboss.y);
 		}
 		else
-			fmod_event_instance_stop(snd_noiseanimatronic, true)
+			fmod_event_instance_stop(snd_noiseanimatronic, true);
 	}
 	else if instance_exists(obj_doisedead)
 	{
-		if (!fmod_event_instance_is_playing(snd_noiseanimatronic))
-			fmod_event_instance_play(snd_noiseanimatronic)
-		sound_instance_move(snd_noiseanimatronic, obj_doisedead.x, obj_doisedead.y)
+		if !fmod_event_instance_is_playing(snd_noiseanimatronic)
+			fmod_event_instance_play(snd_noiseanimatronic);
+		sound_instance_move(snd_noiseanimatronic, obj_doisedead.x, obj_doisedead.y);
 	}
 	else
-		fmod_event_instance_stop(snd_noiseanimatronic, true)
+		fmod_event_instance_stop(snd_noiseanimatronic, true);
 }

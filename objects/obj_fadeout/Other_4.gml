@@ -1,3 +1,5 @@
+if !instance_exists(obj_player)
+	exit;
 if room == Titlescreen && obj_player.state == states.titlescreen
 {
 	with obj_player

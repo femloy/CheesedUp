@@ -132,6 +132,8 @@ global.wartimerfont1 = font_add_sprite_ext(spr_wartimer_font1, "1234567890", tru
 global.wartimerfont2 = font_add_sprite_ext(spr_wartimer_font2, "1234567890", true, 0);
 global.minimal_number = font_add_sprite_ext(spr_numbers_minimal, "0123456789:", false, 1);
 global.smallnumber_fnt = font_add_sprite_ext(spr_smallnumber, "1234567890-+", true, 0);
+global.lap3scorefont = font_add_sprite_ext(spr_lap3scorefont, "1234567890", false, 1);
+global.lap3lapfont = font_add_sprite_ext(spr_lap3lapfont, "1234567890", true, 0);
 
 if SUGARY_SPIRE
 {

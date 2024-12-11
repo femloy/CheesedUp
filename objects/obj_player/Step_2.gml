@@ -16,6 +16,15 @@ if global.collect != global.lastcollect
 		global.collect_player[player_index] += diff;
 }
 
+// doise
+if character == "D"
+{
+	state = states.animatronic;
+	spr_palette = spr_noisepalette;
+	spr_animatronic = spr_playerN_animatronic;
+	paletteselect = 17;
+}
+
 // slope rotation
 if MOD.Golf
 	exit;

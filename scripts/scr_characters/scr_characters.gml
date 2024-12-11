@@ -100,4 +100,7 @@ function scr_characters(type)
 	
 	//if DEBUG
 	//	add_character("M", spr_pepperman_idle, spr_peppalette, 1, 5);
+	
+	if (irandom(100) == 0 && type == 1) or (DEBUG && keyboard_check(ord("D")))
+		add_character("D", spr_playerN_idle, spr_noisepalette, 1, 7, 17);
 }

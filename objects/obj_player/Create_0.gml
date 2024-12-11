@@ -276,7 +276,7 @@ function player_init_sounds()
     snd_minigun = fmod_event_create_instance("event:/sfx/playerN/minigunloop");
     snd_ghostdash = fmod_event_create_instance("event:/sfx/playerN/ghostdash");
     snd_bossdeathN = fmod_event_create_instance("event:/sfx/playerN/bossdeath");
-    snd_noiseanimatronic = fmod_event_create_instance("event:/Sfx/playerN/animatronic");
+    snd_noiseanimatronic = fmod_event_create_instance("event:/sfx/playerN/animatronic");
     
     // pto extra
     global.snd_secretwall = fmod_event_create_instance("event:/modded/sfx/secretwall");
