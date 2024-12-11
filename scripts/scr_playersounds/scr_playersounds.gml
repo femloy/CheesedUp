@@ -3,7 +3,7 @@ function scr_playersounds()
 	static did_cosmic = false;
 	with obj_player1
 	{
-		var noise_mach = character == "N" or character == "SP";
+		var noise_mach = character == "N";
 		var noise_sjump = character == "N";
 		
 		// pizzaface moving
