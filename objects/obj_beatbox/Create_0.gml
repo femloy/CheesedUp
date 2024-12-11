@@ -16,6 +16,7 @@ switch playerid.character
 		break;
 	case "SP":
 		sprite_index = spr_beatboxSP;
+		fmod_event_instance_set_parameter(snd, "state", 3, true);
 		break;
 }
 

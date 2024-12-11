@@ -125,10 +125,10 @@ function player_init_sounds()
 	}
 	else if SUGARY_SPIRE && character == "SP"
 	{
-		machsnd = fmod_event_create_instance("event:/sfx/pep/mach");
+		machsnd = fmod_event_create_instance("event:/modded/sfx/pizzymach");
 		jumpsnd = fmod_event_create_instance("event:/sfx/pep/jump");
-		breaksnd = "event:/sfx/playerN/break";
-		machslidesnd = "event:/sfx/playerN/machslide";
+		breaksnd = "event:/sfx/pep/break";
+		machslidesnd = "event:/sfx/pep/machslideboost";
 		stepsnd = "event:/sfx/pep/step";
 		landsnd = "event:/sfx/pep/step";
 	}

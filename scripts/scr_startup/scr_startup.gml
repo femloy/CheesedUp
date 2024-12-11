@@ -222,15 +222,3 @@ global.secrettile_fade_intensity = 32; // dropoff intensity
 #macro heat_nerf (IT_FINAL ? 5 : 1) // divides the style gain by this
 #macro heat_lossdrop (IT_FINAL ? 0.1 : 0.05) // speed of global.style loss
 #macro heat_timedrop (IT_FINAL ? 0.5 : 0.25) // speed of global.heattime countdown
-
-// performance mode
-/*
-#macro shader_set shader_set
-#macro shader_set shader_set_fix
-function shader_set_fix(shader)
-{
-	if global.performance
-		exit;
-	shader_set(shader);
-}
-*/
