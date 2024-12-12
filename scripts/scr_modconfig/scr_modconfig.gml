@@ -181,7 +181,7 @@ function load_mod_config()
 	if instance_exists(obj_savesystem)
 		ini_open_from_string(obj_savesystem.ini_str_options);
 	else
-		ini_open(game_save_id + "saveData.ini");
+		ini_open(save_folder + "saveData.ini");
 	
 	// read or set
 	var preset_default = new ModPreset();

@@ -10,7 +10,7 @@ global.resolutions[aspectratio.undertale] = [
 	[640, 480], [800, 600], [1024, 768], [1152, 864], [1440, 1080]
 ];
 
-ini_open(game_save_id + "saveData.ini");
+ini_open(save_folder + "saveData.ini");
 
 if os_version < 655360 or os_type != os_windows // below windows 10
 {

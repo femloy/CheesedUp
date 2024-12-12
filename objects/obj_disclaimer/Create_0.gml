@@ -33,9 +33,9 @@ incubic = animcurve_get_channel(curve_menu, "incubic");
 req = -1;
 str = lstr("disclaimer_no_internet");
 
-if file_exists(game_save_id + "crash_log.txt") && (!PLAYTEST or global.disclaimer_section != 0)
+if file_exists(save_folder + "crash_log.txt") && (!PLAYTEST or global.disclaimer_section != 0)
 {
-	var file = buffer_load(game_save_id + "crash_log.txt");
+	var file = buffer_load(save_folder + "crash_log.txt");
 	try
 	{
 		crash_msg = json_parse(buffer_read(file, buffer_text), undefined, undefined);
@@ -50,7 +50,7 @@ if file_exists(game_save_id + "crash_log.txt") && (!PLAYTEST or global.disclaime
 	catch (e)
 	{
 		trace($"Failed to crash the log idiot {e}");
-		file_delete(game_save_id + "crash_log.txt");
+		file_delete(save_folder + "crash_log.txt");
 		room_restart();
 	}
 	buffer_delete(file);

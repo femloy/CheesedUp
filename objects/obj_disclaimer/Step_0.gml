@@ -33,7 +33,7 @@ else if menu == 0
 	else if state == 2
 	{
 		// check if firstboot
-		ini_open(game_save_id + "saveData.ini");
+		ini_open(save_folder + "saveData.ini");
 		var discl = (!ini_read_real("Modded", "disclaimer", false)/* or PLAYTEST*/) && global.disclaimer_section < 2;
 		ini_close();
 		
@@ -84,8 +84,8 @@ else if menu == 3 // crash handler
 	
 	if state == 2 && fade_alpha >= 3
 	{
-		file_delete(game_save_id + "crash_log.txt");
-		file_delete(game_save_id + "crash_img.png");
+		file_delete(save_folder + "crash_log.txt");
+		file_delete(save_folder + "crash_img.png");
 		
 		room_restart();
 		

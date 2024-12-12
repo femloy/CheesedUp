@@ -167,15 +167,15 @@ if REMIX
 			shader_set_uniform_f(brown_c, 248/c, 168/c, 48/c);
 			break;
 		case "p":
-			if !sugary_char
-			{
-				shader_set_uniform_f(black_c, 80/c, 0, 184/c);
-				shader_set_uniform_f(brown_c, 152/c, 80/c, 248/c);
-			}
-			else if SUGARY_SPIRE
+			if SUGARY_SPIRE && sugary_char
 			{
 				shader_set_uniform_f(black_c, 134/c, 40/c, 66/c);
 				shader_set_uniform_f(brown_c, 188/c, 108/c, 143/c);
+			}
+			else
+			{
+				shader_set_uniform_f(black_c, 80/c, 0, 184/c);
+				shader_set_uniform_f(brown_c, 152/c, 80/c, 248/c);
 			}
 			break;
 	}

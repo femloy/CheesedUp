@@ -16,7 +16,7 @@ function scr_initinput(open_savedata = true)
 	// switch code here for switching style?
 
 	if open_savedata
-		ini_open(game_save_id + "saveData.ini");
+		ini_open(save_folder + "saveData.ini");
 	
 	// menu
 	tdp_input_add(new tdp_input_key("menu_reset_binds", [new tdp_input_action(tdp_input.keyboard, vk_f1)]));

@@ -64,7 +64,7 @@ if DEBUG && keyboard_check_pressed(vk_f11)
 	{
 		gif_save(gif_image, $"screenshots/{DATE_TIME_NOW}.gif");
 		if !window_get_fullscreen()
-			launch_external($"explorer.exe \"{game_save_id}screenshots\\\"");
+			launch_external($"explorer.exe \"{save_folder}screenshots\\\"");
 	}
 }
 if gif_record

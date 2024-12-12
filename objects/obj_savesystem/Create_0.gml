@@ -16,7 +16,7 @@ state = 0;
 icon_index = 0;
 icon_max = sprite_get_number(spr_pizzaslice);
 
-ini_open(game_save_id + "saveData.ini");
+ini_open(save_folder + "saveData.ini");
 ini_str_options = ini_close();
 
 character = "P";

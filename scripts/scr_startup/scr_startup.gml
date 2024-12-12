@@ -59,7 +59,7 @@ exception_unhandled_handler
 		show_message($"The game crashed!\n\n---\n\n{e.longMessage}\n---\n\nstacktrace: {e.stacktrace}");
 		
 		// save it to a file
-		var _f = file_text_open_write(game_save_id + "crash_log.txt");
+		var _f = file_text_open_write(save_folder + "crash_log.txt");
 		file_text_write_string(_f, json_stringify(e));
 		file_text_close(_f);
 	}

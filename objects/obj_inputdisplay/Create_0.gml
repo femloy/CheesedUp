@@ -27,7 +27,7 @@ defaultkeys = function()
 }
 savekeys = function()
 {
-	file = file_text_open_write(game_save_id + "inputdisplay");
+	file = file_text_open_write(save_folder + "inputdisplay");
 	
 	file_text_write_real(file, version); // version
 	file_text_writeln(file);
@@ -56,7 +56,7 @@ savekeys = function()
 loadkeys = function()
 {
 	var reset = false;
-	file = file_text_open_read(game_save_id + "inputdisplay");
+	file = file_text_open_read(save_folder + "inputdisplay");
 	
 	var v = file_text_read_real(file);
 	if v != version
@@ -253,7 +253,7 @@ surf = -1;
 inputkeys = [];
 pos = [0, 0];
 
-if !file_exists(game_save_id + "inputdisplay")
+if !file_exists(save_folder + "inputdisplay")
 {
 	defaultkeys();
 	savekeys();

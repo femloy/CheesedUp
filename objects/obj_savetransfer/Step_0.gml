@@ -178,7 +178,7 @@ switch state
 			
 			with obj_savesystem
 			{
-				ini_open(game_save_id + "saveData.ini");
+				ini_open(save_folder + "saveData.ini");
 				toggle_gameframe(ini_read_real("Modded", "gameframe", true));
 				ini_write_real("Modded", "disclaimer", true);
 				ini_str_options = ini_close();

@@ -35,7 +35,7 @@ if state == 0 && dirty
 		showicon = true;
 		icon_alpha = 3;
 		buffer_write(savebuff, buffer_string, ini_str_options);
-		saveid = buffer_save_async(savebuff, game_save_id + "saveData.ini", 0, buffer_get_size(savebuff));
+		saveid = buffer_save_async(savebuff, save_folder + "saveData.ini", 0, buffer_get_size(savebuff));
 	}
 	else
 		dirty = false;

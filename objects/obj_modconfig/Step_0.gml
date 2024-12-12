@@ -378,10 +378,10 @@ switch state
 				}
 				
 				var c = 1;
-				while file_exists(concat(game_save_id, "presets/preset", c, ".json"))
+				while file_exists(concat(save_folder, "presets/preset", c, ".json"))
 					c++;
 				
-				var filename = concat(game_save_id, "presets/preset", c, ".json");
+				var filename = concat(save_folder, "presets/preset", c, ".json");
 				var file = file_text_open_write(filename);
 				
 				file_text_write_string(file, json_stringify(main_struct, true, undefined));

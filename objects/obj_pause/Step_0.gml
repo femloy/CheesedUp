@@ -380,7 +380,7 @@ if keyboard_check_pressed(vk_f12) && sprite_exists(screensprite) && pause
 {
 	sprite_save(screensprite, 0, $"screenshots/{DATE_TIME_NOW}.png");
 	if !window_get_fullscreen()
-		launch_external($"explorer.exe \"{game_save_id}screenshots\\\"");
+		launch_external($"explorer.exe \"{save_folder}screenshots\\\"");
 	
 	with create_transformation_tip(lstr("screenshottaken"),,,true)
 		depth = other.depth - 1;

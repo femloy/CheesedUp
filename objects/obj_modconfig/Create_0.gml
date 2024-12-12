@@ -1840,16 +1840,16 @@ with new ModSection("presets", 5)
 		{
 			directory_create("presets");
 			
-			var file = file_text_open_write(game_save_id + "presets/readme.txt");
+			var file = file_text_open_write(save_folder + "presets/readme.txt");
 			file_text_write_string(file, "No subfolders, silly.");
 			file_text_close(file);
 		}
 		else
 		{
-			var file = file_find_first(game_save_id + "presets/*.json", fa_none);
+			var file = file_find_first(save_folder + "presets/*.json", fa_none);
 			while file != ""
 			{
-				var buffer = buffer_load(game_save_id + "presets/" + file);
+				var buffer = buffer_load(save_folder + "presets/" + file);
 				var content = buffer_read(buffer, buffer_text);
 				buffer_delete(buffer);
 				
@@ -1914,7 +1914,7 @@ with new ModSection("presets", 5)
 		
 		var opt = add_button("openpreset", function()
 		{
-			launch_external($"explorer.exe \"{game_save_id}presets\\\"");
+			launch_external($"explorer.exe \"{save_folder}presets\\\"");
 		});
 		opt.allow_preset = false;
 	

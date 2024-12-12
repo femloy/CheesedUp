@@ -26,14 +26,14 @@ grab_text = false;
 saves = [];
 saves_current = [{
 	type: 0,
-	path: game_save_id + "saveData.ini"
+	path: save_folder + "saveData.ini"
 }];
 
 for(var i = 0; i < 3; i++)
 {
 	array_push(saves_current, {
 		type: 1,
-		path: concat(game_save_id, "saves/saveData", i + 1, ".ini"),
+		path: concat(save_folder, "saves/saveData", i + 1, ".ini"),
 		slot: i,
 		sandbox: true,
 		started: global.game[i].started,
@@ -43,7 +43,7 @@ for(var i = 0; i < 3; i++)
 {
 	array_push(saves_current, {
 		type: 1,
-		path: concat(game_save_id, "saves/saveData", i + 1, "S.ini"),
+		path: concat(save_folder, "saves/saveData", i + 1, "S.ini"),
 		slot: i,
 		sandbox: false,
 		started: global.story_game[i].started

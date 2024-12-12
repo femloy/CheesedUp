@@ -77,7 +77,7 @@ if t >= 1 or menu == 3
 						state = -2;
 						disclaimer.wait = 30;
 					
-						ini_open(game_save_id + "saveData.ini");
+						ini_open(save_folder + "saveData.ini");
 						ini_write_real("Modded", "disclaimer", true);
 						ini_close();
 					}

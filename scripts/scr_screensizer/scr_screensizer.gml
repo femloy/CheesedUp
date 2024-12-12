@@ -233,7 +233,7 @@ function screen_clear(color = c_black)
 }
 function get_options()
 {
-	ini_open(game_save_id + "saveData.ini");
+	ini_open(save_folder + "saveData.ini");
 	global.option_fullscreen = ini_read_real("Option", "fullscreen", false);
 	global.option_resolution = ini_read_real("Option", "resolution", 1);
 	global.option_master_volume = ini_read_real("Option", "master_volume", 1);
