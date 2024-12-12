@@ -673,7 +673,7 @@
     {"$GMFolder":"","%Name":"Unused","folderPath":"folders/Tile Sets/Unused.yy","name":"Unused","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "IncludedFiles":[
-    {"$GMIncludedFile":"","%Name":"credits.txt","CopyToMask":-1,"filePath":"datafiles","name":"credits.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"cu-credits.txt","CopyToMask":0,"filePath":"datafiles","name":"cu-credits.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"credits.txt","CopyToMask":-1,"filePath":"datafiles/data","name":"credits.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"english-mod.txt","CopyToMask":-1,"filePath":"datafiles/data/lang","name":"english-mod.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"english-ss.txt","ConfigValues":{
@@ -701,7 +701,11 @@
     {"$GMIncludedFile":"","%Name":"spr_deletefile.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_deletefile.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_draw.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_draw.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_duncehat.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_duncehat.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"spr_entrycard_title.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_entrycard_title.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"spr_entrycard_title.png","ConfigValues":{
+        "CheesedUp":{
+          "CopyToMask":"0",
+        },
+      },"CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_entrycard_title.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_finaljudgement_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_finaljudgement_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_finaljudgementN_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_finaljudgementN_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_gate_modifiers_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_gate_modifiers_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -720,7 +724,11 @@
     {"$GMIncludedFile":"","%Name":"spr_menusandbox_bg.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_menusandbox_bg.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_mild.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_mild.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_mildpop.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_mildpop.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"spr_molassescard_title.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_molassescard_title.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"spr_molassescard_title.png","ConfigValues":{
+        "CheesedUp":{
+          "CopyToMask":"0",
+        },
+      },"CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_molassescard_title.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_newclothes.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_newclothes.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_newclothesN.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_newclothesN.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_noise_introtext.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_noise_introtext.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -754,22 +762,54 @@
     {"$GMIncludedFile":"","%Name":"spr_rankND_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rankND_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_rankNS_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rankNS_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_rankS_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rankS_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"spr_rankSPA_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rankSPA_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"spr_rankSPB_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rankSPB_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"spr_rankSPC_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rankSPC_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"spr_rankSPD_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rankSPD_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"spr_rankSPS_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rankSPS_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"spr_rankSPA_text.png","ConfigValues":{
+        "CheesedUp":{
+          "CopyToMask":"0",
+        },
+      },"CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rankSPA_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"spr_rankSPB_text.png","ConfigValues":{
+        "CheesedUp":{
+          "CopyToMask":"0",
+        },
+      },"CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rankSPB_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"spr_rankSPC_text.png","ConfigValues":{
+        "CheesedUp":{
+          "CopyToMask":"0",
+        },
+      },"CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rankSPC_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"spr_rankSPD_text.png","ConfigValues":{
+        "CheesedUp":{
+          "CopyToMask":"0",
+        },
+      },"CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rankSPD_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"spr_rankSPS_text.png","ConfigValues":{
+        "CheesedUp":{
+          "CopyToMask":"0",
+        },
+      },"CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rankSPS_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_rankVA_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rankVA_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_rankVB_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rankVB_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_rankVC_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rankVC_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_rankVD_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rankVD_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_rankVS_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rankVS_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"spr_steamycard_title.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_steamycard_title.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"spr_sucrosecard_title.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_sucrosecard_title.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"spr_steamycard_title.png","ConfigValues":{
+        "CheesedUp":{
+          "CopyToMask":"0",
+        },
+      },"CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_steamycard_title.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"spr_sucrosecard_title.png","ConfigValues":{
+        "CheesedUp":{
+          "CopyToMask":"0",
+        },
+      },"CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_sucrosecard_title.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_swapmodepanel.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_swapmodepanel.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_swapmodeunlocked.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_swapmodeunlocked.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_technicaldifficulty_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_technicaldifficulty_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"spr_technicaldifficulty_textSP.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_technicaldifficulty_textSP.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"spr_technicaldifficulty_textSP.png","ConfigValues":{
+        "CheesedUp":{
+          "CopyToMask":"0",
+        },
+      },"CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_technicaldifficulty_textSP.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_timeattackwarning.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_timeattackwarning.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_title_ancientcheese.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_title_ancientcheese.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_title_bloodsaucedungeon.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_title_bloodsaucedungeon.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -917,6 +957,11 @@
     {"$GMIncludedFile":"","%Name":"std.ndll","CopyToMask":0,"filePath":"datafiles/GMLive","name":"std.ndll","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"zlib.ndll","CopyToMask":0,"filePath":"datafiles/GMLive","name":"zlib.ndll","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"Gameframe_License.txt","CopyToMask":-1,"filePath":"datafiles/licenses","name":"Gameframe_License.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"ptt-credits.txt","ConfigValues":{
+        "CheesedUp":{
+          "CopyToMask":"0",
+        },
+      },"CopyToMask":-1,"filePath":"datafiles","name":"ptt-credits.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
   ],
   "isEcma":false,
   "LibraryEmitters":[],
@@ -934,7 +979,6 @@
     {"id":{"name":"execute_program_pipe","path":"extensions/execute_program_pipe/execute_program_pipe.yy",},},
     {"id":{"name":"gameframe_native","path":"extensions/gameframe_native/gameframe_native.yy",},},
     {"id":{"name":"GMLive_fallback","path":"extensions/GMLive_fallback/GMLive_fallback.yy",},},
-    {"id":{"name":"shader_replace_simple","path":"extensions/shader_replace_simple/shader_replace_simple.yy",},},
     {"id":{"name":"fnt_caption","path":"fonts/fnt_caption/fnt_caption.yy",},},
     {"id":{"name":"fnt_dos","path":"fonts/fnt_dos/fnt_dos.yy",},},
     {"id":{"name":"font0","path":"fonts/font0/font0.yy",},},
@@ -4028,7 +4072,6 @@
     {"id":{"name":"sh_unlock_boss_key","path":"scripts/sh_unlock_boss_key/sh_unlock_boss_key.yy",},},
     {"id":{"name":"sh_unlock_toppins","path":"scripts/sh_unlock_toppins/sh_unlock_toppins.yy",},},
     {"id":{"name":"sh_var","path":"scripts/sh_var/sh_var.yy",},},
-    {"id":{"name":"shader_replace_simple_macros","path":"scripts/shader_replace_simple_macros/shader_replace_simple_macros.yy",},},
     {"id":{"name":"shake_camera","path":"scripts/shake_camera/shake_camera.yy",},},
     {"id":{"name":"slope_direction","path":"scripts/slope_direction/slope_direction.yy",},},
     {"id":{"name":"steam_deck","path":"scripts/steam_deck/steam_deck.yy",},},
@@ -6259,6 +6302,7 @@
     {"id":{"name":"spr_icepop_bubble","path":"sprites/spr_icepop_bubble/spr_icepop_bubble.yy",},},
     {"id":{"name":"spr_icepop_rope","path":"sprites/spr_icepop_rope/spr_icepop_rope.yy",},},
     {"id":{"name":"spr_icepopbg","path":"sprites/spr_icepopbg/spr_icepopbg.yy",},},
+    {"id":{"name":"spr_ico_cu","path":"sprites/spr_ico_cu/spr_ico_cu.yy",},},
     {"id":{"name":"spr_ico","path":"sprites/spr_ico/spr_ico.yy",},},
     {"id":{"name":"spr_icon_coneball","path":"sprites/spr_icon_coneball/spr_icon_coneball.yy",},},
     {"id":{"name":"spr_icon_cosmicclone","path":"sprites/spr_icon_cosmicclone/spr_icon_cosmicclone.yy",},},

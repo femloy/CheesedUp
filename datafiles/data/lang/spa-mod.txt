@@ -93,6 +93,7 @@ mod_title_parrypizzaface = "Pizzaface fácil"
 mod_title_lap3checkpoint = "Checkpoint"
 mod_title_chasekind = "Cambios del nivel"
 mod_title_keyalpha = "Opacidad"
+mod_title_tvcolor = "Color del HUD"
 
 mod_desc_gameplay = "Introduce mejoras en algunas partes del juego."
 mod_desc_experimental = "Habilita los comandos y otras cosas inacabadas."
@@ -139,6 +140,7 @@ mod_desc_chasekind_0 = "Buena suerte..."
 mod_desc_chasekind_1 = "Cambia el diseño de algunas salas en la vuelta 3, como ELM."
 mod_desc_chasekind_2 = "Realentiza a Pizzaface en algunas salas en la vuelta 3, como Lap Hell."
 mod_desc_keyalpha = "Opacidad de las teclas visuales."
+mod_desc_tvcolor = "Normal hace que dependa del personaje."
 
 mod_title_online_player_opacity = "Opacidad"
 mod_desc_online_player_opacity = "Opacidad de otros jugadores."
@@ -548,6 +550,7 @@ disclaimer_crash2 = "{u}[c] Continuar/"
 
 disclaimer_title = "{s}Aviso/"
 disclaimer = "Este mod es un parche GRATIS para Pizza Tower. Sólo se puede\ndescargar en nuestro Discord y GameBanana.\nSi lo has descargado de cualquier otra parte, denúncialo."
+disclaimer_cu = "Este mod sólo se puede descargar en nuestro Discord.\nSi lo has descargado de cualquier otra parte, denúncialo."
 disclaimer_link = "Entrar en Discord"
 disclaimer_continue = "Continuar"
 

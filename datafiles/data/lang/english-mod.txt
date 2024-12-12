@@ -320,6 +320,7 @@ mod_desc_suddendeath = "Getting hurt or hitting walls will kill you!"
 # ---------------
 caption_soundtest = "A rave in the Pizza Tower"
 caption_serious = "Pizza Tower"
+caption_towerextra = "Can't get enough Pizza Tower"
 caption_towerbasement = "The deepest layer of the Pizza Tower"
 caption_undefined = "undefined"
 caption_editormenu = "Select your Pizza Tower"
@@ -625,7 +626,7 @@ disclaimer_crash2 = "{u}Press [c] to play/"
 
 disclaimer_title = "{s}Disclaimer/"
 disclaimer = "This mod is a FREE patch for Pizza Tower, only shared through our\nDiscord and GameBanana. If you got it through any other means, please report it."
-disclaimer_cu = "This mod is a FREE patch for Pizza Tower, only shared through our\nDiscord. If you got it through any other means, please report it."
+disclaimer_cu = "This mod is a FREE standalone mod for Pizza Tower, only shared\nthrough our Discord. If you got it through any other means, please report it."
 disclaimer_link = "Discord Server"
 disclaimer_continue = "Continue"
 

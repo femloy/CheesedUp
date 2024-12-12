@@ -1,0 +1,44 @@
+PIZZA TOWER TOGETHER
+CREDITS (WIP)
+
+
+
+- Programmers -
+Lila
+James
+
+- Spriters -
+Red
+Tictorian
+Carrot
+
+- Music/SFX -
+Lila
+
+- Other Mod Content -
+Pizza Tower Online
+Pizza Tower: Cheesed Up!
+LAP HELL + Egg's Lap Mod
+Create Your Own Pizza
+Sugary Spire, unfortunately
+
+- Contributions -
+Red - Missing base game room names
+The Discord - Palettes, cosmetics and suggestions
+Ven - A couple of sprites
+TerrAvery - Translation spriting help
+
+- Spanish Translation -
+Lila - Translation
+TerrAvery - Spriting
+Red - Spriting
+
+- Extensions Used -
+GMLive - YellowAfterLife
+Gameframe - YellowAfterLife
+sprite_add_gif - YellowAfterLife
+url_encode - YellowAfterLife
+NekoPresence - nkrapivin
+
+- Special Thanks -
+You, for checking out the mod.
