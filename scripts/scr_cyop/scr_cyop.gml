@@ -357,13 +357,13 @@ function cyop_load_level_internal(ini, travel = false)
 			{
 				var _room = global.cyop_rooms[r][0];
 				room_assign(_room, custom_room_parent);
-				global.cyop_rooms[r] = [_room, json, md5_string_unicode(json_stringify(json))];
+				global.cyop_rooms[r] = [_room, json, "fix this"];
 			}
 			else
 			{
 				var _room = room_add();
 				room_assign(_room, custom_room_parent);
-				array_push(global.cyop_rooms, [_room, json, md5_string_unicode(json_stringify(json))]);
+				array_push(global.cyop_rooms, [_room, json, "fix this"]);
 			}
 			ds_map_add(global.cyop_room_map, room_name, r);
 			
