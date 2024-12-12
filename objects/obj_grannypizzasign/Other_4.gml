@@ -54,7 +54,8 @@ else
 			if quick_ini_read_string("", "Game", "finalrank", "none") != "none"
 				scr_add_grannypizzalevel("exit", 23, false, false, false, true);
 			break;
-	
+		
+		case tower_extra:
 		case tower_basement:
 			scr_add_grannypizzalevel("strongcold", 0);
 			//scr_add_grannypizzalevel("mansion", 13);

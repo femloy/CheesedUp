@@ -1,4 +1,4 @@
-live_auto_call;
+ptt {
 
 /*if x != xprev || y != yprev
 {
@@ -12,4 +12,6 @@ if lerp_time > lerp_time_max
 	lerp_time = 0;
 	xprev = x;
 	yprev = y;
+}
+
 }

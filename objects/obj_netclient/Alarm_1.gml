@@ -1,4 +1,6 @@
 /// @description Disconnect if heartbeat fails
+ptt {
+
 disconnected = true;
 
 with obj_netchat
@@ -33,3 +35,5 @@ var oncon = function()
 	
 };
 wait_popup = popup_net_reconnect(method(self, recon), method(self, oncon));
+
+}

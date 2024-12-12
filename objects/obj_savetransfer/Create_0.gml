@@ -57,7 +57,7 @@ if file_exists(path + "/saveData.ini")
 	var s = {
 		type: 0,
 		path: path + "/saveData.ini",
-		ptt: ini_section_exists("Modded"),
+		together: ini_section_exists("Modded"),
 		swapmode: ini_read_real("Game", "swapmode", false),
 		clothes: 0
 	};
@@ -86,7 +86,7 @@ draw_pt_save = function(save, xx, yy)
 			yy += 32 + 16;
 			
 			draw_set_font(lfnt("font_small"));
-			if this.ptt
+			if this.together
 			{
 				draw_text(xx, yy, lstr("transfer_ptt"));
 				yy += 20;

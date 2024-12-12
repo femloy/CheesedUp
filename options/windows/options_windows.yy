@@ -1,7 +1,16 @@
 {
   "$GMWindowsOptions":"",
   "%Name":"Windows",
-  "ConfigValues":{},
+  "ConfigValues":{
+    "CheesedUp":{
+      "option_windows_display_name":"Pizza Tower Cheesed Up",
+      "option_windows_version":"0.1.4.7",
+      "option_windows_description_info":"Leading Brand Cheese-like Software",
+      "option_windows_copyright_info":"Token Studios | (c) Tour de Pizza",
+      "option_windows_product_info":"Pizza Tower Cheesed Up",
+      "option_windows_icon":"icons/icon.ico",
+    },
+  },
   "name":"Windows",
   "option_windows_allow_fullscreen_switching":false,
   "option_windows_borderless":true,

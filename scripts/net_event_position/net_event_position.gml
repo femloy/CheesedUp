@@ -1,3 +1,5 @@
+ptt {
+
 function net_event_position(packet)
 {
 	if packet.room != undefined
@@ -5,4 +7,6 @@ function net_event_position(packet)
 
 	with obj-player1
 		net_copy(packet, self);
+}
+
 }

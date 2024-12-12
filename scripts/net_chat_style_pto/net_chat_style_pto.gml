@@ -1,3 +1,5 @@
+ptt {
+
 #macro CHAT_TEXT_ARGS draw_x, draw_y, char, char_pos, xscale, yscale, color, alpha
 #macro CHAT_ERROR_COLOR #ff7777
 
@@ -490,4 +492,6 @@ function chat_style_pto() constructor
 	{
 		return paused;
 	}
+}
+
 }

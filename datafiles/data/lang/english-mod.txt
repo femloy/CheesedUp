@@ -347,12 +347,14 @@ caption_cyop = "Create your own Pizza Tower"
 # -----------------------
 # ROOM NAMES (not levels)
 # -----------------------
+room_towerextra = "OUTERFLOOR"
 room_towerbasement = "ROCK BOTTOM"
 room_towermeta = "SLOP ZONE"
 room_freerun = "FREERUNNING"
 room_hubroomE = "ABANDONED LOBBY"
 room_towersage = "SAGE"
 room_towershop = "WEEKEND DELIGHT"
+room_towertaskextra = "OUTER ACHIEVEMENTS"
 room_towertaskbasement = "SUB ACHIEVEMENTS"
 
 # -----------------
@@ -623,6 +625,7 @@ disclaimer_crash2 = "{u}Press [c] to play/"
 
 disclaimer_title = "{s}Disclaimer/"
 disclaimer = "This mod is a FREE patch for Pizza Tower, only shared through our\nDiscord and GameBanana. If you got it through any other means, please report it."
+disclaimer_cu = "This mod is a FREE patch for Pizza Tower, only shared through our\nDiscord. If you got it through any other means, please report it."
 disclaimer_link = "Discord Server"
 disclaimer_continue = "Continue"
 

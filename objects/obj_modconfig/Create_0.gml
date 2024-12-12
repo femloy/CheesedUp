@@ -992,6 +992,7 @@ with new ModSection("gameplay", 0)
 	refresh_options();
 }
 
+if !CHEESED_UP
 with new ModSection("online", 4)
 {
 	icon_offset[0] = 20;
@@ -1221,7 +1222,8 @@ with new ModSection("visual", 2)
 			draw_sprite_ext(spr_discord_big_icon, 0, 8 + 16, 8 + 64, 1, 1, 0, c_white, 1);
 			
 			draw_set_font(lang_get_font("font_small"));
-			draw_text(8 + 146, 8 + 100, concat("Pizza Tower Together\n", lstr("mod_drpc3")));
+			var name = CHEESED_UP ? "Pizza Tower Cheesed Up" : "Pizza Tower Together";
+			draw_text(8 + 146, 8 + 100, concat(name, "\n", lstr("mod_drpc3")));
 		}
 		else
 		{

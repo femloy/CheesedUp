@@ -1,3 +1,5 @@
+ptt {
+
 function net_parse_css_color(text, error_string = false)
 {
 	if string_char_at(text, 1) == "#"
@@ -39,4 +41,6 @@ function net_parse_css_color(text, error_string = false)
 		return error_string ? "HEX code must be #RRGGBB" : c_white;
 	
 	return make_color_rgb(r, g, b);
+}
+
 }

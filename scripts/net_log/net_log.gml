@@ -1,3 +1,5 @@
+ptt {
+
 function net_alert(str) 
 {
 	show_message(str);
@@ -84,4 +86,6 @@ function net_log_buffer(_buf, _per_row = 16)
     buffer_write(_out, buffer_u8, 0);
     buffer_seek(_out, buffer_seek_start, 0);
     show_debug_message(buffer_read(_out, buffer_text));
+}
+
 }

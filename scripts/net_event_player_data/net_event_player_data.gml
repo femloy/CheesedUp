@@ -1,3 +1,5 @@
+ptt {
+
 function net_event_player_data(packet)
 {
 	online
@@ -10,4 +12,6 @@ function net_event_player_data(packet)
 			player.packets_this_frame++;
 		}
 	}
+}
+
 }

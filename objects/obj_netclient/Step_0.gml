@@ -1,3 +1,5 @@
+ptt {
+
 with obj_player1
 {
 	other.paletteselect = paletteselect;
@@ -16,4 +18,6 @@ if delay_timer == online_delay
 {
 	delay_timer = 0;
 	net_send_player_data();
+}
+
 }

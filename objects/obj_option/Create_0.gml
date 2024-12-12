@@ -74,7 +74,7 @@ add_option_press(categories, 3, "option_controls", function()
 	menu_goto(MENUS.controls);
 });
 
-if !global.goodmode && CHEESE
+if !global.goodmode
 {
 	add_option_press(categories, 4, "option_modded", function()
 	{

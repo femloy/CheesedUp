@@ -1,3 +1,5 @@
+ptt {
+
 function net_event_create_player(packet)
 {
 	//trace("Create: ", packet);
@@ -13,4 +15,6 @@ function net_event_create_player(packet)
 		players[$ packet.uuid] = p;
 		net_copy(packet, p);
 	}
+}
+
 }

@@ -1,3 +1,5 @@
+ptt {
+
 function net_send_player_data()
 {
 	if instance_exists(obj_player1) && obj_player1.state != states.titlescreen
@@ -29,4 +31,6 @@ function net_send_player_data()
 			paused: true
 		});
 	}
+}
+
 }

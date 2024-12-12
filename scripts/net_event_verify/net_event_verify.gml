@@ -1,3 +1,5 @@
+ptt {
+
 function net_event_verify(packet) {
 	net_url_open(packet.url);
     
@@ -20,22 +22,7 @@ function net_event_verify(packet) {
 		exit;
 	}
 
-	wait_popup = popup_net_login(noone, method(self, function() {
-        with obj_mainmenu
-        {
-            state = states.victory;
-            alarm[0] = 250;
-            
-            if game.character == "N"
-            {
-                alarm[3] = 100;
-                alarm[4] = 5;
-                timermax = 15;
-                explosionsnum = 1;
-                sound_play("event:/sfx/ui/menuexplosions");
-            }
-            if game.character == "V"
-                alarm[3] = 1.85 * 60;
-        }
-    }));
+	wait_popup = popup_net_login(noone, obj_netclient.verify_callback);
+}
+
 }

@@ -5,7 +5,9 @@
     {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
   "configs":{
-    "children":[],
+    "children":[
+      {"children":[],"name":"CheesedUp",},
+    ],
     "name":"Default",
   },
   "defaultScriptType":1,
@@ -674,7 +676,11 @@
     {"$GMIncludedFile":"","%Name":"credits.txt","CopyToMask":-1,"filePath":"datafiles","name":"credits.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"credits.txt","CopyToMask":-1,"filePath":"datafiles/data","name":"credits.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"english-mod.txt","CopyToMask":-1,"filePath":"datafiles/data/lang","name":"english-mod.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"english-ss.txt","CopyToMask":-1,"filePath":"datafiles/data/lang","name":"english-ss.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"english-ss.txt","ConfigValues":{
+        "CheesedUp":{
+          "CopyToMask":"0",
+        },
+      },"CopyToMask":-1,"filePath":"datafiles/data/lang","name":"english-ss.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"english.txt","CopyToMask":-1,"filePath":"datafiles/data/lang","name":"english.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"guide.txt","CopyToMask":-1,"filePath":"datafiles/data/lang/fonts","name":"guide.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spa-mod.txt","CopyToMask":-1,"filePath":"datafiles/data/lang","name":"spa-mod.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -5146,6 +5152,7 @@
     {"id":{"name":"spr_checkpoint_bo","path":"sprites/spr_checkpoint_bo/spr_checkpoint_bo.yy",},},
     {"id":{"name":"spr_checkpoint_ss","path":"sprites/spr_checkpoint_ss/spr_checkpoint_ss.yy",},},
     {"id":{"name":"spr_checkpoint","path":"sprites/spr_checkpoint/spr_checkpoint.yy",},},
+    {"id":{"name":"spr_cheese","path":"sprites/spr_cheese/spr_cheese.yy",},},
     {"id":{"name":"spr_cheeseball","path":"sprites/spr_cheeseball/spr_cheeseball.yy",},},
     {"id":{"name":"spr_cheeseballblock","path":"sprites/spr_cheeseballblock/spr_cheeseballblock.yy",},},
     {"id":{"name":"spr_cheeseballblockdebris","path":"sprites/spr_cheeseballblockdebris/spr_cheeseballblockdebris.yy",},},
@@ -6545,6 +6552,7 @@
     {"id":{"name":"spr_mad","path":"sprites/spr_mad/spr_mad.yy",},},
     {"id":{"name":"spr_madpop","path":"sprites/spr_madpop/spr_madpop.yy",},},
     {"id":{"name":"spr_mainmenu_bg","path":"sprites/spr_mainmenu_bg/spr_mainmenu_bg.yy",},},
+    {"id":{"name":"spr_mainmenu_cheeseicon","path":"sprites/spr_mainmenu_cheeseicon/spr_mainmenu_cheeseicon.yy",},},
     {"id":{"name":"spr_mainmenu_jumpscare","path":"sprites/spr_mainmenu_jumpscare/spr_mainmenu_jumpscare.yy",},},
     {"id":{"name":"spr_mainmenu_noiseicon","path":"sprites/spr_mainmenu_noiseicon/spr_mainmenu_noiseicon.yy",},},
     {"id":{"name":"spr_mainmenu_noiseswapicon","path":"sprites/spr_mainmenu_noiseswapicon/spr_mainmenu_noiseswapicon.yy",},},
@@ -8725,6 +8733,7 @@
     {"id":{"name":"spr_playerSP_idleanim4","path":"sprites/spr_playerSP_idleanim4/spr_playerSP_idleanim4.yy",},},
     {"id":{"name":"spr_playerSP_jump","path":"sprites/spr_playerSP_jump/spr_playerSP_jump.yy",},},
     {"id":{"name":"spr_playerSP_keyget","path":"sprites/spr_playerSP_keyget/spr_playerSP_keyget.yy",},},
+    {"id":{"name":"spr_playerSP_kungfu1","path":"sprites/spr_playerSP_kungfu1/spr_playerSP_kungfu1.yy",},},
     {"id":{"name":"spr_playerSP_kungfujump","path":"sprites/spr_playerSP_kungfujump/spr_playerSP_kungfujump.yy",},},
     {"id":{"name":"spr_playerSP_ladder","path":"sprites/spr_playerSP_ladder/spr_playerSP_ladder.yy",},},
     {"id":{"name":"spr_playerSP_ladderdown","path":"sprites/spr_playerSP_ladderdown/spr_playerSP_ladderdown.yy",},},
@@ -11973,7 +11982,13 @@
   ],
   "templateType":null,
   "TextureGroups":[
-    {"$GMTextureGroup":"","%Name":"Default","autocrop":true,"border":2,"compressFormat":"qoi","customOptions":"","directory":"","groupParent":null,"isScaled":false,"loadType":"default","mipsToGenerate":0,"name":"Default","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMTextureGroup":"","%Name":"Default","autocrop":true,"border":2,"compressFormat":"qoi","ConfigValues":{
+        "CheesedUp":{
+          "groupParent":"null",
+          "compressFormat":"qoi",
+          "loadType":"default",
+        },
+      },"customOptions":"","directory":"","groupParent":null,"isScaled":false,"loadType":"default","mipsToGenerate":0,"name":"Default","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
     {"$GMTextureGroup":"","%Name":"baddiegroup","autocrop":true,"border":2,"compressFormat":"qoi","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"baddiegroup","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
     {"$GMTextureGroup":"","%Name":"beachgroup","autocrop":true,"border":2,"compressFormat":"qoi","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"beachgroup","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
     {"$GMTextureGroup":"","%Name":"bossgroup","autocrop":true,"border":2,"compressFormat":"qoi","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"bossgroup","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
@@ -12009,7 +12024,14 @@
     {"$GMTextureGroup":"","%Name":"etbgroup","autocrop":true,"border":2,"compressFormat":"qoi","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"etbgroup","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
     {"$GMTextureGroup":"","%Name":"grinchgroup","autocrop":true,"border":2,"compressFormat":"qoi","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"grinchgroup","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
     {"$GMTextureGroup":"","%Name":"debuggroup","autocrop":true,"border":2,"compressFormat":"qoi","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"debuggroup","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
-    {"$GMTextureGroup":"","%Name":"mod_sugaryspire","autocrop":true,"border":2,"compressFormat":"qoi","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"mod_sugaryspire","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-6070852435372408833,},
+    {"$GMTextureGroup":"","%Name":"mod_sugaryspire","autocrop":true,"border":2,"compressFormat":"qoi","ConfigValues":{
+        "CheesedUp":{
+          "groupParent":"null",
+          "compressFormat":"qoi",
+          "loadType":"default",
+          "targets":"-9106278605694959855",
+        },
+      },"customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"mod_sugaryspire","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-6070852435372408833,},
     {"$GMTextureGroup":"","%Name":"mod_bonoise","autocrop":true,"border":2,"compressFormat":"qoi","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"mod_bonoise","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-65,},
     {"$GMTextureGroup":"","%Name":"mod_cyop","autocrop":true,"border":2,"compressFormat":"qoi","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"mod_cyop","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
     {"$GMTextureGroup":"","%Name":"abyssgroup","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"abyssgroup","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},

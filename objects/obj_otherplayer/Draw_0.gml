@@ -1,4 +1,4 @@
-live_auto_call;
+ptt {
 
 if !sprite_exists(sprite)
 	sprite = default_spr;
@@ -16,3 +16,5 @@ draw_set_alpha(global.online_name_opacity);
 draw_set_colour(net_parse_css_color(name_color));
 draw_set_font(global.font_small);
 draw_text(xx, yy - sprite_height / 2 + sprite_get_bbox_top(sprite), global.online_streamer_mode ? $"Player {uuid}" : username);
+
+}

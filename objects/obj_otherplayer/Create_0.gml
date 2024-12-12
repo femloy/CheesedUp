@@ -1,3 +1,5 @@
+ptt {
+
 username = "";
 
 default_spr = sprite_index;
@@ -32,3 +34,5 @@ alarm[0] = room_speed;
 
 x_prev = x;
 y_prev = y;
+
+}

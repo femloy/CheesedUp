@@ -1,3 +1,5 @@
+ptt {
+
 switch async_load[? "id"]
 {
 	case connection.tcp:
@@ -11,4 +13,6 @@ switch async_load[? "id"]
 	default:
 		net_log($"Unknown socket id: ${async_load[? "id"]}");
 		break;
+}
+
 }

@@ -1,3 +1,5 @@
+ptt {
+
 address = SERVER_ADDRESS;
 port = SERVER_PORT;
 
@@ -20,6 +22,7 @@ name_color = "#FFFFFF";
 username = "Player";
 account = 0;
 admin = false;
+verify_callback = noone;
 
 instance_create_unique(0, 0, obj_netchat);
 
@@ -27,3 +30,5 @@ if connection == noone
 	instance_destroy();
 
 pending_room_change = false;
+
+}

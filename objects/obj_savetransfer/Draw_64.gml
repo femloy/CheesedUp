@@ -34,7 +34,7 @@ var c1 = focus == 0 ? c_white : c_gray;
 var c2 = focus == 0 ? c_gray : c_white;
 
 draw_text_color(x1, 50 + Wave(0, 1, 0.5, 0), "Pizza Tower", c1, c1, c1, c1, image_alpha);
-draw_text_color(x2, 50 + Wave(0, 1, 0.5, 0), "Together", c2, c2, c2, c2, image_alpha);
+draw_text_color(x2, 50 + Wave(0, 1, 0.5, 0), CHEESED_UP ? "Cheesed Up" : "Together", c2, c2, c2, c2, image_alpha);
 
 // pizza tower saves
 var yy = 0;

@@ -1,3 +1,5 @@
+ptt {
+
 function net_event_delete_player(packet)
 {
 	online
@@ -12,4 +14,6 @@ function net_event_delete_player(packet)
 		else
 			trace("Failed. Sorry!");
 	}
+}
+
 }

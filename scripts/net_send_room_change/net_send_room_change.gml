@@ -1,3 +1,5 @@
+ptt {
+
 function net_send_room_change()
 {
 	online
@@ -25,4 +27,6 @@ function net_send_room_change()
 		else	
 			pending_room_change = true;
 	}
+}
+
 }

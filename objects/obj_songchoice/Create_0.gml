@@ -16,9 +16,10 @@ discanim = 0;
 
 // sections
 sections = [];
-function JukeboxSection(game_name) constructor
+function JukeboxSection(game_name, disc_index) constructor
 {
 	name = game_name;
+	index = disc_index;
 	songs = [];
 	
 	add_multisong = function()
@@ -39,7 +40,7 @@ function JukeboxSection(game_name) constructor
 	{
 		array_push(songs, [path, name, trivia]);
 	}
-	add_secretsong = function(path, name, sugary_author = "Loy", bo_author = "Loy")
+	add_secretsong = function(path, name, sugary_author = "Lila", bo_author = "Lila")
 	{
 		var song = [1];
 		array_push(song, [path, name, ""]);
@@ -62,7 +63,7 @@ function JukeboxSection(game_name) constructor
 }
 
 // do it
-with new JukeboxSection("Pizza Tower")
+with new JukeboxSection("Pizza Tower", 0)
 {
 	add_song("event:/soundtest/base/intro", "Time For A Smackdown - MrSauceman");
 	add_song("event:/soundtest/base/pizzadeluxe", "Pizza Deluxe - PostElvis");
@@ -137,7 +138,7 @@ with new JukeboxSection("Pizza Tower")
 	{
 		array_push(e, 
 			["event:/soundtest/base/secretentrance SP", "there's a secret inside my breakfast? - RodMod", ""]
-			//["event:/soundtest/base/secretentrance SN", "lol funny - Loy"]
+			//["event:/soundtest/base/secretentrance SN", "lol funny - Lila"]
 		);
 	}
 	array_push(songs, e);
@@ -168,25 +169,28 @@ with new JukeboxSection("Pizza Tower")
 	add_song("event:/soundtest/base/halloweenrace", "The Runner - PostElvis");
 }
 
-with new JukeboxSection("Together")
+with new JukeboxSection(CHEESED_UP ? "Cheesed Up" : "Together", CHEESED_UP ? 2 : 1)
 {
-	add_multisong("event:/soundtest/pto/serverlist", "Welcome Back - Loy",
-		"event:/soundtest/pto/serverlistchristmas", "Welcome Back (Jolly) - Loy",
+	add_multisong("event:/soundtest/pto/serverlist", "Welcome Back - Lila",
+		"event:/soundtest/pto/serverlistchristmas", "Welcome Back (Jolly) - Lila",
 		"event:/soundtest/pto/serverlistold", "Server List (OLD) - PaperKitty");
 	
-	add_song("event:/soundtest/pto/saturdays", "Saturdays - Loy");
-	add_song("event:/soundtest/pto/sundays", "Sundays - Loy");
-	add_song("event:/soundtest/pto/shop", "Weekend Delight - Loy");
-	//add_song("event:/soundtest/pto/credits", "Credits - Loy");
+	add_song("event:/soundtest/pto/saturdays", "Saturdays - Lila");
+	add_song("event:/soundtest/pto/sundays", "Sundays - Lila");
+	add_song("event:/soundtest/pto/shop", "Weekend Delight - Lila");
+	//add_song("event:/soundtest/pto/credits", "Credits - Lila");
 	
-	add_multisong("event:/soundtest/pto/cosmicclone", "Cosmic Chaos - Loy",
-		"event:/soundtest/pto/cosmiccloneescape", "Cosmic Chaos (Escape) - Loy");
+	add_multisong("event:/soundtest/pto/cosmicclone", "Cosmic Chaos - Lila",
+		"event:/soundtest/pto/cosmiccloneescape", "Cosmic Chaos (Escape) - Lila");
 		
-	add_multisong("event:/soundtest/pto/cosmiccloneN", "Cosmic Chaos (Noise) - Loy",
-		"event:/soundtest/pto/cosmiccloneescapeN", "Cosmic Chaos (Noise, Escape) - Loy");
+	add_multisong("event:/soundtest/pto/cosmiccloneN", "Cosmic Chaos (Noise) - Lila",
+		"event:/soundtest/pto/cosmiccloneescapeN", "Cosmic Chaos (Noise, Escape) - Lila");
 	
-	add_multisong("event:/soundtest/pto/cosmiccloneSP", "Cosmic Chaos (Pizzelle) - Loy",
-		"event:/soundtest/pto/cosmiccloneescapeSP", "Cosmic Chaos (Pizzelle, Escape) - Loy");
+	if SUGARY_SPIRE
+	{
+		add_multisong("event:/soundtest/pto/cosmiccloneSP", "Cosmic Chaos (Pizzelle) - Lila",
+			"event:/soundtest/pto/cosmiccloneescapeSP", "Cosmic Chaos (Pizzelle, Escape) - Lila");
+	}
 	
 	add_song("event:/soundtest/pto/editor", "Choosing The Toppings - MrSauceman");
 	add_song("event:/soundtest/pto/quintessence", "Quintessence - ClascyJitto");
@@ -201,45 +205,48 @@ with new JukeboxSection("Together")
 	add_song("event:/soundtest/pto/forafewtoppings", "For A Few Toppings More - MrSauceman");
 	add_song("event:/soundtest/pto/leaningnightmare", "Leaning Nightmare - ClascyJitto");
 	add_song("event:/soundtest/pto/lap3", "Pillar John's Revenge - Vozaxhi");
-	add_song("event:/soundtest/pto/italianpredicament", "Italian Predicament - Loy");
-	add_song("event:/soundtest/pto/thevigilantesfavoritesongthathelistenstowhenhedoesit", "THE VIGILANTE'S FAVORITE SONG THAT HE LISTENS TO WHEN HE DOES IT - Loy");
+	add_song("event:/soundtest/pto/italianpredicament", "Italian Predicament - Lila");
+	add_song("event:/soundtest/pto/thevigilantesfavoritesongthathelistenstowhenhedoesit", "THE VIGILANTE'S FAVORITE SONG THAT HE LISTENS TO WHEN HE DOES IT - Lila");
 	//add_song("event:/soundtest/pto/familyguy", "FAMILY GUY COOL WHIP REMIX - Tha J-Squad");
 	
 	add_separator();
 	
-	add_secretsong("event:/soundtest/pto/secretmansion", "A Pepperoni Secret - Loy");
-	add_secretsong("event:/soundtest/pto/secretstrongcold", "Teeth Dust In The Secret - Loy");
-	add_song("event:/soundtest/pto/secretsky", "A Secret In The Skies - Loy");
-	add_song("event:/soundtest/pto/secretdragon", "why is there an eye in my CHEESE!? - Loy");
-	add_song("event:/soundtest/pto/secretentrance", "An Entrance Secret - Loy");
-	add_song("event:/soundtest/pto/secretentranceN", "A Noisy Secret - Loy");
-	add_song("event:/soundtest/pto/secretentranceV", "The Secret West - Loy");
-	add_song("event:/soundtest/pto/secretforest", "Everybody Wanna Be A Secret - Loy");
-	add_song("event:/soundtest/pto/secretstreet", "A Secret In These Streets - Loy");
-	add_song("event:/soundtest/pto/secretsewer", "A Fecal Secret - Loy");
-	add_secretsong("event:/soundtest/pto/secretchateau", "A Secret In My Spaghetti - Loy");
+	add_secretsong("event:/soundtest/pto/secretmansion", "A Pepperoni Secret - Lila");
+	add_secretsong("event:/soundtest/pto/secretstrongcold", "Teeth Dust In The Secret - Lila");
+	add_song("event:/soundtest/pto/secretsky", "A Secret In The Skies - Lila");
+	add_song("event:/soundtest/pto/secretdragon", "why is there an eye in my CHEESE!? - Lila");
+	add_song("event:/soundtest/pto/secretentrance", "An Entrance Secret - Lila");
+	add_song("event:/soundtest/pto/secretentranceN", "A Noisy Secret - Lila");
+	add_song("event:/soundtest/pto/secretentranceV", "The Secret West - Lila");
+	add_song("event:/soundtest/pto/secretforest", "Everybody Wanna Be A Secret - Lila");
+	add_song("event:/soundtest/pto/secretstreet", "A Secret In These Streets - Lila");
+	add_song("event:/soundtest/pto/secretsewer", "A Fecal Secret - Lila");
+	add_secretsong("event:/soundtest/pto/secretchateau", "A Secret In My Spaghetti - Lila");
 }
 
-with new JukeboxSection("Encore Tower")
+with new JukeboxSection("Encore Tower", 3)
 {
-	add_song("event:/soundtest/encore/ghoulscape", "Rotten Spaghetti - Loy");
+	add_song("event:/soundtest/encore/ghoulscape", "Rotten Spaghetti - Lila");
+	
+	if SUGARY_SPIRE
+	{
+		add_separator();
+	
+		add_song("event:/soundtest/encore/cottonencore", "Cottontown Encore A - Lila");
+		add_song("event:/soundtest/encore/cottonencore2", "Cottontown Encore B - Lila");
+		add_song("event:/soundtest/encore/swampencore", "Molasses Swamp Encore A - Lila");
+		add_song("event:/soundtest/encore/swampencore2", "Molasses Swamp Encore B - Lila");
+	}
 	
 	add_separator();
 	
-	add_song("event:/soundtest/encore/cottonencore", "Cottontown Encore A - Loy");
-	add_song("event:/soundtest/encore/cottonencore2", "Cottontown Encore B - Loy");
-	add_song("event:/soundtest/encore/swampencore", "Molasses Swamp Encore A - Loy");
-	add_song("event:/soundtest/encore/swampencore2", "Molasses Swamp Encore B - Loy");
-	
-	add_separator();
-	
-	add_song("event:/soundtest/encore/ghoulscapesecret", "A Hidden Noodle - Loy");
-	add_song("event:/soundtest/encore/vigientrancesecret", "The Secret West (Encore) - Loy");
+	add_song("event:/soundtest/encore/ghoulscapesecret", "A Hidden Noodle - Lila");
+	add_song("event:/soundtest/encore/vigientrancesecret", "The Secret West (Encore) - Lila");
 }
 
 if SUGARY_SPIRE
 {
-	with new JukeboxSection("Sugary Spire")
+	with new JukeboxSection("Sugary Spire", 4)
 	{
 		add_song("event:/soundtest/sugary/hub", "Welcome Back! - 101Undertale");
 		add_song("event:/soundtest/sugary/crunchy", "Down-To-Noise - RodMod");
@@ -256,9 +263,9 @@ if SUGARY_SPIRE
 		
 		add_separator();
 		
-		add_secretsong("event:/soundtest/sugary/secretcotton", "you've found a steamy surprise. - Loy", "RodMod");
-		add_secretsong("event:/soundtest/sugary/secretswamp", "man's lost secret. - Loy", "Jessie Productions");
-		add_secretsong("event:/soundtest/sugary/secretsucrose", "Sucrose Secret - Loy", "Unknown");
+		add_secretsong("event:/soundtest/sugary/secretcotton", "you've found a steamy surprise. - Lila", "RodMod");
+		add_secretsong("event:/soundtest/sugary/secretswamp", "man's lost secret. - Lila", "Jessie Productions");
+		add_secretsong("event:/soundtest/sugary/secretsucrose", "Sucrose Secret - Lila", "Unknown");
 	}
 }
 
@@ -298,7 +305,7 @@ draw = function(curve)
 	else
 		xscale = lerp(2, 0, discanim * 2);
 	
-	draw_sprite_ext(bg_jukeboxdisc, sel.game, 640, 280, xscale, 2, discrot, c_white, talpha * 0.8);
+	draw_sprite_ext(bg_jukeboxdisc, sections[sel.game].index, 640, 280, xscale, 2, discrot, c_white, talpha * 0.8);
 	
 	// current song
 	var song = sections[sel.game].songs[sel.song];

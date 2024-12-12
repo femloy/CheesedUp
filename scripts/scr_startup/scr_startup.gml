@@ -66,8 +66,12 @@ exception_unhandled_handler
 );
 
 // drama
-#macro DEATH_MODE 0
+#macro CHEESED_UP 0
 #macro SUGARY_SPIRE 1
+#macro CheesedUp:CHEESED_UP 1
+#macro CheesedUp:SUGARY_SPIRE 0
+
+#macro DEATH_MODE 0
 #macro BO_NOISE 0
 
 // macros
@@ -209,9 +213,6 @@ global.custom_palettes = [];
 global.custom_patterns = ds_map_create();
 
 // etc
-globalvar CHEESE;
-CHEESE = true;
-
 global.disclaimer_section = 0;
 global.goodmode = false; // makes everything a living nightmare
 global.sandbox = true;

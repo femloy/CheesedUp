@@ -120,7 +120,7 @@ switch state
 						exit;
 					case 1:
 						sound_play_centered(sfx_collecttoppin);
-						//url_open("https://www.youtube.com/@CheesyPT");
+						url_open("https://www.youtube.com/@CheesyPT");
 						break;
 					case 2:
 						sound_play_centered(sfx_collecttoppin);
@@ -304,22 +304,30 @@ switch state
 								}
 								
                                 // netclient title screen
-                                if !instance_exists(obj_netclient)
-                                    instance_create(0, 0, obj_netclient);
-                                
-								/*state = states.victory;
-								alarm[0] = 250;
-								
-								if game.character == "N"
+								var f = method(self, function()
 								{
-									alarm[3] = 100;
-									alarm[4] = 5;
-									timermax = 15;
-									explosionsnum = 1;
-									sound_play("event:/sfx/ui/menuexplosions");
+									state = states.victory;
+									alarm[0] = 250;
+								
+									if game.character == "N"
+									{
+										alarm[3] = 100;
+										alarm[4] = 5;
+										timermax = 15;
+										explosionsnum = 1;
+										sound_play("event:/sfx/ui/menuexplosions");
+									}
+									if game.character == "V"
+										alarm[3] = 1.85 * 60;
+								});
+								
+                                if !CHEESED_UP && !instance_exists(obj_netclient)
+								{
+                                    with instance_create(0, 0, obj_netclient)
+										verify_callback = f;
 								}
-								if game.character == "V"
-									alarm[3] = 1.85 * 60;*/
+								else
+									f();
 							}
 							
 							with obj_music

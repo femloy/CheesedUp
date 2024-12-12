@@ -1,3 +1,5 @@
+ptt {
+
 global.online_messages = ds_list_create();
 function net_send_chat_message(text)
 {
@@ -45,4 +47,6 @@ function net_add_chat_message(name, text, pending = false)
 function net_clear_chat()
 {
 	ds_list_clear(global.online_messages);
+}
+
 }

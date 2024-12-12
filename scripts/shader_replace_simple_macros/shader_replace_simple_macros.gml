@@ -6,9 +6,9 @@ function shader_replace_simple_reset_hook() {
 	shader_replace_simple_reset_base();
 	shader_replace_simple_sync(-1);
 }
-function shader_replace_simple_set_hook() {
-	shader_replace_simple_set_base(argument0);
-	shader_replace_simple_sync(argument0);
+function shader_replace_simple_set_hook(shader) {
+	shader_replace_simple_set_base(shader);
+	shader_replace_simple_sync(shader);
 }
 function shader_replace_simple_macros(){
 	if (false) {

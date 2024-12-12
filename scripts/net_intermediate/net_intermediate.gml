@@ -1,3 +1,5 @@
+ptt {
+
 #macro INTERMEDIATE_VERSION 1.0
 
 #macro U8_MAX 255
@@ -183,9 +185,6 @@ function net_copy(packet, object)
 		var name = names[i];
 		if array_contains(global.builtins, name)
 			continue;
-		
-		if DEBUG && keyboard_check(ord("E"))
-			trace(name);
 		object[$ name] = packet[$ name];
 	}
 }
@@ -193,4 +192,6 @@ function net_copy(packet, object)
 function net_exists(packet, varname)
 {
 	return struct_exists(packet, varname);	
+}
+
 }

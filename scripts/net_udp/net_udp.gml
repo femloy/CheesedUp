@@ -1,3 +1,5 @@
+ptt {
+
 function net_udp(async_load) 
 {
 	if live_call(async_load) return live_result;
@@ -49,4 +51,6 @@ function net_send_udp(type, packet)
 		}
 		buffer_delete(buffer.data);
 	}
+}
+
 }

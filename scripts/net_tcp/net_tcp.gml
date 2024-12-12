@@ -1,3 +1,5 @@
+ptt {
+
 function net_tcp(async_load)
 {
 	online 
@@ -76,4 +78,6 @@ function net_request(type, packet, callback)
 		}
 		buffer_delete(inter.data);
 	}
+}
+
 }
