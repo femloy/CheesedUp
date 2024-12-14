@@ -79,6 +79,7 @@ switch character
 		{
 			add_palette(30); // Hardoween
 			add_palette(33); // Peppoise
+			add_palette(41).set_prefix(); // Nice Face - Loy
 			add_palette(32).set_prefix(); // XMAS
 			add_palette(31).set_prefix(); // Neon Green - Loy
 			add_palette(37).set_prefix(); // Mint - tuki4651 (1041806669086212168)

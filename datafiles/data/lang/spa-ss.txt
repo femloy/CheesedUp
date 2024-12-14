@@ -1,0 +1,58 @@
+lang = "spa"
+sugarypromptfont = "sugarypromptfont_spa"
+smallfont_ss = "smallfont_ss_spa"
+bigfont_ss = "bigfont_ss_spa"
+
+# ----------
+# MISC TEXT
+# ----------
+toppin_text1ss = "{u}¡Has encontrado % Confectis de %!/"
+toppin_text2ss = "{u}¡Has encontrado % Confecti de %!/"
+sugarygate_line1 = "% PUNTOS - % VUELTAS"
+sugarygate_line2 = "% DE % SECRETOS"
+
+# -------------
+# OLD MESSAGES
+# -------------
+message_toppin1ss = "¡TIENES TODOS LOS CONFECTIS!"
+message_toppin2ss = "¡TE FALTAN % CONFECTIS!"
+message_toppin3ss = "¡TE FALTA % CONFECTI!"
+
+# -----------
+# MOD CONFIG
+# -----------
+mod_title_sugaryoverride = "Sustituciones"
+mod_desc_sugaryoverride = "Personajes de Sugary Spire cambiarán el estilo del juego."
+
+# ---------------
+# WINDOW CAPTIONS
+# ---------------
+caption_towersugary = "Asi que esto es el Chapitel Azucarado."
+caption_rank_ss = "¡Lo has hecho! ¡Sugary Spire!"
+caption_entryway = "Construcción en marcha en Sugary Spire."
+caption_steamy = "Dulce y vaporoso Sugary Spire."
+caption_molasses = "El hábitat natural de Sugary Spire."
+caption_sucrose = "La tormenta Sugary en el Spire."
+
+# ----------------
+# TRANSFOTIP TEXT
+# ----------------
+cottontip = "{u}[J][J] Salto Doble [G] Atacar/"
+
+# -----------------------
+# ROOM NAMES (not levels)
+# -----------------------
+room_towersugary = "SUGARY SPIRE"
+
+# -----------------
+# HUB TIPS
+# -----------------
+grannysugary = "Precaución: Este piso contiene spoilers para una versión antigua de Sugary Spire. Nada se actualizará hasta que Token Studios tenga permiso para usar recreaciones."
+
+# -------------
+# LEVEL TITLES
+# -------------
+level_entryway = "Construcción Crujiente"
+level_steamy = "Ciudalgodón"
+level_molasses = "Pantano Melaza"
+level_sucrose = "Tormenta Sacarosa"

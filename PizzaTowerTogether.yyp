@@ -684,6 +684,7 @@
     {"$GMIncludedFile":"","%Name":"english.txt","CopyToMask":-1,"filePath":"datafiles/data/lang","name":"english.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"guide.txt","CopyToMask":-1,"filePath":"datafiles/data/lang/fonts","name":"guide.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spa-mod.txt","CopyToMask":-1,"filePath":"datafiles/data/lang","name":"spa-mod.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"spa-ss.txt","CopyToMask":-1,"filePath":"datafiles/data/lang","name":"spa-ss.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spa.txt","CopyToMask":-1,"filePath":"datafiles/data/lang","name":"spa.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"data.ini","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"data.ini","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_antsy.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_antsy.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -733,7 +734,11 @@
     {"$GMIncludedFile":"","%Name":"spr_newclothesN.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_newclothesN.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_noise_introtext.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_noise_introtext.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_noiseunlocked_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_noiseunlocked_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"spr_pause_ss_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_pause_ss_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"spr_pause_ss_text.png","ConfigValues":{
+        "CheesedUp":{
+          "CopyToMask":"0",
+        },
+      },"CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_pause_ss_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_preparetodraw.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_preparetodraw.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_quitgame.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_quitgame.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"spr_rank_confused_text.png","CopyToMask":-1,"filePath":"datafiles/data/lang/sprites/en","name":"spr_rank_confused_text.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},

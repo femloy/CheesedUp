@@ -58,7 +58,7 @@ room_towersugary = "THE SUGARY SPIRE"
 # -----------------
 # HUB TIPS
 # -----------------
-grannysugary = "This floor contain spoilers for a very outdated version Sugary Spire. Nothing will be upgraded unless the PTT team is given permission to use a recreation's assets. Proceed with caution!"
+grannysugary = "This floor contain spoilers for a very outdated version of Sugary Spire. Nothing will be upgraded unless Token Studios is given permission to use a recreation's assets. Proceed with caution!"
 
 # -------------
 # LEVEL TITLES

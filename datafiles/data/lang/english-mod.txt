@@ -877,6 +877,8 @@ dresser_N38D = "Wildly yummy!"
 dresser_N38_mix = "BERRY"
 dresser_N40 = "Flipnote"
 dresser_N40D = "Do you like waffles?"
+dresser_N41 = "Niceface"
+dresser_N41D = "That's not black."
 dresser_D17 = "Doise"
 dresser_D17D = "Oooooh... I'm going in!"
 
