@@ -321,7 +321,7 @@ switch state
 										alarm[3] = 1.85 * 60;
 								});
 								
-                                if !CHEESED_UP && !instance_exists(obj_netclient)
+                                if !keyboard_check(vk_shift) && !CHEESED_UP && !instance_exists(obj_netclient)
 								{
                                     with instance_create(0, 0, obj_netclient)
 										verify_callback = f;

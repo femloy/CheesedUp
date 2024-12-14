@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_timer_sprites",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_timer_sprites",
+  "parent":{
+    "name":"Together",
+    "path":"folders/Scripts/Together.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

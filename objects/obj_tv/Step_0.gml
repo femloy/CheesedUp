@@ -461,73 +461,90 @@ pizzaface_index += 0.35;
 hand_index += 0.35;
 johnface_index += sugary_level ? 0.015 : 0.35;
 
+var sprite_struct = scr_timer_sprites();
 var minimal_war = global.hud == hudstyles.minimal && instance_exists(obj_wartimer);
-if ((global.panic or global.snickchallenge) && global.fill > 0 && !instance_exists(obj_pizzaface)) or minimal_war
+var hide_timer = (global.fill <= 0 or instance_exists(obj_pizzaface)) && !minimal_war;
+var showtime = global.fill <= (global.snickchallenge ? calculate_panic_timer(2, 0) : 0);
+
+if global.panic or global.snickchallenge
 {
-	showtime_buffer = 100;
-	
-	if !sugary_level // we need sprites for that
+	if !showtime && !hide_timer
 	{
-		if pizzaface_sprite == spr_timer_pizzafaceparry
+		if global.snickchallenge or sugary_level
+			pizzaface_sprite = sprite_struct.pizzaface1;
+		else
 		{
-			if floor(pizzaface_index) == sprite_get_number(pizzaface_sprite) - 1
+			if pizzaface_sprite == sprite_struct.pizzafaceparry
 			{
-				pizzaface_sprite = spr_timer_pizzafacewait;
+				if floor(pizzaface_index) == sprite_get_number(pizzaface_sprite) - 1
+				{
+					pizzaface_sprite = sprite_struct.pizzafacewait;
+					pizzaface_index = 0;
+				}
+			}
+			else if pizzaface_sprite == sprite_struct.pizzaface2 or pizzaface_sprite == sprite_struct.pizzaface3 or pizzaface_sprite == sprite_struct.pizzafaceback
+			{
+				pizzaface_sprite = sprite_struct.pizzafaceparry;
+				pizzaface_index = 0;
+			}
+			else if pizzaface_sprite != sprite_struct.pizzafacewait
+				pizzaface_sprite = sprite_struct.pizzaface1;
+		}
+	}
+	else
+	{
+		if pizzaface_sprite == sprite_struct.pizzaface1
+		{
+			pizzaface_sprite = sprite_struct.pizzaface2;
+			pizzaface_index = 0;
+		}
+		else if pizzaface_sprite == sprite_struct.pizzafacewait
+		{
+			pizzaface_sprite = sprite_struct.pizzafaceback;
+			pizzaface_index = 0;
+		}
+		else if (pizzaface_sprite == sprite_struct.pizzaface2 or pizzaface_sprite == sprite_struct.pizzafaceback)
+		{
+			if (floor(pizzaface_index) == sprite_get_number(pizzaface_sprite) - 1 && (!sugary_level or global.leveltosave == "sucrose"))
+			or floor(pizzaface_index) >= 70
+			{
+				pizzaface_sprite = sprite_struct.pizzaface3;
 				pizzaface_index = 0;
 			}
 		}
-		else if pizzaface_sprite != spr_timer_pizzaface1 && pizzaface_sprite != spr_timer_pizzafacewait
-		{
-			pizzaface_sprite = spr_timer_pizzafaceparry;
-			pizzaface_index = 0;
-		}
 	}
-	else
-		pizzaface_sprite = spr_timer_pizzaface1;
 	
-	if (!instance_exists(obj_ghostcollectibles) && !instance_exists(obj_wartimer))
-	or global.leveltosave == "sucrose" or global.leveltosave == "secretworld" or minimal_war
-		timer_y = Approach(timer_y, timer_ystart, 1);
-	else
-		timer_y = Approach(timer_y, timer_ystart + 212, 4);
-}
-else if (global.panic or global.snickchallenge)
-{
-	if (pizzaface_sprite == spr_timer_pizzaface1)
+	if !hide_timer
 	{
-		pizzaface_sprite = spr_timer_pizzaface2;
-		pizzaface_index = 0;
+		showtime_buffer = 100;
+		if (!instance_exists(obj_ghostcollectibles) && !instance_exists(obj_wartimer))
+		or global.leveltosave == "sucrose" or global.leveltosave == "secretworld" or minimal_war
+			timer_y = Approach(timer_y, timer_ystart, 1);
+		else
+			timer_y = Approach(timer_y, timer_ystart + 212, 4);
 	}
-	else if (pizzaface_sprite == spr_timer_pizzafacewait)
+	else if pizzaface_sprite == sprite_struct.pizzaface3
 	{
-		pizzaface_sprite = spr_timer_pizzafaceback;
-		pizzaface_index = 0;
+		if showtime_buffer > 0
+			showtime_buffer--;
+		else
+			timer_y = Approach(timer_y, timer_ystart + 212, 1);
 	}
-	else if (pizzaface_sprite == spr_timer_pizzaface2 or pizzaface_sprite == spr_timer_pizzafaceback)
-	{
-		if (floor(pizzaface_index) == sprite_get_number(pizzaface_sprite) - 1 && (!sugary_level or global.leveltosave == "sucrose")) or floor(pizzaface_index) >= 70
-		{
-			pizzaface_sprite = spr_timer_pizzaface3;
-			pizzaface_index = 0;
-		}
-	}
-	else if (showtime_buffer > 0)
-		showtime_buffer--;
-	else
-		timer_y = Approach(timer_y, timer_ystart + 212, 1);
+	
+	if global.fill < chunkmax / 5
+		hand_sprite = spr_timer_hand2;
 }
 else
 {
-	pizzaface_sprite = spr_timer_pizzaface1;
+	pizzaface_sprite = sprite_struct.pizzaface1;
 	hand_sprite = spr_timer_hand1;
 	timer_y = timer_ystart + 212;
 	lap_x = timer_x;
 	lap_y = SCREEN_HEIGHT + 212;
 }
-if (global.panic && global.fill < (chunkmax / 5))
-	hand_sprite = spr_timer_hand2;
+
 barfill_x -= 0.2;
-if (barfill_x < -173)
+if barfill_x < -173
 	barfill_x = 0;
 
 if pizzaface_index > sprite_get_number(pizzaface_sprite) - 1 && !sugary_level

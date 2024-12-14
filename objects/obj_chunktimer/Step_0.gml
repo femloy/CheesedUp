@@ -21,7 +21,7 @@ else
 		}
 		else
 		{
-			global.snickchallenge = false;
+			instance_destroy(obj_snickexe);
 			with obj_player1
 			{
 				instance_destroy(obj_fadeout);
@@ -40,9 +40,11 @@ else
 					sprite_index = spr_ratmount_timesup;
 				visible = true;
 				image_blend = c_white;
-				if (object_index == obj_player1 && character != "N" && !global.swapmode)
+				if object_index == obj_player1 && character != "N" && !global.swapmode
 					stop_music();
 			}
+			with obj_camera
+				alarm[1] = -1;
 		}
 	}
 }

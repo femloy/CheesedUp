@@ -8,6 +8,7 @@ function scr_panicdraw()
 	
 	draw_set_font(global.smallnumber_fnt);
 	draw_set_halign(fa_center);
+	shader_reset();
 	
 	if (global.panic or global.snickchallenge) && !(DEATH_MODE && MOD.DeathMode) && !global.timeattack
 	{
@@ -37,27 +38,14 @@ function scr_panicdraw()
 			seconds = concat("0", seconds);
 		
 		// draw them
-		if !sugary_level
+		var sprite_struct = scr_timer_sprites();
+		if !sugary_level or global.snickchallenge
 		{
-			var bar = spr_timer_bar;
-			var barfill = spr_timer_barfill;
-			var timerspr = timer_tower && !check_lap_mode(lapmodes.laphell) ? spr_timer_tower : pizzaface_sprite;
-			
-			if johnface_sprite != spr_timer_johnfaceback
-				johnface_sprite = (_fill > chunkmax) ? spr_timer_johnfacesleep : spr_timer_johnface;
-			
-			if BO_NOISE && MIDWAY
-			{
-				bar = spr_timer_barBN;
-				barfill = spr_timer_barfillBN;
-				johnface_sprite = spr_timer_johnfaceBN;
-				
-				if timerspr == spr_timer_pizzaface1
-					timerspr = spr_timer_pizzaface1BN;
-				else
-					timerspr = spr_timer_pizzaface2BN;
-			}
-			shader_reset();
+			var bar = sprite_struct.bar;
+			var barfill = sprite_struct.barfill;
+			var timerspr = (sprite_struct.tower == noone ? pizzaface_sprite : (timer_tower && !check_lap_mode(lapmodes.laphell) ? sprite_struct.tower : pizzaface_sprite));
+			if johnface_sprite != sprite_struct.johnfaceback
+				johnface_sprite = (_fill > chunkmax) ? sprite_struct.johnfacesleep : sprite_struct.johnface;
 			
 			var _barfillpos = floor(_barpos) + 13;
 			if _barfillpos > 0
@@ -76,8 +64,7 @@ function scr_panicdraw()
 			draw_sprite(johnface_sprite, johnface_index, timer_x + 13 + max(_barpos, 0), timer_y + 20);
 		
 			// pizzaface
-			if !global.snickchallenge
-				draw_sprite(timerspr, pizzaface_index, timer_x + 320, timer_y + 10);
+			draw_sprite(timerspr, pizzaface_index, timer_x + 320, timer_y + 10);
 			
 			// timer
 			draw_set_align(1, 1);
@@ -94,11 +81,11 @@ function scr_panicdraw()
 			if global.leveltosave == "sucrose"
 			{
 				// sucrose snowstorm
-				if pizzaface_sprite == spr_timer_pizzaface1
+				if pizzaface_sprite == sprite_struct.pizzaface1
 					draw_sprite(spr_sucrosetimer_coneball_idle, pizzaface_index, SCREEN_WIDTH / 2, timer_y + 25);
-				if pizzaface_sprite == spr_timer_pizzaface2
+				if pizzaface_sprite == sprite_struct.pizzaface2
 					draw_sprite(spr_sucrosetimer_coneball, pizzaface_index, SCREEN_WIDTH / 2, timer_y + 25);
-				if pizzaface_sprite == spr_timer_pizzaface3
+				if pizzaface_sprite == sprite_struct.pizzaface3
 					draw_sprite(spr_sucrosetimer_coneball, 25, SCREEN_WIDTH / 2, timer_y + 25);
 			
 				if seconds_prev != seconds
@@ -109,28 +96,28 @@ function scr_panicdraw()
 			
 				var _tmr_spr = gaining_time ? spr_sucrosetimer_gain : spr_sucrosetimer;
 				draw_sprite(_tmr_spr, timer_ind, SCREEN_WIDTH / 2, timer_y + 25);
-			
+				
 				// text
 				var minsx = SCREEN_WIDTH / 2 - 90
 				var secx = SCREEN_WIDTH / 2 - 10
 				var minsy = timer_y + 25 - 15
-			
+				
 				if minutes < 10
 					minutes = concat("0", minutes);
 				minutes = string(minutes);
-			
+				
 				var col = gaining_time ? #60D048 : #F80000;
-			
+				
 				draw_sprite_ext(spr_sucrosetimer_font, ord(string_char_at(minutes, 1)) - ord("0"), minsx, minsy, 1, 1, 0, col, 1);
 				draw_sprite_ext(spr_sucrosetimer_font, ord(string_char_at(minutes, 2)) - ord("0"), minsx + 28, minsy, 1, 1, 0, col, 1);
-			
+				
 				draw_sprite_ext(spr_sucrosetimer_font, ord(string_char_at(seconds, 1)) - ord("0"), secx, minsy, 1, 1, 0, col, 1);
 				draw_sprite_ext(spr_sucrosetimer_font, ord(string_char_at(seconds, 2)) - ord("0"), secx + 28, minsy, 1, 1, 0, col, 1);
 			}
 			else
 			{
 				// sugary spire
-				if pizzaface_sprite == spr_timer_pizzaface1
+				if pizzaface_sprite == sprite_struct.pizzaface1
 				{
 					draw_sprite(spr_bartimer_normalBack, pizzaface_index, timer_x + 164, timer_y + 20);
 				
@@ -148,9 +135,9 @@ function scr_panicdraw()
 		
 					draw_sprite(spr_bartimer_normalFront, pizzaface_index, timer_x + 164, timer_y + 20);
 				}
-				else if pizzaface_sprite == spr_timer_pizzaface2
+				else if pizzaface_sprite == sprite_struct.pizzaface2
 					draw_sprite(spr_bartimer_showtime, pizzaface_index, timer_x + 164, timer_y + 20);
-				else if pizzaface_sprite == spr_timer_pizzaface3
+				else if pizzaface_sprite == sprite_struct.pizzaface3
 					draw_sprite(spr_bartimer_showtime, 70, timer_x + 164, timer_y + 20);
 		
 				// timer

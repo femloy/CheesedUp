@@ -122,7 +122,8 @@ if instance_exists(obj_player1) && !obj_pause.pause
 		cyop_music();
 	else if (global.panic && global.leveltosave != "dragonlair" && global.leveltosave != "grinch" && global.leveltosave != "sucrose"
 	&& (global.leveltosave != "freezer" or !REMIX or global.lap) && custom_panic < 0)
-	or ((global.snickchallenge or (DEATH_MODE && MOD.DeathMode) or (MOD.CosmicClones && instance_exists(obj_cosmicclone)) or global.timeattack) && !instance_exists(obj_levelsettings) && !instance_exists(obj_titlecard) && !instance_exists(obj_rank))
+	or ((global.snickchallenge or (DEATH_MODE && MOD.DeathMode) or (MOD.CosmicClones && instance_exists(obj_cosmicclone)) or global.timeattack)
+	&& !instance_exists(obj_levelsettings) && !instance_exists(obj_titlecard) && !instance_exists(obj_rank) && room != timesuproom)
 	{
 		if !panicstart
 		{
@@ -177,6 +178,8 @@ if instance_exists(obj_player1) && !obj_pause.pause
 				else if (global.panic && global.leveltosave != "sucrose") or global.lap
 					fmod_event_instance_set_parameter(panicmusicID, "state", 1, true);
 			}
+			else if global.snickchallenge
+				fmod_event_instance_set_parameter(panicmusicID, "state", global.fill <= calculate_panic_timer(2, 0) ? 1 : 0, true);
 			else if !global.lap && !(global.gerome && check_lap_mode(lapmodes.april))
 			{
 				var secs = 56;

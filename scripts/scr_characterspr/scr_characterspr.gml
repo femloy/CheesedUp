@@ -1396,6 +1396,15 @@ function scr_characterspr(character = undefined)
 			spr_buttattackstart = spr_playerSP_buttattackstart;
 			spr_buttattackend = spr_playerSP_buttattackend;
             spr_kungfujump = spr_playerSP_kungfujump;
+			spr_kungfu1 = spr_playerSP_kungfu1;
+			spr_kungfu2 = spr_playerSP_kungfu1;
+			spr_kungfu3 = spr_playerSP_kungfu1;
+			spr_kungfuair1 = spr_playerSP_kungfuair1;
+			spr_kungfuair2 = spr_playerSP_kungfuair1;
+			spr_kungfuair3 = spr_playerSP_kungfuair1;
+			spr_kungfuair1transition = spr_playerSP_kungfuair1transition;
+			spr_kungfuair2transition = spr_playerSP_kungfuair1transition;
+			spr_kungfuair3transition = spr_playerSP_kungfuair1transition;
 			spr_palette = spr_pizzypalette;
 		}
 	

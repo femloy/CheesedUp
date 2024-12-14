@@ -42,26 +42,7 @@ function scr_cameradraw()
 		
 	var collectfont = global.collectfont;
 	var collectpalette = spr_font_palette;
-		
-	if SUGARY_SPIRE && sugary
-	{
-		heatfill = spr_heatmeter_fillSP;
-		heatmeter = spr_heatmeterSP;
-		heatpal = spr_heatmeter_paletteSP;
-			
-		pizzascorespr = spr_cakehud;
-		peppersprite = spr_cakehud_crank;
-		pepperonisprite = spr_cakehud_brank;
-		olivesprite = spr_cakehud_arank;
-		shroomsprite = spr_cakehud_srank;
-			
-		collectfont = global.hud == hudstyles.april ? global.collectfontSP : global.candlefont;
-		collectpalette = spr_candlefontpalette;
-			
-		hud_xx += 7;
-		hud_yy += 6;
-	}
-		
+	
 	if lap3
 	{
 		pizzascorespr = spr_lap3hud;
@@ -75,6 +56,24 @@ function scr_cameradraw()
 			
 		hud_xx += Wave(-4, 4, 2, 10);
 		hud_yy += Wave(-1, 1, 4, 0);
+	}
+	else if SUGARY_SPIRE && sugary
+	{
+		heatfill = spr_heatmeter_fillSP;
+		heatmeter = spr_heatmeterSP;
+		heatpal = spr_heatmeter_paletteSP;
+			
+		pizzascorespr = spr_cakehud;
+		peppersprite = spr_cakehud_crank;
+		pepperonisprite = spr_cakehud_brank;
+		olivesprite = spr_cakehud_arank;
+		shroomsprite = spr_cakehud_srank;
+			
+		collectfont = global.hud == hudstyles.april ? global.collectfontSP : global.candlefont;
+		collectpalette = spr_candlefontpalette;
+		
+		hud_xx += 7;
+		hud_yy += 6;
 	}
 		
 	// The Code
@@ -220,7 +219,7 @@ function scr_cameradraw()
 		var xx = hud_xx - (w / 2);
 		var yy = hud_yy - 56 + text_y;
 		
-		if SUGARY_SPIRE && sugary
+		if SUGARY_SPIRE && sugary && !lap3
 		{
 			if global.hud == hudstyles.april
 			{

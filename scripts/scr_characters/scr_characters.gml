@@ -68,9 +68,9 @@ function scr_characters(type)
 	else if type == 2
 	{
 		characters = {};
-		var add_character = function(char, spr_idle, spr_palette, color_index)
+		var add_character = function(char, spr_idle, spr_palette, color_index, mixing_color, default_palette = 0)
 		{
-			characters[$ char] = { spr_palette: spr_palette, paletteselect: color_index };
+			characters[$ char] = { spr_palette: spr_palette, paletteselect: default_palette };
 		}
 	}
 	else
