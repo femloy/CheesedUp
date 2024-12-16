@@ -58,7 +58,7 @@ function scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, style, tv_palette)
 			pal_swap_set(combofillpalette, scr_can_p_rank() ? 2 : 1, false);
 			draw_sprite(combobubblefill, combofill_index, combofill_x, combofill_y);
 			pal_swap_set(spr_tv_palette, tv_palette, false);
-			lang_draw_sprite(combobubble, image_index, _cx, _cy);
+			lang_draw_sprite(combobubble, 0, _cx, _cy);
 			
 			draw_set_font(combofont);
 			draw_set_align(fa_left);

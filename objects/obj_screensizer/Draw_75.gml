@@ -18,8 +18,8 @@ with obj_netchat
 {
 	if !surface_exists(other.chat_surf)
 		other.chat_surf = surface_create(GUI_WIDTH, GUI_HEIGHT);
-	else if surface_get_width(other.chat_surf) != GUI_WIDTH || surface_get_height(other.chat_surf) != GUI_HEIGHT
-		surface_resize(other.chat_surf, GUI_WIDTH, GUI_HEIGHT);
+	else
+		resize_surface_if_resized(other.chat_surf, GUI_WIDTH, GUI_HEIGHT);
 	
 	surface_set_target(other.chat_surf);
 	draw_clear_alpha(c_black, 0);
@@ -31,7 +31,6 @@ with obj_netchat
 
 #endregion
 
-var shd = false;
 if /*frac(app_scale) > 0 && */global.option_texfilter
 {
 	//var tex = surface_get_texture(gui_surf);
@@ -41,7 +40,6 @@ if /*frac(app_scale) > 0 && */global.option_texfilter
 	gpu_set_texfilter(true);
 	//shader_set_uniform_f(shader_get_uniform(shd_aa, "u_vTexelSize"), tw, th);
 	//shader_set_uniform_f(shader_get_uniform(shd_aa, "u_vScale"), window_get_width() / surface_get_width(gui_surf), window_get_height() / surface_get_height(gui_surf));
-	//shd = true;
 }
 
 // draw it

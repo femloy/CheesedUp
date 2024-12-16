@@ -11,7 +11,8 @@ switch state
 		if (!instance_exists(obj_noiseunlocked))
 		{
 			jumpscarecount++;
-			if ((keyboard_check_pressed(vk_anykey) || scr_checkanygamepad(obj_inputAssigner.player_input_device[0]) != -4 || scr_checkanystick(obj_inputAssigner.player_input_device[0])) && (!instance_exists(obj_mainmenu_jumpscare)))
+			if (keyboard_check_pressed(vk_anykey) || scr_checkanygamepad(obj_inputAssigner.player_input_device[0]) != -4 || scr_checkanystick(obj_inputAssigner.player_input_device[0]))
+			&& !instance_exists(obj_mainmenu_jumpscare)
 			{
 				state = states.transition;
 				currentselect = -1;
@@ -83,12 +84,13 @@ switch state
 				backbuffer = 2;
 			break;
 		}
-		else if instance_exists(obj_option)
+		if instance_exists(obj_option)
 		{
 			quitbuffer = 3;
 			break;
 		}
-		else if charselect == 2
+		
+		if charselect == 2
 		{
 			var _move_v = key_down2 - key_up2;
 			if _move_v != 0
@@ -262,17 +264,6 @@ switch state
 
 					image_index = savedindex;
 					image_speed = 0.35;
-				}
-			}
-			else
-			{
-				if vsp < 20
-					vsp += 0.5;
-				y += vsp;
-				if y >= ystart && vsp > 0
-				{
-					y = ystart;
-					vsp = 0;
 				}
 			}
 			

@@ -273,6 +273,7 @@ function scr_text_arr_size(array)
 	}
 	return [w, h];
 }
+
 function reset_surface_if_resized(surf, width, height)
 {
 	if !surface_exists(surf)
@@ -280,6 +281,7 @@ function reset_surface_if_resized(surf, width, height)
 	if surface_get_width(surf) != width || surface_get_height(surf) != height
 		surface_free(surf);
 }
+
 function scr_draw_granny_texture(x, y, xscale, yscale, tex_x, tex_y, sprite = spr_pizzagrannytexture, bubble_sprite = spr_tutorialbubble, txo = 0, tyo = 0)
 {
 	if live_call(x, y, xscale, yscale, tex_x, tex_y, sprite, bubble_sprite, txo, tyo) return live_result;

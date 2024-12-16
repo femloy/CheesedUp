@@ -9,20 +9,20 @@ if instance_exists(obj_keyconfig)
 
 switch m.menu_id
 {
-	case MENUS.audio:
+	case menu_pages.audio:
 		j = 1;
 		break;
 	
-	case MENUS.video: case MENUS.window: case MENUS.resolution: case MENUS.unused_1:
+	case menu_pages.video: case menu_pages.window: case menu_pages.resolution: case menu_pages.unused_1:
 		j = 2;
 		break;
 	
-	case MENUS.game:
+	case menu_pages.game:
 		j = 3;
 		break;
 	
-	case MENUS.controls: case MENUS.controller: case MENUS.keyboard: case MENUS.unused_3:
-	case MENUS.inputdisplay:
+	case menu_pages.controls: case menu_pages.controller: case menu_pages.keyboard: case menu_pages.unused_3:
+	case menu_pages.inputdisplay:
 		j = 4;
 		break;
 }
@@ -175,7 +175,7 @@ for (i = 0; i < array_length(m.options); i++)
 	}
 }
 
-if (menu == MENUS.main)
+if (menu == menu_pages.main)
 	scr_pauseicons_update(optionselected);
 else
 	scr_pauseicons_update(-1);
@@ -186,7 +186,7 @@ if (slidebuffer > 0)
 if ((key_back || key_slap2 || keyboard_check_pressed(vk_escape)) && !instance_exists(obj_keyconfig) && !instance_exists(obj_audioconfig))
 {
 	sound_play("event:/sfx/ui/back");
-	if (menu == MENUS.main)
+	if (menu == menu_pages.main)
 	{
 		with obj_mainmenuselect
 			selected = false;

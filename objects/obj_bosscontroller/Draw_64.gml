@@ -124,18 +124,20 @@ switch (state)
 					{
 						x += hsp;
 						y += vsp;
-						if (vsp < 20)
+						
+						if vsp < 20
 							vsp += 0.5;
-						if (y > (SCREEN_HEIGHT + sprite_get_height(sprite_index)))
-							ds_list_delete(other.particlelist, i--);
-						else
+						
+						if y > SCREEN_HEIGHT + sprite_get_height(sprite_index)
 						{
-							if (palettetexture != noone)
-								pattern_set(global.Base_Pattern_Color, sprite_index, image_index, 1, 1, palettetexture);
-							pal_swap_set(spr_palette, paletteselect, false);
-							draw_sprite(sprite_index, image_index, x, y);
+							ds_list_delete(other.particlelist, i--);
 							continue;
 						}
+						
+						if palettetexture != -4
+							pattern_set(global.Base_Pattern_Color, sprite_index, image_index, 1, 1, palettetexture);
+						pal_swap_set(spr_palette, paletteselect, false);
+						draw_sprite(sprite_index, image_index, x, y);
 					}
 					else if (type == 1)
 	                {

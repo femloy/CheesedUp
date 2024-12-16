@@ -13,13 +13,16 @@ var key = ds_map_find_first(global.lang_map);
 var i = 0;
 while !is_undefined(key)
 {
-	var s = {
+	var s =
+	{
 		lang: key,
 		name: lang_get_value_raw(key, "display_name"),
 		spr_name: noone,
 		sprite: spr_lang_missing,
 		locked: false
 	};
+	s.name = string_replace_all(s.name, "\\n", "\n");
+	
 	if !is_undefined(global.lang_sprite_map[? key])
 	{
 		s.sprite = global.lang_sprite_map[? key][? spr_lang_flag] ?? spr_lang_missing;

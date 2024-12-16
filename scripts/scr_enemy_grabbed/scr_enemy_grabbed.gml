@@ -154,6 +154,9 @@ function scr_enemy_grabbed()
 			sound_play_3d("event:/sfx/enemies/killingblow", x, y)
 			sound_play_3d("event:/sfx/pep/punch", x, y)
 			
+			if _obj_player.character == "N"
+                scr_fmod_soundeffect(_obj_player.snd_noisepunch, x, y);
+			
 			state = states.stun
 			image_xscale = -_obj_player.xscale
 			

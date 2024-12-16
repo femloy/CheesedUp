@@ -141,17 +141,18 @@ else if (!controller)
 }
 else
 {
-	if (keyboard_check_pressed(vk_anykey))
+	if WINDOWS && keyboard_check_pressed(vk_anykey)
 	{
-		// "if true" probably not debug
 		startbuffer = 5;
 		addbuffer = 5;
 		selecting = false;
 		exit;
 	}
-	var val = scr_checkanygamepad(obj_inputAssigner.player_input_device[0]);
-	if (val == -4)
-		val = scr_check_joysticks(obj_inputAssigner.player_input_device[0]);
+	
+	var val = scr_checkanygamepad(obj_inputAssigner.player_input_device[obj_inputAssigner.player_index]);
+	if val == -4
+		val = scr_check_joysticks(obj_inputAssigner.player_input_device[obj_inputAssigner.player_index]);
+	
 	if (val != -4 && val != gp_select)
 	{
 		if (!menu || scr_check_menu_repeats(input[key_select][0], val, true))

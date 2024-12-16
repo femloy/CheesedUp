@@ -72,7 +72,7 @@ var exit_function = function()
 	var offload = noone;
 	if global.leveltorestart != -4 or room == editor_entrance
 	{
-		if global.leveltorestart != boss_fakepepkey && global.leveltorestart != tower_tutorial1N
+		if global.leveltorestart != tower_tutorial1 && global.leveltorestart != tower_tutorial1N
 			gamesave_async_save();
 		
 		hub = true;

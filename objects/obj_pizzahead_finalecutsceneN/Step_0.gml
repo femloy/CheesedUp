@@ -1,6 +1,6 @@
 switch state
 {
-	case states.normal:
+	case 0:
 		if buffer > 0
 			buffer--;
 		else
@@ -20,7 +20,7 @@ switch state
 		}
 		break;
 	
-	case states.revolver:
+	case 1:
 		if (floor(noise.image_index) == noise.image_number - 1)
 			noise.image_index = noise.image_number - 4;
 		
@@ -59,7 +59,7 @@ switch state
 		}
 		break;
 	
-	case states.dynamite:
+	case 2:
 		if (floor(noise.image_index) == noise.image_number - 1)
 			noise.image_index = noise.image_number - 1;
 		whitefade = Approach(whitefade, 1, 0.009);
@@ -95,14 +95,15 @@ switch state
 				layer_set_visible("Backgrounds_rain", false);
 			}
 		}
-		break
-	case states.boots:
+		break;
+	
+	case 3:
 		shake = Approach(shake, shake_max, 0.1);
 		if (floor(pizzaheadshot.image_index) < 24)
 			whitefade = Approach(whitefade, 0, 0.05);
 		if (floor(pizzaheadshot.image_index) >= 24)
 		{
-			whitefadeaccel = (sprite_get_speed(4127) / 60) / (sprite_get_number(bg_pizzaheadshotN) - pizzaheadshot.image_index);
+			whitefadeaccel = (sprite_get_speed(bg_pizzaheadshotN) / 60) / (sprite_get_number(bg_pizzaheadshotN) - pizzaheadshot.image_index);
 			if whitefade <= 1
 				whitefade += whitefadeaccel;
 		}
@@ -126,7 +127,7 @@ switch state
 		}
 		break;
 	
-	case states.grabbed:
+	case 4:
 		whitefade = Approach(whitefade, 0, 0.05);
 		if buffer > 0
 			buffer--;
@@ -140,7 +141,7 @@ switch state
 		}
 		break;
 	
-	case states.tumble:
+	case 5:
 		if buffer > 0
 			buffer--;
 		else if whitefade <= 1

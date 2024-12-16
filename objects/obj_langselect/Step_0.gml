@@ -45,7 +45,8 @@ if (key_jump || key_back) && startbuffer <= 0
             startbuffer = 10;
         }
 		
-		gameframe_caption_text = lstr("caption_mainmenu");
+		if room == Mainmenu
+			gameframe_caption_text = lstr("caption_mainmenu");
     }
     if instance_exists(obj_option)
         obj_option.backbuffer = 2;

@@ -19,14 +19,14 @@ if player && global.gerome && !global.horse && (player.state == states.normal or
 	sound_play_3d("event:/sfx/misc/keyunlock", x, y);
 	sound_play("event:/sfx/misc/cheers");
 	
-	if (global.gerome)
+	if global.gerome
 	{
 		if !(SUGARY_SPIRE && sugary)
 		{
 			obj_geromefollow.visible = false;
 			obj_geromefollow.do_end = true;
-		
-			with (instance_create(player.x - 30, player.y, obj_geromeanim))
+			
+			with instance_create(player.x - 30, player.y, obj_geromeanim)
 			{
 				sprite_index = spr_gerome_opendoor;
 				image_index = 0;

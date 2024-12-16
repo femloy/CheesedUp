@@ -1,14 +1,13 @@
 function steam_deck()
 {
-	/*
-	if STEAM
+	if !WINDOWS
 	{
-		return {
-			is_steamdeck: steam_utils_is_steam_running_on_steam_deck(),
-			gamepad_index: -1 // i can't bother
+		return
+		{
+			is_steamdeck: false,
+			gamepad_index: -1
 		};
 	}
-	*/
 	
 	// https://gist.github.com/ellraiser/308eff835695e39c10e2d13eed9b9490
 	var info = os_get_info();
@@ -41,8 +40,9 @@ function steam_deck()
 		is_steamdeck = true;
     
 	// return vals
-	return {
+	return
+	{
 		is_steamdeck: is_steamdeck,
 		gamepad_index: gamepad_index
-	}
+	};
 }

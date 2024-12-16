@@ -94,11 +94,11 @@ else switch state
 				if (!isgustavo || obj_player1.character == "N")
 				{
 					if (mach4mode == 1)
-						tv_do_expression(spr_tv_exprmach4);
+						tv_do_expression(spr_tv_exprmach4, true);
 					else if (state == states.mach3 or sprite_index == spr_mach3boost)
-						tv_do_expression(spr_tv_exprmach3);
+						tv_do_expression(spr_tv_exprmach3, true);
 					else if (SUGARY_SPIRE && state == states.tumble && character == "SP")
-						tv_do_expression(spr_tv_machrollSP);
+						tv_do_expression(spr_tv_machrollSP, true);
 				}
 			}
 		}

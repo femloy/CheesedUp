@@ -20,7 +20,7 @@ if state == states.normal && !instance_exists(obj_option) && !instance_exists(ob
 	}
 	
 	punch_count++;
-	if (punch_count >= 100)
+	if punch_count >= 100
 	{
 		// Oh nah NOT my cheese!
 		//if (!noise_unlocked)

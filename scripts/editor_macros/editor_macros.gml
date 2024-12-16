@@ -27,5 +27,7 @@ enum comp_dock
 	right,			// 4
 	bottomright,	// 5
 	top,			// 6
-	bottom			// 7
+	bottom,			// 7
+	
+	enum_length
 }

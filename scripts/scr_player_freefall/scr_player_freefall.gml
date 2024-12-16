@@ -148,13 +148,18 @@ function scr_player_freefall()
 	
 	var top = bbox_top, bottom = bbox_bottom;
 	if flip > 0
-		bottom += vsp + 2;
+	{
+		bottom += vsp + 6;
+		top += 1;
+	}
 	else
-		top -= vsp + 2;
-	var check_breakable = !collision_rectangle(bbox_left, top, bbox_right, bottom, obj_destructibles, false, false);
+	{
+		top -= vsp + 6;
+		bottom -= 1;
+	}
 	
 	if (grounded && vsp >= 0 && (freefallsmash < 10 || !place_meeting(x, y + vsp, obj_metalblock))
-	&& (check_breakable or !IT_FINAL)
+	&& (!collision_rectangle(bbox_left, top, bbox_right, bottom, obj_destructibles, false, false) or !IT_FINAL)
 	&& (!place_meeting(x, y + 1, obj_ladder) or !REMIX or !key_down or check_solid(x, y + 1)))
 	{
 		var slope = check_slope(x, y + 1, true);

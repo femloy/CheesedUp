@@ -19,8 +19,9 @@ function scr_bombshoot(_state)
 		windingAnim = 0;
 		bombthrow = false;
 		jumpstop = true;
-		if (_state == states.mach2 || _state == states.mach3)
-			state = 0;
+		
+		if _state == states.mach2 || _state == states.mach3
+			state = states.normal;
 		
 		if !global.pistol
 			global.bullet = floor(global.bullet - 1);

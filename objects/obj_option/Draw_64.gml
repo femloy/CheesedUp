@@ -43,7 +43,7 @@ if SUGARY_SPIRE && sugary
 
 switch (m.anchor)
 {
-	case anchor.center:
+	case menu_anchor.center:
 		tdp_draw_set_halign(fa_center);
 		tdp_draw_set_valign(fa_top);
 		
@@ -57,12 +57,12 @@ switch (m.anchor)
 				c = c_white;
 			var t = menu_lang_value(o.name);
 			menu_draw_text(xx, yy + (m.ypad * i), t, c, a);
-			if menu == MENUS.main && !(SUGARY_SPIRE && sugary)
+			if menu == menu_pages.main && !(SUGARY_SPIRE && sugary)
 				scr_pauseicon_draw(i, xx + (string_width(t) / 2) + 50, yy + (m.ypad * i) + (string_height(t) / 2));
 		}
 		break;
 	
-	case anchor.left:
+	case menu_anchor.left:
 		tdp_draw_set_halign(fa_left);
 		tdp_draw_set_valign(fa_top);
 		
@@ -112,7 +112,7 @@ switch (m.anchor)
 					var y2 = y1 + h;
 					
 					var spr = spr_slidericon;
-					if menu != MENUS.audio
+					if menu != menu_pages.audio
 						spr = spr_slidericon2;
 					
 					draw_set_alpha(a);

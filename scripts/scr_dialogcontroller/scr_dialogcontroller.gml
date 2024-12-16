@@ -88,6 +88,7 @@ function scr_separate_text(str, font, width)
 		
 		var len = string_length(str);
 		var found = false;
+		
 		while _pos < len
 		{
 			if scr_is_separation(string_char_at(str, _pos), separation)
@@ -95,7 +96,7 @@ function scr_separate_text(str, font, width)
 				var _prev_sep_pos = _sep_pos;
 				_sep_pos = _pos;
 				
-				if (scr_string_width(string_copy(str, _start_pos, _pos - _start_pos)) > (width - string_width("a")))
+				if scr_string_width(string_copy(str, _start_pos, _pos - _start_pos)) > width - string_width("a")
 				{
 					_sep_pos = _prev_sep_pos;
 					_start_pos = _sep_pos;

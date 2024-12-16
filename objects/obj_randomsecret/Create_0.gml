@@ -1,8 +1,9 @@
-if (instance_number(object_index) > 1)
+if instance_number(object_index) > 1
 {
-    instance_destroy()
+    instance_destroy();
     exit;
 }
+
 levels = [
 	entrance_secret3,
 	entrance_secret4,

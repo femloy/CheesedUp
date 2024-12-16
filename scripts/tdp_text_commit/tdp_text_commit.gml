@@ -6,8 +6,8 @@ function tdp_text_commit(x = 0, y = 0, w = SCREEN_WIDTH, h = SCREEN_HEIGHT, gui 
 		
 		if !surface_exists(global.tdp_text_surface)
 			global.tdp_text_surface = surface_create(w, h);
-		else if surface_get_width(global.tdp_text_surface) != w or surface_get_height(global.tdp_text_surface) != h
-			surface_resize(global.tdp_text_surface, w, h);
+		else
+			resize_surface_if_resized(global.tdp_text_surface, w, h);
 		
 		surface_set_target(global.tdp_text_surface);
 		draw_clear_alpha(0, 0);
@@ -16,16 +16,16 @@ function tdp_text_commit(x = 0, y = 0, w = SCREEN_WIDTH, h = SCREEN_HEIGHT, gui 
 			var action = ds_queue_dequeue(global.tdp_text_queue);
 			switch action.type
 			{
-				case 0:
+				case tdp_text.halign:
 					draw_set_halign(action.value);
 					break;
-				case 1:
+				case tdp_text.valign:
 					draw_set_valign(action.value);
 					break;
-				case 3:
+				case tdp_text.font:
 					draw_set_font(action.value);
 					break;
-				case 2:
+				case tdp_text.text:
 					if action.w != -1
 						draw_text_ext_transformed_color(action.x - x, action.y - y, action.text, action.sep, action.w, action.xscale, action.yscale, action.angle, action.c1, action.c2, action.c3, action.c4, action.image_alpha);
 					else

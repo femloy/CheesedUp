@@ -11,16 +11,20 @@
 #macro mouse_x_gui device_mouse_x_to_gui_hook(0)
 #macro mouse_y_gui device_mouse_y_to_gui_hook(0)
 
-function mouse_x_hook() {
+function mouse_x_hook()
+{
 	return variable_instance_get(obj_screensizer, "mx") ?? device_mouse_x(0);
 }
-function mouse_y_hook() {
+function mouse_y_hook()
+{
 	return variable_instance_get(obj_screensizer, "my") ?? device_mouse_y(0);
 }
-function device_mouse_x_to_gui_hook(device) {
+function device_mouse_x_to_gui_hook(device)
+{
 	return variable_instance_get(obj_screensizer, "mxgui") ?? device_mouse_x_to_gui(device);
 }
-function device_mouse_y_to_gui_hook(device) {
+function device_mouse_y_to_gui_hook(device)
+{
 	return variable_instance_get(obj_screensizer, "mygui") ?? device_mouse_y_to_gui(device);
 }
 
@@ -77,7 +81,7 @@ function screen_apply_size()
 		
 		if global.gameframe_enabled
 		{
-			if !gameframe_get_fullscreen()
+			if gameframe_get_fullscreen() == 0
 				gameframe_restore();
 		}
 		if !(!global.gameframe_enabled && window_get_fullscreen()) // If not non-gameframe fullscreen

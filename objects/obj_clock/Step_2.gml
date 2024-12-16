@@ -1,20 +1,20 @@
-if (!instance_exists(objectID))
+if !instance_exists(objectID)
 {
 	instance_destroy();
 	exit;
 }
+
 x = objectID.x;
 y = objectID.y - ypad;
-if (timedgate)
+
+if timedgate
 {
 	var time = global.timedgatetime;
 	var _max = global.timedgatetimemax;
 }
 else
 {
-	if !instance_exists(obj_deliverytimer)
-		exit;
-	with (obj_deliverytimer)
+	with obj_deliverytimer
 	{
 		var m = minutes;
 		var s = seconds;
@@ -22,33 +22,38 @@ else
 		var ms = maxseconds;
 	}
 	
-	while (m > 0)
+	while m > 0
 	{
 		m--;
 		s += 60;
 	}
-	while (mm > 0)
+	
+	while mm > 0
 	{
 		mm--;
 		ms += 60;
 	}
+	
 	time = s;
 	_max = ms;
 }
+
 var p = time / _max;
 image_index = round(p * (image_number - 1));
-if (!init)
+
+if !init
 {
 	init = true;
 	last_index = image_index;
 }
-else if (last_index != image_index)
+else if last_index != image_index
 {
-	if (last_index > image_index)
-		sound_play("event:/sfx/misc/timercount");
+	if last_index > image_index
+		fmod_event_one_shot("event:/sfx/misc/timercount");
 	else
-		sound_play("event:/sfx/misc/timerbegin");
+		fmod_event_one_shot("event:/sfx/misc/timerbegin");
 	last_index = image_index;
 }
-if (timedgate && !global.timedgatetimer)
+
+if timedgate && !global.timedgatetimer
 	instance_destroy();

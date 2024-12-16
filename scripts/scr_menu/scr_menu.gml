@@ -23,7 +23,7 @@ function menu_goto(menu_id)
 		optionselected = 0;
 	}
 }
-function create_menu_fixed(_menuid, _anchor, _xpad, _ypad, _backmenu = MENUS.main)
+function create_menu_fixed(_menuid, _anchor, _xpad, _ypad, _backmenu = menu_pages.main)
 {
 	return 
 	{

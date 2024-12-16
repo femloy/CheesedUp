@@ -1,14 +1,16 @@
-if (room == custom_lvl_room)
+if room == custom_lvl_room
 	tile_layer_delete_at(1, x, y);
+
 if !in_saveroom()
 {
 	for (var xx = bbox_left; xx < bbox_right; xx += 32)
 	{
 		for (var yy = bbox_top; yy < bbox_bottom; yy += 32)
 		{
-			with create_debris(xx + 16, yy + 16, spr_plugdebris)
+			var spawn_x = REMIX ? xx : x, spawn_y = REMIX ? yy : y;
+			with create_debris(spawn_x + 16, spawn_y + 16, spr_plugdebris)
 				image_index = 0;
-			with create_debris(xx + 16, yy + 16, spr_plugdebris)
+			with create_debris(spawn_x + 16, spawn_y + 16, spr_plugdebris)
 				image_index = 1;
 		}
 	}

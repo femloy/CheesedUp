@@ -960,11 +960,9 @@ function scr_wc_drawgui()
 			// draw
 			var win_surf = surface_create(win_width, win_height);
 			
-			// window content
-			if surface_get_width(win_surf) != win_width
-			or surface_get_height(win_surf) != win_height
+			if surface_get_width(win_surf) != win_width or surface_get_height(win_surf) != win_height
 				surface_resize(win_surf, win_width, win_height);
-				
+			
 			surface_set_target(win_surf);
 			draw_clear_alpha(wincol, 0.35);
 			draw_set_colour(txtcol);

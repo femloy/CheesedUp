@@ -99,6 +99,9 @@ if !YYC
 #macro DATE_TIME_NOW concat(current_year, "-", current_month, "-", current_day, "__", current_hour, "-", current_minute, "-", current_second)
 #macro GAME_PAUSED (instance_exists(obj_pause) && obj_pause.pause) or (instance_exists(obj_netchat) && obj_netchat.style.game_paused()) or instance_exists(obj_popupscreen)
 
+#macro WINDOWS (os_type == os_windows)
+#macro SWITCH (os_type == os_switch)
+
 #macro PANIC check_panic()
 function check_panic()
 {

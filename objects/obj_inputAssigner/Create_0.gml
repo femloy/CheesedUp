@@ -67,18 +67,18 @@ switch_get_single_player = function(player)
 	}
 };
 
-setVibration = function(argument0, argument1, argument2, argument3)
+setVibration = function(player, left_motor, right_motor, force)
 {
-	vibration[argument0][0] = argument1;
-	vibration[argument0][1] = argument2;
-	if (argument3 != undefined)
-		vibration[argument0][2] = argument3;
+	vibration[player][0] = left_motor;
+	vibration[player][1] = right_motor;
+	if force != undefined
+		vibration[player][2] = force;
 };
-function CheckUsedIndex(argument0)
+function CheckUsedIndex(index)
 {
 	for (var _x = 0; _x < 2; _x++)
 	{
-		if (player_input_device[_x] == argument0)
+		if player_input_device[_x] == index
 			return true;
 	}
 	return false;

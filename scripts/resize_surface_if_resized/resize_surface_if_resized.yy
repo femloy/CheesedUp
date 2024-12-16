@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"resize_surface_if_resized",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"resize_surface_if_resized",
+  "parent":{
+    "name":"Together",
+    "path":"folders/Scripts/Together.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

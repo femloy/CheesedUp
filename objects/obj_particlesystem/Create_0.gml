@@ -27,7 +27,7 @@ enum part_type
 	fadeout
 }
 
-if (instance_number(obj_particlesystem) > 1)
+if instance_number(obj_particlesystem) > 1
 {
 	instance_destroy();
 	exit;

@@ -25,18 +25,7 @@ credits = [
 	[noone, string_replace_all(lang_get_value_newline_raw("en", "credits_help2"), "%", "\"")],
 	[noone, string_replace_all(lang_get_value_newline_raw("en", "credits_help3"), "%", "\"")],
 	[noone, string_replace_all(lang_get_value_newline_raw("en", "credits_help4"), "%", "\"")],
-	[0, noone],
-	[1, noone],
-	[2, noone],
-	[3, noone],
-	[4, noone],
-	[5, noone],
-	[6, noone],
-	[7, noone],
-	[9, noone],
-	[10, noone],
-	[11, noone],
-	[12, noone],
+	[0, noone], [1, noone], [2, noone], [3, noone], [4, noone], [5, noone], [6, noone], [7, noone], [9, noone], [10, noone], [11, noone], [12, noone],
 	[noone, lang_get_value_newline("credits_fmod")]
 ];
 for (var i = 0; i < array_length(credits); i++)

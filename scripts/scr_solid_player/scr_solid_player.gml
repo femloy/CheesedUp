@@ -17,32 +17,37 @@ function scr_solid_player(_x, _y)
 	for (var i = 0; i < num; i++)
 	{
 		var b = ds_list_find_value(global.instancelist, i);
-		if (instance_exists(b))
+		if instance_exists(b)
 		{
-			switch (b.object_index)
+			switch b.object_index
 			{
 				case obj_ghostwall:
 					if (state != states.ghost)
 						_collided = true;
 					break;
+				
 				case obj_mach3solid:
 					if (state != states.mach3 && (state != states.machslide || sprite_index != spr_mach3boost) && (state != states.chainsaw || tauntstoredstate != states.mach3) && (state != states.rupertjump && state != states.rupertslide))
 						_collided = true;
 					break;
-				case obj_metalblock:
-				if (state != states.rupertjump && state != states.rupertslide)
-					_collided = true;
-					break;
+				
 				default:
 					_collided = true;
 			}
+			
+			var par = object_get_parent(b.object_index);
+			if (state == states.freefall || state == states.ratmountbounce || state == states.ratmountgroundpound) && vsp >= 0 && (par == obj_destructibles || par == obj_bigdestructibles || par == obj_deadjohnparent || par == obj_destroyable3 || par == obj_destroyable)
+            {
+                _collided = false;
+                instance_destroy(b);
+            }
 		}
-		if (_collided)
+		if _collided
 			break;
 	}
 	ds_list_clear(global.instancelist);
 	
-	if (_collided)
+	if _collided
 	{
 		x = old_x;
 		y = old_y;

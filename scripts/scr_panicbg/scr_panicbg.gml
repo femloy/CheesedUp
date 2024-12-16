@@ -54,10 +54,8 @@ function scr_panicbg_start()
 		{
 			if !surface_exists(global.panicbg_surface)
 				global.panicbg_surface = surface_create(SCREEN_WIDTH, SCREEN_HEIGHT);
-			else if surface_get_width(global.panicbg_surface) != SCREEN_WIDTH
-			or surface_get_height(global.panicbg_surface) != SCREEN_HEIGHT
-				surface_resize(global.panicbg_surface, SCREEN_WIDTH, SCREEN_HEIGHT);
-			
+			else
+				resize_surface_if_resized(global.panicbg_surface, SCREEN_WIDTH, SCREEN_HEIGHT);
 			surface_set_target(global.panicbg_surface);
 		}
 		else if surface_exists(global.panicbg_surface)

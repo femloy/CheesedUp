@@ -1,31 +1,36 @@
 event_inherited();
+
 dmg = 30;
 spd = 25;
 parryable = true;
 
-player_hurt = function(argument0, argument1)
+function player_hurt(damage, player)
 {
-	if (!collisioned)
+	if !collisioned
 	{
-		var prevstate = argument1.state;
-		SUPER_player_hurt(argument0, argument1);
-		argument1.xscale = -image_xscale;
-		argument1.hitxscale = -image_xscale;
-		if (prevstate == states.superattack)
+		var prevstate = player.state;
+		SUPER_player_hurt(damage, player);
+		player.xscale = -image_xscale;
+		player.hitxscale = -image_xscale;
+		
+		if prevstate == states.superattack
 		{
-			argument1.hithsp = 0;
-			argument1.hitvsp = 0;
-			argument1.hitstate = states.superattack;
-			with (obj_vigilanteboss)
+			player.hithsp = 0;
+			player.hitvsp = 0;
+			player.hitstate = states.superattack;
+			
+			with obj_vigilanteboss
 				duel_buffer = duel_max + irandom(duel_random);
 		}
 	}
 }
-parry = function()
+
+function parry()
 {
 	var prevparried = parried;
 	SUPER_parry();
-	if (prevparried != parried)
+	
+	if prevparried != parried
 	{
 		image_xscale *= -1;
 		dmg = 100;
