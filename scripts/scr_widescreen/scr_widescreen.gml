@@ -1,6 +1,6 @@
 function get_curve_scale()
 {
-	return max((SCREEN_WIDTH / 960), (SCREEN_HEIGHT / 540));
+	return max(get_screen_xscale(), get_screen_yscale());
 }
 function get_screen_xscale()
 {
@@ -8,7 +8,7 @@ function get_screen_xscale()
 }
 function get_screen_yscale()
 {
-	return (SCREEN_WIDTH / 960);
+	return (SCREEN_HEIGHT / 540);
 }
 function screen_center_x(input)
 {

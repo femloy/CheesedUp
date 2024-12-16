@@ -4,7 +4,7 @@ function get_dark(blend, use_dark, use_position = false, posX = 0, posY = 0)
 	{
 		if room == boss_vigilante
 			blend = make_color_rgb(247, 109, 22);
-		if SUGARY
+		if SUGARY_SPIRE && SUGARY
 			return #264d72;
 		
 		var dis, d = room_width * room_height, b = d, bb = b;
@@ -264,7 +264,7 @@ function draw_player()
 	else
 	{
 		var b = get_dark(image_blend, obj_drawcontroller.use_dark);
-		if obj_drawcontroller.use_dark && SUGARY
+		if SUGARY_SPIRE && obj_drawcontroller.use_dark && SUGARY
 			draw_set_flash(b);
 		else
 		{

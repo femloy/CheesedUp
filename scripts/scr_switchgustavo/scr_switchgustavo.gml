@@ -4,8 +4,11 @@ function scr_charswitch_sprite(back)
 	{
 		with obj_player1
 		{
-			if character == "N"
-				return spr_noise_intro;
+			switch character
+			{
+				case "N": return spr_noise_intro;
+				case "V": return spr_mort_intro;
+			}
 		}
 		return spr_gustavo_intro;
 	}
@@ -13,8 +16,11 @@ function scr_charswitch_sprite(back)
 	{
 		with obj_player1
 		{
-			if character == "N"
-				return spr_backtonoise;
+			switch character
+			{
+				case "N": return spr_backtonoise;
+				case "V": return spr_backtovigilante;
+			}
 		}
 		return spr_backtopeppino;
 	}
@@ -33,7 +39,7 @@ function scr_switchgustavo(set_state = true, skip_gloves = false)
 			{
 				visible = true;
 				state = states.ratmount;
-				sprite_index = character == "V" ? spr_mortidle : spr_player_ratmountidle;
+				sprite_index = character == "V" ? spr_mortidle : spr_ratmount_idle;
 				jumpAnim = false;
 			}
 			brick = true;

@@ -10,6 +10,7 @@ if global.panic
 	exit;
 }
 
+persistent = true;
 count = 0;
 
 flags.do_once_per_save = true;
@@ -21,6 +22,12 @@ output = function()
 
 condition = function()
 {
+	if room != sucrose_1 && room != sucrose_2
+	{
+		instance_destroy();
+		return false;
+	}
+	
     with obj_music
 	{
 		if music != noone

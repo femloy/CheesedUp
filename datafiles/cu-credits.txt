@@ -8,7 +8,6 @@ Lila
 
 - Spriters -
 Red
-Tictorian
 Carrot
 
 - Music/SFX -
@@ -20,14 +19,13 @@ LAP HELL + Egg's Lap Mod
 Create Your Own Pizza
 
 - Contributions -
+Tictorian - A lot of sprites
 Red - Missing base game room names
 The Discord - Palettes, cosmetics and suggestions
 Ven - A couple of sprites
-TerrAvery - Translation spriting help
 
 - Spanish Translation -
 Lila - Translation
-TerrAvery - Spriting
 Red - Spriting
 
 - Extensions Used -

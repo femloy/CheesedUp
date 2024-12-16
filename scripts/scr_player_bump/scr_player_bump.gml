@@ -1,6 +1,6 @@
 function scr_player_bump()
 {
-	if (sprite_index != spr_wallsplat)
+	if sprite_index != spr_wallsplat && sprite_index != spr_lonegustavo_wallsplat
 	{
 		movespeed = 0;
 		mach2 = 0;
@@ -41,7 +41,7 @@ function scr_player_bump()
 		hsp = 0;
 		vsp = 0;
 		if (floor(image_index) == (image_number - 1))
-			state = states.normal;
+			state = isgustavo ? states.ratmount : states.normal;
 		image_speed = 0.35;
 	}
 	if (state == states.normal && isgustavo)

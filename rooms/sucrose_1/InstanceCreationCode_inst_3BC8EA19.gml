@@ -13,6 +13,8 @@ if global.panic
 	exit;
 }
 
+persistent = true;
+
 output = function()
 {
     var _bg2 = layer_background_get_id("Backgrounds_still1");
@@ -22,6 +24,12 @@ output = function()
 
 condition = function()
 {
+	if room != sucrose_1 && room != sucrose_2
+	{
+		instance_destroy();
+		return false;
+	}
+	
     var _bg = layer_background_get_id("Backgrounds_still1");
     var _bg_sprite = layer_background_get_sprite(_bg);
     var _index = layer_background_get_index(_bg);

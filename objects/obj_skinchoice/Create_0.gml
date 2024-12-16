@@ -326,10 +326,9 @@ select = function()
 		if !(!custom && character == prevchar && paletteselect == prevpal && global.palettetexture == prevtex && noisetype == prevnoise)
 		{
 			// setup animation
-			with instance_create(x, y, obj_genericpoofeffect)
-				depth = -10;
 			if character != prevchar
 			{
+				instance_create(x, y, obj_bangeffect);
 				instance_create(x, y, obj_parryeffect);
 				sound_play_3d(sfx_collecttoppin, x, y);
 				sound_play_3d(sfx_killenemy, x, y);

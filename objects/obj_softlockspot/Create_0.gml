@@ -3,7 +3,7 @@ live_auto_call;
 condition = function()
 {
 	player = instance_place(x, y, obj_player);
-	return player && player.state != states.chainsaw && global.panic;
+	return player && player.state != states.chainsaw && player.state != states.backbreaker && global.panic && !MOD.FromTheTop;
 }
 target = obj_softlocktarget;
 state = 0;

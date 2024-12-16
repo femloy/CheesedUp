@@ -3,7 +3,8 @@ function set_checkpoint()
 	trace("CHECKPOINT");
 	clear_checkpoint();
 	
-	create_transformation_tip(lstr("checkpointset"));
+	if !(global.in_cyop && instance_exists(obj_transfotip))
+		create_transformation_tip(lstr("checkpointset"));
 	
 	var r = room;
 	if instance_exists(obj_cyop_loader)
@@ -127,5 +128,11 @@ function load_checkpoint()
 		if global.sausagefollow instance_create(obj_player1.x, obj_player1.y, obj_pizzakinsausage);
 		if global.pineapplefollow instance_create(obj_player1.x, obj_player1.y, obj_pizzakinpineapple);
 		if global.gerome instance_create(obj_player1.x, obj_player1.y, obj_geromefollow);
+		
+		with obj_player
+		{
+			hurted = true;
+			alarm[7] = 60;
+		}
 	}
 }

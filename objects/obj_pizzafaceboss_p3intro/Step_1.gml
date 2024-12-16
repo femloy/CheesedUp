@@ -283,7 +283,10 @@ switch introstate
 			if obj_player1.character == "N"
 			{
 				with obj_music
-					fmod_event_instance_set_parameter(music.event, "state", 3, false);
+				{
+					if music != noone
+						fmod_event_instance_set_parameter(music.event, "state", 3, false);
+				}
 			}
 			with obj_camera
 			{
@@ -371,7 +374,10 @@ switch introstate
 			camzoom = 1;
 			introbuffer = 70;
 			with obj_music
-				fmod_event_instance_set_parameter(music.event, "state", 3, false);
+			{
+				if music != noone
+					fmod_event_instance_set_parameter(music.event, "state", 3, false);
+			}
 			instance_create(0, 0, obj_pizzahead_blackfade);
 		}
 		break;

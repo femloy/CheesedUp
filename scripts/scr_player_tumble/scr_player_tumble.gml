@@ -26,7 +26,7 @@ function scr_player_tumble()
 	if isgustavo
 	{
 		machrollspr = spr_lonegustavo_roll;
-		divespr = spr_lonegustavogroundpound;
+		divespr = spr_lonegustavo_dive;
 		crouchslipspr = spr_lonegustavocrouchwalk;
 	}
 	
@@ -199,7 +199,7 @@ function scr_player_tumble()
 			sound_play_3d("event:/sfx/pep/splat", x, y);
 			state = states.bump;
 			image_index = 0;
-			sprite_index = spr_wallsplat;
+			sprite_index = isgustavo ? spr_lonegustavo_wallsplat : spr_wallsplat;
 		}
 	}
 	if (!key_jump2 && jumpstop == 0 && vsp < 0.5 && stompAnim == 0)

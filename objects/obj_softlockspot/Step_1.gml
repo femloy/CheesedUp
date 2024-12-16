@@ -110,7 +110,7 @@ switch state
 				sprite_index = tauntstoredsprite;
 				image_speed = other.storedimagespeed;
 				
-				if state == states.door
+				if state == states.door or state == states.backbreaker or state == states.chainsaw
 					state = states.normal;
 			}
 			state = 5;

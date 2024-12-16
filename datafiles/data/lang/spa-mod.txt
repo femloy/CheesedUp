@@ -802,6 +802,7 @@ dresser_N40 = "Flipnote"
 dresser_N40D = "¿Te gustan los gofres?"
 dresser_N41 = "Bogrita"
 dresser_N41D = "No es... oscuro."
+dresser_N41_mix = "- AZUL"
 dresser_D17 = "Doise"
 dresser_D17D = "Oooooh... Me corro!"
 

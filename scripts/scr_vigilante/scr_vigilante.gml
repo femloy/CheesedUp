@@ -84,7 +84,7 @@ function scr_vigilante_update_sounds()
 		songstate = Approach(songstate, snotty ? 2 : 0, 0.05);
 	with obj_music
 	{
-		if music != -4
+		if music != noone
 			fmod_event_instance_set_parameter(music.event, "state", other.songstate, true);
 	}
 }

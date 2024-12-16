@@ -7,7 +7,7 @@ if !global.option_screenshake
 draw_set_alpha(1);
 if start
 {
-	var xscale = SCREEN_WIDTH / 960, yscale = SCREEN_HEIGHT / 540;
+	var xscale = get_screen_xscale(), yscale = get_screen_yscale();
 	var title_offset = 32 * xscale;
 	
 	draw_rectangle_color(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0, 0, 0, false);
