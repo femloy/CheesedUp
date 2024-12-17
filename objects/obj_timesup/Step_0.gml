@@ -27,6 +27,11 @@ else
 	wait--;
 	if do_wait && wait <= 0 && global.leveltorestart != noone && global.leveltorestart != -1
 	{
+		with obj_timesupwar
+		{
+			if explosionsnum > 10
+				instance_destroy();
+		}
 		if obj_player1.key_taunt2
 		{
 			fmod_event_instance_stop(snd, true);

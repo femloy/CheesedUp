@@ -20,9 +20,9 @@ with (other)
 		
 		input_buffer_jump = 0;
 		state = states.ratmountladder;
-		if (brick == 1)
+		if brick && character != "V"
 		{
-			with (instance_create(x, y, obj_brickcomeback))
+			with instance_create(x, y, obj_brickcomeback)
 			{
 				wait = true;
 				create_particle(x, y, part.genericpoofeffect);

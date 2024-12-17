@@ -75,7 +75,7 @@ function scr_player_crouch()
 	if (key_down && scr_slope() && !(place_meeting(x, y + 1, obj_platform) && !place_meeting(x, y, obj_platform)))
 	{
 		var slope = instance_place(x, y + 1, IT_FINAL ? obj_afom_ballslope : obj_slope);
-		if slope
+		if slope && !(slope.object_index == obj_afom_ballslope && sprite_index != spr_crouch)
 		{
 			movespeed = 14;
 			with slope

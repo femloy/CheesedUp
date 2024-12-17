@@ -18,9 +18,10 @@ array_foreach(room_get_bg_layers(), function(l, i)
 		var parallax = [CAMX * l.par_x, CAMY * l.par_y];
 	else
 	{
-		var parallax = layer_get_parallax(l.layer_id);
-		if parallax == undefined
-			parallax = [0, 0];
+		if room_width <= 960 && room_height <= 540 + 25
+			var parallax = [0, 0];
+		else
+			var parallax = layer_get_parallax(l.layer_id) ?? [0, 0];
 	}
 	
 	if panic && layer_get_depth(l.layer_id) > 0 && l.bg_sprite != bg_etbbrick

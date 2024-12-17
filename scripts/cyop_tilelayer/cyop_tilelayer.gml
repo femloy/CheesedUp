@@ -135,27 +135,59 @@ function cyop_tilelayer(_x, _y, _tilelayer, _depth, _secret) constructor
 	            var uvs = sprite_get_uvs(tile.tileset, 0);
 	            var uv_left = uvs[0];
 	            var uv_top = uvs[1];
+	            var uv_right = uvs[2];
+	            var uv_bottom = uvs[3];
                 
 	            var tile_trim_x = uvs[4];
 	            var tile_trim_y = uvs[5];
-                
+				
 	            var tile_tex_size_x = tile.size * tex_w;
 	            var tile_tex_size_y = tile.size * tex_h;
                 
 	            var tile_tex_pos_x = ((tile.coord[0] - (tile_trim_x / tile.size)) * tile_tex_size_x) + uv_left;
 	            var tile_tex_pos_y = ((tile.coord[1] - (tile_trim_y / tile.size)) * tile_tex_size_y) + uv_top;
 				
-				var tile_width = 32 * (tile[$ "flipX"] ?? 1);
-				var tile_height = 32 * (tile[$ "flipY"] ?? 1);
+				var tile_x = tile.x, tile_y = tile.y;
+				var tile_width = 32, tile_height = 32;
 				
-				var tile_x = tile.x;
-				var tile_y = tile.y;
+				// tile outside of uv, fixes couch black bars
+				if tile_tex_pos_x < uv_left
+				{
+					// UNTESTED.
+					var difference = uv_left - tile_tex_pos_x;
+					tile_tex_pos_x += difference;
+					tile_x += difference / tex_w;
+				}
+				if tile_tex_pos_y < uv_top
+				{
+					// UNTESTED.
+					var difference = uv_top - tile_tex_pos_y;
+					tile_tex_pos_y += difference;
+					tile_y += difference / tex_h;
+				}
+				if tile_tex_pos_x + tile_tex_size_x > uv_right
+				{
+					var difference = (tile_tex_pos_x + tile_tex_size_x) - uv_right;
+					tile_tex_size_x -= difference;
+					tile_width -= difference / tex_w;
+				}
+				if tile_tex_pos_y + tile_tex_size_y > uv_bottom
+				{
+					// UNTESTED
+					var difference = (tile_tex_pos_y + tile_tex_size_y) - uv_bottom;
+					tile_tex_size_y -= difference;
+					tile_height -= difference / tex_h;
+				}
 				
+				// flip tile
+				tile_width *= tile[$ "flipX"] ?? 1;
 				if tile_width < 0
-					tile_x += 32;
+					tile_x -= tile_width;
+				tile_height *= tile[$ "flipY"] ?? 1;
 				if tile_height < 0
-					tile_y += 32;
+					tile_y -= tile_height;
 				
+				// add
 	            vertex_build_quad3D(buffer, 
 	                tile_x, tile_y, 0, tile_width, tile_height, // Pos and Size
 	                c_white, 1, // Color and Opacity

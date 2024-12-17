@@ -1245,5 +1245,6 @@ ds_map_set(global.afom_objectmap, "obj_reverselap4block", obj_afom_reverselap4bl
 ds_map_set(global.afom_objectmap, "obj_secretroomtrigger", obj_afom_secretroomtrigger);
 ds_map_set(global.afom_objectmap, "obj_darkcontroller", obj_afom_darkcontroller);
 ds_map_set(global.afom_objectmap, "obj_ballslope", obj_afom_ballslope);
+ds_map_set(global.afom_objectmap, "obj_ballslopeOLD", obj_afom_ballslope);
 ds_map_set(global.afom_objectmap, "obj_destroyable2_big_escape", obj_destroyable2_bigescape);
 ds_map_set(global.afom_objectmap, "object474", obj_null);
