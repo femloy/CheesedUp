@@ -70,8 +70,6 @@ if (!pause && instance_exists(obj_player1) && alarm[3] == -1 && (obj_player1.key
 	}
 	with obj_elevatorcutscene
 		_cutscenehandler = true;
-	with obj_netchat
-		if open _cutscenehandler = true;
 	if pause_buffer > 0
 		_cutscenehandler = true;
 	

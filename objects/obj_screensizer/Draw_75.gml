@@ -12,25 +12,6 @@ if !surface_exists(gui_surf)
 	exit;
 }
 
-#region CHAT
-
-with obj_netchat
-{
-	if !surface_exists(other.chat_surf)
-		other.chat_surf = surface_create(GUI_WIDTH, GUI_HEIGHT);
-	else
-		resize_surface_if_resized(other.chat_surf, GUI_WIDTH, GUI_HEIGHT);
-	
-	surface_set_target(other.chat_surf);
-	draw_clear_alpha(c_black, 0);
-	
-	style.draw();
-	
-	surface_reset_target();
-}
-
-#endregion
-
 if /*frac(app_scale) > 0 && */global.option_texfilter
 {
 	//var tex = surface_get_texture(gui_surf);
@@ -55,13 +36,6 @@ if global.option_scale_mode != 2
 	var _yscale = window_to_gui_yscale(app_scale);
 }
 draw_surface_ext(gui_surf, _x, _y, _xscale, _yscale, 0, c_white, 1);
-
-// CHAT
-with obj_netchat
-{
-	style.pre_draw(_x, _y, _xscale, _yscale);
-	draw_surface_ext(other.chat_surf, _x, _y, _xscale, _yscale, 0, c_white, 1);
-}
 
 toggle_alphafix(false);
 gpu_set_texfilter(false);

@@ -176,9 +176,7 @@ function scr_pause_deactivate_objects(pause_sounds = true, extra_exclude_array =
 		obj_eventorder, obj_fmod, obj_inputAssigner, obj_savesystem,
 		obj_pause, obj_screensizer, obj_music, obj_persistent, obj_shell,
 		obj_richpresence, obj_inputdisplay, obj_gmlive, obj_globaltimer,
-		obj_langload, obj_cyop_loader, obj_loadingscreen,
-		
-		obj_netclient, obj_netchat, obj_popupscreen
+		obj_langload, obj_cyop_loader, obj_loadingscreen, obj_popupscreen
 	];
 	array_copy(exclude, array_length(exclude), extra_exclude_array, 0, array_length(extra_exclude_array));
 	
