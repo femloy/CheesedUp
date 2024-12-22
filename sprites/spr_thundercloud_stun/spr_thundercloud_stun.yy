@@ -28,7 +28,7 @@
   "origin":9,
   "parent":{
     "name":"Thunder Cloud",
-    "path":"folders/Sprites/Together/Sugary Spire/Baddie/Thunder Cloud.yy",
+    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Baddie/Thunder Cloud.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -312,13 +312,7 @@ switch state
 										alarm[3] = 1.85 * 60;
 								});
 								
-                                if !keyboard_check(vk_shift) && !CHEESED_UP && !instance_exists(obj_netclient)
-								{
-                                    with instance_create(0, 0, obj_netclient)
-										verify_callback = f;
-								}
-								else
-									f();
+								f();
 							}
 							
 							with obj_music

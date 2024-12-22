@@ -16,7 +16,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Logic",
-    "path":"folders/Objects/Together/Sugary Spire/Logic.yy",
+    "path":"folders/Objects/CheesyPizza/Sugary Spire/Logic.yy",
   },
   "parentObjectId":{
     "name":"par_ss_logicobjects",

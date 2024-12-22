@@ -10,7 +10,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Modifiers",
-    "path":"folders/Objects/Together/Modifiers.yy",
+    "path":"folders/Objects/CheesyPizza/Modifiers.yy",
   },
   "parentObjectId":{
     "name":"obj_solid",

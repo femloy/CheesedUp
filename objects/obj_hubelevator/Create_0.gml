@@ -70,9 +70,9 @@ if !instance_exists(obj_cyop_loader)
 		if SUGARY_SPIRE
 			add_floor(7, tower_sugary, "A");
 		
-		if CHEESED_UP
-			add_floor(5, tower_extra, "G", "G");
-		else
+		add_floor(5, tower_extra, "G", "G");
+		
+		if DEBUG
 			add_floor(6, tower_basement, "A", "A");
 		
 		//if DEBUG

@@ -47,7 +47,7 @@
   "name":"ruin_pizzamart_OLD",
   "parent":{
     "name":"Ruin",
-    "path":"folders/Rooms/Together/Snick's Challenge/Ruin.yy",
+    "path":"folders/Rooms/CheesyPizza/Snick's Challenge/Ruin.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

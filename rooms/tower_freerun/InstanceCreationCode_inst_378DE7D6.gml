@@ -1,2 +1,2 @@
-targetRoom = CHEESED_UP ? tower_extra : tower_basement;
+targetRoom = tower_extra;
 offload_arr = ["minigolfgroup"];

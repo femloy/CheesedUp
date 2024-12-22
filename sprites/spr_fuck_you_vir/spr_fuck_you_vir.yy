@@ -33,7 +33,7 @@
   "origin":0,
   "parent":{
     "name":"Scenery",
-    "path":"folders/Sprites/Together/Level Assets/Midway/Scenery.yy",
+    "path":"folders/Sprites/CheesyPizza/Level Assets/Midway/Scenery.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Demo Events",
-    "path":"folders/Sprites/Together/Demo Events.yy",
+    "path":"folders/Sprites/CheesyPizza/Demo Events.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

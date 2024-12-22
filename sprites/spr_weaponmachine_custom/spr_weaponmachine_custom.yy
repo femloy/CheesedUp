@@ -61,7 +61,7 @@
   "origin":4,
   "parent":{
     "name":"CYOP",
-    "path":"folders/Sprites/Together/CYOP.yy",
+    "path":"folders/Sprites/CheesyPizza/CYOP.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

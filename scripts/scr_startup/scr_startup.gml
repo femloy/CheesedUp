@@ -66,11 +66,7 @@ exception_unhandled_handler
 );
 
 // drama
-#macro CHEESED_UP 0
-#macro SUGARY_SPIRE 1
-#macro CheesedUp:CHEESED_UP 1
-#macro CheesedUp:SUGARY_SPIRE 0
-
+#macro SUGARY_SPIRE 0
 #macro DEATH_MODE 0
 #macro BO_NOISE 0
 

@@ -12,7 +12,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"UI",
-    "path":"folders/Objects/Together/UI.yy",
+    "path":"folders/Objects/CheesyPizza/UI.yy",
   },
   "parentObjectId":{
     "name":"par_choicebase",

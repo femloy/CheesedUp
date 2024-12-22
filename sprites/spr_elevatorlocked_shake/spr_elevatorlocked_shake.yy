@@ -27,7 +27,7 @@
   "origin":9,
   "parent":{
     "name":"Misc",
-    "path":"folders/Sprites/Together/Misc.yy",
+    "path":"folders/Sprites/CheesyPizza/Misc.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

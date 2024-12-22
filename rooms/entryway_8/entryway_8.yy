@@ -361,7 +361,7 @@
   "name":"entryway_8",
   "parent":{
     "name":"Crunchy Construction",
-    "path":"folders/Rooms/Together/Sugary Spire/Crunchy Construction.yy",
+    "path":"folders/Rooms/CheesyPizza/Sugary Spire/Crunchy Construction.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

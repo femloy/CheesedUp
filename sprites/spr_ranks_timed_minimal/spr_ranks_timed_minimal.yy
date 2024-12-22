@@ -31,7 +31,7 @@
   "origin":9,
   "parent":{
     "name":"Minimal",
-    "path":"folders/Sprites/Together/HUD/Minimal.yy",
+    "path":"folders/Sprites/CheesyPizza/HUD/Minimal.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

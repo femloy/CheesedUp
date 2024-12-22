@@ -31,7 +31,7 @@
   "origin":9,
   "parent":{
     "name":"Googly Juice",
-    "path":"folders/Sprites/Together/Sugary Spire/Baddie/Googly Juice.yy",
+    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Baddie/Googly Juice.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

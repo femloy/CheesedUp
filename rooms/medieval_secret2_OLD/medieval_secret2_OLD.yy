@@ -74,7 +74,7 @@
   "name":"medieval_secret2_OLD",
   "parent":{
     "name":"Medieval",
-    "path":"folders/Rooms/Together/Snick's Challenge/Medieval.yy",
+    "path":"folders/Rooms/CheesyPizza/Snick's Challenge/Medieval.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

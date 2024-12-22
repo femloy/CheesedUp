@@ -28,7 +28,7 @@
   "origin":4,
   "parent":{
     "name":"Sandbox Menu",
-    "path":"folders/Sprites/Together/Sandbox Menu.yy",
+    "path":"folders/Sprites/CheesyPizza/Sandbox Menu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
@@ -89,8 +89,8 @@
   "swatchColours":null,
   "swfPrecision":0.5,
   "textureGroupId":{
-    "name":"menugroup",
-    "path":"texturegroups/menugroup",
+    "name":"mod_sugaryspire",
+    "path":"texturegroups/mod_sugaryspire",
   },
   "type":0,
   "VTile":false,

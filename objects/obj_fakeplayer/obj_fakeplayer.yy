@@ -11,8 +11,8 @@
   "name":"obj_fakeplayer",
   "overriddenProperties":[],
   "parent":{
-    "name":"Together",
-    "path":"folders/Objects/Together.yy",
+    "name":"CheesyPizza",
+    "path":"folders/Objects/CheesyPizza.yy",
   },
   "parentObjectId":null,
   "persistent":false,

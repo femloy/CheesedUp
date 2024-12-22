@@ -29,7 +29,7 @@
   "origin":0,
   "parent":{
     "name":"Decorations",
-    "path":"folders/Sprites/Together/Sugary Spire/Decorations.yy",
+    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Decorations.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

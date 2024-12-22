@@ -10,8 +10,8 @@
   "name":"obj_cheeseslime_boss",
   "overriddenProperties":[],
   "parent":{
-    "name":"Together",
-    "path":"folders/Objects/Together.yy",
+    "name":"CheesyPizza",
+    "path":"folders/Objects/CheesyPizza.yy",
   },
   "parentObjectId":{
     "name":"obj_cheeseslime",

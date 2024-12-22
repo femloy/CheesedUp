@@ -33,7 +33,7 @@
   "origin":0,
   "parent":{
     "name":"Sucrose",
-    "path":"folders/Sprites/Together/Sugary Spire/BGs and Tiles/Sucrose.yy",
+    "path":"folders/Sprites/CheesyPizza/Sugary Spire/BGs and Tiles/Sucrose.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

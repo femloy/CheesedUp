@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Sluggy",
-    "path":"folders/Sprites/Together/Sugary Spire/Baddie/Sluggy.yy",
+    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Baddie/Sluggy.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

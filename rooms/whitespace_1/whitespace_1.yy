@@ -63,7 +63,7 @@
   "name":"whitespace_1",
   "parent":{
     "name":"What Lies Beyond",
-    "path":"folders/Rooms/Together/What Lies Beyond.yy",
+    "path":"folders/Rooms/CheesyPizza/What Lies Beyond.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

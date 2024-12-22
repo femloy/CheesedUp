@@ -57,7 +57,7 @@
   "origin":9,
   "parent":{
     "name":"Midway",
-    "path":"folders/Sprites/Together/Level Assets/Midway.yy",
+    "path":"folders/Sprites/CheesyPizza/Level Assets/Midway.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

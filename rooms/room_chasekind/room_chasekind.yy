@@ -27,8 +27,8 @@
   ],
   "name":"room_chasekind",
   "parent":{
-    "name":"Together",
-    "path":"folders/Rooms/Together.yy",
+    "name":"CheesyPizza",
+    "path":"folders/Rooms/CheesyPizza.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

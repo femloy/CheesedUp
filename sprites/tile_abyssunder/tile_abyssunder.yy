@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"John's Abyss",
-    "path":"folders/Sprites/Together/Level Assets/John's Abyss.yy",
+    "path":"folders/Sprites/CheesyPizza/Level Assets/John's Abyss.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

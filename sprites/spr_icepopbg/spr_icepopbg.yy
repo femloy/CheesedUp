@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Sugary Spire",
-    "path":"folders/Sprites/Together/Sugary Spire.yy",
+    "path":"folders/Sprites/CheesyPizza/Sugary Spire.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

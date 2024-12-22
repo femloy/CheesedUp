@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Timer",
-    "path":"folders/Sprites/Together/Level Assets/Midway/Timer.yy",
+    "path":"folders/Sprites/CheesyPizza/Level Assets/Midway/Timer.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

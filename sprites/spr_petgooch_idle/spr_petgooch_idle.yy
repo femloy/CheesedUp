@@ -41,7 +41,7 @@
   "origin":4,
   "parent":{
     "name":"Pets",
-    "path":"folders/Sprites/Together/Pets.yy",
+    "path":"folders/Sprites/CheesyPizza/Pets.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

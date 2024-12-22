@@ -34,7 +34,7 @@
   "origin":9,
   "parent":{
     "name":"Blocks",
-    "path":"folders/Sprites/Together/Sugary Spire/Level Structure/Blocks.yy",
+    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Level Structure/Blocks.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

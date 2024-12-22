@@ -14,7 +14,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Snick Rematch",
-    "path":"folders/Objects/Together/Snick Rematch.yy",
+    "path":"folders/Objects/CheesyPizza/Snick Rematch.yy",
   },
   "parentObjectId":{
     "name":"obj_snickexe",

@@ -26,7 +26,7 @@
   "origin":9,
   "parent":{
     "name":"Baddie",
-    "path":"folders/Sprites/Together/Baddie.yy",
+    "path":"folders/Sprites/CheesyPizza/Baddie.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

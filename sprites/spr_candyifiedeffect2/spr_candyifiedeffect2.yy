@@ -43,7 +43,7 @@
   "origin":4,
   "parent":{
     "name":"Fling Frog",
-    "path":"folders/Sprites/Together/Sugary Spire/Level Structure/Fling Frog.yy",
+    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Level Structure/Fling Frog.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

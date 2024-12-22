@@ -79,7 +79,7 @@
   "name":"mansion_guestroom",
   "parent":{
     "name":"September",
-    "path":"folders/Rooms/Together/Mansion/September.yy",
+    "path":"folders/Rooms/CheesyPizza/Mansion/September.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

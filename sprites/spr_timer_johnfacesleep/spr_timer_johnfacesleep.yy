@@ -49,7 +49,7 @@
   "origin":4,
   "parent":{
     "name":"HUD",
-    "path":"folders/Sprites/Together/HUD.yy",
+    "path":"folders/Sprites/CheesyPizza/HUD.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

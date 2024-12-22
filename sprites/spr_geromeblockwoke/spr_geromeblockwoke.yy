@@ -54,8 +54,8 @@
   },
   "origin":0,
   "parent":{
-    "name":"Together",
-    "path":"folders/Sprites/Together.yy",
+    "name":"CheesyPizza",
+    "path":"folders/Sprites/CheesyPizza.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

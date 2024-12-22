@@ -6,7 +6,7 @@
   "name":"cyop_tilelayer",
   "parent":{
     "name":"Tilemap",
-    "path":"folders/Scripts/Together/Level Editor/Tilemap.yy",
+    "path":"folders/Scripts/CheesyPizza/Level Editor/Tilemap.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -348,7 +348,7 @@
   "name":"beach_9",
   "parent":{
     "name":"Pineapple Beach",
-    "path":"folders/Rooms/Together/Pineapple Beach.yy",
+    "path":"folders/Rooms/CheesyPizza/Pineapple Beach.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

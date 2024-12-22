@@ -11,7 +11,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Miscellaneous",
-    "path":"folders/Objects/Together/Sugary Spire/Miscellaneous.yy",
+    "path":"folders/Objects/CheesyPizza/Sugary Spire/Miscellaneous.yy",
   },
   "parentObjectId":null,
   "persistent":false,

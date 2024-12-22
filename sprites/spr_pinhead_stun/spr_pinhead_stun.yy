@@ -28,7 +28,7 @@
   "origin":9,
   "parent":{
     "name":"Pinhead",
-    "path":"folders/Sprites/Together/Level Assets/Midway/Pinhead.yy",
+    "path":"folders/Sprites/CheesyPizza/Level Assets/Midway/Pinhead.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

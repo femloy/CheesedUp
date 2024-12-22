@@ -45,7 +45,7 @@
   "origin":0,
   "parent":{
     "name":"Sugary Spire",
-    "path":"folders/Sprites/Together/Patterns/Sugary Spire.yy",
+    "path":"folders/Sprites/CheesyPizza/Patterns/Sugary Spire.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -191,11 +191,11 @@ draw_set_alpha(1);
 var icon = -1;
 switch charselect
 {
-	case 0: icon = CHEESED_UP ? spr_mainmenu_cheeseicon : spr_mainmenu_sandboxicon; break;
+	case 0: icon = spr_mainmenu_cheeseicon; break;
 	case 1: icon = spr_mainmenu_storyicon; break;
 	case 2: icon = spr_mainmenu_optsicon; break;
 }
 if icon != -1
 	draw_sprite_ext(icon, game_icon_index, status_x - 100, status_y + 195 + game_icon_y, 1, 1, 0, c_white, extrauialpha);
-if CHEESED_UP && charselect == 0
+if charselect == 0
 	draw_sprite_ext(spr_cheese, 0, -20 + (status_x - 100), -10 + (status_y + 195 + game_icon_y), .5, .5, 0, c_white, extrauialpha);

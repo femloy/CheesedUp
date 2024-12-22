@@ -23,7 +23,7 @@ else
 ini_close();
 
 global.gameframe_caption_font = fnt_caption;
-global.gameframe_caption_icon = CHEESED_UP ? spr_ico_cu : spr_ico;
+global.gameframe_caption_icon = spr_ico_cu;
 global.gameframe_caption_icon_margin = 6;
 global.gameframe_border_width = 2;
 lang_init = false;

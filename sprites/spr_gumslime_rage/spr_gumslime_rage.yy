@@ -40,7 +40,7 @@
   "origin":4,
   "parent":{
     "name":"Gumslime",
-    "path":"folders/Sprites/Together/Sugary Spire/Baddie/Gumslime.yy",
+    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Baddie/Gumslime.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

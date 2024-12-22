@@ -30,7 +30,7 @@
   "origin":9,
   "parent":{
     "name":"HUB",
-    "path":"folders/Sprites/Together/HUB.yy",
+    "path":"folders/Sprites/CheesyPizza/HUB.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

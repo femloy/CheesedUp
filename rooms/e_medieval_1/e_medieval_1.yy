@@ -129,7 +129,7 @@
   "name":"e_medieval_1",
   "parent":{
     "name":"Medieval",
-    "path":"folders/Rooms/Together/Encore/Medieval.yy",
+    "path":"folders/Rooms/CheesyPizza/Encore/Medieval.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

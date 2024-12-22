@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"net_chat_style_pto",
   "parent":{
-    "name":"Chat",
-    "path":"folders/Online/Chat.yy",
+    "name":"Online",
+    "path":"folders/Online.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

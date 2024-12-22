@@ -28,7 +28,7 @@
   "origin":9,
   "parent":{
     "name":"Snow Cloud",
-    "path":"folders/Sprites/Together/Sugary Spire/Baddie/Snow Cloud.yy",
+    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Baddie/Snow Cloud.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

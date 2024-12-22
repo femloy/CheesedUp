@@ -45,7 +45,7 @@
   "origin":0,
   "parent":{
     "name":"Debug",
-    "path":"folders/Sprites/Together/Debug.yy",
+    "path":"folders/Sprites/CheesyPizza/Debug.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

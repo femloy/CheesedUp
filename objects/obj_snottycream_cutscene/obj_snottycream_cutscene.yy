@@ -12,7 +12,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Player",
-    "path":"folders/Objects/Together/Player.yy",
+    "path":"folders/Objects/CheesyPizza/Player.yy",
   },
   "parentObjectId":null,
   "persistent":false,

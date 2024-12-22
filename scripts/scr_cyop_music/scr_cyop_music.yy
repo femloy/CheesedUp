@@ -6,7 +6,7 @@
   "name":"scr_cyop_music",
   "parent":{
     "name":"Level Editor",
-    "path":"folders/Scripts/Together/Level Editor.yy",
+    "path":"folders/Scripts/CheesyPizza/Level Editor.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

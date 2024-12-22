@@ -30,7 +30,7 @@
   "origin":4,
   "parent":{
     "name":"Geyser",
-    "path":"folders/Sprites/Together/Sugary Spire/Level Structure/Level Objects/Geyser.yy",
+    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Level Structure/Level Objects/Geyser.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

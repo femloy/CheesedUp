@@ -113,7 +113,7 @@
   "name":"strongcold_1",
   "parent":{
     "name":"Strongcold",
-    "path":"folders/Rooms/Together/Strongcold.yy",
+    "path":"folders/Rooms/CheesyPizza/Strongcold.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

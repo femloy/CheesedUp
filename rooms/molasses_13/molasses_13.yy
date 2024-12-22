@@ -654,7 +654,7 @@
   "name":"molasses_13",
   "parent":{
     "name":"Molasses",
-    "path":"folders/Rooms/Together/Sugary Spire/Molasses.yy",
+    "path":"folders/Rooms/CheesyPizza/Sugary Spire/Molasses.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

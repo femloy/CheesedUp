@@ -92,7 +92,7 @@
   "name":"etb_secret1",
   "parent":{
     "name":"Early Test Build",
-    "path":"folders/Rooms/Together/Early Test Build.yy",
+    "path":"folders/Rooms/CheesyPizza/Early Test Build.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

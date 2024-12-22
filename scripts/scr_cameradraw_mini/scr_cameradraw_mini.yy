@@ -6,7 +6,7 @@
   "name":"scr_cameradraw_mini",
   "parent":{
     "name":"HUD",
-    "path":"folders/Scripts/Together/HUD.yy",
+    "path":"folders/Scripts/CheesyPizza/HUD.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -1,7 +1,5 @@
 #macro buffer_group_name "saves"
-
 #macro save_folder (game_save_id)
-#macro CheesedUp:save_folder (environment_get_variable("APPDATA") + "\\PizzaTower_CHEESEDUP\\")
 
 function get_save_folder()
 {

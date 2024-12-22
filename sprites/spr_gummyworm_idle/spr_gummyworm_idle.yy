@@ -46,7 +46,7 @@
   "origin":9,
   "parent":{
     "name":"Toppins",
-    "path":"folders/Sprites/Together/Sugary Spire/Level Structure/Toppins.yy",
+    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Level Structure/Toppins.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

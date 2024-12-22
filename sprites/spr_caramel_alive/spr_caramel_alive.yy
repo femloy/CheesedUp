@@ -53,7 +53,7 @@
   "origin":9,
   "parent":{
     "name":"Caramel",
-    "path":"folders/Sprites/Together/Sugary Spire/Level Structure/Caramel.yy",
+    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Level Structure/Caramel.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

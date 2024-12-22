@@ -33,7 +33,7 @@
   "origin":4,
   "parent":{
     "name":"Eye Scream Sandwich",
-    "path":"folders/Sprites/Together/Sugary Spire/Baddie/Eye Scream Sandwich.yy",
+    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Baddie/Eye Scream Sandwich.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

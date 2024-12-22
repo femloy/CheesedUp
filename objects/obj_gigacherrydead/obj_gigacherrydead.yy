@@ -11,7 +11,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Hitbox",
-    "path":"folders/Objects/Together/Sugary Spire/Baddie/Hitbox.yy",
+    "path":"folders/Objects/CheesyPizza/Sugary Spire/Baddie/Hitbox.yy",
   },
   "parentObjectId":null,
   "persistent":false,

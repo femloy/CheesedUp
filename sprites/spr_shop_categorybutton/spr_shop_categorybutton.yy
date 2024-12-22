@@ -30,7 +30,7 @@
   "origin":0,
   "parent":{
     "name":"Shop",
-    "path":"folders/Sprites/Together/Shop.yy",
+    "path":"folders/Sprites/CheesyPizza/Shop.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

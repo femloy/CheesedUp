@@ -27,7 +27,7 @@
   "name":"hiddenlair_1",
   "parent":{
     "name":"Hidden Lair",
-    "path":"folders/Rooms/Together/Hidden Lair.yy",
+    "path":"folders/Rooms/CheesyPizza/Hidden Lair.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

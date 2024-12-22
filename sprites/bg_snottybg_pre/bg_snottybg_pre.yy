@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Snotty",
-    "path":"folders/Sprites/Together/Level Assets/Snotty.yy",
+    "path":"folders/Sprites/CheesyPizza/Level Assets/Snotty.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

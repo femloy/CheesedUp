@@ -7,7 +7,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Grinch",
-    "path":"folders/Objects/Together/Level objects/Grinch.yy",
+    "path":"folders/Objects/CheesyPizza/Level objects/Grinch.yy",
   },
   "parentObjectId":{
     "name":"obj_solid",

@@ -56,7 +56,7 @@
   "origin":9,
   "parent":{
     "name":"Char Cherry",
-    "path":"folders/Sprites/Together/Sugary Spire/Baddie/Char Cherry.yy",
+    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Baddie/Char Cherry.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

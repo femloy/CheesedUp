@@ -169,12 +169,8 @@ with new JukeboxSection("Pizza Tower", 0)
 	add_song("event:/soundtest/base/halloweenrace", "The Runner - PostElvis");
 }
 
-with new JukeboxSection(CHEESED_UP ? "Cheesed Up" : "Together", CHEESED_UP ? 2 : 1)
+with new JukeboxSection("Cheesed Up!", 2)
 {
-	add_multisong("event:/soundtest/pto/serverlist", "Welcome Back - Lila",
-		"event:/soundtest/pto/serverlistchristmas", "Welcome Back (Jolly) - Lila",
-		"event:/soundtest/pto/serverlistold", "Server List (OLD) - PaperKitty");
-	
 	add_song("event:/soundtest/pto/saturdays", "Saturdays - Lila");
 	add_song("event:/soundtest/pto/sundays", "Sundays - Lila");
 	add_song("event:/soundtest/pto/shop", "Weekend Delight - Lila");
@@ -191,6 +187,9 @@ with new JukeboxSection(CHEESED_UP ? "Cheesed Up" : "Together", CHEESED_UP ? 2 :
 		add_multisong("event:/soundtest/pto/cosmiccloneSP", "Cosmic Chaos (Pizzelle) - Lila",
 			"event:/soundtest/pto/cosmiccloneescapeSP", "Cosmic Chaos (Pizzelle, Escape) - Lila");
 	}
+	
+	add_multisong("event:/soundtest/pto/serverlist", "Welcome Back - Lila",
+		"event:/soundtest/pto/serverlistchristmas", "Welcome Back (Jolly) - Lila");
 	
 	add_song("event:/soundtest/pto/editor", "Choosing The Toppings - MrSauceman");
 	add_song("event:/soundtest/pto/quintessence", "Quintessence - ClascyJitto");

@@ -492,7 +492,7 @@
   "name":"sucrose_10_1",
   "parent":{
     "name":"Sucrose",
-    "path":"folders/Rooms/Together/Sugary Spire/Sucrose.yy",
+    "path":"folders/Rooms/CheesyPizza/Sugary Spire/Sucrose.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

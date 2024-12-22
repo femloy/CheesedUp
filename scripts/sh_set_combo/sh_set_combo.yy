@@ -6,7 +6,7 @@
   "name":"sh_set_combo",
   "parent":{
     "name":"Shell",
-    "path":"folders/Scripts/Together/Shell.yy",
+    "path":"folders/Scripts/CheesyPizza/Shell.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

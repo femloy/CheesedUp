@@ -540,7 +540,7 @@
   "name":"tower_basement",
   "parent":{
     "name":"Tower",
-    "path":"folders/Rooms/Together/Tower.yy",
+    "path":"folders/Rooms/CheesyPizza/Tower.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

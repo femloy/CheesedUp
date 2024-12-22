@@ -1,5 +1,0 @@
-ptt {
-
-style.update();
-
-}

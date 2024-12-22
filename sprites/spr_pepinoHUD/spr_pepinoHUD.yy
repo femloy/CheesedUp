@@ -62,7 +62,7 @@
   "origin":4,
   "parent":{
     "name":"Old Peppino",
-    "path":"folders/Sprites/Together/HUD/Old Peppino.yy",
+    "path":"folders/Sprites/CheesyPizza/HUD/Old Peppino.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

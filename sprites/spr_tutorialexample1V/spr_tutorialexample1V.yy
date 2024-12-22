@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Level Assets",
-    "path":"folders/Sprites/Together/Level Assets.yy",
+    "path":"folders/Sprites/CheesyPizza/Level Assets.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

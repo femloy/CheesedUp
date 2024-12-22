@@ -9,7 +9,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"AFOM",
-    "path":"folders/Objects/Together/CYOP/AFOM.yy",
+    "path":"folders/Objects/CheesyPizza/CYOP/AFOM.yy",
   },
   "parentObjectId":{
     "name":"obj_slope",

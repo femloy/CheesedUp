@@ -26,7 +26,7 @@
   "origin":9,
   "parent":{
     "name":"Door",
-    "path":"folders/Sprites/Together/Sugary Spire/Level Structure/Door.yy",
+    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Level Structure/Door.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

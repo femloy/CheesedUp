@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"check_boss",
   "parent":{
-    "name":"Together",
-    "path":"folders/Scripts/Together.yy",
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -30,7 +30,7 @@
   "origin":0,
   "parent":{
     "name":"Secret",
-    "path":"folders/Sprites/Together/Level Assets/Midway/Scenery/Secret.yy",
+    "path":"folders/Sprites/CheesyPizza/Level Assets/Midway/Scenery/Secret.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

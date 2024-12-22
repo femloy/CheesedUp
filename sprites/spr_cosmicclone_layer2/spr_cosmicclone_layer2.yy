@@ -45,7 +45,7 @@
   "origin":0,
   "parent":{
     "name":"Modifiers",
-    "path":"folders/Sprites/Together/Modifiers.yy",
+    "path":"folders/Sprites/CheesyPizza/Modifiers.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

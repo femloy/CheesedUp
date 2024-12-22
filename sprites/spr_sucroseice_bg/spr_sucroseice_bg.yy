@@ -27,7 +27,7 @@
   "origin":4,
   "parent":{
     "name":"Sucrose Ice",
-    "path":"folders/Sprites/Together/Sugary Spire/Level Structure/Level Objects/Sucrose Ice.yy",
+    "path":"folders/Sprites/CheesyPizza/Sugary Spire/Level Structure/Level Objects/Sucrose Ice.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

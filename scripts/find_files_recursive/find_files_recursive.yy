@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"find_files_recursive",
   "parent":{
-    "name":"Together",
-    "path":"folders/Scripts/Together.yy",
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -22,7 +22,7 @@
   "name":"sky_1",
   "parent":{
     "name":"Sky",
-    "path":"folders/Rooms/Together/Sky.yy",
+    "path":"folders/Rooms/CheesyPizza/Sky.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

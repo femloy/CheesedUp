@@ -54,7 +54,7 @@ if t >= 1 or menu == 3
 				draw_set_font(lfnt("tvbubblefont"));
 				draw_set_align(fa_center);
 				
-				var disc_text = lstr(CHEESED_UP ? "disclaimer_cu" : "disclaimer");
+				var disc_text = lstr("disclaimer_cu");
 				draw_text(SCREEN_WIDTH / 2, 180, disc_text);
 				
 				// blatant advertisement
