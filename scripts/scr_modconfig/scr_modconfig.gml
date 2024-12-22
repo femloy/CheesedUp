@@ -149,6 +149,7 @@ function ModPreset(name = "PRESET", desc = "Wow that's Cray Zay!") constructor
 		swapgrab = false;
 		hitstun = 1; // 0 off, 1 on, 2 early
 		banquet = true; // mod that got merged into base game
+		eggplantslope = false;
 		
 		// vigi gameplay
 		self.vigishoot = vigishoot.pto;

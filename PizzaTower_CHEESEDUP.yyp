@@ -4019,6 +4019,8 @@
     {"id":{"name":"seq_attackstyle_shoulderbash","path":"sequences/seq_attackstyle_shoulderbash/seq_attackstyle_shoulderbash.yy",},},
     {"id":{"name":"seq_deathmode_off","path":"sequences/seq_deathmode_off/seq_deathmode_off.yy",},},
     {"id":{"name":"seq_deathmode_on","path":"sequences/seq_deathmode_on/seq_deathmode_on.yy",},},
+    {"id":{"name":"seq_eggplantslope_off","path":"sequences/seq_eggplantslope_off/seq_eggplantslope_off.yy",},},
+    {"id":{"name":"seq_eggplantslope_on","path":"sequences/seq_eggplantslope_on/seq_eggplantslope_on.yy",},},
     {"id":{"name":"seq_greendemon_off","path":"sequences/seq_greendemon_off/seq_greendemon_off.yy",},},
     {"id":{"name":"seq_greendemon_on","path":"sequences/seq_greendemon_on/seq_greendemon_on.yy",},},
     {"id":{"name":"seq_groundpoundjump_off","path":"sequences/seq_groundpoundjump_off/seq_groundpoundjump_off.yy",},},

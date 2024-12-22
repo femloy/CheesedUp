@@ -167,10 +167,15 @@ function scr_player_freefall()
 		{
 			with slope
 			{
-				if other.freefallsmash > 20
-					other.movespeed = 12;
+				if global.eggplantslope
+					other.movespeed = other.freefallsmash * 0.6;
 				else
-					other.movespeed = 8;
+				{
+					if other.freefallsmash > 20
+						other.movespeed = 12;
+					else
+						other.movespeed = 8;
+				}
 				
 				other.xscale = -sign(image_xscale);
 				if other.character == "S"

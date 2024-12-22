@@ -787,6 +787,11 @@ with new ModSection("gameplay", 0)
 	var opt = add_option("poundjump", [seq_groundpoundjump_off, seq_groundpoundjump_on]);
 
 	#endregion
+	#region BUFFED SLOPES
+	
+	var opt = add_option("eggplantslope", [seq_eggplantslope_off, seq_eggplantslope_on]);
+	
+	#endregion
 	#region HEAT METER
 
 	var opt = add_option("heatmeter", function(val)

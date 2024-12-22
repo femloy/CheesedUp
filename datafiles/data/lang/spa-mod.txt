@@ -94,6 +94,7 @@ mod_title_lap3checkpoint = "Checkpoint"
 mod_title_chasekind = "Cambios del nivel"
 mod_title_keyalpha = "Opacidad"
 mod_title_tvcolor = "Color del HUD"
+mod_title_eggplantslope = "Rampas rápidas"
 
 mod_desc_gameplay = "Introduce mejoras en algunas partes del juego."
 mod_desc_experimental = "Habilita los comandos y otras cosas inacabadas."
@@ -141,6 +142,7 @@ mod_desc_chasekind_1 = "Cambia el diseño de algunas salas en la vuelta 3, como 
 mod_desc_chasekind_2 = "Realentiza a Pizzaface en algunas salas en la vuelta 3, como Lap Hell."
 mod_desc_keyalpha = "Opacidad de las teclas visuales."
 mod_desc_tvcolor = "Normal hace que dependa del personaje."
+mod_desc_eggplantslope = "Tu velocidad en el aire será transferida con una rampa."
 
 mod_title_online_player_opacity = "Opacidad"
 mod_desc_online_player_opacity = "Opacidad de otros jugadores."
