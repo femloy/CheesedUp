@@ -314,18 +314,24 @@ function ratmount_dotaunt()
 		tauntstoredstate = state;
 		tauntstoredvsp = vsp;
 		state = states.backbreaker;
+		
 		if ((!key_up || !supercharged) && global.tauntcount < 10 && place_meeting(x, y, obj_exitgate) && (global.panic == true || instance_exists(obj_wartimer)) && global.combotime > 0 && global.leveltosave != "grinch")
 		{
-			if REMIX
+			if global.combokeeper
 				global.combotime = min(global.combotime + 10, 60);
 			global.heattime = 60;
+			
 			global.tauntcount++;
+			if REMIX or character == "G"
+				notification_push(notifs.gate_taunt, []);
+			
 			global.collect += 25;
-			with (instance_create(x, y, obj_smallnumber))
+			with instance_create(x, y, obj_smallnumber)
 				number = string(25);
 			create_collect(x, y, spr_taunteffect, 25);
 			scr_sound_multiple(global.snd_collect, x, y);
 		}
+		
 		if (!supercharged || !key_up)
 		{
 			scr_create_parryhitbox();

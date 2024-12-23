@@ -1,16 +1,7 @@
 live_auto_call;
 
-// extra wc code
 scr_wc_step();
 
-if keyboard_check(vk_control) && keyboard_check_pressed(ord("R"))
-{
-	instance_destroy();
-	instance_create(x, y, object_index);
-	exit;
-}
-
-// shell
 if (saveHistory) {
 	if (!loadedSavedHistory) {
 		self._load_history();
@@ -22,11 +13,17 @@ if (saveHistory) {
 	}
 }
 
-if (!isOpen) {
-	if (self._key_combo_pressed(openModifiers, openKey)) {
+if !WC_debug
+	isOpen = false;
+
+if !isOpen
+{
+	if self._key_combo_pressed(openModifiers, openKey)
+	&& WC_debug
 		self.open();
-	}
-} else {
+}
+else
+{
 	if (self._key_combo_pressed(openModifiers, openKey)) {
 		self.close();
 	}

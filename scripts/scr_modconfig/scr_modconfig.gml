@@ -60,7 +60,7 @@ enum lapmodes
 	laphell,
 	april
 }
-enum chasekind
+enum chasekinds
 {
 	none,
 	blocks,
@@ -71,7 +71,7 @@ enum lap4mode
 	preset,
 	elm
 }
-enum vigishoot
+enum vigistyles
 {
 	pto,
 	vanilla
@@ -89,6 +89,12 @@ enum tvcolors
 	blue,
 	metal,
 	gutter
+}
+enum dresserstyles
+{
+	pto,
+	vanilla,
+	plus
 }
 
 // default / presets
@@ -150,9 +156,10 @@ function ModPreset(name = "PRESET", desc = "Wow that's Cray Zay!") constructor
 		hitstun = 1; // 0 off, 1 on, 2 early
 		banquet = true; // mod that got merged into base game
 		eggplantslope = false;
+		combokeeper = true;
 		
 		// vigi gameplay
-		self.vigishoot = vigishoot.pto;
+		self.vigishoot = vigistyles.pto;
 		
 		// visual settings
 		panicbg = true;
@@ -168,12 +175,13 @@ function ModPreset(name = "PRESET", desc = "Wow that's Cray Zay!") constructor
 		if SUGARY_SPIRE
 			sugaryoverride = false;
 		tvcolor = tvcolors.normal;
+		dresserstyle = dresserstyles.pto;
 		
 		// lapping style
 		lapmode = lapmodes.normal;
 		parrypizzaface = false;
 		lap3checkpoint = true;
-		self.chasekind = chasekind.blocks; // none, place blocks, slow down
+		self.chasekind = chasekinds.blocks; // none, place blocks, slow down
 	}
 }
 

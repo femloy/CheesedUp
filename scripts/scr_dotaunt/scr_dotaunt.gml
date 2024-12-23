@@ -2,10 +2,10 @@ function scr_dotaunt()
 {
 	if ((key_taunt2 || input_finisher_buffer > 0 || (state == states.backbreaker && key_up && supercharged)) && !skateboarding)
 	{
-		var geyser = instance_place(x, y, obj_geyser);
-		if geyser
+		if SUGARY_SPIRE
 		{
-			if geyser.geyser_timer
+			var geyser = instance_place(x, y, obj_geyser);
+			if geyser && geyser.geyser_timer
 				exit;
 		}
 		
@@ -13,20 +13,23 @@ function scr_dotaunt()
 		pistolanim = noone;
 		flash = false;
 		notification_push(notifs.taunt, [room]);
+		
 		if ((!key_up || !supercharged) && room != war_1 && global.tauntcount < 10 && place_meeting(x, y, obj_exitgate) && (global.panic == true || instance_exists(obj_wartimer) || (instance_exists(obj_randomsecret) && obj_randomsecret.start)) && global.combotime > 0 && global.leveltosave != "grinch" && global.leveltosave != "tutorial")
 		{
-			if REMIX
+			if global.combokeeper
 				global.combotime = min(global.combotime + 5, 60);
 			global.heattime = 60;
 			
 			global.tauntcount++;
 			notification_push(notifs.gate_taunt, []);
+			
 			global.collect += 25;
-			with (instance_create(x + 16, y, obj_smallnumber))
+			with instance_create(x + 16, y, obj_smallnumber)
 				number = string(25);
 			create_collect(x, y, spr_taunteffect, 25);
 			scr_sound_multiple(global.snd_collect, x, y);
 		}
+		
 		if (!finisher)
 		{
 			taunttimer = 20;

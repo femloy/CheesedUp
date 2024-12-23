@@ -36,14 +36,14 @@ function scr_tvdraw()
 				default: tv_palette = 1; break;
 				case "N": tv_palette = 2; break;
 				case "V": tv_palette = 3; break;
-				case "SP": tv_palette = 4; break;
+				case "SP": if SUGARY_SPIRE tv_palette = 4; break;
 				case "S": tv_palette = 5; break;
 				case "M": tv_palette = 6; break;
 				case "MS": tv_palette = 7; break;
 			}
 		}
 		else
-			tv_palette = sugary ? 4 : 1;
+			tv_palette = (SUGARY_SPIRE && sugary) ? 4 : 1;
 	}
 	
 	// sugary bobbing

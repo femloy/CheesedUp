@@ -359,8 +359,11 @@ with new ModSection("gameplay", 0)
 
 	var opt = add_option("gameplay", function(val)
 	{
+		var yo = 10;
+		
 		static tv_bg = {surf: noone, sprite: spr_gate_entranceBG, parallax: [0.65, 0.75, 0.85], x: 0, y: 68};
 		static color1 = undefined, color2 = undefined;
+		static afterimages = [0, 1, 2];
 		
 		if color1 == undefined or color2 == undefined
 		{
@@ -382,53 +385,68 @@ with new ModSection("gameplay", 0)
 			
 			for(var i = 0; i < sprite_get_number(tv_bg.sprite); i++)
 				draw_sprite_tiled(tv_bg.sprite, i, 278 / 2 + tv_bg.x * max(lerp(-1, 1, tv_bg.parallax[i]), 0), 268);
-		
+			
 			gpu_set_blendmode(bm_subtract);
 			draw_sprite(spr_tv_clip, 1, 278 / 2, 268 - tv_bg.y);
 			gpu_set_blendmode(bm_normal);
 			
 			surface_reset_target();
-		
-			draw_surface_ext(tv_bg.surf, 110 - 278 / 2, 70 - 268 + tv_bg.y, 1, 1, 0, c_white, 1);
+			
+			draw_surface_ext(tv_bg.surf, 110 - 278 / 2, 70 - 268 + tv_bg.y + yo, 1, 1, 0, c_white, 1);
 			shader_reset();
 		}
 		else
-			draw_sprite_ext(spr_tv_bgfinal, 1, 110, 70, 1, 1, 0, c_white, 1);
+			draw_sprite_ext(spr_tv_bgfinal, 1, 110, 70 + yo, 1, 1, 0, c_white, 1);
 	
 		shader_set(global.Pal_Shader);
 		pal_swap_set(spr_peppalette, 1, 0);
-		draw_sprite_ext(spr_tv_idle, super.image_index, 110, 70, 1, 1, 0, c_white, 1);
-		shader_reset();
+		draw_sprite_ext(spr_tv_idle, super.image_index, 110, 70 + yo, 1, 1, 0, c_white, 1);
+		pal_swap_reset();
 	
 		if val == 1
 		{
 			shader_set(shd_mach3effect);
-			gpu_set_blendmode(bm_normal);
-		
-			var b = global.mach_color1;
-			shader_set_uniform_f(color1, color_get_red(b) / 255, color_get_green(b) / 255, color_get_blue(b) / 255);
-			b = merge_colour(b, c_black, 0.9);
-			shader_set_uniform_f(color2, color_get_red(b) / 255, color_get_green(b) / 255, color_get_blue(b) / 255);
-		
-			draw_sprite(spr_player_mach, 0, 240, 150);
-			draw_sprite(spr_player_mach, 2, 340, 150);
-		
-			b = global.mach_color2;
-			shader_set_uniform_f(color1, color_get_red(b) / 255, color_get_green(b) / 255, color_get_blue(b) / 255);
-			b = merge_colour(b, c_black, 0.9);
-			shader_set_uniform_f(color2, color_get_red(b) / 255, color_get_green(b) / 255, color_get_blue(b) / 255);
-		
-			draw_sprite(spr_player_mach, 1, 290, 150);
+			
+			if afterimages[0] > -1
+			{
+				var b = global.mach_color1;
+				shader_set_uniform_f(color1, color_get_red(b) / 255, color_get_green(b) / 255, color_get_blue(b) / 255);
+				b = merge_colour(b, c_black, 0.9);
+				shader_set_uniform_f(color2, color_get_red(b) / 255, color_get_green(b) / 255, color_get_blue(b) / 255);
+			
+				draw_sprite(spr_player_mach, afterimages[0], 240, 140 + yo);
+			}
+			
+			if afterimages[1] > -1
+			{
+				var b = global.mach_color2;
+				shader_set_uniform_f(color1, color_get_red(b) / 255, color_get_green(b) / 255, color_get_blue(b) / 255);
+				b = merge_colour(b, c_black, 0.9);
+				shader_set_uniform_f(color2, color_get_red(b) / 255, color_get_green(b) / 255, color_get_blue(b) / 255);
+				
+				draw_sprite(spr_player_mach, afterimages[1], 290, 140 + yo);
+			}
+			
 			shader_reset();
+			
+			pal_swap_set(spr_peppalette, 1);
+			draw_sprite(spr_player_mach, afterimages[2], 340, 140 + yo);
+			pal_swap_reset();
 		}
 		else
 		{
 			var mach_color1 = make_colour_rgb(96, 208, 72);
 			var mach_color2 = make_colour_rgb(248, 0, 0);
-		
-			draw_sprite_ext(spr_player_mach, 0, 240, 150, 1, 1, 0, mach_color1, 1);
-			draw_sprite_ext(spr_player_mach, 2, 340, 150, 1, 1, 0, mach_color1, 1);
-			draw_sprite_ext(spr_player_mach, 1, 290, 150, 1, 1, 0, mach_color2, 1);
+			
+			pal_swap_set(spr_peppalette, 1);
+			
+			if afterimages[0] > -1
+				draw_sprite_ext(spr_player_mach, afterimages[0], 240, 140 + yo, 1, 1, 0, mach_color1, 1);
+			if afterimages[1] > -1
+				draw_sprite_ext(spr_player_mach, afterimages[1], 290, 140 + yo, 1, 1, 0, mach_color2, 1);
+			draw_sprite_ext(spr_player_mach, afterimages[2], 340, 140 + yo, 1, 1, 0, c_white, 1);
+			
+			pal_swap_reset();
 		}
 	});
 
@@ -438,11 +456,11 @@ with new ModSection("gameplay", 0)
 	var opt = add_option("iteration", function(val)
 	{
 		if val == IT.FINAL
-			draw_sprite_ext(spr_player_longjumpend, super.image_index, width / 2, height / 2, 2, 2, 0, c_white, 1);
+			draw_sprite_ext(spr_player_longjumpend, super.image_index, width / 2, height / 2, 1, 1, 0, c_white, 1);
 		if val == IT.APRIL
-			draw_sprite_ext(spr_player_mach2jump, super.image_index, width / 2, height / 2, 2, 2, 0, c_white, 1);
+			draw_sprite_ext(spr_player_mach2jump, super.image_index, width / 2, height / 2, 1, 1, 0, c_white, 1);
 		if val == IT.BNF
-			draw_sprite_ext(spr_player_suplexgrabjump, super.image_index, width / 2 - 15, height / 2, 2, 2, 0, c_white, 1);
+			draw_sprite_ext(spr_player_suplexgrabjump, super.image_index, width / 2 - 15, height / 2, 1, 1, 0, c_white, 1);
 	});
 	opt.opts = [
 		//["old", IT.BNF],
@@ -455,18 +473,18 @@ with new ModSection("gameplay", 0)
 
 	var opt = add_option("experimental", function(val)
 	{
-		draw_sprite_ext(spr_experimental, 0, 0, 0, 1, 1, 0, val ? c_white : c_dkgray, 1);
+		draw_sprite_ext(spr_experimental, super.image_index / 10, 0, 0, 1, 1, 0, val ? c_white : c_dkgray, 1);
 		draw_set_colour(c_white);
 		if !val
 		{
 			tdp_draw_set_font(lang_get_font("font_small"));
 			tdp_draw_set_align(fa_center, fa_middle);
-			tdp_draw_text(width / 2, height / 1.2, lstr("mod_disabled")); // Experimental's off!
+			tdp_draw_text(width / 2, height / 1.2, lstr("mod_disabled"));
 			tdp_text_commit(0, 0, width, height);
 		}
 	});
 	opt.allow_preset = false;
-
+	
 	#endregion
 	#region ATTACK STYLE
 
@@ -680,7 +698,7 @@ with new ModSection("gameplay", 0)
 		draw_sprite(sprite, img, width / 2, height / 2 - 15);
 			
 		timer++;
-		if val == vigishoot.vanilla
+		if val == vigistyles.vanilla
 		{
 			if sprite == spr_playerV_airrevolverstart
 				sprite = spr_playerV_airrevolverend;
@@ -735,8 +753,8 @@ with new ModSection("gameplay", 0)
 		}
 	});
 	opt.opts = [
-		["off", vigishoot.vanilla],
-		["on", vigishoot.pto],
+		["off", vigistyles.vanilla],
+		["on", vigistyles.pto],
 	];
 	opt.hidden = other.character != "V";
 		
@@ -792,11 +810,55 @@ with new ModSection("gameplay", 0)
 	var opt = add_option("eggplantslope", [seq_eggplantslope_off, seq_eggplantslope_on]);
 	
 	#endregion
+	#region COMBO KEEPER
+	
+	var opt = add_option("combokeeper", function(val)
+	{
+		var xx = width / 2 - 100, yy = height / 2 + 25;
+		draw_sprite_ext(val ? spr_player_awesome : spr_player_notawesome, 0, xx, yy, 1, 1, 0, c_white, 1);
+		draw_sprite_ext(spr_supercharge, super.image_index, xx, yy, 1, 1, 0, c_white, 1);
+		
+		var _cx = xx + 180 + Wave(-5, 5, 2, 20);
+		var _cy = yy - 30 - abs(sin(current_time / 60) * 6 * !val);
+		var _minX = _cx - 56;
+		var _maxX = _cx + 59;
+		
+		var combobubblefill, combobubble, combofont, combofillpalette;
+		combobubblefill = spr_tv_combobubblefill;
+		combobubble = spr_tv_combobubble;
+		combofont = global.combofont2;
+		combofillpalette = spr_tv_combofillpalette;
+		
+		var _perc = 0.1;
+		pal_swap_set(combofillpalette, 2, false);
+		draw_sprite(combobubblefill, super.image_index, _minX + ((_maxX - _minX) * _perc), _cy);
+		pal_swap_set(spr_tv_palette, 1, false);
+		lang_draw_sprite(combobubble, 0, _cx, _cy);
+			
+		draw_set_font(combofont);
+		draw_set_align(fa_left);
+	
+		var _tx = _cx - 64;
+		var _ty = _cy - 12;
+		
+		var _str = string(99);
+		var num = string_length(_str);
+		for (var i = num; i > 0; i--)
+		{
+			var char = string_char_at(_str, i);
+			draw_text(_tx, _ty, char);
+			_tx -= 22;
+			_ty -= 8;
+		}
+		pal_swap_reset();
+	});
+	
+	#endregion
 	#region HEAT METER
 
 	var opt = add_option("heatmeter", function(val)
 	{
-		var xx = 960 / 2.5 / 2, yy = 540 / 2.5 / 2;
+		var xx = width / 2, yy = height / 2;
 	
 		if val
 		{
@@ -1041,8 +1103,6 @@ with new ModSection("online", 4)
 with new ModSection("input", 1)
 {
 	icon_offset[0] = 10;
-	
-	#region 
 	
 	#region SWAP GRAB
 
@@ -1797,19 +1857,21 @@ with new ModSection("presets", 5)
 		
 		with add_preset(new ModPreset(lstr("mod_preset_default"), lstr("mod_preset_default_desc"))).preset
 			preset_default();
-	
+		
 		with add_preset(new ModPreset(lstr("mod_preset_vanilla"), lstr("mod_preset_vanilla_desc"))).preset
 		{
 			preset_default();
 		
 			gameplay = false; // REMIX
 			uppercut = false; // buffed uppercut
-			self.vigishoot = vigishoot.vanilla;
+			vigishoot = vigistyles.vanilla;
 			panicbg = false;
 			lap3checkpoint = false;
-			self.chasekind = chasekind.none;
+			chasekind = chasekinds.none;
+			combokeeper = false;
+			dresserstyle = dresserstyles.vanilla;
 		}
-	
+		
 		with add_preset(new ModPreset(lstr("mod_preset_loy"), lstr("mod_preset_loy_desc"))).preset
 		{
 			preset_default();
@@ -1823,9 +1885,10 @@ with new ModSection("presets", 5)
 			lapmode = lapmodes.laphell;
 			parrypizzaface = true;
 			lap3checkpoint = true;
-			self.chasekind = chasekind.blocks;
+			chasekind = chasekinds.blocks;
+			eggplantslope = true;
 		}
-	
+		
 		with add_preset(new ModPreset(lstr("mod_preset_jayleno"), lstr("mod_preset_jayleno_desc"))).preset
 		{
 			iteration = IT.APRIL;
@@ -1839,13 +1902,12 @@ with new ModSection("presets", 5)
 			hud = hudstyles.old;
 			blockstyle = blockstyles.old;
 			lapmode = lapmodes.april;
-			parrypizzaface = false;
+			hitstun = 1;
 		}
 		
-		if !directory_exists("presets")
+		if !directory_exists(save_folder + "presets")
 		{
-			directory_create("presets");
-			
+			directory_create(save_folder + "presets");
 			var file = file_text_open_write(save_folder + "presets/readme.txt");
 			file_text_write_string(file, "No subfolders, silly.");
 			file_text_close(file);
@@ -2104,6 +2166,7 @@ with lap_submenu
 	{
 		static taunt_image = 0;
 		static taunt_effect = -1;
+		static parry_effect = -1;
 		static state = 0;
 		static pizzaface = undefined;
 		
@@ -2120,6 +2183,7 @@ with lap_submenu
 			
 			state = 0;
 			taunt_effect = -1;
+			parry_effect = -1;
 			pizzaface = {
 				visible: false,
 				x: 0,
@@ -2171,6 +2235,8 @@ with lap_submenu
 					if val
 					{
 						//sound_play_centered(sfx_parry);
+						taunt_effect = -1;
+						parry_effect = 0;
 						state = 3;
 						
 						p.state = states.actor;
@@ -2227,6 +2293,15 @@ with lap_submenu
 				}
 				break;
 		}
+		
+		if parry_effect != -1
+		{
+			draw_sprite_ext(spr_parryeffect, parry_effect, width / 2, p.y, 1, 1, 0, c_white, 1);
+			
+			parry_effect += 0.35;
+			if parry_effect >= sprite_get_number(spr_parryeffect)
+				parry_effect = -1;
+		}
 	});
 	
 	var opt = add_option("lap3checkpoint", [seq_lap3checkpoint_off, seq_lap3checkpoint_on]);
@@ -2237,9 +2312,9 @@ with lap_submenu
 	
 	var opt = add_option("chasekind", [seq_levelchanges_none, seq_levelchanges_lapblocks, seq_levelchanges_slowdown], true);
 	opt.opts = [
-		["none", chasekind.none],
-		["levelchanges", chasekind.blocks],
-		["slowdown", chasekind.slowdown],
+		["none", chasekinds.none],
+		["levelchanges", chasekinds.blocks],
+		["slowdown", chasekinds.slowdown],
 	];
 	opt.condition = function()
 	{

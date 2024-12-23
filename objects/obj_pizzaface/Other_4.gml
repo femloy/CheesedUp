@@ -15,7 +15,7 @@ if room == rank_room
 	instance_destroy();
 
 // lap 3
-if global.laps >= 2 && global.chasekind == chasekind.slowdown
+if global.laps >= 2 && global.chasekind == chasekinds.slowdown
 {
 	// from "LAP HELL - Pizza Pursuit" by TheCyVap
 	var pepspeed = 8;

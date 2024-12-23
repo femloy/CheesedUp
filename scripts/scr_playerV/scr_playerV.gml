@@ -30,7 +30,7 @@ function scr_vigi_shoot()
 			pistolcooldown = 10;
 			if state != states.revolver
 			{
-				vsp = min(vsp, global.vigishoot == vigishoot.pto ? -6 : -5);
+				vsp = min(vsp, global.vigishoot == vigistyles.pto ? -6 : -5);
 				state = states.revolver;
 				sprite_index = spr_playerV_airrevolver;
 			}
@@ -148,7 +148,7 @@ function scr_player_revolver()
 {
 	if live_call() return live_result;
 	
-	var remix = global.vigishoot == vigishoot.pto;
+	var remix = global.vigishoot == vigistyles.pto;
 	
 	hsp = xscale * movespeed;
 	move = key_left + key_right;

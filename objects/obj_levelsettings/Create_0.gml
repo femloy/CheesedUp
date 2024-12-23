@@ -499,35 +499,37 @@ add_modifier("GravityJump", 11, #8038f0, function(val)
 	draw_particles();
 });
 
-if level != "trickytreat"
-add_modifier("DoubleTrouble", 14, #f8e080, function(val)
+if level != "trickytreat" && global.experimental
 {
-	static noise_x = 0;
-	static doise_x = 0;
-	
-	if noise_x == 0
+	add_modifier("DoubleTrouble", 14, #f8e080, function(val)
 	{
-		noise_x = width / 2;
-		doise_x = width / 2;
-	}
+		static noise_x = 0;
+		static doise_x = 0;
 	
-	noise_x = lerp(noise_x, val ? width / 2 + 50 : width / 2, 0.5);
-	doise_x = lerp(doise_x, val ? width / 2 - 50 : width / 2, 0.5);
+		if noise_x == 0
+		{
+			noise_x = width / 2;
+			doise_x = width / 2;
+		}
 	
-	if abs(noise_x - doise_x) > 10
-	{
-		pal_swap_set(spr_noiseboss_palette, 1, false);
-		draw_sprite_ext(spr_playerN_idle, -1, doise_x, height / 2, 1, 1, 0, c_white, 1);
-	}
+		noise_x = lerp(noise_x, val ? width / 2 + 50 : width / 2, 0.5);
+		doise_x = lerp(doise_x, val ? width / 2 - 50 : width / 2, 0.5);
 	
-	pal_swap_set(spr_noiseboss_palette, 2, false);
-	draw_sprite_ext(spr_playerN_idle, -1, noise_x, height / 2, -1, 1, 0, c_white, 1);
+		if abs(noise_x - doise_x) > 10
+		{
+			pal_swap_set(spr_noiseboss_palette, 1, false);
+			draw_sprite_ext(spr_playerN_idle, -1, doise_x, height / 2, 1, 1, 0, c_white, 1);
+		}
 	
-	pal_swap_reset();
-});
+		pal_swap_set(spr_noiseboss_palette, 2, false);
+		draw_sprite_ext(spr_playerN_idle, -1, noise_x, height / 2, -1, 1, 0, c_white, 1);
+	
+		pal_swap_reset();
+	});
+}
 
-if level != "trickytreat"
-add_modifier("Hydra", 13, #d08838);
+if level != "trickytreat" && global.experimental
+	add_modifier("Hydra", 13, #d08838);
 
 // Level specific
 if level == "grinch"

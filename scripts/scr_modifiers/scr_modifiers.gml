@@ -120,7 +120,7 @@ function pre_player_modifiers()
 
 		// lap 3 blocks
 		if (instance_exists(obj_pizzaface) or check_lap_mode(lapmodes.laphell))
-		&& global.laps >= 2 && global.chasekind == chasekind.blocks
+		&& global.laps >= 2 && global.chasekind == chasekinds.blocks
 		{
 			with obj_solid
 			{
