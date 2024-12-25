@@ -1,7 +1,8 @@
 function scr_sound_multiple(event, x, y)
 {
-	if (ds_map_find_value(global.sound_map, event) == undefined)
+	if ds_map_find_value(global.sound_map, event) == undefined
 		ds_map_set(global.sound_map, event, ds_list_create());
+	
 	var _list = ds_map_find_value(global.sound_map, event);
 	for (var i = 0; i < ds_list_size(_list); i++)
 	{
@@ -10,8 +11,11 @@ function scr_sound_multiple(event, x, y)
 		fmod_event_instance_release(b);
 	}
 	ds_list_clear(_list);
-	b = fmod_event_create_instance(event);
+	
+	var b = fmod_event_create_instance(event);
 	fmod_event_instance_play(b);
 	sound_instance_move(b, x, y);
 	ds_list_add(_list, b);
+	
+	return b;
 }

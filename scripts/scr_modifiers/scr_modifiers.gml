@@ -26,9 +26,7 @@ function reset_modifier()
 		Peddito: false,
 		SuddenDeath: false,
 		Golf: false,
-		
-		// Entrance
-		NoiseGutter: false,
+		NoiseWorld: false,
 		
 		// CTOP
 		CTOPLaps: false,
@@ -625,7 +623,7 @@ function pre_player_modifiers()
 }
 function post_player_modifiers()
 {
-	//if live_call() return live_result;
+	if live_call() return live_result;
 	
 	with obj_persistent
 	{
@@ -671,5 +669,99 @@ function post_player_modifiers()
 			with obj_player1
 				instance_create_unique(x, y, obj_cosmicclone);
 		}
+		
+		if MOD.NoiseWorld
+		{
+			with obj_player
+			{
+				mask_index = spr_parryhitbox;
+				image_yscale = 2;
+			}
+			instance_destroy(obj_metalblock, false);
+			instance_destroy(obj_destroyable, false);
+			with obj_destroyable3
+			{
+				if object_index != obj_hungrypillar
+					instance_destroy(id, false);
+			}
+			
+			var x_pos = 0, y_pos = 0;
+			while y_pos < room_height
+			{
+				var height = 0;
+			    while x_pos < room_width
+				{
+					with instance_create(x_pos, y_pos, obj_noisestickerblock)
+					{
+						var placed = false;
+						//repeat 1 // attempts
+						{
+							var scale = random_range(0.25, 1);
+							image_xscale = scale * choose(-1, 1);
+							image_yscale = scale;
+							depth = -30;
+							
+							if !place_meeting(x, y, [obj_player, obj_baddie])
+							{
+								x_pos += abs(bbox_right - bbox_left);
+								height = max(height, bbox_bottom - bbox_top);
+								placed = true;
+								break;
+							}
+						}
+						if !placed
+						{
+							instance_destroy(id, false);
+							x_pos += 100;
+							height = 100;
+						}
+					}
+			    }
+				
+				x_pos = 0;
+				y_pos += height;
+			}
+			
+			with obj_player
+			{
+				mask_index = spr_player_mask;
+				image_yscale = 1;
+			}
+		}
+	}
+}
+
+function scr_modifier_fill()
+{
+	if MOD.NoiseWorld
+		global.fill *= 2;
+}
+
+function get_modifier_icon(modifier)
+{
+	switch modifier
+	{
+		default: return 0;
+		case "NoToppings": return 2;
+		case "Pacifist": return 3;
+		case "HardMode": return 4;
+		case "Mirror": return 5;
+		case "CTOPLaps": return 6;
+		case "JohnGhost": return 7;
+		case "Spotlight": return 8;
+		case "GreenDemon": return 9;
+		case "FromTheTop": return 10;
+		case "GravityJump": return 11;
+		case "CosmicClones": return 12;
+		case "Hydra": return 13;
+		case "DoubleTrouble": return 14;
+		case "EasyMode": return global.leveltosave != "snickchallenge" ? 15 : 23;
+		case "Birthday": return 16;
+		case "Peddito": return 17;
+		case "NoiseGutter": return 18;
+		case "OldLevels": return 19;
+		case "Ordered": return 20;
+		case "TaxMode": return 21;
+		case "SecretInclude": return 22;
 	}
 }

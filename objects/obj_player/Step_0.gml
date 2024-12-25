@@ -961,15 +961,12 @@ if (object_index == obj_player1)
 			}
 		}
 	}
-	if (!(state == states.door || state == states.teleport || state == states.shotgun || state == states.tube || state == states.spaceshuttle || state == states.taxi || state == states.gottreasure || state == states.victory || state == states.gottreasure || state == states.actor || state == states.comingoutdoor || (state == states.knightpep && (sprite_index == spr_knightpepstart || sprite_index == spr_knightpepthunder)) || instance_exists(obj_fadeout) || (collision_flags & colflag.secret) > 0))
+	if !scr_combo_freeze(self)
 	{
-		if (room != forest_G1b && global.combotimepause <= 0)
-		{
-			if global.heattime > 0
-				global.heattime -= heat_timedrop;
-			if global.combotime > 0
-				global.combotime -= character == "G" ? 0.1 : 0.15;
-		}
+		if global.heattime > 0
+			global.heattime -= scr_heat_drain(self);
+		if global.combotime > 0
+			global.combotime -= scr_combo_drain(self);
 	}
 	if (global.combotime <= 0 && global.combo >= 1)
 	{

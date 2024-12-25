@@ -155,10 +155,7 @@ function activate_panic(instapanic = false, debris = noone)
 			global.fill = calculate_panic_timer(0, 30);
 			break;
 	}
-	
-	// if a hard modifier is on, extend timer a lot.
-	if MOD.Pacifist or MOD.NoToppings
-		global.fill *= 3;
+	scr_modifier_fill();
 	
 	with obj_tv
 	{

@@ -117,7 +117,7 @@ if !instance_exists(obj_startgate)
 	// level
 	switch global.leveltosave
 	{
-		case "entrance": state = MOD.NoiseGutter ? "Noise Gutter" : "John Gutter"; break;
+		case "entrance": state = "John Gutter"; break;
 		case "medieval": state = "Pizzascape"; break;
 		case "ruin": state = "Ancient Cheese"; break;
 		case "dungeon": state = "Bloodsauce Dungeon"; break;

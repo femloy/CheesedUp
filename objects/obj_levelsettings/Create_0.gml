@@ -198,18 +198,19 @@ with obj_bossdoor
 
 #region MODIFIERS
 
-function add_modifier(variable, icon, color = #c09068, drawfunc = noone, local = string_lower(variable))
+function add_modifier(variable, color = #c09068, drawfunc = noone, local = string_lower(variable))
 {
-	var struct = {
+	var struct =
+	{
 		value: MOD[$ variable],
 		vari: variable,
 		name: lstr("mod_title_" + local),
 		desc: lstr("mod_desc_" + local),
 		opts: [["off", false], ["on", true]],
 		drawfunc: drawfunc,
-		icon: icon,
+		icon: get_modifier_icon(variable),
 		color: color,
-	}
+	};
 	if struct.value
 		ds_list_add(active_modifiers, icon);
 	array_push(options_array, struct);
@@ -220,7 +221,7 @@ options_array = [];
 
 //add_modifier("Encore", MOD.Encore, "Remixes the level to make it harder.");
 
-add_modifier("GreenDemon", 9, #60d048, function(val)
+add_modifier("GreenDemon", #60d048, function(val)
 {
 	static sprite = spr_playerN_idle;
 	static image = 0;
@@ -273,7 +274,7 @@ add_modifier("GreenDemon", 9, #60d048, function(val)
 });
 
 cosmic_surf = noone;
-add_modifier("CosmicClones", 12, #9850f8, function(val)
+add_modifier("CosmicClones", #9850f8, function(val)
 {
 	var layers = [
 		[spr_cosmicclone_layer1, 0.1],
@@ -342,12 +343,12 @@ if DEATH_MODE
 		"etb", "midway", // Extra
 	];
 	if array_contains(deathmode_allow, level, 0, infinity)// or DEBUG
-		add_modifier("DeathMode", 1, , [seq_deathmode_on]);
+		add_modifier("DeathMode", , [seq_deathmode_on]);
 }
 
 if (level == "medieval" or level == "ruin" or level == "dungeon")
 && DEBUG
-	add_modifier("OldLevels", 19, #086800, [seq_oldlevels_on]);
+	add_modifier("OldLevels", #086800, [seq_oldlevels_on]);
 
 /*
 if !boss && level != "tutorial" && global.experimental
@@ -356,7 +357,7 @@ if !boss && level != "tutorial"
 	add_modifier("Pacifist", 3, #f8e080, [seq_pacifist_on]);
 */
 
-add_modifier("HardMode", 4, #b83830, function(val)
+add_modifier("HardMode", #b83830, function(val)
 {
 	var xx = (width / 2) + cos(current_time / 500) * (width * .2);
 	var yy = (height / 2) + sin(current_time / 300) * 15;
@@ -366,7 +367,7 @@ add_modifier("HardMode", 4, #b83830, function(val)
 		1, 1, 0, c_white, 0.5);
 	draw_sprite_ext(spr_heatmeter4, 1, width / 2 + random_range(-1, 1), height / 2 - 32 + random_range(-1, 1), 1, 1, 0, c_white, 1);
 });
-add_modifier("Mirror", 5, #30a8f8, function(val)
+add_modifier("Mirror", #30a8f8, function(val)
 {
 	static xscale = .9;
 	xscale = val ? -.9 : .9;
@@ -393,7 +394,7 @@ if !boss && level != "grinch" && level != "dragonlair" && level != "snickchallen
 */
 
 if level != "trickytreat"
-add_modifier("JohnGhost", 7, #786898, function(val)
+add_modifier("JohnGhost", #786898, function(val)
 {
 	/*if val
 	{*/
@@ -412,7 +413,7 @@ add_modifier("JohnGhost", 7, #786898, function(val)
 });
 
 circle_size = 250;
-add_modifier("Spotlight", 8, #283040, function(val)
+add_modifier("Spotlight", #283040, function(val)
 {
 	// draw circle first to crop out
 	shader_reset();
@@ -438,7 +439,7 @@ add_modifier("Spotlight", 8, #283040, function(val)
 var l = level_info(level);
 if is_instanceof(l, __levelinfo) && global.experimental
 {
-	add_modifier("FromTheTop", 10, #786898, function(val)
+	add_modifier("FromTheTop", #786898, function(val)
 	{
 		draw_sprite_ext(val ? spr_hungrypillar : spr_exitgate, 0, 100, 110, 0.5, 0.5, 0, c_white, 1);
 		draw_sprite_ext(val ? spr_exitgate : spr_hungrypillar, 0, width - 100, 110, val ? .5 : -0.5, 0.5, 0, c_white, 1);
@@ -448,7 +449,7 @@ if is_instanceof(l, __levelinfo) && global.experimental
 	});
 }
 	
-add_modifier("GravityJump", 11, #8038f0, function(val)
+add_modifier("GravityJump", #8038f0, function(val)
 {
 	static vsp = 0;
 	
@@ -499,9 +500,14 @@ add_modifier("GravityJump", 11, #8038f0, function(val)
 	draw_particles();
 });
 
+add_modifier("NoiseWorld", #f8e080, function(val)
+{
+	
+});
+
 if level != "trickytreat" && global.experimental
 {
-	add_modifier("DoubleTrouble", 14, #f8e080, function(val)
+	add_modifier("DoubleTrouble", #f8e080, function(val)
 	{
 		static noise_x = 0;
 		static doise_x = 0;
@@ -529,12 +535,12 @@ if level != "trickytreat" && global.experimental
 }
 
 if level != "trickytreat" && global.experimental
-	add_modifier("Hydra", 13, #d08838);
+	add_modifier("Hydra", #d08838);
 
 // Level specific
 if level == "grinch"
 {
-	add_modifier("EasyMode", 15, #f878b0, function(val)
+	add_modifier("EasyMode", #f878b0, function(val)
 	{
 		draw_sprite_ext(spr_grinch_ball, val ? 0 : -1, width / 2, height / 2, 2, 2, 0, c_white, 1);
 		if val
@@ -546,12 +552,12 @@ if level == "grinch"
 }
 if level == "golf"
 {
-	add_modifier("EasyMode", 15, #f878b0, , "golfeasy");
+	add_modifier("EasyMode", #f878b0, , "golfeasy");
 }
 if level == "snickchallenge"
 {
-	add_modifier("OldLevels", 19, #086800, [seq_oldlevels_on]);
-	add_modifier("EasyMode", 23, #f878b0, , "snickeasy");
+	add_modifier("OldLevels", #086800, [seq_oldlevels_on]);
+	add_modifier("EasyMode", #f878b0, , "snickeasy");
 }
 /*
 if level == "exit"
@@ -564,11 +570,11 @@ if level == "exit"
 */
 if level == "secretworld"
 {
-	add_modifier("Ordered", 20, #d868a0);
-	add_modifier("SecretInclude", 22, #d868a0);
+	add_modifier("Ordered", #d868a0);
+	//add_modifier("SecretInclude", 22, #d868a0);
 	
-	if DEBUG
-		add_modifier("FromTheTop", 0, , , "panic");
+	//if DEBUG
+	//	add_modifier("FromTheTop", 0, , , "panic");
 }
 
 refresh_options();
@@ -588,9 +594,11 @@ switch level
 	case "street": case "industrial": case "sewer": case "freezer":
 	case "chateau": case "kidsparty": case "war": case "secretworld":
 	case "dragonlair": case "mansion": case "strongcold": case "sky":
-	case "snickchallenge": case "grinch": case "entryway": case "steamy":
-	case "molasses": case "sucrose": case "mines":
+	case "snickchallenge": case "grinch":
 		song = level;
+		break;
+	case "entryway": case "steamy": case "molasses": case "sucrose": case "mines":
+		if SUGARY_SPIRE song = level;
 		break;
 	case "aprilmansion": case "oldmansion":
 		song = "mansion";
