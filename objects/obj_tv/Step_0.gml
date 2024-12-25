@@ -20,7 +20,7 @@ if !global.option_hud
 if instance_exists(obj_endlevelfade) && REMIX
 	visible = false;
 
-if global.hud != hudstyles.old
+if global.hud != HUD_STYLES.old
 	image_speed = 0.35;
 if (targetgolf != noone && !instance_exists(targetgolf))
 	targetgolf = -4;
@@ -52,13 +52,13 @@ if (bubblespr != noone && bubblespr != spr_tv_bubbleclosed)
 	}
 }
 
-if global.hud == hudstyles.old
+if global.hud == HUD_STYLES.old
 	sprite_index = -1;
 else switch state
 {
 	case states.normal:
 		idlespr = obj_player1.isgustavo ? spr_tv_idleG : spr_tv_idle;
-		if global.hud == hudstyles.final
+		if global.hud == HUD_STYLES.final
 		{
 			if PANIC
 				idlespr = obj_player1.isgustavo ? spr_tv_escapeG : spr_tv_exprpanic;
@@ -391,7 +391,7 @@ else switch state
 }
 
 // PTO - set tv sprite
-if sprite_exists(targetspr) && targetspr_old != targetspr && global.hud != hudstyles.old && visible
+if sprite_exists(targetspr) && targetspr_old != targetspr && global.hud != HUD_STYLES.old && visible
 {
 	var char = obj_player1.character;
 	if targetspr == spr_tv_machrollSP
@@ -423,7 +423,7 @@ if sprite_exists(targetspr) && targetspr_old != targetspr && global.hud != hudst
 		}
 		 
 		// shaded tv
-		if /*REMIX or */global.hud == hudstyles.april
+		if /*REMIX or */global.hud == HUD_STYLES.april
 		{
 			if char == "P"
 				char = "";
@@ -462,7 +462,7 @@ hand_index += 0.35;
 johnface_index += sugary_level ? 0.015 : 0.35;
 
 var sprite_struct = scr_timer_sprites();
-var minimal_war = global.hud == hudstyles.minimal && instance_exists(obj_wartimer);
+var minimal_war = global.hud == HUD_STYLES.minimal && instance_exists(obj_wartimer);
 var hide_timer = (global.fill <= 0 or instance_exists(obj_pizzaface)) && !minimal_war;
 var showtime = global.fill <= (global.snickchallenge ? calculate_panic_timer(2, 0) : 0);
 

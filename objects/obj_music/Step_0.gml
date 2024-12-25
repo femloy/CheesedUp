@@ -173,14 +173,14 @@ if instance_exists(obj_player1) && !obj_pause.pause
 		{
 			if MOD.CosmicClones
 			{
-				if check_lap_mode(lapmodes.laphell) && global.laps >= 2 // pillar john's revenge
+				if check_lap_mode(LAP_MODES.laphell) && global.laps >= 2 // pillar john's revenge
 					fmod_event_instance_set_parameter(panicmusicID, "state", 20, true);
 				else if (global.panic && global.leveltosave != "sucrose") or global.lap
 					fmod_event_instance_set_parameter(panicmusicID, "state", 1, true);
 			}
 			else if global.snickchallenge
 				fmod_event_instance_set_parameter(panicmusicID, "state", global.fill <= calculate_panic_timer(2, 0) ? 1 : 0, true);
-			else if !global.lap && !(global.gerome && check_lap_mode(lapmodes.april))
+			else if !global.lap && !(global.gerome && check_lap_mode(LAP_MODES.april))
 			{
 				var secs = 56;
 				if obj_player1.character == "N"
@@ -192,7 +192,7 @@ if instance_exists(obj_player1) && !obj_pause.pause
 			}
 			else
 			{ 
-				if check_lap_mode(lapmodes.laphell) && global.laps >= 2 // pillar john's revenge
+				if check_lap_mode(LAP_MODES.laphell) && global.laps >= 2 // pillar john's revenge
 					fmod_event_instance_set_parameter(panicmusicID, "state", 20, true);
 				else // the death that I deservioli
 					fmod_event_instance_set_parameter(panicmusicID, "state", 2, true);

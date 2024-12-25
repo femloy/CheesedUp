@@ -65,5 +65,5 @@ switch obj_player1.character
 		break;
 }
 
-if MOD.FromTheTop or (global.gerome && global.lapmode == lapmodes.april)
+if MOD.FromTheTop or (global.gerome && global.lapmode == LAP_MODES.april)
 	image_xscale *= -1;

@@ -5,7 +5,7 @@ function tv_set_idle()
 		state = states.normal
 		sprite_index = spr_tv_idle;
 		
-		if global.hud == hudstyles.old
+		if global.hud == HUD_STYLES.old
 		{
 			sprite_index = -1;
 			tvsprite = spr_tvdefault;
@@ -20,7 +20,7 @@ function tv_reset()
 		sprite_index = spr_tv_idle;
 		ds_list_clear(tvprompts_list);
 		
-		if global.hud == hudstyles.old
+		if global.hud == HUD_STYLES.old
 		{
 			sprite_index = -1;
 			tvsprite = spr_tvdefault;
@@ -118,7 +118,7 @@ function tv_get_palette()
 }
 function tv_do_expression(sprite, force_pep = false)
 {
-	if global.hud != hudstyles.final
+	if global.hud != HUD_STYLES.final
 		exit;
 	
 	with (obj_tv)
@@ -346,7 +346,7 @@ function scr_tv_get_transfo_sprite()
 
 function old_hud_message(str, time = 200)
 {
-	if global.hud != hudstyles.old
+	if global.hud != HUD_STYLES.old
 		exit;
 	
 	with obj_tv

@@ -82,7 +82,7 @@ function scr_cameradraw_mini()
 	var bx = xx, by = yy + lerp(25, 0, timeattack_trans);
 	if player.character != "S" && player.character != "V" && !player.isgustavo
 	{
-		if global.shootstyle == shootstyles.pistol
+		if global.shootstyle == SHOOT_STYLES.pistol
 		{
 			var spr = spr_bullet_minimal, pad = 2;
 			switch player.character
@@ -94,7 +94,7 @@ function scr_cameradraw_mini()
 			}
 			bx = scr_draw_fuel(bx, by, spr, global.bullet, , pad);
 		}
-		if global.doublegrab == doublestyles.chainsaw
+		if global.doublegrab == DOUBLE_STYLES.chainsaw
 			bx = scr_draw_fuel(bx + 2, by - 1, spr_fuel_minimal, global.fuel);
 	}
 }

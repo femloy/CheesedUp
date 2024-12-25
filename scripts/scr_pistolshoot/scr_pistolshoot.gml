@@ -67,7 +67,7 @@ function scr_pistolshoot(required_state, allow_charge = false)
 			bullet.april = true;
 			sound_play_3d(sfx_killingblow, x, y);
 			
-			if global.hud == hudstyles.old
+			if global.hud == HUD_STYLES.old
 			{
 				with obj_tv
 				{

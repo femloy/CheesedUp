@@ -43,7 +43,7 @@ function scr_player_punch()
 		
 		if (punch_afterimage > 0)
 			punch_afterimage--;
-		else if (vsp < 0 or global.afterimage == 1) && IT_FINAL
+		else if (vsp < 0 or global.afterimage == AFTERIMAGES.blue) && IT_FINAL
 		{
 			punch_afterimage = 5;
 			with create_blue_afterimage(x, y, sprite_index, image_index, xscale)

@@ -5,7 +5,7 @@ if (player < 2)
     else if (!global.panic && !place_meeting(xstart, ystart, obj_player1))
         player = 2
 }
-if ((!global.panic or (global.gerome && check_lap_mode(lapmodes.april))) && player != 1)
+if ((!global.panic or (global.gerome && check_lap_mode(LAP_MODES.april))) && player != 1)
 {
 	x = xstart;
 	y = ystart;

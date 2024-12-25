@@ -21,7 +21,7 @@ uparrow = false;
 uparrowID = noone;
 snd = false;
 
-if global.blockstyle == blockstyles.old
+if global.blockstyle == BLOCK_STYLES.old
 	sprite_index = spr_exitgate_old;
 
 if SUGARY_SPIRE

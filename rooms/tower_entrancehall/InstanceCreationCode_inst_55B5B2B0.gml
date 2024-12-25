@@ -1,5 +1,5 @@
 var lay = layer_get_id("Tiles_LAP");
-if check_lap_mode(lapmodes.normal) or check_lap_mode(lapmodes.april) or !global.panic
+if check_lap_mode(LAP_MODES.normal) or check_lap_mode(LAP_MODES.april) or !global.panic
 {
 	with instance_create(x, y, obj_solid)
 	{

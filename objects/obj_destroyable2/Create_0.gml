@@ -3,7 +3,7 @@ event_inherited();
 particlespr = spr_pizzadebris;
 spr_dead = spr_pizzablockdead;
 
-if global.blockstyle == blockstyles.old
+if global.blockstyle == BLOCK_STYLES.old
 {
 	sprite_index = spr_destroyable2_old;
 	particlespr = spr_pizzadebris;
@@ -20,7 +20,7 @@ switch obj_player1.character
 			particlespr = -1;
 			spr_dead = spr_candyblockdead;
 	
-			if global.blockstyle == blockstyles.old
+			if global.blockstyle == BLOCK_STYLES.old
 			{
 				sprite_index = spr_destroyable2SP_old;
 				particlespr = spr_candydebris;

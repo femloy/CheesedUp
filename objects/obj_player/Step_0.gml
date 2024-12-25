@@ -24,7 +24,7 @@ if (SUGARY_SPIRE && character == "SN") or (!CHAR_BASENOISE && isgustavo)
 	if (key_chainsaw2 or key_slap2)
 		input_buffer_slap = 12;
 }
-else if global.swapgrab && global.attackstyle != attackstyles.grab
+else if global.swapgrab && global.attackstyle != ATTACK_STYLES.grab
 {
 	if (key_chainsaw2)
 		input_buffer_slap = 12;
@@ -35,7 +35,7 @@ else
 {
 	if (key_slap2)
 		input_buffer_slap = 12;
-	if (global.attackstyle != attackstyles.grab ? key_chainsaw2 : key_slap2)
+	if (global.attackstyle != ATTACK_STYLES.grab ? key_chainsaw2 : key_slap2)
 		input_buffer_grab = 12;
 }
 if (key_jump)
@@ -1105,7 +1105,7 @@ if (state != states.jump)
 	stompAnim = false;
 
 // mach effect
-var do_macheffect = (state == states.mach3 or state == states.machcancel || (state == states.ghost && ghostdash && ghostpepper >= 3) || state == states.mach2 || (state == states.Sjump && global.afterimage == 0) || ratmount_movespeed >= 12 || gusdashpadbuffer > 0)
+var do_macheffect = (state == states.mach3 or state == states.machcancel || (state == states.ghost && ghostdash && ghostpepper >= 3) || state == states.mach2 || (state == states.Sjump && global.afterimage == AFTERIMAGES.mach) || ratmount_movespeed >= 12 || gusdashpadbuffer > 0)
 or ((abs(movespeed) >= 10 or sprite_index == spr_crazyrun) && character == "S") or (CHAR_POGONOISE && pogochargeactive) or (state == states.tumble && character == "V" && movespeed >= 11);
 
 if !IT_FINAL
@@ -1326,7 +1326,7 @@ if state != states.tumble
 else if vigi_slide_buffer > 0
 	vigi_slide_buffer--;
 
-if !attackstyletip && state == states.normal && !cutscene && global.attackstyle != attackstyles.grab
+if !attackstyletip && state == states.normal && !cutscene && global.attackstyle != ATTACK_STYLES.grab
 {
 	attackstyletip = true;
 	var tiptext = lstr("attackstyletip");

@@ -6,7 +6,7 @@ if global.timeattack
 
 if MOD.FromTheTop
 	instance_destroy();
-else if check_lap_mode(lapmodes.april)
+else if check_lap_mode(LAP_MODES.april)
 {
 	instance_change(obj_gerome, true);
 	
@@ -33,16 +33,16 @@ if array_contains(base_game_levels(), global.leveltosave) && !global.sandbox
 if global.in_afom
 {
 	if inlaps
-		global.afom_lapmode = lapmodes.infinite;
+		global.afom_lapmode = LAP_MODES.infinite;
 	else
 	{
-		global.afom_lapmode = lapmodes.laphell;
+		global.afom_lapmode = LAP_MODES.laphell;
 		if global.laps >= clamp(maxlaps, 1, 3)
 			instance_destroy();
 	}
 }
 
-if check_lap_mode(lapmodes.laphell)
+if check_lap_mode(LAP_MODES.laphell)
 {
 	if global.laps >= (global.in_afom ? 3 : 2)
 		instance_destroy();
@@ -53,7 +53,7 @@ else if DEATH_MODE
 		instance_destroy();
 }
 
-if check_lap_mode(lapmodes.normal) && global.lap
+if check_lap_mode(LAP_MODES.normal) && global.lap
 	instance_destroy();
 
 if global.snickchallenge

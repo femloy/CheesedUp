@@ -3477,6 +3477,7 @@
     {"id":{"name":"gameframe_macros","path":"scripts/gameframe_macros/gameframe_macros.yy",},},
     {"id":{"name":"gameframe","path":"scripts/gameframe/gameframe.yy",},},
     {"id":{"name":"GamepadSetVibration","path":"scripts/GamepadSetVibration/GamepadSetVibration.yy",},},
+    {"id":{"name":"get_level_achievements","path":"scripts/get_level_achievements/get_level_achievements.yy",},},
     {"id":{"name":"get_savefile_ini","path":"scripts/get_savefile_ini/get_savefile_ini.yy",},},
     {"id":{"name":"GifHx","path":"scripts/GifHx/GifHx.yy",},},
     {"id":{"name":"global_message","path":"scripts/global_message/global_message.yy",},},

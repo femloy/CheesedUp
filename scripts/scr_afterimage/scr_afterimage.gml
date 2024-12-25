@@ -124,7 +124,7 @@ function create_firemouth_afterimage(_x, _y, _sprite, _image_index, _xscale)
 }
 function create_blue_afterimage(_x, _y, _sprite, _image_index, _xscale)
 {
-	if global.afterimage == 1 && (object_index == obj_player1 && character == "N")
+	if global.afterimage == AFTERIMAGES.blue && (object_index == obj_player1 && character == "N")
 		return create_noise_afterimage(_x, _y, _sprite, _image_index, _xscale);
 	
 	var _yscale = 1, _character = "P";
@@ -137,7 +137,7 @@ function create_blue_afterimage(_x, _y, _sprite, _image_index, _xscale)
 		_character = character;
 	}
 	
-	if global.afterimage == 1 or _character == "SP"
+	if global.afterimage == AFTERIMAGES.blue or _character == "SP"
 	{
 		var b = create_afterimage(_x, _y, _sprite, _image_index);
 		with b

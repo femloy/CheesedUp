@@ -1,4 +1,4 @@
-if global.panic && !check_lap_mode(lapmodes.infinite) && global.laps >= 3
+if global.panic && !check_lap_mode(LAP_MODES.infinite) && global.laps >= 3
 {
 	mask_index = wokespr;
 	sprite_index = wokespr;

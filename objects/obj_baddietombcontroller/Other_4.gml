@@ -1,4 +1,4 @@
-if global.lapmode != lapmodes.april
+if global.lapmode != LAP_MODES.april
 {
 	ds_list_clear(global.baddietomb);
 	exit;

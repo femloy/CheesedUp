@@ -1,7 +1,7 @@
 function scr_is_p_rank()
 {
-	var lap = global.lap or MOD.FromTheTop or global.lapmode == lapmodes.april;
-	var treasure = global.treasure or (check_lap_mode(lapmodes.april) && string_ends_with(room_get_name(room), "_treasure"));
+	var lap = global.lap or MOD.FromTheTop or global.lapmode == LAP_MODES.april;
+	var treasure = global.treasure or (check_lap_mode(LAP_MODES.april) && string_ends_with(room_get_name(room), "_treasure"));
 	
 	if global.timeattack
 		return scr_can_p_rank();

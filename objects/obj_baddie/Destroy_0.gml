@@ -6,7 +6,7 @@ if (room == rm_editor)
 
 if (!in_baddieroom() && (!elite || elitehit <= 0) && destroyable)
 {
-	if global.hitstun == 2
+	if global.hitstun == HITSTUN_STYLES.early
 		scr_sleep(50 * global.hitstun_multiplier);
 	
 	if object_index == obj_pizzaball

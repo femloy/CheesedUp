@@ -71,7 +71,7 @@ function pre_player_modifiers()
 	with obj_persistent
 	{
 		// ctop lapping
-		if (global.leveltosave == "exit" or room == freezer_lap) && !check_lap_mode(lapmodes.normal)
+		if (global.leveltosave == "exit" or room == freezer_lap) && !check_lap_mode(LAP_MODES.normal)
 		{
 			with obj_baddie
 			{
@@ -119,8 +119,8 @@ function pre_player_modifiers()
 		}
 
 		// lap 3 blocks
-		if (instance_exists(obj_pizzaface) or check_lap_mode(lapmodes.laphell))
-		&& global.laps >= 2 && global.chasekind == chasekinds.blocks
+		if (instance_exists(obj_pizzaface) or check_lap_mode(LAP_MODES.laphell))
+		&& global.laps >= 2 && global.chasekind == CHASE_KINDS.blocks
 		{
 			with obj_solid
 			{

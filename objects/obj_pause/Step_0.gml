@@ -100,7 +100,23 @@ if (!pause && instance_exists(obj_player1) && alarm[3] == -1 && (obj_player1.key
 			array_push(pause_menu, checkpoint ? "pause_checkpoint" : "pause_restart");
 			
 			if array_contains(base_game_levels(false, true), global.leveltosave)
-				array_push(pause_menu, "pause_achievements");
+			{
+				var show = global.taskpausestyle == TASK_PAUSE_STYLES.show;
+				if global.taskpausestyle == TASK_PAUSE_STYLES.hide_on_completion
+				{
+					var ach = get_level_achievements(global.leveltosave);
+					for(var i = 0; i < array_length(ach.achievements); i++)
+					{
+						if !ach.achievements[i].got
+						{
+							show = true;
+							break;
+						}
+					}
+				}
+				if show
+					array_push(pause_menu, "pause_achievements");
+			}
 			
 			array_push(pause_menu, checkpoint ? "pause_restart" : "pause_exit");
 		}

@@ -5,7 +5,7 @@ if !rectangle_in_rectangle(tilelayer.tiles_bounds.x1, tilelayer.tiles_bounds.y1,
 
 if secrettile
 {
-	var spotlight = global.secrettiles && !instance_exists(obj_fakeplayer);
+	var spotlight = global.secrettiles == SECRETTILE_STYLES.spotlight && !instance_exists(obj_fakeplayer);
 	shader_set(shd_secrettile);
 	var bounds = shader_get_uniform(shd_secrettile, "u_secret_tile_bounds");
 	var alpha = shader_get_uniform(shd_secrettile, "u_secret_tile_alpha");

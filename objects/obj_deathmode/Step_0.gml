@@ -4,7 +4,7 @@ if DEATH_MODE
 {
 	if !MOD.DeathMode
 		active = false;
-	if global.lapmode == lapmodes.laphell && global.laps >= 2
+	if global.lapmode == LAP_MODES.laphell && global.laps >= 2
 		active = false;
 	if global.modifier_failed
 		active = false;

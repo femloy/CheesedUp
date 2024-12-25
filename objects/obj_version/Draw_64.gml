@@ -1,7 +1,13 @@
 draw_set_font(global.smallfont);
 draw_set_halign(fa_right);
 draw_set_valign(fa_bottom);
+
 var a = 0;
 with obj_mainmenu
 	a = extrauialpha;
-draw_text_color(SCREEN_WIDTH - 8, SCREEN_HEIGHT - 8, concat("CU ", ver, "\n", "PT ", lstr("game_version")), c_white, c_white, c_white, c_white, a);
+
+var ver_str = concat("CU ", ver);
+if !instance_exists(obj_option)
+	ver_str += concat("\n", "PT ", lstr("game_version"));
+
+draw_text_color(SCREEN_WIDTH - 8, SCREEN_HEIGHT - 8, ver_str, c_white, c_white, c_white, c_white, a);

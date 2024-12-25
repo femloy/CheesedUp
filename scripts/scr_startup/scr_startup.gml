@@ -105,7 +105,7 @@ function check_panic()
 		return false;
 	if instance_exists(obj_ghostcollectibles) && !(global.leveltosave == "sucrose" or global.leveltosave == "secretworld")
 		return false;
-	if global.lapmode == lapmodes.april && string_ends_with(room_get_name(room), "_treasure")
+	if global.lapmode == LAP_MODES.april && string_ends_with(room_get_name(room), "_treasure")
 		return false;
 	return true;
 }

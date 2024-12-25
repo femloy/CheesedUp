@@ -1,4 +1,4 @@
-eggplant = global.hud == hudstyles.minimal;
+eggplant = global.hud == HUD_STYLES.minimal;
 sprite = spr_comboend_title1;
 playerid = obj_player1;
 

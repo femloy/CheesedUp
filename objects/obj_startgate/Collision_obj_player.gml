@@ -121,7 +121,7 @@ else if (floor(other.image_index) == other.image_number - 1 or (other.key_taunt2
 }
 
 // level name at the bottom of the screen
-if global.hud == hudstyles.final
+if global.hud == HUD_STYLES.final
 {
 	if REMIX && other.state != states.victory && other.state != states.backtohub && (highscore > 0 or global.sandbox or (boss && hats > 0))
 	&& !place_meeting(x, y, obj_tutorialbook) && self.msg != "" && !instance_exists(obj_mrsticknotification)

@@ -338,7 +338,7 @@ function state_player_jump()
 		if (input_buffer_shoot > 0 && shotgunAnim)
 			scr_shotgunshoot();
 		else if (input_buffer_pistol > 0 && global.pistol)
-		or (global.shootstyle == shootstyles.pistol && key_shoot2)
+		or (global.shootstyle == SHOOT_STYLES.pistol && key_shoot2)
 			scr_pistolshoot(states.jump);
 		else if key_shoot2
 			scr_perform_move(modmoves.shootattack, states.jump);

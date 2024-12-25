@@ -1,6 +1,6 @@
 if !global.option_hud
 	exit;
-if global.hud != hudstyles.final
+if global.hud != HUD_STYLES.final
 	exit;
 
 if !REMIX && !(SUGARY_SPIRE && sugary)

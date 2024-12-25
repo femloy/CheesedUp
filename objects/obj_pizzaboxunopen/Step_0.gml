@@ -54,7 +54,7 @@ if place_meeting(x, y, obj_player) && sprite_index != spr_pizzaboxopen
 			case obj_pizzakinpineapple: global.pineapplefollow = true; break;
 		}
 		
-		if global.hud == hudstyles.final
+		if global.hud == HUD_STYLES.final
 		{
 			if REMIX or (SUGARY_SPIRE && sugary)
 			{

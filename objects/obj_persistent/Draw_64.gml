@@ -1,7 +1,7 @@
 live_auto_call;
 
 // old text event
-if global.hud == hudstyles.old
+if global.hud == HUD_STYLES.old
 {
 	with obj_tv
 	{

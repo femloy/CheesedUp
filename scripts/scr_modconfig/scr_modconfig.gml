@@ -3,23 +3,23 @@ global.lap4time = 1;
 
 // macros
 #macro REMIX global.gameplay
-#macro IT_FINAL (global.iteration == IT.FINAL)
-#macro IT_APRIL (global.iteration == IT.APRIL)
-#macro IT_BNF (global.iteration == IT.BNF)
+#macro IT_FINAL (global.iteration == ITERATIONS.FINAL)
+#macro IT_APRIL (global.iteration == ITERATIONS.APRIL)
+#macro IT_BNF (global.iteration == ITERATIONS.BNF)
 
-enum IT
+enum ITERATIONS
 {
 	FINAL, // Do not change the order of these
 	APRIL, // It would mess up savefiles.
 	BNF
 }
-enum blockstyles
+enum BLOCK_STYLES
 {
 	final,
 	september,
 	old
 }
-enum hudstyles
+enum HUD_STYLES
 {
 	final,
 	old,
@@ -27,56 +27,51 @@ enum hudstyles
 	minimal,
 	debug
 }
-enum attackstyles
+enum ATTACK_STYLES
 {
 	grab,
 	kungfu,
 	shoulderbash,
 	lunge
 }
-enum shootstyles
+enum SHOOT_STYLES
 {
 	none,
 	pistol,
 	breakdance
 }
-enum doublestyles
+enum DOUBLE_STYLES
 {
 	none,
 	shoulderbash,
 	faceplant,
 	chainsaw
 }
-enum borderstyles
+enum BORDER_STYLES
 {
 	none = -1,
 	space,
 	dynamic
 }
-enum lapmodes
+enum LAP_MODES
 {
 	normal,
 	infinite,
 	laphell,
 	april
 }
-enum chasekinds
+enum CHASE_KINDS
 {
 	none,
 	blocks,
 	slowdown
 }
-enum lap4mode
-{
-	preset,
-	elm
-}
-enum vigistyles
+enum VIGI_STYLES
 {
 	pto,
 	vanilla
 }
-enum tvcolors
+enum TV_COLORS
 {
 	normal,
 	purple,
@@ -90,11 +85,39 @@ enum tvcolors
 	metal,
 	gutter
 }
-enum dresserstyles
+enum GENERAL_STYLES
 {
 	pto,
 	vanilla,
 	plus
+}
+enum TASK_PAUSE_STYLES
+{
+	show,
+	hide,
+	hide_on_completion
+}
+enum AFTERIMAGES
+{
+	mach,
+	blue
+}
+enum SHOOT_BUTTONS
+{
+	grab,
+	shoot,
+	shoot_for_shotgun
+}
+enum HITSTUN_STYLES
+{
+	none,
+	final,
+	early
+}
+enum SECRETTILE_STYLES
+{
+	fade,
+	spotlight
 }
 
 // default / presets
@@ -141,47 +164,48 @@ function ModPreset(name = "PRESET", desc = "Wow that's Cray Zay!") constructor
 	preset_default = function()
 	{
 		// mod config
-		iteration = IT.FINAL;
+		iteration = ITERATIONS.FINAL;
 		gameplay = true; // misc. improvements on or off?
 		
 		// gameplay settings
 		uppercut = true; // *buffed uppercut*
 		poundjump = false;
-		attackstyle = attackstyles.grab;
-		shootstyle = shootstyles.none;
-		doublegrab = doublestyles.none;
-		shootbutton = 0; // 0 replace grab, 1 move to A, 2 only shotgun
+		attackstyle = ATTACK_STYLES.grab;
+		shootstyle = SHOOT_STYLES.none;
+		doublegrab = DOUBLE_STYLES.none;
+		shootbutton = SHOOT_BUTTONS.grab; // 0 replace grab, 1 move to A, 2 only shotgun
 		heatmeter = false;
 		swapgrab = false;
-		hitstun = 1; // 0 off, 1 on, 2 early
+		hitstun = HITSTUN_STYLES.final; // 0 off, 1 on, 2 early
 		banquet = true; // mod that got merged into base game
 		eggplantslope = false;
 		combokeeper = true;
 		
 		// vigi gameplay
-		self.vigishoot = vigistyles.pto;
+		vigishoot = VIGI_STYLES.pto;
 		
 		// visual settings
 		panicbg = true;
 		panictilt = false;
 		sloperot = false;
 		showfps = false;
-		self.afterimage = 0; // final, eggplant
+		self.afterimage = AFTERIMAGES.mach; // final, eggplant
 		smoothcam = 0; // 0 through 1 lerp amount
-		secrettiles = 0; // fade, spotlight
-		hud = hudstyles.final;
-		blockstyle = blockstyles.final;
+		secrettiles = SECRETTILE_STYLES.fade; // fade, spotlight
+		hud = HUD_STYLES.final;
+		blockstyle = BLOCK_STYLES.final;
 		roomnames = false;
 		if SUGARY_SPIRE
 			sugaryoverride = false;
-		tvcolor = tvcolors.normal;
-		dresserstyle = dresserstyles.pto;
+		tvcolor = TV_COLORS.normal;
+		generalstyle = GENERAL_STYLES.pto;
+		taskpausestyle = TASK_PAUSE_STYLES.hide;
 		
 		// lapping style
-		lapmode = lapmodes.normal;
+		lapmode = LAP_MODES.normal;
 		parrypizzaface = false;
 		lap3checkpoint = true;
-		self.chasekind = chasekinds.blocks; // none, place blocks, slow down
+		chasekind = CHASE_KINDS.blocks; // none, place blocks, slow down
 	}
 }
 
@@ -224,7 +248,7 @@ function load_mod_config()
 	global.performance = ini_read_real("Modded", "performance", false);
 	global.unfocus_pause = ini_read_real("Modded", "unfocus_pause", false);
 	global.holidayoverride = ini_read_real("Modded", "holidayoverride", -1);
-	global.border = ini_read_real("Modded", "border", borderstyles.none);
+	global.border = ini_read_real("Modded", "border", BORDER_STYLES.none);
 	
 	global.minimal_pad = ini_read_real("Modded", "minimal_pad", 0);
 	global.minimal_combospot = ini_read_real("Modded", "minimal_combospot", 0);

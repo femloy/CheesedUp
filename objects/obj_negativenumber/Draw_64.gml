@@ -1,4 +1,4 @@
-if !global.option_hud or global.hud != hudstyles.final or hud_is_forcehidden() or global.timeattack
+if !global.option_hud or global.hud != HUD_STYLES.final or hud_is_forcehidden() or global.timeattack
 	exit;
 
 draw_set_font(global.moneyfont);

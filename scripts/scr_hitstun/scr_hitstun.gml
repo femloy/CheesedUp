@@ -16,7 +16,7 @@ function scr_hitstun_player(lag, stored_sprite = sprite_index, stored_state = st
 	
 	state = states.chainsaw;
 	
-	if global.hitstun != 1
+	if global.hitstun != HITSTUN_STYLES.final
 	{
 		hitLag = 0;
 		scr_player_chainsaw();
@@ -39,7 +39,7 @@ function scr_hitstun_enemy(baddieID, lag, stored_hsp = hsp, stored_vsp = vsp)
 		hithsp = stored_hsp;
 		hitvsp = stored_vsp;
 		
-		if global.hitstun != 1
+		if global.hitstun != HITSTUN_STYLES.final
 		{
 			alarm[3] = -1;
 			hitLag = 0;

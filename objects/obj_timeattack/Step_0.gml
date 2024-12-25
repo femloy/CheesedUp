@@ -9,6 +9,6 @@ if global.timeattack
 }
 else
 {
-	timer_y = global.hud == hudstyles.minimal ? 64 : 150;
+	timer_y = global.hud == HUD_STYLES.minimal ? 64 : 150;
 	lost_clock = false;
 }

@@ -20,7 +20,7 @@ function scr_cameradraw()
 	var hud_xx = 121 + irandom_range(-collect_shake, collect_shake);
 	var hud_yy = 90 + irandom_range(-collect_shake, collect_shake) + hud_posY;
 		
-	if global.hud == hudstyles.april && !lap3
+	if global.hud == HUD_STYLES.april && !lap3
 	{
 		hud_xx += 28;
 		hud_yy += 15;
@@ -69,7 +69,7 @@ function scr_cameradraw()
 		olivesprite = spr_cakehud_arank;
 		shroomsprite = spr_cakehud_srank;
 			
-		collectfont = global.hud == hudstyles.april ? global.collectfontSP : global.candlefont;
+		collectfont = global.hud == HUD_STYLES.april ? global.collectfontSP : global.candlefont;
 		collectpalette = spr_candlefontpalette;
 		
 		hud_xx += 7;
@@ -90,7 +90,7 @@ function scr_cameradraw()
 		hud_posY = Approach(hud_posY, hide * -300, 15);
 		
 	var cmb = 0;
-	if global.hud != hudstyles.april
+	if global.hud != HUD_STYLES.april
 	{
 		if (global.combo >= 50)
 			cmb = 2;
@@ -120,7 +120,7 @@ function scr_cameradraw()
 	var sh = sprite_get_height(heatfill);
 	var b = global.stylemultiplier;
 		
-	if global.hud == hudstyles.april
+	if global.hud == HUD_STYLES.april
 		b = global.style / 55;
 	
 	// heat meter
@@ -179,7 +179,7 @@ function scr_cameradraw()
 		ry = lerp(ry, hud_yy - 22, timeattack_trans);
 	}
 		
-	if global.hud == hudstyles.final or REMIX
+	if global.hud == HUD_STYLES.final or REMIX
 		scr_rankbubbledraw(rx, ry);
 		
 	// score text
@@ -221,7 +221,7 @@ function scr_cameradraw()
 		
 		if SUGARY_SPIRE && sugary && !lap3
 		{
-			if global.hud == hudstyles.april
+			if global.hud == HUD_STYLES.april
 			{
 				xx -= 6;
 				yy -= 11;
@@ -230,7 +230,7 @@ function scr_cameradraw()
 				yy -= 16;
 		}
 			
-		var use_palette = global.hud == hudstyles.april xor (SUGARY_SPIRE && sugary);
+		var use_palette = global.hud == HUD_STYLES.april xor (SUGARY_SPIRE && sugary);
 		if use_palette
 		{
 			if lastcollect != sc
@@ -268,7 +268,7 @@ function scr_cameradraw()
 	var bx = hud_xx - 70, by = hud_yy + 54;
 	if global.heatmeter
 		by += 42;
-	if global.shootstyle == shootstyles.pistol && showbullet
+	if global.shootstyle == SHOOT_STYLES.pistol && showbullet
 	{
 		var spr = spr_peppinobullet_collectible, yo = -76;
 		switch player.character
@@ -278,10 +278,10 @@ function scr_cameradraw()
 				yo = -16;
 				break;
 		}
-		bx = scr_draw_fuel(bx, by + yo, spr, global.bullet, 3, global.doublegrab == doublestyles.chainsaw ? -8 : 8) + 20;
+		bx = scr_draw_fuel(bx, by + yo, spr, global.bullet, 3, global.doublegrab == DOUBLE_STYLES.chainsaw ? -8 : 8) + 20;
 	}
-	if global.doublegrab == doublestyles.chainsaw && showbullet
-		bx = scr_draw_fuel(bx, by, spr_fuelHUD, global.fuel, 3, global.shootstyle == shootstyles.pistol ? -8 : 8);
+	if global.doublegrab == DOUBLE_STYLES.chainsaw && showbullet
+		bx = scr_draw_fuel(bx, by, spr_fuelHUD, global.fuel, 3, global.shootstyle == SHOOT_STYLES.pistol ? -8 : 8);
 	
 	draw_set_font(lang_get_font("bigfont"));
 	draw_set_halign(fa_center);
@@ -295,7 +295,7 @@ function scr_cameradraw()
 	}
 	*/
 		
-	if global.hud == hudstyles.april
+	if global.hud == HUD_STYLES.april
 	{
 		var ix = 50, iy = 30;
 		draw_sprite_ext(spr_inv, image_index, ix, iy, 1, 1, 1, c_white, alpha);

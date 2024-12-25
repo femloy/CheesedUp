@@ -1,7 +1,7 @@
 if hud_is_hidden() or hud_is_forcehidden() or !global.option_hud
 	exit;
 
-if global.hud == hudstyles.old && global.heatmeter
+if global.hud == HUD_STYLES.old && global.heatmeter
 {
 	var barxx = -26;
 	var baryy = 30;

@@ -1,4 +1,4 @@
-var gerome = global.gerome && (global.lapmode == lapmodes.april or global.in_cyop);
+var gerome = global.gerome && (global.lapmode == LAP_MODES.april or global.in_cyop);
 if global.panic && escape && !gerome
 {
 	image_xscale *= -1;

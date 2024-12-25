@@ -30,14 +30,14 @@ if (global.panic or instance_exists(obj_wartimer) or time_attack) && sprite_inde
 				if !other.time_attack
 				{
 					var collect = 3000;
-					if check_lap_mode(lapmodes.laphell) && !global.in_afom
+					if check_lap_mode(LAP_MODES.laphell) && !global.in_afom
 					{
 						if global.laps == 1
 							collect = 6000;
 						if global.laps >= 2
 							collect = 10000;
 					}
-					else if check_lap_mode(lapmodes.infinite) && !instance_exists(obj_wartimer) && global.lap
+					else if check_lap_mode(LAP_MODES.infinite) && !instance_exists(obj_wartimer) && global.lap
 						global.fill += global.leveltosave == "exit" ? 360 : 180;
 				
 					if global.leveltosave == "exit" && !global.lap

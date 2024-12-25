@@ -455,17 +455,17 @@ with new ModSection("gameplay", 0)
 	
 	var opt = add_option("iteration", function(val)
 	{
-		if val == IT.FINAL
+		if val == ITERATIONS.FINAL
 			draw_sprite_ext(spr_player_longjumpend, super.image_index, width / 2, height / 2, 1, 1, 0, c_white, 1);
-		if val == IT.APRIL
+		if val == ITERATIONS.APRIL
 			draw_sprite_ext(spr_player_mach2jump, super.image_index, width / 2, height / 2, 1, 1, 0, c_white, 1);
-		if val == IT.BNF
+		if val == ITERATIONS.BNF
 			draw_sprite_ext(spr_player_suplexgrabjump, super.image_index, width / 2 - 15, height / 2, 1, 1, 0, c_white, 1);
 	});
 	opt.opts = [
-		//["old", IT.BNF],
-		["april", IT.APRIL],
-		["final", IT.FINAL],
+		//["old", ITERATIONS.BNF],
+		["april", ITERATIONS.APRIL],
+		["final", ITERATIONS.FINAL],
 	]
 
 	#endregion
@@ -698,7 +698,7 @@ with new ModSection("gameplay", 0)
 		draw_sprite(sprite, img, width / 2, height / 2 - 15);
 			
 		timer++;
-		if val == vigistyles.vanilla
+		if val == VIGI_STYLES.vanilla
 		{
 			if sprite == spr_playerV_airrevolverstart
 				sprite = spr_playerV_airrevolverend;
@@ -753,8 +753,8 @@ with new ModSection("gameplay", 0)
 		}
 	});
 	opt.opts = [
-		["off", vigistyles.vanilla],
-		["on", vigistyles.pto],
+		["off", VIGI_STYLES.vanilla],
+		["on", VIGI_STYLES.pto],
 	];
 	opt.hidden = other.character != "V";
 		
@@ -794,9 +794,9 @@ with new ModSection("gameplay", 0)
 
 	var opt = add_option("hitstun", [seq_hitstun_off, seq_hitstun_early, seq_hitstun_on]);
 	opt.opts = [
-		["off", 0],
-		["old", 2],
-		["on", 1]
+		["off", HITSTUN_STYLES.none],
+		["old", HITSTUN_STYLES.early],
+		["on", HITSTUN_STYLES.final]
 	];
 
 	#endregion
@@ -1382,22 +1382,22 @@ with new ModSection("visual", 2)
 		var xx = width / 2;
 		var yy = height / 2;
 		
-		if val == hudstyles.final
+		if val == HUD_STYLES.final
 		{
 			draw_sprite_ext(spr_tv_bgfinal, 1, xx, yy, 1, 1, 0, c_white, 1);
 			draw_sprite(spr_tv_idle, super.image_index, xx, yy);
 		}
-		if val == hudstyles.old
+		if val == HUD_STYLES.old
 		{
 			draw_sprite(spr_pepinoHUD, super.image_index, xx, yy - 8);
 			draw_sprite(spr_speedbar, 0, xx, yy + 32);
 		}
-		if val == hudstyles.april
+		if val == HUD_STYLES.april
 		{
 			draw_sprite_ext(spr_tv_aprilbg, 0, xx, yy, 1, 1, 0, c_white, 1);
 			draw_sprite(spr_tv_idle_NEW, super.image_index, xx, yy);
 		}
-		if val == hudstyles.minimal
+		if val == HUD_STYLES.minimal
 		{
 			yy -= 10;
 			var pad = 20;
@@ -1420,11 +1420,11 @@ with new ModSection("visual", 2)
 		}
 	});
 	opt.opts = [
-		["old", hudstyles.old],
-		["april", hudstyles.april],
-		["final", hudstyles.final],
-		["minimal", hudstyles.minimal],
-		["debug", hudstyles.debug],
+		["old", HUD_STYLES.old],
+		["april", HUD_STYLES.april],
+		["final", HUD_STYLES.final],
+		["minimal", HUD_STYLES.minimal],
+		["debug", HUD_STYLES.debug],
 	]
 	
 	#endregion
@@ -1437,31 +1437,31 @@ with new ModSection("visual", 2)
 		var xx = width / 2, yy = height / 2;
 		var hud = global.hud;
 		
-		if hud == hudstyles.final
+		if hud == HUD_STYLES.final
 		{
 			draw_sprite_ext(spr_tv_bgfinal, 1, xx, yy, 1, 1, 0, c_white, 1);
 			draw_sprite(spr_tv_idle, super.image_index, xx, yy);
 		}
-		if hud == hudstyles.april
+		if hud == HUD_STYLES.april
 		{
 			draw_sprite_ext(spr_tv_aprilbg, 0, xx, yy, 1, 1, 0, c_white, 1);
 			draw_sprite(spr_tv_idle_NEW, super.image_index, xx, yy);
 		}
 		
-		var c = val == tvcolors.normal ? 0 : val;
+		var c = val == TV_COLORS.normal ? 0 : val;
 		pal_swap_set(spr_tv_palette, c);
 		
-		if hud == hudstyles.final
+		if hud == HUD_STYLES.final
 			draw_sprite(spr_tv_empty, 0, xx, yy);
-		if hud == hudstyles.old
+		if hud == HUD_STYLES.old
 			draw_sprite(spr_tvdefault, 0, xx, yy);
-		if hud == hudstyles.april
+		if hud == HUD_STYLES.april
 			draw_sprite(spr_tv_empty, 0, xx, yy);
-		if hud == hudstyles.minimal
+		if hud == HUD_STYLES.minimal
 		{
 			draw_set_font(lfnt("font_small"));
 			draw_set_align(fa_center, fa_middle);
-			var c = (val == tvcolors.normal ? c_white : pal_swap_get_pal_color(spr_tv_palette, val, 0));
+			var c = (val == TV_COLORS.normal ? c_white : pal_swap_get_pal_color(spr_tv_palette, val, 0));
 			draw_set_color(merge_color(c, c_white, 0.5));
 			tdp_draw_text(xx, yy, "(Incompatible with Minimal HUD)");
 			tdp_text_commit(0, 0, width, height);
@@ -1470,17 +1470,17 @@ with new ModSection("visual", 2)
 		pal_swap_reset();
 	});
 	opt.opts = [
-		["normal", tvcolors.normal],
-		["purple", tvcolors.purple],
-		["yellow", tvcolors.yellow],
-		["brown", tvcolors.brown],
-		["red", tvcolors.red],
-		["green", tvcolors.green],
-		["orange", tvcolors.orange],
-		["pink", tvcolors.pink],
-		["blue", tvcolors.blue],
-		["metal", tvcolors.metal],
-		["gutter", tvcolors.gutter],
+		["normal", TV_COLORS.normal],
+		["purple", TV_COLORS.purple],
+		["yellow", TV_COLORS.yellow],
+		["brown", TV_COLORS.brown],
+		["red", TV_COLORS.red],
+		["green", TV_COLORS.green],
+		["orange", TV_COLORS.orange],
+		["pink", TV_COLORS.pink],
+		["blue", TV_COLORS.blue],
+		["metal", TV_COLORS.metal],
+		["gutter", TV_COLORS.gutter],
 	]
 	
 	#endregion
@@ -1556,9 +1556,9 @@ with new ModSection("visual", 2)
 		}
 	}, true);
 	opt.opts = [
-		["old", 2],
-		["september", 1],
-		["final", 0],
+		["old", BLOCK_STYLES.old],
+		["september", BLOCK_STYLES.september],
+		["final", BLOCK_STYLES.final],
 	]
 
 	#endregion
@@ -1650,9 +1650,9 @@ with new ModSection("visual", 2)
 
 	var opt = add_option("afterimage", [seq_afterimages_eggplant, seq_afterimages_final]);
 	opt.opts = [
-		["eggplant", 1],
-		["final", 0],
-	]
+		["eggplant", AFTERIMAGES.blue],
+		["final", AFTERIMAGES.mach],
+	];
 
 	#endregion
 	if SUGARY_SPIRE
@@ -1707,24 +1707,18 @@ with new ModSection("visual", 2)
 
 		#endregion
 	}
-	#region ENEMY SPIN
-
-	/*
-	var opt = add_option("enemyrot", function(val)
+	#region CHEFTASK PAUSE BUTTON
+	
+	var opt = add_option("taskpausestyle", function(val)
 	{
-		var xx = 960 / 2.5 / 2, yy = 540 / 2.5 / 2;
+		
+	}, true);
+	opt.opts = [
+		["hide", TASK_PAUSE_STYLES.hide],
+		["hide_on_completion", TASK_PAUSE_STYLES.hide_on_completion],
+		["show", TASK_PAUSE_STYLES.show]
+	];
 	
-		if ++simuplayer.timer >= 10
-		{
-			simuplayer.timer = 0;
-			add_particle(spr_cloudeffect, 0.5, xx + random_range(-50, 50), yy + random_range(-50, 50));
-		}
-	
-		draw_sprite_ext(spr_slimedead, 0, xx, yy, 1, 1, -current_time / 2 * val, c_white, 1);
-		draw_particles();
-	});
-	*/
-
 	#endregion
 	#region SHOW FPS
 
@@ -1759,23 +1753,6 @@ with new ModSection("visual", 2)
 		pal_swap_reset();
 	});
 	opt.allow_preset = false;
-
-	#endregion
-	#region COLORBLIND
-
-	/*
-	var opt = add_option("Colorblind Mode", "colorblind_type", "Applies a fullscreen shader that hopefully helps colorblindness.", function(val)
-	{
-		global.colorblind_type = val;
-		draw_sprite_ext(spr_mirrored_level, 0, -258, -292, 0.9, 0.9, 0, c_white, 1);
-	});
-	opt.opts = [
-		["NONE", -1],
-		["PROTANOPIA", 0],
-		["DEUTERANOPIA", 1],
-		["TRITANOPIA", 2]
-	]
-	*/
 
 	#endregion
 	#region SECRET STYLE
@@ -1826,20 +1803,9 @@ with new ModSection("visual", 2)
 		shader_reset();
 	}, true);
 	opt.opts = [
-		["normal", 0],
-		["spotlight", 1]
+		["normal", SECRETTILE_STYLES.fade],
+		["spotlight", SECRETTILE_STYLES.spotlight]
 	]
-
-	#endregion
-	
-	#region PERFORMANCE
-
-	/*
-	var opt = add_option("performance", function(val)
-	{
-	
-	});
-	*/
 
 	#endregion
 	
@@ -1864,44 +1830,44 @@ with new ModSection("presets", 5)
 		
 			gameplay = false; // REMIX
 			uppercut = false; // buffed uppercut
-			vigishoot = vigistyles.vanilla;
+			vigishoot = VIGI_STYLES.vanilla;
 			panicbg = false;
 			lap3checkpoint = false;
-			chasekind = chasekinds.none;
+			chasekind = CHASE_KINDS.none;
 			combokeeper = false;
-			dresserstyle = dresserstyles.vanilla;
+			generalstyle = GENERAL_STYLES.vanilla;
 		}
 		
 		with add_preset(new ModPreset(lstr("mod_preset_loy"), lstr("mod_preset_loy_desc"))).preset
 		{
 			preset_default();
 		
-			attackstyle = attackstyles.kungfu;
-			shootstyle = shootstyles.breakdance;
-			doublegrab = doublestyles.faceplant;
+			attackstyle = ATTACK_STYLES.kungfu;
+			shootstyle = SHOOT_STYLES.breakdance;
+			doublegrab = DOUBLE_STYLES.faceplant;
 			shootbutton = 2;
 			panicbg = false;
 			self.afterimage = 1;
-			lapmode = lapmodes.laphell;
+			lapmode = LAP_MODES.laphell;
 			parrypizzaface = true;
 			lap3checkpoint = true;
-			chasekind = chasekinds.blocks;
+			chasekind = CHASE_KINDS.blocks;
 			eggplantslope = true;
 		}
 		
 		with add_preset(new ModPreset(lstr("mod_preset_jayleno"), lstr("mod_preset_jayleno_desc"))).preset
 		{
-			iteration = IT.APRIL;
+			iteration = ITERATIONS.APRIL;
 			uppercut = false;
 			poundjump = true;
-			attackstyle = attackstyles.shoulderbash;
-			shootstyle = shootstyles.pistol;
-			doublegrab = doublestyles.chainsaw;
+			attackstyle = ATTACK_STYLES.shoulderbash;
+			shootstyle = SHOOT_STYLES.pistol;
+			doublegrab = DOUBLE_STYLES.chainsaw;
 			heatmeter = true;
 			self.afterimage = 0;
-			hud = hudstyles.old;
-			blockstyle = blockstyles.old;
-			lapmode = lapmodes.april;
+			hud = HUD_STYLES.old;
+			blockstyle = BLOCK_STYLES.old;
+			lapmode = LAP_MODES.april;
 			hitstun = 1;
 		}
 		
@@ -2156,10 +2122,10 @@ with lap_submenu
 	
 	var opt = add_option("lapmode", [seq_lapmode_normal, seq_lapmode_laphell, infinite_preview, gerome_preview], true);
 	opt.opts = [
-		["normal", lapmodes.normal],
-		["laphell", lapmodes.laphell],
-		["infinite", lapmodes.infinite],
-		["gerome", lapmodes.april],
+		["normal", LAP_MODES.normal],
+		["laphell", LAP_MODES.laphell],
+		["infinite", LAP_MODES.infinite],
+		["gerome", LAP_MODES.april],
 	];
 	
 	var opt = add_option("parrypizzaface", function(val)
@@ -2307,18 +2273,18 @@ with lap_submenu
 	var opt = add_option("lap3checkpoint", [seq_lap3checkpoint_off, seq_lap3checkpoint_on]);
 	opt.condition = function()
 	{
-		return [global.lapmode == lapmodes.laphell, lstr("mod_condition_lap3checkpoint")];
+		return [global.lapmode == LAP_MODES.laphell, lstr("mod_condition_lap3checkpoint")];
 	}
 	
 	var opt = add_option("chasekind", [seq_levelchanges_none, seq_levelchanges_lapblocks, seq_levelchanges_slowdown], true);
 	opt.opts = [
-		["none", chasekinds.none],
-		["levelchanges", chasekinds.blocks],
-		["slowdown", chasekinds.slowdown],
+		["none", CHASE_KINDS.none],
+		["levelchanges", CHASE_KINDS.blocks],
+		["slowdown", CHASE_KINDS.slowdown],
 	];
 	opt.condition = function()
 	{
-		return [global.lapmode == lapmodes.laphell, lstr("mod_condition_lap3checkpoint")];
+		return [global.lapmode == LAP_MODES.laphell, lstr("mod_condition_lap3checkpoint")];
 	}
 	
 	refresh_options();

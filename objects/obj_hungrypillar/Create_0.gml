@@ -29,7 +29,7 @@ else if MIDWAY
 	angryspr = idlespr;
 	deadspr = spr_hungrypillar_angry_bo;
 }
-else if global.blockstyle == blockstyles.old
+else if global.blockstyle == BLOCK_STYLES.old
 {
 	idlespr = spr_hungrypillar_old;
 	angryspr = spr_hungrypillar_angry_old;

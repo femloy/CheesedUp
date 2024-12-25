@@ -23,7 +23,7 @@ reset_pos = function(particle = true)
 	hitboxcreate = false;
 	maxspeed = 2;
 	
-	if check_lap_mode(lapmodes.laphell) && global.laps >= 2
+	if check_lap_mode(LAP_MODES.laphell) && global.laps >= 2
 		maxspeed = 4;
 	
 	if room == ruin_4 or room == ruin_7

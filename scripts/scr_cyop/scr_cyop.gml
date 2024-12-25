@@ -17,7 +17,7 @@ global.cyop_tower_name = "";
 global.cyop_is_hub = false;
 global.afom_wfixed = false;
 global.afom_secrets = 0;
-global.afom_lapmode = lapmodes.normal;
+global.afom_lapmode = LAP_MODES.normal;
 
 function cyop_cleanup()
 {
@@ -309,7 +309,7 @@ function cyop_load_level_internal(ini, travel = false)
 		
 		global.afom_wfixed = false;
 		global.afom_secrets = 0;
-		global.afom_lapmode = lapmodes.normal;
+		global.afom_lapmode = LAP_MODES.normal;
 		
 		// loop through jsons
 		var room_file = file_find_first(concat(rooms_path, "/*.json"), fa_none);

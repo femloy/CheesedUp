@@ -1,4 +1,4 @@
-if global.panic && !check_lap_mode(lapmodes.infinite) && global.laps >= 1
+if global.panic && !check_lap_mode(LAP_MODES.infinite) && global.laps >= 1
 {
 	x = -10000;
 	y = -10000;

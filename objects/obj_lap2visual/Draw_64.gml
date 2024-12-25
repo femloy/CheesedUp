@@ -6,7 +6,7 @@ var yy = y + irandom_range(-1, 1);
 draw_set_colour(c_white);
 if global.laps < 2 or global.timeattack
 	lang_draw_sprite(sprite_index, image_index, xx, yy);
-else if check_lap_mode(lapmodes.laphell)
+else if check_lap_mode(LAP_MODES.laphell)
 	lang_draw_sprite(global.laps >= 3 ? spr_lap4 : spr_lap3, 0, xx, yy);
 else
 {

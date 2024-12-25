@@ -43,7 +43,7 @@ function scr_panicdraw()
 		{
 			var bar = sprite_struct.bar;
 			var barfill = sprite_struct.barfill;
-			var timerspr = (sprite_struct.tower == noone ? pizzaface_sprite : (timer_tower && !check_lap_mode(lapmodes.laphell) ? sprite_struct.tower : pizzaface_sprite));
+			var timerspr = (sprite_struct.tower == noone ? pizzaface_sprite : (timer_tower && !check_lap_mode(LAP_MODES.laphell) ? sprite_struct.tower : pizzaface_sprite));
 			if johnface_sprite != sprite_struct.johnfaceback
 				johnface_sprite = (_fill > chunkmax) ? sprite_struct.johnfacesleep : sprite_struct.johnface;
 			

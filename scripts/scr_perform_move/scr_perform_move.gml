@@ -14,20 +14,20 @@ function scr_perform_move(move, prestate = state)
 	{
 		if character == "SN"
 		{
-			attackstyle = attackstyles.kungfu;
-			doublegrab = doublestyles.chainsaw;
+			attackstyle = ATTACK_STYLES.kungfu;
+			doublegrab = DOUBLE_STYLES.chainsaw;
 			global.fuel = 3;
 		}
 	}
 	
-	//if attackstyle == attackstyles.lunge && instance_exists(obj_bosscontroller)
-	//	attackstyle = attackstyles.grab;
+	//if attackstyle == ATTACK_STYLES.lunge && instance_exists(obj_bosscontroller)
+	//	attackstyle = ATTACK_STYLES.grab;
 	
 	if move == modmoves.grabattack
 	{
 		switch attackstyle
 		{
-			case attackstyles.grab:
+			case ATTACK_STYLES.grab:
 				trace("Grabbed with scr_perform_move");
 				
 				if grounded
@@ -52,7 +52,7 @@ function scr_perform_move(move, prestate = state)
 				create_particle(x, y, part.jumpdust, 0);
 				break;
 			
-			case attackstyles.kungfu:
+			case ATTACK_STYLES.kungfu:
 				if grounded
 				{
 					with instance_create(x, y, obj_superdashcloud)
@@ -74,7 +74,7 @@ function scr_perform_move(move, prestate = state)
 				image_index = 0;
 				break;
 						
-			case attackstyles.shoulderbash:
+			case ATTACK_STYLES.shoulderbash:
 				if grounded
 				{
 					with instance_create(x, y, obj_superdashcloud)
@@ -94,7 +94,7 @@ function scr_perform_move(move, prestate = state)
 				image_index = 0;
 				break;
 			
-			case attackstyles.lunge:
+			case ATTACK_STYLES.lunge:
 				if !suplexmove
 				{
 					if grounded
@@ -123,8 +123,8 @@ function scr_perform_move(move, prestate = state)
 	{
 		switch doublegrab
 		{
-			case doublestyles.shoulderbash:
-				if attackstyle != attackstyles.shoulderbash
+			case DOUBLE_STYLES.shoulderbash:
+				if attackstyle != ATTACK_STYLES.shoulderbash
 				{
 					if sprite_index != spr_attackdash && sprite_index != spr_airattackstart && sprite_index != spr_airattack
 					&& !suplexmove2
@@ -170,7 +170,7 @@ function scr_perform_move(move, prestate = state)
 				}
 				break;
 			
-			case doublestyles.faceplant:
+			case DOUBLE_STYLES.faceplant:
 				var swapdir = key_left + key_right;
 				if swapdir != 0
 					xscale = swapdir;
@@ -199,7 +199,7 @@ function scr_perform_move(move, prestate = state)
 				create_particle(x, y, part.crazyrunothereffect);
 				break;
 			
-			case doublestyles.chainsaw:
+			case DOUBLE_STYLES.chainsaw:
 				if floor(global.fuel) > 0
 				{
 					fmod_event_instance_play(suplexdashsnd);
@@ -223,7 +223,7 @@ function scr_perform_move(move, prestate = state)
 					sprite_index = spr_chainsawdash;
 					image_index = 0;
 					
-					if global.hud == hudstyles.old
+					if global.hud == HUD_STYLES.old
 					{
 						with obj_tv
 						{
@@ -241,7 +241,7 @@ function scr_perform_move(move, prestate = state)
 	{
 		switch shootstyle
 		{
-			case shootstyles.breakdance:
+			case SHOOT_STYLES.breakdance:
 				fmod_event_instance_play(breakdancesnd);
 				if !grounded
 					vsp = -4;

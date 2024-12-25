@@ -3,9 +3,9 @@ vsp = 0;
 
 if global.laps >= 2
 {
-	if global.chasekind == chasekinds.blocks
+	if global.chasekind == CHASE_KINDS.blocks
 		instance_destroy();
-	if global.chasekind == chasekinds.slowdown
+	if global.chasekind == CHASE_KINDS.slowdown
 	{
 		hsp = 0;
 		vsp = 1;

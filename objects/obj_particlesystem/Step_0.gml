@@ -61,7 +61,7 @@ if (!ds_list_empty(global.collect_list))
 			with (b)
 			{
 				var _dir = point_direction(x, y, 110, 80);
-				if MOD.Mirror xor global.hud == hudstyles.old
+				if MOD.Mirror xor global.hud == HUD_STYLES.old
 					_dir = point_direction(x, y, SCREEN_WIDTH - 110, 80);
 				
 				hsp = lengthdir_x(25, _dir);
@@ -73,7 +73,7 @@ if (!ds_list_empty(global.collect_list))
 				outofx = x < 140;
 				outofy = y < 120;
 				
-				if MOD.Mirror xor global.hud == hudstyles.old
+				if MOD.Mirror xor global.hud == HUD_STYLES.old
 					outofx = x > SCREEN_WIDTH - 140;
 				
 				if outofx && outofy

@@ -44,7 +44,7 @@ else if global.panic
 	if seconds < 10
 		seconds = concat("0", seconds);
 	
-	if global.laps >= 2 && check_lap_mode(lapmodes.laphell)
+	if global.laps >= 2 && check_lap_mode(LAP_MODES.laphell)
 		details = $"Lap {global.laps + 1}";
 	else if global.laps > 0
 		details = string("Lap {0} - {1}:{2} left", global.laps + 1, minutes, seconds);

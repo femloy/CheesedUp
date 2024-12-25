@@ -132,7 +132,7 @@ if (!drawing)
 else
 	bgalpha = Approach(bgalpha, 0, 0.1);
 
-if global.hud != hudstyles.final && !place_meeting(x, y, obj_tutorialbook) && msg != ""
+if global.hud != HUD_STYLES.final && !place_meeting(x, y, obj_tutorialbook) && msg != ""
 && distance_to_object(obj_player) < 50 && !instance_exists(obj_titlecard) && !instance_exists(obj_levelsettings)
 && !instance_exists(obj_mrsticknotification)
 	old_hud_message(string_upper(msg), 2);

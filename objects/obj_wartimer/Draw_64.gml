@@ -1,6 +1,6 @@
 live_auto_call;
 
-if global.hud == hudstyles.minimal
+if global.hud == HUD_STYLES.minimal
 	exit;
 if global.timeattack
 	exit;

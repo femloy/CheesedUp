@@ -45,7 +45,7 @@ if string_ends_with(room_get_name(room), "_treasure")
 	sprite_index = global.door_sprite;
 	visible = false;
 	
-	if check_lap_mode(lapmodes.april)
+	if check_lap_mode(LAP_MODES.april)
 		instance_destroy();
 	exit;
 }

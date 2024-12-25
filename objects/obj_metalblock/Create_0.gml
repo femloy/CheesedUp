@@ -5,7 +5,7 @@ depth = 1;
 particlespr = spr_metalblockdebris;
 superjumpable = false; // AFOM
 
-if global.blockstyle == blockstyles.september
+if global.blockstyle == BLOCK_STYLES.september
 {
 	// september
 	sprite_index = spr_metalb;

@@ -4,5 +4,5 @@ with obj_player1
 	if check_char("G") or check_char("S")
 		instance_destroy(other, false);
 }
-if global.blockstyle == blockstyles.old
+if global.blockstyle == BLOCK_STYLES.old
 	sprite_index = spr_targetblock_old;

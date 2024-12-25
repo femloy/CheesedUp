@@ -15,7 +15,7 @@ else
 deadspr = spr_bigdoughblockdead;
 particlespr = noone;
 
-if global.blockstyle == blockstyles.old
+if global.blockstyle == BLOCK_STYLES.old
 {
 	sprite_index = spr_onewaybigblock_old;
 	deadspr = noone;

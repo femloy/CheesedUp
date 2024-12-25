@@ -11,7 +11,7 @@ if MOD.OldLevels
 if global.leveltosave == "etb"
 	count = 2;
 
-if global.hud == hudstyles.final
+if global.hud == HUD_STYLES.final
 {
 	var val = min(global.secretfound, count);
 	var txt = lang_get_value(val == 1 ? "secret_text1_mod" : "secret_text2_mod");			

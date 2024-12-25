@@ -322,11 +322,11 @@ function scr_hurtplayer(player)
 				tv_do_expression(hurtTV);
 				
 				var txt = "hurt_mod";
-				if global.hud != hudstyles.final
+				if global.hud != HUD_STYLES.final
 					txt = "message_hurt";
 				
 				var txt = embed_value_string(lstr(txt), [scr_charactername(character, isgustavo or noisecrusher), damage_n]);
-				if global.hud == hudstyles.final
+				if global.hud == HUD_STYLES.final
 				{
 					instance_destroy(obj_transfotip);
 					create_transformation_tip(txt);

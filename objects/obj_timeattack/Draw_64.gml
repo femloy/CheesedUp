@@ -2,7 +2,7 @@ live_auto_call;
 
 if room == rank_room or !global.option_hud
 	exit;
-if global.hud == hudstyles.debug
+if global.hud == HUD_STYLES.debug
 	exit;
 
 if global.timeattack
@@ -36,7 +36,7 @@ if global.timeattack
 		image_speed = 0;
 	}
 	
-	if global.hud == hudstyles.minimal
+	if global.hud == HUD_STYLES.minimal
 	{
 		var xx = SCREEN_WIDTH / 2;
 		var yy = SCREEN_HEIGHT - 32 + timer_y;
@@ -73,7 +73,7 @@ if global.timeattack
 		var clip_y1 = yy - bar_yo + 5;
 		var clip_y2 = clip_y1 + bar_ht - 10;
 		
-		if global.hud == hudstyles.final
+		if global.hud == HUD_STYLES.final
 		{
 			draw_set_bounds(clip_x1, clip_y1, start_buffer > 0 ? clip_x2 : lerp(clip_x1, clip_x2, slice), clip_y2);
 			draw_sprite_tiled_ext(spr_timeattack_fill, rank_img, barfill_x, clip_y1, 1, 1, c_white, start_buffer > 0 ? abs(sin(current_time / 200)) : 1);
@@ -120,7 +120,7 @@ if global.timeattack
 			if seconds < 10
 				seconds = concat("0", seconds);
 			
-			if global.hud != hudstyles.final
+			if global.hud != HUD_STYLES.final
 			{
 				draw_set_color(c_yellow);
 				xx += random_range(-1, 1);

@@ -4,7 +4,7 @@ function draw_secrettiles(_secrettile)
 	{
 		shader_reset();
 		
-		var mario = global.secrettiles && !instance_exists(obj_fakeplayer);
+		var mario = global.secrettiles == SECRETTILE_STYLES.spotlight && !instance_exists(obj_fakeplayer);
 		if !bbox_in_camera(view_camera[0], 32) or (image_alpha <= 0 && !mario) or array_length(tiles) == 0
 			exit;
 

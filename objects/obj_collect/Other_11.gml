@@ -3,7 +3,7 @@ if arena && image_alpha < 1
 	exit;
 
 fail_modifier(MOD.NoToppings);
-if (object_index != obj_escapecollect or global.blockstyle == blockstyles.old)
+if (object_index != obj_escapecollect or global.blockstyle == BLOCK_STYLES.old)
 	scr_sound_multiple(global.snd_collect, x, y);
 else
 {

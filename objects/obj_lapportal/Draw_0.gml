@@ -21,7 +21,7 @@ else
 	{
 		if !global.lap
 			lang_draw_sprite(spr_lap2warning, 0, xx, yy);
-		else if check_lap_mode(lapmodes.laphell)
+		else if check_lap_mode(LAP_MODES.laphell)
 			lang_draw_sprite(global.laps >= 2 ? spr_lap4warning : spr_lap3warning, 0, xx, yy);
 		else
 			lang_draw_sprite(spr_lap2warning, 1, xx, yy);

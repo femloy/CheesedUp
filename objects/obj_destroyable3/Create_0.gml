@@ -4,13 +4,13 @@ depth = 1;
 particlespr = spr_towerblockdebris;
 particlespd = 0.35;
 
-if global.blockstyle == blockstyles.september
+if global.blockstyle == BLOCK_STYLES.september
 {
 	// september
 	sprite_index = spr_bigdestroy;
 	particlespr = spr_bigdoughblockdead;
 }
-if global.blockstyle == blockstyles.old
+if global.blockstyle == BLOCK_STYLES.old
 {
 	// old
 	sprite_index = spr_bigdestroy_old;

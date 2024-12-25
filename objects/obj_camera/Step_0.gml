@@ -52,7 +52,7 @@ else
 	p2pdistancex = 0;
 
 // combo ending
-if global.hud == hudstyles.april or global.hud == hudstyles.old
+if global.hud == HUD_STYLES.april or global.hud == HUD_STYLES.old
 	global.comboscore = 0;
 
 if global.combo > 0

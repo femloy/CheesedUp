@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"get_level_achievements",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"get_level_achievements",
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

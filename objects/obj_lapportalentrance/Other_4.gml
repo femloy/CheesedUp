@@ -17,7 +17,7 @@ with obj_player
 		}
 		post_player_modifiers();
 		
-		if check_lap_mode(lapmodes.laphell)
+		if check_lap_mode(LAP_MODES.laphell)
 		{
 			switch global.laps
 			{

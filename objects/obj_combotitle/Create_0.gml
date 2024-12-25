@@ -7,11 +7,11 @@ alarm[0] = 3;
 image_speed = 0;
 depth = -100;
 x = -128;
-y = global.hud == hudstyles.final ? 290 : 197;
+y = global.hud == HUD_STYLES.final ? 290 : 197;
 very = false;
 afterimages = array_create(0);
 
-if global.hud == hudstyles.final
+if global.hud == HUD_STYLES.final
 	sound_play("event:/sfx/ui/comboup");
 
 if SUGARY_SPIRE
@@ -22,7 +22,7 @@ if SUGARY_SPIRE
 		sprite_index = spr_comboend_titleSP;
 	
 		x -= 2;
-		if global.hud == hudstyles.final
+		if global.hud == HUD_STYLES.final
 			y -= 40;
 	
 		image_alpha = 3;

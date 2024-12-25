@@ -5,19 +5,19 @@ var multiplier = self.multiplier;
 if multiplier == 0
 	exit;
 	
-global.attackstyle = attackstyles.shoulderbash;
-global.shootstyle = shootstyles.pistol;
+global.attackstyle = ATTACK_STYLES.shoulderbash;
+global.shootstyle = SHOOT_STYLES.pistol;
 REMIX = 0;
-global.doublegrab = doublestyles.chainsaw;
-global.secrettiles = 0;
+global.doublegrab = DOUBLE_STYLES.chainsaw;
+global.secrettiles = SECRETTILE_STYLES.fade;
 global.smoothcam = min(multiplier, 0.95);
-global.hud = hudstyles.old;
+global.hud = HUD_STYLES.old;
 global.heatmeter = true;
 global.experimental = false;
 global.machsnd = 1;
-global.iteration = IT.FINAL;
-global.hitstun = 1;
-	
+global.iteration = ITERATIONS.FINAL;
+global.hitstun = HITSTUN_STYLES.final;
+
 with all
 {
 	if visible && object_index != obj_solid && object_index != obj_hallway && (!persistent or object_index == obj_player1)

@@ -3,7 +3,7 @@ with obj_player
 	if !place_meeting(x, y, obj_exitgate)
 		global.combodropped = true;
 }
-if global.hud == hudstyles.april or global.hud == hudstyles.old
+if global.hud == HUD_STYLES.april or global.hud == HUD_STYLES.old
 	exit;
 
 if (room == timesuproom || is_bossroom() || room == tower_tutorial1 || room == tower_tutorial1N)

@@ -23,7 +23,7 @@ function scr_player_Sjump()
 			create_particle(x + irandom_range(-25, 25), y + irandom_range(-10, 35), part.cloudeffect, 0);
 			steppybuffer = 8;
 		}
-		if global.afterimage == 1
+		if global.afterimage == AFTERIMAGES.blue
 		{
 			if (punch_afterimage > 0 && REMIX)
 				punch_afterimage--;

@@ -65,10 +65,10 @@ function scr_rankbubbledraw(rx, ry)
 	if global.timeattack
 	{
 		ranksprite = spr_ranks_hud_timed;
-		if global.hud == hudstyles.minimal
+		if global.hud == HUD_STYLES.minimal
 			ranksprite = spr_ranks_timed_minimal;
 	}
-	else if global.hud == hudstyles.minimal
+	else if global.hud == HUD_STYLES.minimal
 		ranksprite = spr_ranks_minimal;
 	else if DEATH_MODE && MOD.DeathMode
 		ranksprite = spr_ranks_death;
@@ -112,7 +112,7 @@ function scr_rankbubbledraw(rx, ry)
 		var top = spr_h - t;
 		
 		var rankfillsprite = spr_ranks_hudfill;
-		if global.hud == hudstyles.minimal
+		if global.hud == HUD_STYLES.minimal
 		{
 			rankfillsprite = spr_ranks_minimal;
 			rank_ix++;
@@ -175,10 +175,10 @@ function scr_rankbubbledraw(rx, ry)
 		if global.timeattack
 		{
 			rankfillsprite = spr_ranks_hud_timedfill;
-			if global.hud == hudstyles.minimal
+			if global.hud == HUD_STYLES.minimal
 				rankfillsprite = spr_ranks_timed_minimalfill;
 		}
-		else if global.hud == hudstyles.minimal
+		else if global.hud == HUD_STYLES.minimal
 		{
 			rankfillsprite = spr_ranks_minimal;
 			if rank_ix == 5

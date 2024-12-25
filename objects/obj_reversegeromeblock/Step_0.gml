@@ -1,4 +1,4 @@
-if global.gerome && (global.lapmode == lapmodes.april or afom)
+if global.gerome && (global.lapmode == LAP_MODES.april or afom)
 {
 	mask_index = wokespr;
 	sprite_index = wokespr;

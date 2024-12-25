@@ -1,6 +1,6 @@
 if !global.option_hud
 	exit;
-if eggplant or global.hud == hudstyles.april or global.hud == hudstyles.old
+if eggplant or global.hud == HUD_STYLES.april or global.hud == HUD_STYLES.old
 	exit;
 
 var xx = x, yy = y;

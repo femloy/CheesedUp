@@ -29,7 +29,7 @@ if !instance_exists(playerid)
 	exit;
 
 var _move = !frozen;
-var lap_hell = check_lap_mode(lapmodes.laphell) && global.laps >= 2;
+var lap_hell = check_lap_mode(LAP_MODES.laphell) && global.laps >= 2;
 
 with obj_player
 {

@@ -44,7 +44,7 @@ enum texttype
 // functions
 function create_transformation_tip(str, save_entry = noone, destroy = false, important = false)
 {
-	if global.hud != hudstyles.final && !instance_exists(obj_option) && room != timesuproom && !important
+	if global.hud != HUD_STYLES.final && !instance_exists(obj_option) && room != timesuproom && !important
 		exit;
 	
 	// save

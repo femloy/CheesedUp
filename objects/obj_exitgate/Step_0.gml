@@ -59,7 +59,7 @@ if drop && (global.panic or (SUGARY_SPIRE && sugary))
 	{
 		if (dropstate == states.grabbed)
 		{
-			sprite_index = global.blockstyle != blockstyles.old ? spr_exitgategrabbed : spr_exitgategrabbed_old;
+			sprite_index = global.blockstyle != BLOCK_STYLES.old ? spr_exitgategrabbed : spr_exitgategrabbed_old;
 			if (snd == 0)
 			{
 				sound_play_3d("event:/sfx/pep/hitwall", x, y);
@@ -67,7 +67,7 @@ if drop && (global.panic or (SUGARY_SPIRE && sugary))
 			}
 		}
 		else
-			sprite_index = global.blockstyle != blockstyles.old ? spr_exitgate : spr_exitgate_old;
+			sprite_index = global.blockstyle != BLOCK_STYLES.old ? spr_exitgate : spr_exitgate_old;
 	
 		switch (dropstate)
 		{

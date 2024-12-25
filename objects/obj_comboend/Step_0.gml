@@ -29,7 +29,7 @@ else
 if !eggplant
 {
 	if global.combotime > 0 && global.combo > 0 && !(SUGARY_SPIRE && check_sugarychar())
-	&& global.hud == hudstyles.final
+	&& global.hud == HUD_STYLES.final
 		y = Approach(y, ystart + 100, 10);
 }
 

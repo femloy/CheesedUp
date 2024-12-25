@@ -1,6 +1,6 @@
 function scr_sleep(miliseconds)
 {
-	if !global.hitstun
+	if global.hitstun == HITSTUN_STYLES.none
 		exit;
 	
 	var time = current_time;

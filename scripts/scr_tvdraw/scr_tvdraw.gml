@@ -16,7 +16,7 @@ function scr_tvdraw()
 	var tv_x = SCREEN_WIDTH - 115;
 	var tv_y = 80;
 	
-	if global.hud == hudstyles.april
+	if global.hud == HUD_STYLES.april
 	{
 		tv_x = SCREEN_WIDTH - 127;
 		tv_y = 107;
@@ -27,9 +27,9 @@ function scr_tvdraw()
 	
 	// palette
 	var tv_palette = global.tvcolor;
-	if tv_palette == tvcolors.normal
+	if tv_palette == TV_COLORS.normal
 	{
-		if global.hud == hudstyles.final
+		if global.hud == HUD_STYLES.final
 		{
 			switch char
 			{
@@ -57,7 +57,7 @@ function scr_tvdraw()
 	}
 	
 	// combo
-	if global.hud != hudstyles.april
+	if global.hud != HUD_STYLES.april
 	{
 		if SUGARY_SPIRE && sugary
 			scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, 1, tv_palette);
@@ -97,7 +97,7 @@ function scr_tvdraw()
 		}
 		
 		// REMIX tv background
-		else if REMIX && global.hud == hudstyles.final && sprite_exists(tv_bg.sprite)
+		else if REMIX && global.hud == HUD_STYLES.final && sprite_exists(tv_bg.sprite)
 		{
 			// secrets
 			var bgindex = tv_bg.sprite, bgcol = c_white;
@@ -158,7 +158,7 @@ function scr_tvdraw()
 			if SUGARY_SPIRE && sugary
 				tv_bg_sprite = spr_tv_bgfinalSP;
 			
-			if global.hud != hudstyles.final && !sugary
+			if global.hud != HUD_STYLES.final && !sugary
 			{
 				tv_bg_sprite = spr_tv_aprilbg;
 				
@@ -238,7 +238,7 @@ function scr_tvdraw()
 		pal_swap_reset();
 		
 		// april combo
-		if global.hud == hudstyles.april
+		if global.hud == HUD_STYLES.april
 			scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, sugary ? 4 : 3, tv_palette);
 	}
 	
@@ -266,7 +266,7 @@ function scr_tvdraw()
 	draw_surface(promptsurface, SCREEN_WIDTH - 610, 0);
 	draw_set_align();
 	
-	if global.hud == hudstyles.final
+	if global.hud == HUD_STYLES.final
 		scr_panicdraw();
 	else
 		scr_panicdraw_old();
