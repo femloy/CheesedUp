@@ -1,7 +1,5 @@
 function scr_collide_destructibles()
 {
-	//if live_call() return live_result;
-	
 	with (obj_player)
 	{
 		if ((state == states.jump && sprite_index == spr_playerN_noisebombspinjump)
@@ -35,6 +33,7 @@ function scr_collide_destructibles()
 			}
 		}
 		
+		// DOES NOT INCLUDE MACH 2
 		if state == states.trashroll || state == states.stick_flyattack || state == states.boxxedpepspin
 		|| ratmount_movespeed >= 12 || state == states.ratmountpunch || state == states.ratmounttumble
 		|| state == states.punch || state == states.handstandjump || state == states.ratmountattack
@@ -47,8 +46,7 @@ function scr_collide_destructibles()
 		|| state == states.knightpepslopes || state == states.knightpepattack || state == states.tumble
 		|| state == states.machcancel || state == states.hookshot || state == states.shoulderbash
 		or (abs(movespeed) >= 10 && character == "S" && (state == states.normal or state == states.jump)) 
-		or sprite_index == spr_cotton_attack or ((state == states.cotton or state == states.cottonroll) && movespeed >= 8)
-		or state == states.twirl
+		or (SUGARY_SPIRE && (sprite_index == spr_cotton_attack or ((state == states.cotton or state == states.cottonroll) && movespeed >= 8) or state == states.twirl))
 		{
 			with instance_place(x + hsp, y, obj_destructibles)
 			{
@@ -60,7 +58,7 @@ function scr_collide_destructibles()
 					GamepadSetVibration(0, 0.8, 0.8, 0.5);
 					instance_destroy();
 					
-					if !IT_FINAL && (object_is_ancestor(object_index, obj_bigdestructibles) or object_is_ancestor(object_index, obj_deadjohnparent))
+					if IT_punch_big_breakables() && (object_is_ancestor(object_index, obj_bigdestructibles) or object_is_ancestor(object_index, obj_deadjohnparent))
 					{
 						with other
 						{
@@ -77,8 +75,6 @@ function scr_collide_destructibles()
 					with other
 						scr_pummel();
 				}
-				if other.state == states.mach2
-					other.machpunchAnim = true;
 			}
 		}
 		
@@ -257,27 +253,33 @@ function scr_collide_destructibles()
 				}
 			}
 		}
-		if (state == states.crouchslide || state == states.machroll || state == states.mach2 || state == states.punch)
+		
+		if state == states.crouchslide || state == states.machroll || state == states.mach2 || state == states.punch
 		{
 			with instance_place(x + hsp, y, obj_destructibles)
 			{
 				var _destroyed = false;
 				particle_hsp(other);
 				
-				with (other)
+				with other
 				{
-					if (place_meeting(x + hsp, y, obj_bigdestructibles) && state != states.crouchslide && state != states.mach2 && state != states.machroll)
+					if place_meeting(x + hsp, y, obj_bigdestructibles) && state != states.crouchslide && state != states.mach2 && state != states.machroll
 					{
 						instance_destroy(other);
 						_destroyed = true;
 					}
-					else if (other.object_index != obj_bigdestructibles)
+					else if other.object_index != obj_bigdestructibles
 					{
 						instance_destroy(other);
 						_destroyed = true;
 					}
-					if (_destroyed && state == states.lungeattack)
-						hit_connected = true;
+					if _destroyed
+					{
+						if state == states.lungeattack
+							hit_connected = true;
+						if IT_machpunchanim() && state == states.mach2 && grounded
+							machpunchAnim = true;
+					}
 				}
 			}
 		}

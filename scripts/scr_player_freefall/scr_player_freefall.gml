@@ -1,11 +1,11 @@
 function scr_player_freefall()
 {
-	if !IT_FINAL
+	if !IT_final_freefall()
 	{
 		vsp = freefallvsp;
 		freefallvsp += 0.2;
 	}
-	if vsp >= 2 && IT_FINAL
+	if vsp >= 2 && IT_final_freefall()
 	{
 		if (steppybuffer > 0)
 			steppybuffer--;
@@ -130,7 +130,7 @@ function scr_player_freefall()
 		*/
 	}
 	
-	if (vsp > 0 or !IT_FINAL)
+	if (vsp > 0 or !IT_final_freefall())
 		freefallsmash++;
 	else if (vsp < 0)
 		freefallsmash = -14;
@@ -157,11 +157,11 @@ function scr_player_freefall()
 	}
 	
 	if (grounded && vsp >= 0 && (freefallsmash < 10 || !place_meeting(x, y + vsp, obj_metalblock))
-	&& (!collision_rectangle(bbox_left, top, bbox_right, bottom, obj_destructibles, false, false) or !IT_FINAL)
+	&& (!IT_final_freefall() or !collision_rectangle(bbox_left, top, bbox_right, bottom, obj_destructibles, false, false))
 	&& (!place_meeting(x, y + 1, obj_ladder) or !REMIX or !key_down or check_solid(x, y + 1)))
 	{
 		var slope = check_slope(x, y + 1, true);
-		if (slope && IT_FINAL)
+		if slope && IT_slope_pound()
 		{
 			with slope
 			{

@@ -141,26 +141,27 @@ function scr_playersounds()
 		var sjumpsnd = superjumpsnd;
 		if !noise_sjump
 		{
-			if (state == states.Sjumpprep)
+			if state == states.Sjumpprep
 			{
-				if (!fmod_event_instance_is_playing(sjumpsnd))
+				if !fmod_event_instance_is_playing(sjumpsnd)
+				or ((REMIX or IT_Sjump_mach3_cancel()) && fmod_event_instance_get_parameter(sjumpsnd, "state", true) > 0)
 				{
 					fmod_event_instance_set_parameter(sjumpsnd, "state", 0, true);
 					fmod_event_instance_play(sjumpsnd);
 				}
 			}
-			else if (state == states.Sjump)
+			else if state == states.Sjump
 				fmod_event_instance_set_parameter(sjumpsnd, "state", 1, true);
-			else if (state != states.Sjump)
+			else if state != states.Sjump
 			{
 				if (fmod_event_instance_is_playing(sjumpsnd) && fmod_event_instance_get_parameter(sjumpsnd, "state", true) < 1)
 					fmod_event_instance_stop(sjumpsnd, true);
 				else if (!fmod_event_instance_is_playing(sjumpsnd))
 					fmod_event_instance_set_parameter(sjumpsnd, "state", 0, true);
 			}
-			if (sprite_index == spr_Sjumpcancelstart || sprite_index == spr_playerN_sidewayspin)
+			if sprite_index == spr_Sjumpcancelstart || sprite_index == spr_playerN_sidewayspin
 				fmod_event_instance_stop(sjumpsnd, true);
-			if (fmod_event_instance_is_playing(sjumpsnd))
+			if fmod_event_instance_is_playing(sjumpsnd)
 				sound_instance_move(sjumpsnd, x, y);
 		}
 		else
@@ -196,12 +197,12 @@ function scr_playersounds()
 		}
 	
 		// rolling sound
-		if IT_FINAL
+		if IT_final_sounds()
 		{
 			if (sprite_index == spr_machroll || sprite_index == spr_backslide || sprite_index == spr_backslideland)
 			or sprite_index == spr_buttattackend
 			{
-				if (!fmod_event_instance_is_playing(machrollsnd))
+				if !fmod_event_instance_is_playing(machrollsnd)
 					fmod_event_instance_play(machrollsnd);
 				sound_instance_move(machrollsnd, x, y);
 			}

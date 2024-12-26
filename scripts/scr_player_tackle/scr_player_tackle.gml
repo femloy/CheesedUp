@@ -17,9 +17,9 @@ function scr_player_tackle()
 	{
 		if sprite_index != spr_golfswing
 		{
-			if IT_FINAL
+			if !IT_old_tackle()
 			{
-				if (grounded && vsp > 0.5)
+				if grounded && vsp > 0.5
 					state = states.normal;
 			}
 			else
@@ -36,14 +36,14 @@ function scr_player_tackle()
 	{
 		invtime = 30;
 		movespeed = Approach(movespeed, 0, 0.1);
-		if (floor(image_index) == (image_number - 1) && grounded && vsp > 0)
+		if floor(image_index) == image_number - 1 && grounded && vsp > 0
 			state = states.normal;
 	}
 	
 	if state == states.normal && isgustavo
 		state = states.ratmount;
 	
-	if (floor(image_index) != (image_number - 1))
+	if floor(image_index) != image_number - 1
 		image_speed = 0.35;
 	else
 		image_speed = 0;

@@ -40,7 +40,7 @@ function scr_enemy_stun()
 	{
 		if (sprite_index != spr_tank_hitwall)
 		{
-			if (!thrown or shoulderbashed or !IT_FINAL)
+			if (!IT_baddie_thrown_dead_sprite() or !thrown or shoulderbashed)
 				sprite_index = stunfallspr;
 			else
 				sprite_index = spr_dead;

@@ -194,6 +194,7 @@ if instance_exists(target) && !lock && player.state != states.timesup && player.
 			ty = target.backtohubstarty;
 		
 		// charge cameras
+		var old_charge = IT_old_chargecamera();
 		if target.state != states.backbreaker && (target.state != states.chainsaw or !REMIX)
 		{
 			if target.cutscene or (target.collision_flags & colflag.secret > 0)
@@ -203,8 +204,8 @@ if instance_exists(target) && !lock && player.state != states.timesup && player.
 				else
 					chargecamera = Approach(chargecamera, 0, 10);
 			}
-			else if (IT_FINAL && target.state == states.mach2) or target.state == states.mach3
-			or (!IT_FINAL && (target.state == states.tumble or target.state == states.rocket or target.state == states.machroll or target.state == states.rideweenie))
+			else if (!old_charge && target.state == states.mach2) or target.state == states.mach3
+			or (old_charge && (target.state == states.tumble or target.state == states.rocket or target.state == states.machroll or target.state == states.rideweenie))
 			{
 				if (target.state == states.mach3 && target.sprite_index == target.spr_fightball && sign(chargecamera) != target.xscale)
 					chargecamera = Approach(chargecamera, 0, 10);
@@ -212,12 +213,14 @@ if instance_exists(target) && !lock && player.state != states.timesup && player.
 				{
 					var _targetcharge = target.xscale * ((target.movespeed / 4) * 50);
 					var _tspeed = 0.3;
-					if !IT_FINAL
+					
+					if old_charge
 					{
 						_tspeed = 2;
 						if target.xscale != sign(chargecamera)
 							_tspeed = 8;
 					}
+					
 					chargecamera = Approach(chargecamera, _targetcharge, _tspeed);
 				}
 			}
@@ -225,17 +228,20 @@ if instance_exists(target) && !lock && player.state != states.timesup && player.
 			{
 				_targetcharge = target.xscale * ((abs(target.hsp) / 4) * 70);
 				_tspeed = 0.3;
-				if !IT_FINAL
+				
+				if old_charge
 				{
 					_tspeed = 2;
 					if target.xscale != sign(chargecamera)
 						_tspeed = 8;
 				}
+				
 				chargecamera = Approach(chargecamera, _targetcharge, _tspeed);
 			}
-			else if IT_FINAL
+			else if !old_charge
 			{
-				if (abs(target.hsp) >= 16 or (target.state == states.chainsaw && target.tauntstoredmovespeed >= 16)) && player.state != states.climbwall && player.state != states.Sjump && player.state != states.ghost
+				if (abs(target.hsp) >= 16 or (target.state == states.chainsaw && target.tauntstoredmovespeed >= 16))
+				&& player.state != states.climbwall && player.state != states.Sjump && player.state != states.ghost
 				{
 					_targetcharge = target.xscale * ((abs(target.hsp) / 4) * 50);
 					_tspeed = 2;
@@ -282,11 +288,11 @@ if instance_exists(target) && !lock && player.state != states.timesup && player.
 		if MOD.GravityJump
 			yoffset = Approach(yoffset, !target.gravityjump ? -50 : 0, 2);
 		else
-			yoffset = Approach(yoffset, (-50 * IT_FINAL) * (target.gravityjump ? -1 : 1), 3);
+			yoffset = Approach(yoffset, IT_camera_yoffset() * (target.gravityjump ? -1 : 1), 3);
 	}
 	else
 	{
-		yoffset = -50 * IT_FINAL;
+		yoffset = IT_camera_yoffset();
 		chargecamera = 0;
 		crouchcamera = 0;
 	}

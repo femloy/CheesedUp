@@ -34,10 +34,11 @@ function state_player_machroll()
 		image_index = 0;
 		instance_create(x + 10 * xscale, y + 10, obj_bumpeffect);
 		mask_index = spr_player_mask;
-		if (scr_solid(x, y))
+		
+		if scr_solid(x, y)
 		{
 			var ty = try_solid(0, 1, obj_solid, 32);
-			if (ty != -1)
+			if ty != -1
 				y += ty;
 		}
 	}
@@ -67,7 +68,10 @@ function state_player_machroll()
 		{
 			image_index = 0;
 			if (grounded)
+			{
 				sprite_index = spr_rollgetup;
+				fmod_event_instance_play(rollgetupsnd);
+			}
 			if (movespeed < 12 || skateboarding == 1)
 			{
 				if (!grounded)

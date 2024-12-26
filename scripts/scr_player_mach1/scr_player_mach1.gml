@@ -110,12 +110,12 @@ function scr_player_mach1()
 		input_buffer_slap = 0;
 		image_index = 0;
 		pistolanim = noone;
-		state = IT_FINAL ? states.freefall : states.freefallprep;
+		state = IT_final_freefall() ? states.freefall : states.freefallprep;
 		
 		if (!shotgunAnim)
 		{
 			sprite_index = spr_bodyslamstart;
-			if IT_FINAL
+			if IT_final_freefall()
 				vsp = -6;
 			else
 				vsp = CHAR_OLDNOISE ? -7 : -5;

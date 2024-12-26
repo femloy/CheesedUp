@@ -2,8 +2,8 @@ function scr_player_climbwall()
 {
 	if live_call() return live_result;
 	
-	var maxspeed = IT_FINAL ? 20 : 24;
-	var accel = IT_FINAL ? 0.15 : 0.1;
+	var maxspeed = IT_mach3_mach4speed(); // 20
+	var accel = IT_climbwall_accel(); // 0.15
 	
 	switch (character)
 	{
@@ -43,7 +43,7 @@ function scr_player_climbwall()
 			// accelerate
 			else
 			{
-				if wallspeed < maxspeed && (move == xscale or IT_FINAL)
+				if wallspeed < maxspeed && (move == xscale or !IT_mach3_old_acceleration())
 					wallspeed += accel;
 				
 				if wallspeed < 0
@@ -65,10 +65,7 @@ function scr_player_climbwall()
 			}
 			
 			crouchslideAnim = true;
-			if (vsp < -5)
-				sprite_index = (character == "P" && !IT_FINAL) ? spr_player_climbwall_old : spr_machclimbwall;
-			else
-				sprite_index = spr_player_clingwall;
+			sprite_index = IT_climbwall_sprite();
 			
 			if (skateboarding)
 			{
@@ -83,7 +80,7 @@ function scr_player_climbwall()
 				state =	states.normal;
 				movespeed = 0;
 				
-				if IT_FINAL
+				if IT_action_knockback()
 				{
 					railmovespeed = 6;
 					raildir = -xscale;
@@ -95,18 +92,16 @@ function scr_player_climbwall()
 				particle_set_scale(part.jumpdust, xscale, 1);
 				create_particle(x, y, part.jumpdust);
 				
-				movespeed = max(wallspeed, 6);
+				if IT_climbwall_transfer_speed()
+					movespeed = max(wallspeed, 6);
+				
 				if wallspeed >= 12
 				{
 					state = states.mach3;
 					sprite_index = spr_mach4;
-					movespeed = wallspeed;
 				}
 				else
-				{
 					state = states.mach2;
-					movespeed = wallspeed;
-				}
 				
 				if vsp < 0
 				{

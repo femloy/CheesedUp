@@ -27,7 +27,7 @@ function scr_player_keyget()
 		if isgustavo
 			state = states.ratmount;
 		image_index = 0;
-		if IT_FINAL
+		if IT_final_key()
 			instance_create(x, y, obj_keyfollow);
 	}
 }

@@ -42,9 +42,14 @@ function scr_perform_move(move, prestate = state)
 					movespeed = 5;
 				image_index = 0;
 				
-				if !IT_FINAL && grounded
+				if IT_april_particles()
 				{
-					with instance_create(x, y, obj_superdashcloud)
+					if grounded
+					{
+						with instance_create(x, y, obj_superdashcloud)
+			                copy_player_scale(other);
+					}
+					with instance_create(x, y, obj_crazyrunothereffect)
 		                copy_player_scale(other);
 				}
 				
@@ -189,7 +194,7 @@ function scr_perform_move(move, prestate = state)
 				
 				if obj_player1.character == "N"
 					sound_play_3d(sfx_spin, x, y);
-				else if IT_FINAL
+				else if IT_final_sounds()
 					sound_play_3d("event:/modded/sfx/faceplant", x, y);
 				
 				particle_set_scale(part.jumpdust, xscale, 1);

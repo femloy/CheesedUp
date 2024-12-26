@@ -7,7 +7,7 @@ function scr_music_pitch()
 	// transfo pitch
 	if instance_exists(obj_player1)
 	{
-		if IT_APRIL
+		if IT_music_pitch()
 		{
 			var target_pitch = 1;
 		

@@ -23,7 +23,7 @@ function scr_enemy_hit()
 		if _state == states.chainsaw
 			_state = _player.tauntstoredstate;
 		
-		if IT_FINAL
+		if !IT_baddie_mach2kill()
 		{
 			if ((object_index == obj_pepperman || object_index == obj_vigilanteboss || object_index == obj_noiseboss || object_index == obj_pf_fakepep || object_index == obj_fakepepboss || object_index == obj_pizzafaceboss || object_index == obj_pizzafaceboss_p3) && override_throw)
 			{
@@ -36,7 +36,10 @@ function scr_enemy_hit()
 				thrown = true;
 		}
 		else
+		{
 			thrown = true;
+			override_throw = false;
+		}
 		
 		vsp = hitvsp;
 		hsp = hithsp;
@@ -54,7 +57,7 @@ function scr_enemy_hit()
 		var _hp = 0;
 		//if ((global.attackstyle == 3 or global.attackstyle == 0) && !global.kungfu)
 			_hp = -1;
-		if shoulderbashed or !IT_FINAL
+		if shoulderbashed or !IT_baddie_mach3destroy()
 		{
 			_hp = -7;
 			mach3destroy = false;

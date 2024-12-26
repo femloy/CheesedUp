@@ -10,7 +10,7 @@ with (obj_player)
 			tx += 100;
 		var ty = cy + (SCREEN_HEIGHT / 2);
 		
-		if IT_FINAL
+		if IT_smooth_rank_screen()
 		{
 			var dir = point_direction(x, y, tx, ty);
 			var lx = lengthdir_x(accel, dir);

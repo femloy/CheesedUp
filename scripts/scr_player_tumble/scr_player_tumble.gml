@@ -68,15 +68,15 @@ function scr_player_tumble()
 			fmod_event_instance_play(snd_dive);
 		}
 	}
-	if (sprite_index == spr_tumble)
+	if sprite_index == spr_tumble
 	{
-		if IT_FINAL
+		if !IT_old_ball_transfo()
 		{
 			if grounded
 			{
-				if (move == xscale)
+				if move == xscale
 					movespeed = Approach(movespeed, 12, 0.25);
-				else if (move == -xscale)
+				else if move == -xscale
 					movespeed = Approach(movespeed, 8, 0.25);
 				else
 					movespeed = Approach(movespeed, 10, 0.25);
@@ -263,20 +263,20 @@ function scr_player_tumble()
 		}
 	}
 	
-	if !IT_FINAL
+	if IT_old_ball_transfo()
 		image_speed = 0.35;
 	else if sprite_index == spr_playerV_divekickstart
 		image_speed = 0.5;
-	else if (sprite_index == crouchslipspr || sprite_index == spr_breakdancesuper || sprite_index == machrollspr || sprite_index == spr_tumble || sprite_index == spr_tumblestart || sprite_index == spr_player_machroll || sprite_index == spr_player_mach2jump)
+	else if sprite_index == crouchslipspr || sprite_index == spr_breakdancesuper || sprite_index == machrollspr || sprite_index == spr_tumble || sprite_index == spr_tumblestart || sprite_index == spr_player_machroll || sprite_index == spr_player_mach2jump
 		image_speed = abs(movespeed) / 15;
-	else if (floor(image_index) == (image_number - 1) && sprite_index == spr_mach2jump)
+	else if floor(image_index) == image_number - 1 && sprite_index == spr_mach2jump
 		image_speed = 0;
-	else if (floor(image_index) == (image_number - 1) && sprite_index == spr_player_Sjumpcancel)
+	else if floor(image_index) == image_number - 1 && sprite_index == spr_player_Sjumpcancel
 		image_speed = 0;
 	else
 		image_speed = 0.35;
 	
-	if (!instance_exists(dashcloudid) && grounded)
+	if !instance_exists(dashcloudid) && grounded
 	{
 		with (instance_create(x, y, obj_dashcloud))
 		{
@@ -284,6 +284,6 @@ function scr_player_tumble()
 			other.dashcloudid = id;
 		}
 	}
-	if (sprite_index == spr_dive && vsp < 10)
+	if sprite_index == spr_dive && vsp < 10
 		vsp = 10;
 }

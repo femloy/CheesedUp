@@ -34,7 +34,7 @@ function activate_panic(instapanic = false, debris = noone)
 	if !instapanic
 	{
 		fmod_event_instance_play(global.snd_escaperumble);
-		if IT_FINAL
+		if IT_hungrypillarflash()
 		{
 			fmod_event_instance_play(global.snd_johndead);
 			with instance_create_unique(0, 0, obj_hungrypillarflash)

@@ -145,7 +145,7 @@ function scr_pizzano_twirl()
 	}
 	
 	// pound cancel
-	if key_down && key_jump && IT_FINAL
+	if key_down && key_jump && IT_final_freefall()
 	{
 		sprite_index = spr_poundcancel1;
 		image_index = 0;

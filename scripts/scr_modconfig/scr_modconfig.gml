@@ -3,20 +3,10 @@ global.lap4time = 1;
 
 // macros
 #macro REMIX global.gameplay
-#macro IT_FINAL (global.iteration == ITERATIONS.FINAL)
-#macro IT_APRIL (global.iteration == ITERATIONS.APRIL)
-#macro IT_BNF (global.iteration == ITERATIONS.BNF)
-
-enum ITERATIONS
-{
-	FINAL, // Do not change the order of these
-	APRIL, // It would mess up savefiles.
-	BNF
-}
 enum BLOCK_STYLES
 {
-	final,
-	september,
+	final,     // Do not change the order of these
+	september, // It would mess up save files.
 	old
 }
 enum HUD_STYLES

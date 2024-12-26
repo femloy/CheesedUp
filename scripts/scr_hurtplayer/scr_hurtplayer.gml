@@ -13,7 +13,7 @@ function scr_hurtplayer(player)
 		}
 		
 		// auto parry
-		else if IT_APRIL && (state == states.mach3 or (state == states.grab && sprite_index == spr_swingding))
+		else if IT_autoparry() && (state == states.mach3 or (state == states.grab && sprite_index == spr_swingding))
 		{
 			sound_instance_move(global.snd_parry, x, y);
 			fmod_event_instance_play(global.snd_parry);
@@ -52,7 +52,7 @@ function scr_hurtplayer(player)
 			// ignore damage
 		}
 		
-		else if !IT_FINAL && state == states.tumble
+		else if IT_old_ball_transfo() && state == states.tumble
 		{
 			
 		}

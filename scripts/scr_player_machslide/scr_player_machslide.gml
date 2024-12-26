@@ -39,7 +39,7 @@ function scr_player_machslide()
 	}
 	if (check_solid(x + xscale, y) && (sprite_index == spr_machslide || sprite_index == spr_machslidestart))
 	{
-		if IT_FINAL
+		if IT_wallsplat()
 		{
 			sound_play_3d("event:/sfx/pep/splat", x, y);
 			sprite_index = spr_wallsplat;
@@ -58,7 +58,7 @@ function scr_player_machslide()
 	
 	// to mach 2
 	if ((floor(image_index) == (image_number - 1) && sprite_index == spr_machslideboost) || sprite_index == spr_machslideboostfall)
-	&& (grounded or !IT_FINAL)
+	&& (grounded or !IT_machslidefall())
 	{
 		hsp = 0;
 		image_index = 0;
@@ -69,7 +69,7 @@ function scr_player_machslide()
 	
 	// to mach 3
 	if ((floor(image_index) == (image_number - 1) && sprite_index == spr_mach3boost) || sprite_index == spr_mach3boostfall)
-	&& (grounded or !IT_FINAL)
+	&& (grounded or !IT_machslidefall())
 	{
 		if (!launch)
 		{

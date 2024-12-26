@@ -1,6 +1,6 @@
 function state_player_jump()
 {
-	var maxmovespeed = 8;
+	var maxmovespeed = IT_walkspeed(); // 8
 	var maxmovespeed2 = 6;
 	var turnmovespeed = 2;
 	var accel = 0.5;
@@ -271,12 +271,12 @@ function state_player_jump()
 		input_buffer_slap = 0;
 		image_index = 0;
 		pistolanim = noone;
-		state = IT_FINAL ? states.freefall : states.freefallprep;
+		state = IT_final_freefall() ? states.freefall : states.freefallprep;
 		
 		if (!shotgunAnim)
 		{
 			sprite_index = spr_bodyslamstart;
-			if IT_FINAL
+			if IT_final_freefall()
 				vsp = -6;
 			else
 				vsp = CHAR_OLDNOISE ? -7 : -5;
@@ -342,15 +342,15 @@ function state_player_jump()
 			scr_pistolshoot(states.jump);
 		else if key_shoot2
 			scr_perform_move(modmoves.shootattack, states.jump);
-		
 		var pistol = (global.pistol && character != "N");
 		
 		// suplex dash
-		if (input_buffer_grab > 0 && (!key_up or !IT_FINAL) && sprite_index != spr_suplexbump && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol)) && (!SUGARY_SPIRE or !suplexmove or character != "SP"))
+		var allow_uppercut = IT_allow_uppercut();
+		if (input_buffer_grab > 0 && (!key_up or allow_uppercut) && sprite_index != spr_suplexbump && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol)) && (!suplexmove or !IT_grab_suplexmove_check()))
 		{
 			input_buffer_slap = 0;
 			input_buffer_grab = 0;
-		
+			
 			particle_set_scale(part.jumpdust, xscale, 1);
 			create_particle(x, y, part.jumpdust, 0);
 			image_index = 0;
@@ -360,11 +360,15 @@ function state_player_jump()
 			suplexmove = true;
 			fmod_event_instance_play(suplexdashsnd);
 			state = states.handstandjump;
-			movespeed = 5;
+			movespeed = IT_suplexspeed();
+			
+			var v = IT_grab_vsp();
+			if v != undefined
+				vsp = v;
 		}
 	
 		// uppercut
-		else if IT_FINAL && ((input_buffer_slap > 0 or input_buffer_grab > 0) && key_up && ((shotgunAnim == false && !pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !pistol)))
+		else if allow_uppercut && ((input_buffer_slap > 0 or input_buffer_grab > 0) && key_up && ((shotgunAnim == false && !pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !pistol)))
 		{
 			input_buffer_slap = 0;
 			input_buffer_grab = 0;
@@ -401,7 +405,7 @@ function state_player_jump()
 		}
 	
 		// kungfu
-		else if input_buffer_slap > 0 && (!key_up or !IT_FINAL) && !suplexmove && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol))
+		else if input_buffer_slap > 0 && !suplexmove && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol))
 		{
 			input_buffer_slap = 0;
 			scr_perform_move(modmoves.grabattack, states.jump);
@@ -485,7 +489,7 @@ function state_player_jump()
 			sprite_index = spr_mach1;
 			image_index = 0;
 					
-			if IT_FINAL
+			if !IT_mach1_state()
 			{
 				state = states.mach2;
 				movespeed = max(movespeed, machspeed);

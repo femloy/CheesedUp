@@ -18,7 +18,7 @@ function scr_player_superslam()
 		hsp = 0;
 	}
 	
-	if IT_FINAL
+	if IT_final_freefall()
 	{
 		if (vsp > 0)
 			freefallsmash++;
@@ -74,7 +74,7 @@ function scr_player_superslam()
 	}
 	
 	var breakmetal = freefallsmash >= 10 && place_meeting(x, y + vsp, obj_metalblock);
-	if !IT_FINAL
+	if !IT_final_freefall()
 		breakmetal = false;
 	
 	if (grounded && !breakmetal && !place_meeting(x, y + 1, obj_destructibles) && sprite_index == spr_piledriver && vsp > 0)
@@ -92,14 +92,14 @@ function scr_player_superslam()
 		create_particle(x, y, part.landcloud, 0);
 		freefallstart = 0;
 		
-		if (IT_FINAL && freefallsmash >= 10)
+		if IT_final_freefall() && freefallsmash >= 10
 		{
-			with (obj_baddie)
+			with obj_baddie
 			{
-				if (shakestun && grounded && point_in_camera(x, y, view_camera[0]) && grounded && vsp > 0 && !invincible && groundpound && state != states.grabbed)
+				if shakestun && grounded && point_in_camera(x, y, view_camera[0]) && grounded && vsp > 0 && !invincible && groundpound && state != states.grabbed
 				{
 					state = states.stun;
-					if (stunned < 60)
+					if stunned < 60
 						stunned = 60;
 					vsp = -11;
 					image_xscale *= -1;
@@ -138,7 +138,7 @@ function scr_player_superslam()
 		movespeed -= 0.1;
 	if (CHAR_OLDNOISE && move != 0)
 		xscale = move;
-	if (vsp < 0 or !IT_FINAL)
+	if vsp < 0 or !IT_final_freefall()
 		image_speed = 0.35;
 	else
 		image_speed = 0.5;

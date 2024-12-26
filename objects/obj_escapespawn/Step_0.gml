@@ -1,4 +1,4 @@
-if !IT_FINAL
+if !IT_john_escape_spawner()
 {
 	if global.panic
 	{

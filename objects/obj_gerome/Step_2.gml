@@ -1,4 +1,4 @@
-if !april or global.panic or !IT_FINAL
+if !april or global.panic or !IT_grabbable_gerome()
 {
 	instance_destroy(junkid);
 	exit;

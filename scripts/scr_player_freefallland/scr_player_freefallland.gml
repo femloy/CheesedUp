@@ -17,11 +17,11 @@ function scr_player_freefallland()
 	hsp = 0;
 	
 	var jump = false;
-	if key_jump && global.poundjump && IT_FINAL
+	if key_jump && global.poundjump && !IT_forced_poundjump()
 		jump = true;
-	else if (floor(image_index) == (image_number - 1))
+	else if floor(image_index) == image_number - 1
 	{
-		if (key_jump2 or IT_APRIL) && global.poundjump
+		if (key_jump2 or IT_forced_poundjump()) && global.poundjump
 			jump = true;
 		else
 		{
@@ -39,7 +39,7 @@ function scr_player_freefallland()
 	if jump
 	{
 		state = states.jump;
-		if IT_FINAL
+		if !IT_forced_poundjump()
 		{
 			vsp = -13;
 			if spr_groundpoundjump != spr_player_groundpoundjump or character == "P"

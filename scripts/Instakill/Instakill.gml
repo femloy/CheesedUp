@@ -22,7 +22,7 @@ function scr_instakillcheck()
 	or (state == states.tumble && character == "V" && movespeed >= 11)
 	or burning or state == states.stick_flyattack;
 	
-	if !IT_FINAL
+	if IT_baddie_mach2kill()
 	{
 		condition |= state == states.crouchslide or state == states.slipnslide or (state == states.hurt && thrown)
 		or state == states.mach2 or state == states.climbwall or state == states.tumble or state == states.machroll;
@@ -123,7 +123,7 @@ function Instakill()
 		image_index = 0;
 	}
 	
-	if !IT_FINAL && !other.baddieID.killprotection
+	if IT_baddie_mach2kill() && !other.baddieID.killprotection
     {
         if state == states.mach3 or state == states.rocket or (state == states.tumble && sprite_index == spr_tumble)
 		or (state == states.freefall && freefallsmash > 10) or state == states.superslam
@@ -154,7 +154,7 @@ function Instakill()
 		with (instance_create(other.baddieID.x, other.baddieID.y, obj_parryeffect))
 			sprite_index = spr_kungfueffect;
 	}
-	if IT_APRIL or (state == states.handstandjump && !check_boss(other.baddieID.object_index))
+	if IT_april_enemy_throw() or (state == states.handstandjump && !check_boss(other.baddieID.object_index))
 	{
 		if key_up
         {

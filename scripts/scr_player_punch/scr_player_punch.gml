@@ -43,7 +43,7 @@ function scr_player_punch()
 		
 		if (punch_afterimage > 0)
 			punch_afterimage--;
-		else if (vsp < 0 or global.afterimage == AFTERIMAGES.blue) && IT_FINAL
+		else if (vsp < 0 or global.afterimage == AFTERIMAGES.blue) && IT_blue_afterimage()
 		{
 			punch_afterimage = 5;
 			with create_blue_afterimage(x, y, sprite_index, image_index, xscale)
@@ -134,7 +134,7 @@ function scr_player_punch()
 		
 		if key_shoot2 && move == xscale && sprite_index == spr_breakdancemove
 		{
-			if IT_FINAL
+			if IT_final_sounds()
 			{
 				fmod_event_instance_stop(breakdancesnd, true);
 				fmod_event_instance_play(breakdancecancelsnd);
@@ -169,7 +169,7 @@ function scr_player_punch()
 				else
 					sprite_index = spr_buttattackend;
 			}
-			else if scr_mach_check_dive() && IT_FINAL
+			else if scr_mach_check_dive() && !IT_old_machroll()
 			{
 				particle_set_scale(part.jumpdust, xscale, 1);
 				create_particle(x, y, part.jumpdust, 0);
@@ -362,7 +362,7 @@ function scr_player_punch()
 		else if _kungfuground && vsp < 0
 			sprite_index = choose(spr_kungfuair1, spr_kungfuair2, spr_kungfuair3);
 		
-		if scr_mach_check_dive() && (_kungfuair or _kungfuground) && IT_FINAL
+		if scr_mach_check_dive() && (_kungfuair or _kungfuground) && !IT_old_machroll()
 		{
 			particle_set_scale(part.jumpdust, xscale, 1);
 			create_particle(x, y, part.jumpdust, 0);
@@ -489,7 +489,7 @@ function scr_player_punch()
 		{
 			if ledge_bump(32)
 			{
-				if (!grounded or scr_slope()) && !CHAR_POGONOISE && IT_FINAL
+				if (!grounded or scr_slope()) && !CHAR_POGONOISE && IT_grab_climbwall()
 				{
 					while !scr_solid(x + xscale, y)
 						x += xscale;

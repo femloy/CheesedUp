@@ -2,7 +2,7 @@
 live_auto_call;
 
 // skip titlecard on old gameplay
-if !IT_FINAL
+if IT_skip_titlecard()
 {
 	event_perform(ev_alarm, 0);
 	with obj_fadeout

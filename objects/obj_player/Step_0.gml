@@ -683,18 +683,7 @@ if (cow_buffer > 0)
 if (state == states.lungeattack)
 	lunge_buffer = 14;
 
-var do_blur = (breakdance_speed >= 0.6 || (state == states.slipbanan && sprite_index == spr_rockethitwall) || mach4mode == true || boxxeddash == true || state == states.ghost || state == states.tumble || state == states.ratmountbounce || state == states.noisecrusher || state == states.ratmountattack || state == states.handstandjump || (state == states.barrelslide || (state == states.grab && sprite_index == spr_swingding && swingdingdash <= 0) || state == states.freefall || state == states.lungeattack || state == states.ratmounttrickjump || state == states.trickjump));
-if (blur_effect > 0)
-	blur_effect--;
-else if do_blur && IT_FINAL
-{
-	if (visible && (collision_flags & colflag.secret) == 0)
-	{
-		blur_effect = 2;
-		with (create_blur_afterimage(x, y, sprite_index, image_index - 1, xscale))
-			playerid = other.id;
-	}
-}
+scr_player_blurafterimage();
 
 if (state != states.chainsaw && state != states.bump && state != states.boxxedpep && state != states.boxxedpepspin && state != states.boxxedpepjump)
 {
@@ -849,7 +838,7 @@ if (state != states.grabbed && state != states.hurt)
 }
 if state != states.freefall && state != states.superslam && (state != states.chainsaw || (tauntstoredstate != states.freefall && tauntstoredstate != states.superslam)) && (state != states.backbreaker || (tauntstoredstate != states.freefall && tauntstoredstate != states.superslam))
 && !instance_exists(obj_secretportalstart)
-	freefallsmash = IT_FINAL ? -14 : 0;
+	freefallsmash = IT_final_freefall() ? -14 : 0;
 if (global.playerhealth <= 0 && state != states.dead)
 {
 	image_index = 0;
@@ -1101,39 +1090,7 @@ if (ladderbuffer > 0)
 if (state != states.jump)
 	stompAnim = false;
 
-// mach effect
-var do_macheffect = (state == states.mach3 or state == states.machcancel || (state == states.ghost && ghostdash && ghostpepper >= 3) || state == states.mach2 || (state == states.Sjump && global.afterimage == AFTERIMAGES.mach) || ratmount_movespeed >= 12 || gusdashpadbuffer > 0)
-or ((abs(movespeed) >= 10 or sprite_index == spr_crazyrun) && character == "S") or (CHAR_POGONOISE && pogochargeactive) or (state == states.tumble && character == "V" && movespeed >= 11);
-
-if !IT_FINAL
-	do_macheffect |= state == states.machroll or state == states.machslide;
-
-if do_macheffect && !macheffect
-	toomuchalarm1 = 1;
-macheffect = do_macheffect;
-
-if (toomuchalarm1 > 0)
-{
-	toomuchalarm1 -= 1;
-	if (toomuchalarm1 <= 0 && do_macheffect && !instance_exists(obj_swapgusfightball))
-	{
-		with (create_mach3effect(x, y, sprite_index, image_index - 1))
-		{
-			playerid = other.object_index;
-			copy_player_scale(other);
-		}
-		toomuchalarm1 = 6;
-		
-		if (sprite_index == spr_fightball && instance_exists(obj_swapmodefollow))
-		{
-			with (create_mach3effect(x, y, obj_swapmodefollow.spr_fightball, image_index - 1))
-			{
-				playerid = other.object_index;
-				copy_player_scale(other);
-			}
-		}
-	}
-}
+scr_player_mach3effect();
 
 if (!isgustavo)
 	gusdashpadbuffer = 0;
@@ -1178,18 +1135,7 @@ if ((state == states.normal || state == states.ratmount) && spotlight && !instan
 	}
 }
 
-var do_speedlines = abs(hsp) > 12 && (movespeed > 12 && state == states.mach3 or (character == "S" && state == states.normal));
-if !IT_FINAL
-	do_speedlines = state == states.mach2;
-
-if do_speedlines && !instance_exists(speedlineseffectid) && !cutscene && (collision_flags & colflag.secret) <= 0
-{
-	with (instance_create(x, y, obj_speedlines))
-	{
-		playerid = other.object_index;
-		other.speedlineseffectid = id;
-	}
-}
+scr_player_speedlines();
 
 var mask = mask_index;
 if (character == "S" && !isgustavo) or (character == "V" && isgustavo)

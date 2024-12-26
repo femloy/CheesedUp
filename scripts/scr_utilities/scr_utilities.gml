@@ -90,9 +90,7 @@ function ledge_bump_vertical(iterations, step)
 }
 function ledge_bump(iterations, offset = 4)
 {
-	//if live_call(iterations) return live_result;
-	
-	if IT_BNF
+	if !IT_ledge_bump()
 		return true;
 	
 	var old_x = x;
@@ -102,17 +100,17 @@ function ledge_bump(iterations, offset = 4)
 	var ty = try_solid(0, -flip, obj_solid, iterations);
 	x = old_x;
 	
-	if (ty != -1)
+	if ty != -1
 	{
 		y -= ty * flip;
 		x += xscale;
-		if (scr_solid(x, y))
+		if scr_solid(x, y)
 		{
 			x = old_x;
 			y = old_y;
 			return true;
 		}
-		with (obj_camera)
+		with obj_camera
 			offset_y += ty;
 		return false;
 	}

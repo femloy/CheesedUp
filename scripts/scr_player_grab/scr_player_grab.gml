@@ -1,9 +1,9 @@
 function scr_player_grab()
 {
-	var april_swing = (IT_APRIL && sprite_index == spr_swingding);
-	var maxmovespeed = IT_FINAL ? 8 : 6;
+	var april_swing = (IT_april_swing() && sprite_index == spr_swingding);
+	var maxmovespeed = IT_walkspeed(); // 8
 	var maxmovespeed2 = 6;
-	var heavymovespeed = IT_FINAL ? 2 : 4;
+	var heavymovespeed = IT_heavywalkspeed(); // 2
 	var accel = 0.5;
 	var deccel = 0.1;
 	
@@ -137,7 +137,21 @@ function scr_player_grab()
 	}
 	else
 	{
-		if IT_FINAL
+		if IT_april_swing()
+		{
+			hsp = xscale * movespeed;
+			if (scr_solid(x + xscale, y) && (!check_slope(x + sign(hsp), y) || scr_solid_slope(x + sign(hsp), y)) && !place_meeting(x + sign(hsp), y, obj_destructibles))
+				xscale *= -1;
+			
+	        if (swingdingbuffer == 0 && !key_attack)
+	            swingdingbuffer = -1;
+	        if (swingdingbuffer == -1)
+	            movespeed = Approach(movespeed, 0, 0.5);
+			
+	        if (movespeed == 0)
+	            sprite_index = spr_haulingidle;
+		}
+		if IT_final_swing()
 		{
 			if (grounded)
 				movespeed = Approach(movespeed, 0, 0.25);
@@ -153,20 +167,6 @@ function scr_player_grab()
 			
 			if movespeed == 2
 				sprite_index = spr_haulingidle;
-		}
-		if IT_APRIL
-		{
-			hsp = xscale * movespeed;
-			if (scr_solid(x + xscale, y) && (!check_slope(x + sign(hsp), y) || scr_solid_slope(x + sign(hsp), y)) && !place_meeting(x + sign(hsp), y, obj_destructibles))
-				xscale *= -1;
-			
-	        if (swingdingbuffer == 0 && !key_attack)
-	            swingdingbuffer = -1;
-	        if (swingdingbuffer == -1)
-	            movespeed = Approach(movespeed, 0, 0.5);
-			
-	        if (movespeed == 0)
-	            sprite_index = spr_haulingidle;
 		}
 		
 		// sound
@@ -207,7 +207,7 @@ function scr_player_grab()
 		sprite_index = spr_haulingidle;
 	
 	// fun april swingding
-	if IT_APRIL
+	if IT_april_swing()
 	{
 		if (key_attack && (sprite_index != spr_swingding))
 	    {
@@ -234,7 +234,7 @@ function scr_player_grab()
 		if (move != 0)
 			move = xscale;
 		
-		if IT_FINAL
+		if !IT_static_finishingblow()
 		{
 			hsp = xscale * movespeed;
 			movespeed = hsp;
@@ -252,7 +252,7 @@ function scr_player_grab()
 			sprite_index = spr_uppercutfinishingblow;
 		image_index = 0;
 	}
-	else if IT_FINAL && ((scr_slapbuffercheck() && sprite_index == spr_swingding && swingdingendcooldown > 20) || swingdingthrow)
+	else if IT_swingding_throw() && ((scr_slapbuffercheck() && sprite_index == spr_swingding && swingdingendcooldown > 20) || swingdingthrow)
 	{
 		//if (fmod_event_instance_is_playing("event:/sfx/pep/spin"))
 		//	fmod_event_instance_stop("event:/sfx/pep/spin", true);
@@ -281,7 +281,7 @@ function scr_player_grab()
 	if (grounded && move != 0 && (floor(image_index) == 4 || floor(image_index) == 10))
 		create_particle(x, y + 43, part.cloudeffect);
 	
-	if (key_down && grounded && ((sprite_index != spr_swingding && sprite_index != spr_swingdingend) or !IT_FINAL))
+	if (key_down && grounded && ((sprite_index != spr_swingding && sprite_index != spr_swingdingend) or !IT_final_swing()))
 	{
 		with obj_swingdinghitbox
 			if playerid == other.id instance_destroy();

@@ -29,7 +29,7 @@ for (var i = 0; i < ds_list_size(global.afterimage_list); i++)
 				&& !(playerid.state == states.tumble && playerid.character == "V" && playerid.movespeed >= 11)
 					alarm[0] = 0;
 				
-				if IT_FINAL && ((playerid.state == states.mach2 || playerid.state == states.mach1 || playerid.state == states.mach3)
+				if IT_mach3effect_alpha() && ((playerid.state == states.mach2 || playerid.state == states.mach1 || playerid.state == states.mach3)
 				or (playerid.character == "S"))
 				{
 					var p = 4;

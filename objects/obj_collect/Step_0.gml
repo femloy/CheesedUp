@@ -11,7 +11,7 @@ if (place_meeting(x, y, obj_destructibles) || place_meeting(x, y, obj_iceblock_b
 else
 	depth = 2;
 
-if (!arena && IT_FINAL && abs(distance_to_object(obj_player1)) < 25 && !place_meeting(x, y, obj_destructibles) && !place_meeting(x, y, obj_iceblock_breakable) && !place_meeting(x, y, obj_iceblock) && !place_meeting(x, y, obj_ghostblock))
+if (!arena && IT_collectible_magnet() && abs(distance_to_object(obj_player1)) < 25 && !place_meeting(x, y, obj_destructibles) && !place_meeting(x, y, obj_iceblock_breakable) && !place_meeting(x, y, obj_iceblock) && !place_meeting(x, y, obj_ghostblock))
 {
 	if (!gotowardsplayer)
 		scr_ghostcollectible();

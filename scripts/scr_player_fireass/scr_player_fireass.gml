@@ -27,7 +27,7 @@ function scr_player_fireass()
 			fireasslock = false;
 		if (fireasslock == false)
 		{
-			if IT_FINAL
+			if IT_old_fireass_transfo()
 			{
 				if (move != 0)
 				{

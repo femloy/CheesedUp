@@ -1,5 +1,5 @@
 event_inherited();
-hp = IT_FINAL ? 1 : 3;
+hp = IT_dead_john_hp();
 hurted = false;
 hurtfx = false;
 hurtx = 0;

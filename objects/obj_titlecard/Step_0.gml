@@ -34,7 +34,7 @@ if !fadein
 		}
 	}
 }
-else if IT_FINAL
+else if !IT_skip_titlecard()
 {
 	fadealpha = Approach(fadealpha, 0, 0.1);
 	if vigigolf

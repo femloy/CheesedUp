@@ -679,6 +679,7 @@ function post_player_modifiers()
 			}
 			instance_destroy(obj_metalblock, false);
 			instance_destroy(obj_destroyable, false);
+			instance_destroy(obj_ratblock, false);
 			with obj_destroyable3
 			{
 				if object_index != obj_hungrypillar
@@ -701,7 +702,7 @@ function post_player_modifiers()
 							image_yscale = scale;
 							depth = -30;
 							
-							if !place_meeting(x, y, [obj_player, obj_baddie])
+							if !place_meeting(x, y, [obj_player, obj_baddie, obj_stringycheese, obj_boxcrusher, obj_priest])
 							{
 								x_pos += abs(bbox_right - bbox_left);
 								height = max(height, bbox_bottom - bbox_top);

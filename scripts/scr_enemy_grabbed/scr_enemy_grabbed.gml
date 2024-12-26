@@ -123,7 +123,7 @@ function scr_enemy_grabbed()
 			flash = true;
 			shake_camera(3, 3 / room_speed);
 		}
-		if (_obj_player.state == states.finishingblow && ((floor(_obj_player.image_index) >= (IT_FINAL ? 4 : 5)) || (floor(_obj_player.image_index) < 1 && _obj_player.sprite_index == _obj_player.spr_swingdingend)))
+		if (_obj_player.state == states.finishingblow && ((floor(_obj_player.image_index) >= IT_finishingblow_hit_frame()) || (floor(_obj_player.image_index) < 1 && _obj_player.sprite_index == _obj_player.spr_swingdingend)))
 		{
 			thrown = true
 			if heavy

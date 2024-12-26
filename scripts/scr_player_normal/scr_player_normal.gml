@@ -1,20 +1,14 @@
 function state_player_normal()
 {
-	var maxmovespeed = 8;
+	var maxmovespeed = IT_walkspeed(); // 8
 	var maxmovespeed2 = 6; // bug, and image speed limit.
 	var accel = 0.5;
 	var deccel = 0.1;
 	var jumpspeed = -11;
-	var suplexspeed = 8;
+	var suplexspeed = IT_suplexspeed(); // 8
 	
 	if character == "MS"
 		jumpspeed = scr_stick_jumpspeed();
-	
-	if !IT_FINAL
-	{
-		maxmovespeed = 6;
-		suplexspeed = 10;
-	}
 	
 	// gustavo failsafe
 	if isgustavo && !CHAR_BASENOISE
@@ -51,7 +45,7 @@ function state_player_normal()
 	var idlespr = spr_idle;
 	var movespr = spr_move;
 	
-	if IT_FINAL && global.leveltosave == "freezer" && !global.noisejetpack
+	if IT_freezing_idle() && global.leveltosave == "freezer" && !global.noisejetpack
 		idlespr = spr_freezeridle;
 	if global.pistol && character != "N"
 	{
@@ -84,7 +78,7 @@ function state_player_normal()
 	
 	// breakdancing
 	var breakdance_max = 10;
-	if IT_FINAL
+	if IT_taunt_breakdance()
 	{
 		if (key_taunt && !shotgunAnim && (!global.pistol or character == "N"))
 		{
@@ -196,7 +190,7 @@ function state_player_normal()
 				steppybuffer = 12;
 				
 				// sound
-				if IT_FINAL
+				if IT_final_sounds()
 				{
 					if place_meeting(x, y, obj_poodebris) && character != "V"
 						sound_play_3d("event:/sfx/pep/stepinshit", x, y);
@@ -445,7 +439,8 @@ function state_player_normal()
 		var _pistol = (global.pistol && character != "N");
 		
 		// suplex dash
-		if (input_buffer_grab > 0 && !key_up && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol)) && (!SUGARY_SPIRE or !suplexmove or character != "SP"))
+		var allow_uppercut = IT_allow_uppercut();
+		if (input_buffer_grab > 0 && (!key_up or !allow_uppercut) && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol)) && (!SUGARY_SPIRE or !suplexmove or character != "SP"))
 		{
 			input_buffer_grab = 0;
 			input_buffer_slap = 0;
@@ -457,10 +452,15 @@ function state_player_normal()
 			movespeed = suplexspeed;
 			image_index = 0;
 			
-			if !IT_FINAL
+			if IT_april_particles()
 			{
-				with instance_create(x, y, obj_superdashcloud)
-	                copy_player_scale(other);
+				if grounded
+				{
+					with instance_create(x, y, obj_superdashcloud)
+			            copy_player_scale(other);
+				}
+				with instance_create(x, y, obj_crazyrunothereffect)
+		            copy_player_scale(other);
 			}
 			
 			particle_set_scale(part.jumpdust, xscale, 1);
@@ -468,7 +468,7 @@ function state_player_normal()
 		}
 		
 		// uppercut
-		else if (IT_FINAL or IT_APRIL) && ((input_buffer_slap > 0 or input_buffer_grab > 0) && key_up && ((shotgunAnim == false && !_pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !_pistol)))
+		else if allow_uppercut && ((input_buffer_slap > 0 or input_buffer_grab > 0) && key_up && ((shotgunAnim == false && !_pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !_pistol)))
 		{
 			state = states.punch;
 			input_buffer_slap = 0;
@@ -513,7 +513,7 @@ function state_player_normal()
 		}
 		
 		// kungfu
-		else if input_buffer_slap > 0 && !key_up && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol))
+		else if input_buffer_slap > 0 && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol))
 		{
 			input_buffer_slap = 0;
 			scr_perform_move(modmoves.grabattack, states.normal);
@@ -537,7 +537,7 @@ function state_player_normal()
 						if global.banquet
 							movespeed = abs(movespeed);
 						
-						if IT_FINAL
+						if !IT_mach1_state()
 						{
 							state = states.mach2;
 							movespeed = max(movespeed, 6);

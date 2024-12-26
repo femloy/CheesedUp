@@ -36,13 +36,18 @@ function scr_player_handstandjump()
 	}
 	
 	// old animation is shorter
-	else if !IT_FINAL && floor(image_index) == 6 && grounded
-		image_index += 4;
+	else
+	{
+		var animskip = IT_grab_animation_skip();
+		if animskip != undefined && grounded
+		{
+			if floor(image_index) == animskip[0]
+				image_index += animskip[1];
+		}
+	}
 	
 	// acceleration
-	if !grounded && !IT_FINAL
-		movespeed = maxmovespeed;
-	else if movespeed < maxmovespeed
+	if movespeed < maxmovespeed
 	{
 		if ((sprite_index == spr_player_pistolshot || sprite_index == spr_shotgun_shot) && movespeed < 8)
 			movespeed += 0.25;
@@ -89,11 +94,10 @@ function scr_player_handstandjump()
 		image_index = 0;
 		vsp = jumpspeed;
 		
-		if (!CHAR_POGONOISE)
-		&& (IT_FINAL or IT_APRIL)
+		if !CHAR_POGONOISE && IT_grabjump_mach2()
 		{
 			state = states.mach2;
-			if IT_FINAL && (character == "P" or spr_longjump != spr_player_longjump)
+			if IT_longjump() && (character == "P" or spr_longjump != spr_player_longjump)
 			{
 				fmod_event_instance_play(rollgetupsnd);
 				sprite_index = spr_longjump;
@@ -144,7 +148,7 @@ function scr_player_handstandjump()
 		grav = 0.5;
 		sprite_index = spr_crouchslip;
 		
-		if IT_FINAL
+		if !IT_old_machroll()
 		{
 			movespeed = 12;
 			crouchslipbuffer = 25;
@@ -156,14 +160,15 @@ function scr_player_handstandjump()
 		{
 			movespeed = 15;
 			state = states.crouchslide;
-			if IT_APRIL
+			
+			if IT_crouchslide_super()
 				sprite_index = spr_breakdancesuper;
 		}
 	}
 	mask_index = spr_player_mask;
 	
 	// wallclimbing from grab
-	if IT_FINAL
+	if IT_grab_climbwall()
 	{
 		if ((!grounded && (check_solid(x + hsp, y) || scr_solid_slope(x + hsp, y))
 		&& !check_slope(x, y - 1) && !place_meeting(x + hsp, y, obj_destructibles)) || (grounded && (check_solid(x + sign(hsp), y - 16) || scr_solid_slope(x + sign(hsp), y - 16))
@@ -202,12 +207,12 @@ function scr_player_handstandjump()
 		}
 	}
 	
-	if (state != states.climbwall && scr_solid(x + xscale, y) && !place_meeting(x + sign(hsp), y, obj_destructibles) && (!check_slope(x + sign(hsp), y) || scr_solid_slope(x + sign(hsp), y)))
+	if state != states.climbwall && scr_solid(x + xscale, y) && !place_meeting(x + sign(hsp), y, obj_destructibles) && (!check_slope(x + sign(hsp), y) || scr_solid_slope(x + sign(hsp), y))
 	{
 		var _bump = ledge_bump((vsp >= 0) ? 32 : 22);
-		if (_bump)
+		if _bump
 		{
-			if IT_FINAL or IT_APRIL
+			if !IT_old_grab_bump()
 			{
 				// splat
 				sound_play_3d("event:/sfx/pep/splat", x, y);
@@ -220,20 +225,25 @@ function scr_player_handstandjump()
 			else
 			{
 				// bump
-				
+				sound_play_3d(sfx_bumpwall, x, y);
+				hsp = -2.5 * xscale;
+				vsp = -3;
+				image_index = 0;
+				state = states.bump;
+				instance_create(x + (xscale * 10), y + 10, obj_bumpeffect);
 			}
 		}
 	}
-	if (!instance_exists(obj_slidecloud) && grounded && movespeed > 5)
+	if !instance_exists(obj_slidecloud) && grounded && movespeed > 5
 	{
-		with (instance_create(x, y, obj_slidecloud))
+		with instance_create(x, y, obj_slidecloud)
 			copy_player_scale(other);
 	}
 	image_speed = 0.35;
-	if (state != states.bump && move != xscale && move != 0)
+	if state != states.bump && move != xscale && move != 0
 	{
 		image_index = 0;
-		if (!grounded)
+		if !grounded && IT_grab_cancel()
 		{
 			sound_play_3d("event:/sfx/pep/grabcancel", x, y);
 			sprite_index = spr_suplexcancel;

@@ -6,7 +6,7 @@ else
 if (global.panic || instance_exists(obj_wartimer))
 {
 	image_alpha = 1;
-	if IT_FINAL
+	if IT_collectible_magnet()
 	{
 		if (!gotowardsplayer && distance_to_object(obj_player1) < 25)
 		{

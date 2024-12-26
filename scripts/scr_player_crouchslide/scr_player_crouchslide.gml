@@ -11,14 +11,16 @@ function scr_player_crouchslide()
 	move = key_left + key_right;
 	if (movespeed >= 0 && grounded)
 		movespeed -= 0.2;
-	if (!key_jump2 && jumpstop == 0 && vsp < 0.5 && stompAnim == 0)
+	if (!key_jump2 && !jumpstop && vsp < 0.5 && stompAnim == 0)
 	{
 		vsp /= 20;
 		jumpstop = true;
 	}
+	
 	if ((can_jump && input_buffer_jump > 0) && !scr_solid(x + 27, y - 32) && !scr_solid(x - 27, y - 32) && !scr_solid(x, y - 32) && !scr_solid(x, y - 16))
-	&& !IT_APRIL
+	&& IT_crouchslide_jumpdive()
 	{
+		jumpstop = false;
 		input_buffer_jump = 0;
 		sprite_index = spr_player_jumpdive1;
 		image_index = 0;

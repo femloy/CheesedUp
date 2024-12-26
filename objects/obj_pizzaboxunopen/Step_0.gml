@@ -32,7 +32,7 @@ if place_meeting(x, y, obj_player) && sprite_index != spr_pizzaboxopen
 		with instance_create(x, y, obj_smallnumber)
 			number = "1000";
 		global.collect += 1000;
-		if IT_FINAL
+		if IT_toppin_taunt_effect()
 			instance_create(x, y, obj_taunteffect);
 		with instance_create(x, y - 25, content)
 		{

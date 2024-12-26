@@ -27,18 +27,18 @@ if (instance_exists(baddieID) && _obj_player && !_obj_player.cutscene)
 				sound_play_3d("event:/sfx/enemies/stomp", x, y);
 				image_index = 0;
 				other.baddieID.stompbuffer = 15;
-				if (other.baddieID.object_index != obj_tank)
+				if other.baddieID.object_index != obj_tank
 				{
-					if (x != other.baddieID.x)
+					if x != other.baddieID.x
 						other.baddieID.image_xscale = -sign(other.baddieID.x - x);
 					other.baddieID.hsp = xscale * 5;
-					if (other.baddieID.vsp >= 0 && other.baddieID.grounded or !IT_FINAL)
+					if other.baddieID.vsp >= 0 && other.baddieID.grounded or !IT_baddie_final_bump()
 						other.baddieID.vsp = -5;
 					other.baddieID.state = states.stun;
-					if (other.baddieID.stunned < 100)
+					if other.baddieID.stunned < 100
 						other.baddieID.stunned = 100;
 					
-					if IT_FINAL
+					if IT_baddie_squash()
 					{
 						other.baddieID.xscale = 1.4;
 						other.baddieID.yscale = 0.6;
@@ -97,14 +97,17 @@ if (instance_exists(baddieID) && _obj_player && !_obj_player.cutscene)
 			{
 				swingdingthrow = false;
 				image_index = 0;
-				if (!key_up or !IT_FINAL)
+				if !key_up or !IT_quick_piledriver()
 				{
-					if (movespeed <= 10 or (state == states.punch && movespeed <= 14)) or !IT_FINAL
+					if (movespeed <= 10 or (state == states.punch && movespeed <= 14)) or !IT_final_swing()
 						sprite_index = spr_haulingstart;
 					else
 						sprite_index = spr_swingding;
-					if (!grounded && IT_FINAL)
-						vsp = -6;
+					
+					var hop = IT_vsp_on_grab();
+					if hop != undefined
+						vsp = hop;
+					
 					swingdingendcooldown = 0;
 					state = states.grab;
 					baddiegrabbedID = other.baddieID;
@@ -246,13 +249,13 @@ if (instance_exists(baddieID) && _obj_player && !_obj_player.cutscene)
 			
 			// light touch stun
 			if (instance_exists(other.baddieID) && other.baddieID.bumpable && other.baddieID.object_index != obj_bigcheese
-			&& (!IT_FINAL or (state == states.tumble or state == states.mach2 or state == states.machslide or sprite_index == spr_ratmount_attack or sprite_index == spr_lonegustavodash))
+			&& (!IT_baddie_final_bump() or (state == states.tumble or state == states.mach2 or state == states.machslide or sprite_index == spr_ratmount_attack or sprite_index == spr_lonegustavodash))
 			&& other.baddieID.state != states.punch && other.baddieID.state != states.hit && !pepp_grab && !other.baddieID.thrown && other.baddieID.stuntouchbuffer <= 0 && other.baddieID.state != states.grabbed && other.baddieID.state != states.chainsawbump && other.baddieID.state != states.chainsaw && !other.baddieID.invincible)
 			{
 				var lag = 0;
-				if IT_FINAL
+				if IT_baddie_final_bump()
 				{
-					with (other.baddieID)
+					with other.baddieID
 					{
 						stuntouchbuffer = 15;
 						sound_play_3d("event:/sfx/pep/mach2bump", x, y);
@@ -266,9 +269,9 @@ if (instance_exists(baddieID) && _obj_player && !_obj_player.cutscene)
 					}
 					scr_hitstun_player(lag);
 					global.combotimepause = 15;
-					repeat (2)
+					repeat 2
 					{
-						with (create_debris(x, y, spr_slapstar))
+						with create_debris(x, y, spr_slapstar)
 							vsp = irandom_range(-6, -11);
 					}
 				}

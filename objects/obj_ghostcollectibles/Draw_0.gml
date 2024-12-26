@@ -1,4 +1,4 @@
-if !IT_FINAL
+if !IT_ghost_collectibles()
 	exit;
 
 draw_set_color(c_white);

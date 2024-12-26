@@ -98,7 +98,7 @@ function scr_player_Sjump()
 	else if ((key_attack2 or scr_slapbuffercheck()) && !vigilante && character != "S" && (sprite_index != spr_superspringplayer or SUGARY) && sprite_index != spr_Sjumpcancelstart)
 	{
 		scr_resetslapbuffer();
-		if IT_FINAL or CHAR_POGONOISE
+		if !IT_Sjump_mach3_cancel() or CHAR_POGONOISE
 		{
 			if !CHAR_BASENOISE
 			{
@@ -131,7 +131,7 @@ function scr_player_Sjump()
 				movespeed = 12;
 				sprite_index = spr_playerN_sidewayspin;
 				image_index = 0;
-				with (instance_create(x, y, obj_crazyrunothereffect))
+				with instance_create(x, y, obj_crazyrunothereffect)
 					image_xscale = other.xscale;
 				particle_set_scale(part.jumpdust, xscale, 1);
 				create_particle(x, y, part.jumpdust, 0);

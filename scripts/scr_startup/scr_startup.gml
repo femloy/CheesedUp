@@ -221,6 +221,6 @@ global.secrettile_clip_distance = 150; // distance before we cut off tiles
 global.secrettile_fade_size = 0.85; // distance before we start to fade
 global.secrettile_fade_intensity = 32; // dropoff intensity
 
-#macro heat_nerf (IT_FINAL ? 5 : 1) // divides the style gain by this
-#macro heat_lossdrop (IT_FINAL ? 0.1 : 0.05) // speed of global.style loss
-#macro heat_timedrop (IT_FINAL ? 0.5 : 0.25) // speed of global.heattime countdown
+#macro heat_nerf (IT_heat_nerf() ? 5 : 1) // divides the style gain by this
+#macro heat_lossdrop (IT_heat_nerf() ? 0.1 : 0.05) // speed of global.style loss
+#macro heat_timedrop (IT_heat_nerf() ? 0.5 : 0.25) // speed of global.heattime countdown

@@ -68,7 +68,7 @@ switch state
 		{
 			with obj_camera
 			{
-				var yo = IT_FINAL ? -50 : 0;
+				var yo = IT_camera_yoffset();
 				
 				camx = clamp(other.target.x - CAMW / 2, 0, room_width - CAMW);
 				camy = clamp(other.target.y - CAMH / 2 + yo, 0, room_height - CAMH);

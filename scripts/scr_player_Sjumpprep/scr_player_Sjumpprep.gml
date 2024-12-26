@@ -1,96 +1,97 @@
 function scr_player_Sjumpprep()
 {
-	if !CHAR_POGONOISE
+	if CHAR_POGONOISE
+		return scr_playerN_Sjumpprep();
+	
+	if (sprite_index == spr_superjumppreplight || sprite_index == spr_superjumpright || sprite_index == spr_superjumpleft)
+		move = key_left + key_right;
+	else
+		move = xscale;
+		
+	if (place_meeting(x, y + 1, obj_railparent))
 	{
-		if (sprite_index == spr_superjumppreplight || sprite_index == spr_superjumpright || sprite_index == spr_superjumpleft)
-			move = key_left + key_right;
-		else
-			move = xscale;
+		var _railinst = instance_place(x, y + 1, obj_railparent);
+		railmovespeed = _railinst.movespeed;
+		raildir = _railinst.dir;
+	}
+	hsp = (move * movespeed) + (railmovespeed * raildir);
 		
-		if (place_meeting(x, y + 1, obj_railparent))
+	if (sprite_index == spr_superjumpprep)
+		movespeed = Approach(movespeed, 0, 1);
+		
+	if (floor(image_index) == (image_number - 1) && sprite_index == spr_superjumpprep)
+		sprite_index = spr_superjumppreplight;
+	if (sprite_index == spr_superjumppreplight)
+		movespeed = IT_Sjumpprep_speed();
+		
+	if (sprite_index != spr_superjumpprep)
+	{
+		if (move != 0 && (sprite_index == spr_superjumppreplight || sprite_index == spr_superjumpright || sprite_index == spr_superjumpleft))
 		{
-			var _railinst = instance_place(x, y + 1, obj_railparent);
-			railmovespeed = _railinst.movespeed;
-			raildir = _railinst.dir;
+			if (key_right)
+				sprite_index = xscale == 1 ? spr_superjumpright : spr_superjumpleft;
+			if (-key_left)
+				sprite_index = xscale == 1 ? spr_superjumpleft : spr_superjumpright;
 		}
-		hsp = (move * movespeed) + (railmovespeed * raildir);
-		
-		if (sprite_index == spr_superjumpprep)
-			movespeed = Approach(movespeed, 0, 1);
-		
-		if (floor(image_index) == (image_number - 1) && sprite_index == spr_superjumpprep)
+		else
 			sprite_index = spr_superjumppreplight;
-		if (sprite_index == spr_superjumppreplight)
-			movespeed = IT_FINAL ? 2 : 1;
-		
-		if (sprite_index != spr_superjumpprep)
+	}
+	if (!scr_check_superjump() && (grounded or (!superjumped && check_sugarychar())) && (sprite_index == spr_superjumppreplight || sprite_index == spr_superjumpleft || sprite_index == spr_superjumpright) && !scr_solid(x, y - 16) && !scr_solid(x, y - 32))
+	{
+		with instance_create(x, y, obj_explosioneffect)
+			copy_player_scale(other, true);
+		sprite_index = spr_superjump;
+		state = states.Sjump;
+		vsp = -17;
+		image_index = 0;
+		if (character == "N")
+			scr_fmod_soundeffect(snd_noiseSjumprelease, x, y);
+	}
+	image_speed = 0.35;
+}
+
+function scr_playerN_Sjumpprep()
+{
+	hsp = 0;
+	vsp = 0;
+	if !REMIX
+		pogochargeactive = false;
+	pogocharge = 50;
+	if (floor(image_index) == (image_number - 1))
+	{
+		if (sprite_index == spr_playerN_jetpackstart)
 		{
-			if (move != 0 && (sprite_index == spr_superjumppreplight || sprite_index == spr_superjumpright || sprite_index == spr_superjumpleft))
+			if (pizzapepper == 0)
 			{
-				if (key_right)
-					sprite_index = xscale == 1 ? spr_superjumpright : spr_superjumpleft;
-				if (-key_left)
-					sprite_index = xscale == 1 ? spr_superjumpleft : spr_superjumpright;
+				state = states.mach3;
+				sprite_index = spr_playerN_jetpackboost;
+				instance_create(x, y, obj_jumpdust);
+				movespeed = 15;
 			}
 			else
-				sprite_index = spr_superjumppreplight;
+			{
+				state = states.mach3;
+				sprite_index = spr_crazyrun;
+				instance_create(x, y, obj_jumpdust);
+				movespeed = 21;
+			}
 		}
-		if (!scr_check_superjump() && (grounded or (!superjumped && check_sugarychar())) && (sprite_index == spr_superjumppreplight || sprite_index == spr_superjumpleft || sprite_index == spr_superjumpright) && !scr_solid(x, y - 16) && !scr_solid(x, y - 32))
+		else if (sprite_index == spr_superjumpprep)
 		{
-			with instance_create(x, y, obj_explosioneffect)
-				copy_player_scale(other, true);
+			var sjumpsnd = superjumpsnd;
+			if (character == "N")
+				sjumpsnd = snd_noiseSjump;
+			fmod_event_instance_set_parameter(superjumpsnd, "state", 2, true);
+			instance_create(x, y, obj_explosioneffect);
 			sprite_index = spr_superjump;
 			state = states.Sjump;
-			vsp = -17;
-			image_index = 0;
+			vsp = -15;
 			if (character == "N")
 				scr_fmod_soundeffect(snd_noiseSjumprelease, x, y);
 		}
-		image_speed = 0.35;
 	}
+	if (sprite_index == spr_playerN_jetpackstart)
+		image_speed = 0.5;
 	else
-	{
-		hsp = 0;
-		vsp = 0;
-		if !REMIX
-			pogochargeactive = false;
-		pogocharge = 50;
-		if (floor(image_index) == (image_number - 1))
-		{
-			if (sprite_index == spr_playerN_jetpackstart)
-			{
-				if (pizzapepper == 0)
-				{
-					state = states.mach3;
-					sprite_index = spr_playerN_jetpackboost;
-					instance_create(x, y, obj_jumpdust);
-					movespeed = 15;
-				}
-				else
-				{
-					state = states.mach3;
-					sprite_index = spr_crazyrun;
-					instance_create(x, y, obj_jumpdust);
-					movespeed = 21;
-				}
-			}
-			else if (sprite_index == spr_superjumpprep)
-			{
-				var sjumpsnd = superjumpsnd;
-				if (character == "N")
-					sjumpsnd = snd_noiseSjump;
-				fmod_event_instance_set_parameter(superjumpsnd, "state", 2, true);
-				instance_create(x, y, obj_explosioneffect);
-				sprite_index = spr_superjump;
-				state = states.Sjump;
-				vsp = -15;
-				if (character == "N")
-					scr_fmod_soundeffect(snd_noiseSjumprelease, x, y);
-			}
-		}
-		if (sprite_index == spr_playerN_jetpackstart)
-			image_speed = 0.5;
-		else
-			image_speed = 0.3;
-	}
+		image_speed = 0.3;
 }
