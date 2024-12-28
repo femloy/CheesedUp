@@ -3,12 +3,12 @@ function scr_player_Sjumpprep()
 	if CHAR_POGONOISE
 		return scr_playerN_Sjumpprep();
 	
-	if (sprite_index == spr_superjumppreplight || sprite_index == spr_superjumpright || sprite_index == spr_superjumpleft)
+	if sprite_index == spr_superjumppreplight || sprite_index == spr_superjumpright || sprite_index == spr_superjumpleft
 		move = key_left + key_right;
 	else
 		move = xscale;
 		
-	if (place_meeting(x, y + 1, obj_railparent))
+	if place_meeting(x, y + 1, obj_railparent)
 	{
 		var _railinst = instance_place(x, y + 1, obj_railparent);
 		railmovespeed = _railinst.movespeed;
@@ -17,7 +17,7 @@ function scr_player_Sjumpprep()
 	hsp = (move * movespeed) + (railmovespeed * raildir);
 		
 	if (sprite_index == spr_superjumpprep)
-		movespeed = Approach(movespeed, 0, 1);
+		movespeed = Approach(movespeed, 0, IT_Sjumpprep_deccel());
 		
 	if (floor(image_index) == (image_number - 1) && sprite_index == spr_superjumpprep)
 		sprite_index = spr_superjumppreplight;

@@ -978,13 +978,13 @@ if (object_index == obj_player1)
 		global.style -= heat_lossdrop;
 	
 	// bullet and chainsaw
-	global.bullet = Approach(global.bullet, 3, 0.003);
-	global.fuel = Approach(global.fuel, 3, 0.004);
+	global.bullet = Approach(global.bullet, MAX_BULLETS, 0.003);
+	global.fuel = Approach(global.fuel, MAX_FUEL, 0.004);
 	
 	if string_copy(room_get_name(room), 1, 5) == "tower" && !global.panic
 	{
-		global.bullet = 3;
-		global.fuel = 3;
+		global.bullet = MAX_BULLETS;
+		global.fuel = MAX_FUEL;
 	}
 }
 if (key_jump && !grounded && (state == states.mach2 || state == states.mach3) && (state != (states.climbwall & walljumpbuffer)) <= 0)

@@ -161,6 +161,7 @@ function scr_player_tumble()
 		sprite_index = spr_tumble;
 		movespeed = 14;
 	}
+	
 	if state != states.freefall && ((check_solid(x + xscale, y) || scr_solid_slope(x + xscale, y))
 	&& !place_meeting(x + hsp, y, obj_rollblock) && !place_meeting(x + hsp, y, obj_unbumpablewall)
 	&& (!place_meeting(x + hsp, y, obj_rattumble) || sprite_index != spr_tumble) && !place_meeting(x + hsp, y, obj_destructibles)
@@ -173,16 +174,27 @@ function scr_player_tumble()
 			hsp = 0;
 			movespeed = 0;
 		}
-		if (sprite_index == spr_tumble || sprite_index == spr_tumblestart)
+		
+		if sprite_index == spr_tumble || sprite_index == spr_tumblestart
 		{
-			sound_play_3d("event:/sfx/pep/bumpwall", x, y);
-			state = states.bump;
-			landAnim = false;
 			sprite_index = spr_tumbleend;
 			image_index = 0;
-			hsp = -xscale * 2;
-			vsp = -3;
-			jumpstop = true;
+			
+			if !IT_old_ball_transfo()
+			{
+				sound_play_3d("event:/sfx/pep/bumpwall", x, y);
+				state = states.bump;
+				landAnim = false;
+				hsp = -xscale * 2;
+				vsp = -3;
+				jumpstop = true;
+			}
+			else
+			{
+				hsp = 0;
+		        movespeed = 0;
+		        state = states.bump;
+			}
 		}
 		else if character == "V"// && scr_check_dive()
 		{
@@ -202,6 +214,7 @@ function scr_player_tumble()
 			sprite_index = isgustavo ? spr_lonegustavo_wallsplat : spr_wallsplat;
 		}
 	}
+	
 	if (!key_jump2 && jumpstop == 0 && vsp < 0.5 && stompAnim == 0)
 	{
 		vsp /= 2;

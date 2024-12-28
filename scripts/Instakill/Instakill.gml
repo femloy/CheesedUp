@@ -33,75 +33,103 @@ function scr_instakillcheck()
 
 function Instakill()
 {
-	if state == states.cotton
+	if SUGARY_SPIRE && state == states.cotton
 		other.baddieID.image_blend = 0xFE8AFF;
 	
+	var hx = other.baddieID.x;
+    var hy = other.baddieID.y;
+    
+    if other.baddieID.state == states.hit
+    {
+        hx = other.baddieID.hitX;
+        hy = other.baddieID.hitY;
+    }
+	
 	other.baddieID.grabbedby = 1;
-	if (object_index == obj_player2)
+	if object_index == obj_player2
 		other.baddieID.grabbedby = 2;
-	if (state == states.firemouth)
+	
+	if state == states.firemouth
 	{
-		repeat (8)
+		repeat 8
 		{
-			with (instance_create(other.baddieID.x, other.baddieID.y, obj_firemouthflame))
+			with instance_create(other.baddieID.x, other.baddieID.y, obj_firemouthflame)
 			{
 				hsp = random_range(5, 10);
 				vsp = random_range(5, 10);
 			}
 		}
 	}
-	if (state == states.mach3 && sprite_index != spr_Sjumpcancel && sprite_index != spr_mach3hit && sprite_index != spr_playerN_jetpackboost && sprite_index != spr_playerN_jetpackslide)
+	
+	if state == states.mach3 && sprite_index != spr_Sjumpcancel && sprite_index != spr_mach3hit
+	&& sprite_index != spr_playerN_jetpackboost && sprite_index != spr_playerN_jetpackslide
 	{
-		if (sprite_index != spr_fightball)
+		if sprite_index != spr_fightball
 			sprite_index = spr_mach3hit;
+		
 		image_index = 0;
 	}
-	if (character == "N" && state == states.boxxedpepspin)
+	
+	if character == "N" && state == states.boxxedpepspin
 	{
 		sprite_index = spr_playerN_boxxedhit;
 		image_index = 0;
 	}
-	if (state == states.chainsawbump && sprite_index != spr_chainsawhit)
+	
+	if state == states.chainsawbump && sprite_index != spr_chainsawhit
 	{
 		image_index = 0;
 		sprite_index = spr_chainsawhit;
 	}
+	
 	other.baddieID.invtime = 25;
 	suplexmove = true;
-	if (object_index == obj_player1)
+	
+	if object_index == obj_player1
 		other.baddieID.grabbedby = 1;
 	else
 		other.baddieID.grabbedby = 2;
+	
 	sound_play_3d("event:/sfx/pep/punch", x, y);
-	if (other.baddieID.elite && other.baddieID.object_index != obj_pepperman && other.baddieID.object_index != obj_pizzafaceboss && other.baddieID.object_index != obj_vigilanteboss && other.baddieID.object_index != obj_noiseboss && other.baddieID.object_index != obj_fakepepboss && other.baddieID.object_index != obj_pf_fakepep && other.baddieID.object_index != obj_pizzafaceboss_p3)
+	
+	if other.baddieID.elite && !check_boss(other.baddieID.object_index)
 		other.baddieID.elitehit = 0;
+	
 	other.baddieID.player_instakillmove = true;
-	if (!other.baddieID.important)
+	if !other.baddieID.important
 		global.style += (3 + floor(global.combo / heat_nerf));
-	if (!other.baddieID.elite or other.baddieID.elitehit <= 0)
+	
+	if !other.baddieID.elite or other.baddieID.elitehit <= 0
 		other.baddieID.mach3destroy = true;
-	if (!other.baddieID.killprotection && !global.kungfu && (!other.baddieID.elite or other.baddieID.elitehit <= 0) && !check_boss(other.baddieID.object_index))
+	
+	if !other.baddieID.killprotection && !global.kungfu && (!other.baddieID.elite or other.baddieID.elitehit <= 0)
+	//&& !check_boss(other.baddieID.object_index)
 		other.baddieID.instakilled = true;
-	if (!other.baddieID.important)
+	
+	if !other.baddieID.important
 	{
 		global.combotime = 60;
 		global.heattime = 60;
 	}
+	
 	global.hit += 1;
-	if (!grounded && state != states.ratmountgroundpound && state != states.ratmountpunch && state != states.ratmountpunch && state != states.boxxedpepspin && state != states.freefall && (key_jump2 or input_buffer_jump > 0 or state == states.jetpackjump))
+	
+	if !grounded && state != states.ratmountgroundpound && state != states.ratmountpunch && state != states.ratmountpunch && state != states.boxxedpepspin && state != states.freefall && (key_jump2 or input_buffer_jump > 0 or state == states.jetpackjump)
 	{
 		input_buffer_jump = 0;
 		suplexmove = false;
 		vsp = -11;
 	}
-	if (state == states.boxxedpepspin)
+	
+	if state == states.boxxedpepspin
 	{
-		if (key_jump2)
+		if key_jump2
 			vsp = -10;
 		boxxedpepjump = 10;
 		noisejetpack = 80;
 	}
-	if (character == "M" && state == states.freefall)
+	
+	if character == "M" && state == states.freefall
 	{
 		vsp = -11;
 		state = states.jump;
@@ -109,15 +137,16 @@ function Instakill()
 	}
 	
 	var stored_sprite = sprite_index;
-	if (state == states.handstandjump/* && !key_slap*/)
+	if state == states.handstandjump && ((!key_slap && character != "N") or global.attackstyle == ATTACK_STYLES.shoulderbash)
 	{
 		image_index = random_range(0, image_number - 1);
-		if (grounded)
+		if grounded
 			sprite_index = spr_groundedattack;
 		else
 			sprite_index = spr_ungroundedattack;
 	}
-	if (state == states.chainsawbump && !global.kungfu)
+	
+	if state == states.chainsawbump && !global.kungfu
 	{
 		sprite_index = spr_chainsawhit;
 		image_index = 0;
@@ -137,10 +166,10 @@ function Instakill()
     }
 	
 	var lag = 5;
-	if (other.baddieID.heavy or check_kungfu_state())
+	if check_kungfu_state() or (state == states.handstandjump && global.attackstyle == ATTACK_STYLES.shoulderbash)
 		lag = 10;
-	if state == states.handstandjump
-		lag = 12;
+	if other.baddieID.heavy
+		lag = 15;
 	
 	repeat 3
 	{
@@ -149,11 +178,12 @@ function Instakill()
 	}
 	shake_camera(3, 3 / room_speed);
 	
-	if (state != states.mach2 && state != states.tumble)
+	if state != states.mach2 && state != states.tumble
 	{
-		with (instance_create(other.baddieID.x, other.baddieID.y, obj_parryeffect))
+		with instance_create(other.baddieID.x, other.baddieID.y, obj_parryeffect)
 			sprite_index = spr_kungfueffect;
 	}
+	
 	if IT_april_enemy_throw() or (state == states.handstandjump && !check_boss(other.baddieID.object_index))
 	{
 		if key_up
@@ -178,7 +208,7 @@ function Instakill()
 	else
 	{
 		other.baddieID.hsp = xscale * (movespeed + 2);
-		if (abs(other.baddieID.hsp) < 10)
+		if abs(other.baddieID.hsp) < 10
 			other.baddieID.hsp = xscale * 10;
 		other.baddieID.vsp = -5;
 	}
@@ -186,12 +216,12 @@ function Instakill()
 	if (state == states.machcancel || (state == states.ratmountbounce && character == "N")) && move != 0
     {
         other.baddieID.hsp = movespeed + (sign(movespeed) * 2);
-        if (abs(other.baddieID.hsp) < 10)
+        if abs(other.baddieID.hsp) < 10
         {
-            if (move != 0)
-                other.baddieID.hsp = (move * 10);
+            if move != 0
+                other.baddieID.hsp = move * 10;
             else
-                other.baddieID.hsp = (xscale * 10);
+                other.baddieID.hsp = xscale * 10;
         }
     }
 	

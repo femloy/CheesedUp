@@ -3,10 +3,6 @@ function scr_solid(_x, _y)
 	var old_x = x;
 	var old_y = y;
 	
-	// wall
-	if check_solid(_x, _y)
-		return true;
-	
 	// flip myself
 	x = _x;
 	y = _y;
@@ -14,23 +10,59 @@ function scr_solid(_x, _y)
 	if variable_instance_exists(id, "flip") && flip < 0
 		y = old_y - (_y - old_y);
 	
-	// platform
-	var num = instance_place_list(x, y, obj_platform, global.instancelist, false);
-	if (num > 0)
+	// walls
+	ds_list_clear(global.instancelist);
+	var num = instance_place_list(x, y, obj_solid, global.instancelist, false);
+	
+	var _collided = false;
+	for (var i = 0; i < num; i++)
 	{
-		var _collided = false;
+		var b = ds_list_find_value(global.instancelist, i);
+		if instance_exists(b)
+		{
+			switch b.object_index
+			{
+				default:
+					_collided = true;
+					break;
+			}
+			
+			var par = object_get_parent(b.object_index);
+			if par == obj_destructibles || par == obj_bigdestructibles || par == obj_deadjohnparent || par == obj_destroyable3 || par == obj_destroyable
+			{
+				if !b.collision
+					_collided = false;
+            }
+		}
+		if _collided
+			break;
+	}
+	ds_list_clear(global.instancelist);
+	
+	if _collided
+	{
+		x = old_x;
+		y = old_y;
+		return true;
+	}
+	
+	// platform
+	var _collided = false;
+	var num = instance_place_list(x, y, obj_platform, global.instancelist, false);
+	if num > 0
+	{
 		for (var i = 0; i < num; i++)
 		{
 			var b = ds_list_find_value(global.instancelist, i);
 			if (b.image_yscale > 0 && y > old_y) or (b.image_yscale < 0 && y < old_y)
 			{
-				if (!place_meeting(x, old_y, b) && place_meeting(x, y, b))
+				if !place_meeting(x, old_y, b) && place_meeting(x, y, b)
 					_collided = true;
 			}
 		}
 		ds_list_clear(global.instancelist);
 		
-		if (_collided)
+		if _collided
 		{
 			x = old_x;
 			y = old_y;
@@ -43,7 +75,7 @@ function scr_solid(_x, _y)
 	{
 		var num = instance_place_list(x, y, obj_slope_platform, global.instancelist, false);
 		var _collided = false;
-	
+		
 		for (i = 0; i < num; i++)
 		{
 			b = ds_list_find_value(global.instancelist, i);
@@ -52,7 +84,7 @@ function scr_solid(_x, _y)
 		}
 		ds_list_clear(global.instancelist);
 		
-		if (_collided)
+		if _collided
 		{
 			x = old_x;
 			y = old_y;
@@ -61,7 +93,7 @@ function scr_solid(_x, _y)
 	}
 	
 	// slope
-	if (inside_slope(obj_slope))
+	if inside_slope(obj_slope)
 	{
 		x = old_x;
 		y = old_y;

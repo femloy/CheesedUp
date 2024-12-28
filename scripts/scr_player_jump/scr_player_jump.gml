@@ -341,7 +341,7 @@ function state_player_jump()
 		or (global.shootstyle == SHOOT_STYLES.pistol && key_shoot2)
 			scr_pistolshoot(states.jump);
 		else if key_shoot2
-			scr_perform_move(modmoves.shootattack, states.jump);
+			scr_perform_move(MOD_MOVES.shootattack, states.jump);
 		var pistol = (global.pistol && character != "N");
 		
 		// suplex dash
@@ -408,7 +408,7 @@ function state_player_jump()
 		else if input_buffer_slap > 0 && !suplexmove && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol))
 		{
 			input_buffer_slap = 0;
-			scr_perform_move(modmoves.grabattack, states.jump);
+			scr_perform_move(MOD_MOVES.grabattack, states.jump);
 		}
 	}
 	

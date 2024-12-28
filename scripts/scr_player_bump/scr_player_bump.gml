@@ -13,15 +13,19 @@ function scr_player_bump()
 		
 		var can_end = true;
 		if sprite_index == spr_tumbleend
+		{
 			can_end = !place_meeting(x, y, obj_pepgoblin_kickhitbox);
+			if IT_old_ball_transfo()
+				can_end |= grounded;
+			else if floor(image_index) >= 3 && !grounded
+				image_index = 3;	
+		}
 		
 		if sprite_index == spr_tumbleend && !can_end
 			image_speed = 0;
 		else
 			image_speed = 0.35;
 		
-		if sprite_index == spr_tumbleend && floor(image_index) >= 3 && !grounded
-			image_index = 3;
 		if sprite_index == spr_rockethitwall && grounded && vsp > 0
 			image_index = image_number - 1;
 		
@@ -48,7 +52,7 @@ function scr_player_bump()
 		hsp = 0;
 		vsp = 0;
 		if floor(image_index) == image_number - 1
-			state = isgustavo ? states.ratmount : states.normal;
+			state = states.normal;
 		image_speed = 0.35;
 	}
 	if state == states.normal && isgustavo

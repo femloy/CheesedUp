@@ -155,8 +155,8 @@ function IT_mach1_state()
 }
 function IT_Sjumpprep_speed()
 {
-	// Thank god they did this
-	return IT_FINAL ? 2 : 1;
+	// April build was a little retarded
+	return IT_APRIL ? 1 : 2;
 }
 function IT_old_ball_transfo()
 {
@@ -195,8 +195,8 @@ function IT_updated_noise()
 }
 function IT_blue_afterimage()
 {
-	// Blue afterimages on uppercut and such
-	return IT_FINAL;
+	// The mach afterimages replacing old blue afterimages on uppercut and such
+	return IT_FINAL or global.afterimage == AFTERIMAGES.blue;
 }
 function IT_wallsplat()
 {
@@ -462,4 +462,14 @@ function IT_grab_suplexmove_check()
 {
 	// Can't grab twice in a row
 	return IT_BNF or (SUGARY_SPIRE && character == "SP");
+}
+function IT_Sjump_midair()
+{
+	// Ability to superjump in mid air
+	return IT_BNF or (SUGARY_SPIRE && character == "SP");
+}
+function IT_Sjumpprep_deccel()
+{
+	// There used to be little to no decceleration
+	return IT_BNF ? 0.25 : 1;
 }

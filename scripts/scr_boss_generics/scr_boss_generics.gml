@@ -1,6 +1,9 @@
 function scr_boss_grabbed()
 {
-	if (pizzahead)
+	if is_undefined(self[$ "pizzahead"])
+		pizzahead = false; // failsafe
+	
+	if pizzahead
 	{
 		instance_destroy(obj_peppermanGIANTbowlingball);
 		instance_destroy(obj_peppermanartdude);
@@ -11,30 +14,35 @@ function scr_boss_grabbed()
 		instance_destroy(obj_vigilanteshot);
 		instance_destroy(obj_playerbomb, false);
 	}
+	
 	var playerid = (grabbedby == 1) ? obj_player1.id : obj_player2.id;
-	with (playerid)
+	with playerid
 	{
-		if (state != states.supergrab || baddiegrabbedID != other)
+		if state != states.supergrab || baddiegrabbedID != other
 		{
-			if (other.elitehit <= 1 && other.object_index != obj_pizzafaceboss)
+			if other.elitehit <= 1 && other.object_index != obj_pizzafaceboss
 				other.destroyable = true;
-			if (other.object_index != obj_pepperman || other.elitehit < 5)
+			
+			if other.object_index != obj_pepperman || other.elitehit < 5
 				punchcount = 20 - (other.elitehit * 2);
 			else
 				punchcount = 20;
+			
 			pizzahead = other.pizzahead;
 			subhpshot_max = floor(punchcount / (other.pizzahead_maxsubhp + 1));
 			subhpshot = subhpshot_max;
 			bombbuffer = 0;
 			hiteffect = true;
 			reposition = false;
-			if (!other.pizzahead)
+			
+			if !other.pizzahead
 			{
 				punchcount = 0;
 				hiteffect = false;
 			}
-			else if ((xscale > 0 && x > (room_width - 100)) || (xscale < 0 && x < 100))
+			else if (xscale > 0 && x > (room_width - 100)) || (xscale < 0 && x < 100)
 				reposition = true;
+			
 			supergrabx = other.x - x;
 			supergraby = other.y - y;
 			camzoom = other.camzoom;
@@ -44,15 +52,17 @@ function scr_boss_grabbed()
 			sprite_index = choose(spr_suplexmash1, spr_suplexmash2, spr_suplexmash3, spr_suplexmash4, spr_player_suplexmash5, spr_player_suplexmash6, spr_player_suplexmash7);
 			image_index = sprite_get_number(sprite_index) - 1;
 			other.camzoom = 1;
-			if (character == "N")
+			
+			if character == "N"
 			{
-				if (x != other.x)
+				if x != other.x
 					xscale = sign(other.x - x);
 				else
 					xscale = x < (room_width / 2) ? 1 : -1;
 			}
 		}
 	}
+	
 	image_xscale = -playerid.xscale;
 	sprite_index = grabbedspr;
 	state = states.supergrab;

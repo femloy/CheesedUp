@@ -502,9 +502,47 @@ add_modifier("GravityJump", #8038f0, function(val)
 
 add_modifier("NoiseWorld", #f8e080, function(val)
 {
+	static stickers = [];
+	static time = 0;
+	
+	if --time <= 0
+	{
+		time = room_speed / 2;
+		sound_play("event:/sfx/playerN/titlecard");
+		
+		array_push(stickers,
+		{
+			x: 50,
+			y: random_range(-height / 3, height / 3),
+			image: irandom(sprite_get_number(spr_titlecard_noise)),
+			scale: 2,
+			target_scale: random_range(0.5, 1)
+		});
+	}
+	
+	for(var i = 0; i < array_length(stickers); i++)
+	{
+		with stickers[i]
+		{
+			x -= 3;
+			draw_sprite_ext(spr_titlecard_noise, image, other.width / 2 + x, other.height / 2 + y, target_scale * scale, target_scale * scale, 0, c_white, 1);
+			scale = Approach(scale, 1, 0.25);
+			
+			if x <= -500
+			{
+				array_delete(stickers, i, 1);
+				i--;
+			}
+		}
+	}
+});
+
+add_modifier("PizzaMulti", #E08858, function(val)
+{
 	
 });
 
+/*
 if level != "trickytreat" && global.experimental
 {
 	add_modifier("DoubleTrouble", #f8e080, function(val)
@@ -536,6 +574,7 @@ if level != "trickytreat" && global.experimental
 
 if level != "trickytreat" && global.experimental
 	add_modifier("Hydra", #d08838);
+*/
 
 // Level specific
 if level == "grinch"

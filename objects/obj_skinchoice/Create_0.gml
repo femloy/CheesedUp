@@ -919,14 +919,36 @@ draw = function(curve)
 	#region Hand
 	
 	if handy > 0
-		draw_sprite_ext(spr_skinchoicehand, 0, handx, handy + sin(current_time / 1000) * 4, 2, 2, 0, c_white, 1);
+	{
+		if ++handidle >= room_speed * 5
+		{
+			handimg = 0;
+			handspr = choose(spr_skinchoicehand_idle1, spr_skinchoicehand_idle2);
+			handidle = irandom(room_speed * 2);
+		}
+		
+		if handimg >= sprite_get_number(handspr) - 1
+			handspr = spr_skinchoicehand;
+		
+		handimg += 0.35;
+		
+		var hx = handx + Wave(-1, 1, 3, 0), hy = handy + Wave(-4, 4, 5, 0);
+		reset_blendmode();
+		draw_sprite_ext(handspr, handimg, hx + 2, hy + 2, 2, 2, 0, c_black, .25);
+		draw_sprite_ext(handspr, handimg, hx, hy, 2, 2, 0, c_white, 1);
+	}
 	draw_set_align();
 	shader_reset();
-		
+	
 	#endregion
 }
+
 handx = SCREEN_WIDTH / 2;
 handy = -50;
+handspr = spr_skinchoicehand;
+handidle = 0;
+handimg = 0;
+
 sideoffset = 0;
 skin_tip = 5;
 pageoffset = 0;

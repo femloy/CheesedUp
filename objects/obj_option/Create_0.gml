@@ -224,7 +224,7 @@ var sca = [
 add_option_multiple(window_menu, 4, "option_scaling", sca, function(val)
 {
 	if val == 2
-		tooltip = lstr("option_tooltip_expand"); // Very buggy!
+		tooltip = lstr("option_wip"); // Very buggy!
 	else
 		tooltip = "";
 	

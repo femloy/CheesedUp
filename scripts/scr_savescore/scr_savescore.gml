@@ -38,7 +38,7 @@ function scr_savescore(level)
 		obj_savesystem.ini_str = ini_close();
 	}
 	
-	if global.saveloaded && (!MOD.OldLevels or global.leveltosave == "snickchallenge") && !MOD.DoubleTrouble && !MOD.Hydra && !MOD.EasyMode
+	if global.saveloaded && get_modifier_saving()
 	{
 		trace("[scr_savescore] Saving to: ", get_savefile_ini());
 		

@@ -182,7 +182,7 @@ function scr_player_jetpackjump()
 				with instance_create(x, y, obj_rocketdead)
 					sprite_index = spr_jetpackdebris;
 			}
-			scr_perform_move(modmoves.grabattack, states.jump);
+			scr_perform_move(MOD_MOVES.grabattack, states.jump);
 		}
 	}
 	if (check_solid(x + xscale, y) && !place_meeting(x + xscale, y, obj_destructibles))

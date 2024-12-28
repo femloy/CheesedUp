@@ -172,23 +172,23 @@ function scr_playersounds()
 		&& (state == states.tumble or character != "S")
 		{
 			var pretumble = sprite_index == spr_tumblestart && floor(image_index) < 11;
-			if (!fmod_event_instance_is_playing(tumblesnd))
+			if !fmod_event_instance_is_playing(tumblesnd)
 			{
 				fmod_event_instance_set_parameter(tumblesnd, "state", pretumble ? 3 : 0, true);
 				fmod_event_instance_play(tumblesnd);
 			
-				if (sprite_index == spr_tumblestart)
+				if sprite_index == spr_tumblestart
 					tumbleintro = true;
 			}
 			if sprite_index == spr_tumblestart && !pretumble
 				fmod_event_instance_set_parameter(tumblesnd, "state", 0, true);
-			if (sprite_index == spr_tumble && !tumbleintro)
+			if sprite_index == spr_tumble && !tumbleintro
 				fmod_event_instance_set_parameter(tumblesnd, "state", 1, true);
 			sound_instance_move(tumblesnd, x, y);
 		}
 		else
 		{
-			if (fmod_event_instance_is_playing(tumblesnd))
+			if fmod_event_instance_is_playing(tumblesnd)
 			{
 				fmod_event_instance_set_parameter(tumblesnd, "state", 2, true);
 				sound_instance_move(tumblesnd, x, y);
@@ -218,7 +218,7 @@ function scr_playersounds()
 					fmod_event_instance_play(tumblesnd);
 				sound_instance_move(tumblesnd, x, y);
 			}
-			else if fmod_event_instance_is_playing(tumblesnd) && state != states.tumble
+			else if fmod_event_instance_is_playing(tumblesnd) && state != states.tumble && sprite_index != spr_tumbleend
 				fmod_event_instance_stop(tumblesnd, true);
 		}
 	

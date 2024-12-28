@@ -1,9 +1,13 @@
-enum modmoves
+#macro MAX_BULLETS 3
+#macro MAX_FUEL 3
+
+enum MOD_MOVES
 {
 	grabattack,
 	doublegrab,
 	shootattack
 }
+
 function scr_perform_move(move, prestate = state)
 {
 	var attackstyle = global.attackstyle;
@@ -23,7 +27,7 @@ function scr_perform_move(move, prestate = state)
 	//if attackstyle == ATTACK_STYLES.lunge && instance_exists(obj_bosscontroller)
 	//	attackstyle = ATTACK_STYLES.grab;
 	
-	if move == modmoves.grabattack
+	if move == MOD_MOVES.grabattack
 	{
 		switch attackstyle
 		{
@@ -124,7 +128,7 @@ function scr_perform_move(move, prestate = state)
 				break;
 		}
 	}
-	if move == modmoves.doublegrab
+	if move == MOD_MOVES.doublegrab
 	{
 		switch doublegrab
 		{
@@ -242,7 +246,7 @@ function scr_perform_move(move, prestate = state)
 				break;
 		}
 	}
-	if move == modmoves.shootattack
+	if move == MOD_MOVES.shootattack
 	{
 		switch shootstyle
 		{

@@ -210,7 +210,7 @@ switch menu
 			
 			var icon = 0;
 			if this == -1
-				icon = 24;
+				icon = sprite_get_number(spr_modifier_icons) - 1;
 			else
 				icon = options_array[this].icon;
 			

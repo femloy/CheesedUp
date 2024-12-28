@@ -1,4 +1,4 @@
- globalvar MOD;
+globalvar MOD;
 global.modifier_failed = false;
 
 function reset_modifier()
@@ -27,6 +27,7 @@ function reset_modifier()
 		SuddenDeath: false,
 		Golf: false,
 		NoiseWorld: false,
+		PizzaMulti: false,
 		
 		// CTOP
 		CTOPLaps: false,
@@ -286,7 +287,7 @@ function pre_player_modifiers()
 		
 				#endregion
 				#region FARM
-		
+				
 				case farm_6:
 					with obj_gerome {if !in_saveroom() {instance_destroy(); with instance_create(x, y, obj_bigcollect) {ID = other.id}}}
 					break;
@@ -735,7 +736,8 @@ function post_player_modifiers()
 function scr_modifier_fill()
 {
 	if MOD.NoiseWorld
-		global.fill *= 2;
+		global.fill *= 1.5;
+	global.fill = floor(global.fill);
 }
 
 function get_modifier_icon(modifier)
@@ -764,5 +766,64 @@ function get_modifier_icon(modifier)
 		case "Ordered": return 20;
 		case "TaxMode": return 21;
 		case "SecretInclude": return 22;
+		case "NoiseWorld": return 24;
+		case "PizzaMulti": return 25;
 	}
+}
+
+function destroy_modifier_hook()
+{
+	if MOD.PizzaMulti
+	{
+		var objects =
+		[
+			obj_collect,
+			obj_bigcollect,
+			obj_destructibles,
+			obj_metalblock,
+			obj_baddie,
+			obj_pizzaboxunopen,
+			obj_ratblock,
+		];
+		
+		while array_length(objects)
+		{
+			if check_boss(object_index)
+				break;
+			
+			var o = array_pop(objects);
+			if object_index == o or object_is_ancestor(object_index, o)
+			{
+				var p = instance_nearest(x, y, obj_player);
+				var wd = abs(bbox_right - bbox_left);
+				
+				if o == obj_baddie
+					wd = 0;
+				else if o == obj_pizzaboxunopen
+					wd = 48;
+				
+				with instance_create(x + wd * p.xscale, y, object_index)
+				{
+					depth = other.depth;
+					if o == obj_baddie
+					{
+						hsp = other.hithsp;
+						vsp = other.hitvsp;
+						stunned = 200;
+						state = states.stun;
+					}
+					if o == obj_pizzaboxunopen
+						content = other.content;
+				}
+				break;
+			}
+		}
+	}
+}
+
+function get_modifier_saving()
+{
+	return (!MOD.OldLevels or global.leveltosave == "snickchallenge")
+		&& !MOD.DoubleTrouble && !MOD.Hydra && !MOD.EasyMode
+		&& !MOD.PizzaMulti;
 }

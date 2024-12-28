@@ -300,7 +300,7 @@ function scr_player_mach3()
 				wallspeed = IT_mach3_climbwall_speed();
 				grabclimbbuffer = 0;
 				
-				if movespeed >= 1
+				if IT_climbwall_transfer_speed() && movespeed >= 1
 					movespeed = wallspeed;
 				
 				state = states.climbwall;
@@ -339,7 +339,7 @@ function scr_player_mach3()
 				or (global.shootstyle == SHOOT_STYLES.pistol && key_shoot2)
 					scr_pistolshoot(states.mach3);
 				else if key_shoot2
-					scr_perform_move(modmoves.shootattack, states.mach3);
+					scr_perform_move(MOD_MOVES.shootattack, states.mach3);
 			}
 			var pistol = (global.pistol && character != "N");
 			
@@ -400,7 +400,7 @@ function scr_player_mach3()
 			else if input_buffer_slap > 0 && !suplexmove && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol))
 			{
 				input_buffer_slap = 0;
-				scr_perform_move(modmoves.grabattack, states.mach3);
+				scr_perform_move(MOD_MOVES.grabattack, states.mach3);
 			}
 		}
 		
@@ -462,7 +462,7 @@ function scr_player_mach3()
 			scr_vigi_shoot();
 			scr_vigi_throw();
 		}
-		if (scr_check_superjump() && fightball == 0 && state == states.mach3 && character != "V" && (grounded or (SUGARY_SPIRE && character == "SP")) && vsp > 0 && sprite_index != spr_dashpadmach && !place_meeting(x, y, obj_dashpad))
+		if (scr_check_superjump() && fightball == 0 && state == states.mach3 && character != "V" && (grounded or IT_Sjump_midair()) && vsp > 0 && sprite_index != spr_dashpadmach && !place_meeting(x, y, obj_dashpad))
 		{
 			sprite_index = spr_superjumpprep;
 			state = states.Sjumpprep;

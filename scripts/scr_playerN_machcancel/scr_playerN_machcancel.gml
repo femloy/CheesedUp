@@ -226,7 +226,7 @@ function scr_noise_machcancel_grab()
 		
 		if move != 0
 			xscale = move;
-		scr_perform_move(modmoves.shootattack, state);
+		scr_perform_move(MOD_MOVES.shootattack, state);
 		
 		if state != s
 			return true;

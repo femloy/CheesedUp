@@ -315,7 +315,7 @@ function scr_player_punch()
 		if (_kungfuground or _kungfuair) && input_buffer_slap > 0
 		{
 			input_buffer_slap = 0;
-			scr_perform_move(modmoves.doublegrab, states.punch);
+			scr_perform_move(MOD_MOVES.doublegrab, states.punch);
 			exit;
 		}
 		

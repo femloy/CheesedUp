@@ -14,9 +14,9 @@ function scr_player_Sjump()
 	superjumped = true;
 	
 	var vigilante = character == "V" && substate != states.Sjump;
-	if (sprite_index == spr_superjump)
+	if sprite_index == spr_superjump
 	{
-		if (steppybuffer > 0)
+		if steppybuffer > 0
 			steppybuffer--;
 		else
 		{
@@ -25,23 +25,23 @@ function scr_player_Sjump()
 		}
 		if global.afterimage == AFTERIMAGES.blue
 		{
-			if (punch_afterimage > 0 && REMIX)
+			if punch_afterimage > 0 && REMIX
 				punch_afterimage--;
 			else
 			{
 				punch_afterimage = 5;
-				with (create_blue_afterimage(x, y, sprite_index, image_index, xscale))
+				with create_blue_afterimage(x, y, sprite_index, image_index, xscale)
 		        {
 		            playerid = other.id;
 		            maxmovespeed = 6;
 		        }
 			}
 		}
-		if (piledrivereffect > 0)
+		if piledrivereffect > 0
 			piledrivereffect--;
 		else
 		{
-			with (instance_create(x, y, obj_parryeffect))
+			with instance_create(x, y, obj_parryeffect)
 			{
 				sprite_index = spr_piledrivereffect;
 				image_yscale = -1;

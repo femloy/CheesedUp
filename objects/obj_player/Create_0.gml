@@ -612,6 +612,7 @@ taunttimer = 20;
 tauntstoredvsp = 0;
 tauntstoredhsp = 0;
 tauntstoredisgustavo = false;
+tauntstoredratmount_movespeed = 0;
 tube_id = -1;
 backtohubstartx = x;
 backtohubstarty = y;

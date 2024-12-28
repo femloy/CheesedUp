@@ -86,7 +86,7 @@ function scr_pizzano_twirl()
 	or (global.shootstyle == SHOOT_STYLES.pistol && key_shoot2)
 		scr_pistolshoot(states.mach2);
 	else if key_shoot2
-		scr_perform_move(modmoves.shootattack, states.mach2);
+		scr_perform_move(MOD_MOVES.shootattack, states.mach2);
 	
 	if scr_slapbuffercheck() && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol))
 	{
@@ -140,7 +140,7 @@ function scr_pizzano_twirl()
 		else
 		{
 			input_buffer_slap = 0;
-			scr_perform_move(modmoves.grabattack, states.twirl);
+			scr_perform_move(MOD_MOVES.grabattack, states.twirl);
 		}
 	}
 	

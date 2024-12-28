@@ -80,6 +80,20 @@ function scr_debugdraw()
 	str += $"Combo: {global.combo}\n";
 	str += $"Combo time: {floor(global.combotime)}\n";
 	
+	// pistol and chainsaw
+	if global.shootstyle == SHOOT_STYLES.pistol
+	{
+		str += $"Bullets: {floor(global.bullet)}/{MAX_BULLETS}\n";
+		if global.bullet < MAX_BULLETS
+			str += $"Next bullet: {floor(frac(global.bullet) * 100)}%\n";
+	}
+	if global.doublegrab == DOUBLE_STYLES.chainsaw
+	{
+		str += $"Fuel: {floor(global.fuel)}/{MAX_FUEL}\n";
+		if global.fuel < MAX_FUEL
+			str += $"Next fuel: {floor(frac(global.fuel) * 100)}%\n";
+	}
+	
 	// time
 	if (global.panic or global.snickchallenge) && !global.timeattack
 	{

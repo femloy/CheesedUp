@@ -149,7 +149,8 @@ function scr_player_mach2()
 		var _climb = true;
 		if CHAR_BASENOISE
 			_climb = ledge_bump(32, abs(hsp) + 1);
-		if (_climb)
+		
+		if _climb
 		{
 			if REMIX
 			{
@@ -164,32 +165,37 @@ function scr_player_mach2()
 				hsp = 0;
 			}
 			
-			wallspeed = movespeed;
+			wallspeed = max(movespeed, 1);
 			grabclimbbuffer = 0;
-			if (movespeed < 1)
-				wallspeed = 1;
-			else
+			
+			if IT_climbwall_transfer_speed() && movespeed >= 1
 				movespeed = wallspeed;
+			
 			state = states.climbwall;
+			
 			if REMIX
 				vsp = -wallspeed;
 		}
 	}
+	
+	/*
 	if (!grounded && place_meeting(x + sign(hsp), y, obj_climbablewall) && !place_meeting(x + sign(hsp), y, obj_destructibles))
 	{
 		var _climb = true;
 		if CHAR_BASENOISE
 			_climb = ledge_bump(32, abs(hsp) + 1);
-		if (_climb)
+		if _climb
 		{
 			wallspeed = movespeed;
 			grabclimbbuffer = 0;
 			state = states.climbwall;
 		}
 	}
-	if (!instance_exists(dashcloudid) && grounded)
+	*/
+	
+	if !instance_exists(dashcloudid) && grounded
 	{
-		with (instance_create(x, y, obj_dashcloud))
+		with instance_create(x, y, obj_dashcloud)
 		{
 			copy_player_scale(other);
 			other.dashcloudid = id;
@@ -312,7 +318,7 @@ function scr_player_mach2()
 			or (global.shootstyle == SHOOT_STYLES.pistol && key_shoot2)
 				scr_pistolshoot(states.mach2);
 			else if key_shoot2
-				scr_perform_move(modmoves.shootattack, states.mach2);
+				scr_perform_move(MOD_MOVES.shootattack, states.mach2);
 		}
 		var pistol = (global.pistol && character != "N");
 		
@@ -372,7 +378,7 @@ function scr_player_mach2()
 		else if input_buffer_slap > 0 && !skateboarding && !suplexmove && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol))
 		{
 			input_buffer_slap = 0;
-			scr_perform_move(modmoves.grabattack, states.mach2);
+			scr_perform_move(MOD_MOVES.grabattack, states.mach2);
 		}
 	}
 	

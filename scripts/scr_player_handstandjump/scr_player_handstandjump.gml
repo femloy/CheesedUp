@@ -77,7 +77,7 @@ function scr_player_handstandjump()
 		input_buffer_grab = 0;
 		input_buffer_slap = 0;
 		
-		scr_perform_move(modmoves.doublegrab, states.handstandjump);
+		scr_perform_move(MOD_MOVES.doublegrab, states.handstandjump);
 	}
 	
 	if (!key_jump2 && jumpstop == 0 && vsp < 0.5 && stompAnim == 0)

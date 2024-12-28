@@ -71,16 +71,15 @@ else if game.character == "N" && (sprite_index == selectedspr or sprite_index ==
 	
 	var pal = game.palette;
 	var tex = game.palettetexture;
+	
 	pattern_set(scr_color_array("N"), spr, image_index, image_xscale, image_yscale, tex);
 	pal_swap_set(spr_noisepalette, pal, false);
 	draw_sprite(spr, image_index, x, y);
-	pattern_reset();
-	shader_reset();
+	pal_swap_reset();
 }
 else
 {
-	shader_set(global.Pal_Shader);
 	pal_swap_set(spr_menutv_palette, tvpal, false);
 	draw_self();
-	shader_reset();
+	pal_swap_reset();
 }

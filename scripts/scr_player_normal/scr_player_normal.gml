@@ -434,7 +434,7 @@ function state_player_normal()
 		or (global.shootstyle == SHOOT_STYLES.pistol && key_shoot2)
 			scr_pistolshoot(states.normal);
 		else if key_shoot2
-			scr_perform_move(modmoves.shootattack, states.normal);
+			scr_perform_move(MOD_MOVES.shootattack, states.normal);
 		
 		var _pistol = (global.pistol && character != "N");
 		
@@ -516,7 +516,7 @@ function state_player_normal()
 		else if input_buffer_slap > 0 && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol))
 		{
 			input_buffer_slap = 0;
-			scr_perform_move(modmoves.grabattack, states.normal);
+			scr_perform_move(MOD_MOVES.grabattack, states.normal);
 		}
 	}
 	

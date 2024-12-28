@@ -39,7 +39,7 @@ option_unfocus_pause = "UNFOCUSED PAUSE"
 option_active = "ACTIVE"
 option_opacity = "OPACITY"
 option_reboot = "REBOOT TO SAVE AND APPLY CHANGES"
-option_tooltip_expand = "(WIP.)"
+option_wip = "(WIP.)"
 
 # ----------
 # MISC TEXT
@@ -298,14 +298,15 @@ mod_title_snickeasy = "No Snick"
 mod_title_ctoplaps = "Lappable"
 mod_title_ordered = "In Order"
 mod_title_secretinclude = "Extra Secrets"
-mod_title_panic = "Panic"
 mod_title_greendemon = "Green Demon"
 mod_title_hydra = "Hydra"
 mod_title_golf = "GOLF"
 mod_title_cosmicclones = "Cosmic Clone"
 mod_title_suddendeath = "Sudden Death"
+mod_title_noiseworld = "Noise World"
+mod_title_pizzamulti = "Pizza Multi"
 
-mod_desc_ok = "Start the level."
+mod_desc_ok = "Start the level!"
 mod_desc_encore = "Remixes the level to make it harder."
 mod_desc_oldlevels = "A more accurate Snick's Challenge, using level design closer to the SAGE 2019 demo."
 mod_desc_notoppings = "Makes all toppings, clocks and bells DEADLY!"
@@ -323,12 +324,13 @@ mod_desc_snickeasy = "More of a World 1 timed challenge without that bastard fol
 mod_desc_ctoplaps = "Adds a lap portal to CTOP. Lap 2 will give you 2 extra minutes."
 mod_desc_ordered = "Introduces every secret in proper level order, instead of being randomized."
 mod_desc_secretinclude = "Includes all the current modded secrets."
-mod_desc_panic = "It's Pizza Time! (DEBUG ONLY)"
 mod_desc_greendemon = "Avoid a deadly 1-up throughout the entire level!"
 mod_desc_hydra = "Cut off a head, two more will take its place."
 mod_desc_golf = "Use your cursor to... move."
 mod_desc_cosmicclones = "Run faster than your own shadow."
 mod_desc_suddendeath = "Getting hurt or hitting walls will kill you!"
+mod_desc_noiseworld = "Fills the level with giant stickers!"
+mod_desc_pizzamulti = "Let the softlocks begin."
 
 # ---------------
 # WINDOW CAPTIONS

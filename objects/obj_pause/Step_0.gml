@@ -118,7 +118,7 @@ if (!pause && instance_exists(obj_player1) && alarm[3] == -1 && (obj_player1.key
 					array_push(pause_menu, "pause_achievements");
 			}
 			
-			array_push(pause_menu, checkpoint ? "pause_restart" : "pause_exit");
+			array_push(pause_menu, "pause_exit");
 		}
 		else
 			array_push(pause_menu, room == editor_entrance ? "pause_exit_menu" : "pause_exit_title");

@@ -55,11 +55,11 @@ function stringify(value, include_quotes = false, detailed = 1, __recursion = []
 		
 		case "ref":
 			var type = string_split(value, " ")[1];
+			if real(value) < 0
+				return "none";
 			switch type
 			{
 				case "sprite":
-					if real(value) < 0
-						return "none";
 					if !sprite_exists(value)
 						return $"(DEAD) Sprite {real(value)}";
 					var result = $"{sprite_get_name(value)} (Sprite {real(value)})";

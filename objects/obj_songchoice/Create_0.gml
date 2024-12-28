@@ -2,7 +2,8 @@ live_auto_call;
 event_inherited();
 
 // init
-sel = {
+sel =
+{
 	game: 0,
 	song: 0
 };
@@ -190,6 +191,8 @@ with new JukeboxSection("Cheesed Up!", 2)
 	
 	add_multisong("event:/soundtest/pto/serverlist", "Welcome Back - Lila",
 		"event:/soundtest/pto/serverlistchristmas", "Welcome Back (Jolly) - Lila");
+	
+	add_separator();
 	
 	add_song("event:/soundtest/pto/editor", "Choosing The Toppings - MrSauceman");
 	add_song("event:/soundtest/pto/quintessence", "Quintessence - ClascyJitto");

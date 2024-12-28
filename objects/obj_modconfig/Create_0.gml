@@ -32,10 +32,12 @@ back_hide_y = 0;
 
 reset_simuplayer = function()
 {
-	particles = [
+	particles =
+	[
 	
 	];
-	simuplayer = {
+	simuplayer =
+	{
 		x: preview_width / 2, y: preview_height / 1.5, state: states.normal, hsp: 0, vsp: 0, sprite: spr_player_idle, image: 0, xscale: 1, timer: 0, move: 0, changed: false, angle: 0
 	}
 };
@@ -460,10 +462,17 @@ with new ModSection("gameplay", 0)
 		if val == ITERATIONS.APRIL
 			draw_sprite_ext(spr_player_mach2jump, super.image_index, width / 2, height / 2, 1, 1, 0, c_white, 1);
 		if val == ITERATIONS.BNF
+		{
 			draw_sprite_ext(spr_player_suplexgrabjump, super.image_index, width / 2 - 15, height / 2, 1, 1, 0, c_white, 1);
+			
+			tdp_draw_set_font(lfnt("font_small"));
+			tdp_draw_set_align(fa_center);
+			tdp_draw_text(width / 2, height / 2 + 50, lstr("option_wip"));
+			tdp_text_commit(0, 0, width, height);
+		}
 	});
 	opt.opts = [
-		//["old", ITERATIONS.BNF],
+		["bnf", ITERATIONS.BNF],
 		["april", ITERATIONS.APRIL],
 		["final", ITERATIONS.FINAL],
 	]
@@ -1711,9 +1720,63 @@ with new ModSection("visual", 2)
 	
 	var opt = add_option("taskpausestyle", function(val)
 	{
+		static cursor_x = -50, cursor_y = 0;
+		static update_cursor = false
 		
+		if val != TASK_PAUSE_STYLES.show
+		{
+			cursor_x = lerp(cursor_x, -50, 0.05);
+			cursor_y = lerp(cursor_y, 0, 0.1);
+		}
+		
+		draw_set_colour(c_white);
+		draw_set_alpha(.5);
+		draw_rectangle(0, 0, width, height, false);
+		draw_set_alpha(1);
+		
+		draw_set_font(lfnt("bigfont"));
+		draw_set_colour(c_white);
+		
+		var yy = height / 2;
+		var pad = string_height(lang_get_value("default_letter")) + 8;
+		
+		var options = ["pause_resume", "pause_options", "pause_restart"];
+		if val != TASK_PAUSE_STYLES.hide
+			array_push(options, "pause_achievements");
+		array_push(options, "pause_exit");
+		
+		var len = array_length(options);
+		yy -= (len - 1) * (pad / 2);
+		yy -= pad;
+		
+		tdp_draw_set_align(fa_center, fa_middle);
+		for(var i = 0; i < len; i++)
+		{
+			var t = lstr(options[i]);
+			if options[i] == "pause_achievements" && val == TASK_PAUSE_STYLES.show
+			{
+				var cx = floor((width / 2) - (string_width(t) / 2) - 45);
+				
+				cursor_x = lerp(cursor_x, cx, 0.05);
+				cursor_y = lerp(cursor_y, yy, 0.1);
+				
+				draw_set_color(c_white);
+			}
+			else
+				draw_set_color(c_gray);
+			
+			tdp_draw_text(width / 2, yy, t);
+			yy += pad;
+		}
+		
+		draw_sprite(is_holiday(holiday.halloween) ? spr_noisedevil : spr_pizzaangel, super.image_index, cursor_x, cursor_y);
+		tdp_text_commit(0, 0, width, height);
+		
+		return false;
 	}, true);
-	opt.opts = [
+	
+	opt.opts =
+	[
 		["hide", TASK_PAUSE_STYLES.hide],
 		["hide_on_completion", TASK_PAUSE_STYLES.hide_on_completion],
 		["show", TASK_PAUSE_STYLES.show]

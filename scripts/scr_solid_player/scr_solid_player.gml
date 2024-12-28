@@ -33,13 +33,20 @@ function scr_solid_player(_x, _y)
 				
 				default:
 					_collided = true;
+					break;
 			}
 			
 			var par = object_get_parent(b.object_index);
-			if (state == states.freefall || state == states.ratmountbounce || state == states.ratmountgroundpound) && vsp >= 0 && (par == obj_destructibles || par == obj_bigdestructibles || par == obj_deadjohnparent || par == obj_destroyable3 || par == obj_destroyable)
-            {
-                _collided = false;
-                instance_destroy(b);
+			if par == obj_destructibles || par == obj_bigdestructibles || par == obj_deadjohnparent || par == obj_destroyable3 || par == obj_destroyable
+			{
+				if vsp >= 0 && (state == states.freefall || state == states.ratmountbounce || state == states.ratmountgroundpound)
+				{
+	                _collided = false;
+	                instance_destroy(b);
+					continue;
+				}
+				if !b.collision
+					_collided = false;
             }
 		}
 		if _collided

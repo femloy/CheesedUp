@@ -230,3 +230,5 @@ if SUGARY_SPIRE
 // wait for button
 do_wait = !(SUGARY_SPIRE && sugary) && (global.timeattack or global.sandbox);
 continue_state = 0;
+
+instance_destroy(obj_noisestickerblock);

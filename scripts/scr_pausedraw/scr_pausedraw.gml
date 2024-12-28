@@ -34,6 +34,7 @@ function scr_pausedraw()
 			var len = array_length(pause_menu);
 			var wh = (h * len) + (pad * (len - 1));
 			var yy = (SCREEN_HEIGHT / 2) - (wh / 2);
+			
 			var iconspr = spr_pizzaangel;
 			if (is_holiday(holiday.halloween))
 				iconspr = spr_noisedevil;
