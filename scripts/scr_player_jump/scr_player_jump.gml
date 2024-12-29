@@ -346,7 +346,7 @@ function state_player_jump()
 		
 		// suplex dash
 		var allow_uppercut = IT_allow_uppercut();
-		if (input_buffer_grab > 0 && (!key_up or allow_uppercut) && sprite_index != spr_suplexbump && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol)) && (!suplexmove or !IT_grab_suplexmove_check()))
+		if (input_buffer_grab > 0 && (!key_up or !allow_uppercut) && sprite_index != spr_suplexbump && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol)) && (!suplexmove or !IT_grab_suplexmove_check()))
 		{
 			input_buffer_slap = 0;
 			input_buffer_grab = 0;

@@ -27,10 +27,8 @@ function scr_modding_init()
 	live_variable_add("REMIX*", function() { return REMIX; });
 	live_variable_add("SCREEN_WIDTH*", function() { return SCREEN_WIDTH; });
 	live_variable_add("SCREEN_HEIGHT*", function() { return SCREEN_HEIGHT; });
-	live_variable_add("SCREEN_X*", function() { return SCREEN_X; });
-	live_variable_add("SCREEN_Y*", function() { return SCREEN_Y; });
-	live_variable_add("SCREEN_WIDTH*", function() { return SCREEN_WIDTH; });
-	live_variable_add("SCREEN_HEIGHT*", function() { return SCREEN_HEIGHT; });
+	//live_variable_add("SCREEN_X*", function() { return SCREEN_X; });
+	//live_variable_add("SCREEN_Y*", function() { return SCREEN_Y; });
 	
 	live_function_add("sprite_add(fname, imgnumb, removeback, smooth, xorig, yorig)", function(fname, imgnumb, removeback, smooth, xorig, yorig)
 	{

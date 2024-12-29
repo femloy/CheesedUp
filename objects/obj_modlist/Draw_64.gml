@@ -11,13 +11,13 @@ var get_y = function(pos)
 }
 scroll = lerp(scroll, get_y(sel), 0.1);
 
-var xx = 64;
+var xx = 72;
 var base_y = SCREEN_HEIGHT / 2 - 32;
 
 var c = -1 == sel ? c_white : c_gray;
 
 draw_set_font(lfnt("bigfont"));
-tdp_draw_text_color(42, base_y - 64 - scroll, lstr("option_back"), c, c, c, c, 1);
+tdp_draw_text_color(50, base_y - 64 - scroll, lstr("option_back"), c, c, c, c, 1);
 tdp_text_commit();
 
 draw_set_font(global.bigfont);
