@@ -902,7 +902,6 @@
     {"$GMIncludedFile":"","%Name":"init.gml","CopyToMask":-1,"filePath":"datafiles/mods/example","name":"init.gml","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"english.txt","CopyToMask":-1,"filePath":"datafiles/mods/example/lang","name":"english.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"mod.json","CopyToMask":-1,"filePath":"datafiles/mods/example","name":"mod.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"create.gml","CopyToMask":-1,"filePath":"datafiles/mods/example/objects/obj_custom_mod_controller","name":"create.gml","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"create.gml","CopyToMask":-1,"filePath":"datafiles/mods/example/objects/obj_example_controller","name":"create.gml","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"endstep.gml","CopyToMask":-1,"filePath":"datafiles/mods/example/objects/obj_example_controller","name":"endstep.gml","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"saveData.ini","CopyToMask":-1,"filePath":"datafiles/mods/example","name":"saveData.ini","resourceType":"GMIncludedFile","resourceVersion":"2.0",},

@@ -1,39 +1,40 @@
-PIZZA TOWER CHEESED UP
-CREDITS (WIP)
-
-
+PIZZA TOWER CHEESED UP (WIP)
+	CREDITS
 
 - Programmers -
-Lila
+	Lila
 
 - Spriters -
-Red
-Carrot
+	Red
+	Carrot
 
 - Music/SFX -
-Lila
+	Lila
 
 - Other Mod Content -
-Pizza Tower Online
-Various Lap 3 mods
-C.A.T.W.E.B.S (Recreation)
+	Pizza Tower Online
+	Various Lap 3 mods
+	C.A.T.W.E.B.S (Recreation)
 
 - Contributions -
-Tictorian - A lot of sprites
-Red - Missing base game room names
-The Discord - Palettes, cosmetics and suggestions
-Ven - A couple of sprites
+	Red - Missing base game room names
+	Tictorian - A lot of sprites
+	Ven - A couple of sprites
+	Travelbot - Some Gustavo sprites
+	ReubenUT - Mort idle TV
+	Duuzy - A couple of patterns
+	The Discord - Cosmetics & suggestions
 
 - Spanish Translation -
-Lila - Translation
-Red - Spriting
+	Lila - Translation
+	Red - Spriting
 
 - Extensions Used -
-GMLive - YellowAfterLife
-Gameframe - YellowAfterLife
-sprite_add_gif - YellowAfterLife
-url_encode - YellowAfterLife
-NekoPresence - nkrapivin
+	GMLive - YellowAfterLife
+	Gameframe - YellowAfterLife
+	sprite_add_gif - YellowAfterLife
+	url_encode - YellowAfterLife
+	NekoPresence - nkrapivin
 
 - Special Thanks -
-You, for checking out the mod.
+	You, for checking out the mod.
