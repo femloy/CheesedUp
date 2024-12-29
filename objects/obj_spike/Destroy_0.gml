@@ -1,6 +1,3 @@
-if room == custom_lvl_room
-	tile_layer_delete_at(1, x, y);
-
 if !in_saveroom()
 {
 	for (var xx = bbox_left; xx < bbox_right; xx += 32)

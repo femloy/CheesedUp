@@ -16,7 +16,7 @@ while !is_undefined(key)
 	var s =
 	{
 		lang: key,
-		name: lang_get_value_raw(key, "display_name"),
+		name: lang_get_value_raw(key, "display_name") ?? "UNKNOWN",
 		spr_name: noone,
 		sprite: spr_lang_missing,
 		locked: false

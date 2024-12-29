@@ -43,12 +43,14 @@ tooltip_alpha = 0;
 scroll = 0;
 darken_bg = false;
 
+bg_alpha_modlist = 0;
+
 pause_icons = array_create(0);
 scr_pauseicon_add(spr_pauseicons, 4);
 scr_pauseicon_add(spr_pauseicons, 5);
 scr_pauseicon_add(spr_pauseicons, 6);
 scr_pauseicon_add(spr_pauseicons, 7, 8, 8);
-scr_pauseicon_add(spr_pauseicons, 9, 0, 16);
+scr_pauseicon_add(spr_pauseicons, 9, 0, 4);
 
 #region categories
 
@@ -76,11 +78,22 @@ add_option_press(categories, 3, "option_controls", function()
 
 if !global.goodmode
 {
-	add_option_press(categories, 4, "option_modded", function()
+	if scr_modding_is_standalone()
 	{
-		obj_option.key_jump = false;
-		instance_create_unique(0, 0, obj_modconfig);
-	});
+		add_option_press(categories, 4, "option_modded", function()
+		{
+			obj_option.key_jump = false;
+			instance_create_unique(0, 0, obj_modconfig);
+		});
+	}
+	else
+	{
+		add_option_press(categories, 4, "option_mods", function()
+		{
+			obj_option.key_jump = false;
+			instance_create_unique(0, 0, obj_modlist);
+		});
+	}
 }
 array_push(menus, categories);
 

@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_hooks",
   "parent":{
-    "name":"CheesyPizza",
-    "path":"folders/Scripts/CheesyPizza.yy",
+    "name":"Modding API",
+    "path":"folders/Scripts/Modding API.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

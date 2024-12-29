@@ -537,10 +537,7 @@ add_modifier("NoiseWorld", #f8e080, function(val)
 	}
 });
 
-add_modifier("PizzaMulti", #E08858, function(val)
-{
-	
-});
+add_modifier("PizzaMulti", #E08858);
 
 /*
 if level != "trickytreat" && global.experimental
@@ -670,3 +667,6 @@ if global.jukebox == noone
 			fmod_event_instance_play(other.song);
 	}
 }
+
+// skip replays
+has_replays = false;

@@ -36,7 +36,7 @@ if !in_saveroom()
 	notification_push(notifs.block_break, [room]);
 }
 scr_cutoff();
-if (is_string(targettiles))
+if is_string(targettiles)
 	scr_destroy_tiles(32, targettiles);
 else
 	scr_destroy_tile_arr(32, targettiles);

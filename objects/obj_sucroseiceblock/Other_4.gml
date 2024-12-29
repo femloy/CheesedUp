@@ -24,6 +24,6 @@ if content != noone
 		contentspr = scr_collectspr(obj_bigcollect, , false);
 }
 if in_saveroom()
-	instance_destroy();
+	instance_destroy(id, false);
 
 SS_CODE_END;

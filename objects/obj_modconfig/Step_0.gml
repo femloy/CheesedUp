@@ -112,7 +112,10 @@ switch state
 			
 				gamesave_async_save_options();
 				with obj_option
+				{
+					optionselected = 0;
 					backbuffer = 2;
+				}
 				with create_transformation_tip(lstr("mod_saved"))
 				{
 					depth = -700;

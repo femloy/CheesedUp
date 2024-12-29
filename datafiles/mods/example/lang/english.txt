@@ -1,0 +1,7 @@
+#
+# Works the same as english-mod.txt
+#
+lang = "en"
+
+test_string = "Example mod enabled. Enjoy your Peppino."
+test_string2 = "Example mod disabled. Your Peppino is now dead."

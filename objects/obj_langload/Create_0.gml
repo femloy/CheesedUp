@@ -2,7 +2,7 @@ depth = -9999;
 
 lang = global.lang;
 old_name = "";
-new_name = lang_get_value_raw(lang, "display_name");
+new_name = lang_get_value_raw(lang, "display_name") ?? "UNKNOWN";
 root = $"data/lang/sprites/{lang}/";
 
 sprites_to_load = [];
@@ -11,7 +11,7 @@ sprites_to_unload = [];
 if global.lang_offload != noone
 {
 	var offload_map = global.lang_sprite_map[? global.lang_offload];
-	old_name = lang_get_value_raw(global.lang_offload, "display_name");
+	old_name = lang_get_value_raw(global.lang_offload, "display_name") ?? "UNKNOWN";
 	
 	if offload_map != undefined
 	{

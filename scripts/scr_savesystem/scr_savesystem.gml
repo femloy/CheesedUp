@@ -1,5 +1,6 @@
 #macro buffer_group_name "saves"
 #macro save_folder (game_save_id)
+#macro exe_folder (working_directory)
 
 function get_save_folder()
 {

@@ -1,15 +1,18 @@
 function scr_room_updated(_room)
 {
-	if (_room == room or (room == live_blank_room && live_live_room == _room))
-	&& instance_exists(obj_player)
+	if live_updating_enabled
 	{
-		with obj_player1
+		if (_room == room or (room == live_blank_room && live_live_room == _room))
+		&& instance_exists(obj_player)
 		{
-			hallway = savedhallway;
-			hallwaydirection = savedhallwaydirection;
-			vhallwaydirection = savedvhallwaydirection;
-			verticalhallway = savedverticalhallway;
+			with obj_player1
+			{
+				hallway = savedhallway;
+				hallwaydirection = savedhallwaydirection;
+				vhallwaydirection = savedvhallwaydirection;
+				verticalhallway = savedverticalhallway;
+			}
+			room_goto_live(_room);
 		}
-		room_goto_live(_room);
 	}
 }

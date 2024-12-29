@@ -1,9 +1,10 @@
-if in_saveroom()
-	instance_destroy();
-if (global.panic == false)
+if !global.panic
 	instance_destroy();
 else
 {
 	layer_background_visible(bgid, false);
-	add_saveroom();
+	if in_saveroom()
+		instance_destroy(id, false);
+	else
+		add_saveroom();
 }

@@ -3,7 +3,7 @@ if arena && image_alpha < 1
 	exit;
 
 fail_modifier(MOD.NoToppings);
-if (object_index != obj_escapecollect or global.blockstyle == BLOCK_STYLES.old)
+if object_index != obj_escapecollect or global.blockstyle == BLOCK_STYLES.old
 	scr_sound_multiple(global.snd_collect, x, y);
 else
 {
@@ -13,7 +13,7 @@ else
 		scr_sound_multiple("event:/modded/sfx/bellcollectSP", x, y);
 }
 
-if (obj_player1.character == "V")
+if obj_player1.character == "V"
 	global.playerhealth = clamp(global.playerhealth + 1, 0, 100);
 with obj_camera
 	healthshaketime = 30;

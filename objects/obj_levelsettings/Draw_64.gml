@@ -31,47 +31,55 @@ switch menu
 		if !surface_exists(surface)
 			surface = surface_create(SCREEN_WIDTH, SCREEN_HEIGHT);
 		
+		var modifiers_x = -230;
+		var replays_x = 230;
+		
+		if !has_replays
+			modifiers_x = 0;
+		
 		surface_set_target(surface);
 		switch state
 		{
-			case 0:
+			case 0: // choosing!
 				draw_clear_alpha(c_black, 0);
 				
 				var img_modifier = sel == 0 ? (floor(image_index / 2) % 2) : 0;
 				var img_replay = sel == 1 ? (floor(image_index / 2) % 2) : 0;
 				
-				draw_sprite_ext(spr_gate_modifiers, img_modifier, SCREEN_WIDTH / 2 - 230, SCREEN_HEIGHT / 2 + 30, 1, 1, 0, sel == 0 ? c_white : #222222, 1);
-				lang_draw_sprite_ext(spr_gate_modifiers_text, img_modifier, SCREEN_WIDTH / 2 - 230, SCREEN_HEIGHT / 2 + 30, 1, 1, 0, sel == 0 ? c_white : #222222, 1);
-				draw_sprite_ext(spr_gate_replays, img_replay, SCREEN_WIDTH / 2 + 230, SCREEN_HEIGHT / 2 + 30, 1, 1, 0, sel == 1 ? c_white : #222222, 1);
-				lang_draw_sprite_ext(spr_gate_replays_text, img_replay, SCREEN_WIDTH / 2 + 230, SCREEN_HEIGHT / 2 + 30, 1, 1, 0, sel == 1 ? c_white : #222222, 1);
+				draw_sprite_ext(spr_gate_modifiers, img_modifier, SCREEN_WIDTH / 2 + modifiers_x, SCREEN_HEIGHT / 2 + 30, 1, 1, 0, sel == 0 ? c_white : #222222, 1);
+				lang_draw_sprite_ext(spr_gate_modifiers_text, img_modifier, SCREEN_WIDTH / 2 + modifiers_x, SCREEN_HEIGHT / 2 + 30, 1, 1, 0, sel == 0 ? c_white : #222222, 1);
+				
+				if has_replays
+				{
+					draw_sprite_ext(spr_gate_replays, img_replay, SCREEN_WIDTH / 2 + replays_x, SCREEN_HEIGHT / 2 + 30, 1, 1, 0, sel == 1 ? c_white : #222222, 1);
+					lang_draw_sprite_ext(spr_gate_replays_text, img_replay, SCREEN_WIDTH / 2 + replays_x, SCREEN_HEIGHT / 2 + 30, 1, 1, 0, sel == 1 ? c_white : #222222, 1);
+				}
 				
 				var info = get_pep_palette_info();
 				if info.paletteselect != 1
 				{
 					pal_swap_player_palette(spr_gate_modifiers, 2 + img_modifier,,,, true);
-					draw_sprite_ext(spr_gate_modifiers, 2 + img_modifier, SCREEN_WIDTH / 2 - 230, SCREEN_HEIGHT / 2 + 30, 1, 1, 0, sel == 0 ? c_white : c_dkgray, 1);
+					draw_sprite_ext(spr_gate_modifiers, 2 + img_modifier, SCREEN_WIDTH / 2 + modifiers_x, SCREEN_HEIGHT / 2 + 30, 1, 1, 0, sel == 0 ? c_white : c_dkgray, 1);
 					
-					pal_swap_player_palette(spr_gate_replays, 2 + img_replay,,,, true);
-					draw_sprite_ext(spr_gate_replays, 2 + img_replay, SCREEN_WIDTH / 2 + 230, SCREEN_HEIGHT / 2 + 30, 1, 1, 0, sel == 1 ? c_white : c_dkgray, 1);
+					if has_replays
+					{
+						pal_swap_player_palette(spr_gate_replays, 2 + img_replay,,,, true);
+						draw_sprite_ext(spr_gate_replays, 2 + img_replay, SCREEN_WIDTH / 2 + 230, SCREEN_HEIGHT / 2 + 30, 1, 1, 0, sel == 1 ? c_white : c_dkgray, 1);
+					}
 					
 					pal_swap_reset();
 				}
-				
-				draw_set_align(fa_center, fa_middle);
-				draw_set_color(c_white);
-				draw_set_font(lfnt("font_small"));
-				draw_text(SCREEN_WIDTH / 2 + 230, SCREEN_HEIGHT / 2 + 30, lstr("unimplemented"));
 				break;
 			
-			case 1:
-			case 2:
+			case 1: // moving towards center
+			case 2: // expanding
 				if state == 1
 				{
 					anim_t = Approach(anim_t, 1, .07);
 					var curve = animcurve_channel_evaluate(outback, anim_t);
 					
 					var yy = lerp(SCREEN_HEIGHT / 2 + 30, SCREEN_HEIGHT / 2, curve);
-					var xx = lerp(SCREEN_WIDTH / 2 + (sel == 0 ? -230 : 230), SCREEN_WIDTH / 2, curve);
+					var xx = lerp(SCREEN_WIDTH / 2 + (sel == 0 ? modifiers_x : replays_x), SCREEN_WIDTH / 2, curve);
 					
 					draw_clear_alpha(c_black, (image_alpha * .7) - anim_t);
 					
@@ -349,6 +357,10 @@ switch menu
 		}
 		
 		#endregion
+		break;
+	
+	case 2:
+		instance_destroy();
 		break;
 }
 

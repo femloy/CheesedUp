@@ -15,19 +15,11 @@ switch menu
 		{
 			var move = key_left2 + key_right2;
 			if move != 0
-				sel = !sel;
+				sel = wrap(sel + move, 0, 0 + has_replays);
 			if key_jump
 			{
-				if sel == 1
-				{
-					fmod_event_instance_set_parameter(global.snd_golfjingle, "state", 0, true);
-					fmod_event_instance_play(global.snd_golfjingle);
-				}
-				else
-				{
-					anim_t = 0;
-					state = 1;
-				}
+				anim_t = 0;
+				state = 1;
 			}
 			if --skip_buffer <= 0 && room != editor_entrance
 			{

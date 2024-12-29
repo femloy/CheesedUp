@@ -161,7 +161,7 @@ if MOD.Spotlight && room != timesuproom
 	var draw_spotlight = function(who = obj_player, size = 100, xo = 0, yo = 0, iter = 2)
 	{
 		var camx = camera_get_view_x(view_camera[0]);
-		var camy = camera_get_view_y(view_camera[0]);
+		var camy = camera_get_view_y(view_camera[0]) - (IT_camera_yoffset() * global.combotime / 60);
 		
 		with who
 		{
@@ -187,7 +187,7 @@ if MOD.Spotlight && room != timesuproom
 	if instance_exists(obj_endlevelfade) or room == rank_room
 		spotlight_size = Approach(spotlight_size, 960, 10);
 	else
-		spotlight_size = lerp(spotlight_size, lerp(50, 150, global.combotime / 60), 0.2);
+		spotlight_size = lerp(spotlight_size, lerp(50, 300, global.combotime / 60), 0.2);
 	
 	if !(instance_exists(obj_technicaldifficulty) && obj_player1.state == states.actor)
 		draw_spotlight(obj_player1, spotlight_size, obj_player1.smoothx);

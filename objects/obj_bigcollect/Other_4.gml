@@ -1,2 +1,5 @@
 if in_saveroom()
-	instance_destroy();
+{
+	event_user(0);
+	instance_destroy(id, false);
+}

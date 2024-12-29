@@ -2,15 +2,14 @@ live_auto_call;
 
 draw_rectangle_color(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0, 0, 0, false);
 
-if SUGARY_SPIRE
-	var sugary = check_sugary();
-
+var sugary = check_sugary();
 if SUGARY_SPIRE && sugary
 	draw_sprite_tiled(bg_options_ss, 0, bg_x, bg_y);
 else
 {
 	for (var i = 0; i < array_length(bg_alpha); i++)
 		draw_sprite_tiled_ext(spr_optionsBG, i, bg_x, bg_y, 1, 1, c_white, bg_alpha[i]);
+	draw_sprite_tiled_ext(spr_intro_skyfrombottom1, 0, bg_x, bg_y, get_screen_xscale(), get_screen_yscale(), c_white, bg_alpha_modlist);
 }
 
 if room != Mainmenu
@@ -18,8 +17,9 @@ if room != Mainmenu
 	with obj_keyconfig
 		event_perform(ev_draw, ev_gui);
 }
+
 if instance_exists(obj_keyconfig) or instance_exists(obj_screenconfirm) or instance_exists(obj_langselect)
-or safe_get(obj_modconfig, "visible") or instance_exists(obj_hudcustomizer)
+or safe_get(obj_modconfig, "visible") or instance_exists(obj_hudcustomizer) or instance_exists(obj_modlist)
 {
 	tooltip_alpha = 0;
 	exit;

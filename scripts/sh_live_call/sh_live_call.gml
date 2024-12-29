@@ -1,6 +1,6 @@
 function sh_live_call(args)
 {
-	if !DEBUG
+	if !WC_debug
 		return "You do not have permission to use this command";
 	if !live_enabled
 		return "GMLive is not enabled";

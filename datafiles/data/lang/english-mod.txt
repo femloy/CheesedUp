@@ -34,6 +34,7 @@ dos = "dos_en" # Used in MBROS (TTF font)
 # OPTIONS TEXT
 # -------------
 option_modded = "MODDED"
+option_mods = "MODS"
 option_gameframe = "GAMEFRAME" # This is the name of the extension, not a word.
 option_unfocus_pause = "UNFOCUSED PAUSE"
 option_active = "ACTIVE"
@@ -430,7 +431,7 @@ screenshottaken = "{u}Screenshot taken!/"
 deathcheckpoint = "{u}[T] Load Checkpoint/"
 deathrestart = "{u}[T] Restart Level/"
 deathexit = "{u}[G] Exit Level/"
-modifiertip = "{u}[T] Modes/"
+modifiertip = "{u}[T] Modifiers/"
 cosmetictip = "{u}[u][d][l][r] Switch Cosmetics/"
 mixingtip = "{u}[M] Mix Palettes/"
 noisetypetip = "{u}[T] Echo Chef/"

@@ -109,9 +109,9 @@ function scr_pauseicons_update(selected)
 {
 	for (var i = 0; i < array_length(pause_icons); i++)
 	{
-		with (pause_icons[i])
+		with pause_icons[i]
 		{
-			if (i == selected)
+			if i == selected
 			{
 				shake_x = random_range(-1, 1);
 				shake_y = random_range(-1, 1);

@@ -1,6 +1,6 @@
-scr_destroy_tiles(32, "Tiles_1");
 if !in_saveroom()
 {
+	event_user(0);
 	notification_push(notifs.block_break, [room]);
 	
 	if sprite_index == spr_targetblock_old

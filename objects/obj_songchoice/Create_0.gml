@@ -7,7 +7,6 @@ sel =
 	game: 0,
 	song: 0
 };
-sprite_set_live(bg_jukeboxdisc, true);
 
 charshift = [0, 0, 1];
 discrot = 0;

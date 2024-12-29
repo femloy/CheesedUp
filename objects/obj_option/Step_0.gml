@@ -27,8 +27,10 @@ switch m.menu_id
 		break;
 }
 
+// custom backgrounds
 if safe_get(obj_modconfig, "visible")
 	j = obj_modconfig.options_bg;
+
 if instance_exists(obj_hudcustomizer)
 {
 	j = 5;
@@ -37,6 +39,18 @@ if instance_exists(obj_hudcustomizer)
 else
 	darken_bg = false;
 
+if instance_exists(obj_modlist)
+{
+	j = -1;
+	bg_alpha_modlist = Approach(bg_alpha_modlist, 1, 0.1);
+}
+else
+{
+	var deccel = 0.05;
+	bg_alpha_modlist = Approach(bg_alpha_modlist, 0, deccel);
+}
+
+// handle bgs
 for (var i = 0; i < array_length(bg_alpha); i++)
 {
 	if i == j
@@ -49,8 +63,11 @@ bg_x -= 1;
 bg_y -= 1;
 
 if instance_exists(obj_keyconfig) or instance_exists(obj_screenconfirm) or instance_exists(obj_langselect)
-or safe_get(obj_modconfig, "visible") or instance_exists(obj_hudcustomizer)
+or safe_get(obj_modconfig, "visible") or instance_exists(obj_hudcustomizer) or instance_exists(obj_modlist)
+{
+	scr_pauseicons_update(-1);
 	exit;
+}
 scr_menu_getinput();
 
 if backbuffer > 0

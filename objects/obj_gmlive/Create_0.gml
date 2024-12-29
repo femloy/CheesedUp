@@ -1,31 +1,42 @@
 // only include the extension if we're running from the IDE
-#macro live_enabled (GM_build_type == "run")
-#macro live_auto_call if live_enabled { if live_call() return live_result; }
+#macro live_enabled true
+#macro live_updating_enabled (GM_build_type == "run")
+#macro live_auto_call if live_updating_enabled { if live_call() return live_result; }
 
 if live_enabled
 {
 	// safeguard against making multiple obj_gmlive instances
-	if (instance_number(obj_gmlive) > 1) {
+	if instance_number(obj_gmlive) > 1
+	{
 		var first = instance_find(obj_gmlive, 0);
-		if (id != first) { instance_destroy(); exit; }
+		if id != first
+		{
+			instance_destroy();
+			exit;
+		}
 	}
-	if asset_get_index("live_init") == -1
-		show_error("live_init is missing!\nEither GMLive is not imported in the project, or the 'GMLive' script got corrupted (try re-importing)\nIf you don't have GMLive, you can safely remove obj_gmlive and any remaining live_* function calls.\n\n", 1);
-
+	
+	if GM_build_type == "run"
+	{
+		if asset_get_index("live_init") == -1
+			show_error("live_init is missing!\nEither GMLive is not imported in the project, or the 'GMLive' script got corrupted (try re-importing)\nIf you don't have GMLive, you can safely remove obj_gmlive and any remaining live_* function calls.\n\n", 1);
+	}
+	
 	// change the IP/port here if gmlive-server isn't running on the same device as the game
 	// (e.g. when running on mobile platforms):
-	live_init(1, "http://localhost:5100", "");
-
+	live_init(1, !live_updating_enabled ? undefined : "http://localhost:5100", "");
+	
 	live_blank_object = obj_blank;
 	live_blank_room = rm_blank;
-	live_room_updated = scr_room_updated;
+	if live_updating_enabled
+		live_room_updated = scr_room_updated;
 	live_rooms = false;
-
+	
 	#region CONSTANTS (BECAUSE GMLIVE SUCKS)
-
+	
 	for (var i = 0; sequence_exists(i); i++)
 		gml_asset_add(sequence_get(i).name, i);
-
+	
 	// File Attribute Constant
 	live_constant_add("fa_none", fa_none);
 	live_constant_add("fa_readonly", fa_readonly);
@@ -34,7 +45,7 @@ if live_enabled
 	live_constant_add("fa_volumeid", fa_volumeid);
 	live_constant_add("fa_directory", fa_directory);
 	live_constant_add("fa_archive", fa_archive);
-
+	
 	// FMOD
 	live_function_add("fmod_event_create_instance(str)", function(str) {
 	    return fmod_event_create_instance(str);
@@ -102,23 +113,28 @@ if live_enabled
 	live_function_add("fmod_event_instance_get_volume(inst, ignore_seek)", function(inst, ignore_seek) {
 	    return fmod_event_instance_get_volume(inst, ignore_seek);
 	});
-
-	live_function_add("launch_external(str)", function(str) {
-	    return launch_external(str);
-	});
-	live_function_add("folder_destroy(path)", function(path) {
-	    return folder_destroy(path);
-	});
-	live_function_add("folder_move(source, dest)", function(source, dest) {
-	    return folder_move(source, dest);
-	});
-	live_function_add("image_get_width(filename)", function(filename) {
-	    return image_get_width(filename);
-	});
-	live_function_add("image_get_height(filename)", function(filename) {
-	    return image_get_height(filename);
-	});
-
+	
+	if live_updating_enabled
+	{
+		live_function_add("launch_external(str)", function(str) {
+		    return launch_external(str);
+		});
+		live_function_add("folder_destroy(path)", function(path) {
+		    return folder_destroy(path);
+		});
+		live_function_add("folder_move(source, dest)", function(source, dest) {
+		    return folder_move(source, dest);
+		});
+		live_function_add("image_get_width(filename)", function(filename) {
+		    return image_get_width(filename);
+		});
+		live_function_add("image_get_height(filename)", function(filename) {
+		    return image_get_height(filename);
+		});
+	}
+	
+	scr_modding_init();
+	
 	#endregion
 }
 else

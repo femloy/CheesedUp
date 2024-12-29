@@ -65,6 +65,15 @@ exception_unhandled_handler
 	}
 );
 
+// failsafe
+if !directory_exists(exe_folder + "data")
+{
+	audio_play_sound(sfx_pephurt, 0, false);
+	show_message("Can't see data folder.\n\nIt could be that the working directory is wrong. Make sure the game is extracted to its own folder before playing.");
+	game_end();
+	exit;
+}
+
 // drama
 #macro SUGARY_SPIRE 0
 #macro DEATH_MODE 0

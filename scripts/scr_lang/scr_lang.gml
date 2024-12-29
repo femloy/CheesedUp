@@ -12,7 +12,7 @@ function scr_get_languages()
 		global.lang = "en";
 	
 	// languages
-	var root = "data/lang/";
+	var root = exe_folder + "data/lang/";
 	for (var file = file_find_first(concat(root, "*.txt"), 0); file != ""; file = file_find_next())
 		var key = lang_parse_file(concat(root, file));
 	file_find_close();
@@ -33,7 +33,7 @@ function scr_get_languages()
 function lang_parse_file(filename)
 {
 	var str = buffer_load(filename);
-	var key = lang_parse(buffer_read(str, buffer_text)); // "en"
+	var key = lang_parse(buffer_read(str, buffer_text)); // key = "en"
 	buffer_delete(str);
 	return key;
 }
@@ -82,31 +82,32 @@ function scr_lang_get_noise_credits()
 
 function lang_get_value_raw(lang, entry)
 {
-	var n = ds_map_find_value(ds_map_find_value(global.lang_map, lang), entry);
-	if is_undefined(n)
-		n = ds_map_find_value(ds_map_find_value(global.lang_map, "en"), entry);
-	if is_undefined(n)
+	var n = global.lang_map[? lang][? entry];
+	
+	if global.processing_mod != noone
 	{
-		//n = "";
-		n = entry;
+		if is_undefined(n)
+			n = global.processing_mod.lang_map[? lang][? entry];
 		
-		/*
-		instance_create_unique(0, 0, obj_langerror);
-		with obj_langerror
-			text = concat("Error: Could not find lang value \"", entry, "\"\nPlease restore your english.txt file");
-		*/
+		if is_undefined(n)
+			n = global.processing_mod.lang_map[? "en"][? entry];
 	}
+	
+	if is_undefined(n)
+		n = global.lang_map[? "en"][? entry];
+	
 	return n;
 }
 
 function lang_get_value_newline_raw(lang, entry)
 {
-	return string_replace_all(lang_get_value_raw(lang, entry), "\\n", "\n");
+	var s = lang_get_value_raw(lang, entry) ?? entry;
+	return string_replace_all(s, "\\n", "\n");
 }
 
 function lang_get_value(entry)
 {
-	return lang_get_value_raw(global.lang, entry);
+	return lang_get_value_raw(global.lang, entry) ?? entry;
 }
 
 function lang_get_value_newline(entry)
@@ -335,10 +336,7 @@ function lang_get_font(fontname)
 // pto
 function lang_value_exists(entry)
 {
-	var n = ds_map_find_value(ds_map_find_value(global.lang_map, global.lang), entry);
-	if is_undefined(n)
-		n = ds_map_find_value(ds_map_find_value(global.lang_map, "en"), entry);
-	return !is_undefined(n);
+	return !is_undefined(lang_get_value_raw(global.lang, entry));
 }
 
 function lang_switch(lang)
