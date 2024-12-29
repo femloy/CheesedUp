@@ -1,7 +1,7 @@
 # ---------------
 # IMPORTANT NOTE
 # ---------------
-# This file is updated between versions. (B1.0.0 now)
+# This file is updated between versions. (B1.5.0 now)
 # Keep that in mind if you want to maintain translations.
 # It might also contain some secrets... so tread lightly.
 # 

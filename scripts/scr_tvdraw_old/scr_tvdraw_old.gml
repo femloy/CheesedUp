@@ -143,7 +143,7 @@ function scr_tvdraw_old()
 	if (SUGARY_SPIRE && sugary) or tv_palette != 0
 	{
 		pal_swap_set(spr_tv_palette, tv_palette);
-		draw_sprite_ext(!sugary ? spr_tvempty : spr_tvempty_ss, image_index, tvx, tvy, 1, 1, 0, c_white, alpha);
+		draw_sprite_ext(!(SUGARY_SPIRE && sugary) ? spr_tvempty : spr_tvempty_ss, image_index, tvx, tvy, 1, 1, 0, c_white, alpha);
 		pal_swap_reset();
 	}
 	

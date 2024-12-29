@@ -1,16 +1,15 @@
-function Mod(mod_json, mod_root) constructor
+function Mod(_mod_json, _mod_root) constructor
 {
-	name = mod_json[$ "name"] ?? "Unnamed Mod";
-	desc = mod_json[$ "desc"] ?? "Add a \"desc\" value to your mod.json!";
-	author = mod_json[$ "author"] ?? "Unknown";
-	version = mod_json[$ "version"] ?? "1.0";
+	name = _mod_json[$ "name"] ?? "Unnamed Mod";
+	desc = _mod_json[$ "desc"] ?? "Add a \"desc\" value to your mod.json!";
+	author = _mod_json[$ "author"] ?? "Unknown";
+	version = _mod_json[$ "version"] ?? "1.0";
 	
-	mod_struct = self; // for scr_modding_process
-	self.mod_root = mod_root;
+	mod_root = _mod_root;
 	enabled = true;
 	icon = noone;
 	options = [];
-	lang_map = ds_map_create();
+	lang_map = noone;
 	
 	code = 
 	{
@@ -23,28 +22,41 @@ function Mod(mod_json, mod_root) constructor
 		
 	};
 	
-	init = function()
+	sprite_cache = [];
+	
+	set_enabled = function(value)
+	{
+		enabled = value;
+		
+		ini_open(mod_root + "/saveData.ini");
+		ini_write_real("Mod", "enabled", value);
+		ini_close();
+	}
+	
+	init = method(self, function()
 	{
 		set_enabled(true);
 		
 		// lang
+		lang_map = ds_map_create();
+		
 		var lang_path = mod_root + "/lang/";
 		for (var file = file_find_first(concat(lang_path, "*.txt"), 0); file != ""; file = file_find_next())
 		{
 			var str = buffer_load(concat(lang_path, file));
-		
+			
 			var list = ds_list_create();
 			lang_lexer(list, buffer_read(str, buffer_text));
 			buffer_delete(str);
-		
+			
 			var map = lang_exec(list);
 			var lang = map[? "lang"];
-		
+			
 			if ds_map_exists(lang_map, lang)
 				lang_exec(list, lang_map[? lang]);
 			else
 				ds_map_set(lang_map, lang, map);
-		
+			
 			ds_list_destroy(list);
 		}
 		file_find_close();
@@ -59,10 +71,8 @@ function Mod(mod_json, mod_root) constructor
 			}
 			
 			var object_path = mod_root + "/objects/" + object;
-			var object_struct = new ModObject(object, object_path);
-			
+			var object_struct = new ModObject(object, object_path, self);
 			objects[$ object] = object_struct;
-			object_struct.mod_struct = self;
 			
 			live_variable_add(object, method(object_struct, function()
 			{
@@ -122,9 +132,9 @@ function Mod(mod_json, mod_root) constructor
 		// start
 		with global
 			scr_modding_process(other, "init");
-	}
+	});
 	
-	cleanup = function()
+	cleanup = method(self, function()
 	{
 		// end
 		with global
@@ -134,6 +144,7 @@ function Mod(mod_json, mod_root) constructor
 		// lang
 		for(var lang = ds_map_find_first(lang_map); lang != undefined; lang = ds_map_find_next(lang_map, lang))
 			ds_map_destroy(lang_map[? lang]);
+		ds_map_destroy(lang_map);
 		
 		// init and cleanup
 		if code.init != noone
@@ -148,14 +159,21 @@ function Mod(mod_json, mod_root) constructor
 			var object = objects[$ array_pop(object_names)];
 			object.cleanup();
 		}
-	}
-	
-	set_enabled = function(value)
-	{
-		enabled = value;
 		
-		ini_open(mod_root + "/saveData.ini");
-		ini_write_real("Mod", "enabled", value);
-		ini_close();
-	}
+		// sprite cache
+		var old_sprites = [];
+		while array_length(sprite_cache)
+		{
+			var sprite = array_pop(sprite_cache);
+			if is_struct(sprite)
+			{
+				sprite_assign(sprite.sprite, sprite.old);
+				array_push(old_sprites, sprite.old);
+			}
+			else if sprite_exists(sprite)
+				sprite_delete(sprite);
+		}
+		while array_length(old_sprites)
+			sprite_delete(array_pop(old_sprites));
+	});
 }

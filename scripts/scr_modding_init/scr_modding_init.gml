@@ -14,9 +14,75 @@ function scr_modding_init()
 		});
 	}
 	
-	live_variable_add("MOD_PATH*", function()
+	live_variable_add("MOD_PATH*", function() { return global.processing_mod.mod_root; });
+	live_variable_add("mouse_x*", function() { return mouse_x_hook(); });
+	live_variable_add("mouse_y*", function() { return mouse_y_hook(); });
+	live_variable_add("mouse_x_gui*", function() { return mouse_x_gui; });
+	live_variable_add("mouse_y_gui*", function() { return mouse_y_gui; });
+	live_variable_add("states*", function() { return states; });
+	live_variable_add("CAMX*", function() { return CAMX; });
+	live_variable_add("CAMY*", function() { return CAMY; });
+	live_variable_add("CAMW*", function() { return CAMW; });
+	live_variable_add("CAMH*", function() { return CAMH; });
+	live_variable_add("REMIX*", function() { return REMIX; });
+	live_variable_add("SCREEN_WIDTH*", function() { return SCREEN_WIDTH; });
+	live_variable_add("SCREEN_HEIGHT*", function() { return SCREEN_HEIGHT; });
+	live_variable_add("SCREEN_X*", function() { return SCREEN_X; });
+	live_variable_add("SCREEN_Y*", function() { return SCREEN_Y; });
+	live_variable_add("SCREEN_WIDTH*", function() { return SCREEN_WIDTH; });
+	live_variable_add("SCREEN_HEIGHT*", function() { return SCREEN_HEIGHT; });
+	
+	live_function_add("sprite_add(fname, imgnumb, removeback, smooth, xorig, yorig)", function(fname, imgnumb, removeback, smooth, xorig, yorig)
 	{
-		return global.processing_mod.mod_root;
+		var sprite = sprite_add(fname, imgnumb, removeback, smooth, xorig, yorig);
+		
+		if global.processing_mod != noone
+			array_push(global.processing_mod.sprite_cache, sprite);
+		
+		return sprite;
+	});
+	live_function_add("sprite_add_ext(fname, imgnumb, xorig, yorig, prefetch)", function(fname, imgnumb, xorig, yorig, prefetch)
+	{
+		var sprite = sprite_add_ext(fname, imgnumb, xorig, yorig, prefetch);
+		
+		if global.processing_mod != noone
+			array_push(global.processing_mod.sprite_cache, sprite);
+		
+		return sprite;
+	});
+	live_function_add("sprite_replace(ind, fname, imgnumb, removeback, smooth, xorig, yorig)", function(ind, fname, imgnumb, removeback, smooth, xorig, yorig)
+	{
+		var old = scr_modding_find_og_sprite(ind) ?? sprite_duplicate(ind);
+		sprite_replace(ind, fname, imgnumb, removeback, smooth, xorig, yorig);
+		
+		if global.processing_mod != noone
+			array_push(global.processing_mod.sprite_cache, { sprite: ind, old: old });
+	});
+	live_function_add("sprite_assign(ind, source)", function(ind, source)
+	{
+		var old = scr_modding_find_og_sprite(ind) ?? sprite_duplicate(ind);
+		sprite_assign(ind, source);
+		
+		if global.processing_mod != noone
+			array_push(global.processing_mod.sprite_cache, { sprite: ind, old: old });
+	});
+	live_function_add("sprite_create_from_surface(id, x, y, w, h, removeback, smooth, xorig, yorig)", function(id, x, y, w, h, removeback, smooth, xorig, yorig)
+	{
+		var sprite = sprite_create_from_surface(id, x, y, w, h, removeback, smooth, xorig, yorig);
+		
+		if global.processing_mod != noone
+			array_push(global.processing_mod.sprite_cache, sprite);
+		
+		return sprite;
+	});
+	live_function_add("sprite_duplicate(ind)", function(ind)
+	{
+		var sprite = sprite_duplicate(ind);
+		
+		if global.processing_mod != noone
+			array_push(global.processing_mod.sprite_cache, sprite);
+		
+		return sprite;
 	});
 	
 	// find mods

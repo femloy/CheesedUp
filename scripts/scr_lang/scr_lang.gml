@@ -82,21 +82,28 @@ function scr_lang_get_noise_credits()
 
 function lang_get_value_raw(lang, entry)
 {
-	var n = global.lang_map[? lang][? entry];
+	var result = undefined;
 	
-	if global.processing_mod != noone
+	for(var i = 0, n = array_length(global.mods); i < n; ++i)
 	{
-		if is_undefined(n)
-			n = global.processing_mod.lang_map[? lang][? entry];
+		var this_mod = global.mods[i];
+		if !this_mod.enabled
+			continue;
 		
-		if is_undefined(n)
-			n = global.processing_mod.lang_map[? "en"][? entry];
+		if is_undefined(result) && !is_undefined(this_mod.lang_map[? lang])
+			result = this_mod.lang_map[? lang][? entry];
+		
+		if is_undefined(result) && !is_undefined(this_mod.lang_map[? "en"])
+			result = this_mod.lang_map[? "en"][? entry];
 	}
 	
-	if is_undefined(n)
-		n = global.lang_map[? "en"][? entry];
+	if is_undefined(result)
+		result = global.lang_map[? lang][? entry];
 	
-	return n;
+	if is_undefined(result)
+		result = global.lang_map[? "en"][? entry];
+	
+	return result;
 }
 
 function lang_get_value_newline_raw(lang, entry)

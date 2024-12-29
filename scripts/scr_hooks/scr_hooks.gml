@@ -24,10 +24,13 @@ function instance_create_depth_hook(x, y, depth, obj, var_struct = {})
 {
 	if is_instanceof(obj, ModObject)
 	{
-		if global.processing_mod == noone
-			return noone;
+		var m = global.processing_mod ?? noone;
+		if m == noone return noone;
 		var_struct.__OBJECT = obj;
-		obj = obj_mod_object;
+		var o = instance_create_depth_base(x, y, depth, obj_mod_object, var_struct);
+		global.processing_mod = m;
+		return o;
 	}
-	return instance_create_depth_base(x, y, depth, obj, var_struct);
+	else
+		return instance_create_depth_base(x, y, depth, obj, var_struct);
 }

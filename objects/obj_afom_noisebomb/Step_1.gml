@@ -1,12 +1,12 @@
 if !box
 	exit;
 
-#macro AFOM_MESSAGE {message = "Stop adding shit that I can't realistically recreate if you don't want me to steal"\
-					message = "I improved your shitty code though so feel free to take it"}
+#macro AFOM_MESSAGE {message = "Stop adding shit I can't realistically recreate if you don't want me to copy paste"\
+					message = "I improved your shitty code though so at least it's constructive"}
 
 if buffer-- == 0
 {
-	if YYC
+	if !YYC
 		AFOM_MESSAGE;
 	
 	switch step

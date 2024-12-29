@@ -1,9 +1,12 @@
-function ModObject(name, path) constructor
+function ModObject(name, path, mod_struct) constructor
 {
 	self.name = name; // obj_object
 	self.path = path; // mods/example/objects/obj_object
+	parent_mod = mod_struct;
 	
-	mod_struct = noone;
+	if !is_instanceof(parent_mod, Mod)
+		show_error("Provided mod_struct is not instance of Mod", true);
+	
 	code = {};
 	
 	cleanup = function()

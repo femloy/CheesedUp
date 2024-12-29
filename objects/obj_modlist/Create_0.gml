@@ -1,7 +1,7 @@
 live_auto_call;
 
 buffer = 2;
-sel = 0;
+sel = -1;
 
 scr_init_input();
 
