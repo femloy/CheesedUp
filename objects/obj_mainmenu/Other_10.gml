@@ -22,9 +22,17 @@ if state == states.normal && !instance_exists(obj_option) && !instance_exists(ob
 	punch_count++;
 	if punch_count >= 100
 	{
-		// Oh nah NOT my cheese!
-		//if (!noise_unlocked)
-		//	unlock_noise(true);
+		if !noise_unlocked
+		{
+			noise_unlocked = true;
+			with instance_create(0, 0, obj_noiseunlocked)
+			{
+				picklefondler = true;
+				sprite_index = spr_picklefondler_text;
+			}
+		}
+		else
+			instance_create(0, 0, obj_softlockcrash);
 		punch_count = 0;
 	}
 }

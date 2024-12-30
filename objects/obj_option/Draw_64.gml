@@ -9,7 +9,6 @@ else
 {
 	for (var i = 0; i < array_length(bg_alpha); i++)
 		draw_sprite_tiled_ext(spr_optionsBG, i, bg_x, bg_y, 1, 1, c_white, bg_alpha[i]);
-	draw_sprite_tiled_ext(spr_intro_skyfrombottom1, 0, bg_x, bg_y, get_screen_xscale(), get_screen_yscale(), c_white, bg_alpha_modlist);
 }
 
 if room != Mainmenu

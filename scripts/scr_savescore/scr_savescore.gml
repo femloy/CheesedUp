@@ -1,4 +1,4 @@
-function scr_savescore(level)
+function scr_savescore(level, do_save)
 {
 	if MOD.EasyMode
 		global.rank = "f";
@@ -38,7 +38,7 @@ function scr_savescore(level)
 		obj_savesystem.ini_str = ini_close();
 	}
 	
-	if global.saveloaded && get_modifier_saving()
+	if global.saveloaded && do_save
 	{
 		trace("[scr_savescore] Saving to: ", get_savefile_ini());
 		

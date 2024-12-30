@@ -7,6 +7,8 @@ function scr_modding_disabled_functions()
 		"live_function_add",
 		"live_function_remove",
 		
+		"scr_load_bank",
+		
 		"game_end",
 		"game_restart",
 		"environment_get_variable",

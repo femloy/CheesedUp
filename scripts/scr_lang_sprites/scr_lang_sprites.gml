@@ -81,7 +81,7 @@ function lang_get_sprite(sprite)
 	if lang_get_value("custom_graphics")
 	{
 		var g = ds_map_find_value(global.lang_sprite_map[? global.lang], sprite);
-		if !is_undefined(g)
+		if !is_undefined(g) && sprite_exists(g)
 			return g;
 	}
 	return undefined;
@@ -89,8 +89,6 @@ function lang_get_sprite(sprite)
 function lang_draw_sprite_ext(sprite, subimg, x, y, xscale, yscale, rot, col, alpha)
 {
 	var spr = lang_get_sprite(sprite) ?? sprite;
-	if !sprite_exists(spr)
-		spr = sprite;
 	draw_sprite_ext(spr, subimg, x, y, xscale, yscale, rot, col, alpha);
 }
 function lang_draw_sprite(sprite, subimg, x, y)

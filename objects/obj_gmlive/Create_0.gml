@@ -113,6 +113,9 @@ if live_enabled
 	live_function_add("fmod_event_instance_get_volume(inst, ignore_seek)", function(inst, ignore_seek) {
 	    return fmod_event_instance_get_volume(inst, ignore_seek);
 	});
+	live_function_add("fmod_last_result()", function() {
+	    return fmod_last_result();
+	});
 	
 	if live_updating_enabled
 	{

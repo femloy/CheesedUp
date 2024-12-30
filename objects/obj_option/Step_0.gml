@@ -31,6 +31,9 @@ switch m.menu_id
 if safe_get(obj_modconfig, "visible")
 	j = obj_modconfig.options_bg;
 
+if instance_exists(obj_modlist)
+	j = 7;
+
 if instance_exists(obj_hudcustomizer)
 {
 	j = 5;
@@ -38,17 +41,6 @@ if instance_exists(obj_hudcustomizer)
 }
 else
 	darken_bg = false;
-
-if instance_exists(obj_modlist)
-{
-	j = -1;
-	bg_alpha_modlist = Approach(bg_alpha_modlist, 1, 0.1);
-}
-else
-{
-	var deccel = 0.05;
-	bg_alpha_modlist = Approach(bg_alpha_modlist, 0, deccel);
-}
 
 // handle bgs
 for (var i = 0; i < array_length(bg_alpha); i++)

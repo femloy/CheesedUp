@@ -7,6 +7,7 @@ if backgroundID != noone
 	
 	if !sprite_exists(background_spr)
 		exit;
+	
     var sprw = sprite_get_width(background_spr);
     var sprh = sprite_get_height(background_spr);
 	

@@ -1,5 +1,5 @@
 /// @description panic bgs
-if SUGARY
+if SUGARY_SPIRE && SUGARY
 {
 	var l = layer_get_all();
 	for (var i = 0; i < array_length(l); i++;)

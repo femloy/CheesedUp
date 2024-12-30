@@ -305,7 +305,6 @@ mod_title_golf = "GOLF"
 mod_title_cosmicclones = "Cosmic Clone"
 mod_title_suddendeath = "Sudden Death"
 mod_title_noiseworld = "Noise World"
-mod_title_pizzamulti = "Pizza Multi"
 
 mod_desc_ok = "Start the level!"
 mod_desc_encore = "Remixes the level to make it harder."
@@ -331,7 +330,6 @@ mod_desc_golf = "Use your cursor to... move."
 mod_desc_cosmicclones = "Run faster than your own shadow."
 mod_desc_suddendeath = "Getting hurt or hitting walls will kill you!"
 mod_desc_noiseworld = "Fills the level with giant stickers!"
-mod_desc_pizzamulti = "Let the softlocks begin."
 
 # ---------------
 # WINDOW CAPTIONS
@@ -452,6 +450,7 @@ attackstyletip = "{u}[%] % [%] Grab/"
 attackstyle1 = "Kung-Fu"
 attackstyle2 = "Shoulder Bash"
 attackstyle3 = "Lunge"
+modmenutip = "{u}[c] Settings\n[l][r] Toggle/"
 
 # ------------
 # EDITOR MENU

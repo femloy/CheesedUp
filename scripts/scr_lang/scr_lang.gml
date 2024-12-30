@@ -32,9 +32,8 @@ function scr_get_languages()
 
 function lang_parse_file(filename)
 {
-	var str = buffer_load(filename);
-	var key = lang_parse(buffer_read(str, buffer_text)); // key = "en"
-	buffer_delete(str);
+	var str = scr_load_file(filename);
+	var key = lang_parse(str); // key = "en"
 	return key;
 }
 
@@ -329,8 +328,6 @@ function lang_get_custom_font(fontname, language)
 
 function lang_get_font(fontname)
 {
-	if live_call(fontname) return live_result;
-	
 	if fontname == "bigfont" && check_sugary()
 		fontname = "bigfont_ss";
 	

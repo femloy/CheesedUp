@@ -143,7 +143,7 @@ for(var i = 0; i < modif_con; i++)
 	if align == 1 or align == 2
 		ydraw = SCREEN_HEIGHT - 32 - ydraw;
 	
-	draw_sprite(spr_modifier_icons, modifiers[i], xdraw, ydraw);
+	draw_sprite(modifiers[i].sprite, modifiers[i].image, xdraw, ydraw);
 	
 	xx += 38;
 	if i % 5 == 4

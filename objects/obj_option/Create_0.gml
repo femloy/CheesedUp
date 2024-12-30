@@ -43,8 +43,6 @@ tooltip_alpha = 0;
 scroll = 0;
 darken_bg = false;
 
-bg_alpha_modlist = 0;
-
 pause_icons = array_create(0);
 scr_pauseicon_add(spr_pauseicons, 4);
 scr_pauseicon_add(spr_pauseicons, 5);

@@ -212,7 +212,7 @@ function add_modifier(variable, color = #c09068, drawfunc = noone, local = strin
 		color: color,
 	};
 	if struct.value
-		ds_list_add(active_modifiers, icon);
+		ds_list_add(active_modifiers, struct.icon);
 	array_push(options_array, struct);
 	return struct;
 }
@@ -537,7 +537,7 @@ add_modifier("NoiseWorld", #f8e080, function(val)
 	}
 });
 
-add_modifier("PizzaMulti", #E08858);
+//add_modifier("PizzaMulti", #E08858);
 
 /*
 if level != "trickytreat" && global.experimental
@@ -572,6 +572,9 @@ if level != "trickytreat" && global.experimental
 if level != "trickytreat" && global.experimental
 	add_modifier("Hydra", #d08838);
 */
+
+// MODDED
+scr_modding_hook("modifier/menu");
 
 // Level specific
 if level == "grinch"

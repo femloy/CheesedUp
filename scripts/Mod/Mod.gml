@@ -8,16 +8,22 @@ function Mod(_mod_json, _mod_root) constructor
 	mod_root = _mod_root;
 	enabled = true;
 	icon = noone;
-	options = [];
 	lang_map = noone;
+	conditions = scr_load_gml(_mod_root + "/conditions.gml");
 	
 	code = 
 	{
 		init: noone,
-		cleanup: noone
+		cleanup: noone,
+		settings: noone
 	};
 	
-	objects = 
+	objects =
+	{
+		
+	};
+	
+	hooks =
 	{
 		
 	};
@@ -37,17 +43,35 @@ function Mod(_mod_json, _mod_root) constructor
 	{
 		set_enabled(true);
 		
+		// Loading different FMOD projects is impossible
+		/*
+		var bank_path = mod_root + "/sound";
+		if !directory_exists(bank_path)
+			bank_path += "/Desktop";
+		for (var file = file_find_first(concat(bank_path, "/*.bank"), 0); file != ""; file = file_find_next())
+		{
+			var bank = scr_load_bank(concat(bank_path, "/", file));
+			if is_string(bank)
+				show_message(bank);
+			else
+			{
+				array_push(bank_cache, bank);
+				trace(fmod_bank_get_events(bank));
+			}
+		}
+		file_find_close();
+		*/
+		
 		// lang
 		lang_map = ds_map_create();
 		
 		var lang_path = mod_root + "/lang/";
 		for (var file = file_find_first(concat(lang_path, "*.txt"), 0); file != ""; file = file_find_next())
 		{
-			var str = buffer_load(concat(lang_path, file));
+			var str = scr_load_file(concat(lang_path, file));
 			
 			var list = ds_list_create();
-			lang_lexer(list, buffer_read(str, buffer_text));
-			buffer_delete(str);
+			lang_lexer(list, str);
 			
 			var map = lang_exec(list);
 			var lang = map[? "lang"];
@@ -81,25 +105,17 @@ function Mod(_mod_json, _mod_root) constructor
 		}
 		file_find_close();
 		
-		// init and cleanup
-		var code_path = mod_root + "/init.gml";
-		if file_exists(code_path)
+		// main code
+		code.init = scr_load_gml(mod_root + "/init.gml");
+		code.cleanup = scr_load_gml(mod_root + "/cleanup.gml");
+		code.settings = scr_load_gml(mod_root + "/settings.gml");
+		
+		// hooks
+		var hook_names = scr_modding_hooks();
+		while array_length(hook_names)
 		{
-			var b = buffer_load(code_path);
-			code.init = live_snippet_create(buffer_read(b, buffer_text), "init") ?? noone;
-			if code.init == noone
-				show_message("Code error for " + code_path + ": \n\n" + live_result);
-			buffer_delete(b);
-		}
-				
-		var code_path = mod_root + "/cleanup.gml";
-		if file_exists(code_path)
-		{
-			var b = buffer_load(code_path);
-			code.cleanup = live_snippet_create(buffer_read(b, buffer_text), "cleanup") ?? noone;
-			if code.cleanup == noone
-				show_message("Code error for " + code_path + ": \n\n" + live_result);
-			buffer_delete(b);
+			var h = array_pop(hook_names);
+			hooks[$ h] = scr_load_gml(concat(mod_root, "/hooks/", h, ".gml"));
 		}
 		
 		// add code to objects
@@ -112,14 +128,7 @@ function Mod(_mod_json, _mod_root) constructor
 			for(var gml = file_find_first(object_path + "/*.gml", fa_none); gml != ""; gml = file_find_next())
 			{
 				var gml_name = filename_change_ext(gml, "");
-				var gml_path = object_path + "/" + gml;
-				
-				var b = buffer_load(gml_path);
-				var c = live_snippet_create(buffer_read(b, buffer_text), gml_name) ?? noone;
-				object_struct.code[$ gml_name] = c;
-				
-				if c == noone
-					show_message("Code error for " + gml_path + ": \n\n" + live_result);
+				object_struct.code[$ gml_name] = scr_load_gml(object_path + "/" + gml);
 			}
 			file_find_close();
 		}
@@ -141,6 +150,12 @@ function Mod(_mod_json, _mod_root) constructor
 			scr_modding_process(other, "cleanup");
 		set_enabled(false);
 		
+		// banks
+		/*
+		while array_length(bank_cache)
+			fmod_bank_unload(array_pop(bank_cache));
+		*/
+		
 		// lang
 		for(var lang = ds_map_find_first(lang_map); lang != undefined; lang = ds_map_find_next(lang_map, lang))
 			ds_map_destroy(lang_map[? lang]);
@@ -151,6 +166,8 @@ function Mod(_mod_json, _mod_root) constructor
 			live_snippet_destroy(code.init);
 		if code.cleanup != noone
 			live_snippet_destroy(code.cleanup);
+		if code.settings != noone
+			live_snippet_destroy(code.settings);
 		
 		// objects
 		var object_names = struct_get_names(objects);

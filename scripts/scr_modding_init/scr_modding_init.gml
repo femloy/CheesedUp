@@ -27,8 +27,7 @@ function scr_modding_init()
 	live_variable_add("REMIX*", function() { return REMIX; });
 	live_variable_add("SCREEN_WIDTH*", function() { return SCREEN_WIDTH; });
 	live_variable_add("SCREEN_HEIGHT*", function() { return SCREEN_HEIGHT; });
-	//live_variable_add("SCREEN_X*", function() { return SCREEN_X; });
-	//live_variable_add("SCREEN_Y*", function() { return SCREEN_Y; });
+	live_variable_add("MOD*", function() { return MOD; });
 	
 	live_function_add("sprite_add(fname, imgnumb, removeback, smooth, xorig, yorig)", function(fname, imgnumb, removeback, smooth, xorig, yorig)
 	{
@@ -85,9 +84,7 @@ function scr_modding_init()
 	
 	// find mods
 	var path = exe_folder + "mods";
-	var file = file_find_first(path + "/*", fa_directory);
-	
-	while file != ""
+	for(var file = file_find_first(path + "/*", fa_directory); file != ""; file = file_find_next())
 	{
 		var mod_root = path + "\\" + file;
 		var json_path = mod_root + "/mod.json";
@@ -96,8 +93,8 @@ function scr_modding_init()
 		{
 			try
 			{
-				var b = buffer_load(json_path);
-				var j = json_parse(buffer_read(b, buffer_text));
+				var b = scr_load_file(json_path);
+				var j = json_parse(b);
 				var s = scr_process_mod(j, mod_root);
 				array_push(global.mods, s);
 			}
@@ -107,7 +104,6 @@ function scr_modding_init()
 				show_message("The mod " + file + " couldn't load!\n\n" + string(e));
 			}
 		}
-		file = file_find_next();
 	}
 	file_find_close();
 	

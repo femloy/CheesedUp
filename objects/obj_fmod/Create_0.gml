@@ -2,7 +2,8 @@
 if variable_global_exists("sound_map")
 	exit;
 
-banks = [
+banks =
+[
 	{
 		eventPath : "data\\sound\\Desktop\\Master.strings.bank",
 		handle : FMOD_INVALID_BANK
@@ -19,48 +20,20 @@ banks = [
 		eventPath : "data\\sound\\Desktop\\sfx.bank",
 		handle : FMOD_INVALID_BANK
 	}
-]
+];
 
 #macro FMOD_BANK_MASTER_STRINGS obj_fmod.banks[0].handle
 #macro FMOD_BANK_MASTER obj_fmod.banks[1].handle
 #macro FMOD_BANK_MUSIC obj_fmod.banks[2].handle
 #macro FMOD_BANK_SFX obj_fmod.banks[3].handle
 
-trace("Loading FMOD Banks...");
-
-var error = 0;
 for (var i = 0; i < array_length(banks); i++)
 {
-	var b = banks[i].eventPath;
-	if !file_exists(b)
-	{
-		error = 1;
-		continue;
-	}
-	
-	// base game has an extra bool parameter. what does it do?
-	banks[i].handle = fmod_bank_load(b);
-	if banks[i].handle == FMOD_INVALID_BANK
-	{
-		trace("Failed to load ", b);
-		error = 2;
-	}
-	else if !fmod_bank_load_sample_data(banks[i].handle)
-	{
-		trace("Couldn't load sample data for ", b);
-		error = 2;
-	}
+	var b = scr_load_bank(banks[i].eventPath);
+	if is_string(b)
+		show_message(b);
 	else
-		trace("Loaded Bank: ", b, " with id: ", banks[i].handle);
-}
-switch error
-{
-	case 1:
-		show_message("You're missing some .bank files.\nCertain sounds will be muted.");
-		break;
-	case 2:
-		show_message("FMOD failed to load some .bank files.\nCertain sounds will be muted.");
-		break;
+		banks[i].handle = b;
 }
 
 global.sound_map = ds_map_create();

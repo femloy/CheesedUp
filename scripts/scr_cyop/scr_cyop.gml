@@ -324,14 +324,10 @@ function cyop_load_level_internal(ini, travel = false)
 			}
 			trace("Loading room: ", room_file);
 			
-			// read file
-			var reader = buffer_load(concat(rooms_path, "/", room_file));
-			var str = buffer_read(reader, buffer_text);
-			var json = json_parse(str);
-			buffer_delete(reader);
+			var json = json_parse(scr_load_file(concat(rooms_path, "/", room_file)));
+			json = cyop_version_compatibility(json);
 			
 			// version mismatch
-			json = cyop_version_compatibility(json);
 			if json.editorVersion > 5
 			{
 				if json[$ "isNoiseUpdate"]
@@ -484,9 +480,7 @@ function cyop_enterlevel(gate, ini_struct)
 		// AFOM 2.0 noise heads
 		try
 		{
-			var buffer = buffer_load(string_replace(ini_struct.ini, "level.ini", "noiseHeads.json"));
-			noiseHeads = json_parse(buffer_read(buffer, buffer_string));
-			buffer_delete(buffer);
+			noiseHeads = json_parse(scr_load_file(string_replace(ini_struct.ini, "level.ini", "noiseHeads.json")));
 		}
 		catch (e)
 		{

@@ -8,11 +8,18 @@ function instance_destroy_hook(_id = self.id, execute_event_flag = true)
 		if object_index == obj_gmlive
 			exit;
 		
-		if execute_event_flag
+		stored_result = true;
+		scr_modding_hook_callback("instance/destroy", function()
 		{
-			destroy_modifier_hook();
+			if live_result == false
+				stored_result = false;
+		}, [execute_event_flag]);
+		
+		if stored_result == false
+			exit;
+		
+		if execute_event_flag
 			event_perform(ev_destroy, 0);
-		}
 	}
 	instance_destroy_base(_id, false);
 }

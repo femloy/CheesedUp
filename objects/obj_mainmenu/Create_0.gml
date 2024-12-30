@@ -53,6 +53,8 @@ game = -4;
 extramenusel = 0;
 extramenualpha = 1;
 
+noise_unlocked = false;
+
 /* reset command!
 
 obj_mainmenu.state = global.states.titlescreen;

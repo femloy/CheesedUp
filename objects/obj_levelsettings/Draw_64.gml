@@ -216,14 +216,11 @@ switch menu
 			if this >= array_length(options_array)
 				break;
 			
-			var icon = 0;
-			if this == -1
-				icon = sprite_get_number(spr_modifier_icons) - 1;
-			else
-				icon = options_array[this].icon;
+			var icon = this != -1 ? options_array[this].icon :
+				{sprite: spr_modifier_icons, image: sprite_get_number(spr_modifier_icons) - 1};
 			
 			var angle = 270 + -sep * center + i * 360 / sect + xo;
-	
+			
 			var icon_alpha = self.alpha;
 			if angle < 270
 				icon_alpha *= (angle % 360) / 270;
@@ -241,23 +238,18 @@ switch menu
 				draw_y += random_range(-modif_shake, modif_shake);
 			}
 			
-			draw_sprite_ext(spr_modifier_icons, icon, draw_x - 16 * scale + 2, draw_y - 16 * scale + 4, scale, scale, 0, c_black, icon_alpha * .5);
-			draw_sprite_ext(spr_modifier_icons, icon, draw_x - 16 * scale, draw_y - 16 * scale, scale, scale, 0, c_white, icon_alpha);
+			draw_sprite_ext(icon.sprite, icon.image, draw_x - 16 * scale + 2, draw_y - 16 * scale + 4, scale, scale, 0, c_black, icon_alpha * .5);
+			draw_sprite_ext(icon.sprite, icon.image, draw_x - 16 * scale, draw_y - 16 * scale, scale, scale, 0, c_white, icon_alpha);
 		}
 		
 		// text
-		var opt;
-		if sel == -1
-		{
-			opt = {
-				drawfunc: noone,
-				opts: [],
+		var opt = sel != -1 ? options_array[sel] :
+			{
+				drawfunc: noone, opts: [],
 				name: lstr("mod_title_ok"),
 				desc: lstr("mod_desc_ok")
-			}
-		}
-		else
-			opt = options_array[sel];
+			};
+		
 		var text_x = SCREEN_WIDTH / 2;
 		var text_y = screen_center_y(425);
 		
@@ -344,9 +336,10 @@ switch menu
 				xdraw = SCREEN_WIDTH - 32 - xdraw;
 			if align == 1 or align == 2
 				ydraw = SCREEN_HEIGHT - 32 - ydraw;
-	
-			draw_sprite_ext(spr_modifier_icons, active_modifiers[| i], xdraw + 3, ydraw + 3, 1, 1, 0, 0, alpha * 0.25);
-			draw_sprite_ext(spr_modifier_icons, active_modifiers[| i], xdraw, ydraw, 1, 1, 0, c_white, alpha);
+			
+			var icon = active_modifiers[| i];
+			draw_sprite_ext(icon.sprite, icon.image, xdraw + 3, ydraw + 3, 1, 1, 0, 0, alpha * 0.25);
+			draw_sprite_ext(icon.sprite, icon.image, xdraw, ydraw, 1, 1, 0, c_white, alpha);
 			
 			xx += 38;
 			if i % 5 == 4

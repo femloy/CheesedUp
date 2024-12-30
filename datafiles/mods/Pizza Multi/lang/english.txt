@@ -1,0 +1,4 @@
+lang = "en"
+
+mod_title_pizzamulti = "Pizza Multi"
+mod_desc_pizzamulti = "Let the softlocks begin."

@@ -48,25 +48,24 @@ function create_transformation_tip(str, save_entry = noone, destroy = false, imp
 		exit;
 	
 	// save
-	ini_open_from_string(obj_savesystem.ini_str);
-	if save_entry != noone && (ini_read_real("Tip", save_entry, false) or instance_exists(obj_cyop_loader))
-	{
-		ini_close();
-		exit;
-	}
 	if save_entry != noone
+	{
+		ini_open_from_string(obj_savesystem.ini_str);
+		if ini_read_real("Tip", save_entry, false) or instance_exists(obj_cyop_loader)
+		{
+			ini_close();
+			exit;
+		}
 		ini_write_real("Tip", save_entry, true);
-	obj_savesystem.ini_str = ini_close();
+		obj_savesystem.ini_str = ini_close();
+	}
 	
 	// spawn tip
 	instance_destroy(obj_transfotip);
 	
 	var b = instance_create(0, 0, obj_transfotip, {destroy: destroy});
 	with b
-	{
 		text = str;
-		b = id;
-	}
 	return b;
 }
 

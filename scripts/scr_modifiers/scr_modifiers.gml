@@ -27,7 +27,6 @@ function reset_modifier()
 		SuddenDeath: false,
 		Golf: false,
 		NoiseWorld: false,
-		PizzaMulti: false,
 		
 		// CTOP
 		CTOPLaps: false,
@@ -51,6 +50,8 @@ function reset_modifier()
 	with obj_player
 		gravityjump = false;
 	global.world_gravity = 1;
+	
+	scr_modding_hook("modifier/reset");
 }
 reset_modifier();
 
@@ -620,11 +621,14 @@ function pre_player_modifiers()
 					instance_create(xx + random_range(-200, 200), yy + random_range(-100, 100), obj_balloon);
 			}
 		}
+		
+		// MODDED
+		scr_modding_hook("modifier/preplayer");
 	}
 }
 function post_player_modifiers()
 {
-	if live_call() return live_result;
+	live_auto_call;
 	
 	with obj_persistent
 	{
@@ -730,6 +734,9 @@ function post_player_modifiers()
 				image_yscale = 1;
 			}
 		}
+		
+		// MODDED
+		scr_modding_hook("modifier/postplayer");
 	}
 }
 
@@ -742,88 +749,66 @@ function scr_modifier_fill()
 
 function get_modifier_icon(modifier)
 {
-	switch modifier
+	if live_enabled
 	{
-		default: return 0;
-		case "NoToppings": return 2;
-		case "Pacifist": return 3;
-		case "HardMode": return 4;
-		case "Mirror": return 5;
-		case "CTOPLaps": return 6;
-		case "JohnGhost": return 7;
-		case "Spotlight": return 8;
-		case "GreenDemon": return 9;
-		case "FromTheTop": return 10;
-		case "GravityJump": return 11;
-		case "CosmicClones": return 12;
-		case "Hydra": return 13;
-		case "DoubleTrouble": return 14;
-		case "EasyMode": return global.leveltosave != "snickchallenge" ? 15 : 23;
-		case "Birthday": return 16;
-		case "Peddito": return 17;
-		case "NoiseGutter": return 18;
-		case "OldLevels": return 19;
-		case "Ordered": return 20;
-		case "TaxMode": return 21;
-		case "SecretInclude": return 22;
-		case "NoiseWorld": return 24;
-		case "PizzaMulti": return 25;
-	}
-}
-
-function destroy_modifier_hook()
-{
-	if MOD.PizzaMulti
-	{
-		var objects =
-		[
-			obj_collect,
-			obj_bigcollect,
-			obj_destructibles,
-			obj_metalblock,
-			obj_baddie,
-			obj_pizzaboxunopen,
-			obj_ratblock,
-		];
-		
-		while array_length(objects)
+		scr_modding_hook_callback("modifier/geticon", function()
 		{
-			if check_boss(object_index)
-				break;
-			
-			var o = array_pop(objects);
-			if object_index == o or object_is_ancestor(object_index, o)
-			{
-				var p = instance_nearest(x, y, obj_player);
-				var wd = abs(bbox_right - bbox_left);
-				
-				if o == obj_baddie
-					wd = 0;
-				else if o == obj_pizzaboxunopen
-					wd = 48;
-				
-				with instance_create(x + wd * p.xscale, y, object_index)
-				{
-					depth = other.depth;
-					if o == obj_baddie
-					{
-						hsp = other.hithsp;
-						vsp = other.hitvsp;
-						stunned = 200;
-						state = states.stun;
-					}
-					if o == obj_pizzaboxunopen
-						content = other.content;
-				}
-				break;
-			}
+			if live_result != undefined
+				return HOOK_CALLBACK_STOP;
+		}, [modifier]);
+		
+		if live_result != undefined && is_struct(live_result)
+		{
+			live_result[$ "sprite"] ??= spr_modifier_icons;
+			live_result[$ "image"] ??= 0;
+			return live_result;
 		}
 	}
+	
+	var image = 0;
+	switch modifier
+	{
+		case "NoToppings": image = 2; break;
+		case "Pacifist": image = 3; break;
+		case "HardMode": image = 4; break;
+		case "Mirror": image = 5; break;
+		case "CTOPLaps": image = 6; break;
+		case "JohnGhost": image = 7; break;
+		case "Spotlight": image = 8; break;
+		case "GreenDemon": image = 9; break;
+		case "FromTheTop": image = 10; break;
+		case "GravityJump": image = 11; break;
+		case "CosmicClones": image = 12; break;
+		case "Hydra": image = 13; break;
+		case "DoubleTrouble": image = 14; break;
+		case "EasyMode": image = global.leveltosave != "snickchallenge" ? 15 : 23; break;
+		case "Birthday": image = 16; break;
+		case "Peddito": image = 17; break;
+		case "NoiseGutter": image = 18; break;
+		case "OldLevels": image = 19; break;
+		case "Ordered": image = 20; break;
+		case "TaxMode": image = 21; break;
+		case "SecretInclude": image = 22; break;
+		case "NoiseWorld": image = 24; break;
+	}
+	
+	return
+	{
+		sprite: spr_modifier_icons,
+		image: image
+	};
 }
 
 function get_modifier_saving()
 {
+	scr_modding_hook_callback("savecondition", function()
+	{
+		if live_result == false
+			return HOOK_CALLBACK_STOP;
+	});
+	if live_result == false
+		return false;
+	
 	return (!MOD.OldLevels or global.leveltosave == "snickchallenge")
-		&& !MOD.DoubleTrouble && !MOD.Hydra && !MOD.EasyMode
-		&& !MOD.PizzaMulti;
+		&& !MOD.DoubleTrouble && !MOD.Hydra && !MOD.EasyMode;
 }

@@ -9,6 +9,8 @@ function calculate_panic_timer(_minutes = 5, _seconds = 30)
 }
 function activate_panic(instapanic = false, debris = noone)
 {
+	global.panic = true;
+	
 	if room == tower_finalhallway
 		global.leveltosave = "exit";
 	
@@ -30,7 +32,17 @@ function activate_panic(instapanic = false, debris = noone)
 	instance_activate_object(obj_destroyable3_escape);
 	instance_activate_object(obj_deathcollectescape);
 	
+	with obj_escapecollect
+	{
+		gotowardsplayer = false;
+		movespeed = 5;
+		image_alpha = 1;
+	}
+	with obj_escapecollectbig
+		image_alpha = 1;
+	
 	notification_push(notifs.hungrypillar_dead, [room]);
+	
 	if !instapanic
 	{
 		fmod_event_instance_play(global.snd_escaperumble);
@@ -51,6 +63,7 @@ function activate_panic(instapanic = false, debris = noone)
 	}
 	
 	global.fill = 4000;
+	
 	if instance_exists(obj_cyop_loader)
 	{
 		global.minutes = floor(global.cyop_fill / 60);
@@ -155,6 +168,8 @@ function activate_panic(instapanic = false, debris = noone)
 			global.fill = calculate_panic_timer(0, 30);
 			break;
 	}
+	
+	scr_modding_hook("panic");
 	scr_modifier_fill();
 	
 	with obj_tv
@@ -162,22 +177,12 @@ function activate_panic(instapanic = false, debris = noone)
 		chunkmax = global.fill;
 		fill_lerp = global.fill;
 	}
-	with obj_escapecollect
-	{
-		gotowardsplayer = false;
-		movespeed = 5;
-		image_alpha = 1;
-	}
-	with obj_escapecollectbig
-		image_alpha = 1;
 	
 	global.wave = 0;
 	global.maxwave = global.fill;
 	
 	with obj_persistent
 		event_user(1);
-	
-	global.panic = true;
 }
 function activate_snickchallenge()
 {
