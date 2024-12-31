@@ -83,18 +83,18 @@ function scr_pizzano_twirl()
 	if (input_buffer_shoot > 0 && shotgunAnim)
 		scr_shotgunshoot();
 	else if (input_buffer_pistol > 0 && global.pistol)
-	or (global.shootstyle == SHOOT_STYLES.pistol && key_shoot2)
+	or (global.shootstyle == MOD_MOVES.pistol && key_shoot2)
 		scr_pistolshoot(states.mach2);
 	else if key_shoot2
-		scr_perform_move(MOD_MOVES.shootattack, states.mach2);
+		scr_perform_move(MOD_MOVE_TYPE.shootattack);
 	
 	if scr_slapbuffercheck() && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol))
 	{
+		scr_resetslapbuffer();
 		if movespeed >= 12
 		{
 			if !key_up
 			{
-				scr_resetslapbuffer()
 				state = states.Sjump;
 				
 				flash = true;
@@ -109,8 +109,6 @@ function scr_pizzano_twirl()
 			}
 			else
 			{
-				scr_resetslapbuffer()
-				
 				flash = true;
 				image_index = 0;
 				sprite_index = spr_superjumpprep;
@@ -120,28 +118,8 @@ function scr_pizzano_twirl()
 				vsp = 0;
 			}
 		}
-		
-		// uppercut
-		else if key_up
-		{
-			input_buffer_slap = 0;
-			input_buffer_grab = 0;
-			state = states.punch;
-			image_index = 0;
-			sprite_index = spr_breakdanceuppercut;
-			fmod_event_instance_play(snd_uppercut);
-			vsp = -10;
-			movespeed = hsp;
-			particle_set_scale(part.highjumpcloud2, xscale, 1);
-			create_particle(x, y, part.highjumpcloud2, 0);
-		}
-		
-		// kungfu
 		else
-		{
-			input_buffer_slap = 0;
-			scr_perform_move(MOD_MOVES.grabattack, states.twirl);
-		}
+			scr_perform_move(MOD_MOVE_TYPE.grabattack);
 	}
 	
 	// pound cancel

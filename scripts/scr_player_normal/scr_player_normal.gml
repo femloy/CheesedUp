@@ -423,111 +423,17 @@ function state_player_normal()
 		state = states.jump;
 	}
 	
-	if character == "MS" && scr_slapbuffercheck()
-		scr_stick_doattack();
-	
-	if character != "V" && character != "S" && character != "MS"
-	{
-		if (input_buffer_shoot > 0 && shotgunAnim)
-			scr_shotgunshoot();
-		else if (input_buffer_pistol > 0 && global.pistol)
-		or (global.shootstyle == SHOOT_STYLES.pistol && key_shoot2)
-			scr_pistolshoot(states.normal);
-		else if key_shoot2
-			scr_perform_move(MOD_MOVES.shootattack, states.normal);
-		
-		var _pistol = (global.pistol && character != "N");
-		
-		// suplex dash
-		var allow_uppercut = IT_allow_uppercut();
-		if (input_buffer_grab > 0 && (!key_up or !allow_uppercut) && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol)) && (!SUGARY_SPIRE or !suplexmove or character != "SP"))
-		{
-			input_buffer_grab = 0;
-			input_buffer_slap = 0;
-			
-			sprite_index = shotgunAnim ? spr_shotgunsuplexdash : spr_suplexdash;
-			suplexmove = true;
-			fmod_event_instance_play(suplexdashsnd);
-			state = states.handstandjump;
-			movespeed = suplexspeed;
-			image_index = 0;
-			
-			if IT_april_particles()
-			{
-				if grounded
-				{
-					with instance_create(x, y, obj_superdashcloud)
-			            copy_player_scale(other);
-				}
-				with instance_create(x, y, obj_crazyrunothereffect)
-		            copy_player_scale(other);
-			}
-			
-			particle_set_scale(part.jumpdust, xscale, 1);
-			create_particle(x, y, part.jumpdust, 0);
-		}
-		
-		// uppercut
-		else if allow_uppercut && ((input_buffer_slap > 0 or input_buffer_grab > 0) && key_up && ((shotgunAnim == false && !_pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !_pistol)))
-		{
-			state = states.punch;
-			input_buffer_slap = 0;
-			input_buffer_grab = 0;
-			image_index = 0;
-			sprite_index = spr_breakdanceuppercut;
-			fmod_event_instance_play(snd_uppercut);
-			
-			if character == "V"
-				vsp = vigi_uppercut_vsp();
-			else if character == "N"
-				vsp = -20;
-			else
-				vsp = -14;
-			
-			movespeed = hsp;
-			if global.banquet && key_attack // high jump going left
-				movespeed = abs(hsp);
-			
-			if SUGARY_SPIRE && character == "SP"
-			{
-				with instance_create(x, y + 3, obj_highjumpcloud2)
-					sprite_index = spr_player_firemouthjumpdust;
-			}
-			else
-			{
-				particle_set_scale(part.highjumpcloud2, xscale, 1);
-				create_particle(x, y, part.highjumpcloud2, 0);
-			}
-			
-			if (character == "N")
-			{
-				repeat (4)
-				{
-					with (instance_create(x + irandom_range(-40, 40), y + irandom_range(-40, 40), obj_explosioneffect))
-					{
-						sprite_index = spr_shineeffect;
-						image_speed = 0.35;
-					}
-				}
-			}
-		}
-		
-		// kungfu
-		else if input_buffer_slap > 0 && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol))
-		{
-			input_buffer_slap = 0;
-			scr_perform_move(MOD_MOVES.grabattack, states.normal);
-		}
-	}
+	// moves
+	scr_player_handle_moves(states.normal);
 	
 	// character specifics (and mach)
-	switch (character)
+	switch character
 	{
 		default:
 			if !CHAR_POGONOISE
 			{
 				// peppino
-				if (key_attack && state != states.handstandjump && !check_solid(x + xscale, y) && (!place_meeting(x, y + 1, obj_iceblockslope) or !check_solid(x + (xscale * 5), y)) && !global.kungfu)
+				if key_attack && state != states.handstandjump && !check_solid(x + xscale, y) && (!place_meeting(x, y + 1, obj_iceblockslope) or !check_solid(x + (xscale * 5), y)) && !global.kungfu
 				{
 					if !global.pistol || pistolanim == -4
 					{
@@ -595,11 +501,13 @@ function state_player_normal()
 				scr_vigi_shoot();
 			}
 			break;
+		
 		case "S":
 			break;
 	}
 	scr_dotaunt();
-	if (sprite_index == spr_shotgunshoot)
+	
+	if sprite_index == spr_shotgunshoot
 	{
 		landAnim = false;
 		machslideAnim = false;

@@ -24,7 +24,7 @@ if (SUGARY_SPIRE && character == "SN") or (!CHAR_BASENOISE && isgustavo)
 	if (key_chainsaw2 or key_slap2)
 		input_buffer_slap = 12;
 }
-else if global.swapgrab && global.attackstyle != ATTACK_STYLES.grab
+else if global.swapgrab && global.attackstyle != MOD_MOVES.grab
 {
 	if (key_chainsaw2)
 		input_buffer_slap = 12;
@@ -35,7 +35,7 @@ else
 {
 	if (key_slap2)
 		input_buffer_slap = 12;
-	if (global.attackstyle != ATTACK_STYLES.grab ? key_chainsaw2 : key_slap2)
+	if (global.attackstyle != MOD_MOVES.grab ? key_chainsaw2 : key_slap2)
 		input_buffer_grab = 12;
 }
 if (key_jump)
@@ -1269,7 +1269,7 @@ if state != states.tumble
 else if vigi_slide_buffer > 0
 	vigi_slide_buffer--;
 
-if !attackstyletip && state == states.normal && !cutscene && global.attackstyle != ATTACK_STYLES.grab
+if !attackstyletip && state == states.normal && !cutscene && global.attackstyle != MOD_MOVES.grab
 {
 	attackstyletip = true;
 	var tiptext = lstr("attackstyletip");

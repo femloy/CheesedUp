@@ -264,28 +264,10 @@ function scr_player_climbwall()
 	// grab if there are destructibles in front of you
 	if REMIX && IT_mach_grab() && state == states.climbwall && place_meeting(x + xscale, y, obj_destructibles) && character != "V"
 	{
-		if (input_buffer_grab > 0 && shotgunAnim == false && !global.pistol)
-		{
-			input_buffer_grab = 0;
-			input_buffer_slap = 0;
-					
-			sprite_index = shotgunAnim ? spr_shotgunsuplexdash : spr_suplexdash;
-			suplexmove = true;
-			fmod_event_instance_play(suplexdashsnd);
-			state = states.handstandjump;
-			if IT_climbwall_transfer_speed()
-				movespeed = max(wallspeed, 5);
-			image_index = 0;
-		}
-					
-		// kungfu
-		else if input_buffer_slap > 0
-		{
-			input_buffer_slap = 0;
-			scr_perform_move(MOD_MOVES.grabattack, states.climbwall);
-		}
+		if scr_slapbuffercheck() && !shotgunAnim && !global.pistol
+			scr_perform_move(MOD_MOVE_TYPE.grabattack);
 	}
-			
+	
 	image_speed = 0.6;
 	if steppybuffer > 0
 		steppybuffer--;

@@ -1,270 +1,91 @@
 #macro MAX_BULLETS 3
 #macro MAX_FUEL 3
 
-enum MOD_MOVES
+enum MOD_MOVE_TYPE
 {
 	grabattack,
 	doublegrab,
-	shootattack
+	shootattack,
+	uppercut
 }
 
-function scr_perform_move(move, prestate = state)
+enum MOD_MOVES
 {
+	none,
+	grab,
+	kungfu,
+	shoulderbash,
+	lunge,
+	faceplant,
+	chainsaw,
+	pistol,
+	breakdance
+}
+
+function scr_player_handle_moves(required_state = state)
+{
+	if character == "MS" && scr_slapbuffercheck()
+		scr_stick_doattack();
+	
+	if character != "V" && character != "S" && character != "MS"
+	{
+		if input_buffer_shoot > 0 && shotgunAnim
+			scr_shotgunshoot();
+		else if input_buffer_pistol > 0 && global.pistol
+			scr_pistolshoot(required_state);
+		else if key_shoot2
+			scr_perform_move(MOD_MOVE_TYPE.shootattack, required_state);
+		if scr_slapbuffercheck()
+			scr_perform_move(MOD_MOVE_TYPE.grabattack, required_state);
+	}
+}
+
+function scr_perform_move(move_type, required_state = state)
+{
+	if move_type == MOD_MOVE_TYPE.grabattack
+	{
+		if key_up && IT_allow_uppercut()
+		{
+			var pistol = (global.pistol && character != "N");
+			if !((!shotgunAnim && !pistol) or global.shootbutton == SHOOT_BUTTONS.shoot or (global.shootbutton == SHOOT_BUTTONS.shoot_for_shotgun && !pistol))
+				return;
+			scr_resetslapbuffer();
+			return scr_modmove_uppercut(required_state);
+		}
+		if sprite_index == spr_suplexbump
+			return;
+		if !((!shotgunAnim && !global.pistol) or global.shootbutton == SHOOT_BUTTONS.shoot or (global.shootbutton == SHOOT_BUTTONS.shoot_for_shotgun && !global.pistol))
+			return;
+	}
+	
 	var attackstyle = global.attackstyle;
 	var doublegrab = global.doublegrab;
 	var shootstyle = global.shootstyle;
 	
-	if SUGARY_SPIRE
+	if input_buffer_grab > 0
+		attackstyle = MOD_MOVES.grab;
+	if attackstyle == doublegrab
+		doublegrab = MOD_MOVES.grab;
+	
+	var move;
+	switch move_type
 	{
-		if character == "SN"
-		{
-			attackstyle = ATTACK_STYLES.kungfu;
-			doublegrab = DOUBLE_STYLES.chainsaw;
-			global.fuel = 3;
-		}
+		default: return;
+		case MOD_MOVE_TYPE.grabattack: move = attackstyle; break;
+		case MOD_MOVE_TYPE.doublegrab: move = doublegrab; break;
+		case MOD_MOVE_TYPE.shootattack: move = shootstyle; break;
 	}
 	
-	//if attackstyle == ATTACK_STYLES.lunge && instance_exists(obj_bosscontroller)
-	//	attackstyle = ATTACK_STYLES.grab;
-	
-	if move == MOD_MOVES.grabattack
+	switch move
 	{
-		switch attackstyle
-		{
-			case ATTACK_STYLES.grab:
-				trace("Grabbed with scr_perform_move");
-				
-				if grounded
-					sprite_index = shotgunAnim ? spr_shotgunsuplexdash : spr_suplexdash;
-				else
-					sprite_index = spr_suplexdashjumpstart;
-				
-				suplexmove = true;
-				fmod_event_instance_play(suplexdashsnd);
-				state = states.handstandjump;
-				if movespeed < 5
-					movespeed = 5;
-				image_index = 0;
-				
-				if IT_april_particles()
-				{
-					if grounded
-					{
-						with instance_create(x, y, obj_superdashcloud)
-			                copy_player_scale(other);
-					}
-					with instance_create(x, y, obj_crazyrunothereffect)
-		                copy_player_scale(other);
-				}
-				
-				particle_set_scale(part.jumpdust, xscale, 1);
-				create_particle(x, y, part.jumpdust, 0);
-				break;
-			
-			case ATTACK_STYLES.kungfu:
-				if grounded
-				{
-					with instance_create(x, y, obj_superdashcloud)
-						copy_player_scale(other);
-					sprite_index = choose(spr_kungfu1, spr_kungfu2, spr_kungfu3);
-				}
-				else
-					sprite_index = choose(spr_kungfuair1transition, spr_kungfuair2transition, spr_kungfuair3transition);
-				suplexmove = true;
-							
-				particle_set_scale(part.crazyrunothereffect, xscale, 1);
-				create_particle(x, y, part.crazyrunothereffect);
-					
-				sound_play_3d("event:/modded/sfx/kungfu", x, y);
-				state = states.punch;
-				movespeed = max(movespeed, 10);
-				if vsp > 0
-					vsp = 0;
-				image_index = 0;
-				break;
-						
-			case ATTACK_STYLES.shoulderbash:
-				if grounded
-				{
-					with instance_create(x, y, obj_superdashcloud)
-						copy_player_scale(other);
-					sprite_index = spr_attackdash;
-				}
-				else
-					sprite_index = spr_airattackstart;
-				suplexmove = true;
-							
-				particle_set_scale(part.crazyrunothereffect, xscale, 1);
-				create_particle(x, y, part.crazyrunothereffect);
-							
-				fmod_event_instance_play(snd_dive);
-				state = states.handstandjump;
-				movespeed = max(movespeed, 10);
-				image_index = 0;
-				break;
-			
-			case ATTACK_STYLES.lunge:
-				if !suplexmove
-				{
-					if grounded
-					{
-						with instance_create(x, y, obj_superdashcloud)
-							copy_player_scale(other);
-					}
-					sprite_index = spr_lunge;
-					suplexmove = true;
-				
-					particle_set_scale(part.jumpdust, xscale, 1);
-					create_particle(x, y, part.jumpdust, 0);
-					particle_set_scale(part.crazyrunothereffect, xscale, 1);
-					create_particle(x, y, part.crazyrunothereffect);
-							
-					fmod_event_instance_play(suplexdashsnd);
-					state = states.handstandjump;
-					movespeed = max(movespeed, 10);
-					vsp = 0;
-					image_index = 0;
-				}
-				break;
-		}
+		case MOD_MOVES.grab: scr_modmove_grab(move_type, required_state); break;
+		case MOD_MOVES.kungfu: scr_modmove_kungfu(move_type, required_state); break;
+		case MOD_MOVES.shoulderbash: scr_modmove_shoulderbash(move_type, required_state); break;
+		case MOD_MOVES.lunge: scr_modmove_lunge(move_type, required_state); break;
+		case MOD_MOVES.faceplant: scr_modmove_faceplant(move_type, required_state); break;
+		case MOD_MOVES.chainsaw: scr_modmove_chainsaw(move_type, required_state); break;
+		case MOD_MOVES.pistol: scr_pistolshoot(required_state); break;
+		case MOD_MOVES.breakdance: scr_modmove_breakdance(move_type, required_state); break;
 	}
-	if move == MOD_MOVES.doublegrab
-	{
-		switch doublegrab
-		{
-			case DOUBLE_STYLES.shoulderbash:
-				if attackstyle != ATTACK_STYLES.shoulderbash
-				{
-					if sprite_index != spr_attackdash && sprite_index != spr_airattackstart && sprite_index != spr_airattack
-					&& !suplexmove2
-					{
-						fmod_event_instance_stop(suplexdashsnd, false);
-						fmod_event_instance_play(snd_dive);
-						
-						state = states.handstandjump;
-						image_index = 0;
-						movespeed = max(movespeed, 10);
-						
-						particle_set_scale(part.crazyrunothereffect, xscale, 1);
-						create_particle(x, y, part.crazyrunothereffect);
-						
-						if grounded
-						{
-							sprite_index = spr_attackdash;
-							with instance_create(x + (xscale * -50), y, obj_superdashcloud)
-								copy_player_scale(other);
-						}
-						else
-						{
-							suplexmove2 = true;
-							if vsp > -4
-								vsp = -4;
-							sprite_index = spr_airattackstart;
-						}
-					}
-				}
-				else
-				{
-					// grab instead
-					if sprite_index != spr_suplexdash && sprite_index != spr_shotgunsuplexdash
-					{
-						sprite_index = shotgunAnim ? spr_shotgunsuplexdash : spr_suplexdash;
-						suplexmove = true;
-						particle_set_scale(part.jumpdust, xscale, 1);
-						create_particle(x, y, part.jumpdust, 0);
-						fmod_event_instance_play(suplexdashsnd);
-						state = states.handstandjump;
-						image_index = 0;
-					}
-				}
-				break;
-			
-			case DOUBLE_STYLES.faceplant:
-				var swapdir = key_left + key_right;
-				if swapdir != 0
-					xscale = swapdir;
-				
-				movespeed = max(movespeed, grounded ? 7 : 9);
-				if movespeed < 24
-					movespeed += 1;
-				if !grounded
-					vsp = -5;
-				
-				image_index = 0;
-				sprite_index = spr_faceplant;
-				
-				state = states.faceplant;
-				image_speed = 0.5;
-				
-				if obj_player1.character == "N"
-					sound_play_3d(sfx_spin, x, y);
-				else if IT_final_sounds()
-					sound_play_3d("event:/modded/sfx/faceplant", x, y);
-				
-				particle_set_scale(part.jumpdust, xscale, 1);
-				create_particle(x, y, part.jumpdust);
-				
-				particle_set_scale(part.crazyrunothereffect, xscale, 1);
-				create_particle(x, y, part.crazyrunothereffect);
-				break;
-			
-			case DOUBLE_STYLES.chainsaw:
-				if floor(global.fuel) > 0
-				{
-					fmod_event_instance_play(suplexdashsnd);
-					
-					var swapdir = key_left + key_right;
-					if swapdir != 0
-						xscale = swapdir;
-					
-					particle_set_scale(part.jumpdust, xscale, 1);
-					create_particle(x, y, part.jumpdust, 0);
-					
-					particle_set_scale(part.crazyrunothereffect, xscale, 1);
-					create_particle(x, y, part.crazyrunothereffect);
-					
-					with instance_create(x, y, obj_superdashcloud)
-						copy_player_scale(other);
-					
-					global.fuel = floor(global.fuel - 1);
-					state = states.chainsawbump;
-					movespeed = max(movespeed, 10);
-					sprite_index = spr_chainsawdash;
-					image_index = 0;
-					
-					if global.hud == HUD_STYLES.old
-					{
-						with obj_tv
-						{
-							alarm[0] = 100;
-							tvsprite = spr_tvchainsaw;
-							image_index = 0;
-							image_speed = 0.35;
-						}
-					}
-				}
-				break;
-		}
-	}
-	if move == MOD_MOVES.shootattack
-	{
-		switch shootstyle
-		{
-			case SHOOT_STYLES.breakdance:
-				fmod_event_instance_play(breakdancesnd);
-				if !grounded
-					vsp = -4;
-				else
-				{
-					with instance_create(x, y, obj_dashcloud2)
-						copy_player_scale(other);
-				}
-				movespeed = max(movespeed, 9);
-				state = states.punch;
-				sprite_index = spr_breakdancemove;
-				breakdance = 35;
-				image_index = 0;
-				break;
-		}
-	}
+	scr_resetslapbuffer();
 }

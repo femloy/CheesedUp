@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_perform_move",
+  "%Name":"scr_modmove_faceplant",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_perform_move",
+  "name":"scr_modmove_faceplant",
   "parent":{
     "name":"Moves",
     "path":"folders/Scripts/CheesyPizza/Moves.yy",

@@ -5,10 +5,10 @@ var multiplier = self.multiplier;
 if multiplier == 0
 	exit;
 	
-global.attackstyle = ATTACK_STYLES.shoulderbash;
-global.shootstyle = SHOOT_STYLES.pistol;
+global.attackstyle = MOD_MOVES.shoulderbash;
+global.shootstyle = MOD_MOVES.pistol;
 REMIX = 0;
-global.doublegrab = DOUBLE_STYLES.chainsaw;
+global.doublegrab = MOD_MOVES.chainsaw;
 global.secrettiles = SECRETTILE_STYLES.fade;
 global.smoothcam = min(multiplier, 0.95);
 global.hud = HUD_STYLES.old;

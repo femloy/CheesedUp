@@ -14,7 +14,7 @@ scroll = 0;
 
 scr_init_input();
 
-with create_transformation_tip(lstr("modmenutip"))
+with create_transformation_tip("")
 {
 	depth = other.depth - 1;
 	fadeout_speed = fadein_speed;

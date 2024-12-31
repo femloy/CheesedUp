@@ -137,7 +137,7 @@ function Instakill()
 	}
 	
 	var stored_sprite = sprite_index;
-	if state == states.handstandjump && ((!key_slap && character != "N") or global.attackstyle == ATTACK_STYLES.shoulderbash)
+	if state == states.handstandjump && ((!key_slap && character != "N") or global.attackstyle == MOD_MOVES.shoulderbash)
 	{
 		image_index = random_range(0, image_number - 1);
 		if grounded
@@ -166,7 +166,7 @@ function Instakill()
     }
 	
 	var lag = 5;
-	if check_kungfu_state() or (state == states.handstandjump && global.attackstyle == ATTACK_STYLES.shoulderbash)
+	if check_kungfu_state() or (state == states.handstandjump && global.attackstyle == MOD_MOVES.shoulderbash)
 		lag = 10;
 	if other.baddieID.heavy
 		lag = 15;

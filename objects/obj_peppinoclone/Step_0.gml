@@ -77,7 +77,7 @@ switch (state)
 					if --cooldown <= 0 && abs(targetplayer.y - y) < 64 && (_grounded or vsp < 0)
 					{
 						create_heatattack_afterimage(x, y, sprite_index, image_index, image_xscale);
-						if global.attackstyle == ATTACK_STYLES.kungfu or global.attackstyle == ATTACK_STYLES.shoulderbash
+						if global.attackstyle == MOD_MOVES.kungfu or global.attackstyle == MOD_MOVES.shoulderbash
 						{
 							sound_play_3d("event:/modded/sfx/kungfu", x, y);
 							state = states.punch;

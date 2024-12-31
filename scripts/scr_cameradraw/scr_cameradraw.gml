@@ -268,7 +268,7 @@ function scr_cameradraw()
 	var bx = hud_xx - 70, by = hud_yy + 54;
 	if global.heatmeter
 		by += 42;
-	if global.shootstyle == SHOOT_STYLES.pistol && showbullet
+	if global.shootstyle == MOD_MOVES.pistol && showbullet
 	{
 		var spr = spr_peppinobullet_collectible, yo = -76;
 		switch player.character
@@ -278,10 +278,10 @@ function scr_cameradraw()
 				yo = -16;
 				break;
 		}
-		bx = scr_draw_fuel(bx, by + yo, spr, global.bullet, 3, global.doublegrab == DOUBLE_STYLES.chainsaw ? -8 : 8) + 20;
+		bx = scr_draw_fuel(bx, by + yo, spr, global.bullet, 3, global.doublegrab == MOD_MOVES.chainsaw ? -8 : 8) + 20;
 	}
-	if global.doublegrab == DOUBLE_STYLES.chainsaw && showbullet
-		bx = scr_draw_fuel(bx, by, spr_fuelHUD, global.fuel, 3, global.shootstyle == SHOOT_STYLES.pistol ? -8 : 8);
+	if global.doublegrab == MOD_MOVES.chainsaw && showbullet
+		bx = scr_draw_fuel(bx, by, spr_fuelHUD, global.fuel, 3, global.shootstyle == MOD_MOVES.pistol ? -8 : 8);
 	
 	draw_set_font(lang_get_font("bigfont"));
 	draw_set_halign(fa_center);

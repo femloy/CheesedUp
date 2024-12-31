@@ -11,13 +11,13 @@ function scr_slapbuffercheck()
 
 function scr_slapcheck()
 {
-	if global.attackstyle == ATTACK_STYLES.grab
+	if global.attackstyle == MOD_MOVES.grab
 		return key_slap;
 	return key_slap or key_chainsaw;
 }
 function scr_slapcheck2()
 {
-	if global.attackstyle == ATTACK_STYLES.grab
+	if global.attackstyle == MOD_MOVES.grab
 		return key_slap2;
 	return key_slap2 or key_chainsaw2;
 }

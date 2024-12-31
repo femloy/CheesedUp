@@ -130,10 +130,10 @@ function IT_walkspeed()
 	// They sped him up
 	return IT_FINAL ? 8 : 6;
 }
-function IT_suplexspeed()
+function IT_suplexspeed(required_state = state)
 {
 	// They slowed him down
-	if state != states.jump
+	if required_state == states.normal
 		return IT_FINAL ? 8 : 10;
 	else
 		return IT_FINAL ? 5 : 6;

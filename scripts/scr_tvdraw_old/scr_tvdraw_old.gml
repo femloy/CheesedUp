@@ -154,9 +154,9 @@ function scr_tvdraw_old()
 	var showbullet = obj_player1.character != "V" && obj_player1.character != "S" && !obj_player1.isgustavo;
 	
 	var by = 130, bpad = 10;
-	if global.shootstyle == SHOOT_STYLES.pistol && showbullet
+	if global.shootstyle == MOD_MOVES.pistol && showbullet
 		scr_draw_fuel(SCREEN_WIDTH - 180, by, spr_bulletHUD, global.bullet, 3, -3);
-	if global.doublegrab == DOUBLE_STYLES.chainsaw && showbullet
+	if global.doublegrab == MOD_MOVES.chainsaw && showbullet
 		scr_draw_fuel(SCREEN_WIDTH - 100, by, spr_fuelHUD, global.fuel, 3, -20);
 	
 	#endregion

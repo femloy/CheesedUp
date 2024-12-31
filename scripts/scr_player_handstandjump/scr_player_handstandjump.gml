@@ -72,12 +72,10 @@ function scr_player_handstandjump()
 		vsp = 0;
 	
 	// double tap move
-	if input_buffer_slap > 0 or input_buffer_grab > 0
+	if scr_slapbuffercheck()
 	{
-		input_buffer_grab = 0;
-		input_buffer_slap = 0;
-		
-		scr_perform_move(MOD_MOVES.doublegrab, states.handstandjump);
+		scr_resetslapbuffer();
+		scr_perform_move(MOD_MOVE_TYPE.doublegrab);
 	}
 	
 	if (!key_jump2 && jumpstop == 0 && vsp < 0.5 && stompAnim == 0)

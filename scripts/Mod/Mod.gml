@@ -185,7 +185,8 @@ function Mod(_mod_json, _mod_root) constructor
 			if is_struct(sprite)
 			{
 				sprite_assign(sprite.sprite, sprite.old);
-				array_push(old_sprites, sprite.old);
+				if sprite.free
+					array_push(old_sprites, sprite.old);
 			}
 			else if sprite_exists(sprite)
 				sprite_delete(sprite);

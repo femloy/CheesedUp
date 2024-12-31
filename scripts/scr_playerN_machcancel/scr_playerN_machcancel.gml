@@ -16,10 +16,12 @@ function scr_playerN_machcancel()
 {
 	noisemachcancelbuffer = 10;
 	hsp = movespeed;
+	
 	move = key_right + key_left;
 	if move != 0
 		savedmove = move;
-	if (sprite_index == spr_playerN_divebomb || sprite_index == spr_playerN_divebombland || sprite_index == spr_playerN_divebombfall)
+	
+	if sprite_index == spr_playerN_divebomb || sprite_index == spr_playerN_divebombland || sprite_index == spr_playerN_divebombfall
 	{
 		if move != 0
 		{
@@ -30,13 +32,15 @@ function scr_playerN_machcancel()
 		}
 		else
 			movespeed = Approach(movespeed, 0, 0.25);
+		
 		var xx = movespeed;
 		if xx == 0
 			xx = xscale;
-		if (grounded && vsp > 0 && place_meeting(x + xx, y, obj_solid))
+		
+		if grounded && vsp > 0 && place_meeting(x + xx, y, obj_solid)
 		{
 			mask_index = spr_crouchmask;
-			if (!place_meeting(x + xx, y, obj_solid) || place_meeting(x + xx, y, obj_destructibles))
+			if !place_meeting(x + xx, y, obj_solid) || place_meeting(x + xx, y, obj_destructibles)
 			{
 				state = states.tumble;
 				sprite_index = spr_machroll;
@@ -55,9 +59,11 @@ function scr_playerN_machcancel()
 		movespeed = Approach(movespeed, move * 8, 1);
 	else
 		movespeed = Approach(movespeed, 0, 0.5);
-	if (scr_noise_machcancel_grab())
+	
+	if scr_noise_machcancel_grab()
 		exit;
-	if (scr_check_groundpound2() && sprite_index != spr_playerN_divebombfall && !place_meeting(x, y, obj_ventilator) && !grounded)
+	
+	if scr_check_groundpound2() && sprite_index != spr_playerN_divebombfall && !place_meeting(x, y, obj_ventilator) && !grounded
 	{
 		sprite_index = spr_playerN_divebombfall;
 		state = states.machcancel;
@@ -67,17 +73,20 @@ function scr_playerN_machcancel()
 		image_index = 0;
 		exit;
 	}
+	
 	if grounded && sprite_index == spr_playerN_divebombfall
 	{
 		image_index = 0;
 		sprite_index = spr_playerN_divebombland;
 	}
-	if (floor(image_index) == image_number - 1 && sprite_index == spr_playerN_divebombland)
+	
+	if floor(image_index) == image_number - 1 && sprite_index == spr_playerN_divebombland
 	{
 		image_index = 0;
 		sprite_index = spr_playerN_divebomb;
 	}
-	if (grounded && !scr_check_groundpound2() && vsp >= 0 && sprite_index != spr_playerN_wallbounce)
+	
+	if grounded && !scr_check_groundpound2() && vsp >= 0 && sprite_index != spr_playerN_wallbounce
 	{
 		vsp = -7;
 		if move != 0
@@ -87,6 +96,7 @@ function scr_playerN_machcancel()
 		sprite_index = spr_playerN_wallbounce;
 		GamepadSetVibration(0, 0.5, 0.5, 0.5);
 	}
+	
 	if grounded && key_attack && vsp >= 0 && sprite_index == spr_playerN_wallbounce
 	{
 		sound_play_3d("event:/sfx/playerN/wallbounceland", x, y);
@@ -107,44 +117,33 @@ function scr_playerN_machcancel()
 			copy_player_scale(other);
 	}
 	noisedoublejump = true;
-	if (input_buffer_slap > 0 && key_up && (!global.pistol || character == "N"))
+	
+	if scr_slapbuffercheck() && key_up && (!global.pistol || character == "N")
 	{
-		input_buffer_slap = 0;
-		state = states.punch;
-		image_index = 0;
-		sprite_index = spr_breakdanceuppercut;
-		fmod_event_instance_play(snd_uppercut);
-		vsp = -21;
-		movespeed = hsp;
-		particle_set_scale(part.highjumpcloud2, xscale, 1);
-		create_particle(x, y, part.highjumpcloud2, 0);
-		repeat 4
-		{
-			with instance_create(x + irandom_range(-40, 40), y + irandom_range(-40, 40), obj_explosioneffect)
-			{
-				sprite_index = spr_shineeffect;
-				image_speed = 0.35;
-			}
-		}
+		scr_resetslapbuffer();
+		scr_modmove_uppercut();
 	}
-	if (character == "N" && key_up && input_buffer_jump > 0 && !scr_check_groundpound2())
+	
+	if character == "N" && key_up && input_buffer_jump > 0 && !scr_check_groundpound2()
 	{
 		freefallstart = 0;
 		railmomentum = false;
-		if (place_meeting(x, y + 1, obj_railparent))
+		if place_meeting(x, y + 1, obj_railparent)
 			railmomentum = true;
 		scr_player_do_noisecrusher();
 	}
+	
 	if grounded && !key_attack && vsp >= 0 && sprite_index == spr_playerN_wallbounce
 	{
 		state = states.normal;
 		movespeed = abs(hsp);
 	}
-	if (sprite_index == spr_playerN_divebomb || sprite_index == spr_playerN_divebombland || sprite_index == spr_playerN_divebombfall)
+	
+	if sprite_index == spr_playerN_divebomb || sprite_index == spr_playerN_divebombland || sprite_index == spr_playerN_divebombfall
 	{
-		if (!instance_exists(dashcloudid) && grounded)
+		if !instance_exists(dashcloudid) && grounded
 		{
-			with (instance_create(x, y, obj_dashcloud))
+			with instance_create(x, y, obj_dashcloud)
 			{
 				image_xscale = other.move;
 				other.dashcloudid = id;
@@ -154,6 +153,7 @@ function scr_playerN_machcancel()
 	}
 	else
 		image_speed = 0.5;
+	
 	if punch_afterimage > 0
 		punch_afterimage--;
 	else
@@ -161,7 +161,7 @@ function scr_playerN_machcancel()
 		punch_afterimage = 5;
 		with instance_create(x + random_range(5, -5), y + random_range(20, -20), obj_tornadoeffect)
 			playerid = other.id;
-		if (grounded && (sprite_index == spr_playerN_divebomb || sprite_index == spr_playerN_divebombland || sprite_index == spr_playerN_divebombfall))
+		if grounded && (sprite_index == spr_playerN_divebomb || sprite_index == spr_playerN_divebombland || sprite_index == spr_playerN_divebombfall)
 		{
 			repeat 2
 			{
@@ -226,7 +226,7 @@ function scr_noise_machcancel_grab()
 		
 		if move != 0
 			xscale = move;
-		scr_perform_move(MOD_MOVES.shootattack, state);
+		scr_perform_move(MOD_MOVE_TYPE.shootattack);
 		
 		if state != s
 			return true;

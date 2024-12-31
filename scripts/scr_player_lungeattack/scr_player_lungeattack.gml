@@ -108,17 +108,12 @@ function DoFinisher()
 	input_down_buffer = 0;
 	hit_connected = false;
 	
-	if (key_up)
+	if key_up
 	{
-		state = states.punch;
+		scr_modmove_uppercut();
 		movespeed = 6;
-		image_index = 0;
-		sprite_index = spr_breakdanceuppercut;
-		fmod_event_instance_play(snd_uppercut);
 		vsp = -16;
 		hsp = xscale * movespeed;
-		particle_set_scale(part.highjumpcloud2, xscale, 1);
-		create_particle(x, y, part.highjumpcloud2, 0);
 	}
 	else
 	{
@@ -126,8 +121,10 @@ function DoFinisher()
 		sprite_index = spr_lungehit;
 		image_index = 0;
 		movespeed = !key_attack ? 7 : 14;
-		with (instance_create(x, y, obj_superdashcloud))
+		
+		with instance_create(x, y, obj_superdashcloud)
 			copy_player_scale(other);
+		
 		particle_set_scale(part.crazyrunothereffect, xscale, 1);
 		create_particle(x, y, part.crazyrunothereffect, 0);
 	}

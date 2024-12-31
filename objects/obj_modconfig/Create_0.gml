@@ -498,11 +498,12 @@ with new ModSection("gameplay", 0)
 	#region ATTACK STYLE
 
 	var opt = add_option("attackstyle", [seq_attackstyle_grab, seq_attackstyle_kungfu, seq_attackstyle_shoulderbash, seq_attackstyle_lunge]);
-	opt.opts = [
-		["grab", 0],
-		["kungfu", 1],
-		["shoulderbash", 2],
-		["lunge", 3],
+	opt.opts =
+	[
+		["grab", MOD_MOVES.grab],
+		["kungfu", MOD_MOVES.kungfu],
+		["shoulderbash", MOD_MOVES.shoulderbash],
+		["lunge", MOD_MOVES.lunge],
 	];
 	opt.hidden = other.character == "V";
 
@@ -541,7 +542,7 @@ with new ModSection("gameplay", 0)
 			if p.timer > 20
 			{
 				p.timer = 0;
-				if val == 1 && floor(bullets) > 0 && frac(bullets) == 0
+				if val == MOD_MOVES.pistol && floor(bullets) > 0 && frac(bullets) == 0
 				{
 					sound_play_centered(sfx_pistolshot);
 					p.state = states.pistol;
@@ -549,7 +550,7 @@ with new ModSection("gameplay", 0)
 					p.image = 0;
 					bullets--;
 				}
-				if val == 2
+				if val == MOD_MOVES.breakdance
 				{
 					p.hsp = p.xscale * 6;
 					p.timer = -50;
@@ -560,7 +561,7 @@ with new ModSection("gameplay", 0)
 				}
 			}
 		
-			if val == 1 && p.state != states.pistol
+			if val == MOD_MOVES.pistol && p.state != states.pistol
 			{
 				if bullets == 0
 					p.timer = -80;
@@ -576,10 +577,11 @@ with new ModSection("gameplay", 0)
 				draw_sprite(spr_peppinobullet_collectible, super.image_index, 136 - 46 * i, -32);
 		}
 	});
-	opt.opts = [
-		["none", 0],
-		["pistol", 1],
-		["breakdance", 2]
+	opt.opts =
+	[
+		["none", MOD_MOVES.none],
+		["pistol", MOD_MOVES.pistol],
+		["breakdance", MOD_MOVES.breakdance]
 	];
 	opt.hidden = other.character == "V";
 
@@ -633,25 +635,25 @@ with new ModSection("gameplay", 0)
 			}
 		
 			p.timer++;
-			if p.timer >= 30 && val != 0 && (val != 3 or floor(bullets) > 0)
+			if p.timer >= 30 && val != MOD_MOVES.none && (val != MOD_MOVES.chainsaw or floor(bullets) > 0)
 			{
 				if p.state == states.handstandjump
 				{
 					p.timer = -30;
-					if val == 1
+					if val == MOD_MOVES.shoulderbash
 					{
 						sound_play_centered(sfx_dive);
 						p.sprite = spr_player_attackdash;
 						p.image = 0;
 					}
-					if val == 2
+					if val == MOD_MOVES.faceplant
 					{
 						p.sprite = spr_player_faceplant;
 						p.state = states.faceplant;
 						p.hsp = 8;
 						p.image = 0;
 					}
-					if val == 3
+					if val == MOD_MOVES.chainsaw
 					{
 						p.sprite = spr_player_chainsawdash;
 						p.state = states.chainsawbump;
@@ -684,11 +686,12 @@ with new ModSection("gameplay", 0)
 	
 		draw_simuplayer();
 	});
-	opt.opts = [
-		["none", 0],
-		["chainsaw", 3],
-		["shoulderbash", 1],
-		["faceplant", 2]
+	opt.opts =
+	[
+		["none", MOD_MOVES.none],
+		["chainsaw", MOD_MOVES.chainsaw],
+		["shoulderbash", MOD_MOVES.shoulderbash],
+		["faceplant", MOD_MOVES.faceplant]
 	];
 	opt.hidden = other.character == "V";
 
@@ -1905,9 +1908,9 @@ with new ModSection("presets", 5)
 		{
 			preset_default();
 		
-			attackstyle = ATTACK_STYLES.kungfu;
-			shootstyle = SHOOT_STYLES.breakdance;
-			doublegrab = DOUBLE_STYLES.faceplant;
+			attackstyle = MOD_MOVES.kungfu;
+			shootstyle = MOD_MOVES.breakdance;
+			doublegrab = MOD_MOVES.faceplant;
 			shootbutton = 2;
 			panicbg = false;
 			self.afterimage = 1;
@@ -1923,9 +1926,9 @@ with new ModSection("presets", 5)
 			iteration = ITERATIONS.APRIL;
 			uppercut = false;
 			poundjump = true;
-			attackstyle = ATTACK_STYLES.shoulderbash;
-			shootstyle = SHOOT_STYLES.pistol;
-			doublegrab = DOUBLE_STYLES.chainsaw;
+			attackstyle = MOD_MOVES.shoulderbash;
+			shootstyle = MOD_MOVES.pistol;
+			doublegrab = MOD_MOVES.chainsaw;
 			heatmeter = true;
 			self.afterimage = 0;
 			hud = HUD_STYLES.old;
@@ -1954,8 +1957,9 @@ with new ModSection("presets", 5)
 				{
 					var json = json_parse(content, undefined, undefined);
 					
-					var preset = new ModPreset(json.name, json.desc);
+					var preset = new ModPreset(json.name, json.desc, json[$ "version"] ?? 1);
 					preset.preset_copy_struct(json.options);
+					preset.preset_backwards(preset.version);
 					
 					with add_preset(preset)
 					{

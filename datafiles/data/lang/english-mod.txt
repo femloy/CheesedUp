@@ -451,6 +451,7 @@ attackstyle1 = "Kung-Fu"
 attackstyle2 = "Shoulder Bash"
 attackstyle3 = "Lunge"
 modmenutip = "{u}[c] Settings\n[l][r] Toggle/"
+modmenutip2 = "{u}\n[l][r] Toggle/"
 
 # ------------
 # EDITOR MENU

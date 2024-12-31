@@ -49,19 +49,35 @@ function scr_modding_init()
 	});
 	live_function_add("sprite_replace(ind, fname, imgnumb, removeback, smooth, xorig, yorig)", function(ind, fname, imgnumb, removeback, smooth, xorig, yorig)
 	{
-		var old = scr_modding_find_og_sprite(ind) ?? sprite_duplicate(ind);
+		var free = false;
+		var old = scr_modding_find_og_sprite(ind);
+		
+		if old == undefined
+		{
+			free = true;
+			old = sprite_duplicate(ind);
+		}
+		
 		sprite_replace(ind, fname, imgnumb, removeback, smooth, xorig, yorig);
 		
 		if global.processing_mod != noone
-			array_push(global.processing_mod.sprite_cache, { sprite: ind, old: old });
+			array_push(global.processing_mod.sprite_cache, { sprite: ind, old: old, free: free });
 	});
 	live_function_add("sprite_assign(ind, source)", function(ind, source)
 	{
-		var old = scr_modding_find_og_sprite(ind) ?? sprite_duplicate(ind);
+		var free = false;
+		var old = scr_modding_find_og_sprite(ind);
+		
+		if old == undefined
+		{
+			free = true;
+			old = sprite_duplicate(ind);
+		}
+		
 		sprite_assign(ind, source);
 		
 		if global.processing_mod != noone
-			array_push(global.processing_mod.sprite_cache, { sprite: ind, old: old });
+			array_push(global.processing_mod.sprite_cache, { sprite: ind, old: old, free: free });
 	});
 	live_function_add("sprite_create_from_surface(id, x, y, w, h, removeback, smooth, xorig, yorig)", function(id, x, y, w, h, removeback, smooth, xorig, yorig)
 	{

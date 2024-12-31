@@ -81,13 +81,13 @@ function scr_debugdraw()
 	str += $"Combo time: {floor(global.combotime)}\n";
 	
 	// pistol and chainsaw
-	if global.shootstyle == SHOOT_STYLES.pistol
+	if global.shootstyle == MOD_MOVES.pistol
 	{
 		str += $"Bullets: {floor(global.bullet)}/{MAX_BULLETS}\n";
 		if global.bullet < MAX_BULLETS
 			str += $"Next bullet: {floor(frac(global.bullet) * 100)}%\n";
 	}
-	if global.doublegrab == DOUBLE_STYLES.chainsaw
+	if global.doublegrab == MOD_MOVES.chainsaw
 	{
 		str += $"Fuel: {floor(global.fuel)}/{MAX_FUEL}\n";
 		if global.fuel < MAX_FUEL

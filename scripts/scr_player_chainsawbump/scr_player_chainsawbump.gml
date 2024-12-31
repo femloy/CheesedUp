@@ -43,8 +43,9 @@ function scr_player_chainsawbump()
 			}
 		}
 	}
-	if (key_jump && grounded && sprite_index != spr_chainsawhitwall)
+	if (input_buffer_jump > 0 && can_jump && sprite_index != spr_chainsawhitwall)
 	{
+		input_buffer_jump = 0;
 		jumpstop = false;
 		vsp = -11;
 		state = states.mach2;

@@ -17,26 +17,6 @@ enum HUD_STYLES
 	minimal,
 	debug
 }
-enum ATTACK_STYLES
-{
-	grab,
-	kungfu,
-	shoulderbash,
-	lunge
-}
-enum SHOOT_STYLES
-{
-	none,
-	pistol,
-	breakdance
-}
-enum DOUBLE_STYLES
-{
-	none,
-	shoulderbash,
-	faceplant,
-	chainsaw
-}
 enum BORDER_STYLES
 {
 	none = -1,
@@ -111,10 +91,13 @@ enum SECRETTILE_STYLES
 }
 
 // default / presets
-function ModPreset(name = "PRESET", desc = "Wow that's Cray Zay!") constructor
+#macro PRESET_VERSION 2
+
+function ModPreset(name = "PRESET", desc = "Wow that's Cray Zay!", version = PRESET_VERSION) constructor
 {
 	preset_name = name;
 	preset_desc = desc;
+	preset_version = version;
 	
 	preset_copy_struct = function(struct)
 	{
@@ -155,18 +138,18 @@ function ModPreset(name = "PRESET", desc = "Wow that's Cray Zay!") constructor
 	{
 		// mod config
 		iteration = ITERATIONS.FINAL;
-		gameplay = true; // misc. improvements on or off?
+		gameplay = true; // REMIX
 		
 		// gameplay settings
-		uppercut = true; // *buffed uppercut*
+		uppercut = true; // buffed uppercut
 		poundjump = false;
-		attackstyle = ATTACK_STYLES.grab;
-		shootstyle = SHOOT_STYLES.none;
-		doublegrab = DOUBLE_STYLES.none;
-		shootbutton = SHOOT_BUTTONS.grab; // 0 replace grab, 1 move to A, 2 only shotgun
+		attackstyle = MOD_MOVES.grab;
+		shootstyle = MOD_MOVES.none;
+		doublegrab = MOD_MOVES.none;
+		shootbutton = SHOOT_BUTTONS.grab;
 		heatmeter = false;
 		swapgrab = false;
-		hitstun = HITSTUN_STYLES.final; // 0 off, 1 on, 2 early
+		hitstun = HITSTUN_STYLES.final;
 		banquet = true; // mod that got merged into base game
 		eggplantslope = false;
 		combokeeper = true;
@@ -179,9 +162,9 @@ function ModPreset(name = "PRESET", desc = "Wow that's Cray Zay!") constructor
 		panictilt = false;
 		sloperot = false;
 		showfps = false;
-		self.afterimage = AFTERIMAGES.mach; // final, eggplant
+		self.afterimage = AFTERIMAGES.mach;
 		smoothcam = 0; // 0 through 1 lerp amount
-		secrettiles = SECRETTILE_STYLES.fade; // fade, spotlight
+		secrettiles = SECRETTILE_STYLES.fade;
 		hud = HUD_STYLES.final;
 		blockstyle = BLOCK_STYLES.final;
 		roomnames = false;
@@ -195,7 +178,58 @@ function ModPreset(name = "PRESET", desc = "Wow that's Cray Zay!") constructor
 		lapmode = LAP_MODES.normal;
 		parrypizzaface = false;
 		lap3checkpoint = true;
-		chasekind = CHASE_KINDS.blocks; // none, place blocks, slow down
+		chasekind = CHASE_KINDS.blocks;
+	}
+	
+	preset_from_opened_ini = function()
+	{
+		preset_default();
+		
+		if ini_section_exists("Modded")
+		{
+			var vars = struct_get_names(self);
+			for(var i = 0, n = array_length(vars); i < n; ++i)
+			{
+				if string_starts_with(vars[i], "preset_")
+					continue;
+				if ini_key_exists("Modded", vars[i])
+					self[$ vars[i]] = ini_read_real("Modded", vars[i], 0);
+			}
+			
+			preset_version = ini_read_real("Modded", "preset_version", 1);
+			preset_backwards();
+		}
+	}
+	
+	preset_backwards = function()
+	{
+		if preset_version < 2
+		{
+			trace("[PRESET] Updating to v2");
+			
+			switch attackstyle
+			{
+				default: attackstyle = MOD_MOVES.grab; break;
+				case 1: shootstyle = MOD_MOVES.kungfu; break;
+				case 2: shootstyle = MOD_MOVES.shoulderbash; break;
+				case 3: shootstyle = MOD_MOVES.lunge; break;
+			}
+			
+			switch shootstyle
+			{
+				default: shootstyle = MOD_MOVES.none; break;
+				case 1: shootstyle = MOD_MOVES.pistol; break;
+				case 2: shootstyle = MOD_MOVES.breakdance; break;
+			}
+			
+			switch doublegrab
+			{
+				default: doublegrab = MOD_MOVES.none; break;
+				case 1: doublegrab = MOD_MOVES.shoulderbash; break;
+				case 2: doublegrab = MOD_MOVES.faceplant; break;
+				case 3: doublegrab = MOD_MOVES.chainsaw; break;
+			}
+		}
 	}
 }
 
@@ -207,30 +241,14 @@ function load_mod_config()
 		ini_open(save_folder + "saveData.ini");
 	
 	// read or set
-	var preset_default = new ModPreset();
-	preset_default.preset_default();
-	
-	with preset_default
+	var mod_preset = new ModPreset();
+	with mod_preset
 	{
-		var vars = struct_get_names(self);
-		for(var i = 0, n = array_length(vars); i < n; ++i)
-		{
-			if string_starts_with(vars[i], "preset_")
-				continue;
-			
-			if ini_key_exists("Modded", vars[i])
-			{
-				var value = ini_read_real("Modded", vars[i], 0);
-				variable_global_set(vars[i], value);
-			}
-			else
-			{
-				trace("[LOAD] Defaulting global.", vars[i], " to ", self[$ vars[i]]);
-				variable_global_set(vars[i], self[$ vars[i]]);
-			}
-		}
+		preset_from_opened_ini();
+		preset_apply();
 	}
 	
+	// outside of preset
 	global.lap4checkpoint = global.lap3checkpoint;
 	
 	global.richpresence = ini_read_real("Modded", "richpresence", true);
@@ -249,10 +267,12 @@ function load_mod_config()
 	global.record_replay = false;
 	global.replay_limit = 1000000 * 5; // in bytes, 5 MB
 	
-	// Online (James)
+	// online
+	/*
 	global.online_player_opacity = ini_read_real("Modded", "online_player_opacity", 1);
 	global.online_name_opacity = ini_read_real("Modded", "online_name_opacity", 1);
 	global.online_streamer_mode = ini_read_real("Modded", "online_streamer_mode", 0);
+	*/
 	
 	// convert from islam (PTT 1.0)
 	if ini_key_exists("Modded", "pizzellesugaryoverride")

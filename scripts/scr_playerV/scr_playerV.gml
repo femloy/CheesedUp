@@ -7,14 +7,7 @@ function scr_vigi_shoot()
 	{
 		input_buffer_pistol = 0;
 		if key_up && state != states.crouch
-		{
-			state = states.punch;
-			image_index = 0;
-			sprite_index = spr_breakdanceuppercut;
-			fmod_event_instance_play(snd_uppercut);
-			vsp = vigi_uppercut_vsp();
-			movespeed = hsp;
-		}
+			scr_modmove_uppercut();
 		else if shotgunAnim
 			scr_shotgunshoot();
 		else if state == states.normal or state == states.crouch or place_meeting(x, y, obj_shotgun)
@@ -519,9 +512,4 @@ function scr_player_swimming()
 	
 	if steppybuffer == 10 && (move != 0 or moveV != 0)
 		sound_play_3d("event:/modded/playerV/step", x, y);
-}
-
-function vigi_uppercut_vsp()
-{
-	return -(19 - vigi_uppercut_nerf * 4);
 }

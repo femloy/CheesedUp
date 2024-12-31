@@ -2,9 +2,9 @@ function scr_player_punch()
 {
 	//if live_call() return live_result;
 	
-	#region uppercut
+	#region Uppercut
 	
-	if (sprite_index == spr_breakdanceuppercut or sprite_index == spr_breakdanceuppercutend)
+	if sprite_index == spr_breakdanceuppercut or sprite_index == spr_breakdanceuppercutend
 	{
 		move = key_left + key_right;
 		landAnim = true;
@@ -315,7 +315,7 @@ function scr_player_punch()
 		if (_kungfuground or _kungfuair) && input_buffer_slap > 0
 		{
 			input_buffer_slap = 0;
-			scr_perform_move(MOD_MOVES.doublegrab, states.punch);
+			scr_perform_move(MOD_MOVE_TYPE.doublegrab);
 			exit;
 		}
 		

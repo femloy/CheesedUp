@@ -107,9 +107,9 @@ switch state
 					}
 				}
 				
-				ini_write_string("Modded", "inputdisplay", global.inputdisplay);
+				ini_write_real("Modded", "preset_version", PRESET_VERSION);
 				obj_savesystem.ini_str_options = ini_close();
-			
+				
 				gamesave_async_save_options();
 				with obj_option
 				{
@@ -374,11 +374,13 @@ switch state
 					set_struct[$ j.vari] = value;
 				}
 				
-				var main_struct = {
+				var main_struct =
+				{
 					name: opt.name,
 					desc: opt.desc,
+					version: PRESET_VERSION,
 					options: set_struct
-				}
+				};
 				
 				var c = 1;
 				while file_exists(concat(save_folder, "presets/preset", c, ".json"))

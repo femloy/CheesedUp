@@ -394,6 +394,7 @@ attackstyle1 = "Kung-Fu"
 attackstyle2 = "Hombro"
 attackstyle3 = "Estrellón"
 modmenutip = "{u}[c] Configuración\n[l][r] Cambiar/"
+modmenutip2 = "{u}\n[l][r] Cambiar/"
 
 # ------------
 # EDITOR MENU

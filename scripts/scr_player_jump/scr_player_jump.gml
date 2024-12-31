@@ -330,87 +330,8 @@ function state_player_jump()
 		shake_camera(10, 30 / room_speed);
 	}
 	
-	if character == "MS" && scr_slapbuffercheck()
-		scr_stick_doattack();
-	
-	if character != "V" && character != "S" && character != "MS"
-	{
-		if (input_buffer_shoot > 0 && shotgunAnim)
-			scr_shotgunshoot();
-		else if (input_buffer_pistol > 0 && global.pistol)
-		or (global.shootstyle == SHOOT_STYLES.pistol && key_shoot2)
-			scr_pistolshoot(states.jump);
-		else if key_shoot2
-			scr_perform_move(MOD_MOVES.shootattack, states.jump);
-		var pistol = (global.pistol && character != "N");
-		
-		// suplex dash
-		var allow_uppercut = IT_allow_uppercut();
-		if (input_buffer_grab > 0 && (!key_up or !allow_uppercut) && sprite_index != spr_suplexbump && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol)) && (!suplexmove or !IT_grab_suplexmove_check()))
-		{
-			input_buffer_slap = 0;
-			input_buffer_grab = 0;
-			
-			particle_set_scale(part.jumpdust, xscale, 1);
-			create_particle(x, y, part.jumpdust, 0);
-			image_index = 0;
-			sprite_index = spr_suplexdashjumpstart;
-			if SUGARY_SPIRE && character == "SP"
-				sprite_index = spr_suplexdash;
-			suplexmove = true;
-			fmod_event_instance_play(suplexdashsnd);
-			state = states.handstandjump;
-			movespeed = IT_suplexspeed();
-			
-			var v = IT_grab_vsp();
-			if v != undefined
-				vsp = v;
-		}
-	
-		// uppercut
-		else if allow_uppercut && ((input_buffer_slap > 0 or input_buffer_grab > 0) && key_up && ((shotgunAnim == false && !pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !pistol)))
-		{
-			input_buffer_slap = 0;
-			input_buffer_grab = 0;
-			state = states.punch;
-			image_index = 0;
-			sprite_index = spr_breakdanceuppercut;
-			fmod_event_instance_play(snd_uppercut);
-			
-			if character == "V"
-				vsp = vigi_uppercut_vsp();
-			else if character == "N"
-				vsp = -21;
-			else
-				vsp = -10;
-			
-			movespeed = hsp;
-			if global.banquet && key_attack && grounded // high jump going left
-				movespeed = abs(hsp);
-			
-			particle_set_scale(part.highjumpcloud2, xscale, 1);
-			create_particle(x, y, part.highjumpcloud2, 0);
-			
-			if character == "N"
-			{
-				repeat (4)
-				{
-					with (instance_create(x + irandom_range(-40, 40), y + irandom_range(-40, 40), obj_explosioneffect))
-					{
-						sprite_index = spr_shineeffect;
-						image_speed = 0.35;
-					}
-				}
-			}
-		}
-	
-		// kungfu
-		else if input_buffer_slap > 0 && !suplexmove && ((shotgunAnim == false && !global.pistol) or global.shootbutton == 1 or (global.shootbutton == 2 && !global.pistol))
-		{
-			input_buffer_slap = 0;
-			scr_perform_move(MOD_MOVES.grabattack, states.jump);
-		}
-	}
+	// moves
+	scr_player_handle_moves(states.jump);
 	
 	/*
 	if (key_slap2 && shoot)

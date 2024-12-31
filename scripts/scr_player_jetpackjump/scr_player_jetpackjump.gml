@@ -149,42 +149,17 @@ function scr_player_jetpackjump()
 	if character != "V" && sprite_index != spr_suplexbump
 	{
 		// suplex dash
-		if input_buffer_grab > 0
+		if scr_slapbuffercheck()
 		{
-			input_buffer_slap = 0;
-			input_buffer_grab = 0;
-			
 			if sprite_index != spr_jetpackstart2
 			{
 				with instance_create(x, y, obj_rocketdead)
 					sprite_index = spr_jetpackdebris;
 			}
-		
-			particle_set_scale(part.jumpdust, xscale, 1);
-			create_particle(x, y, part.jumpdust, 0);
-			image_index = 0;
-			sprite_index = spr_suplexdashjumpstart;
-			if SUGARY_SPIRE	&& character == "SP"
-				sprite_index = spr_suplexdash;
-			suplexmove = true;
-			fmod_event_instance_play(suplexdashsnd);
-			state = states.handstandjump;
-			movespeed = 5;
-		}
-		
-		// kungfu
-		else if input_buffer_slap > 0 && !suplexmove
-		{
-			input_buffer_slap = 0;
-			
-			if sprite_index != spr_jetpackstart2
-			{
-				with instance_create(x, y, obj_rocketdead)
-					sprite_index = spr_jetpackdebris;
-			}
-			scr_perform_move(MOD_MOVES.grabattack, states.jump);
+			scr_perform_move(MOD_MOVE_TYPE.grabattack);
 		}
 	}
+	
 	if (check_solid(x + xscale, y) && !place_meeting(x + xscale, y, obj_destructibles))
 		movespeed = 0;
 	if (sprite_index == spin && jetpackbounce == 1 && check_solid(x + xscale, y) && !place_meeting(x + xscale, y, obj_destructibles))
