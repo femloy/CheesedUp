@@ -6,7 +6,7 @@ function scr_playerN_hookshot()
 		xscale = move;
 	if (key_jump)
 	{
-		vsp = -6;
+		vsp = IT_jumpspeed();
 		instance_create(x, y, obj_washingmachine);
 		sprite_index = spr_jump;
 		stompAnim = false;
@@ -48,9 +48,7 @@ function scr_playerN_hookshot()
 		image_index = 0;
 	}
 	if grounded
-	{
 		vsp = -5;
-	}
 	if (move != 0)
 	{
 		if (movespeed < 8)

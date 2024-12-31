@@ -4,11 +4,7 @@ function state_player_normal()
 	var maxmovespeed2 = 6; // bug, and image speed limit.
 	var accel = 0.5;
 	var deccel = 0.1;
-	var jumpspeed = -11;
-	var suplexspeed = IT_suplexspeed(); // 8
-	
-	if character == "MS"
-		jumpspeed = scr_stick_jumpspeed();
+	var jumpspeed = IT_jumpspeed();
 	
 	// gustavo failsafe
 	if isgustavo && !CHAR_BASENOISE
@@ -267,15 +263,16 @@ function state_player_normal()
 					idle = 0;
 					windingAnim--;
 					sprite_index = spr_winding;
-					if (breakdance_pressed >= breakdance_max)
+					if breakdance_pressed >= breakdance_max
 						sprite_index = spr_breakdance;
 				}
 			}
 			else
 			{
 				windingAnim = 0;
-				sprite_index = spr_facehurt;
-				if (breakdance_pressed >= breakdance_max)
+				if !REMIX or sprite_index != spr_facehurtup or image_index >= image_number - 1
+					sprite_index = spr_facehurt;
+				if breakdance_pressed >= breakdance_max
 					sprite_index = spr_breakdance;
 			}
 		}
@@ -962,7 +959,7 @@ function state_snick_normal()
 			
 					sprite_index = spr_snick_roll;
 					state = states.jump;
-					vsp = -12;
+					vsp = IT_jumpspeed();
 					jumpstop = false;
 					
 					with check_slope(x, y + 1, true)

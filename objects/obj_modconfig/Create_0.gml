@@ -411,9 +411,9 @@ with new ModSection("gameplay", 0)
 			
 			if afterimages[0] > -1
 			{
-				var b = global.mach_color1;
+				var b = global.mach_colors[0];
 				shader_set_uniform_f(color1, color_get_red(b) / 255, color_get_green(b) / 255, color_get_blue(b) / 255);
-				b = merge_colour(b, c_black, 0.9);
+				var b = global.mach_colors_dark[0];
 				shader_set_uniform_f(color2, color_get_red(b) / 255, color_get_green(b) / 255, color_get_blue(b) / 255);
 			
 				draw_sprite(spr_player_mach, afterimages[0], 240, 140 + yo);
@@ -421,9 +421,9 @@ with new ModSection("gameplay", 0)
 			
 			if afterimages[1] > -1
 			{
-				var b = global.mach_color2;
+				var b = global.mach_colors[1];
 				shader_set_uniform_f(color1, color_get_red(b) / 255, color_get_green(b) / 255, color_get_blue(b) / 255);
-				b = merge_colour(b, c_black, 0.9);
+				var b = global.mach_colors_dark[1];
 				shader_set_uniform_f(color2, color_get_red(b) / 255, color_get_green(b) / 255, color_get_blue(b) / 255);
 				
 				draw_sprite(spr_player_mach, afterimages[1], 290, 140 + yo);

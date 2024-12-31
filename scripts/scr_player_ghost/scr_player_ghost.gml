@@ -150,10 +150,10 @@ function scr_player_ghost()
 			else if movespeed >= 10
 			{
 				punch_afterimage = 10
-				with (instance_create((x + random_range(-10, 10)), (y + random_range(-10, 10)), obj_explosioneffect))
+				with instance_create(x + random_range(-10, 10), y + random_range(-10, 10), obj_explosioneffect)
 				{
-					sprite_index = spr_shineeffect
-					image_speed = 0.35
+					sprite_index = spr_shineeffect;
+					image_speed = 0.35;
 				}
 			}
 			scr_player_ghostdash_sprites(!ghostdashend ? 0 : 2.5)

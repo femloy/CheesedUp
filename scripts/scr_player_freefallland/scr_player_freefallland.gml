@@ -38,23 +38,17 @@ function scr_player_freefallland()
 	
 	if jump
 	{
-		state = states.jump;
 		if !IT_forced_poundjump()
 		{
-			vsp = -13;
 			if spr_groundpoundjump != spr_player_groundpoundjump or character == "P"
 				sprite_index = spr_groundpoundjump;
 			else
 				sprite_index = spr_machfreefall;
 		}
 		else
-		{
-			if key_jump2
-	            vsp = -14;
-	        else
-	            vsp = -8;
 			sprite_index = spr_machfreefall;
-		}
+		vsp = IT_jumpspeed();
+		state = states.jump;
 		
         jumpstop = true;
 		scr_fmod_soundeffect(jumpsnd, x, y);

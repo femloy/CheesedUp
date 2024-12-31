@@ -132,7 +132,7 @@ function scr_player_firemouth()
 			if (floor(image_index) == (image_number - 1))
 				sprite_index = spr_firemouthspin;
 		}
-		if (check_solid(x + hsp, y) && !check_slope(x + hsp, y) && !place_meeting(x + hsp, y, obj_destructibles) && !place_meeting(x + hsp, y, obj_tntblock) && !place_meeting(x + hsp, y, obj_iceblock) && !place_meeting(x + hsp, y, obj_ratblock))
+		if (check_solid(x + hsp, y) && !check_slope(x + hsp, y) && scr_preventbump())
 			movespeed = 0;
 		if (firemouth_afterimage > 0)
 			firemouth_afterimage--;
@@ -165,9 +165,7 @@ function scr_player_firemouth()
 			sprite_index = spr_player_firemouthjumpdust;
 		repeat (5)
 			instance_create(x, y, obj_firemouthflame);
-		vsp = -15;
-		if (character == "N")
-			vsp = -12;
+		vsp = IT_jumpspeed();
 	}
 	if (sprite_index == spr_firemouthintro && image_index > 22 && firemouthflames == 0)
 	{

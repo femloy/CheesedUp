@@ -66,7 +66,7 @@ function scr_player_mort()
 		input_buffer_jump = 0;
 		state = states.mortjump;
 		doublejump = false;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		sprite_index = spr_playermortjumpstart;
 		image_index = 0;
 		scr_fmod_soundeffect(jumpsnd, x, y);

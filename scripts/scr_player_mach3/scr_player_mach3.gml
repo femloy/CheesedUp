@@ -12,11 +12,8 @@ function scr_player_mach3()
 	var mach3movespeed = IT_mach3_mach3speed();
 	var accel = IT_mach3_accel();
 	var mach4accel = 0.1;
-	var jumpspeed = -11;
+	var jumpspeed = IT_jumpspeed();
 	var machrollspeed = 10;
-	
-	if character == "MS"
-		jumpspeed = scr_stick_jumpspeed();
 	
 	#region PEPPINO / VIGI
 	
@@ -170,16 +167,6 @@ function scr_player_mach3()
 				sprite_index = spr_mach3jump;
 			}
 			vsp = jumpspeed;
-			
-			if SUGARY_SPIRE
-			{
-				if character == "SN"
-				{
-					state = states.twirl;
-					sprite_index = spr_pizzano_machtwirl;
-					vsp = -12;
-				}
-			}
 		}
 		
 		if (input_buffer_jump > 0 && !can_jump && key_up && CHAR_BASENOISE && noisedoublejump)
@@ -275,8 +262,9 @@ function scr_player_mach3()
 			}
 		}
 		
-		if ((!grounded && (check_solid(x + hsp, y) || scr_solid_slope(x + hsp, y)) && !check_slope(x, y - 1) && !place_meeting(x + hsp, y, obj_destructibles) && !place_meeting(x + hsp, y, obj_mach3solid) && !place_meeting(x + hsp, y, obj_metalblock))
-		|| (grounded && (check_solid(x + sign(hsp), y - 16) || scr_solid_slope(x + sign(hsp), y - 16)) && !place_meeting(x + hsp, y, obj_destructibles) && !place_meeting(x + hsp, y, obj_mach3solid) && !place_meeting(x + hsp, y, obj_metalblock) && check_slope(x, y + 1)))
+		if ((!grounded && (check_solid(x + hsp, y) || scr_solid_slope(x + hsp, y)) && !check_slope(x, y - 1))
+		|| (grounded && (check_solid(x + sign(hsp), y - 16) || scr_solid_slope(x + sign(hsp), y - 16)) && check_slope(x, y + 1)))
+		&& scr_preventbump(states.mach3)
 		{
 			var _climb = true;
 			if CHAR_BASENOISE
@@ -331,12 +319,12 @@ function scr_player_mach3()
 		if IT_mach_grab() && sprite_index != spr_dashpadmach
 			scr_player_handle_moves(states.mach3);
 		
-		if ((scr_solid(x + sign(hsp), y) && !place_meeting(x + sign(hsp), y, obj_mach3solid)) && !scr_slope() && (scr_solid_slope(x + sign(hsp), y) || check_solid(x + sign(hsp), y)) && !place_meeting(x + sign(hsp), y, obj_metalblock) && !place_meeting(x + sign(hsp), y, obj_destructibles) && !place_meeting(x + sign(hsp), y, obj_climbablewall) && grounded)
+		if scr_solid(x + sign(hsp), y) && !scr_slope() && (scr_solid_slope(x + sign(hsp), y) || check_solid(x + sign(hsp), y)) && scr_preventbump(states.mach3) && !place_meeting(x + sign(hsp), y, obj_climbablewall) && grounded
 		{
 			var _bump = true;
-			if (character != "N" || noisemachcancelbuffer <= 0)
+			if character != "N" || noisemachcancelbuffer <= 0
 				_bump = ledge_bump((vsp >= 0) ? 32 : 22);
-			if (_bump)
+			if _bump
 			{
 				shake_camera(20, 40 / room_speed);
 				with (obj_baddie)
@@ -384,11 +372,13 @@ function scr_player_mach3()
 				}
 			}
 		}
+		
 		if character == "V"
 		{
 			scr_vigi_shoot();
 			scr_vigi_throw();
 		}
+		
 		if (scr_check_superjump() && fightball == 0 && state == states.mach3 && character != "V" && (grounded or IT_Sjump_midair()) && vsp > 0 && sprite_index != spr_dashpadmach && !place_meeting(x, y, obj_dashpad))
 		{
 			sprite_index = spr_superjumpprep;
@@ -499,7 +489,7 @@ function scr_player_mach3()
 					sprite_index = spr_pizzano_crouchslide;
 			}
 		}
-		if (scr_solid(x + sign(hsp), y) && !place_meeting(x + sign(hsp), y, obj_mach3solid)) && (!check_slope(x + sign(hsp), y) || check_solid(x + sign(hsp), y)) && (!place_meeting(x + sign(hsp), y, obj_metalblock)) && (!place_meeting(x + sign(hsp), y, obj_destructibles)) && !place_meeting(x + sign(hsp), y, obj_hungrypillar)
+		if scr_solid(x + sign(hsp), y) && (!check_slope(x + sign(hsp), y) || check_solid(x + sign(hsp), y)) && scr_preventbump(states.mach3) && !place_meeting(x + sign(hsp), y, obj_hungrypillar)
 		{
 			var _bump = ledge_bump((vsp >= 0) ? 32 : 22);
 			if _bump
@@ -529,17 +519,6 @@ function scr_player_mach3()
 				instance_create(x + (xscale * 15), y + 10, obj_bumpeffect);
 			}
 		}
-		if SUGARY_SPIRE
-		{
-			if character == "SN" && key_slap
-			{
-				sprite_index = spr_bodyslamstart;
-				image_index = 0;
-				state = states.freefall;
-				pistolanim = noone;
-				vsp = -6;
-			}
-		}
 	}
 	
 	#endregion
@@ -564,19 +543,21 @@ function scr_player_mach3()
 			p.sprite_index = spr_watereffect;
 	}
 	scr_dotaunt();
-	if (!instance_exists(chargeeffectid))
+	
+	if !instance_exists(chargeeffectid)
 	{
-		with (instance_create(x, y, obj_chargeeffect))
+		with instance_create(x, y, obj_chargeeffect)
 		{
-			playerid = other.object_index;
+			playerid = other.id;
 			other.chargeeffectid = id;
 		}
 	}
-	if (sprite_index == mach3_spr || sprite_index == spr_fightball)
+	
+	if sprite_index == mach3_spr || sprite_index == spr_fightball
 		image_speed = 0.4;
-	else if (sprite_index == spr_crazyrun)
+	else if sprite_index == spr_crazyrun
 		image_speed = 0.75;
-	else if (sprite_index == spr_rollgetup || sprite_index == spr_mach3hit)
+	else if sprite_index == spr_rollgetup || sprite_index == spr_mach3hit
 		image_speed = 0.4;
 	else
 		image_speed = 0.4;

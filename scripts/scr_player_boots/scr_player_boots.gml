@@ -24,7 +24,7 @@ function scr_player_boots()
 		jumpstop = false;
 		sprite_index = spr_playerV_bootsjump;
 		instance_create(x, y, obj_highjumpcloud2);
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		image_index = 0;
 	}
 	if (key_jump)

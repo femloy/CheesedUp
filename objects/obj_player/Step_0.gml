@@ -131,7 +131,7 @@ if ((CHAR_BASENOISE or character == "MS") && !skateboarding && ((scr_check_super
 if (character == "S" && !isgustavo) or (character == "V" && isgustavo)
 	mask_index = spr_crouchmask;
 
-switch (state)
+if scr_modding_hook_falser("player/prestate") switch state
 {
 	case states.normal:	scr_player_normal(); break;
 	case states.revolver: scr_player_revolver(); break;
@@ -336,6 +336,8 @@ switch (state)
 	case states.frozen: scr_player_frozen(); break;
 	case states.swimming: scr_player_swimming(); break;
 }
+
+scr_modding_hook("player/poststate");
 
 // ceiling run continued
 if ceilingrun && ((state != states.mach2 && state != states.mach3) or !grounded) && state != states.climbwall && state != states.chainsaw && state != states.backbreaker && state != states.debugstate

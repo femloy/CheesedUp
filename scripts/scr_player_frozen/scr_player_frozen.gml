@@ -45,7 +45,7 @@ function scr_player_frozen()
 			
 			state = states.jump;
 			jumpstop = true;
-			vsp = -12;
+			vsp = IT_jumpspeed();
 			sprite_index = spr_machfreefall;
 			
 			image_blend = c_white;

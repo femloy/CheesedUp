@@ -48,7 +48,7 @@ function scr_player_ratmounttumble()
 		particle_set_scale(part.highjumpcloud2, xscale, 1);
 		create_particle(x, y, part.highjumpcloud2, 0);
 		scr_fmod_soundeffect(jumpsnd, x, y);
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		jumpstop = false;
 	}
 }

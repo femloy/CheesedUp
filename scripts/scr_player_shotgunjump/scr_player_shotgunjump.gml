@@ -34,7 +34,7 @@ function scr_player_shotgunjump()
 	{
 		input_buffer_jump = 8;
 		state = states.shotgunjump;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		jumpstop = false;
 		sprite_index = spr_shotgunjump;
 		image_index = 0;

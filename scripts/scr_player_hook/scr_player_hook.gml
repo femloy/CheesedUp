@@ -5,7 +5,7 @@ function scr_player_hook()
 		state = states.jump;
 		sprite_index = spr_jump;
 		image_index = 0;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		jumpstop = false;
 	}
 }

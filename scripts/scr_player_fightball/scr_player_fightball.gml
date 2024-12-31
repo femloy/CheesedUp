@@ -12,7 +12,7 @@ function scr_player_fightball()
 	hsp = (xscale * movespeed) + (railmovespeed * raildir);
 	if movespeed <= 20
 		movespeed += 0.1;
-	if (place_meeting(x + sign(hsp), y, obj_solid) || scr_solid_slope(x + hsp, y)) && !place_meeting(x + sign(hsp), y, obj_slope) && !place_meeting(x + sign(hsp), y, obj_destructibles) && !place_meeting(x + sign(hsp), y, obj_metalblock)
+	if (place_meeting(x + sign(hsp), y, obj_solid) || scr_solid_slope(x + hsp, y)) && !place_meeting(x + sign(hsp), y, obj_slope) && scr_preventbump()
 	{
 		instance_create(x + (10 * xscale), y + 10, obj_bumpeffect);
 		sound_play_3d("event:/sfx/pep/bumpwall", x, y);
@@ -62,7 +62,7 @@ function scr_player_fightball()
 	if can_jump && input_buffer_jump > 0
 	{
 		input_buffer_jump = 0;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		jumpstop = false;
 		scr_fmod_soundeffect(jumpsnd, x, y);
 		particle_set_scale(part.jumpdust, xscale, 1);

@@ -83,7 +83,7 @@ function scr_player_knightpep()
 		image_index = 0;
 		sprite_index = spr_knightpepjumpstart;
 		scr_fmod_soundeffect(jumpsnd, x, y);
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		if (move == 0)
 			movespeed = 0;
 		if (move != 0)
@@ -142,7 +142,7 @@ function scr_player_knightpep()
 			scr_fmod_soundeffect(jumpsnd, x, y);
 			doublejump = true;
 			input_buffer_jump = 0;
-			vsp = -11;
+			vsp = IT_jumpspeed();
 			repeat (4)
 			{
 				with (instance_create(x + random_range(-50, 50), y + random_range(0, 50), obj_highjumpcloud2))

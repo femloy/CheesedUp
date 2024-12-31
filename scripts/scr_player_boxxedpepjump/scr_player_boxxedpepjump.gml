@@ -62,7 +62,7 @@ function scr_player_boxxedpepjump()
 			}
 			state = states.boxxedpepjump;
 			boxxedpepjump *= 0.9;
-			vsp = -boxxedpepjump;
+			vsp = IT_jumpspeed();
 		}
 	}
 	else

@@ -23,6 +23,7 @@ function create_mach3effect(_x, _y, _sprite, _image_index, _afterimage = false)
 	if object_index == obj_player1 && _sprite == sprite_index
 		_sprite = player_sprite();
 	
+	var color_ix = irandom(array_length(global.mach_colors) - 1);
 	var q = 
 	{
 		x: _x,
@@ -31,7 +32,8 @@ function create_mach3effect(_x, _y, _sprite, _image_index, _afterimage = false)
 		image_index: _image_index,
 		image_angle: 0,
 		alarm: [15, 6, -1],
-		image_blend: choose(global.mach_color1, global.mach_color2),
+		image_blend: global.mach_colors[color_ix],
+		dark_blend: global.mach_colors_dark[color_ix],
 		image_xscale: 1,
 		image_yscale: 1,
 		visible: true,
@@ -137,7 +139,7 @@ function create_blue_afterimage(_x, _y, _sprite, _image_index, _xscale)
 		_character = character;
 	}
 	
-	if global.afterimage == AFTERIMAGES.blue or _character == "SP"
+	if global.afterimage == AFTERIMAGES.blue
 	{
 		var b = create_afterimage(_x, _y, _sprite, _image_index);
 		with b
@@ -151,6 +153,7 @@ function create_blue_afterimage(_x, _y, _sprite, _image_index, _xscale)
 			image_xscale = _xscale;
 			image_yscale = _yscale;
 			image_blend = global.blueimg_color;
+			dark_blend = global.blueimg_color_dark;
 			alpha = 0.8;
 			basealpha = 1;
 			playerid = noone;

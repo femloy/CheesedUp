@@ -20,7 +20,7 @@ function scr_player_morthook()
 		sound_play_3d("event:/sfx/mort/doublejump", x, y);
 		with (morthookID)
 			projectilebuffer = 20;
-		vsp = -14;
+		vsp = IT_jumpspeed();
 		
 		if character == "V"
 		{

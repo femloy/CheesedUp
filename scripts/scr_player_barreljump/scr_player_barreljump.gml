@@ -25,7 +25,7 @@ function scr_player_barreljump()
 	{
 		input_buffer_jump = 0;
 		scr_fmod_soundeffect(jumpsnd, x, y);
-		vsp = -8.5;
+		vsp = IT_jumpspeed();
 		if (move != xscale && move != 0)
 		{
 			if (sign(movespeed) == 1)

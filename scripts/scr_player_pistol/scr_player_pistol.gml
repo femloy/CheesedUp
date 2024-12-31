@@ -11,11 +11,11 @@ function scr_player_pistol()
 	if (key_jump && grounded && !key_down)
 	{
 		jumpstop = false;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		state = states.tumble;
 		sprite_index = spr_mach2jump;
 	}
-	if (scr_solid(x + xscale, y) && (!check_slope(x + sign(hsp), y) || scr_solid_slope(x + sign(hsp), y)) && !place_meeting(x + xscale, y, obj_destructibles))
+	if (scr_solid(x + xscale, y) && (!check_slope(x + sign(hsp), y) || scr_solid_slope(x + sign(hsp), y)) && scr_preventbump())
 	{
 		var _bump = ledge_bump((vsp >= 0) ? 32 : 22);
 		if (_bump)

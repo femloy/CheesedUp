@@ -31,18 +31,14 @@ function sh_char(args)
 }
 function meta_char()
 {
-	return {
+	return
+	{
 		description: "change characters",
 		arguments: ["character", "<sprites>"],
 		suggestions: [
 			function()
 			{
-				var array = ["P", "N", "V", "S", "G", "M", "F", "MS", "D"];
-				if SUGARY_SPIRE
-					array_push(array, "SP", "SN");
-				if BO_NOISE
-					array_push(array, "BN");
-				return array;
+				return scr_charlist(false);
 			},
 		],
 	}

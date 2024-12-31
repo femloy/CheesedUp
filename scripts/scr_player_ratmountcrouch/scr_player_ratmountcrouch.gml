@@ -8,7 +8,7 @@ function scr_player_ratmountcrouch()
 	
 	move = key_left + key_right;
 	hsp = movespeed;
-	if (check_solid(x + hsp, y) && !check_slope(x + hsp, y) && !place_meeting(x + hsp, y, obj_destructibles))
+	if (check_solid(x + hsp, y) && !check_slope(x + hsp, y) && scr_preventbump())
 		movespeed = 0;
 	if (move != 0)
 	{

@@ -16,7 +16,7 @@ function scr_player_trickjump()
 				sprite_index = spr_rampjump;
 		}
 	}
-	if (scr_solid(x + xscale, y) && !scr_slope() && (scr_solid_slope(x + sign(hsp), y) || check_solid(x + sign(hsp), y)) && !place_meeting(x + sign(hsp), y, obj_destructibles))
+	if scr_solid(x + xscale, y) && !scr_slope() && (scr_solid_slope(x + sign(hsp), y) || check_solid(x + sign(hsp), y)) && scr_preventbump()
 	{
 		if SUGARY_SPIRE && check_sugary() && key_attack
 		{

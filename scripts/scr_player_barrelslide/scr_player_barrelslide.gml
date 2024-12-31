@@ -35,7 +35,7 @@ function scr_player_barrelslide()
 	{
 		scr_fmod_soundeffect(jumpsnd, x, y);
 		input_buffer_jump = 0;
-		vsp = -8.5;
+		vsp = IT_jumpspeed();
 		jumpstop = false;
 		create_particle(x, y, part.highjumpcloud1, 0);
 	}
@@ -83,7 +83,7 @@ function scr_player_barrelslide()
 			if (place_meeting(x, y + 1, obj_current))
 			{
 				input_buffer_jump = 0;
-				vsp = -8.5;
+				vsp = IT_jumpspeed();
 				jumpstop = true;
 				create_particle(x, y, part.highjumpcloud1, 0);
 			}

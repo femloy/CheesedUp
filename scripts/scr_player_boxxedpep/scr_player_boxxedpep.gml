@@ -44,12 +44,14 @@ function scr_player_boxxedpep()
 		if (character != "N")
 			sound_play_3d("event:/sfx/boxxed/flap", x, y);
 		instance_create(x, y, obj_highjumpcloud2);
-		vsp = -boxxedpepjump;
-		if (character == "N")
+		
+		vsp = IT_jumpspeed();
+		if character == "N"
 		{
 			target_vsp = -4;
 			vsp = target_vsp;
 		}
+		
 		state = states.boxxedpepjump;
 		sprite_index = spr_boxxedpep_flap;
 		if (character == "N")

@@ -50,7 +50,7 @@ function scr_player_bombgrab()
 		{
 			scr_fmod_soundeffect(jumpsnd, x, y);
 			instance_create(x, y, obj_highjumpcloud2);
-			vsp = -11;
+			vsp = IT_jumpspeed();
 			input_buffer_jump = 0;
 			sprite_index = spr_haulingjump;
 			image_index = 0;
@@ -317,7 +317,7 @@ function scr_player_bombpep()
 	if (input_buffer_jump > 0 && can_jump && hsp != 0)
 	{
 		input_buffer_jump = 0;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 	}
 	if (movespeed < 4)
 		image_speed = 0.35;

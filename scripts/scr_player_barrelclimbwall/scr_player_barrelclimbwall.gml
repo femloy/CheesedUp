@@ -40,7 +40,7 @@ function scr_player_barrelclimbwall()
 			input_buffer_jump = 0;
 			key_jump = false;
 			state = states.barrelslide;
-			vsp = -11;
+			vsp = IT_jumpspeed();
 			jumpstop = false;
 			movespeed = 10;
 			xscale *= -1;

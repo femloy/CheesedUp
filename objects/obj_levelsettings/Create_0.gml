@@ -200,6 +200,12 @@ with obj_bossdoor
 
 function add_modifier(variable, color = #c09068, drawfunc = noone, local = string_lower(variable))
 {
+	if object_index != obj_levelsettings
+	{
+		if global.processing_mod != noone
+			show_message($"{global.processing_mod.name}: Don't use \"add_modifier\" outside of modifier/menu.gml!");
+		exit;
+	}
 	var struct =
 	{
 		value: MOD[$ variable],

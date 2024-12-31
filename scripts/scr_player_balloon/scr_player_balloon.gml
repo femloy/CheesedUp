@@ -107,7 +107,7 @@ function scr_player_balloon()
 		image_index = 0;
 		jumpAnim = true;
 		movespeed = abs(movespeed);
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		jumpstop = false;
 	}
 }

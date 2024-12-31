@@ -35,25 +35,26 @@ function scr_player_knightpepslopes()
 		if (can_jump || !doublejump)
 		{
 			scr_fmod_soundeffect(jumpsnd, x, y);
-			vsp = -11;
+			vsp = IT_jumpspeed();
 			sprite_index = spr_knightpepfly;
 			image_index = 0;
 			input_buffer_jump = 0;
-			if (!can_jump)
+			
+			if !can_jump
 			{
-				repeat (4)
+				repeat 4
 				{
-					with (instance_create(x + random_range(-50, 50), y + random_range(0, 50), obj_highjumpcloud2))
+					with instance_create(x + random_range(-50, 50), y + random_range(0, 50), obj_highjumpcloud2)
 					{
 						vspeed = 2;
 						sprite_index = spr_cloudeffect;
 					}
 				}
-				vsp = -11;
 				doublejump = true;
 				sprite_index = spr_knightpepdoublejump;
 			}
-			if (!doublejump)
+			
+			if !doublejump
 			{
 				particle_set_scale(part.jumpdust, xscale, 1);
 				create_particle(x, y, part.jumpdust, 0);
@@ -66,7 +67,7 @@ function scr_player_knightpepslopes()
 		image_index = image_number - 1;
 	if (sprite_index == spr_playerN_knightgroundbump && floor(image_index) == image_number - 1)
 		sprite_index = spr_knightpepcharge;
-	if (scr_solid(x + sign(hsp), y) && (!scr_slope() || check_solid(x + sign(hsp), y - 2)) && !check_slope(x + sign(hsp), y) && !place_meeting(x + sign(hsp), y, obj_destructibles))
+	if scr_solid(x + sign(hsp), y) && (!scr_slope() || check_solid(x + sign(hsp), y - 2)) && !check_slope(x + sign(hsp), y) && scr_preventbump()
 	{
 		if (character != "N")
 		{

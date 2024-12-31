@@ -28,7 +28,7 @@ function scr_player_chainsaw()
 				jumpAnim = true;
 				state = states.jump;
 				sprite_index = spr_suplexland;
-				vsp = -11;
+				vsp = IT_jumpspeed();
 				jumpstop = false;
 				image_index = 0;
 			}

@@ -227,8 +227,7 @@ function scr_player_punch()
 		else
 			image_speed = 0.4;
 		
-		if scr_solid(x + xscale, y) && !check_slope(x + sign(hsp), y) && !place_meeting(x + xscale, y, obj_destructibles)
-		&& (!place_meeting(x + xscale, y, obj_destructibles) or (sprite_index != spr_buttattack && sprite_index != spr_buttattackstart))
+		if scr_solid(x + xscale, y) && !check_slope(x + sign(hsp), y) && scr_preventbump()
 		{
 			if ledge_bump(32)
 			{
@@ -327,7 +326,7 @@ function scr_player_punch()
 			create_particle(x, y, part.jumpdust, 0);
 			jumpstop = false;
 			image_index = 0;
-			vsp = -11;
+			vsp = IT_jumpspeed();
 			
 			if SUGARY_SPIRE && character == "SN"
 			{
@@ -485,7 +484,7 @@ function scr_player_punch()
 				image_speed = abs(movespeed) / 15;
 		}
 		
-		if !bump && (check_solid(x + xscale, y - grounded * 16) or scr_solid_slope(x + xscale, y - grounded * 16)) && !check_slope(x, y - 1) && !place_meeting(x + xscale, y, obj_destructibles)
+		if !bump && (check_solid(x + xscale, y - grounded * 16) or scr_solid_slope(x + xscale, y - grounded * 16)) && !check_slope(x, y - 1) && scr_preventbump()
 		{
 			if ledge_bump(32)
 			{

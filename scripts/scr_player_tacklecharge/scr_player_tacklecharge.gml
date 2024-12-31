@@ -28,9 +28,9 @@ function scr_player_tacklecharge()
 		image_index = 0;
 		sprite_index = spr_player_secondjump1;
 		scr_fmod_soundeffect(jumpsnd, x, y);
-		vsp = -11;
+		vsp = IT_jumpspeed();
 	}
-	if (scr_solid(x + hsp, y) && !check_slope(x + hsp, y) && !place_meeting(x + hsp, y, obj_destructibles))
+	if (scr_solid(x + hsp, y) && !check_slope(x + hsp, y) && scr_preventbump())
 	{
 		if (baddiegrabbedID != obj_null)
 		{

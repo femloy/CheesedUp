@@ -10,7 +10,7 @@ function scr_player_hang()
 		sound_play_3d("event:/modded/sfx/woosh", x, y);
 		
 		jumpstop = false;
-		vsp = -15;
+		vsp = IT_jumpspeed();
 		state = states.jump;
 		sprite_index = spr_playerN_noisebombspinjump;
 		image_index = 0;

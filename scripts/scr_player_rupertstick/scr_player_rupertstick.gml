@@ -7,7 +7,7 @@ function scr_player_rupertstick()
 	momemtum = false;
 	hsp = 0;
 	vsp = 0;
-	if (!(check_solid(x + xscale, y, 1)) && sprite_index == spr_player_skatewallrun)
+	if (!check_solid(x + xscale, y) && sprite_index == spr_player_skatewallrun)
 	{
 		sprite_index = spr_player_skatefall;
 		xscale *= -1;

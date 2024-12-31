@@ -65,15 +65,17 @@ function scr_player_climbwall()
 	crouchslideAnim = true;
 	sprite_index = IT_climbwall_sprite();
 			
-	if (skateboarding)
+	if skateboarding
 	{
-		if (wallspeed < 0)
+		if wallspeed < 0
 			wallspeed = 6;
 		sprite_index = spr_clownwallclimb;
 	}
-	if (grabclimbbuffer > 0)
+	
+	if grabclimbbuffer > 0
 		grabclimbbuffer--;
-	if (!key_attack && !skateboarding && grabclimbbuffer == 0)
+	
+	if !key_attack && !skateboarding && grabclimbbuffer == 0
 	{
 		state =	states.normal;
 		movespeed = 0;
@@ -84,9 +86,10 @@ function scr_player_climbwall()
 			raildir = -xscale;
 		}
 	}
-	if (verticalbuffer <= 0 && !scr_solid(x + xscale, y) && !place_meeting(x, y, obj_verticalhallway) && !place_meeting(x, y - 12, obj_verticalhallway))
+	
+	// climbwall out
+	if verticalbuffer <= 0 && !scr_solid(x + xscale, y) && !place_meeting(x, y, obj_verticalhallway) && !place_meeting(x, y - 12, obj_verticalhallway)
 	{
-		//trace("climbwall out");
 		particle_set_scale(part.jumpdust, xscale, 1);
 		create_particle(x, y, part.jumpdust);
 				
@@ -139,20 +142,36 @@ function scr_player_climbwall()
 		if REMIX
 			exit;
 	}
-			
+	
 	if character == "MS"
 	{
 		scr_stick_dofly();
 		exit;
 	}
-			
-	if (input_buffer_jump > 8 && !CHAR_BASENOISE)
+	
+	if input_buffer_jump > 8 && !CHAR_BASENOISE
 	{
-		scr_fmod_soundeffect(jumpsnd, x, y);
-		input_buffer_jump = 0;
-		key_jump = false;
-		railmovespeed = 0;
-				
+		if scr_modding_hook_falser("player/climbwall/jump")
+		{
+			scr_fmod_soundeffect(jumpsnd, x, y);
+			input_buffer_jump = 0;
+			key_jump = false;
+			railmovespeed = 0;
+		
+			movespeed = 10;
+			state = states.mach2;
+			image_index = 0;
+			sprite_index = spr_walljumpstart;
+			if skateboarding
+				sprite_index = spr_clownjump;
+			vsp = IT_jumpspeed();
+		
+			xscale *= -1;
+			jumpstop = false;
+			walljumpbuffer = 4;
+		}
+		
+		/*
 		if SUGARY_SPIRE && check_sugarychar() && !skateboarding
 		{
 			movespeed = max(abs(wallspeed), 6);
@@ -181,20 +200,7 @@ function scr_player_climbwall()
 				}
 			}
 		}
-		else
-		{
-			movespeed = 10;
-			state = states.mach2;
-			image_index = 0;
-			sprite_index = spr_walljumpstart;
-			if (skateboarding)
-				sprite_index = spr_clownjump;
-			vsp = -11;
-		}
-				
-		xscale *= -1;
-		jumpstop = false;
-		walljumpbuffer = 4;
+		*/
 	}
 			
 	// ceiling run
@@ -369,8 +375,8 @@ function scr_playerS_climbwall()
 		state = states.jump;
 		image_index = 0;
 		sprite_index = spr_walljumpstart;
-		vsp = -11;
-				
+		vsp = IT_jumpspeed();
+		
 		xscale *= -1;
 		jumpstop = false;
 		walljumpbuffer = 4;

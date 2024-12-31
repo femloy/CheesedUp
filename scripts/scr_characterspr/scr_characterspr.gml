@@ -1,5 +1,9 @@
 function scr_color_array(char)
 {
+	var custom = scr_modding_character(char);
+	if custom != noone
+		return custom.color_array;
+	
 	switch char
 	{
 		default:
@@ -27,9 +31,14 @@ function scr_characterspr(character = undefined)
 		player_destroy_sounds();
 		player_init_sounds();
 		
-		global.mach_color1 = make_colour_rgb(96, 208, 72);
-		global.mach_color2 = make_colour_rgb(248, 0, 0);
+		global.force_mach_shader = false;
+		global.mach_colors = [(#60d048), (#f80000)];
+		global.mach_colors_dark = [(#071100), (#190000)];
+		
+		global.force_blue_afterimage = false;
 		global.blueimg_color = make_color_rgb(255 * 0.17, 255 * 0.49, 255 * 0.9);
+		global.blueimg_color_dark = noone;
+		
 		global.Base_Pattern_Color = scr_color_array(character);
 	}
 	
@@ -307,6 +316,7 @@ function scr_characterspr(character = undefined)
 	spr_mach3boostfall = spr_player_machslideboost3fall;
 	spr_breakdanceuppercut = spr_player_breakdanceuppercut;
 	spr_breakdanceuppercutend = spr_player_breakdanceuppercutend;
+	spr_poundcancelstart = noone;
 	spr_poundcancel1 = spr_player_poundcancel1;
 	spr_poundcancel2 = spr_player_poundcancel2;
 	spr_Sjumpcancelstart = spr_player_Sjumpcancelstart;
@@ -1187,9 +1197,10 @@ function scr_characterspr(character = undefined)
 			{
 				global.mach_color1 = make_colour_rgb(232, 80, 152);
 				global.mach_color2 = make_colour_rgb(48, 168, 248);
+				
 				//global.blueimg_color = make_color_rgb(255, 126, 228);
 			}
-		
+			
 			spr_idle = spr_playerSP_idle;
 			spr_move = spr_playerSP_walk;
 			spr_crawl = spr_playerSP_crawl;
@@ -1626,5 +1637,14 @@ function scr_characterspr(character = undefined)
 		}
 	
 		#endregion
+	}
+	
+	// CUSTOM CHARACTER
+	var custom = scr_modding_character(character);
+	if custom != noone
+	{
+		custom.apply_player_sprites(id);
+		global.force_mach_shader = true;
+		global.Base_Pattern_Color = custom.color_array;
 	}
 }

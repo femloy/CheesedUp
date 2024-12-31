@@ -503,4 +503,6 @@ function scr_playerreset(roomstart = false, restart = false)
 	
 	if global.timeattack
 		scr_level_gimmicks_persist();
+	
+	scr_modding_hook("player/reset", [roomstart, restart]);
 }

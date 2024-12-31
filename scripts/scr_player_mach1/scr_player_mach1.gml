@@ -2,10 +2,7 @@ function scr_player_mach1()
 {
 	var maxmovespeed = 8;
 	var accel = 0.075;
-	var jumpspeed = -11;
-	
-	if character == "MS"
-		jumpspeed = scr_stick_jumpspeed();
+	var jumpspeed = IT_jumpspeed();
 	
 	image_speed = 0.5;
 	landAnim = false;

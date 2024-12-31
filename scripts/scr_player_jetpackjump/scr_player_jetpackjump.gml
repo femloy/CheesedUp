@@ -160,9 +160,9 @@ function scr_player_jetpackjump()
 		}
 	}
 	
-	if (check_solid(x + xscale, y) && !place_meeting(x + xscale, y, obj_destructibles))
+	if (check_solid(x + xscale, y) && scr_preventbump())
 		movespeed = 0;
-	if (sprite_index == spin && jetpackbounce == 1 && check_solid(x + xscale, y) && !place_meeting(x + xscale, y, obj_destructibles))
+	if (sprite_index == spin && jetpackbounce == 1 && check_solid(x + xscale, y) && scr_preventbump())
 	{
 		jetpackdash = false;
 		instance_create(x + (xscale * 10), y, obj_bangeffect);

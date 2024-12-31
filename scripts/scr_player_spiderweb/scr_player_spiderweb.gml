@@ -21,7 +21,7 @@ function scr_player_spiderweb()
 				event_user(0);
 		}
 		state = states.jump;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		jumpstop = false;
 		sprite_index = spr_jump;
 		image_index = 0;

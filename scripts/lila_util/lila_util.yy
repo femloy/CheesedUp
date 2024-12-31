@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"loy_util",
+  "%Name":"lila_util",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"loy_util",
+  "name":"lila_util",
   "parent":{
     "name":"CheesyPizza",
     "path":"folders/Scripts/CheesyPizza.yy",

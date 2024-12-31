@@ -94,9 +94,7 @@ function scr_player_tumble()
 	{
 		if !CHAR_BASENOISE
 		{
-			sprite_index = spr_poundcancel1;
-			if SUGARY_SPIRE && character == "SP"
-				sprite_index = spr_playerSP_poundcancel1;
+			sprite_index = spr_poundcancelstart != noone ? spr_poundcancelstart : spr_poundcancel1;
 			image_index = 0;
 			state = states.freefall;
 			dir = xscale;
@@ -162,12 +160,7 @@ function scr_player_tumble()
 		movespeed = 14;
 	}
 	
-	if state != states.freefall && ((check_solid(x + xscale, y) || scr_solid_slope(x + xscale, y))
-	&& !place_meeting(x + hsp, y, obj_rollblock) && !place_meeting(x + hsp, y, obj_unbumpablewall)
-	&& (!place_meeting(x + hsp, y, obj_rattumble) || sprite_index != spr_tumble) && !place_meeting(x + hsp, y, obj_destructibles)
-	&& (!SUGARY_SPIRE or !place_meeting(x + hsp, y, obj_metalblock) or character != "SP" or sprite_index != spr_machroll or abs(hsp) < 12))
-	&& ((!place_meeting(x + hsp, y, obj_ratblock1x1) && (!place_meeting(x + hsp, y, obj_rattumble) or place_meeting(x + hsp, y, obj_rattumble_big))) or character != "V")
-	|| place_meeting(x, y, obj_timedgate)
+	if state != states.freefall && ((check_solid(x + xscale, y) || scr_solid_slope(x + xscale, y)) && scr_preventbump()) || place_meeting(x, y, obj_timedgate)
 	{
 		if character != "V"
 		{
@@ -228,7 +221,7 @@ function scr_player_tumble()
 		{
 			with (instance_create(x, y, obj_highjumpcloud2))
 				copy_player_scale(other);
-			vsp = -11;
+			vsp = IT_jumpspeed();
 			scr_fmod_soundeffect(jumpsnd, x, y);
 		}
 	}

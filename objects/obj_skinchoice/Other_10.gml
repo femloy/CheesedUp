@@ -7,7 +7,11 @@ sel.pal = 0;
 sel.mix = 0;
 
 var character = characters[sel.char].char;
-switch character
+
+var custom = scr_modding_character(character);
+if custom != noone
+	custom.add_palettes();
+else switch character
 {
 	default: case "P": case "G":
 		add_palette(1, concat("dresser_", character, 1)).set_prefix("").set_entry("classic");
@@ -87,20 +91,20 @@ switch character
 		}
 		
 		// noise has custom capes
-		add_palette(spr_noisepattern1, "pattern_N1").set_entry("racer").set_palette(28);
-		add_palette(spr_noisepattern2, "pattern_N2").set_entry("comedian").set_palette(27);
-		add_palette(spr_noisepattern3, "pattern_N3").set_entry("banana").set_palette(26);
-		add_palette(spr_noisepattern4, "pattern_N4").set_entry("noiseTV").set_palette(25);
-		add_palette(spr_noisepattern5, "pattern_N5").set_entry("madman").set_palette(24);
-		add_palette(spr_noisepattern6, "pattern_N6").set_entry("bubbly").set_palette(23);
-		add_palette(spr_noisepattern7, "pattern_N7").set_entry("welldone").set_palette(22);
-		add_palette(spr_noisepattern8, "pattern_N8").set_entry("grannykisses").set_palette(21);
-		add_palette(spr_noisepattern9, "pattern_N9").set_entry("towerguy").set_palette(20);
+		add_pattern(spr_noisepattern1, "pattern_N1").set_entry("racer").set_palette(28);
+		add_pattern(spr_noisepattern2, "pattern_N2").set_entry("comedian").set_palette(27);
+		add_pattern(spr_noisepattern3, "pattern_N3").set_entry("banana").set_palette(26);
+		add_pattern(spr_noisepattern4, "pattern_N4").set_entry("noiseTV").set_palette(25);
+		add_pattern(spr_noisepattern5, "pattern_N5").set_entry("madman").set_palette(24);
+		add_pattern(spr_noisepattern6, "pattern_N6").set_entry("bubbly").set_palette(23);
+		add_pattern(spr_noisepattern7, "pattern_N7").set_entry("welldone").set_palette(22);
+		add_pattern(spr_noisepattern8, "pattern_N8").set_entry("grannykisses").set_palette(21);
+		add_pattern(spr_noisepattern9, "pattern_N9").set_entry("towerguy").set_palette(20);
 		
 		// new patterns with custom colors
 		if global.sandbox
 		{
-			add_palette(spr_pattern_flipnote, "dresser_N40").set_palette(40); // tsookboyadvance (969958236147040286)
+			add_pattern(spr_pattern_flipnote, "dresser_N40").set_palette(40); // tsookboyadvance (969958236147040286)
 			
 		}
 		break;
@@ -226,64 +230,65 @@ switch character
 		exit;
 }
 
+// PATTERNS
 if global.sandbox or character == "P"
 {
-	add_palette(spr_peppattern1, "pattern_1").set_entry("funny");
-	add_palette(spr_peppattern2, "pattern_2").set_entry("itchy");
-	add_palette(spr_peppattern3, "pattern_3").set_entry("pizza");
-	add_palette(spr_peppattern4, "pattern_4").set_entry("stripes");
-	add_palette(spr_peppattern5, "pattern_5").set_entry("goldemanne");
-	add_palette(spr_peppattern6, "pattern_6").set_entry("bones");
-	add_palette(spr_peppattern7, "pattern_7").set_entry("pp");
-	add_palette(spr_peppattern8, "pattern_8").set_entry("war");
-	add_palette(spr_peppattern9, "pattern_9").set_entry("john");
+	add_pattern(spr_peppattern1, "pattern_1").set_entry("funny");
+	add_pattern(spr_peppattern2, "pattern_2").set_entry("itchy");
+	add_pattern(spr_peppattern3, "pattern_3").set_entry("pizza");
+	add_pattern(spr_peppattern4, "pattern_4").set_entry("stripes");
+	add_pattern(spr_peppattern5, "pattern_5").set_entry("goldemanne");
+	add_pattern(spr_peppattern6, "pattern_6").set_entry("bones");
+	add_pattern(spr_peppattern7, "pattern_7").set_entry("pp");
+	add_pattern(spr_peppattern8, "pattern_8").set_entry("war");
+	add_pattern(spr_peppattern9, "pattern_9").set_entry("john");
 }
 if global.sandbox && character != "N"
 {
-	add_palette(spr_noisepattern1, "pattern_N1").set_entry("racer");
-	add_palette(spr_noisepattern2, "pattern_N2").set_entry("comedian");
-	add_palette(spr_noisepattern3, "pattern_N3").set_entry("banana");
-	add_palette(spr_noisepattern4, "pattern_N4").set_entry("noiseTV");
-	add_palette(spr_noisepattern5, "pattern_N5").set_entry("madman");
-	add_palette(spr_noisepattern6, "pattern_N6").set_entry("bubbly");
-	add_palette(spr_noisepattern7, "pattern_N7").set_entry("welldone");
-	add_palette(spr_noisepattern8, "pattern_N8").set_entry("grannykisses");
-	add_palette(spr_noisepattern9, "pattern_N9").set_entry("towerguy");
+	add_pattern(spr_noisepattern1, "pattern_N1").set_entry("racer");
+	add_pattern(spr_noisepattern2, "pattern_N2").set_entry("comedian");
+	add_pattern(spr_noisepattern3, "pattern_N3").set_entry("banana");
+	add_pattern(spr_noisepattern4, "pattern_N4").set_entry("noiseTV");
+	add_pattern(spr_noisepattern5, "pattern_N5").set_entry("madman");
+	add_pattern(spr_noisepattern6, "pattern_N6").set_entry("bubbly");
+	add_pattern(spr_noisepattern7, "pattern_N7").set_entry("welldone");
+	add_pattern(spr_noisepattern8, "pattern_N8").set_entry("grannykisses");
+	add_pattern(spr_noisepattern9, "pattern_N9").set_entry("towerguy");
 }
 if global.sandbox or character == "V"
 {
-	add_palette(spr_pattern_target, "pattern_V1")//.set_entry("bullseye");
+	add_pattern(spr_pattern_target, "pattern_V1")//.set_entry("bullseye");
 	
 }
-add_palette(spr_peppattern10, "pattern_10").set_entry("candy");
-add_palette(spr_peppattern11, "pattern_11").set_entry("bloodstained");
-add_palette(spr_peppattern12, "pattern_12").set_entry("bat");
-add_palette(spr_peppattern13, "pattern_13").set_entry("pumpkin");
-add_palette(spr_peppattern14, "pattern_14").set_entry("fur");
-add_palette(spr_peppattern15, "pattern_15").set_entry("flesh");
+add_pattern(spr_peppattern10, "pattern_10").set_entry("candy");
+add_pattern(spr_peppattern11, "pattern_11").set_entry("bloodstained");
+add_pattern(spr_peppattern12, "pattern_12").set_entry("bat");
+add_pattern(spr_peppattern13, "pattern_13").set_entry("pumpkin");
+add_pattern(spr_peppattern14, "pattern_14").set_entry("fur");
+add_pattern(spr_peppattern15, "pattern_15").set_entry("flesh");
 
 // post-game unlockables
-add_palette(spr_pattern_mario).set_entry("mario");
-add_palette(spr_pattern_grinch).set_entry("grinch");
+add_pattern(spr_pattern_mario).set_entry("mario");
+add_pattern(spr_pattern_grinch).set_entry("grinch");
 
 // sandbox exclusive (at the moment)
 if global.sandbox
 {
-	add_palette(spr_pattern_missing); // PTT
-	add_palette(spr_pattern_supreme); // Loy
-	add_palette(spr_pattern_secret); // beebawp
-	add_palette(spr_pattern_flamin); // beebawp
-	add_palette(spr_pattern_jalapeno); // beebawp
-	add_palette(spr_pattern_zapped); // beebawp
-	add_palette(spr_pattern_evil); // Tictorian
-	add_palette(spr_pattern_gba); // ???
-	add_palette(spr_pattern_windows); // ???
-	add_palette(spr_pattern_1034); // Loy
-	add_palette(spr_pattern_snowflake); // itshaz (1062801794708803624)
-	add_palette(spr_pattern_marble); // beebawp
-	add_palette(spr_pattern_time); // beebawp
-	add_palette(spr_pattern_arrows); // beebawp
-	add_palette(spr_pattern_cosmic).mixable = false; // ameliako
+	add_pattern(spr_pattern_missing); // PTT
+	add_pattern(spr_pattern_supreme); // Loy
+	add_pattern(spr_pattern_secret); // beebawp
+	add_pattern(spr_pattern_flamin); // beebawp
+	add_pattern(spr_pattern_jalapeno); // beebawp
+	add_pattern(spr_pattern_zapped); // beebawp
+	add_pattern(spr_pattern_evil); // Tictorian
+	add_pattern(spr_pattern_gba); // ???
+	add_pattern(spr_pattern_windows); // ???
+	add_pattern(spr_pattern_1034); // Loy
+	add_pattern(spr_pattern_snowflake); // itshaz (1062801794708803624)
+	add_pattern(spr_pattern_marble); // beebawp
+	add_pattern(spr_pattern_time); // beebawp
+	add_pattern(spr_pattern_arrows); // beebawp
+	add_pattern(spr_pattern_cosmic).mixable = false; // ameliako
 }
 
 // sugary
@@ -291,28 +296,28 @@ if SUGARY_SPIRE
 {
 	if character == "SP" or character == "SN"
 	{
-		add_palette(spr_pattern_alright);
-	    add_palette(spr_pattern_smooth);
-	    add_palette(spr_pattern_lookingood);
-	    add_palette(spr_pattern_fruity);
-	    add_palette(spr_pattern_mesmerizing);
-	    add_palette(spr_pattern_striking);
-	    add_palette(spr_pattern_soulcrushing);
-	    add_palette(spr_pattern_awesome);
-	    add_palette(spr_pattern_wtf);
+		add_pattern(spr_pattern_alright);
+	    add_pattern(spr_pattern_smooth);
+	    add_pattern(spr_pattern_lookingood);
+	    add_pattern(spr_pattern_fruity);
+	    add_pattern(spr_pattern_mesmerizing);
+	    add_pattern(spr_pattern_striking);
+	    add_pattern(spr_pattern_soulcrushing);
+	    add_pattern(spr_pattern_awesome);
+	    add_pattern(spr_pattern_wtf);
 	}
 }
 
 // pride pack
 if global.sandbox
 {
-	add_palette(spr_pattern_trans); // ameliako.yy (576650935691116554)
-	add_palette(spr_pattern_rainbow); // ameliako
-	add_palette(spr_pattern_lesbian); // ameliako
-	add_palette(spr_pattern_nonbinary); // ameliako
-	add_palette(spr_pattern_bisexual); // ameliako
-	add_palette(spr_pattern_asexual); // ameliako
-	add_palette(spr_pattern_pansexual); // ameliako
+	add_pattern(spr_pattern_trans); // ameliako.yy (576650935691116554)
+	add_pattern(spr_pattern_rainbow); // ameliako
+	add_pattern(spr_pattern_lesbian); // ameliako
+	add_pattern(spr_pattern_nonbinary); // ameliako
+	add_pattern(spr_pattern_bisexual); // ameliako
+	add_pattern(spr_pattern_asexual); // ameliako
+	add_pattern(spr_pattern_pansexual); // ameliako
 }
 
 // calculate all that

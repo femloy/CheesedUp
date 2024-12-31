@@ -19,7 +19,7 @@ function state_player_machroll()
 	move = key_right + key_left;
 	
 	// bump
-	if (scr_solid(x + xscale, y) && (!check_slope(x + sign(hsp), y) || scr_solid_slope(x + sign(hsp), y)) && !place_meeting(x + sign(hsp), y, obj_destructibles))
+	if (scr_solid(x + xscale, y) && (!check_slope(x + sign(hsp), y) || scr_solid_slope(x + sign(hsp), y)) && scr_preventbump())
 	{
 		sound_play_3d(sfx_bumpwall, x, y);
 		

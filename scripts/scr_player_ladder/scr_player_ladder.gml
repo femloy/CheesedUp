@@ -84,10 +84,7 @@ function scr_player_ladder()
 			ladderbuffer = 30;
 		jumpAnim = true;
 		state = states.jump;
-		if key_down && IT_ladder_drop()
-			vsp = 5;
-		else
-			vsp = -9;
+		vsp = IT_jumpspeed();
 		image_index = 0;
 	}
 	if (key_down && grounded && !place_meeting(x, y, obj_platform))

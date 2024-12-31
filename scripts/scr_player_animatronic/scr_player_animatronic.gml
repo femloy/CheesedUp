@@ -65,7 +65,7 @@ function scr_player_animatronic()
 	if (can_jump && vsp > 0 && input_buffer_jump > 0)
 	{
 		input_buffer_jump = 0;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		jumpstop = false;
 	}
 	if (move != 0 && grounded && vsp > 0)

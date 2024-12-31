@@ -80,7 +80,7 @@ function scr_player_ratmountgrind()
 			{
 				image_index = 0;
 				sprite_index = spr_ratmount_groundpound;
-				vsp = -11;
+				vsp = IT_jumpspeed();
 			}
 		}
 		else
@@ -97,7 +97,7 @@ function scr_player_ratmountgrind()
 				image_index = 0;
 				sprite_index = spr_jump;
 				jumpAnim = true;
-				vsp = -11;
+				vsp = IT_jumpspeed();
 			}
 		}
 		

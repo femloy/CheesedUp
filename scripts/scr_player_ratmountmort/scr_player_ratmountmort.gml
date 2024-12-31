@@ -104,7 +104,7 @@ function scr_player_ratmountmort()
 			
 				if input_buffer_jump > 0 && grounded
 				{
-					vsp = -11;
+					vsp = IT_jumpspeed();
 					input_buffer_jump = 0;
 					state = states.ratmountjump;
 					sprite_index = spr_mortspawn;

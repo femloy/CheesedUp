@@ -7,7 +7,7 @@ function sh_state(args)
 	
 	if array_length(args) < 2
 	{
-		var statename = "", keys_array = variable_struct_get_names(states);
+		var statename = "unknown", keys_array = variable_struct_get_names(states);
 		for (var i = array_length(keys_array) - 1; i >= 0; i -= 1)
 		{
 		    if variable_struct_get(states, keys_array[i]) == obj_player1.state
@@ -43,7 +43,8 @@ function sh_state(args)
 }
 function meta_state()
 {
-	return {
+	return
+	{
 		description: "change the player's state",
 		arguments: ["state"],
 		suggestions: [

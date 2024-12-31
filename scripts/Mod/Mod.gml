@@ -28,6 +28,11 @@ function Mod(_mod_json, _mod_root) constructor
 		
 	};
 	
+	characters =
+	{
+		
+	};
+	
 	sprite_cache = [];
 	
 	set_enabled = function(value)
@@ -43,24 +48,52 @@ function Mod(_mod_json, _mod_root) constructor
 	{
 		set_enabled(true);
 		
-		// Loading different FMOD projects is impossible
-		/*
-		var bank_path = mod_root + "/sound";
-		if !directory_exists(bank_path)
-			bank_path += "/Desktop";
-		for (var file = file_find_first(concat(bank_path, "/*.bank"), 0); file != ""; file = file_find_next())
+		// characters
+		var char_path = mod_root + "/characters/";
+		for(var character = file_find_first(char_path + "*", fa_directory); character != ""; character = file_find_next())
 		{
-			var bank = scr_load_bank(concat(bank_path, "/", file));
-			if is_string(bank)
-				show_message(bank);
+			var char_json_file = scr_load_file(char_path + character + "/character.json");
+			if char_json_file == undefined
+				continue;
+			
+			// check for conflicts
+			if array_contains(CHAR_LIST, character) or character == "SP" or character == "SN" or character == "BN"
+			{
+				audio_play_sound(sfx_pephurt, 0, false);
+				show_message($"Conflicting character \"{character}\" between \"{name}\" and Cheesed Up!");
+				continue;
+			}
 			else
 			{
-				array_push(bank_cache, bank);
-				trace(fmod_bank_get_events(bank));
+				stored_result = noone;
+				array_foreach(global.mods, method({character: character}, function(_mod)
+				{
+					if _mod.enabled && _mod.characters[$ character] != undefined
+						stored_result = _mod;
+				}));
+				if stored_result != noone
+				{
+					audio_play_sound(sfx_pephurt, 0, false);
+					show_message($"Conflicting character \"{character}\" between \"{name}\" and \"{stored_result.name}\"!");
+					continue;
+				}
+			}
+			
+			// try
+			try
+			{
+				var char_json = json_parse(char_json_file);
+				var char_struct = new ModCharacter(character, char_json.name, char_path + character);
+				char_struct.init();
+				characters[$ character] = char_struct;
+			}
+			catch (e)
+			{
+				audio_play_sound(sfx_pephurt, 0, false);
+				show_message($"Error loading character \"{character}\" from mod {name}:\n\n" + string(e));
 			}
 		}
 		file_find_close();
-		*/
 		
 		// lang
 		lang_map = ds_map_create();
@@ -139,14 +172,14 @@ function Mod(_mod_json, _mod_root) constructor
 			live_variable_delete(array_pop(object_names));
 		
 		// start
-		with global
+		with {}
 			scr_modding_process(other, "init");
 	});
 	
 	cleanup = method(self, function()
 	{
 		// end
-		with global
+		with {}
 			scr_modding_process(other, "cleanup");
 		set_enabled(false);
 		
@@ -155,6 +188,15 @@ function Mod(_mod_json, _mod_root) constructor
 		while array_length(bank_cache)
 			fmod_bank_unload(array_pop(bank_cache));
 		*/
+		
+		// characters
+		var char_names = struct_get_names(characters);
+		while array_length(char_names)
+		{
+			var character = characters[$ array_pop(char_names)];
+			character.cleanup();
+		}
+		characters = {};
 		
 		// lang
 		for(var lang = ds_map_find_first(lang_map); lang != undefined; lang = ds_map_find_next(lang_map, lang))
@@ -176,6 +218,7 @@ function Mod(_mod_json, _mod_root) constructor
 			var object = objects[$ array_pop(object_names)];
 			object.cleanup();
 		}
+		objects = {};
 		
 		// sprite cache
 		var old_sprites = [];

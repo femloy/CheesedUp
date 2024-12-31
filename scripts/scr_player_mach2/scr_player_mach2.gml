@@ -1,15 +1,12 @@
 function scr_player_mach2()
 {
 	var maxmovespeed = 12;
-	var jumpspeed = -11;
+	var jumpspeed = IT_jumpspeed();
 	var slopeaccel = 0.1;
 	var slopedeccel = 0.2;
 	var accel = 0.1;
 	var mach4accel = IT_mach4accel();
 	var machrollvsp = 10;
-	
-	if character == "MS"
-		jumpspeed = scr_stick_jumpspeed();
 	
 	if (windingAnim < 2000)
 		windingAnim++;
@@ -47,16 +44,6 @@ function scr_player_mach2()
 		if (skateboarding)
 			sprite_index = spr_clownjump;
 		vsp = jumpspeed;
-		
-		if SUGARY_SPIRE
-		{
-			if character == "SN"
-			{
-				state = states.twirl;
-				sprite_index = spr_pizzano_twirl;
-				vsp = -12;
-			}
-		}
 	}
 	
 	if (input_buffer_jump > 0 && !can_jump && CHAR_BASENOISE && key_up && noisedoublejump && !skateboarding && sprite_index != spr_clownjump)
@@ -143,8 +130,9 @@ function scr_player_mach2()
 		}
 	}
 	
-	if ((!grounded && (check_solid(x + hsp, y) || scr_solid_slope(x + hsp, y)) && !check_slope(x, y - 1) && !place_meeting(x + hsp, y, obj_destructibles))
-	|| (grounded && (check_solid(x + sign(hsp), y - 16) || scr_solid_slope(x + sign(hsp), y - 16)) && !place_meeting(x + hsp, y, obj_destructibles) && check_slope(x, y + 1)))
+	if ((!grounded && (check_solid(x + hsp, y) || scr_solid_slope(x + hsp, y)) && !check_slope(x, y - 1))
+	|| (grounded && (check_solid(x + sign(hsp), y - 16) || scr_solid_slope(x + sign(hsp), y - 16)) && check_slope(x, y + 1)))
+	&& scr_preventbump(states.mach2)
 	{
 		var _climb = true;
 		if CHAR_BASENOISE

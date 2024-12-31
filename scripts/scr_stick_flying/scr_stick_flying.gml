@@ -77,7 +77,7 @@ function scr_stick_flyattack()
 		state = states.freefall;
 		move = key_left + key_right;
 	}
-	if (check_solid(x + sign(hsp), y) or scr_solid_slope(x + sign(hsp), y)) && !place_meeting(x + hsp, y, obj_destructibles)
+	if (check_solid(x + sign(hsp), y) or scr_solid_slope(x + sign(hsp), y)) && scr_preventbump()
 	{
 		state = states.stick_flying;
 		sprite_index = spr_playerMS_bumpside;
@@ -190,10 +190,4 @@ function scr_stick_dofly()
 	state = states.stick_flying;
 	movespeed = xscale * -2;
 	vsp = -6;
-}
-function scr_stick_jumpspeed()
-{
-	if live_call() return live_result;
-	
-	return -12;
 }

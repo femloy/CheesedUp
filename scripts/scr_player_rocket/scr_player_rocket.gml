@@ -77,7 +77,7 @@ function scr_player_rocket()
 			movespeed = ratmount_movespeed * xscale;
 		}
 		jumpstop = false;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		
 		particle_set_scale(part.jumpdust, REMIX ? xscale : 1, 1);
 		create_particle(x, y, part.jumpdust);
@@ -112,7 +112,7 @@ function scr_player_rocket()
 		}
 	}
 	
-	if scr_solid(x + sign(hsp), y) && (!check_slope(x + sign(hsp), y) || check_solid(x + sign(hsp), y)) && (!place_meeting(x + sign(hsp), y, obj_metalblock) && (!place_meeting(x + sign(hsp), y, obj_ratblock) || place_meeting(x + sign(hsp), y, obj_rattumble))) && (!place_meeting(x + sign(hsp), y, obj_destructibles)) && !place_meeting(x + sign(hsp), y, obj_hungrypillar)
+	if scr_solid(x + sign(hsp), y) && (!check_slope(x + sign(hsp), y) || check_solid(x + sign(hsp), y)) && scr_preventbump()
 	{
 		if character != "N"
 		{

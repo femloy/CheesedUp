@@ -12,7 +12,7 @@ function scr_player_dashtumble()
 	{
 		jumpstop = false;
 		input_buffer_jump = 0;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		state = states.mach2;
 		sprite_index = spr_mach2jump;
 	}
@@ -27,7 +27,7 @@ function scr_player_dashtumble()
 	if (scr_solid(x + xscale, y) && (!check_slope(x + sign(hsp), y) || scr_solid_slope(x + sign(hsp), y)) && !place_meeting(x + xscale, y, obj_destructibles))
 	{
 		jumpstop = true;
-		state = states.jump
+		state = states.jump;
 		vsp = -4;
 		sprite_index = spr_suplexbump;
 		instance_create(x + (xscale * 10), y + 10, obj_bumpeffect);

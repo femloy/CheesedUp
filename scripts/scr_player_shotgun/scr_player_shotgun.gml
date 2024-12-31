@@ -69,7 +69,7 @@ function scr_player_shotgun()
 		sprite_index = spr_shotgunjump;
 		image_index = 0;
 		jumpstop = false;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 	}
 	if (grounded && key_down)
 	{

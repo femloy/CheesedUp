@@ -1,6 +1,7 @@
 #macro ensure_order if !instance_exists(other) or other.object_index != obj_eventorder exit
 
-step_order = [
+step_order =
+[
 	obj_player,
 	obj_baddiecollisionbox,
 	obj_forkhitbox,
@@ -15,7 +16,8 @@ step_order = [
 	obj_chargeeffect,
 	obj_superslameffect
 ];
-room_order = [
+room_order =
+[
 	obj_persistent,
 	obj_player,
 	obj_followcharacter,
@@ -25,6 +27,3 @@ room_order = [
 	obj_doornexthub,
 	obj_monstertrackingrooms
 ];
-
-if SUGARY_SPIRE
-	array_push(room_order, obj_spookeyfollow);

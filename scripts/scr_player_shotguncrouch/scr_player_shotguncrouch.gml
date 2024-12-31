@@ -29,7 +29,7 @@ function scr_player_shotguncrouch()
 		sprite_index = spr_crouchjump;
 		image_index = 0;
 		state = states.shotguncrouchjump;
-		vsp = -8;
+		vsp = IT_jumpspeed();
 	}
 	if (grounded && vsp > 0 && !key_down && !scr_solid(x, y - 16) && !scr_solid(x, y - 32))
 	{

@@ -17,4 +17,4 @@ tex_max = array_length(tex_list); // used in draw
 alarm[0] = 30;
 
 text = "";
-scr_characters(false);
+scr_characters(0);

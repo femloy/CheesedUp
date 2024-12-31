@@ -461,15 +461,65 @@ function IT_grab_vsp()
 function IT_grab_suplexmove_check()
 {
 	// Can't grab twice in a row
-	return IT_BNF or (SUGARY_SPIRE && character == "SP");
+	return IT_BNF;
 }
 function IT_Sjump_midair()
 {
 	// Ability to superjump in mid air
-	return IT_BNF or (SUGARY_SPIRE && character == "SP");
+	return IT_BNF;
 }
 function IT_Sjumpprep_deccel()
 {
 	// There used to be little to no decceleration
 	return IT_BNF ? 0.25 : 1;
+}
+function IT_jumpspeed()
+{
+	var r = -11;
+	
+	if state == states.cheesepepstick && character == "N"
+		r = -14;
+	if state == states.morthook
+		r = -14;
+	if state == states.firemouth
+		r = character != "N" ? -15 : -12;
+	if jetpackcancel && state == states.mach3
+		r = -15;
+	if state == states.hookshot or state == states.skateboard
+		r = -6;
+	if state == states.shotguncrouchjump
+		r = -8;
+	if state == states.ladder
+		r = (key_down && IT_ladder_drop()) ? 5 : -9;
+	if state == states.ratmountballoon
+		r = -20;
+	if state == states.hang
+		r = -15;
+	if state == states.freefallland
+	{
+		if IT_forced_poundjump()
+			r = -13;
+		else
+			r = key_jump2 ? -14 : -8;
+	}
+	if state == states.barrelslide or state == states.barreljump or state == states.barrel
+		r = -8.5;
+	if state == states.crouch
+		r = -8;
+	if state == states.boxxedpep or state == states.boxxedpepjump
+		vsp = -boxxedpepjump;
+	
+	if r == -11
+	{
+		if character == "MS"
+			r = -12;
+		if sprite_index == spr_playerN_doublejump
+			r = -9;
+	}
+	
+	return r;
+}
+function IT_jumpspeed_heavy()
+{
+	return -6;
 }

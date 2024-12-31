@@ -39,19 +39,17 @@ function scr_player_cheesepepstick()
 		scr_fmod_soundeffect(jumpsnd, x, y);
 		xscale *= -1;
 		dir = xscale;
-		state = states.cheesepepjump;
 		sprite_index = spr_cheesepep_walljump;
 		image_index = 0;
 		movespeed = xscale * 3;
-		if (!key_down)
-			vsp = -11;
-		if (character == "N")
+		if !key_down
+			vsp = IT_jumpspeed();
+		if character == "N"
 		{
 			sprite_index = spr_playerN_cheesedwalljump;
 			movespeed = xscale * 8;
-			if (!key_down)
-				vsp = -14;
 		}
+		state = states.cheesepepjump;
 	}
 }
 function scr_player_cheesepepstickside()
@@ -86,7 +84,7 @@ function scr_player_cheesepepstickside()
 		input_buffer_jump = 0;
 		x += xscale;
 		if (!key_down)
-			vsp = -11;
+			vsp = IT_jumpspeed();
 		image_index = 0;
 		state = states.cheesepep;
 		hsp = move * movespeed;
@@ -104,7 +102,7 @@ function scr_player_cheesepepstickside()
 	{
 		cheesepep_buffer = 0;
 		grav = 0.5;
-		state = states.cheesepep;;
+		state = states.cheesepep;
 		sprite_index = spr_cheesepepidle;
 		hsp = move * movespeed;
 	}

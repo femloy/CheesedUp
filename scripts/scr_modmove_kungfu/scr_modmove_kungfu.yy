@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_modmove_kungfu",
   "parent":{
-    "name":"Moves",
-    "path":"folders/Scripts/CheesyPizza/Moves.yy",
+    "name":"Attacks",
+    "path":"folders/Scripts/CheesyPizza/Moves/Attacks.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

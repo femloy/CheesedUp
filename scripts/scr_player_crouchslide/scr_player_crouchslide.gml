@@ -24,7 +24,7 @@ function scr_player_crouchslide()
 		input_buffer_jump = 0;
 		sprite_index = spr_player_jumpdive1;
 		image_index = 0;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		with (instance_create(x, y, obj_superdashcloud))
 		{
 			copy_player_scale(other);

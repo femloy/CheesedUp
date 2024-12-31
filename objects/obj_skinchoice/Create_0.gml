@@ -32,7 +32,7 @@ flashpal = [-1, 0];
 swapmode = false;
 
 characters = [];
-scr_characters(true);
+scr_characters(1);
 
 // set in user event 0
 palettes = [];
@@ -124,33 +124,36 @@ function DresserPalette() constructor
 	}
 }
 
+function add_pattern(pattern, lang_entry = undefined)
+{
+	if !sprite_exists(pattern)
+		return noone;
+	
+	if lang_entry == undefined
+		lang_entry = string_replace(sprite_get_name(pattern), "spr_", "");
+	
+	var s = add_palette(pattern, lang_entry);
+	s.palette = 12;
+	s.texture = pattern;
+	s.mixable = true;
+	
+	return s;
+}
+
 function add_palette(palette, lang_entry = undefined)
 {
 	if lang_entry == undefined
 	{
-		if is_handle(palette)
-			lang_entry = string_replace(sprite_get_name(palette), "spr_", "");
-		else
-		{
-			var character = characters[sel.char].char;
-			if character == "G"
-				character = "P";
-			lang_entry = concat("dresser_", character, palette);
-		}
+		var character = characters[sel.char].char;
+		if character == "G"
+			character = "P";
+		lang_entry = concat("dresser_", character, palette);
 	}
 	
 	var st = new DresserPalette();
 	with st
 	{
-		if is_handle(palette)
-		{
-			self.palette = 12;
-			self.texture = palette;
-			self.mixable = true;
-		}
-		else
-			self.palette = palette;
-		
+		self.palette = palette;
 		self.name = lstr(lang_entry);
 		self.description = lstr(concat(lang_entry, "D"));
 		self.color = pal_swap_get_pal_color(other.characters[other.sel.char].spr_palette, self.palette, other.characters[other.sel.char].color_index);

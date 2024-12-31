@@ -17,7 +17,7 @@ function scr_player_slipbanan()
 			image_index = 3;
 		}
 	}
-	if (grounded && vsp > -1 && sprite_index != spr_slipbanan2 && (!place_meeting(x, y + 1, obj_metalblock) or !SUGARY) && !place_meeting(x, y + 1, obj_destructibles))
+	if (grounded && vsp > -1 && sprite_index != spr_slipbanan2 && !place_meeting(x, y + 1, obj_destructibles))
 	{
 		if (sprite_index == spr_rockethitwall)
 		{
@@ -44,7 +44,7 @@ function scr_player_slipbanan()
 				state = states.ratmount;
 		}
 	}
-	if (scr_solid(x + xscale, y) && !scr_slope() && (scr_solid_slope(x + sign(hsp), y) || check_solid(x + sign(hsp), y)) && !place_meeting(x + sign(hsp), y, obj_destructibles) && (!place_meeting(x + sign(hsp), y, obj_metalblock) or !SUGARY))
+	if (scr_solid(x + xscale, y) && !scr_slope() && (scr_solid_slope(x + sign(hsp), y) || check_solid(x + sign(hsp), y)) && scr_preventbump())
 	{
 		sound_play_3d("event:/sfx/pep/slipbump", x, y);
 		if (sprite_index == spr_slipbanan1)

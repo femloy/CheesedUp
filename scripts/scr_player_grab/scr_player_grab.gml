@@ -140,7 +140,7 @@ function scr_player_grab()
 		if IT_april_swing()
 		{
 			hsp = xscale * movespeed;
-			if (scr_solid(x + xscale, y) && (!check_slope(x + sign(hsp), y) || scr_solid_slope(x + sign(hsp), y)) && !place_meeting(x + sign(hsp), y, obj_destructibles))
+			if (scr_solid(x + xscale, y) && (!check_slope(x + sign(hsp), y) || scr_solid_slope(x + sign(hsp), y)) && scr_preventbump())
 				xscale *= -1;
 			
 	        if (swingdingbuffer == 0 && !key_attack)
@@ -160,7 +160,7 @@ function scr_player_grab()
 			swingdingendcooldown++;
 			hsp = xscale * movespeed;
 			
-			if (scr_solid(x + xscale, y) && (!check_slope(x + sign(hsp), y) || scr_solid_slope(x + sign(hsp), y)) && !place_meeting(x + sign(hsp), y, obj_destructibles))
+			if (scr_solid(x + xscale, y) && (!check_slope(x + sign(hsp), y) || scr_solid_slope(x + sign(hsp), y)) && scr_preventbump())
 				swingdingthrow = true;
 			with (instance_place(x + xscale, y, obj_destructibles))
 				instance_destroy();
@@ -186,10 +186,7 @@ function scr_player_grab()
 		scr_fmod_soundeffect(jumpsnd, x, y);
 		sprite_index = spr_haulingjump;
 		instance_create(x, y, obj_highjumpcloud2);
-		if (heavy == 0)
-			vsp = -11;
-		else
-			vsp = -6;
+		vsp = !heavy ? IT_jumpspeed() : IT_jumpspeed_heavy();
 		image_index = 0;
 	}
 	

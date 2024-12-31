@@ -1,5 +1,7 @@
 function scr_player_cookiemount()
 {
+	SS_CODE_START;
+	
 	hsp = movespeed;
 	move = key_left + key_right;
 	if (move != 0)
@@ -47,7 +49,7 @@ function scr_player_cookiemount()
 		state = states.mach2;
 		sprite_index = spr_mach2jump;
 		jumpstop = 0;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		//ridingmarsh = false;
 		instance_create(x, y, obj_jumpdust);
 		with (instance_create(x, y, obj_cookiemount))
@@ -72,4 +74,6 @@ function scr_player_cookiemount()
 	}
 	if (floor(image_index) == (image_number - 1) && sprite_index == spr_cookiemountskid)
 		sprite_index = spr_cookiemount;
+	
+	SS_CODE_END;
 }

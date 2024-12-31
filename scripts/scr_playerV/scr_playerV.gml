@@ -239,7 +239,7 @@ function scr_player_revolver()
 			jumpAnim = true;
 			image_index = 0;
 			sprite_index = spr_jump;
-			vsp = -11;
+			vsp = IT_jumpspeed();
 			with instance_create(x, y, obj_highjumpcloud2)
 				copy_player_scale(other);
 		}
@@ -353,8 +353,7 @@ function scr_player_dynamite()
 				input_buffer_jump = 0;
 			
 				image_speed = 0.35;
-				if vsp > -11
-					vsp = -11;
+				vsp = min(vsp, IT_jumpspeed());
 			
 				if (sprite_index == spr_playerV_hookwallstart or sprite_index == spr_playerV_hookwall)
 					xscale *= -1;

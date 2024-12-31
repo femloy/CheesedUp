@@ -48,12 +48,12 @@ function scr_player_trashroll()
 		state = states.mach2;
 		sprite_index = spr_mach2jump;
 		jumpstop = false;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		
 		particle_set_scale(part.jumpdust, REMIX ? xscale : 1, 1);
 		create_particle(x, y, part.jumpdust);
 	}
-	if (((check_solid(x + xscale, y) || place_meeting(x + xscale, y, obj_ghostwall)) && !place_meeting(x + hsp, y, obj_destructibles) && !place_meeting(x + hsp, y, obj_rattumble)) || place_meeting(x, y, obj_timedgate))
+	if ((check_solid(x + xscale, y) || place_meeting(x + xscale, y, obj_ghostwall)) && scr_preventbump()) || place_meeting(x, y, obj_timedgate)
 	{
 		image_index = 0;
 		sprite_index = spr_bump;

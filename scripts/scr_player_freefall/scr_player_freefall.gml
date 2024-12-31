@@ -48,11 +48,11 @@ function scr_player_freefall()
 		sprite_index = spr_bodyslamfall;
 	}
 	
-	if (floor(image_index) == (image_number - 1) && sprite_index == spr_bodyslamstart)
+	if floor(image_index) == image_number - 1 && sprite_index == spr_bodyslamstart
 		sprite_index = spr_bodyslamfall;
-	if (floor(image_index) == (image_number - 1) && sprite_index == spr_playerSP_poundcancel1)
+	if floor(image_index) == image_number - 1 && sprite_index == spr_poundcancelstart
 		sprite_index = spr_poundcancel1;
-	if (floor(image_index) == (image_number - 1) && sprite_index == spr_shotgunjump1)
+	if floor(image_index) == image_number - 1 && sprite_index == spr_shotgunjump1
 		sprite_index = spr_shotgunjump3;
 	
 	landAnim = true;
@@ -193,12 +193,14 @@ function scr_player_freefall()
 		else
 		{
 			sound_play_3d(sfx_groundpound, x, y);
-			if (sprite_index == spr_poundcancel1 or sprite_index == spr_playerSP_poundcancel1)
+			
+			if sprite_index == spr_poundcancel1 or sprite_index == spr_poundcancelstart
 				sprite_index = spr_poundcancel2;
-			else if (shotgunAnim == 0)
+			else if !shotgunAnim
 				sprite_index = spr_bodyslamland;
 			else
 				sprite_index = spr_shotgunjump2;
+			
 			image_index = 0;
 			state = states.freefallland;
 			jumpAnim = true;

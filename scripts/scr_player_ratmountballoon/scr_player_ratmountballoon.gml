@@ -31,11 +31,11 @@ function scr_player_ratmountballoon()
 		input_buffer_jump_negative = 10;
 		sound_play_3d("event:/sfx/rat/deflateeat", x, y);
 		create_particle(x, y, part.ratmountballooncloud, 0);
-		state = states.ratmountjump;
 		sprite_index = spr_ratmount_balloonend1;
 		image_index = 0;
 		jumpAnim = true;
 		vsp = -20;
 		jumpstop = true;
+		state = states.ratmountjump;
 	}
 }

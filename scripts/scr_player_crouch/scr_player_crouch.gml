@@ -65,7 +65,7 @@ function scr_player_crouch()
 	if (key_jump && grounded && !scr_solid(x, y - 16) && !scr_solid(x, y - 32))
 	{
 		scr_fmod_soundeffect(jumpsnd, x, y);
-		vsp = -8;
+		vsp = IT_jumpspeed();
 		state = states.crouchjump;
 		movespeed = 4;
 		image_index = 0;

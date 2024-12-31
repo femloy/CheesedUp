@@ -29,7 +29,7 @@ function scr_player_rideweenie()
 		movespeed = Approach(movespeed, 0, 0.7);
 	if (sprite_index == spr_weenieturn && floor(image_index) == (image_number - 1))
 		sprite_index = spr_rideweenie;
-	if (check_solid(x + hsp, y) && !check_slope(x + hsp, y) && !place_meeting(x + hsp, y, obj_ratblock) && !place_meeting(x + hsp, y, obj_destructibles))
+	if (check_solid(x + hsp, y) && !check_slope(x + hsp, y) && scr_preventbump())
 	{
 		if (abs(hsp) < 3)
 			hsp = 0;
@@ -58,7 +58,7 @@ function scr_player_rideweenie()
 		state = states.mach2;
 		sprite_index = spr_mach2jump;
 		jumpstop = false;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		
 		particle_set_scale(part.jumpdust, REMIX ? xscale : 1, 1);
 		create_particle(x, y, part.jumpdust);

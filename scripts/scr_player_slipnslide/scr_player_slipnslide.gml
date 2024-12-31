@@ -77,7 +77,7 @@ function scr_player_slipnslide()
 		mach2 = 0;
 		image_index = 0;
 	}
-	if (scr_solid(x + xscale, y) && (!check_slope(x + sign(hsp), y) || scr_solid_slope(x + sign(hsp), y)) && !place_meeting(x + sign(hsp), y, obj_destructibles))
+	if (scr_solid(x + xscale, y) && (!check_slope(x + sign(hsp), y) || scr_solid_slope(x + sign(hsp), y)) && scr_preventbump())
 	{
 		state = states.jump;
 		vsp = -14;

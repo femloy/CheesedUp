@@ -47,7 +47,7 @@ function scr_player_chainsawbump()
 	{
 		input_buffer_jump = 0;
 		jumpstop = false;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		state = states.mach2;
 		sprite_index = spr_mach2jump;
 		hsp = abs(hsp) * xscale;

@@ -33,12 +33,12 @@ function scr_player_ratmount()
 	}
 	hsp = movespeed + (railmovespeed * raildir);
 	var r = ratmount_movespeed;
-	if ((check_solid(x + xscale, y) && !place_meeting(x + hsp, y, obj_destructibles)) || (abs(movespeed) < 8 && move != xscale) || !key_attack || abs(movespeed) <= 6)
+	if ((check_solid(x + xscale, y) && scr_preventbump()) || (abs(movespeed) < 8 && move != xscale) || !key_attack || abs(movespeed) <= 6)
 	{
 		gustavodash = 0;
 		ratmount_movespeed = 8;
 	}
-	if ((check_solid(x + hsp, y) && !check_slope(x + hsp, y) && !place_meeting(x + hsp, y, obj_destructibles)) && gustavodash != 51)
+	if ((check_solid(x + hsp, y) && !check_slope(x + hsp, y) && scr_preventbump()) && gustavodash != 51)
 	{
 		movespeed = 0;
 		if (r >= 12)
@@ -208,7 +208,7 @@ function scr_player_ratmount()
 		image_index = 0;
 		jumpAnim = true;
 		state = states.ratmountjump;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		jumpstop = false;
 	}
 	if (!grounded && sprite_index != spr_ratmount_swallow)

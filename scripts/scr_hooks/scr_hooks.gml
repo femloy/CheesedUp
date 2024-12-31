@@ -7,17 +7,8 @@ function instance_destroy_hook(_id = self.id, execute_event_flag = true)
 	{
 		if object_index == obj_gmlive
 			exit;
-		
-		stored_result = true;
-		scr_modding_hook_callback("instance/destroy", function()
-		{
-			if live_result == false
-				stored_result = false;
-		}, [execute_event_flag]);
-		
-		if stored_result == false
+		if !scr_modding_hook_falser("instance/destroy", [execute_event_flag])
 			exit;
-		
 		if execute_event_flag
 			event_perform(ev_destroy, 0);
 	}

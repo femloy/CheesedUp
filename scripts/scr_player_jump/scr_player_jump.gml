@@ -5,11 +5,8 @@ function state_player_jump()
 	var turnmovespeed = 2;
 	var accel = 0.5;
 	var deccel = 0.1;
-	var jumpspeed = -11;
+	var jumpspeed = IT_jumpspeed();
 	var machspeed = 6;
-	
-	if character == "MS"
-		jumpspeed = scr_stick_jumpspeed();
 	
 	landAnim = true;
 	
@@ -95,21 +92,12 @@ function state_player_jump()
 			doublejump = false;
 		}
 		else if (!doublejump && sprite_index != spr_freefall && sprite_index != spr_facestomp)
-		&& (CHAR_POGONOISE or (SUGARY_SPIRE && character == "SN"))
+		&& CHAR_POGONOISE
 		{
-			if SUGARY_SPIRE && character == "SN"
-			{
-				scr_fmod_soundeffect(jumpsnd, x, y);
-				sprite_index = spr_pizzano_doublejump;
-				vsp = -10;
-			}
-			else
-			{
-				sound_play_3d("event:/modded/sfx/woosh", x, y);
-				sprite_index = spr_playerN_doublejump;
-				vsp = -9;
-				jumpAnim = true;
-			}
+			sound_play_3d("event:/modded/sfx/woosh", x, y);
+			sprite_index = spr_playerN_doublejump;
+			vsp = IT_jumpspeed();
+			jumpAnim = true;
 			image_index = 0;
 			jumpstop = false;
 			doublejump = true;
@@ -266,14 +254,14 @@ function state_player_jump()
 	}
 	else if (sprite_index == spr_stompprep && floor(image_index) == (image_number - 1))
 		sprite_index = spr_stomp;
-	if (scr_check_groundpound() && !global.kungfu)
+	
+	if scr_check_groundpound() && !global.kungfu
 	{
 		input_buffer_slap = 0;
 		image_index = 0;
 		pistolanim = noone;
 		state = IT_final_freefall() ? states.freefall : states.freefallprep;
-		
-		if (!shotgunAnim)
+		if !shotgunAnim
 		{
 			sprite_index = spr_bodyslamstart;
 			if IT_final_freefall()
@@ -281,16 +269,16 @@ function state_player_jump()
 			else
 				vsp = CHAR_OLDNOISE ? -7 : -5;
 		}
-		else if (character != "N")
+		else if character != "N"
 		{
 			sound_play_3d("event:/sfx/enemies/killingblow", x, y);
 			sprite_index = spr_shotgunjump1;
 			vsp = -11;
 			
-			with (instance_create(x, y, obj_shotgunblast))
+			with instance_create(x, y, obj_shotgunblast)
 			{
 				sprite_index = spr_shotgunblastdown;
-				with (bulletID)
+				with bulletID
 				{
 					sprite_index = other.sprite_index;
 					mask_index = other.mask_index;
@@ -307,11 +295,13 @@ function state_player_jump()
 			image_index = 0;
 		}
 	}
-	if (sprite_index == spr_player_suplexcancel or sprite_index == sprite_index == spr_playerN_noisebombspinjump)
+	
+	if sprite_index == spr_player_suplexcancel or sprite_index == sprite_index == spr_playerN_noisebombspinjump
 		image_speed = 0.4;
 	else
 		image_speed = 0.35;
-	if (grounded && (sprite_index == spr_facestomp || sprite_index == spr_freefall))
+	
+	if grounded && (sprite_index == spr_facestomp || sprite_index == spr_freefall)
 	{
 		sound_play_3d("event:/sfx/pep/groundpound", x, y);
 		image_index = 0;
@@ -319,9 +309,9 @@ function state_player_jump()
 		if SUGARY_SPIRE && character == "SP"
 			sprite_index = spr_playerSP_freefallland;
 		state = states.freefallland;
-		with (obj_baddie)
+		with obj_baddie
 		{
-			if (shakestun && point_in_camera(x, y, view_camera[0]) && grounded && vsp > 0)
+			if shakestun && point_in_camera(x, y, view_camera[0]) && grounded && vsp > 0
 			{
 				vsp = -7;
 				hsp = 0;

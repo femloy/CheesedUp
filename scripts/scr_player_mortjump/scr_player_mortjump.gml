@@ -38,7 +38,7 @@ function scr_player_mortjump()
 		dj = false;
 		input_buffer_jump = 0;
 		state = states.mortjump;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		sprite_index = spr_playermortjumpstart;
 		image_index = 0;
 		doublejump = false;
@@ -63,7 +63,7 @@ function scr_player_mortjump()
 		state = states.mortjump;
 		sprite_index = spr_mortdoublejumpstart;
 		image_index = 0;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		repeat (4)
 			create_debris(x, y, spr_feather);
 	}

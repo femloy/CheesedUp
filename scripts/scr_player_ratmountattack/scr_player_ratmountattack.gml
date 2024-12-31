@@ -18,7 +18,7 @@ function scr_player_ratmountattack()
 	if (key_jump && !doublejump)
 	{
 		doublejump = true;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		state = states.ratmountjump;
 		jumpstop = false;
 		sprite_index = spr_ratmount_walljump;

@@ -54,10 +54,7 @@ function scr_player_ratmountladder()
 			ladderbuffer = 30;
 		state = states.ratmountjump;
 		sprite_index = spr_ratmount_groundpound;
-		if (key_down)
-			vsp = 5;
-		else
-			vsp = -9;
+		vsp = IT_jumpspeed();
 		image_index = 0;
 		jumpAnim = true;
 		image_speed = 0.35;

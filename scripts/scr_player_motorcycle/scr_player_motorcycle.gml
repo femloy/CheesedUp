@@ -12,7 +12,7 @@ function scr_player_motorcycle()
 	{
 		scr_fmod_soundeffect(jumpsnd, x, y);
 		input_buffer_jump = 0;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		jumped = true;
 		jumpstop = false;
 		sprite_index = spr_player_pizzacarjump;
@@ -26,7 +26,7 @@ function scr_player_motorcycle()
 	if ((check_solid(x + sign(hsp), y) || scr_solid_slope(x + sign(hsp), y)) && !place_meeting(x + sign(hsp), y, obj_destructibles) && !check_slope(x + sign(hsp), y))
 	{
 		jumpstop = false;
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		state = states.tumble;
 		sprite_index = spr_mach2jump;
 		var i = 0;

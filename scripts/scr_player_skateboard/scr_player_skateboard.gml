@@ -6,7 +6,7 @@ function scr_player_skateboard()
 	if (key_jump)
 	{
 		state = states.mach2;
-		vsp = -6;
+		vsp = IT_jumpspeed();
 		with (instance_create(x + (xscale * movespeed), y, obj_skateboard))
 		{
 			xscale = other.xscale;

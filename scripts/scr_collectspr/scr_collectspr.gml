@@ -1,10 +1,18 @@
 function scr_collectspr(obj = object_index, player = obj_player1, set = true)
 {
 	var char = player.character;
+	var spr = spr_shroomcollect;
+	
 	if global.snickchallenge
 		char = "S";
 	
-	var spr = spr_shroomcollect;
+	if global.timeattack
+	{
+		if set
+			sprite_index = (((x / 32) + (y / 32)) % 2) ? spr_collect_timeattack1 : spr_collect_timeattack2;
+		return spr_collect_timeattack1;
+	}
+	
 	switch obj
 	{
 		default:

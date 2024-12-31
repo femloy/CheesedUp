@@ -55,7 +55,7 @@ function scr_player_grind()
 		input_buffer_jump = 0;
 		particle_set_scale(part.jumpdust, xscale, 1);
 		create_particle(x, y, part.jumpdust);
-		vsp = -11;
+		vsp = IT_jumpspeed();
 		jumpstop = false;
 		if (skateboarding)
 		{
