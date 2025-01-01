@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{119e505b-512a-49a5-8085-2c6bc35253c4}">
+		<property name="name">
+			<value>musicmuffle</value>
+		</property>
+		<relationship name="folder">
+			<destination>{3a75a9c6-6e02-497e-aea6-079f75f09dd9}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{6fe25f55-ba7c-43c5-a4ee-d9f94ce6f9b9}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{6fe25f55-ba7c-43c5-a4ee-d9f94ce6f9b9}">
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{4ab79f2d-ae6d-4399-b553-cf87c085f803}</destination>
+		</relationship>
+	</object>
+	<object class="SeekModulator" id="{4ab79f2d-ae6d-4399-b553-cf87c085f803}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>cursorPosition</value>
+		</property>
+		<property name="clockSource">
+			<value>1</value>
+		</property>
+		<property name="speedAscending">
+			<value>10</value>
+		</property>
+	</object>
+</objects>

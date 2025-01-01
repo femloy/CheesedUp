@@ -125,10 +125,11 @@
 	"spr_supertaunt2": {"images": 9, "xorigin": 153, "yorigin": 100},
 	"spr_supertaunt3": {"images": 9, "xorigin": 153, "yorigin": 100},
 	"spr_supertaunt4": {"images": 9, "xorigin": 153, "yorigin": 100},
-	"spr_faceplant": {"images": 10, "xorigin": 62, "yorigin": 50},
+	"spr_faceplant": {"images": 10, "xorigin": 62, "yorigin": 50, "speed": 0.75},
 	"spr_facestomp": {"images": 3, "xorigin": 50, "yorigin": 50},
 	"spr_longjump": {"images": 12, "xorigin": 63, "yorigin": 50},
 	"spr_longjumpend": {"images": 2, "xorigin": 63, "yorigin": 50},
+	"spr_dashpadmach": {"images": 8, "xorigin": 98, "yorigin": 50},
 
 	"spr_walljumpcancel": {"images": 3, "xorigin": 67, "yorigin": 62},
 	"spr_walljumpcancelstart": {"images": 5, "xorigin": 67, "yorigin": 62},

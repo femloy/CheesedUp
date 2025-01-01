@@ -1142,22 +1142,23 @@ scr_player_speedlines();
 var mask = mask_index;
 if (character == "S" && !isgustavo) or (character == "V" && isgustavo)
 	mask_index = spr_crouchmask;
+
 scr_collide_destructibles();
-if (state != -1 && state != states.backtohub && state != states.ghostpossess && state != states.gotoplayer && state != states.debugstate && state != states.titlescreen && state != states.tube && state != states.grabbed && state != states.door && state != states.Sjump && state != states.ejected && state != states.comingoutdoor && state != states.boulder && state != states.keyget && state != states.victory && state != states.portal && state != states.timesup && state != states.gottreasure && state != states.dead)
+
+if state != -1 && state != states.backtohub && state != states.ghostpossess && state != states.gotoplayer && state != states.debugstate && state != states.titlescreen && state != states.tube && state != states.grabbed && state != states.door && state != states.ejected && state != states.comingoutdoor && state != states.boulder && state != states.keyget && state != states.victory && state != states.portal && state != states.timesup && state != states.gottreasure && state != states.dead
 	scr_collide_player();
 mask_index = mask;
 
-if (state == states.tube || state == states.gotoplayer || state == states.debugstate)
+if state == states.tube || state == states.gotoplayer || state == states.debugstate
 {
 	x += hsp;
 	y += vsp;
 }
-if (state == states.boulder)
+if state == states.boulder
 	scr_collide_player();	
-	
+
 scr_collide_destructibles();
 
-// kill yourself
 with obj_ratblock
 	scr_ratblock_destroy();
 

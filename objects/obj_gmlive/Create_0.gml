@@ -116,6 +116,9 @@ if live_enabled
 	live_function_add("fmod_last_result()", function() {
 	    return fmod_last_result();
 	});
+	live_function_add("fmod_bank_unload(bank_index)", function(bank_index) {
+	    return fmod_bank_unload(bank_index);
+	});
 	
 	if live_updating_enabled
 	{

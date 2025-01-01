@@ -1,3 +1,21 @@
 {
-    "name": "Pizzelle"
+    "name": "Pizzelle",
+    "default_palette": 1,
+    "color_array": [1, 2],
+
+    "dresser_color_y": 1,
+    "dresser_mixing_color_y": 8,
+
+    "mixable_palettes": [10, 11, 12, 15, 16, 17, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33],
+
+    "sounds":
+    {
+        "taunt": "event:/sugary/taunt",
+        "step": "event:/sugary/step",
+        "jump": "event:/sugary/jump",
+        "break": "event:/sugary/break",
+        "machslideboost": "event:/sugary/machslideboost",
+        "mach": "event:/sugary/mach",
+        "secretwall": "event:/sugary/secretwall"
+    }
 }

@@ -1,7 +1,11 @@
+global.mod_do_macheffect = false;
 function scr_player_mach3effect()
 {
 	var do_macheffect = (state == states.mach3 or state == states.machcancel || (state == states.ghost && ghostdash && ghostpepper >= 3) || state == states.mach2 || (state == states.Sjump && global.afterimage == AFTERIMAGES.mach) || ratmount_movespeed >= 12 || gusdashpadbuffer > 0)
 	or (character == "S" && (abs(movespeed) >= 10 or sprite_index == spr_crazyrun)) or (CHAR_POGONOISE && pogochargeactive) or (state == states.tumble && character == "V" && movespeed >= 11);
+	
+	global.mod_do_macheffect = scr_modding_hook_truer("player/mach3effect");
+	do_macheffect |= global.mod_do_macheffect;
 	
 	if IT_old_machroll()
 		do_macheffect |= state == states.machroll or state == states.machslide;
@@ -63,6 +67,8 @@ function scr_player_blurafterimage()
 		exit;
 	
 	var do_blur = (breakdance_speed >= 0.6 || (state == states.slipbanan && sprite_index == spr_rockethitwall) || mach4mode == true || boxxeddash == true || state == states.ghost || state == states.tumble || state == states.ratmountbounce || state == states.noisecrusher || state == states.ratmountattack || state == states.handstandjump || (state == states.barrelslide || (state == states.grab && sprite_index == spr_swingding && swingdingdash <= 0) || state == states.freefall || state == states.lungeattack || state == states.ratmounttrickjump || state == states.trickjump));
+	do_blur |= scr_modding_hook_truer("player/blureffect");
+	
 	if blur_effect > 0
 		blur_effect--;
 	else if do_blur

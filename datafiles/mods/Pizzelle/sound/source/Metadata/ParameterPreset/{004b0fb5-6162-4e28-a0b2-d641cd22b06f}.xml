@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{004b0fb5-6162-4e28-a0b2-d641cd22b06f}">
+		<property name="name">
+			<value>totem</value>
+		</property>
+		<relationship name="folder">
+			<destination>{3a75a9c6-6e02-497e-aea6-079f75f09dd9}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{7c146c35-03a2-420e-af07-5ad69b65f0ae}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{7c146c35-03a2-420e-af07-5ad69b65f0ae}">
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{b129c8b5-de03-493d-9894-53af4351ceeb}</destination>
+		</relationship>
+	</object>
+	<object class="SeekModulator" id="{b129c8b5-de03-493d-9894-53af4351ceeb}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>cursorPosition</value>
+		</property>
+		<property name="clockSource">
+			<value>1</value>
+		</property>
+		<property name="speedAscending">
+			<value>1.1000000238418579</value>
+		</property>
+	</object>
+</objects>

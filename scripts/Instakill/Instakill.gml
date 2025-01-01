@@ -20,7 +20,9 @@ function scr_instakillcheck()
 	or ((state == states.cotton or state == states.cottonroll) && movespeed >= 8) or state == states.cottondrill or sprite_index == spr_cotton_attack
 	or (state == states.twirl && sprite_index == spr_pizzano_machtwirl)
 	or (state == states.tumble && character == "V" && movespeed >= 11)
-	or burning or state == states.stick_flyattack;
+	or burning or state == states.stick_flyattack
+	
+	or scr_modding_hook_truer("player/instakill");
 	
 	if IT_baddie_mach2kill()
 	{

@@ -17,17 +17,29 @@ function scr_modding_hooks()
 		"player/reset",
 		"player/prestate",
 		"player/poststate",
+		"player/instakill",
+		"player/mach3effect",
+		"player/blureffect",
+		"player/chargeeffect/condition",
+		"player/chargeeffect/prestep",
+		"player/chargeeffect/poststep",
 		
-		"effect/chargeeffect",
-		
+		// Block
+		"block/all",
+		"block/side",
+		"block/below",
+		"block/above",
 		"block/metalside",
+		"block/metalbelow",
 		"block/preventbump",
 		
-		// STATES
+		// Player states
 		"player/suplexdash/anim",
 		"player/suplexdash/perform",
-		
 		"player/climbwall/jump",
+		
+		// Enemy states
+		"enemy/grabbed/pos",
 	];
 }
 
@@ -86,6 +98,8 @@ function scr_modding_hook_callback(code, callback, args = [])
 function scr_modding_hook_falser(code, args = [])
 {
 	// returns true, unless any mod returns false
+	if !live_enabled return true;
+	
 	stored_result = true;
 	scr_modding_hook_callback(code, function()
 	{
@@ -94,13 +108,15 @@ function scr_modding_hook_falser(code, args = [])
 			stored_result = false;
 			return HOOK_CALLBACK_SIMPLIFY;
 		}
-	});
+	}, args);
 	return stored_result;
 }
 
 function scr_modding_hook_truer(code, args = [])
 {
 	// returns false, unless any mod returns true
+	if !live_enabled return false;
+	
 	stored_result = false;
 	scr_modding_hook_callback(code, function()
 	{
@@ -109,6 +125,6 @@ function scr_modding_hook_truer(code, args = [])
 			stored_result = true;
 			return HOOK_CALLBACK_SIMPLIFY;
 		}
-	});
+	}, args);
 	return stored_result;
 }

@@ -1,0 +1,9 @@
+You have to fork the "mod-loader-template" branch in Cheesed Up's FMOD specifically.
+
+*** You CAN'T use ANY other FMOD project! ***
+
+https://github.com/femloy/CU-FMOD/tree/mod-loader-template
+
+Things to note:
+- The filenames don't matter, the game loads all banks it can find.
+- Subfolders are ignored, so you can put the .fspro in a folder here too.

@@ -1,12 +1,13 @@
 function scr_collide_destructibles()
 {
-	with (obj_player)
+	with obj_player
 	{
-		if ((state == states.jump && sprite_index == spr_playerN_noisebombspinjump)
+		if (state == states.jump && sprite_index == spr_playerN_noisebombspinjump)
 		|| (ghostdash && sprite_index != spr_ghostidle) || state == states.machcancel
 		|| state == states.slipbanan || state == states.rideweenie || state == states.trickjump
 		|| state == states.ratmountbounce || state == states.noisecrusher
-		|| (state == states.pogo && pogochargeactive == 1))
+		|| (state == states.pogo && pogochargeactive == 1)
+		|| scr_modding_hook_truer("block/all")
 		{
 			var arr = [[xscale, 0], [hsp + xscale, 0], [0, vsp + 1], [0, vsp - 1], [0, 1], [0, -1]];
 			for (var i = 0, n = array_length(arr); i < n; ++i)
@@ -46,7 +47,7 @@ function scr_collide_destructibles()
 		|| state == states.knightpepslopes || state == states.knightpepattack || state == states.tumble
 		|| state == states.machcancel || state == states.hookshot || state == states.shoulderbash
 		or (abs(movespeed) >= 10 && character == "S" && (state == states.normal or state == states.jump)) 
-		or (SUGARY_SPIRE && (sprite_index == spr_cotton_attack or ((state == states.cotton or state == states.cottonroll) && movespeed >= 8) or state == states.twirl))
+		or scr_modding_hook_truer("block/side")
 		{
 			with instance_place(x + hsp, y, obj_destructibles)
 			{
@@ -78,11 +79,11 @@ function scr_collide_destructibles()
 			}
 		}
 		
-		if (state == states.hurt && thrown)
+		if state == states.hurt && thrown
 		{
-			if (place_meeting(x - hsp, y, obj_destructibles))
+			if place_meeting(x - hsp, y, obj_destructibles)
 			{
-				with (instance_place(x - hsp, y, obj_destructibles))
+				with instance_place(x - hsp, y, obj_destructibles)
 				{
 					GamepadSetVibration(0, 0.8, 0.8, 0.5);
 					particle_hsp(other);
@@ -91,11 +92,12 @@ function scr_collide_destructibles()
 			}
 		}
 		
-		if ((state == states.knightpep || sprite_index == spr_lonegustavo_groundpoundstart
+		if vsp > 0 && (state == states.knightpep || sprite_index == spr_lonegustavo_groundpoundstart
 		|| state == states.ratmountbounce || state == states.machcancel
 		|| sprite_index == spr_lonegustavo_groundpound || state == states.jetpackjump
 		|| state == states.firemouth || state == states.slipbanan || state == states.superslam
-		|| state == states.hookshot || (state == states.bombpepup && bombup_dir == 1)) && vsp > 0)
+		|| state == states.hookshot || (state == states.bombpepup && bombup_dir == 1)
+		or scr_modding_hook_truer("block/below"))
 		{
 			var vy = 1;
 			if (state == states.ratmountbounce || sprite_index == spr_lonegustavogroundpoundstart || sprite_index == spr_lonegustavogroundpound)
@@ -174,13 +176,14 @@ function scr_collide_destructibles()
 		}
 		ds_list_clear(global.instancelist);
 		
-		if (vsp <= 0.5 && (state == states.jump || state == states.machcancel || state == states.stick_flying
+		if vsp <= 0.5 && (state == states.jump || state == states.machcancel || state == states.stick_flying
 		|| state == states.ratmountjump || state == states.stick_flyattack || state == states.mach3 
 		|| state == states.machcancel || state == states.mach2 || state == states.antigrav || state == states.pogo
 		|| (state == states.bombpepup && bombup_dir == -1) || state == states.punch || state == states.climbwall
 		|| state == states.fireass || state == states.Sjump || state == states.stick_superjump
 		|| state == states.cheeseballclimbwall || state == states.mach3 || state == states.machcancel
-		|| (state == states.punch && (sprite_index == spr_breakdanceuppercut || sprite_index == spr_breakdanceuppercutend))))
+		|| (state == states.punch && (sprite_index == spr_breakdanceuppercut || sprite_index == spr_breakdanceuppercutend))
+		or scr_modding_hook_truer("block/above"))
 		{
 			vy = -1;
 			if (state == states.punch && (sprite_index == spr_breakdanceuppercut || sprite_index == spr_breakdanceuppercutend))
@@ -237,8 +240,9 @@ function scr_collide_destructibles()
 			ds_list_clear(global.instancelist);
 		}
 		
-		if (state == states.freefall || state == states.superslam || state == states.freefallland
-		|| state == states.slipbanan || (state == states.ratmountbounce && vsp > 0))
+		if state == states.freefall || state == states.superslam || state == states.freefallland
+		|| state == states.slipbanan || (state == states.ratmountbounce && vsp > 0)
+		or scr_modding_hook_truer("block/metalbelow")
 		{
 			vy = 1;
 			if state == states.ratmountbounce

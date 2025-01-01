@@ -7,20 +7,20 @@ function scr_playersounds()
 		var noise_sjump = character == "N";
 		
 		// pizzaface moving
-		if (instance_exists(obj_pizzaface))
+		if instance_exists(obj_pizzaface)
 		{
-			if (!fmod_event_instance_is_playing(global.snd_pizzafacemoving))
+			if !fmod_event_instance_is_playing(global.snd_pizzafacemoving)
 				fmod_event_instance_play(global.snd_pizzafacemoving);
-			with (obj_pizzaface)
+			with obj_pizzaface
 				sound_instance_move(global.snd_pizzafacemoving, x, y);
 		}
 		else
 			fmod_event_instance_stop(global.snd_pizzafacemoving, true);
 	
 		// burp sound after drinking milk
-		if (state == states.actor && sprite_index == spr_firemouthend)
+		if state == states.actor && sprite_index == spr_firemouthend
 		{
-			if (image_index > 8 && !fmod_event_instance_is_playing(burpsnd))
+			if image_index > 8 && !fmod_event_instance_is_playing(burpsnd)
 			{
 				fmod_event_instance_play(burpsnd);
 				sound_instance_move(burpsnd, x, y);

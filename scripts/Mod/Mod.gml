@@ -34,6 +34,7 @@ function Mod(_mod_json, _mod_root) constructor
 	};
 	
 	sprite_cache = [];
+	bank_cache = [];
 	
 	set_enabled = function(value)
 	{
@@ -80,18 +81,19 @@ function Mod(_mod_json, _mod_root) constructor
 			}
 			
 			// try
+			var char_json = {};
 			try
 			{
-				var char_json = json_parse(char_json_file);
-				var char_struct = new ModCharacter(character, char_json.name, char_path + character);
-				char_struct.init();
-				characters[$ character] = char_struct;
+				char_json = json_parse(char_json_file);
 			}
 			catch (e)
 			{
 				audio_play_sound(sfx_pephurt, 0, false);
 				show_message($"Error loading character \"{character}\" from mod {name}:\n\n" + string(e));
 			}
+			var char_struct = new ModCharacter(character, char_json, char_path + character);
+			char_struct.init();
+			characters[$ character] = char_struct;
 		}
 		file_find_close();
 		
@@ -171,6 +173,23 @@ function Mod(_mod_json, _mod_root) constructor
 		while array_length(object_names)
 			live_variable_delete(array_pop(object_names));
 		
+		// fmod banks
+		var bank_path = mod_root + "/sound";
+		if !directory_exists(bank_path)
+			bank_path += "/Desktop";
+		for (var file = file_find_first(concat(bank_path, "/*.bank"), 0); file != ""; file = file_find_next())
+		{
+			var bank = scr_load_bank(concat(bank_path, "/", file));
+			if is_string(bank)
+				show_message(bank);
+			else
+			{
+				array_push(bank_cache, bank);
+				trace(fmod_bank_get_events(bank));
+			}
+		}
+		file_find_close();
+		
 		// start
 		with {}
 			scr_modding_process(other, "init");
@@ -184,10 +203,8 @@ function Mod(_mod_json, _mod_root) constructor
 		set_enabled(false);
 		
 		// banks
-		/*
 		while array_length(bank_cache)
 			fmod_bank_unload(array_pop(bank_cache));
-		*/
 		
 		// characters
 		var char_names = struct_get_names(characters);

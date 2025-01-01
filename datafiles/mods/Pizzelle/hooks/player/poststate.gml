@@ -1,5 +1,6 @@
 static PZ_sprite_previous = undefined;
 static PZ_texture_previous = undefined;
+static PZ_state_previous = undefined;
 
 static blue_color = undefined;
 static blue_color_dark = undefined;
@@ -39,6 +40,16 @@ if character == "PZ"
         PZ_texture_previous = global.palettetexture;
     }
 
+    if PZ_state_previous != state
+    {
+        if state == states.mach3 && PZ_state_previous == states.mach2
+            sound_play_3d("event:/sugary/machstart", x, y);
+        if state == states.mach3
+            spr_machclimbwall = spr_machclimbwall3;
+
+        PZ_state_previous = state;
+    }
+
     // sprite tweaks
     global.force_mach_shader = true;
     global.force_blue_afterimage = state == "PZ_wallkick";
@@ -51,32 +62,43 @@ if character == "PZ"
 
     spr_finishingblow5 = choose(spr_finishingblow1, spr_finishingblow2, spr_finishingblow3, spr_finishingblow4);
 
+    // charge effect
+    if state == states.tumble or state == states.climbwall
+    {
+        if ((state == states.climbwall && wallspeed > 12) or (state != states.climbwall && movespeed > 12)) && !instance_exists(chargeeffectid)
+        {
+            with instance_create(x, y, obj_chargeeffect)
+            {
+                playerid = other.id;
+                other.chargeeffectid = id;
+            }
+        }
+    }
+
+    // wallkick sound
+    if sprite_index == spr_walljumpstart or sprite_index == spr_walljumpend
+        sound_instance_move(global.PZ_snd_wallkick, x, y);
+    else if sound_is_playing(global.PZ_snd_wallkick)
+        fmod_event_instance_set_parameter(global.PZ_snd_wallkick, "state", 1, true);
+    
     // state specific
     switch state
     {
         #region CLIMBWALL
 
         case states.climbwall:
-            spr_machclimbwall = wallspeed > 12 ? spr_machclimbwall3 : spr_machclimbwall2;
-            if wallspeed > 12 && sprite_index == spr_machclimbwall2
+            if wallspeed > 12 && spr_machclimbwall == spr_machclimbwall2
             {
                 flash = true;
-                // (mach start sound)
+                sound_play_3d("event:/sugary/machstart", x, y);
             }
+            spr_machclimbwall = wallspeed > 12 ? spr_machclimbwall3 : spr_machclimbwall2;
             break;
 
         #endregion
         #region ROLL/DIVE
         
         case states.tumble:
-            if movespeed > 12 && !instance_exists(chargeeffectid)
-            {
-                with instance_create(x, y, obj_chargeeffect)
-                {
-                    playerid = other.id;
-                    other.chargeeffectid = id;
-                }
-            }
             if movespeed > 12 && sprite_index == spr_machroll
             {
                 sprite_index = spr_backslideland;
@@ -89,9 +111,9 @@ if character == "PZ"
 
         case states.Sjump:
             move = key_left + key_right;
-            if (move != 0 && sprite_index == spr_superjump)
+            if move != 0 && sprite_index == spr_superjump
             {
-                if (xscale != move)
+                if xscale != move
                 {
                     movespeed = 0;
                     xscale = move;
@@ -99,6 +121,7 @@ if character == "PZ"
                 hsp = movespeed * sign(move);
                 movespeed = Approach(movespeed, 3, 0.5);
             }
+
             break;
         
         #endregion
@@ -127,7 +150,7 @@ if character == "PZ"
                 {
                     sprite_index = spr_walljumpfastfallstart;
                     image_index = 0;
-                    // dive sound here
+                    fmod_event_instance_play(snd_dive);
                 }
                 else if input_buffer_jump > 0 && sprite_index == spr_walljumpfastfall
                 {
@@ -139,6 +162,7 @@ if character == "PZ"
                     hsp = movespeed * xscale;
                     movespeed = abs(movespeed);
                     vsp = -6;
+                    freefallsmash = 0;
                 }
             }
             
@@ -156,7 +180,7 @@ if character == "PZ"
                     hsp = movespeed * xscale;
                     vsp = -5;
                     state = states.mach3;
-                    //fmod_studio_event_instance_start(sndMachStart);
+                    sound_play_3d("event:/sugary/machstart", x, y);
                     //fmod_studio_event_instance_start(sndWallkickCancel);
                 }
                 else
@@ -165,7 +189,7 @@ if character == "PZ"
             
             if grounded && vsp >= 0
             {
-                //fmod_studio_event_instance_start(sndWallkickLand);
+                sound_play_3d("event:/sfx/playerN/wallbounceland", x, y);
                 flash = true;
                 xscale = dir;
                 
@@ -186,7 +210,7 @@ if character == "PZ"
                     state = states.mach3;
                     image_index = 0;
                     sprite_index = spr_rollgetup;
-                    //fmod_studio_event_instance_start(sndMachStart);
+                    sound_play_3d("event:/sugary/machstart", x, y);
                 }
                 else
                 {
@@ -196,7 +220,7 @@ if character == "PZ"
                     state = states.normal;
                     with instance_create(x, y, obj_landcloud)
                         copy_player_scale(other);
-                    //event_play_oneshot("event:/SFX/player/step", x, y);
+                    sound_play_3d(stepsnd, x, y);
                 }
             }
             
@@ -219,7 +243,7 @@ if character == "PZ"
                 with create_blue_afterimage(x, y, sprite_index, image_index, xscale)
                     playerid = other.id;
             }
-            
+
             scr_dotaunt();
             image_speed = 0.45;
             break;

@@ -7,8 +7,6 @@ function scr_modding_disabled_functions()
 		"live_function_add",
 		"live_function_remove",
 		
-		"scr_load_bank",
-		
 		"game_end",
 		"game_restart",
 		"environment_get_variable",
@@ -38,9 +36,34 @@ function scr_modding_disabled_functions()
 		"network_send_udp_raw",
 		"network_destroy",
 		
+		"file_text_open_read",
+		"file_text_open_write",
+		"file_text_open_append",
+		"file_text_open_from_string",
+		"file_text_close",
+		"file_bin_open",
+		
+		"game_load",
+		"game_load_buffer",
+		"game_save",
+		"game_save_buffer",
+		
+		"buffer_load",
+		"buffer_load_ext",
+		"buffer_load_async",
+		"buffer_load_partial",
+		"buffer_async_group_begin",
+		"buffer_async_group_option",
+		"buffer_async_group_end",
+		
 		"file_delete",
 		"file_rename",
 		"file_copy",
+		"directory_create",
 		"directory_destroy",
+		
+		"external_define",
+		"external_call",
+		"external_free"
 	];
 }

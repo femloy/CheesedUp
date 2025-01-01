@@ -27,6 +27,7 @@ for (var i = 0; i < ds_list_size(global.afterimage_list); i++)
 				&& playerid.state != states.boxxedpep && playerid.gusdashpadbuffer <= 0
 				
 				&& !(playerid.state == states.tumble && playerid.character == "V" && playerid.movespeed >= 11)
+				&& !global.mod_do_macheffect
 					alarm[0] = 0;
 				
 				if IT_mach3effect_alpha() && ((playerid.state == states.mach2 || playerid.state == states.mach1 || playerid.state == states.mach3)

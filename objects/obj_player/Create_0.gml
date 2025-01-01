@@ -77,7 +77,6 @@ player_sounds =
 	{ e: "snd_noiseanimatronic" },
 	
 	{ s: global, e: "snd_secretwall" },
-	{ e: "flippingsnd" },
 	{ e: "spindashsnd" },
 	{ e: "snd_vigislide" },
 	{ e: "breakdancesnd" },
@@ -107,11 +106,45 @@ function player_init_sounds()
 {
 	soundinit = true;
 	
-	// taunt
-	if SUGARY_SPIRE && character == "SP"
-		tauntsnd = fmod_event_create_instance("event:/modded/sfx/pizzytaunt");
+	var custom = scr_modding_character(character);
+	if custom == noone
+		custom = {};
 	else
-		tauntsnd = fmod_event_create_instance("event:/sfx/pep/taunt");
+		custom = custom.sounds;
+	
+	var tauntpath = custom[$ "taunt"] ?? "event:/sfx/pep/taunt";
+	var machpath = custom[$ "mach"] ?? "event:/sfx/pep/mach";
+	var jumppath = custom[$ "jump"] ?? "event:/sfx/pep/jump";
+	var breakpath = custom[$ "break"] ?? "event:/sfx/pep/break";
+	var machslidepath = custom[$ "machslideboost"] ?? "event:/sfx/pep/machslideboost";
+	var steppath = custom[$ "step"] ?? "event:/sfx/pep/step";
+	var landpath = custom[$ "land"] ?? steppath;
+	var collectpath = custom[$ "collect"] ?? "event:/sfx/misc/collect";
+	var collectpizzapath = custom[$ "collectpizza"] ?? "event:/sfx/misc/collectpizza";
+	var collectgiantpizzapath = custom[$ "collectgiantpizza"] ?? "event:/sfx/misc/collectgiantpizza";
+	var voiceokpath = custom[$ "voiceok"] ?? "event:/sfx/voice/ok";
+	var voicegusokpath = custom[$ "voicegusok"] ?? "event:/sfx/voice/gusok";
+	var voicetransfopath = custom[$ "voicetransfo"] ?? "event:/sfx/voice/transfo";
+	var voiceouttransfopath = custom[$ "voiceouttransfo"] ?? "event:/sfx/voice/outtransfo";
+	var voicehurtpath = custom[$ "voicehurt"] ?? "event:/sfx/voice/hurt";
+	var voicegushurtpath = custom[$ "voicegushurt"] ?? "event:/sfx/voice/gushurt";
+	var voicemyeapath = custom[$ "voicemyea"] ?? "event:/sfx/voice/myea";
+	var fireasspath = custom[$ "fireass"] ?? concat("event:/sfx/pep/fireass", character);
+	var parrypath = custom[$ "parry"] ?? "event:/sfx/pep/parry";
+	var supertauntpath = custom[$ "supertaunt"] ?? "event:/sfx/pep/supertaunt";
+	var rankpath = custom[$ "rank"] ?? "event:/music/rank";
+	var screambosspath = custom[$ "screamboss"] ?? "event:/sfx/pep/screamboss";
+	var uppercutpath = custom[$ "uppercut"] ?? "event:/sfx/pep/uppercut";
+	var spaceshippath = custom[$ "spaceship"] ?? "event:/sfx/misc/spaceship";
+	var superjumppath = custom[$ "superjump"] ?? "event:/sfx/pep/superjump";
+	var suplexdashpath = custom[$ "suplexdash"] ?? "event:/sfx/pep/suplexdash";
+	var superjumpcancelpath = custom[$ "superjumpcancel"] ?? "event:/sfx/pep/superjumpcancel";
+	var freefallpath = custom[$ "freefall"] ?? "event:/sfx/pep/freefall";
+	var machrollpath = custom[$ "machroll"] ?? "event:/sfx/pep/machroll";
+	var secretwallpath = custom[$ "secretwall"] ?? "event:/modded/sfx/secretwall";
+	
+	// taunt
+	tauntsnd = fmod_event_create_instance(tauntpath);
 	
 	// general
 	if character == "V"
@@ -123,48 +156,39 @@ function player_init_sounds()
 		stepsnd = "event:/modded/playerV/step";
 		landsnd = "event:/modded/playerV/land";
 	}
-	else if SUGARY_SPIRE && character == "SP"
+	else if character == "N"
 	{
-		machsnd = fmod_event_create_instance("event:/modded/sfx/pizzymach");
-		jumpsnd = fmod_event_create_instance("event:/sfx/pep/jump");
-		breaksnd = "event:/sfx/pep/break";
-		machslidesnd = "event:/sfx/pep/machslideboost";
+		machsnd = fmod_event_create_instance(machpath);
+		jumpsnd = fmod_event_create_instance("event:/sfx/playerN/jump");
+		breaksnd = "event:/sfx/playerN/break";
+		machslidesnd = "event:/sfx/playerN/machslide";
 		stepsnd = "event:/sfx/pep/step";
 		landsnd = "event:/sfx/pep/step";
 	}
 	else
 	{
-		machsnd = fmod_event_create_instance("event:/sfx/pep/mach");
-		jumpsnd = fmod_event_create_instance(character == "N" ? "event:/sfx/playerN/jump" : "event:/sfx/pep/jump");
-		breaksnd = character == "N" ? "event:/sfx/playerN/break" : "event:/sfx/pep/break";
-		machslidesnd = character == "N" ? "event:/sfx/playerN/machslide" : "event:/sfx/pep/machslideboost";
-		stepsnd = "event:/sfx/pep/step";
-		landsnd = "event:/sfx/pep/step";
+		machsnd = fmod_event_create_instance(machpath);
+		jumpsnd = fmod_event_create_instance(jumppath);
+		breaksnd = breakpath;
+		machslidesnd = machslidepath;
+		stepsnd = steppath;
+		landsnd = landpath;
 	}
 	
 	// collect
-	if SUGARY_SPIRE && character == "SP"
-	{
-		global.snd_collect = "event:/modded/sfx/collectSP";
-		global.snd_collectpizza = "event:/modded/sfx/collectSP";
-		global.snd_collectgiantpizza = "event:/modded/sfx/collectgiantpizzaSP";
-	}
-	else
-	{
-		global.snd_collect = "event:/sfx/misc/collect";
-		global.snd_collectpizza = "event:/sfx/misc/collectpizza";
-		global.snd_collectgiantpizza = "event:/sfx/misc/collectgiantpizza";
-	}
+	global.snd_collect = collectpath;
+	global.snd_collectpizza = collectpizzapath;
+	global.snd_collectgiantpizza = collectgiantpizzapath;
 	
 	// the voices
 	if character != "S"
 	{
 		var g = isgustavo && character != "N";
-		snd_voiceok = fmod_event_create_instance(g ? "event:/sfx/voice/gusok" : "event:/sfx/voice/ok");
-		snd_voicetransfo = fmod_event_create_instance("event:/sfx/voice/transfo");
-		snd_voiceouttransfo = fmod_event_create_instance("event:/sfx/voice/outtransfo");
-		snd_voicehurt = fmod_event_create_instance(g ? "event:/sfx/voice/gushurt" : "event:/sfx/voice/hurt");
-		snd_voicemyea = "event:/sfx/voice/myea";
+		snd_voiceok = fmod_event_create_instance(g ? voicegusokpath : voiceokpath);
+		snd_voicetransfo = fmod_event_create_instance(voicetransfopath);
+		snd_voiceouttransfo = fmod_event_create_instance(voiceouttransfopath);
+		snd_voicehurt = fmod_event_create_instance(g ? voicegushurtpath : voicehurtpath);
+		snd_voicemyea = voicemyeapath;
 	}
 	else
 	{
@@ -176,43 +200,25 @@ function player_init_sounds()
 	}
 	
 	// fireass
-	if character == "SP"
-		global.snd_fireass = fmod_event_create_instance(concat("event:/modded/sfx/fireass", character));
-	else if character != "S"
-		global.snd_fireass = fmod_event_create_instance(concat("event:/sfx/pep/fireass", character));
+	if character != "S"
+		global.snd_fireass = fmod_event_create_instance(fireasspath);
 	else
 		global.snd_fireass = fmod_event_create_instance("event:/sfx/pep/fireass");
 	
-	// parry
-	if SUGARY_SPIRE && (character == "SP" or character == "SN")
-		global.snd_parry = fmod_event_create_instance("event:/modded/sfx/parrySP");
-	else
-		global.snd_parry = fmod_event_create_instance("event:/sfx/pep/parry");
-	
-	if BO_NOISE && character == "BN"
-		global.snd_supertaunt = fmod_event_create_instance("event:/modded/sfx/supertauntBN");
-	else if SUGARY_SPIRE && (character == "SP" or character == "SN")
-		global.snd_supertaunt = fmod_event_create_instance("event:/modded/sfx/supertauntSP");
-	else
-		global.snd_supertaunt = fmod_event_create_instance("event:/sfx/pep/supertaunt");
+	// taunt attacks
+	global.snd_parry = fmod_event_create_instance(parrypath);
+	global.snd_supertaunt = fmod_event_create_instance(supertauntpath);
 	
 	// rank
-	if SUGARY_SPIRE && (character == "SP" or character == "SN")
-		global.snd_rank = fmod_event_create_instance("event:/modded/sugary/rankSP");
-	else if BO_NOISE && character == "BN"
-		global.snd_rank = fmod_event_create_instance("event:/music/rankBN");
-	else
-		global.snd_rank = fmod_event_create_instance("event:/music/rank");
+	global.snd_rank = fmod_event_create_instance(rankpath);
 	
 	// toppincolect
-	if SUGARY_SPIRE && (character == "SP" or character == "SN")
-		global.snd_collecttoppin = "event:/modded/sfx/collecttoppinSP";
-	else
-		global.snd_collecttoppin = "event:/sfx/misc/collecttoppin";
+	var collecttoppinpath = "event:/sfx/misc/collecttoppin";
+	global.snd_collecttoppin = collecttoppinpath;
 	
 	// boss scream
 	if character != "S"
-		global.snd_screamboss = "event:/sfx/pep/screamboss";
+		global.snd_screamboss = screambosspath;
 	else
 		global.snd_screamboss = "event:/modded/sfx/enemyscream";
 	
@@ -220,16 +226,16 @@ function player_init_sounds()
 	if character == "V"
 		snd_uppercut = fmod_event_create_instance("event:/sfx/vigilante/uzijump");
 	else
-		snd_uppercut = fmod_event_create_instance("event:/sfx/pep/uppercut");
+		snd_uppercut = fmod_event_create_instance(uppercutpath);
 	
 	// spaceship scream
 	if character != "S"
-		global.snd_spaceship = fmod_event_create_instance("event:/sfx/misc/spaceship");
+		global.snd_spaceship = fmod_event_create_instance(spaceshippath);
 	else
 		global.snd_spaceship = fmod_event_create_instance("event:/sfx/misc/spaceshiptemp");
     
     // normal sounds
-    machrollsnd = fmod_event_create_instance("event:/sfx/pep/machroll");
+    machrollsnd = fmod_event_create_instance(machrollpath);
     weeniebumpsnd = fmod_event_create_instance("event:/sfx/weenie/bump");
     knightslidesnd = fmod_event_create_instance("event:/sfx/knight/slide");
     gravecorpsesnd = fmod_event_create_instance("event:/sfx/pep/gravecorpse");
@@ -247,7 +253,7 @@ function player_init_sounds()
     pizzapeppersnd = fmod_event_create_instance("event:/sfx/pep/pizzapepper");
     ratdeflatesnd = fmod_event_create_instance("event:/sfx/rat/deflate");
     ghostspeedsnd = fmod_event_create_instance("event:/sfx/pep/ghostspeed");
-    freefallsnd = fmod_event_create_instance("event:/sfx/pep/freefall");
+    freefallsnd = fmod_event_create_instance(freefallpath);
     rollgetupsnd = fmod_event_create_instance("event:/sfx/pep/rollgetup");
     tumblesnd = fmod_event_create_instance("event:/sfx/pep/tumble");
     snd_dive = fmod_event_create_instance("event:/sfx/pep/dive");
@@ -255,11 +261,13 @@ function player_init_sounds()
     snd_dashpad = fmod_event_create_instance("event:/sfx/misc/dashpad");
     animatronicsnd = fmod_event_create_instance("event:/sfx/pep/animatronic");
     burpsnd = fmod_event_create_instance("event:/sfx/enemies/burp");
-    superjumpsnd = fmod_event_create_instance("event:/sfx/pep/superjump");
-    suplexdashsnd = fmod_event_create_instance("event:/sfx/pep/suplexdash");
+	
+    superjumpsnd = fmod_event_create_instance(superjumppath);
+    suplexdashsnd = fmod_event_create_instance(suplexdashpath);
+	
     gallopingsnd = fmod_event_create_instance("event:/sfx/misc/galloping");
     snd_jetpackloop = fmod_event_create_instance("event:/sfx/noise/jetpackloop");
-    sjumpcancelsnd = fmod_event_create_instance("event:/sfx/pep/superjumpcancel");
+    sjumpcancelsnd = fmod_event_create_instance(superjumpcancelpath);
     
     snd_wallbounce = fmod_event_create_instance("event:/sfx/playerN/wallbounce");
     snd_divebomb = fmod_event_create_instance("event:/sfx/playerN/divebomb");
@@ -279,8 +287,7 @@ function player_init_sounds()
     snd_noiseanimatronic = fmod_event_create_instance("event:/sfx/playerN/animatronic");
     
     // pto extra
-    global.snd_secretwall = fmod_event_create_instance("event:/modded/sfx/secretwall");
-    flippingsnd = fmod_event_create_instance("event:/modded/sfx/pizzyflip");
+    global.snd_secretwall = fmod_event_create_instance(secretwallpath);
     spindashsnd = fmod_event_create_instance("event:/modded/sfx/snick/spindashrev");
     snd_vigislide = fmod_event_create_instance("event:/sfx/vigilante/slide");
     breakdancesnd = fmod_event_create_instance("event:/sfx/misc/breakdance");

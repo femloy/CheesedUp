@@ -1,14 +1,16 @@
-function ModCharacter(_character, _name, _path) constructor
+function ModCharacter(_character, _json, _path) constructor
 {
 	character = _character;
-	name = _name;
+	name = struct_expect_default(_json, "name", "Unknown");
 	path = _path;
 	
-	default_palette = 1;
-	color_array = [1, 2];
+	default_palette = struct_expect_default(_json, "default_palette", 1);
+	color_array = struct_expect_default(_json, "color_array", [1, 2]);
 	
-	dresser_color_y = 1;
-	dresser_mixing_color_y = 1;
+	dresser_color_y = struct_expect_default(_json, "dresser_color_y", 1);
+	dresser_mixing_color_y = struct_expect_default(_json, "dresser_mixing_color_y", 1);
+	
+	mixable_palettes = struct_expect_default(_json, "mixable_palettes", []);
 	
 	sprites =
 	{
@@ -16,6 +18,8 @@ function ModCharacter(_character, _name, _path) constructor
 		player: {},
 		misc: {},
 	};
+	
+	sounds = struct_expect_default(_json, "sounds", {});
 	
 	sprite_data =
 	{
@@ -64,14 +68,17 @@ function ModCharacter(_character, _name, _path) constructor
 			if general.default_palette >= wd
 			{
 				audio_play_sound(sfx_pephurt, 0, false);
-				show_message($"{name}: Default palette out of bounds ({default_palette} >= {wd})");
+				show_message($"{other.name}: Default palette out of bounds ({general.default_palette} >= {wd})");
 				
 				add_palette(0);
 				sel.palette = 0;
 			}
 			else
 			{
+				// first palette
 				add_palette(general.default_palette).set_prefix("");
+				
+				// every other
 				for(var i = general.default_palette + 1; i < wd; ++i)
 				{
 					if i == 2 // skip 2
@@ -81,7 +88,10 @@ function ModCharacter(_character, _name, _path) constructor
 						i += 2; // skip 12, 13 and 14
 						continue;
 					}
-					add_palette(i);
+					
+					var p = add_palette(i);
+					if array_contains(other.mixable_palettes, i)
+						p.set_prefix();
 				}
 			}
 		}
@@ -96,12 +106,10 @@ function ModCharacter(_character, _name, _path) constructor
 			spr_palette: sprites.player[$ "spr_palette"] ?? spr_peppalette,
 			spr_dead: sprites.player[$ "spr_dead"] ?? spr_player_dead,
 			spr_shirt: spr_palettedresserdebris, // TODO
-			default_palette: default_palette, // default selection. for pep it's 1.
-			
-			color_index: dresser_color_y, // for dresser
-			mixing_color: dresser_mixing_color_y, // the color Y in the clothes grid
-			
-			pattern_color_array: color_array
+			default_palette: default_palette,
+			pattern_color_array: color_array,
+			color_index: dresser_color_y,
+			mixing_color: dresser_mixing_color_y
 		};
 	}
 	

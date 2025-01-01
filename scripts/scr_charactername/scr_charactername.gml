@@ -13,17 +13,10 @@ function scr_charactername(character, isgustavo)
 		case "S": return "Snick"; break;
 		case "M": return "Pepperman"; break;
 	}
-	if SUGARY_SPIRE
-	{
-		if character == "SP"
-			return "Pizzelle";
-		if character == "SN"
-			return "Pizzano";
-	}
-	if BO_NOISE
-	{
-		if character == "BN"
-			return "Bo Noise";
-	}
+	
+	var custom = scr_modding_character(character);
+	if custom != noone
+		return custom.name;
+	
 	return "Unknown";
 }

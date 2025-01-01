@@ -224,5 +224,4 @@ function scr_player_Sjump()
 		substate = states.normal;
 	
 	image_speed = 0.5;
-	scr_collide_player();
 }
