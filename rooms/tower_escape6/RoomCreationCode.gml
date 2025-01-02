@@ -1,1 +1,1 @@
-global.roommessage = "ADVANCED ROCKETEER";
+global.roommessage = "GROUND CONTROL";
