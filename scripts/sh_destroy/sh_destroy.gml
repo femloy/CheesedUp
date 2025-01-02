@@ -6,7 +6,7 @@ function sh_destroy(args)
 			return WC_FUCK_YOU;
 	}
 	if !WC_debug
-		return "You do not have permission to use this command";
+		return WC_NODEBUG;
 	if array_length(args) < 2
 		return "Not enough arguments. Usage: var <instance(:index)> (<execute_event>)";
 	

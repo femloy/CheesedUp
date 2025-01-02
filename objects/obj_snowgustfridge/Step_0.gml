@@ -6,9 +6,9 @@ if place_meeting(x, y, obj_player)
 	{
 		if (place_meeting(x, y, other) && state != states.debugstate && state != states.grabbed)
 		{
-			if (state != states.rupertjump && state != states.rupertnormal && state != states.rupertstick)
+			if (state != states.removed_state && state != states.removed_state && state != states.removed_state)
 			{
-				state = states.rupertnormal;
+				state = states.removed_state;
 				movespeed = clamp(movespeed, 0, 8);
 				//var myButton1 = get_control_string(global.key_jump);
 				//scr_controlprompt("[spr_buttonfont]" + myButton1 + "[spr_promptfont]Jump  " + "[spr_buttonfont]" + myButton1 + "[spr_promptfont]Double Jump");

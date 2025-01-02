@@ -30,7 +30,7 @@ function scr_player_rupertslide()
 		with (instance_create(x, y, obj_highjumpcloud2))
 			copy_player_scale(other);
 		scr_fmod_soundeffect(jumpsnd, x, y);
-		state = states.rupertjump;
+		state = states.removed_state;
 		movespeed = hsp;
 	}
 	if (grounded && movespeed < 14)
@@ -45,7 +45,7 @@ function scr_player_rupertslide()
 	if (!grounded && vsp >= 10)
 	{
 		movespeed = hsp;
-		state = states.rupertjump;
+		state = states.removed_state;
 		flash = true;
 		momemtum = true;
 		sprite_index = spr_player_skatespin;
@@ -57,14 +57,14 @@ function scr_player_rupertslide()
 			vsp = 0;
 			image_index = 0;
 			sprite_index = spr_player_skatewallrun;
-			state = states.rupertstick;
+			state = states.removed_state;
 			xscale = sign(hsp);
 		}
 		else
 		{
 			sound_play_3d(sfx_bumpwall, x, y);
 			sprite_index = spr_player_skatefall;
-			state = states.rupertjump;
+			state = states.removed_state;
 			vsp = -4;
 			xscale = -sign(hsp);
 			movespeed = xscale * 5;

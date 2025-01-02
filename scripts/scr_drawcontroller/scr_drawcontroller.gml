@@ -245,7 +245,7 @@ function draw_player()
 		exit;
 	
 	var xx = x + smoothx, yy = y;
-	if (state == states.frothstuck or state == states.frozen) && shaketime > 0
+	if (state == states.removed_state or state == states.frozen) && shaketime > 0
 		xx += random_range(shaketime / 6, -shaketime / 6);
 	
 	var _sprite_index = player_sprite();

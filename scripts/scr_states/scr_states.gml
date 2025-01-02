@@ -153,7 +153,7 @@ enum states
 	golf,
 	float,
 	tube,
-	unused_1, // 151
+	UNKNOWN_1, // 151
 	policetaxi,
 	shoulderbash,
 	pummel,
@@ -201,7 +201,7 @@ enum states
 	ratmounthurt,
 	ratmountgroundpound,
 	ratmountbounce,
-	unused_2, // 199
+	UNKNOWN_2, // 199
 	ratmountballoon,
 	ratmounttumble,
 	ratmountgrind,
@@ -236,7 +236,7 @@ enum states
 	pizzaface_phase2transition,
 	pizzahead_look,
 	pizzahead_fishing,
-	unused_3, // 234
+	UNKNOWN_3, // 234
 	pizzahead_bombrun,
 	pizzahead_npcthrow,
 	pizzahead_portraitthrow,
@@ -255,17 +255,17 @@ enum states
 	tv_whitenoise,
 	tv_expression,
 	playersuperattack,
-	unused_4, // 253
+	UNKNOWN_4, // 253
 	jetpackjump,
-	unused_5, // 255
-	unused_6, // 256
+	UNKNOWN_5, // 255
+	UNKNOWN_6, // 256
 	bee,
 	bee_chase,
 	ratmountpunch,
 	ratmountcrouch,
 	ratmountladder,
 	supergrab,
-	unused_7, // 263
+	UNKNOWN_7, // 263
 	magnet,
 	antigrav,
 	secret,
@@ -308,35 +308,25 @@ enum states
 	stick_flyattack, // 301
 	stick_superjump, // 302
 	stick_flycancel, // 303, used by obj_stickhat
-	UNKNOWN_5, // 304
+	UNKNOWN_8, // 304
 	
 	// noise
 	machcancelstart,
 	machcancel,
 	
-	// sugary
-	cotton = 500,
-	cottondrill,
-	cottonroll,
-	fling,
-	twirl,
-	frothstuck,
-	rupertnormal,
-	rupertslide,
-	rupertjump, 
-	rupertstick,
-	
 	// pto
 	debugfly = 600,
 	frozen,
-	swimming
+	swimming,
+	removed_state
 }
 
 #endregion
 #region struct (for ingame use)
 
 globalvar states;
-states = {
+states =
+{
 	normal : 0,
 	revolver : 1,
 	dynamite : 2,
@@ -636,28 +626,17 @@ states = {
 	stick_flyattack : 301, // 301
 	stick_superjump : 302, // 302
 	stick_flycancel : 303, // 303, used by obj_stickhat
-	UNKNOWN_5 : 304, // 304
+	UNKNOWN_8 : 304, // 304
 	
 	// noise
 	machcancelstart : 305,
 	machcancel : 306,
 	
-	// sugary
-	cotton : 500,
-	cottondrill : 501,
-	cottonroll : 502,
-	fling : 503,
-	twirl : 504,
-	frothstuck : 505,
-	rupertnormal : 506,
-	rupertslide : 507,
-	rupertjump : 508,
-	rupertstick : 509,
-	
 	// pto
 	debugfly : 600,
 	frozen : 601,
-	swimming : 602
+	swimming : 602,
+	removed_state : -1
 }
 
 #endregion

@@ -1,22 +1,17 @@
 function scr_random_granny()
 {
-	var count = instance_number(obj_tutorialbook);
-	var n = irandom(count - 1);
-	var b = -4;
-	for (var found = false; !found; n = irandom(count - 1))
+	var candidates = [];
+	with obj_tutorialbook
 	{
-		with (instance_find(obj_tutorialbook, n))
-		{
-			if (showgranny)
-			{
-				found = true;
-				b = id;
-			}
-		}
+		if showgranny
+			array_push(candidates, id);
 	}
-	with (obj_tutorialbook)
+	
+	var b = candidates[irandom(array_length(candidates) - 1)];
+	
+	with obj_tutorialbook
 	{
-		if (id != b && showgranny)
+		if id != b && showgranny
 			instance_destroy();
 	}
 }

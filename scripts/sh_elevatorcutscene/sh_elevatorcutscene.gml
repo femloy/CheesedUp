@@ -1,7 +1,7 @@
 function sh_elevatorcutscene()
 {
 	if !WC_debug
-		return "You do not have permission to use this command";
+		return WC_NODEBUG;
 	
 	with obj_player
 	{

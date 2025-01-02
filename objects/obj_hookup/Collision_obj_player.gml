@@ -1,6 +1,6 @@
 with (other)
 {
-	if (other.appear == -1 && key_up && ladderbuffer == 0 && (state == states.fireass || state == states.machcancel || state == states.punch || state == states.normal || state == states.pogo || state == states.mach2 || state == states.mach3 || state == states.mach1 || state == states.shotgunjump || state == states.jump || state == states.highjump or state == states.twirl))
+	if (other.appear == -1 && key_up && ladderbuffer == 0 && (state == states.fireass || state == states.machcancel || state == states.punch || state == states.normal || state == states.pogo || state == states.mach2 || state == states.mach3 || state == states.mach1 || state == states.shotgunjump || state == states.jump || state == states.highjump or state == states.removed_state))
 	{
 		fmod_event_instance_play(other.snd);
 		other.hooked = true;

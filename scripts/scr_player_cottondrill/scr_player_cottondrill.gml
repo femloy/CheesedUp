@@ -32,7 +32,7 @@ function state_player_cottondrill()
 		{
 			movespeed = (drillspeed / 20) * 12;
 			vsp = 3;
-			state = states.cottonroll;
+			state = states.removed_state;
 			image_index = 0;
 			sprite_index = spr_cotton_roll;
 			with slope
@@ -40,7 +40,7 @@ function state_player_cottondrill()
 		}
 		else
 		{
-			state = states.cotton;
+			state = states.removed_state;
 			sprite_index = spr_cotton_land;
 			vsp = 0;
 			movespeed = 0;
@@ -49,7 +49,7 @@ function state_player_cottondrill()
 	}
 	if (key_slap2 && sprite_index != spr_cotton_attack && grounded)
 	{
-		state = states.cotton;
+		state = states.removed_state;
 		flash = 1;
 		image_index = 0;
 		sprite_index = spr_cotton_attack;
@@ -67,7 +67,7 @@ function state_player_cottondrill()
 	{
 		doublejump = 1;
 		movespeed = 0;
-		state = states.cotton;
+		state = states.removed_state;
 		vsp = -10;
 		grav = 0.1;
 		image_index = 0;

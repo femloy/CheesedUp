@@ -1,3 +1,6 @@
+#macro WC_NODEBUG "You do not have permission to use this command"
+#macro WC_FUCK_YOU choose("You tried.", "Not that easy, pal.", "Nope.", "Sorry... no.", "Good thinking!", "You think I'm stupid?", "Did I say sorry? I lied.", "Try ALT F4, see if that does it.", "But of course.", "Command Error - 404 Not Found", "Whew, almost bypassed it, there.", "I don't think so.", "Hahaha, good one!", "No.")
+
 function WCscr_altname(name, alt)
 {
 	variable_global_set($"sh_{alt}", variable_global_get($"sh_{name}"));

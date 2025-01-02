@@ -1,7 +1,7 @@
 with (other)
 {
 	if (key_up && ladderbuffer <= 0 && (state == states.normal or state == states.pogo or state == states.machcancel or state == states.mach2 or state == states.mach3 or state == states.mach1 or state == states.punch or state == states.shotgunjump or state == states.jump or state == states.highjump or (state == states.ratmountbounce && character == "N")
-	or state == states.twirl))
+	or state == states.removed_state))
 	{
 		if REMIX
 			smoothx = x - (other.x + 16);

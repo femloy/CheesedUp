@@ -319,18 +319,6 @@ if scr_modding_hook_falser("player/prestate") switch state
 	case states.stick_flycancel: scr_stick_flycancel(); break;
 	case states.stick_superjump: scr_stick_superjump(); break;
 	
-	// sugary
-	case states.cotton: state_player_cotton(); break;
-	case states.cottondrill: state_player_cottondrill(); break;
-	case states.cottonroll: state_player_cottonroll(); break;
-	case states.fling: scr_player_fling(); break;
-	case states.twirl: scr_pizzano_twirl(); break;
-	case states.frothstuck: scr_player_frothstuck(); break;
-	case states.rupertnormal: scr_player_rupertnormal(); break;
-	case states.rupertslide: scr_player_rupertslide(); break;
-	case states.rupertjump: scr_player_rupertjump(); break;
-	case states.rupertstick: scr_player_rupertstick(); break;
-	
 	// pto
 	case states.debugfly: scr_player_debugstate(); break;
 	case states.frozen: scr_player_frozen(); break;
@@ -1040,7 +1028,7 @@ if (state != states.ratmount && state != states.ratmountjump && state != states.
 }
 if (inv_frames == 0 && hurted == 0 && state != states.ghost)
 	image_alpha = 1;
-if ((state == states.rupertjump && sprite_index == spr_player_skatespin) || state == states.punch || (state == states.jump && sprite_index == spr_playerN_noisebombspinjump) || state == states.tacklecharge || state == states.skateboard || state == states.knightpep || state == states.cheesepep || state == states.knightpepslopes || state == states.knightpepattack || state == states.bombpep || state == states.facestomp || state == states.machfreefall || state == states.facestomp || state == states.mach3 || state == states.freefall || state == states.Sjump)
+if ((state == states.removed_state && sprite_index == spr_player_skatespin) || state == states.punch || (state == states.jump && sprite_index == spr_playerN_noisebombspinjump) || state == states.tacklecharge || state == states.skateboard || state == states.knightpep || state == states.cheesepep || state == states.knightpepslopes || state == states.knightpepattack || state == states.bombpep || state == states.facestomp || state == states.machfreefall || state == states.facestomp || state == states.mach3 || state == states.freefall || state == states.Sjump)
 	attacking = true;
 else
 	attacking = false;
@@ -1113,7 +1101,7 @@ if (character != "M")
 	if !scr_solid_player(x, y)
 	{
 		if (state != states.ratmountcrouch && state != states.boxxedpepjump && state != states.boxxedpepspin && !(state == states.bump && sprite_index == spr_tumbleend) && (state != states.barrelslide && state != states.barrelclimbwall) && sprite_index != spr_player_breakdancesuper && sprite_index != spr_barrelslipnslide && sprite_index != spr_barrelroll && sprite_index != spr_bombpepintro && sprite_index != spr_knightpepthunder && state != states.stunned && state != states.crouch && state != states.shotguncrouch && state != states.shotguncrouchjump && state != states.boxxedpep && (state != states.pistol && sprite_index != spr_player_crouchshoot) && state != states.Sjumpprep && state != states.crouchslide && state != states.chainsaw && (state != states.machroll or character == "S") && state != states.hurt && state != states.crouchjump && state != states.cheesepepstickup && state != states.cheesepepstickside && state != states.tumble
-		&& sprite_index != spr_playerN_jetpackslide && state != states.cottonroll && sprite_index != spr_pizzano_crouchslide && sprite_index != spr_breakdancesuper)
+		&& sprite_index != spr_playerN_jetpackslide && state != states.removed_state && sprite_index != spr_pizzano_crouchslide && sprite_index != spr_breakdancesuper)
 			mask_index = spr_player_mask;
 		else
 			mask_index = spr_crouchmask;

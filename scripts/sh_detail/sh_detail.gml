@@ -6,7 +6,7 @@ function sh_detail(args)
 			return WC_FUCK_YOU;
 	}
 	if !WC_debug
-		return "You do not have permission to use this command";
+		return WC_NODEBUG;
 	if array_length(args) < 3
 		return "Not enough arguments. Usage: detail <instance(:index) or global> <variable>";
 	

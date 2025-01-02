@@ -6,7 +6,7 @@ function sh_create(args)
 			return WC_FUCK_YOU;
 	}
 	if !WC_debug
-		return "You do not have permission to use this command";
+		return WC_NODEBUG;
 	if array_length(args) < 2
 		return "Missing argument: object";
 	

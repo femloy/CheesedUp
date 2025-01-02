@@ -27,7 +27,7 @@ function scr_player_rupertnormal()
 		xscale = -slope_direction();
 		with (instance_create(x, y, obj_jumpdust))
 			copy_player_scale(other);
-		state = states.rupertslide;
+		state = states.removed_state;
 	}
 	
 	// Animation.
@@ -46,7 +46,7 @@ function scr_player_rupertnormal()
 	    instance_create(x, y, obj_highjumpcloud2);
 	    vsp = -10;
 		movespeed = hsp;
-	    state = states.rupertjump;
+	    state = states.removed_state;
 	}
 	
 	// Fall
@@ -54,7 +54,7 @@ function scr_player_rupertnormal()
 	{
 		sprite_index = spr_player_skatedive;
 		movespeed = hsp;
-		state = states.rupertjump;	
+		state = states.removed_state;	
 	}
 	
 	image_speed = 0.35;

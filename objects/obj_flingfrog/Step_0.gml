@@ -33,7 +33,7 @@ if grabbedPlayer <= noone
 }
 
 // Grab Player
-if place_meeting(x, y, _player) && !scr_solid(x, y) && _player.vsp >= -3 && _player.state != states.fling && grabbedPlayer <= noone && waitTimer <= 0
+if place_meeting(x, y, _player) && !scr_solid(x, y) && _player.vsp >= -3 && _player.state != states.removed_state && grabbedPlayer <= noone && waitTimer <= 0
 {
 	grabbedPlayer = _player;
 	old_hsp = grabbedPlayer.hsp / 4;
@@ -52,7 +52,7 @@ if place_meeting(x, y, _player) && !scr_solid(x, y) && _player.vsp >= -3 && _pla
 		
 		movespeed = abs(movespeed);
 		sprite_index = spr_player_candybegin;
-		state = states.fling;
+		state = states.removed_state;
 		hsp = 0;
 		vsp = 0;
 		x = other.x;
@@ -80,7 +80,7 @@ if grabbedPlayer != noone
 				
 				step = function()
 				{
-					if playerid.state != states.fling
+					if playerid.state != states.removed_state
 						instance_destroy();
 				}
 			}

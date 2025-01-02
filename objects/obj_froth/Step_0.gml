@@ -77,7 +77,7 @@ switch (state)
 				{
 					hsp = 0
 					player_x = x
-					state = states.frothstuck
+					state = states.removed_state
 					sprite_index = spr_player_frothstuck
 					breakout = 3
 				}

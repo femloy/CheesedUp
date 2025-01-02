@@ -1,3 +1,5 @@
+// anti-decomp in log_source
+
 // optimizations
 gml_pragma("forceinline");
 surface_depth_disable(true); // disable the depth buffer.
@@ -9,7 +11,7 @@ function toggle_texture_debug(enable)
 }
 toggle_texture_debug(false);
 
-if DEBUG
+if TESTBUILD
 	debug_event("OutputDebugOn");
 
 // crash handler
@@ -74,18 +76,26 @@ if !directory_exists(exe_folder + "data")
 	exit;
 }
 
-// drama
+// dram
 #macro SUGARY_SPIRE 0
 #macro DEATH_MODE 0
 #macro BO_NOISE 0
 
 // macros
-if GM_build_type == "run"
+if TESTBUILD
 	global.debug_mode = true;
 
-#macro DEBUG (GM_build_type == "run" && (global[$ "debug_mode"] ?? true))
+#macro TESTBUILD GM_build_type == "run"
+#macro DEBUG scr_debugmode()
 #macro YYC code_is_compiled()
 #macro PLAYTEST 0
+
+function scr_debugmode()
+{
+	if TESTBUILD
+		return global[$ "debug_mode"] ?? true;
+	return false;
+}
 
 if !YYC
 {
@@ -126,7 +136,8 @@ function funny_room()
 // initialize
 scr_get_languages();
 pal_swap_init_system_fix(shd_pal_swapper, true);
-texture_debug_messages(DEBUG);
+if TESTBUILD
+	texture_debug_messages(true);
 
 // fonts
 global.bigfont = font_add_sprite_ext(spr_font, "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ!¡¿?.1234567890:ÁÄÃÀÂÉÈÊËÍÌÎÏÓÖÕÔÒÚÙÛÜÇ+()[]',\"-_▼&#*", true, 0);

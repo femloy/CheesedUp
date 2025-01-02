@@ -173,7 +173,7 @@ function scr_cameradraw_old()
 						hudface = spr_pizzyHUD // REPLACE 
 					else if player.sprite_index == player.spr_shotgunpullout
 						hudface = spr_pizzyHUDmenacing
-					else if _state == states.cotton
+					else if _state == states.removed_state
 						hudface = spr_pizzyHUDcotton
 					else
 						hudface = spr_pizzyHUD;
@@ -204,7 +204,7 @@ function scr_cameradraw_old()
 		var xx = 125;
 		if SUGARY_SPIRE
 		{
-			if _state == states.cotton or _state == states.cottonroll or _state == states.cottondrill
+			if _state == states.removed_state or _state == states.removed_state or _state == states.removed_state
 				hudface = spr_pizzyHUDcotton;
 			if player.character == "SP"
 				xx -= 20;

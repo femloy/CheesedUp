@@ -1,7 +1,7 @@
 function sh_debughud(args)
 {
 	if !WC_debug
-		return "You do not have permission to use this command";
+		return WC_NODEBUG;
 	
 	var inst = undefined;
 	if array_length(args) > 1

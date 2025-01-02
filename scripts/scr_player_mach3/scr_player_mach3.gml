@@ -466,7 +466,7 @@ function scr_player_mach3()
 				*/
 				
 				// good cheesed up way
-				state = states.twirl;
+				state = states.removed_state;
 				sprite_index = movespeed >= 12 ? spr_pizzano_machtwirl : spr_pizzano_twirl;
 			}
 			else

@@ -17,8 +17,8 @@ function scr_instakillcheck()
 	
 	or (state == states.handstandjump && (sprite_index == spr_attackdash or sprite_index == spr_airattack or sprite_index == spr_airattackstart))
 	or ((sprite_index == spr_jump or sprite_index == spr_tumble or sprite_index == spr_snick_spindash or abs(hsp) >= 16 or sprite_index == spr_snick_roll or sprite_index == spr_walljumpstart) && character == "S")
-	or ((state == states.cotton or state == states.cottonroll) && movespeed >= 8) or state == states.cottondrill or sprite_index == spr_cotton_attack
-	or (state == states.twirl && sprite_index == spr_pizzano_machtwirl)
+	or ((state == states.removed_state or state == states.removed_state) && movespeed >= 8) or state == states.removed_state or sprite_index == spr_cotton_attack
+	or (state == states.removed_state && sprite_index == spr_pizzano_machtwirl)
 	or (state == states.tumble && character == "V" && movespeed >= 11)
 	or burning or state == states.stick_flyattack
 	
@@ -35,7 +35,7 @@ function scr_instakillcheck()
 
 function Instakill()
 {
-	if SUGARY_SPIRE && state == states.cotton
+	if SUGARY_SPIRE && state == states.removed_state
 		other.baddieID.image_blend = 0xFE8AFF;
 	
 	var hx = other.baddieID.x;

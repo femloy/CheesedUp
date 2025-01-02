@@ -153,7 +153,7 @@ function state_player_cotton()
 	if (key_down2 && !grounded)
 	{
 		drillspeed = -5;
-		state = states.cottondrill;
+		state = states.removed_state;
 		sprite_index = spr_cotton_drill;
 		image_index = 0;
 		sound_play_centered(sfx_suplexdash);
@@ -172,7 +172,7 @@ function state_player_cotton()
 		if (movespeed < 3)
 			movespeed = 3;
 		vsp = 3;
-		state = states.cottonroll;
+		state = states.removed_state;
 		image_index = 0;
 		sprite_index = spr_cotton_roll;
 	}

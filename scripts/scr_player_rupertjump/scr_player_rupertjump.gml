@@ -87,7 +87,7 @@ function scr_player_rupertjump()
 			vsp = 0;
 			image_index = 0;
 			sprite_index = spr_player_skatewallrun;
-			state = states.rupertstick;
+			state = states.removed_state;
 			xscale = sign(hsp);
 		}
 		else
@@ -104,14 +104,14 @@ function scr_player_rupertjump()
 				xscale = -slope_direction();
 				with (instance_create(x, y, obj_jumpdust))
 					copy_player_scale(other);
-				state = states.rupertslide;
+				state = states.removed_state;
 			}
 			else
 			{
 				//scr_sound(sound_maximumspeedland); LOY DO THIS
 				image_index = 0;
 				movespeed = 0;
-				state = states.rupertstick;
+				state = states.removed_state;
 				jumpAnim = 1;
 				jumpstop = 0;
 				with (obj_baddie)
@@ -140,11 +140,11 @@ function scr_player_rupertjump()
 				xscale = -slope_direction();
 				with (instance_create(x, y, obj_jumpdust))
 					copy_player_scale(other);
-				state = states.rupertslide;
+				state = states.removed_state;
 			}
 			else
 			{
-				state = states.rupertnormal;
+				state = states.removed_state;
 				if (sign(hsp) != 0)
 					xscale = sign(hsp);
 				movespeed = abs(movespeed);

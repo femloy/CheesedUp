@@ -148,7 +148,7 @@ function scr_collide_player()
 	var plat = instance_place(x, y + col_scale * flip, obj_platform);
 	if plat
 	{
-		if sign(plat.image_yscale) != flip or (SUGARY_SPIRE && plat.object_index == obj_cottonplatform_tiled && state != states.cotton && state != states.cottonroll)
+		if sign(plat.image_yscale) != flip or (SUGARY_SPIRE && plat.object_index == obj_cottonplatform_tiled && state != states.removed_state && state != states.removed_state)
 			plat = noone;
 	}
 	

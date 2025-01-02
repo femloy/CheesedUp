@@ -30,7 +30,7 @@ if key_jump
 			gamesave_async_save_options();
 			
 			// boot up
-			if GM_build_type == "run"
+			if TESTBUILD
 			{
 				show_message("Rebooting the game doesn't work while testing.\nThe setting HAS been saved, though.");
 				instance_destroy();

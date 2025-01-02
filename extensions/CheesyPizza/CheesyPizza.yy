@@ -92,9 +92,8 @@
         {"$GMExtensionFunction":"","%Name":"np_respond","argCount":0,"args":[1,2,],"documentation":"","externalName":"np_respond","help":"np_respond(user_id,reply)","hidden":false,"kind":1,"name":"np_respond","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"np_setpresence_timestamps","argCount":0,"args":[2,2,2,],"documentation":"","externalName":"np_setpresence_timestamps","help":"np_setpresence_timestamps(startTimestamp,endTimestamp,is_unix)","hidden":false,"kind":1,"name":"np_setpresence_timestamps","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"np_setpresence_buttons","argCount":0,"args":[2,1,1,],"documentation":"","externalName":"np_setpresence_buttons","help":"np_setpresence_buttons(btnId,btnName,btnUrl)","hidden":false,"kind":1,"name":"np_setpresence_buttons","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
-        {"$GMExtensionFunction":"","%Name":"np_checkintegrity","argCount":0,"args":[],"documentation":"","externalName":"np_checkintegrity","help":"np_checkintegrity()","hidden":false,"kind":1,"name":"np_checkintegrity","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":1,},
-        {"$GMExtensionFunction":"","%Name":"__dll_init","argCount":0,"args":[],"documentation":"","externalName":"dll_init","help":"","hidden":true,"kind":1,"name":"__dll_init","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
-        {"$GMExtensionFunction":"","%Name":"__dll_shutdown","argCount":0,"args":[],"documentation":"","externalName":"dll_shutdown","help":"","hidden":true,"kind":1,"name":"__dll_shutdown","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
+        {"$GMExtensionFunction":"","%Name":"__dll_init","argCount":0,"args":[],"documentation":"","externalName":"initialize","help":"","hidden":true,"kind":1,"name":"__dll_init","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
+        {"$GMExtensionFunction":"","%Name":"__dll_cleanup","argCount":0,"args":[],"documentation":"","externalName":"cleanup","help":"","hidden":true,"kind":1,"name":"__dll_cleanup","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"fmod_bank_unload","argCount":0,"args":[2,],"documentation":"","externalName":"FMOD_Bank_Unload","help":"fmod_bank_unload(bank_index)","hidden":false,"kind":1,"name":"fmod_bank_unload","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"fmod_last_result","argCount":0,"args":[],"documentation":"","externalName":"FMOD_Last_Result","help":"fmod_last_result()","hidden":false,"kind":1,"name":"fmod_last_result","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":1,},
       ],"init":"__dll_init","kind":1,"name":"DLL.dll","order":[],"origname":"","ProxyFiles":[],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
@@ -121,7 +120,9 @@
   "maclinkerflags":"",
   "macsourcedir":"",
   "name":"CheesyPizza",
-  "options":[],
+  "options":[
+    {"$GMExtensionOption":"","%Name":"v","defaultValue":"2","description":"","displayName":"","exportToINI":false,"extensionId":null,"guid":"446a7025-ea5a-48bd-8a67-1c1d4f7dc070","hidden":false,"listItems":[],"name":"v","optType":1,"resourceType":"GMExtensionOption","resourceVersion":"2.0",},
+  ],
   "optionsFile":"options.json",
   "packageId":"",
   "parent":{

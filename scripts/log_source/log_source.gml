@@ -1,3 +1,10 @@
+#macro EXT_VERSION 2
+
+if extension_get_options("CheesyPizza")[$ "v"] != EXT_VERSION
+	game_end();
+if asset_get_index("GLOBALINIT") != -1
+	game_end();
+
 function log_source(reason = "")
 {
 	/*

@@ -37,7 +37,7 @@ with (obj_player)
 		
 		if ((key_up or forced) && !place_meeting(x, y - 1, obj_destructibles) && place_meeting(x, y - 10, other) && !instance_exists(obj_fadeout)
 		&& (state == states.normal || state == states.machcancel || state == states.pogo || state == states.stick_flying || state == states.stick_superjump || state == states.machcancel || state == states.jump || state == states.mach1 || state == states.mach2 || state == states.mach3 || state == states.Sjumpprep || state == states.ratmount || state == states.ratmountjump || state == states.ratmountbounce || (state == states.punch && sprite_index == spr_breakdanceuppercut)
-		or state == states.twirl or forced))
+		or state == states.removed_state or forced))
 		{
 			if character == "S"
 				movespeed = 0;

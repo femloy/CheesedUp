@@ -337,7 +337,7 @@ function scr_player_punch()
 				*/
 				
 				// fun cheesed up way
-				state = states.twirl;
+				state = states.removed_state;
 				if movespeed > 12
 					sprite_index = spr_pizzano_machtwirl;
 				else

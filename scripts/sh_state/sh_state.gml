@@ -1,7 +1,7 @@
 function sh_state(args)
 {
 	if !WC_debug
-		return "You do not have permission to use this command";
+		return WC_NODEBUG;
 	if !instance_exists(obj_player1)
 		return safe_get(obj_pause, "pause") ? "Can't do this while paused" : "The player is not in the room";
 	

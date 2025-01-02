@@ -57,7 +57,7 @@ switch (sprite_index)
 					}
 					else
 					{
-						if (!isgustavo && tauntstoredstate != states.knightpep && tauntstoredstate != states.knightpepslopes && tauntstoredstate != states.knightpepbump && tauntstoredstate != states.firemouth && tauntstoredstate != states.cotton && tauntstoredstate != states.cottondrill && tauntstoredstate != states.cottonroll)
+						if (!isgustavo && tauntstoredstate != states.knightpep && tauntstoredstate != states.knightpepslopes && tauntstoredstate != states.knightpepbump && tauntstoredstate != states.firemouth && tauntstoredstate != states.removed_state && tauntstoredstate != states.removed_state && tauntstoredstate != states.removed_state)
 						{
 							visible = true;
 							cutscene = false;
@@ -71,7 +71,7 @@ switch (sprite_index)
 							state = states.ratmount;
 						else
 						{
-							var cotton = state == states.cotton || state == states.cottonroll || state == states.cottondrill;
+							var cotton = state == states.removed_state || state == states.removed_state || state == states.removed_state;
 							if (cotton)
 							{
 								hsp = 0;
@@ -115,7 +115,7 @@ switch (sprite_index)
 						state = other.override_state;
 					else
 					{
-						if (!isgustavo && (tauntstoredstate == states.knightpep || tauntstoredstate == states.knightpepslopes || tauntstoredstate == states.knightpepbump || tauntstoredstate == states.firemouth || tauntstoredstate == states.cottondrill || tauntstoredstate == states.cotton || tauntstoredstate == states.cottonroll))
+						if (!isgustavo && (tauntstoredstate == states.knightpep || tauntstoredstate == states.knightpepslopes || tauntstoredstate == states.knightpepbump || tauntstoredstate == states.firemouth || tauntstoredstate == states.removed_state || tauntstoredstate == states.removed_state || tauntstoredstate == states.removed_state))
 						{
 							state = tauntstoredstate;
 							movespeed = tauntstoredmovespeed;
@@ -151,13 +151,13 @@ switch (sprite_index)
 										sprite_index = spr_firemouthidle;
 									}
 									break;
-								case states.cotton:
-								case states.cottonroll:
-								case states.cottondrill:
+								case states.removed_state:
+								case states.removed_state:
+								case states.removed_state:
 									hsp = 0;
 									movespeed = 0;
 									drillspeed = 0;
-									state = states.cottondrill;
+									state = states.removed_state;
 									sprite_index = spr_cotton_drill;
 									break;
 							}

@@ -1,6 +1,6 @@
 // only include the extension if we're running from the IDE
 #macro live_enabled true
-#macro live_updating_enabled (GM_build_type == "run")
+#macro live_updating_enabled TESTBUILD
 #macro live_auto_call if live_updating_enabled { if live_call() return live_result; }
 
 if live_enabled
@@ -16,7 +16,7 @@ if live_enabled
 		}
 	}
 	
-	if GM_build_type == "run"
+	if TESTBUILD
 	{
 		if asset_get_index("live_init") == -1
 			show_error("live_init is missing!\nEither GMLive is not imported in the project, or the 'GMLive' script got corrupted (try re-importing)\nIf you don't have GMLive, you can safely remove obj_gmlive and any remaining live_* function calls.\n\n", 1);

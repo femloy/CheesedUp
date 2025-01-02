@@ -1,7 +1,7 @@
 function sh_alltoppins()
 {
 	if !WC_debug
-		return "You do not have permission to use this command";
+		return WC_NODEBUG;
 	
 	instance_create_unique(obj_player1.x, obj_player1.y, obj_pizzakincheese);
 	instance_create_unique(obj_player1.x, obj_player1.y, obj_pizzakintomato);

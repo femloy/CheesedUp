@@ -1,7 +1,7 @@
 function sh_oobcam()
 {
 	if !WC_debug
-		return "You do not have permission to use this command";
+		return WC_NODEBUG;
 	
 	WC_oobcam = !WC_oobcam;
 	if !isOpen

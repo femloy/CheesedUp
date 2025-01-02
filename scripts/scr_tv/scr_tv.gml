@@ -321,18 +321,18 @@ function scr_tv_get_transfo_sprite()
 			break;
 		
 		// new!
-		case states.cotton:
-		case states.cottondrill:
-		case states.cottonroll:
+		case states.removed_state:
+		case states.removed_state:
+		case states.removed_state:
 			_spr = spr_tv_cotton;
 			break;
-		case states.rupertnormal:
-		case states.rupertjump:
-		case states.rupertstick:
-		case states.rupertslide:
+		case states.removed_state:
+		case states.removed_state:
+		case states.removed_state:
+		case states.removed_state:
 			_spr = spr_tv_skate;
 			break;
-		case states.fling:
+		case states.removed_state:
 			_spr = spr_tv_croaked;
 			break;
 	}

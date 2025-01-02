@@ -27,7 +27,7 @@ function scr_solid_player(_x, _y)
 					break;
 				
 				case obj_mach3solid:
-					if (state != states.mach3 && (state != states.machslide || sprite_index != spr_mach3boost) && (state != states.chainsaw || tauntstoredstate != states.mach3) && (state != states.rupertjump && state != states.rupertslide))
+					if (state != states.mach3 && (state != states.machslide || sprite_index != spr_mach3boost) && (state != states.chainsaw || tauntstoredstate != states.mach3) && (state != states.removed_state && state != states.removed_state))
 						_collided = true;
 					break;
 				
@@ -74,7 +74,7 @@ function scr_solid_player(_x, _y)
 				if (!place_meeting(x, old_y, b) && place_meeting(x, y, b))
 				{
 	                if (b.object_index == obj_cottonplatform_tiled)
-                        _collided = (state == states.cotton || state == states.cottonroll);
+                        _collided = (state == states.removed_state || state == states.removed_state);
 					else
 						_collided = true;
 				}

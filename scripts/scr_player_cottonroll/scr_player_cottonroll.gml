@@ -20,14 +20,14 @@ function state_player_cottonroll()
 		movespeed = 3;
 	if ((grounded && !key_down && movespeed <= 8) && !scr_solid(x, y - 16) && !scr_solid(x, y - 32))
 	{
-		state = states.cotton;
+		state = states.removed_state;
 		sprite_index = spr_cottonidle;
 		momemtum = true;
 	}
 	if (key_jump && !grounded)
 	{
 		momemtum = true;
-		state = states.cotton;
+		state = states.removed_state;
 		vsp = -10;
 		grav = 0.1;
 		image_index = 0;
@@ -42,7 +42,7 @@ function state_player_cottonroll()
 	if (key_jump && grounded && !scr_solid(x, y - 16) && !scr_solid(x, y - 32))
 	{
 		momemtum = true;
-		state = states.cotton;
+		state = states.removed_state;
 		vsp = -14;
 		grav = 0.025;
 		image_index = 0;

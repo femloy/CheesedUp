@@ -12,7 +12,7 @@ function scr_player_rupertstick()
 		sprite_index = spr_player_skatefall;
 		xscale *= -1;
 		movespeed = xscale * 5;
-		state = states.rupertjump;
+		state = states.removed_state;
 	}
 	if (floor(image_index) >= image_number - 1)
 	{
@@ -23,11 +23,11 @@ function scr_player_rupertstick()
 			xscale *= -1;
 			vsp = -13;
 			movespeed = xscale * 10;
-			state = states.rupertjump;
+			state = states.removed_state;
 		}
 		else
 		{
-			state = states.rupertnormal;
+			state = states.removed_state;
 			sprite_index = spr_player_skateidle;
 			freefallsmash = 0;
 		}

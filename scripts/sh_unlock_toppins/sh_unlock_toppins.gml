@@ -1,7 +1,7 @@
 function sh_unlock_toppins(args)
 {
 	if !WC_debug
-		return "You do not have permission to use this command";
+		return WC_NODEBUG;
 	if global.sandbox
 		return "Unavailable in this mode"
 	if array_length(args) < 2

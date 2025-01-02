@@ -2,10 +2,10 @@ SS_CODE_START;
 
 with (other)
 {
-	if (state != states.cotton && state != states.tumble && state != states.door && state != states.cottonroll)
+	if (state != states.removed_state && state != states.tumble && state != states.door && state != states.removed_state)
 	{
 		global.combofreeze = 30;
-		state = states.cotton;
+		state = states.removed_state;
 		if (movespeed > 6)
 			movespeed = 6;
 		create_particle(x, y, part.genericpoofeffect);

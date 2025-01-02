@@ -1,6 +1,6 @@
 ensure_order;
 
-if (room == timesuproom)
+if room == timesuproom
 {
 	scale_xs = 1;
 	scale_ys = 1;
@@ -13,7 +13,7 @@ savedhallway = hallway;
 savedvhallwaydirection = vhallwaydirection;
 savedverticalhallway = verticalhallway;
 
-if (room != boss_noise)
+if room != boss_noise
 {
 	global.resetdoise = false;
 	resetdoisecount = 0;
@@ -22,24 +22,24 @@ if (room != boss_noise)
 if global.swapmode && !instance_exists(obj_swapmodefollow)
 	swap_create();
 
-with (obj_secretportal)
+with obj_secretportal
 {
-	if (secret)
+	if secret
 	{
-		if (room != tower_soundtest && !instance_exists(obj_ghostcollectibles))
+		if room != tower_soundtest && !instance_exists(obj_ghostcollectibles)
 		{
 			if !instance_exists(obj_ghostcollectibles)
 			{
-				if (!instance_exists(obj_randomsecret))
+				if !instance_exists(obj_randomsecret)
 					instance_create(0, 0, obj_secretfound);
 				instance_create(0, 0, obj_ghostcollectibles);
 			}
 		}
 	}
 }
-if (!is_bossroom())
+if !is_bossroom()
 	hitstunned = 0;
-if (global.levelreset)
+if global.levelreset
 {
 	scr_playerreset(true);
 	global.levelreset = false;
@@ -47,33 +47,33 @@ if (global.levelreset)
 	instance_destroy(obj_combotitle);
 	global.combodropped = false;
 }
-if (room == tower_finalhallway && targetDoor == "C" && state == states.comingoutdoor)
+if room == tower_finalhallway && targetDoor == "C" && state == states.comingoutdoor
 	state = states.normal;
-if (global.levelcomplete)
+if global.levelcomplete
 {
 	global.levelcomplete = false;
 	global.leveltorestart = noone;
 	global.leveltosave = noone;
 	global.startgate = false;
 }
-if (state == states.comingoutdoor && global.coop == 1 && !place_meeting(x, y, obj_exitgate))
+if state == states.comingoutdoor && global.coop == 1 && !place_meeting(x, y, obj_exitgate)
 {
-	if (object_index == obj_player1 && obj_player1.spotlight == 0)
+	if object_index == obj_player1 && obj_player1.spotlight == 0
 		visible = false;
-	if (object_index == obj_player2 && obj_player1.spotlight == 1)
+	if object_index == obj_player2 && obj_player1.spotlight == 1
 		visible = false;
 }
-if (global.coop == 1)
+if global.coop == 1
 {
 	scr_changetoppings();
-	if (!instance_exists(obj_cooppointer))
+	if !instance_exists(obj_cooppointer)
 		instance_create(x, y, obj_cooppointer);
-	if (!instance_exists(obj_coopflag))
+	if !instance_exists(obj_coopflag)
 		instance_create(x, y, obj_coopflag);
 }
 if state == states.grab && !REMIX
 	state = states.normal;
-if (place_meeting(x, y, obj_boxofpizza) || place_meeting(x, y - 1, obj_boxofpizza))
+if place_meeting(x, y, obj_boxofpizza) || place_meeting(x, y - 1, obj_boxofpizza)
 {
 	box = true;
 	hallway = false;

@@ -18,7 +18,7 @@ with obj_player
 	or (check_sugarychar() && sprite_index == spr_machroll && abs(hsp) >= 12)
 	or (state == states.slipbanan && SUGARY) or (abs(movespeed) >= 16 && character == "S" && (state == states.normal or state == states.jump or state == states.machroll))
 	or sprite_index == spr_buttattack or sprite_index == spr_buttattackstart
-	or (state == states.twirl && movespeed >= 12)
+	or (state == states.removed_state && movespeed >= 12)
 	or stored_result)
 	{
 		if character == "V" && !isgustavo

@@ -1,7 +1,7 @@
 function sh_panic(args)
 {
 	if !WC_debug
-		return "You do not have permission to use this command";
+		return WC_NODEBUG;
 	
 	var togglepanic = !global.panic;
 	if array_length(args) > 1

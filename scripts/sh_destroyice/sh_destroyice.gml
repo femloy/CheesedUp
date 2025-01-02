@@ -1,7 +1,7 @@
 function sh_destroyice()
 {
 	if !WC_debug
-		return "You do not have permission to use this command";
+		return WC_NODEBUG;
 	
 	instance_destroy(obj_iceblock);
 	instance_destroy(obj_iceblockslope);

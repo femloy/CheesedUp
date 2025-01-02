@@ -220,7 +220,7 @@ function scr_collide_destructibles()
 		if vsp >= 0 && (state == states.freefall || state == states.superslam || state == states.freefallland
 		|| state == states.ratmountgroundpound || (state == states.ratmountbounce && vsp >= 0)
 		|| (state == states.slipbanan && vsp >= 10)
-		or state == states.cottondrill or (state == states.tumble && character == "V" && movespeed >= 11))
+		or state == states.removed_state or (state == states.tumble && character == "V" && movespeed >= 11))
 		{
 			var top = bbox_top, bottom = bbox_bottom;
 			if flip > 0

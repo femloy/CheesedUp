@@ -1,7 +1,7 @@
 function sh_givekey()
 {
 	if !WC_debug
-		return "You do not have permission to use this command";
+		return WC_NODEBUG;
 	
 	if global.key_inv > 0
 	{

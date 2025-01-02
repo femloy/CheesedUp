@@ -6,7 +6,7 @@ function sh_drag()
 			return WC_FUCK_YOU;
 	}
 	if !WC_debug
-		return "You do not have permission to use this command";
+		return WC_NODEBUG;
 	
 	WC_drag_toggle = !WC_drag_toggle;
 	if !isOpen

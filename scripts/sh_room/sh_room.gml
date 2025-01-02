@@ -1,5 +1,3 @@
-#macro WC_FUCK_YOU choose("You tried.", "Not that easy, pal.", "Nope.", "Sorry... no.", "Good thinking!", "You think I'm stupid?", "Did I say sorry? I lied.", "Try ALT F4, see if that does it.", "But of course.", "Command Error - 404 Not Found", "Whew, almost bypassed it, there.", "I don't think so.", "Hahaha, good one!", "No.")
-
 function sh_room(args)
 {
 	if YYC
@@ -8,7 +6,7 @@ function sh_room(args)
 			return WC_FUCK_YOU;
 	}
 	if !WC_debug
-		return "You do not have permission to use this command";
+		return WC_NODEBUG;
 	
 	if instance_exists(obj_cyop_loader)
 	{
