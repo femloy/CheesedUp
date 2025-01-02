@@ -1,1 +1,1 @@
-global.roommessage = "BACK AND FORTH, LEFT AND RIGHT";
+global.roommessage = "PINEAPPLE DILEMMA";

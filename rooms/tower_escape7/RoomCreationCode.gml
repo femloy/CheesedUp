@@ -1,4 +1,4 @@
-global.roommessage = "STOP, DROP, AND ROLL";
+global.roommessage = "STOP DROP AND ROLL";
 
 // force lava pit rockblocks to respawn on lap
 with obj_rockblock

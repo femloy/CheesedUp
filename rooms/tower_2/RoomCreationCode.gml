@@ -3,7 +3,7 @@ if !global.panic
 	gameframe_caption_text = lstr("caption_tower2");
 else
 {
-	global.roommessage = "WANTED TO NEEDED";
+	global.roommessage = "CHICKEN OUT";
 	
 	with (obj_door)
 		instance_create(x + 50, y + 96, obj_rubble);

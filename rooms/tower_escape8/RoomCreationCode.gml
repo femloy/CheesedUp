@@ -1,1 +1,1 @@
-global.roommessage = "I AINT GOT NO TIME TO GOLF";
+global.roommessage = "MY LAST STROKE";

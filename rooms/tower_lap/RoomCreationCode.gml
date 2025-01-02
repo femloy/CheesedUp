@@ -1,1 +1,1 @@
-global.roommessage = "REPAIR THE TOWER"
+global.roommessage = "MAD WITH PIZZA POWER"
