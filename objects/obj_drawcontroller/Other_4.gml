@@ -34,7 +34,7 @@ if room == Mainmenu || room == Longintro
 	dark_lightning = false;
 }
 
-if room == tower_basement || room = tower_lap
+if room == tower_basement || room == tower_lap
 	kidsparty_lightning = true;
 
 with obj_afom_darkcontroller
