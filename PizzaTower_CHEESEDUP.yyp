@@ -3598,6 +3598,7 @@
     {"id":{"name":"tower_cheftask5","path":"rooms/tower_cheftask5/tower_cheftask5.yy",},},
     {"id":{"name":"tower_cheftaskbasement","path":"rooms/tower_cheftaskbasement/tower_cheftaskbasement.yy",},},
     {"id":{"name":"tower_cheftaskextra","path":"rooms/tower_cheftaskextra/tower_cheftaskextra.yy",},},
+    {"id":{"name":"tower_core","path":"rooms/tower_core/tower_core.yy",},},
     {"id":{"name":"tower_dungeonroom","path":"rooms/tower_dungeonroom/tower_dungeonroom.yy",},},
     {"id":{"name":"tower_entrancehall","path":"rooms/tower_entrancehall/tower_entrancehall.yy",},},
     {"id":{"name":"tower_escape1","path":"rooms/tower_escape1/tower_escape1.yy",},},
@@ -12330,6 +12331,7 @@
     {"roomId":{"name":"tower_cheftaskbasement","path":"rooms/tower_cheftaskbasement/tower_cheftaskbasement.yy",},},
     {"roomId":{"name":"war_timeattack","path":"rooms/war_timeattack/war_timeattack.yy",},},
     {"roomId":{"name":"room_chasekind","path":"rooms/room_chasekind/room_chasekind.yy",},},
+    {"roomId":{"name":"tower_core","path":"rooms/tower_core/tower_core.yy",},},
   ],
   "templateType":null,
   "TextureGroups":[
