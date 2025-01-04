@@ -291,23 +291,6 @@ if global.sandbox
 	add_pattern(spr_pattern_cosmic).mixable = false; // ameliako
 }
 
-// sugary
-if SUGARY_SPIRE
-{
-	if character == "SP" or character == "SN"
-	{
-		add_pattern(spr_pattern_alright);
-	    add_pattern(spr_pattern_smooth);
-	    add_pattern(spr_pattern_lookingood);
-	    add_pattern(spr_pattern_fruity);
-	    add_pattern(spr_pattern_mesmerizing);
-	    add_pattern(spr_pattern_striking);
-	    add_pattern(spr_pattern_soulcrushing);
-	    add_pattern(spr_pattern_awesome);
-	    add_pattern(spr_pattern_wtf);
-	}
-}
-
 // pride pack
 if global.sandbox
 {
@@ -319,6 +302,9 @@ if global.sandbox
 	add_pattern(spr_pattern_asexual); // ameliako
 	add_pattern(spr_pattern_pansexual); // ameliako
 }
+
+// custom
+scr_modding_hook("skinchoice/postpalettes");
 
 // calculate all that
 init = true;

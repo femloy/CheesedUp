@@ -11,6 +11,7 @@ function ModCharacter(_character, _json, _path) constructor
 	dresser_mixing_color_y = struct_expect_default(_json, "dresser_mixing_color_y", 1);
 	
 	mixable_palettes = struct_expect_default(_json, "mixable_palettes", []);
+	excluded_palettes = struct_expect_default(_json, "excluded_palettes", []);
 	
 	sprites =
 	{
@@ -89,6 +90,8 @@ function ModCharacter(_character, _json, _path) constructor
 						i += 2; // skip 12, 13 and 14
 						continue;
 					}
+					if array_contains(other.excluded_palettes, i)
+						continue;
 					
 					var p = add_palette(i);
 					if array_contains(other.mixable_palettes, i)
@@ -105,7 +108,7 @@ function ModCharacter(_character, _json, _path) constructor
 			char: character,
 			spr_idle: sprites.player[$ "spr_idle"] ?? spr_player_idle,
 			spr_palette: sprites.player[$ "spr_palette"] ?? spr_peppalette,
-			spr_dead: sprites.player[$ "spr_dead"] ?? spr_player_dead,
+			spr_dead: sprites.player[$ "spr_dead"] ?? sprites.player[$ "spr_hurt"] ?? spr_player_dead,
 			spr_shirt: sprites.misc[$ "spr_shirt"] ?? spr_palettedresserdebris,
 			default_palette: default_palette,
 			pattern_color_array: color_array,

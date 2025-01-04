@@ -56,7 +56,10 @@ function scr_modding_hooks()
 		// Music
 		"music/totem",
 		"music/panic",
-		"music/panicstep"
+		"music/panicstep",
+		
+		// Skinchoice
+		"skinchoice/postpalettes"
 	];
 }
 

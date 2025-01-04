@@ -1078,6 +1078,7 @@
     {"$GMIncludedFile":"","%Name":"poststate.gml","CopyToMask":-1,"filePath":"datafiles/mods/Pizzelle/hooks/player","name":"poststate.gml","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"anim.gml","CopyToMask":-1,"filePath":"datafiles/mods/Pizzelle/hooks/player/suplexdash","name":"anim.gml","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"perform.gml","CopyToMask":-1,"filePath":"datafiles/mods/Pizzelle/hooks/player/suplexdash","name":"perform.gml","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"postpalettes.gml","CopyToMask":-1,"filePath":"datafiles/mods/Pizzelle/hooks/skinchoice","name":"postpalettes.gml","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"palette.gml","CopyToMask":-1,"filePath":"datafiles/mods/Pizzelle/hooks/tv","name":"palette.gml","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"icon.png","CopyToMask":-1,"filePath":"datafiles/mods/Pizzelle","name":"icon.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"init.gml","CopyToMask":-1,"filePath":"datafiles/mods/Pizzelle","name":"init.gml","resourceType":"GMIncludedFile","resourceVersion":"2.0",},

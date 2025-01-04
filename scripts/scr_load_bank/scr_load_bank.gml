@@ -7,7 +7,7 @@ function scr_load_bank(filename)
 	if bank == FMOD_INVALID_BANK
 		return $"FMOD bank \"{filename}\" is invalid; {fmod_last_result()}";
 	
-	if !fmod_bank_load_sample_data(bank)
+	if !(fmod_bank_load_sample_data(bank))
 	{
 		var r = fmod_last_result();
 		fmod_bank_unload(bank);

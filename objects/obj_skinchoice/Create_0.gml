@@ -139,6 +139,7 @@ function add_pattern(pattern, lang_entry = undefined)
 	
 	return s;
 }
+self.add_pattern = add_pattern;
 
 function add_palette(palette, lang_entry = undefined)
 {
@@ -212,6 +213,7 @@ select = function()
 	if pal == noone && submenu != 1
 		exit;
 	
+	var i_skin = id;
 	with obj_player1
 	{
 		var prevchar = character, prevpal = paletteselect;
@@ -347,49 +349,16 @@ select = function()
 				vsp = -irandom_range(6, 11);
 				usepalette = true;
 				
-				switch prevchar
+				for(var i = 0, n = array_length(i_skin.characters); i < n; ++i)
 				{
-					case "P": case "G":
-						spr_palette = spr_peppalette;
-						sprite_index = spr_palettedresserdebris;
-						break;
-					case "SP":
-						spr_palette = spr_pizzypalette;
-						sprite_index = spr_palettedresserdebris;
-						break;
-					case "N":
-						spr_palette = spr_noisepalette;
-						sprite_index = spr_palettedresserdebrisN;
-						break;
-					case "V":
-						spr_palette = spr_vigipalette;
-						sprite_index = spr_palettedresserdebrisV;
-						break;
-					case "S":
-						spr_palette = spr_snickpalette;
-						sprite_index = spr_palettedresserdebrisS;
-						break;
-					case "M":
-						spr_palette = -1;
-						sprite_index = spr_palettedresserdebrisM;
-						break;
-					default:
-						sprite_index = -1;
-						break;
-				}
-				
-				if other.character != prevchar
-				{
-					switch prevchar
+					if prevchar == i_skin.characters[i].char
 					{
-						case "P": sprite_index = spr_player_dead; break;
-						case "N": sprite_index = spr_playerN_hurt; break;
-						case "V": sprite_index = spr_playerV_dead; break;
-						case "G": sprite_index = spr_player_ratmounthurt; break;
-						case "S": sprite_index = spr_snick_stunned; break;
-						case "M": sprite_index = spr_pepperman_hurtplayer; break;
-						case "SP": sprite_index = spr_playerSP_hurt; break;
-						case "SN": sprite_index = spr_pizzano_hurt; break;
+						spr_palette = i_skin.characters[i].spr_palette;
+						if other.character != prevchar
+							sprite_index = i_skin.characters[i].spr_dead;
+						else
+							sprite_index = i_skin.characters[i].spr_shirt;
+						break;
 					}
 				}
 				
