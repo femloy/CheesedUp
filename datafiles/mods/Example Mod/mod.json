@@ -2,5 +2,6 @@
 	"name": "Example Mod",
 	"desc": "Adds absolutely nothing of value.",
 	"author": "Lila",
-	"version": "1.0"
+	"version": "1.0",
+	"format": 2
 }

@@ -55,7 +55,7 @@ function scr_check_groundpound()
 
 function scr_mach_check_dive()
 {
-	if (grounded && vsp > 0)
+	if grounded && vsp > 0
 		return key_down;
 	return scr_check_dive();
 }

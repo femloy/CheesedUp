@@ -15,13 +15,12 @@ function scr_player_morthook()
 	image_speed = 0.35;
 	x = Approach(x, morthookID.x, movespeed);
 	y = Approach(y, morthookID.y, movespeed);
-	if (floor(x) == morthookID.x && floor(y) == morthookID.y)
+	if floor(x) == morthookID.x && floor(y) == morthookID.y
 	{
 		sound_play_3d("event:/sfx/mort/doublejump", x, y);
-		with (morthookID)
+		with morthookID
 			projectilebuffer = 20;
 		vsp = IT_jumpspeed();
-		
 		if character == "V"
 		{
 			dir = xscale;
@@ -38,7 +37,7 @@ function scr_player_morthook()
 			state = states.mortjump;
 			sprite_index = spr_mortdoublejumpstart;
 			image_index = 0;
-			with (instance_create(x, y, obj_speedlinesup))
+			with instance_create(x, y, obj_speedlinesup)
 				playerid = other.id;
 			repeat 4
 				create_debris(x, y, spr_feather);

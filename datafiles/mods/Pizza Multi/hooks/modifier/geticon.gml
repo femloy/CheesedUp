@@ -5,7 +5,7 @@ if argument0 == "PizzaMulti"
 {
     return
     {
-        sprite: global.spr_pizzamulti_icon,
+        sprite: MOD_GLOBAL.spr_pizzamulti_icon,
         image: 0
     };
 }

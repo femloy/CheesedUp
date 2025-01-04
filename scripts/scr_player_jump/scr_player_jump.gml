@@ -128,30 +128,11 @@ function state_player_jump()
 			mort = true;
 		}
 	}
-	if (can_jump && input_buffer_jump > 0 && ((!key_down && !key_attack) or character == "S") && vsp > 0 && !(sprite_index == spr_facestomp || sprite_index == spr_freefall))
+	if can_jump && input_buffer_jump > 0 && ((!key_down && !key_attack) or character == "S") && vsp > 0 && !(sprite_index == spr_facestomp || sprite_index == spr_freefall)
 	{
-		input_buffer_jump = 0;
-		scr_fmod_soundeffect(jumpsnd, x, y);
+		scr_modmove_jump();
 		stompAnim = false;
-		vsp = jumpspeed;
-		state = states.jump;
-		jumpAnim = true;
-		jumpstop = false;
 		freefallstart = 0;
-		railmomentum = false;
-		if (place_meeting(x, y + 1, obj_railparent))
-			railmomentum = true;
-		if (sprite_index != spr_shotgunshoot)
-		{
-			sprite_index = spr_jump;
-			if (shotgunAnim)
-				sprite_index = spr_shotgunjump;
-			if (global.pistol && character != "N")
-				sprite_index = spr_player_pistoljump1;
-			image_index = 0;
-		}
-		particle_set_scale(part.highjumpcloud2, xscale, 1);
-		create_particle(x, y, part.highjumpcloud2, 0);
 	}
 	if (!can_jump && CHAR_BASENOISE && key_up && noisedoublejump && input_buffer_jump > 0 && !key_down && !key_attack)
 	{

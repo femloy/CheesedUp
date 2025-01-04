@@ -2,7 +2,7 @@ function scr_enemy_grabpos(_obj_player)
 {
 	var p = _obj_player;
 	
-	if scr_modding_hook_falser("enemy/grabbed/pos", [p])
+	if scr_modding_hook_falser("enemy/grabbed/position", [p])
 	{
 		#region Swingding
 	

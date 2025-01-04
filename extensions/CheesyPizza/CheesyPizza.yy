@@ -32,7 +32,7 @@
         {"$GMExtensionConstant":"","%Name":"DISCORD_PARTY_PRIVACY_PRIVATE","hidden":false,"name":"DISCORD_PARTY_PRIVACY_PRIVATE","resourceType":"GMExtensionConstant","resourceVersion":"2.0","value":"0",},
         {"$GMExtensionConstant":"","%Name":"DISCORD_PARTY_PRIVACY_PUBLIC","hidden":false,"name":"DISCORD_PARTY_PRIVACY_PUBLIC","resourceType":"GMExtensionConstant","resourceVersion":"2.0","value":"1",},
         {"$GMExtensionConstant":"","%Name":"DISCORD_MAX_BUTTONS","hidden":false,"name":"DISCORD_MAX_BUTTONS","resourceType":"GMExtensionConstant","resourceVersion":"2.0","value":"2",},
-      ],"copyToTargets":-1,"filename":"CheesyPizza.dll","final":"__dll_shutdown","functions":[
+      ],"copyToTargets":-1,"filename":"CheesyPizza.dll","final":"","functions":[
         {"$GMExtensionFunction":"","%Name":"launch_external","argCount":1,"args":[1,],"documentation":"/// @param {String} cmd_line Command to run\r\n/// @returns {Real}\r\n","externalName":"launch_external","help":"launch_external(cmd_line)","hidden":false,"kind":1,"name":"launch_external","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"fmod_init","argCount":0,"args":[],"documentation":"","externalName":"FMOD_Init","help":"fmod_init()","hidden":false,"kind":1,"name":"fmod_init","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"fmod_update","argCount":0,"args":[],"documentation":"","externalName":"FMOD_Update","help":"fmod_init()","hidden":false,"kind":1,"name":"fmod_update","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},

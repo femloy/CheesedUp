@@ -43,7 +43,10 @@ if character == "PZ"
     if PZ_state_previous != state
     {
         if state == states.mach3 && PZ_state_previous == states.mach2
+        {
+            flash = true;
             sound_play_3d("event:/sugary/machstart", x, y);
+        }
         if state == states.mach3
             spr_machclimbwall = spr_machclimbwall3;
 
@@ -52,7 +55,7 @@ if character == "PZ"
 
     // sprite tweaks
     global.force_mach_shader = true;
-    global.force_blue_afterimage = state == "PZ_wallkick";
+    global.force_blue_afterimage = (state == "PZ_wallkick");
     
     global.mach_colors = [( #30A8F8), ( #E85098)];
     global.mach_colors_dark = [( #0F3979), ( #5F0920)];
@@ -77,22 +80,33 @@ if character == "PZ"
 
     // wallkick sound
     if sprite_index == spr_walljumpstart or sprite_index == spr_walljumpend
-        sound_instance_move(global.PZ_snd_wallkick, x, y);
-    else if sound_is_playing(global.PZ_snd_wallkick)
-        fmod_event_instance_set_parameter(global.PZ_snd_wallkick, "state", 1, true);
+        sound_instance_move(MOD_GLOBAL.PZ_snd_wallkick, x, y);
+    else if sound_is_playing(MOD_GLOBAL.PZ_snd_wallkick)
+        fmod_event_instance_set_parameter(MOD_GLOBAL.PZ_snd_wallkick, "state", 1, true);
     
     // state specific
     switch state
     {
+        #region CROUCH
+
+        case states.crouch:
+            if scr_slapbuffercheck()
+            {
+                scr_resetslapbuffer();
+                scr_modmove_crouchslide();
+            }
+            break;
+        
+        #endregion
         #region CLIMBWALL
 
         case states.climbwall:
-            if wallspeed > 12 && spr_machclimbwall == spr_machclimbwall2
+            if wallspeed >= 12 && spr_machclimbwall == spr_machclimbwall2
             {
                 flash = true;
                 sound_play_3d("event:/sugary/machstart", x, y);
             }
-            spr_machclimbwall = wallspeed > 12 ? spr_machclimbwall3 : spr_machclimbwall2;
+            spr_machclimbwall = wallspeed >= 12 ? spr_machclimbwall3 : spr_machclimbwall2;
             break;
 
         #endregion

@@ -1,4 +1,4 @@
-if (obj_player1.character != "N")
+if !use_palette
 	draw_self();
 else
 {

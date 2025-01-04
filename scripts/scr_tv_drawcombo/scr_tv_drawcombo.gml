@@ -1,7 +1,8 @@
-function scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, style, tv_palette)
+function scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, style)
 {
-	if live_call(tv_x, tv_y, collect_x, collect_y, style, tv_palette) return live_result;
+	if live_call(tv_x, tv_y, collect_x, collect_y, style) return live_result;
 	
+	// combo shake stuff
 	static combo_shake = 0, combo_prev = 0;
 	if REMIX
 	{
@@ -16,11 +17,14 @@ function scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, style, tv_palette)
 	else
 		combo_shake = 0;
 	
+	// actually draw it
 	var _perc = global.combotime / 60;
+	if !scr_modding_hook_falser("tv/drawcombo", [_perc, combo_shake])
+		return;
+	
 	switch style
 	{
-		case 0: // PIZZA TOWER
-		case 2: // BO NOISE
+		case 0:
 			var _cx = tv_x + combo_posX;
 			var _cy = tv_y + 117 + hud_posY + combo_posY;
 			var _minX = _cx - 56;
@@ -31,33 +35,27 @@ function scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, style, tv_palette)
 				_cx = round(_cx);
 				_cy = round(_cy);
 			}
-		
-			if style == 2
-				combofill_x = lerp(combofill_x, _maxX + ((_minX - _maxX) * _perc), 0.5);
-			else
-				combofill_x = lerp(combofill_x, _minX + ((_maxX - _minX) * _perc), 0.5);
+			
+			combofill_x = lerp(combofill_x, _minX + ((_maxX - _minX) * _perc), 0.5);
 			combofill_y = _cy;
 			
-			var combobubblefill, combobubble, combofont, combofillpalette, combopalette;
-			if style != 2
+			var combobubblefill, combobubble, combofont, combofillpalette;
+			combobubblefill = spr_tv_combobubblefill;
+			combobubble = spr_tv_combobubble;
+			combofont = global.combofont2;
+			combofillpalette = spr_tv_combofillpalette;
+			
+			var custom = scr_modding_character(obj_player1.character);
+			if custom != noone
 			{
-				combobubblefill = spr_tv_combobubblefill;
-				combobubble = spr_tv_combobubble;
-				combofont = global.combofont2;
-				combofillpalette = spr_tv_combofillpalette;
-			}
-			else if BO_NOISE
-			{
-				combobubblefill = spr_tv_combobubblefillBN;
-				combobubble = spr_tv_combobubbleBN;
-				combofont = global.combofont2BN;
-				combofillpalette = spr_tv_combofillpalette;
-				draw_sprite(spr_tv_combobubblehandBN, image_index, _cx, _cy);
+				// TODO
 			}
 			
 			pal_swap_set(combofillpalette, scr_can_p_rank() ? 2 : 1, false);
 			draw_sprite(combobubblefill, combofill_index, combofill_x, combofill_y);
-			pal_swap_set(spr_tv_palette, tv_palette, false);
+			
+			var pal = scr_tv_get_palette();
+			pal_swap_set(pal.spr_palette, pal.paletteselect, false);
 			lang_draw_sprite(combobubble, 0, _cx, _cy);
 			
 			draw_set_font(combofont);
@@ -78,47 +76,7 @@ function scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, style, tv_palette)
 			pal_swap_reset();
 			break;
 		
-		case 1:
-			if SUGARY_SPIRE
-			{
-				// sugary combo
-				var _cx = tv_x + combo_posX - 170 - 13;
-				var _cy = tv_y + 16 + 6 + hud_posY + combo_posY;
-				var _hy = hand_y;
-				
-				if global.combo <= 0
-				{
-					hand_x = Approach(hand_x, 80, 8);
-					hand_y = Approach(hand_y, -32, 8);
-					_hy = 50;
-				}
-				else if _cy > -150
-				{
-					hand_x = lerp(hand_x, 0, 0.15);
-					hand_y = lerp(hand_y, lerp(35, -30, _perc), 0.25);
-				}
-	
-				var xx = (_cx - 50) + (-3 + 50);
-				var yy = (_cy - 91) + (_hy + 100);
-		
-				draw_reset_clip();
-				draw_set_mask(_cx - 50, _cy - 91, spr_tv_combometercutSP);
-				draw_sprite(spr_tv_combometergooSP, propeller_index, xx, yy);
-				draw_reset_clip();
-				
-				pal_swap_set(spr_tv_palette, tv_palette);
-				draw_sprite(spr_tv_combobubbleSP, image_index, _cx, _cy);
-				draw_sprite(spr_tv_combometerhandSP, image_index, _cx + hand_x + 80, max(_cy, 60 + hud_posY) + min(hand_y, 20) + 24);
-			
-				draw_set_font(global.combofontSP);
-				draw_set_align(fa_center);
-				draw_set_color(c_white);
-				draw_text(_cx, _cy - 90, string(visualcombo) + "x");
-				pal_swap_reset();
-			}
-			break;
-		
-		case 3: // APRIL 2021
+		case 1: // APRIL 2021
 			if global.combo != 0 && sprite_index != spr_tv_open && sprite_index != spr_tv_off
 			{
 			    draw_sprite_ext(spr_tv_combo, image_index, tv_x + collect_x, tv_y + collect_y + hud_posY, 1, 1, 0, c_white, alpha);
@@ -151,54 +109,6 @@ function scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, style, tv_palette)
 				if scr_can_p_rank()
 					col = #9850F8;
 				draw_sprite_part_ext(spr_barpop, 1, 0, 0, sw * _perc, sh, barxx, baryy, 1, 1, col, 1);
-			}
-			break;
-		
-		case 4: // DEMO 1 PIZZELLE
-			if SUGARY_SPIRE
-			{
-				static bar_x = 0, combo_fade = 0;
-				bar_x ??= 0;
-				combo_fade ??= 0;
-				
-				// bg
-				var tvx = round(tv_x + collect_x), tvy = round(tv_y + collect_y + hud_posY);
-				
-				combo_fade = Approach(combo_fade, global.combo != 0, global.combo != 0 ? 0.25 : 0.05);
-				draw_sprite_ext(spr_tv_comboSP_shadow, 0, tvx, tvy, 1, 1, 0, c_white, combo_fade);
-				
-				if global.combo != 0
-				{
-					draw_sprite_ext(spr_tv_comboSP, image_index, tvx, tvy, 1, 1, 0, c_white, alpha);
-				
-					var str = string(global.combo);
-				    if global.combo < 10
-				        str = concat("0", str);
-				
-				    draw_set_align(fa_center);
-				    draw_set_font(global.combofont);
-				    var num = string_length(str);
-				    var w = string_width(str) / num;
-				    for (var i = 0; i < num; i++)
-				    {
-				        var char = string_char_at(str, i + 1);
-				        var xx = (-string_width(str) / 2) + (i * w) + random_range(-combo_shake, combo_shake);
-				        var yy = (i * -4) + random_range(-combo_shake, combo_shake);
-				        draw_text(tvx + xx + 6, tvy + yy - 24, char);
-				    }
-					
-					// bar
-					var xx = round(tvx - 69), yy = round(tvy + 33), wd = 112, ht = 32;
-					draw_set_bounds(xx, yy, xx + wd * _perc, yy + ht);
-					draw_set_mask(xx, yy, spr_tv_comboSP_barpop, 1);
-					draw_sprite_tiled(spr_tv_comboSP_barpop2, 0, xx + bar_x, yy);
-					draw_set_bounds(xx, yy, xx + wd, yy + ht);
-					draw_sprite_ext(spr_tv_comboSP_barpop3, 0, xx + (wd * _perc), yy - 64, 1, 5, 0, c_white, 1);
-					draw_reset_clip();
-				
-					bar_x += (-0.5 + 0.45 * (global.combotimepause / 30));
-					draw_sprite_ext(spr_tv_comboSP_barpop, 0, xx, yy, 1, 1, 0, c_white, alpha);
-				}
 			}
 			break;
 	}

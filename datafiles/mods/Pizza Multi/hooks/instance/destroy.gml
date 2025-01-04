@@ -1,7 +1,7 @@
 /// @param {bool} argument0 - Whether the destroy event should be called
 /// @returns {bool} - false if the object shouldn't get deleted
 
-if MOD.PizzaMulti && argument0
+if MODIFIERS.PizzaMulti && argument0
 {
     if check_boss(object_index)
         exit;

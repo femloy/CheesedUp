@@ -14,7 +14,25 @@ function scr_modding_init()
 		});
 	}
 	
-	live_variable_add("MOD_PATH*", function() { return global.processing_mod.mod_root; });
+	live_variable_add("MOD_PATH*", function()
+	{
+		if global.processing_mod != noone
+			return global.processing_mod.mod_root;
+		else
+			return "No mod is loaded";
+	});
+	
+	live_variable_add("MOD_GLOBAL*", function()
+	{
+		if global.processing_mod != noone
+			return global.processing_mod.mod_global;
+		else
+		{
+			trace("WARNING: Used MOD_GLOBAL out of scope");
+			return global;
+		}
+	});
+	
 	live_variable_add("mouse_x*", function() { return mouse_x_hook(); });
 	live_variable_add("mouse_y*", function() { return mouse_y_hook(); });
 	live_variable_add("mouse_x_gui*", function() { return mouse_x_gui; });
@@ -27,7 +45,7 @@ function scr_modding_init()
 	live_variable_add("REMIX*", function() { return REMIX; });
 	live_variable_add("SCREEN_WIDTH*", function() { return SCREEN_WIDTH; });
 	live_variable_add("SCREEN_HEIGHT*", function() { return SCREEN_HEIGHT; });
-	live_variable_add("MOD*", function() { return MOD; });
+	live_variable_add("MODIFIERS*", function() { return MOD; });
 	
 	live_function_add("sprite_add(fname, imgnumb, removeback, smooth, xorig, yorig)", function(fname, imgnumb, removeback, smooth, xorig, yorig)
 	{
@@ -112,7 +130,8 @@ function scr_modding_init()
 				var b = scr_load_file(json_path);
 				var j = json_parse(b);
 				var s = scr_process_mod(j, mod_root);
-				array_push(global.mods, s);
+				if s != undefined
+					array_push(global.mods, s);
 			}
 			catch (e)
 			{
@@ -134,6 +153,12 @@ function scr_modding_init()
 function scr_process_mod(mod_json, mod_root)
 {
 	var struct = new Mod(mod_json, mod_root);
+	if struct.format > MOD_FORMAT
+	{
+		audio_play_sound(sfx_pephurt, 0, false);
+		show_message($"The mod \"{struct.name}\" was made for a later version of Cheesed Up.\nIt cannot be loaded.");
+		return undefined;
+	}
 	
 	// options
 	ini_open(mod_root + "/saveData.ini");

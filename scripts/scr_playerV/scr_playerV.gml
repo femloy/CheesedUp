@@ -232,17 +232,7 @@ function scr_player_revolver()
 	if pistolcooldown <= 0
 	{
 		if input_buffer_jump > 0 && grounded
-		{
-			input_buffer_jump = 0;
-			scr_fmod_soundeffect(jumpsnd, x, y);
-			state = states.jump;
-			jumpAnim = true;
-			image_index = 0;
-			sprite_index = spr_jump;
-			vsp = IT_jumpspeed();
-			with instance_create(x, y, obj_highjumpcloud2)
-				copy_player_scale(other);
-		}
+			scr_modmove_jump();
 		
 		scr_dotaunt();
 		if state == states.backbreaker

@@ -1,3 +1,3 @@
 destroy_sounds([
-    global.PZ_snd_wallkick
+    MOD_GLOBAL.PZ_snd_wallkick
 ]);

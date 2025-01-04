@@ -16,6 +16,7 @@ function ModCharacter(_character, _json, _path) constructor
 	{
 		// {spr_idle: <sprite>}
 		player: {},
+		hud: {},
 		misc: {},
 	};
 	
@@ -105,7 +106,7 @@ function ModCharacter(_character, _json, _path) constructor
 			spr_idle: sprites.player[$ "spr_idle"] ?? spr_player_idle,
 			spr_palette: sprites.player[$ "spr_palette"] ?? spr_peppalette,
 			spr_dead: sprites.player[$ "spr_dead"] ?? spr_player_dead,
-			spr_shirt: spr_palettedresserdebris, // TODO
+			spr_shirt: sprites.misc[$ "spr_shirt"] ?? spr_palettedresserdebris,
 			default_palette: default_palette,
 			pattern_color_array: color_array,
 			color_index: dresser_color_y,
@@ -127,6 +128,20 @@ function ModCharacter(_character, _json, _path) constructor
 		}
 	}
 	
+	find_sprites = function(path, struct)
+	{
+		for (var file = file_find_first(concat(path, "*.png"), 0); file != ""; file = file_find_next())
+		{
+			var sprite_name = filename_change_ext(file, "");
+			var sprite = process_sprite(sprite_name, concat(path, file));
+			if sprite_exists(sprite)
+			{
+				struct[$ sprite_name] = sprite;
+				array_push(sprite_cache, sprite);
+			}
+		}
+	}
+	
 	init = function()
 	{
 		// sprite data
@@ -134,19 +149,10 @@ function ModCharacter(_character, _json, _path) constructor
 		if sprite_data_file != undefined
 			sprite_data = json_parse(sprite_data_file);
 		
-		// player
-		var player_path = path + "/player/";
-		for (var file = file_find_first(concat(player_path, "*.png"), 0); file != ""; file = file_find_next())
-		{
-			var sprite_name = filename_change_ext(file, "");
-			var sprite = process_sprite(sprite_name, concat(player_path, file));
-			
-			if sprite_exists(sprite)
-			{
-				sprites.player[$ sprite_name] = sprite;
-				array_push(sprite_cache, sprite);
-			}
-		}
+		// sprites
+		find_sprites(path + "/player/", sprites.player);
+		find_sprites(path + "/hud/", sprites.hud);
+		find_sprites(path + "/misc/", sprites.misc);
 		
 		// index pal swapper
 		if sprites.player[$ "spr_palette"] != undefined
@@ -179,4 +185,18 @@ function ModCharacter(_character, _json, _path) constructor
 		while array_length(sprite_cache)
 			sprite_delete(array_pop(sprite_cache));
 	}
+}
+
+function scr_modding_character(char)
+{
+	if !live_enabled return noone;
+	
+	stored_result = noone;
+	array_foreach(global.mods, method({char: char}, function(_mod)
+	{
+		if _mod.enabled && _mod.characters[$ char] != undefined
+			stored_result = _mod.characters[$ char];
+	}));
+	
+	return stored_result;
 }

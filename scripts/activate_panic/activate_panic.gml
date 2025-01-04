@@ -179,7 +179,7 @@ function activate_panic(instapanic = false, debris = noone)
 	}
 	
 	global.wave = 0;
-	global.maxwave = global.fill;
+	global.maxwave = max(global.fill, 1);
 	
 	with obj_persistent
 		event_user(1);

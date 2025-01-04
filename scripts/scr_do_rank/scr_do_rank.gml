@@ -3,12 +3,7 @@ function scr_is_p_rank()
 	var lap = global.lap or MOD.FromTheTop or global.lapmode == LAP_MODES.april;
 	var treasure = global.treasure or (check_lap_mode(LAP_MODES.april) && string_ends_with(room_get_name(room), "_treasure"));
 	
-	scr_modding_hook_callback("prankcondition", function()
-	{
-		if live_result != undefined
-			return HOOK_CALLBACK_STOP;
-	});
-	if live_result != undefined
+	if scr_modding_hook_any("prankcondition")
 		return live_result;
 	
 	if global.timeattack

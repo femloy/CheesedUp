@@ -3,23 +3,13 @@ with obj_player
 	if !(place_meeting(x + hsp, y, other) || place_meeting(x + xscale, y, other))
 		continue;
 	
-	stored_result = false;
-	scr_modding_hook_callback("block/metalside", function()
-	{
-		if live_result == true
-		{
-			stored_result = true;
-			return HOOK_CALLBACK_STOP;
-		}
-	});
-	
 	if (state == states.mach3 || (ghostdash == 1 && ghostpepper >= 3) || ratmount_movespeed >= 12
 	|| state == states.rocket || state == states.knightpepslopes || state == states.shoulderbash
 	or (check_sugarychar() && sprite_index == spr_machroll && abs(hsp) >= 12)
 	or (state == states.slipbanan && SUGARY) or (abs(movespeed) >= 16 && character == "S" && (state == states.normal or state == states.jump or state == states.machroll))
 	or sprite_index == spr_buttattack or sprite_index == spr_buttattackstart
 	or (state == states.removed_state && movespeed >= 12)
-	or stored_result)
+	or scr_modding_hook_truer("block/metalside"))
 	{
 		if character == "V" && !isgustavo
 			instance_create(x, y, obj_dynamiteexplosion);

@@ -7,7 +7,6 @@ if instance_exists(obj_player1)
 		{
 			case "N": char = 1; break;
 			case "V": char = 2; break;
-			case "SP": char = 3; break;
 		}
 	}
 	fmod_set_parameter("character", char, true);

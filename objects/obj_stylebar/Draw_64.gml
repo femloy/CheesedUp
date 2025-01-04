@@ -3,6 +3,7 @@ if hud_is_hidden() or hud_is_forcehidden() or !global.option_hud
 
 if global.hud == HUD_STYLES.old && global.heatmeter
 {
+	draw_set_color(c_white);
 	var barxx = -26;
 	var baryy = 30;
 	draw_sprite(spr_barpop, 0, 230 + barxx, 50 + baryy);

@@ -4,7 +4,6 @@ function state_player_normal()
 	var maxmovespeed2 = 6; // bug, and image speed limit.
 	var accel = 0.5;
 	var deccel = 0.1;
-	var jumpspeed = IT_jumpspeed();
 	
 	// gustavo failsafe
 	if isgustavo && !CHAR_BASENOISE
@@ -76,40 +75,49 @@ function state_player_normal()
 	var breakdance_max = 10;
 	if IT_taunt_breakdance()
 	{
-		if (key_taunt && !shotgunAnim && (!global.pistol or character == "N"))
+		if key_taunt && !shotgunAnim && (!global.pistol or character == "N")
 		{
 			pistol = false;
 			breakdance_pressed++;
 		}
 		else
 			breakdance_pressed = 0;
-		if (breakdance_pressed >= breakdance_max && !shotgunAnim)
+		
+		if breakdance_pressed >= breakdance_max && !shotgunAnim
 		{
 			breakdance_speed = Approach(breakdance_speed, 0.6, 0.005);
-			if (breakdance_pressed - 1 < breakdance_max)
+			if breakdance_pressed - 1 < breakdance_max
 				notification_push(notifs.breakdance, []);
 		}
 		else
 			breakdance_speed = 0.25;
-		if (breakdance_speed >= 0.5)
+		
+		if breakdance_speed >= 0.5
 		{
-			if (!instance_exists(obj_beatbox))
+			if !instance_exists(obj_beatbox)
 			{
 				create_particle(x, y, part.genericpoofeffect);
-				with (instance_create(x, y, obj_beatbox))
+				with instance_create(x, y, obj_beatbox)
 					vsp = -11;
 			}
 			notecreate--;
 		}
-		if (notecreate <= 0 && !shotgunAnim)
+		
+		if notecreate <= 0 && !shotgunAnim
 		{
-			with instance_create(x + random_range(-70, 70), y + random_range(-70, 70), obj_notes)
+			var note_sprite = spr_breakdancenotes;
+			switch character
 			{
-				if other.character == "V"
-					sprite_index = spr_breakdancenotes_vigi;
-				if other.character == "SP"
-					sprite_index = spr_breakdancenotes_pizzelle;
+				case "P": case "N": break;
+				case "V": note_sprite = spr_breakdancenotes_vigi; break;
+				default:
+					var custom = scr_modding_character(character);
+					if custom != noone
+						note_sprite = custom.sprites.misc[$ "spr_breakdancenotes"] ?? spr_breakdancenotes;
+					break;
 			}
+			with instance_create(x + random_range(-70, 70), y + random_range(-70, 70), obj_notes)
+				sprite_index = note_sprite;
 			notecreate = 10;
 		}
 	}
@@ -365,27 +373,9 @@ function state_player_normal()
 	if (grounded)
 	{
 		// jumping
-		if ((key_jump || (input_buffer_jump > 0 && (!key_attack or character == "S") && vsp > 0)) && !key_down)
+		if (key_jump || (input_buffer_jump > 0 && (!key_attack or character == "S") && vsp > 0)) && !key_down
 		{
-			input_buffer_jump = 0;
-			scr_fmod_soundeffect(jumpsnd, x, y);
-			if (sprite_index != spr_shotgunshoot)
-			{
-				sprite_index = spr_jump;
-				if (shotgunAnim)
-					sprite_index = spr_shotgunjump;
-				else if (global.pistol && character != "N")
-					sprite_index = spr_player_pistoljump1;
-				image_index = 0;
-			}
-			particle_set_scale(part.highjumpcloud2, xscale, 1);
-			create_particle(x, y, part.highjumpcloud2, 0);
-			vsp = jumpspeed;
-			state = states.jump;
-			jumpAnim = true;
-			jumpstop = false;
-			if (place_meeting(x, y + 1, obj_railparent))
-				railmomentum = true; // unused.
+			scr_modmove_jump();
 			freefallstart = 0;
 		}
 		
@@ -402,15 +392,15 @@ function state_player_normal()
 	}
 	
 	// falling
-	else if (!key_jump)
+	else if !key_jump
 	{
-		if (sprite_index != spr_shotgunshoot)
+		if sprite_index != spr_shotgunshoot
 		{
-			if (!shotgunAnim)
+			if !shotgunAnim
 				sprite_index = spr_fall;
 			else
 				sprite_index = spr_shotgunfall;
-			if (global.pistol && character != "N")
+			if global.pistol && character != "N"
 				sprite_index = spr_player_pistoljump2;
 			image_index = 0;
 			jumpAnim = false;

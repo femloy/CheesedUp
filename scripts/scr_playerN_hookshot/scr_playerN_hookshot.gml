@@ -6,14 +6,9 @@ function scr_playerN_hookshot()
 		xscale = move;
 	if (key_jump)
 	{
-		vsp = IT_jumpspeed();
+		scr_modmove_jump();
 		instance_create(x, y, obj_washingmachine);
-		sprite_index = spr_jump;
 		stompAnim = false;
-		state = states.jump;
-		jumpAnim = true;
-		jumpstop = false;
-		image_index = 0;
 		freefallstart = 0;
 	}
 	if (dir != xscale)

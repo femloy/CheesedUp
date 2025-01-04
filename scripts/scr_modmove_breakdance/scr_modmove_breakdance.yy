@@ -6,7 +6,7 @@
   "name":"scr_modmove_breakdance",
   "parent":{
     "name":"Attacks",
-    "path":"folders/Scripts/CheesyPizza/Moves/Attacks.yy",
+    "path":"folders/Scripts/Player Moves/Attacks.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

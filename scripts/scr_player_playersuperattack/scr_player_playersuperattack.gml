@@ -1,11 +1,11 @@
 function scr_player_playersuperattack()
 {
 	image_speed = 0.5;
-	switch (superattackstate)
+	switch superattackstate
 	{
 		case states.transition:
 			sprite_index = spr_rageidle;
-			with (bossID)
+			with bossID
 			{
 				hsp = 0;
 				vsp = 0;
@@ -16,11 +16,12 @@ function scr_player_playersuperattack()
 			vsp = 0;
 			x = hitX;
 			y = hitY;
-			if (hitLag > 0)
+			if hitLag > 0
 				hitLag--;
 			else
 				superattackstate = states.jump;
 			break;
+		
 		case states.jump:
 			sprite_index = spr_grab;
 			var dir = point_direction(x, y, bossID.x, bossID.y);
@@ -29,7 +30,7 @@ function scr_player_playersuperattack()
 			vsp = 0;
 			hsp = lengthdir_x(spd, dir);
 			vsp = lengthdir_y(spd, dir);
-			if (place_meeting(x, y, bossID))
+			if place_meeting(x, y, bossID)
 			{
 				superattackstate = states.punch;
 				randomize_animations([spr_suplexmash1, spr_suplexmash2, spr_suplexmash3, spr_suplexmash4, spr_player_suplexmash5, spr_player_suplexmash6, spr_player_suplexmash7, spr_punch]);
@@ -37,17 +38,18 @@ function scr_player_playersuperattack()
 				image_index = 0;
 			}
 			break;
+		
 		case states.punch:
 			vsp = 0;
 			hsp = xscale * 2;
-			with (bossID)
+			with bossID
 			{
 				x = other.x;
 				y = other.y;
 				hsp = other.hsp;
 				image_xscale = -other.xscale;
 			}
-			if (floor(image_index) == (image_number - 1))
+			if floor(image_index) == image_number - 1
 			{
 				if (punchcount > 0)
 				{
@@ -79,6 +81,7 @@ function scr_player_playersuperattack()
 				}
 			}
 			break;
+		
 		case states.grab:
 			if (image_index < 7)
 			{

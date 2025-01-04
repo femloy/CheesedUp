@@ -142,6 +142,7 @@ function player_init_sounds()
 	var freefallpath = custom[$ "freefall"] ?? "event:/sfx/pep/freefall";
 	var machrollpath = custom[$ "machroll"] ?? "event:/sfx/pep/machroll";
 	var secretwallpath = custom[$ "secretwall"] ?? "event:/modded/sfx/secretwall";
+	var breakdancepath = custom[$ "breakdance"] ?? "event:/sfx/misc/breakdance";
 	
 	// taunt
 	tauntsnd = fmod_event_create_instance(tauntpath);
@@ -290,7 +291,7 @@ function player_init_sounds()
     global.snd_secretwall = fmod_event_create_instance(secretwallpath);
     spindashsnd = fmod_event_create_instance("event:/modded/sfx/snick/spindashrev");
     snd_vigislide = fmod_event_create_instance("event:/sfx/vigilante/slide");
-    breakdancesnd = fmod_event_create_instance("event:/sfx/misc/breakdance");
+    breakdancesnd = fmod_event_create_instance(breakdancepath);
     breakdancecancelsnd = fmod_event_create_instance("event:/modded/sfx/breakdancecancel");
 }
 

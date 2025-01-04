@@ -1,7 +1,6 @@
 up = SCREEN_HEIGHT + 20;
 sprite_index = spr_itspizzatime;
 
-if SUGARY_SPIRE && check_sugarychar()
-	sprite_index = spr_sugarrush;
-if BO_NOISE && check_char("BN")
-	sprite_index = spr_tuctime;
+var custom = scr_modding_character(obj_player1.character);
+if custom != noone && !is_undefined(custom.sprites.misc[$ "spr_itspizzatime"])
+	sprite_index = custom.sprites.misc.spr_itspizzatime;

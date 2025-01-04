@@ -18,24 +18,20 @@ function scr_player_ridecow()
 		}
 		exit;
 	}
+	
 	image_speed = 0.35;
 	sprite_index = spr_rideweenie;
 	x = cowID.x;
 	y = cowID.y - 42;
 	xscale = cowID.image_xscale;
-	if (key_jump)
+	
+	if key_jump
 	{
 		cow_buffer = 20;
-		vsp = IT_jumpspeed();
-		image_index = 0;
-		if (has_mort)
+		scr_modmove_jump();
+		if has_mort
 		{
 			state = states.mortjump;
-			sprite_index = spr_jump;
-		}
-		else
-		{
-			state = states.jump;
 			sprite_index = spr_jump;
 		}
 	}

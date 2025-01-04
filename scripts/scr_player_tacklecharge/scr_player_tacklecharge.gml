@@ -61,29 +61,28 @@ function scr_player_tacklecharge()
 		image_index = 0;
 		instance_create(x + 10, y + 10, obj_bumpeffect);
 	}
+	
 	sprite_index = spr_charge;
 	image_speed = 0.65;
-	if (key_down && grounded)
-	{
-		sprite_index = spr_crouchslip;
-		if (character == "P")
-			machhitAnim = false;
-		state = states.crouchslide;
-	}
-	if (!key_attack && move != xscale && grounded)
+	
+	if scr_mach_check_dive() && grounded
+		scr_modmove_crouchslide();
+	
+	if !key_attack && move != xscale && grounded
 	{
 		image_index = 0;
 		state = states.machslide;
 		sprite_index = spr_machslidestart;
 	}
-	if (move == -xscale && grounded)
+	if move == -xscale && grounded
 	{
 		image_index = 0;
 		state = states.machslide;
 		sprite_index = spr_machslideboost;
 	}
-	if (move == xscale && !key_attack && grounded)
+	if move == xscale && !key_attack && grounded
 		state = states.normal;
+	
 	if (!instance_exists(dashcloudid) && grounded)
 	{
 		with (instance_create(x, y, obj_dashcloud))

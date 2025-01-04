@@ -49,10 +49,11 @@ function scr_player_ratmountgrind()
 				other.vsp = 5;
 		}
 	}*/
+	
 	ds_list_clear(global.instancelist);
-	if (!place_meeting(x, y, obj_grindrail) && !place_meeting(x, y, obj_grindrailslope))
+	if !place_meeting(x, y, obj_grindrail) && !place_meeting(x, y, obj_grindrailslope)
 	{
-		if (character != "N")
+		if character != "N"
 		{
 			state = states.ratmountjump;
 			sprite_index = spr_ratmount_groundpoundfall;
@@ -64,14 +65,14 @@ function scr_player_ratmountgrind()
 			jumpAnim = false;
 		}
 	}
-	if (input_buffer_jump > 0)
+	
+	if input_buffer_jump > 0
 	{
 		input_buffer_jump = 0;
-		
-		if (character != "N")
+		if character != "N"
 		{
 			state = states.ratmountjump;
-			if (key_down)
+			if key_down
 			{
 				sprite_index = spr_ratmount_groundpoundfall;
 				vsp = 5;
@@ -85,22 +86,15 @@ function scr_player_ratmountgrind()
 		}
 		else
 		{
-			state = states.jump;
-			if (key_down)
+			if key_down
 			{
-				jumpAnim = false;
+				state = states.jump;
 				sprite_index = spr_fall;
 				vsp = 5;
 			}
 			else
-			{
-				image_index = 0;
-				sprite_index = spr_jump;
-				jumpAnim = true;
-				vsp = IT_jumpspeed();
-			}
+				scr_modmove_jump();
 		}
-		
 		jumpstop = false;
 		jumpAnim = true;
 	}

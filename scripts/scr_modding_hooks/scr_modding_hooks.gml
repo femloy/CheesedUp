@@ -6,14 +6,17 @@ function scr_modding_hooks()
 		"panic",
 		"prankcondition",
 		
+		// Instance
 		"instance/destroy",
 		
+		// Modifier
 		"modifier/reset",
 		"modifier/geticon",
 		"modifier/menu",
 		"modifier/preplayer",
 		"modifier/postplayer",
 		
+		// Player
 		"player/reset",
 		"player/prestate",
 		"player/poststate",
@@ -39,7 +42,21 @@ function scr_modding_hooks()
 		"player/climbwall/jump",
 		
 		// Enemy states
-		"enemy/grabbed/pos",
+		"enemy/grabbed/position",
+		
+		// TV
+		"tv/transfo",
+		"tv/expression",
+		"tv/palette",
+		"tv/position",
+		"tv/drawcombo",
+		"tv/postdraw",
+		"tv/background",
+		
+		// Music
+		"music/totem",
+		"music/panic",
+		"music/panicstep"
 	];
 }
 
@@ -80,9 +97,7 @@ function scr_modding_hook_callback(code, callback, args = [])
 		var _mod = global.mods[i];
 		if !_mod.enabled continue;
 		
-		scr_modding_process(_mod, code, args, "hooks");
-		
-		if !is_undefined(callback)
+		if scr_modding_process(_mod, code, args, "hooks") && !is_undefined(callback)
 		{
 			var c = callback(_mod);
 			if c == HOOK_CALLBACK_STOP
@@ -127,4 +142,18 @@ function scr_modding_hook_truer(code, args = [])
 		}
 	}, args);
 	return stored_result;
+}
+
+function scr_modding_hook_any(code, args = [])
+{
+	// returns undefined, unless any mod returns anything
+	if !live_enabled return undefined;
+	
+	scr_modding_hook_callback(code, function()
+	{
+		if live_result != undefined
+			return HOOK_CALLBACK_STOP;
+	}, args);
+	
+	return live_result;
 }

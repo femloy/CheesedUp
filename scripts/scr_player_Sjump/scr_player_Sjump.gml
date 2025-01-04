@@ -185,16 +185,14 @@ function scr_player_Sjump()
 		}
 	}
 	
-	if (CHAR_POGONOISE && sprite_index == spr_superjump)
+	if CHAR_POGONOISE && sprite_index == spr_superjump
 	{
 		if key_jump2
 		{
-			jumpstop = false;
+			scr_modmove_jump();
 			vsp = -15;
-			state = states.jump;
 			sprite_index = spr_playerN_noisebombspinjump;
-			image_index = 0;
-			with (instance_create(x, y, obj_jumpdust))
+			with instance_create(x, y, obj_jumpdust)
 				copy_player_scale(other);
 		}
 		else

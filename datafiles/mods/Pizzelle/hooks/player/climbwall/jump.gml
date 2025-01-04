@@ -18,8 +18,8 @@ if character == "PZ"
 
     state = "PZ_wallkick";
 
-    fmod_event_instance_set_parameter(global.PZ_snd_wallkick, "state", 0, true);
-    fmod_event_instance_play(global.PZ_snd_wallkick);
+    fmod_event_instance_set_parameter(MOD_GLOBAL.PZ_snd_wallkick, "state", 0, true);
+    fmod_event_instance_play(MOD_GLOBAL.PZ_snd_wallkick);
 
     /*
     repeat (5)

@@ -119,6 +119,9 @@ if live_enabled
 	live_function_add("fmod_bank_unload(bank_index)", function(bank_index) {
 	    return fmod_bank_unload(bank_index);
 	});
+	live_function_add("fmod_event_instance_get_path(index)", function(index) {
+	    return fmod_event_instance_get_path(index);
+	});
 	
 	if live_updating_enabled
 	{

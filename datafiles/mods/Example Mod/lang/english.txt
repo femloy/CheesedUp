@@ -5,8 +5,8 @@
 # -----------------------------------
 lang = "en"
 
-test_string = "Example mod enabled. Enjoy your Peppino."
-test_string2 = "Example mod disabled. \"Your Peppino\" is now dead."
+test_string = "Example mod enabled. Enjoy your new Peppino."
+test_string2 = "Example mod disabled. \"Wilted Peppino\" is now dead."
 
 dresser_P1 = "Wilted Peppino"
 dresser_P1D = "He's seen better days."

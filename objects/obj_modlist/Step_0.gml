@@ -1,5 +1,11 @@
 live_auto_call;
 
+if !instance_exists(obj_option)
+{
+	instance_destroy();
+	exit;
+}
+
 if buffer > 0
 {
 	buffer--;

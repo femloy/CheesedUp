@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_iteration",
   "parent":{
-    "name":"Moves",
-    "path":"folders/Scripts/CheesyPizza/Moves.yy",
+    "name":"Player Moves",
+    "path":"folders/Scripts/Player Moves.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -67,7 +67,7 @@ else switch state
 			else if (global.combo >= 3 && global.stylethreshold < 3 && !obj_player.isgustavo)
 				idlespr = spr_tv_exprcombo;
 			
-			if instance_exists(obj_ghostcollectibles) && (REMIX or (SUGARY_SPIRE && obj_player1.character == "SP"))
+			if instance_exists(obj_ghostcollectibles) && REMIX
 			&& !obj_player.isgustavo && global.leveltosave != "secretworld"
 			{
 				targetspr = spr_tv_exprsecret;
@@ -80,8 +80,7 @@ else switch state
 		if _state == states.backbreaker or _state == states.chainsaw
 			_state = obj_player1.tauntstoredstate;
 		
-		var _transfo = true;
-		var _transfospr = scr_tv_get_transfo_sprite();
+		var _transfo = true, _transfospr = scr_tv_get_transfo_sprite();
 		if !sprite_exists(_transfospr)
 			_transfo = false;
 		else
@@ -89,23 +88,22 @@ else switch state
 		
 		if !_transfo
 		{
-			with (obj_player1)
+			with obj_player1
 			{
-				if (!isgustavo || obj_player1.character == "N")
+				if !isgustavo || obj_player1.character == "N"
 				{
-					if (mach4mode == 1)
+					if mach4mode
 						tv_do_expression(spr_tv_exprmach4, true);
-					else if (state == states.mach3 or sprite_index == spr_mach3boost)
+					else if state == states.mach3 or sprite_index == spr_mach3boost
 						tv_do_expression(spr_tv_exprmach3, true);
-					else if (SUGARY_SPIRE && state == states.tumble && character == "SP")
-						tv_do_expression(spr_tv_machrollSP, true);
 				}
 			}
 		}
-		switch (targetspr)
+		
+		switch targetspr
 		{
 			case spr_tv_off:
-				if (visible)
+				if visible
 				{
 					targetspr = spr_tv_open;
 					image_index = 0;
@@ -113,17 +111,17 @@ else switch state
 				break;
 			
 			case spr_tv_open:
-				if (floor(image_index) == (image_number - 1))
+				if floor(image_index) == image_number - 1
 					targetspr = idlespr;
 				break;
 			
 			case spr_tv_idle:
 			case spr_tv_idleN:
-				if (idleanim > 0)
+				if idleanim > 0
 					idleanim--;
-				if (targetspr != idlespr)
+				if targetspr != idlespr
 					targetspr = idlespr;
-				if (idleanim <= 0 && floor(image_index) == (image_number - 1))
+				if idleanim <= 0 && floor(image_index) == image_number - 1
 				{
 					targetspr = choose(spr_tv_idleanim1, spr_tv_idleanim2);
 					image_index = 0;
@@ -134,12 +132,12 @@ else switch state
 			case spr_tv_idleanim2:
 			case spr_tv_idleanim1N:
 			case spr_tv_idleanim2N:
-				if (floor(image_index) == (image_number - 1))
+				if floor(image_index) == image_number - 1
 				{
 					targetspr = idlespr;
 					idleanim = 240 + (60 * irandom_range(-1, 2));
 				}
-				if (idlespr != spr_tv_idle && idlespr != spr_tv_idleN)
+				if idlespr != spr_tv_idle && idlespr != spr_tv_idleN
 					targetspr = idlespr;
 				break;
 			
@@ -148,13 +146,13 @@ else switch state
 		}
 		
 		// bubble prompt
-		if (targetspr != spr_tv_open)
+		if targetspr != spr_tv_open
 		{
-			if (!ds_list_empty(tvprompts_list))
+			if !ds_list_empty(tvprompts_list)
 			{
 				var b = ds_list_find_value(tvprompts_list, 0);
 				prompt_buffer = prompt_max;
-				if (b[0] != "" && b[0] != noone)
+				if b[0] != "" && b[0] != noone
 				{
 					bubblespr = spr_tv_bubbleopen;
 					bubbleindex = 0;
@@ -164,15 +162,15 @@ else switch state
 				}
 				else
 				{
-					if (bubblespr != noone && bubblespr != spr_tv_bubbleclosed)
+					if bubblespr != noone && bubblespr != spr_tv_bubbleclosed
 						bubblespr = spr_tv_bubbleclose;
-					if (bubblespr == spr_tv_bubbleclosed)
+					if bubblespr == spr_tv_bubbleclosed
 						bubblespr = noone;
 					bubbleindex = 0;
 					promptx = promptxstart;
 					prompt = -4;
 				}
-				if (b[1] == tvprompt.normal)
+				if b[1] == tvprompt.normal
 				{
 					targetspr = spr_tv_open;
 					image_index = 0;
@@ -192,11 +190,11 @@ else switch state
 		break;
 	
 	case states.transition:
-		if (targetspr == spr_tv_open && floor(image_index) == (image_number - 1))
+		if targetspr == spr_tv_open && floor(image_index) == image_number - 1
 			targetspr = tvsprite;
-		if (targetspr == tvsprite)
+		if targetspr == tvsprite
 		{
-			if (prompt_buffer > 0)
+			if prompt_buffer > 0
 				prompt_buffer--;
 			else
 			{
@@ -208,9 +206,9 @@ else switch state
 		break;
 	
 	case states.tv_whitenoise:
-		if (tv_trans >= sprite_get_number(spr_tv_whitenoise))
+		if tv_trans >= sprite_get_number(spr_whitenoise)
 		{
-			if (expressionsprite != noone)
+			if expressionsprite != noone
 			{
 				state = states.tv_expression;
 				targetspr = expressionsprite;
@@ -223,165 +221,139 @@ else switch state
 	
 	case states.tv_expression:
 		var _transfospr = scr_tv_get_transfo_sprite();
-		
-		switch (expressionsprite)
+		if scr_modding_hook_falser("tv/expression", [_transfospr])
 		{
-			case spr_tv_exprhurtN:
-			case spr_tv_exprhurt:
-            case spr_tv_exprhurt1:
-            case spr_tv_exprhurt2:
-            case spr_tv_exprhurt3:
-            case spr_tv_exprhurt4:
-            case spr_tv_exprhurt5:
-            case spr_tv_exprhurt6:
-            case spr_tv_exprhurt7:
-            case spr_tv_exprhurt8:
-            case spr_tv_exprhurt9:
-            case spr_tv_exprhurt10:
-			case spr_tv_exprhurtN1:
-            case spr_tv_exprhurtN2:
-            case spr_tv_exprhurtN3:
-            case spr_tv_exprhurtN4:
-            case spr_tv_exprhurtN5:
-            case spr_tv_exprhurtN6:
-            case spr_tv_exprhurtN7:
-            case spr_tv_exprhurtN8:
-            case spr_tv_exprhurtN9:
-            case spr_tv_exprhurtN10:
-				if (obj_player1.state != states.hurt)
-				{
-					if (expressionbuffer > 0)
-						expressionbuffer--;
-					else
+			switch expressionsprite
+			{
+				case spr_tv_exprhurtN:
+				case spr_tv_exprhurt:
+	            case spr_tv_exprhurt1:
+	            case spr_tv_exprhurt2:
+	            case spr_tv_exprhurt3:
+	            case spr_tv_exprhurt4:
+	            case spr_tv_exprhurt5:
+	            case spr_tv_exprhurt6:
+	            case spr_tv_exprhurt7:
+	            case spr_tv_exprhurt8:
+	            case spr_tv_exprhurt9:
+	            case spr_tv_exprhurt10:
+				case spr_tv_exprhurtN1:
+	            case spr_tv_exprhurtN2:
+	            case spr_tv_exprhurtN3:
+	            case spr_tv_exprhurtN4:
+	            case spr_tv_exprhurtN5:
+	            case spr_tv_exprhurtN6:
+	            case spr_tv_exprhurtN7:
+	            case spr_tv_exprhurtN8:
+	            case spr_tv_exprhurtN9:
+	            case spr_tv_exprhurtN10:
+					if obj_player1.state != states.hurt
 					{
-						state = states.tv_whitenoise;
-						expressionsprite = noone;
-					}
-				}
-				break;
-			
-			case spr_tv_hurtG:
-				if (obj_player1.state != states.ratmounthurt)
-				{
-					if (expressionbuffer > 0)
-						expressionbuffer--;
-					else
-					{
-						state = states.tv_whitenoise;
-						expressionsprite = noone;
-					}
-				}
-				break;
-			
-			case spr_tv_exprcombo:
-			case spr_tv_exprcomboN:
-				if (global.combo < 3 or _transfospr != noone or obj_player1.isgustavo or obj_player1.mach4mode or obj_player1.state == states.hurt or obj_player1.state == states.mach3 or obj_player1.sprite_index == obj_player1.spr_mach3boost or global.stylethreshold >= 3)
-				{
-					state = states.tv_whitenoise;
-					expressionsprite = noone;
-					if (obj_player1.state == states.hurt)
-						tv_do_expression(spr_tv_exprhurt);
-				}
-				break;
-			
-			case spr_tv_exprcollect:
-			case spr_tv_exprcollectN:
-            case spr_tv_happyG:
-			case spr_tv_exprconfecti1:
-			case spr_tv_exprconfecti2:
-			case spr_tv_exprconfecti3:
-			case spr_tv_exprconfecti4:
-			case spr_tv_exprconfecti5:
-			case spr_tv_exprrudejanitor:
-				if (expressionbuffer > 0)
-					expressionbuffer--;
-				else
-				{
-					state = states.tv_whitenoise;
-					expressionsprite = noone;
-				}
-				break;
-			
-			case spr_tv_exprmach3:
-			case spr_tv_exprmach3N:
-				with (obj_player1)
-				{
-					if (state != states.mach3 && state != states.climbwall && (state != states.chainsaw or (tauntstoredstate != states.mach3 && tauntstoredstate != states.climbwall)) && sprite_index != spr_mach3boost && mach4mode == 0)
-					{
-						other.state = states.tv_whitenoise;
-						other.expressionsprite = noone;
-					}
-					if (mach4mode)
-						tv_do_expression(spr_tv_exprmach4);
-					if SUGARY_SPIRE && state == states.tumble && character == "SP"
-						tv_do_expression(spr_tv_machrollSP);
-				}
-				break;
-			
-			case spr_tv_exprmach4:
-			case spr_tv_exprmach4N:
-				with (obj_player1)
-				{
-					if (mach4mode == 0 && (state != states.chainsaw or (tauntstoredstate != states.mach3 && tauntstoredstate != states.climbwall)))
-					{
-						other.state = states.tv_whitenoise;
-						other.expressionsprite = noone;
-					}
-					if SUGARY_SPIRE && state == states.tumble && character == "SP"
-						tv_do_expression(spr_tv_machrollSP);
-				}
-				break;
-			
-			case spr_tv_exprheat:
-			case spr_tv_exprheatN:
-				_transfo = false;
-				with (obj_player1)
-				{
-					if (_transfospr != noone)
-						_transfo = true;
-					if (isgustavo)
-						_transfo = true;
-				}
-				if (global.stylethreshold < 3 or _transfo or obj_player1.mach4mode or obj_player1.state == states.hurt or obj_player1.state == states.mach3 or obj_player1.sprite_index == obj_player1.spr_mach3boost)
-				{
-					state = states.tv_whitenoise;
-					expressionsprite = noone;
-				}
-				break;
-			
-			case spr_tv_exprpanic:
-				_transfo = false;
-				with (obj_player1)
-				{
-					if (_transfospr)
-						_transfo = true;
-					if (isgustavo)
-						_transfo = true;
-				}
-				if ((!global.panic && !global.snickchallenge) or _transfo or obj_player1.mach4mode or obj_player1.state == states.hurt or obj_player1.state == states.mach3 or obj_player1.sprite_index == obj_player1.spr_mach3boost)
-				{
-					state = states.tv_whitenoise;
-					expressionsprite = noone;
-				}
-				break;
-			
-			case spr_tv_machrollSP:
-				with (obj_player1)
-				{
-					if (state != states.tumble)
-					{
-						if state == states.mach3
-							tv_do_expression(mach4mode ? spr_tv_exprmach4 : spr_tv_exprmach3);
+						if expressionbuffer > 0
+							expressionbuffer--;
 						else
+						{
+							state = states.tv_whitenoise;
+							expressionsprite = noone;
+						}
+					}
+					break;
+			
+				case spr_tv_hurtG:
+					if obj_player1.state != states.ratmounthurt
+					{
+						if expressionbuffer > 0
+							expressionbuffer--;
+						else
+						{
+							state = states.tv_whitenoise;
+							expressionsprite = noone;
+						}
+					}
+					break;
+			
+				case spr_tv_exprcombo:
+				case spr_tv_exprcomboN:
+					if global.combo < 3 or _transfospr != noone or obj_player1.isgustavo or obj_player1.mach4mode or obj_player1.state == states.hurt or obj_player1.state == states.mach3 or obj_player1.sprite_index == obj_player1.spr_mach3boost or global.stylethreshold >= 3
+					{
+						state = states.tv_whitenoise;
+						expressionsprite = noone;
+						if obj_player1.state == states.hurt
+							tv_do_expression(spr_tv_exprhurt);
+					}
+					break;
+			
+				default:
+					if expressionbuffer > 0
+						expressionbuffer--;
+					else
+					{
+						state = states.tv_whitenoise;
+						expressionsprite = noone;
+					}
+					break;
+			
+				case spr_tv_exprmach3:
+				case spr_tv_exprmach3N:
+					with obj_player1
+					{
+						if state != states.mach3 && state != states.climbwall && (state != states.chainsaw or (tauntstoredstate != states.mach3 && tauntstoredstate != states.climbwall)) && sprite_index != spr_mach3boost && !mach4mode
+						{
+							other.state = states.tv_whitenoise;
+							other.expressionsprite = noone;
+						}
+						if mach4mode
+							tv_do_expression(spr_tv_exprmach4);
+					}
+					break;
+			
+				case spr_tv_exprmach4:
+				case spr_tv_exprmach4N:
+					with obj_player1
+					{
+						if !mach4mode && (state != states.chainsaw or (tauntstoredstate != states.mach3 && tauntstoredstate != states.climbwall))
 						{
 							other.state = states.tv_whitenoise;
 							other.expressionsprite = noone;
 						}
 					}
-				}
-				break;
+					break;
+			
+				case spr_tv_exprheat:
+				case spr_tv_exprheatN:
+					var _transfo = false;
+					with obj_player1
+					{
+						if _transfospr != noone
+							_transfo = true;
+						if isgustavo
+							_transfo = true;
+					}
+					if global.stylethreshold < 3 or _transfo or obj_player1.mach4mode or obj_player1.state == states.hurt or obj_player1.state == states.mach3 or obj_player1.sprite_index == obj_player1.spr_mach3boost
+					{
+						state = states.tv_whitenoise;
+						expressionsprite = noone;
+					}
+					break;
+			
+				case spr_tv_exprpanic:
+					var _transfo = false;
+					with obj_player1
+					{
+						if _transfospr
+							_transfo = true;
+						if isgustavo
+							_transfo = true;
+					}
+					if (!global.panic && !global.snickchallenge) or _transfo or obj_player1.mach4mode or obj_player1.state == states.hurt or obj_player1.state == states.mach3 or obj_player1.sprite_index == obj_player1.spr_mach3boost
+					{
+						state = states.tv_whitenoise;
+						expressionsprite = noone;
+					}
+					break;
+			}
 		}
-		if (!ds_list_empty(tvprompts_list))
+		if !ds_list_empty(tvprompts_list)
 		{
 			state = states.tv_whitenoise;
 			tv_trans = 0;
@@ -394,43 +366,45 @@ else switch state
 if sprite_exists(targetspr) && targetspr_old != targetspr && global.hud != HUD_STYLES.old && visible
 {
 	var char = obj_player1.character;
-	if targetspr == spr_tv_machrollSP
-		sprite_index = targetspr;
-	else if targetspr == spr_tv_open or targetspr == spr_tv_off
+	
+	var custom = scr_modding_character(char);
+	if custom != noone
 	{
-		if (BO_NOISE && char == "BN") or (SUGARY_SPIRE && check_sugarychar())
-			sprite_index = SPRITES[? sprite_get_name(targetspr) + char] ?? targetspr;
-		else
-			sprite_index = targetspr;
+		spr_empty = custom.sprites.hud[$ "spr_tv_empty"] ?? spr_tv_empty;
+		spr_whitenoise = custom.sprites.hud[$ "spr_tv_whitenoise"] ?? spr_tv_whitenoise;
+		spr_bgfinal = custom.sprites.hud[$ "spr_tv_bgfinal"] ?? spr_tv_bgfinal;
+		spr_clip = custom.sprites.hud[$ "spr_tv_clip"] ?? spr_tv_clip;
+		placeholderspr = custom.sprites.hud[$ "spr_tv_placeholder"] ?? targetspr;
+		sprite_index = custom.sprites.hud[$ sprite_get_name(targetspr)] ?? placeholderspr;
 	}
 	else
 	{
-		// apply character
-		var charspr = targetspr;
-		if char != "P"
+		if targetspr == spr_tv_open or targetspr == spr_tv_off
+			sprite_index = targetspr;
+		else
 		{
-			charspr = SPRITES[? sprite_get_name(targetspr) + char];
-			if charspr == undefined
+			var new_sprite = targetspr;
+			if char != "P"
 			{
-				// placeholder tv
-				switch char
+				new_sprite = SPRITES[? sprite_get_name(targetspr) + char];
+				if is_undefined(new_sprite)
 				{
-					case "SP": case "SN": if SUGARY_SPIRE charspr = spr_tv_failsafeSP; break;
-					case "V": charspr = spr_tv_exprhurt5V; break;
-					default: charspr = targetspr; break;
+					new_sprite = placeholderspr ?? noone;
+					if new_sprite == noone
+						new_sprite = targetspr;
 				}
 			}
+			
+			// shaded tv
+			if /*REMIX or */global.hud == HUD_STYLES.april
+			{
+				if char == "P"
+					char = "";
+				sprite_index = SPRITES[? sprite_get_name(targetspr) + char + "_NEW"] ?? new_sprite;
+			}
+			else
+				sprite_index = new_sprite;
 		}
-		 
-		// shaded tv
-		if /*REMIX or */global.hud == HUD_STYLES.april
-		{
-			if char == "P"
-				char = "";
-			sprite_index = SPRITES[? sprite_get_name(targetspr) + char + "_NEW"] ?? charspr;
-		}
-		else
-			sprite_index = charspr;
 	}
 	targetspr_old = targetspr;
 }

@@ -98,3 +98,9 @@ jumpscare = -1;
 //jumpscareimage = irandom(sprite_get_number(spr_scares) - 1);
 jumpscaretext = 0
 manualhide = false;
+
+spr_empty = spr_tv_empty;
+spr_whitenoise = spr_tv_whitenoise;
+spr_bgfinal = spr_tv_bgfinal;
+spr_clip = spr_tv_clip;
+placeholderspr = spr_tv_empty;

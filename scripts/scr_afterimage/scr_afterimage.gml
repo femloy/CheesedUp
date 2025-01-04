@@ -139,7 +139,7 @@ function create_blue_afterimage(_x, _y, _sprite, _image_index, _xscale)
 		_character = character;
 	}
 	
-	if global.afterimage == AFTERIMAGES.blue
+	if global.afterimage == AFTERIMAGES.blue or global.force_blue_afterimage
 	{
 		var b = create_afterimage(_x, _y, _sprite, _image_index);
 		with b

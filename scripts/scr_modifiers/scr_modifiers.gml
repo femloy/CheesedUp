@@ -751,13 +751,7 @@ function get_modifier_icon(modifier)
 {
 	if live_enabled
 	{
-		scr_modding_hook_callback("modifier/geticon", function()
-		{
-			if live_result != undefined
-				return HOOK_CALLBACK_STOP;
-		}, [modifier]);
-		
-		if live_result != undefined && is_struct(live_result)
+		if scr_modding_hook_any("modifier/geticon", [modifier]) != undefined && is_struct(live_result)
 		{
 			live_result[$ "sprite"] ??= spr_modifier_icons;
 			live_result[$ "image"] ??= 0;
@@ -801,12 +795,7 @@ function get_modifier_icon(modifier)
 
 function get_modifier_saving()
 {
-	scr_modding_hook_callback("savecondition", function()
-	{
-		if live_result == false
-			return HOOK_CALLBACK_STOP;
-	});
-	if live_result == false
+	if !scr_modding_hook_falser("savecondition")
 		return false;
 	
 	return (!MOD.OldLevels or global.leveltosave == "snickchallenge")

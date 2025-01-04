@@ -7,7 +7,7 @@ function scr_tvdraw()
 		tvreset = global.hud;
 		targetspr = spr_tv_open;
 		state = states.transition;
-		sprite_index = spr_tv_idle;
+		sprite_index = targetspr;
 	}
 	
 	var char = obj_player1.character;
@@ -22,78 +22,26 @@ function scr_tvdraw()
 		tv_y = 107;
 	}
 	
+	var custom = scr_modding_hook_any("tv/position", [tv_x, tv_y]);
+	if custom != undefined && is_array(custom) && array_length(custom) == 2 && is_real(custom[0]) && is_real(custom[1])
+	{
+		tv_x = custom[0];
+		tv_y = custom[1];
+	}
+	
 	var collect_x = irandom_range(-collect_shake, collect_shake);
 	var collect_y = irandom_range(-collect_shake, collect_shake);
 	
-	// palette
-	var tv_palette = global.tvcolor;
-	if tv_palette == TV_COLORS.normal
-	{
-		if global.hud == HUD_STYLES.final
-		{
-			switch char
-			{
-				default: tv_palette = 1; break;
-				case "N": tv_palette = 2; break;
-				case "V": tv_palette = 3; break;
-				case "SP": if SUGARY_SPIRE tv_palette = 4; break;
-				case "S": tv_palette = 5; break;
-				case "M": tv_palette = 6; break;
-				case "MS": tv_palette = 7; break;
-			}
-		}
-		else
-			tv_palette = (SUGARY_SPIRE && sugary) ? 4 : 1;
-	}
-	
-	// sugary bobbing
-	if SUGARY_SPIRE
-	{
-		if sugary
-		{
-			tv_x -= 13;
-			tv_y += -6 + Wave(2, -2, 3, 0); // collect_y serves as an offset
-		}
-	}
-	
 	// combo
 	if global.hud != HUD_STYLES.april
-	{
-		if SUGARY_SPIRE && sugary
-			scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, 1, tv_palette);
-		else if BO_NOISE && char == "BN"
-			scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, 2, tv_palette);
-		else
-			scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, 0, tv_palette);
-	}
+		scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, 0);
 	
 	if room != strongcold_endscreen
 	{
-		// sugary tv background
-		if SUGARY_SPIRE && (SUGARY or (check_sugary() && instance_exists(obj_ghostcollectibles)))
+		// custom background
+		if !scr_modding_hook_falser("tv/background", [tv_x + collect_x, tv_y + collect_y + hud_posY])
 		{
-			// secrets
-			var bgindex = tv_bg_index, bgcol = c_white;
-			if instance_exists(obj_ghostcollectibles)
-				bgindex = 9; //SUGARY ? 9 : 20;
-			if obj_player1.state == states.secretenter && instance_exists(obj_fadeout)
-				bgcol = merge_color(c_white, c_black, clamp(obj_fadeout.fadealpha, 0, 1));
 			
-			// decide sprite
-			var sprite = global.panic ? spr_tv_bgescape_ss : spr_tv_bgfinal_ss;
-			if sugary
-				sprite = global.panic ? spr_tv_bgescape_ssSP : spr_tv_bgfinal_ssSP;
-			
-			// draw
-			draw_sprite_ext(sprite, bgindex, tv_x + collect_x, tv_y + collect_y + hud_posY, 1, 1, 0, bgcol, alpha);
-			
-			// flash white
-			if instance_exists(obj_hungrypillarflash)
-			{
-				draw_set_flash(c_white);
-				draw_sprite_ext(sprite, bgindex, tv_x + collect_x, tv_y + collect_y + hud_posY, 1, 1, 0, c_white, obj_hungrypillarflash.fade * alpha);
-				draw_reset_flash();
-			}
 		}
 		
 		// REMIX tv background
@@ -123,12 +71,8 @@ function scr_tvdraw()
 			for(var i = 0; i < sprite_get_number(bgindex); i++)
 				draw_sprite_tiled(bgindex, i, 278 / 2 + tv_bg.x * max(lerp(-1, 1, tv_bg.parallax[i]), 0), 268);
 			
-			var clip = spr_tv_clip;
-			if SUGARY_SPIRE && sugary
-				clip = spr_tv_clipSP;
-			
 			gpu_set_blendmode(bm_subtract);
-			draw_sprite(clip, 1, 278 / 2, 268 - tv_bg.y);
+			draw_sprite(spr_clip, 1, 278 / 2, 268 - tv_bg.y);
 			gpu_set_blendmode(bm_normal);
 			
 			surface_reset_target();
@@ -152,19 +96,13 @@ function scr_tvdraw()
 		// normal tv background
 		else
 		{
-			var tv_bg_sprite = spr_tv_bgfinal;
+			var tv_bg_sprite = spr_bgfinal;
 			var bgindex = tv_bg_index;
 			
-			if SUGARY_SPIRE && sugary
-				tv_bg_sprite = spr_tv_bgfinalSP;
-			
-			if global.hud != HUD_STYLES.final && !sugary
+			if spr_bgfinal == spr_tv_bgfinal && global.hud != HUD_STYLES.final
 			{
 				tv_bg_sprite = spr_tv_aprilbg;
-				
-				bgindex = 0;
-				if char == "N"
-					bgindex = 2;
+				bgindex = char == "N" ? 2 : 0;
 			}
 			
 			draw_sprite_ext(tv_bg_sprite, bgindex, tv_x + collect_x, tv_y + collect_y + hud_posY, 1, 1, 0, c_white, alpha);
@@ -186,40 +124,17 @@ function scr_tvdraw()
 		pal_swap_reset();
 		
 		// tv frame palette
-		if tv_palette != 0
+		var tv_palette = scr_tv_get_palette();
+		if tv_palette.paletteselect != 0
 		{
-			pal_swap_set(spr_tv_palette, tv_palette, false);
-			var spr = sugary ? spr_tv_emptySP : spr_tv_empty;
-			if sprite_index == spr_tv_open or sprite_index == spr_tv_openSP
-				spr = sprite_index;
+			pal_swap_set(tv_palette.spr_palette, tv_palette.paletteselect, false);
+			var spr = targetspr == spr_tv_open ? sprite_index : spr_empty;
 			draw_sprite_ext(spr, image_index, tv_x + collect_x, tv_y + collect_y + hud_posY, 1, 1, 0, c_white, alpha);
-		}
-		
-		// Fucking Sugary
-		if SUGARY_SPIRE
-		{
-			propeller_index += 0.35;
-			
-			// propeller
-			if sugary && targetspr != spr_tv_off && targetspr != spr_tv_open
-				draw_sprite_ext(spr_pizzytvpropeller, propeller_index, tv_x + collect_x, tv_y + collect_y + hud_posY, 1, 1, 0, c_white, alpha);
-			
-			// escape line
-			if sugary && PANIC
-				draw_sprite_ext(spr_tv_panicoverlaySP, propeller_index, tv_x + collect_x, tv_y + collect_y + hud_posY, 1, 1, 0, c_white, alpha);
 		}
 		
 		// static
 		if state == states.tv_whitenoise
-		{
-			pal_swap_set(spr_tv_palette, tv_palette, false);
-			
-			if SUGARY_SPIRE && sugary
-				var charspr = spr_tv_whitenoiseSP;
-			else
-				var charspr = SPRITES[? "spr_tv_whitenoise" + char];
-			draw_sprite(charspr ?? spr_tv_whitenoise, tv_trans, tv_x + collect_x, tv_y + collect_y + hud_posY);
-		}
+			draw_sprite(spr_whitenoise, tv_trans, tv_x + collect_x, tv_y + collect_y + hud_posY);
 		
 		// noise coming out of the tv has an edge case
 		if sprite_index == spr_tv_exprheatN
@@ -237,31 +152,37 @@ function scr_tvdraw()
 		}
 		pal_swap_reset();
 		
+		// custom
+		scr_modding_hook("tv/postdraw", [tv_x + collect_x, tv_y + collect_y + hud_posY]);
+		
 		// april combo
 		if global.hud == HUD_STYLES.april
-			scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, sugary ? 4 : 3, tv_palette);
+			scr_tv_drawcombo(tv_x, tv_y, collect_x, collect_y, 1);
 	}
 	
 	// bubble prompt
-	if (bubblespr != noone)
+	if bubblespr != noone
 		draw_sprite_ext(bubblespr, bubbleindex, SCREEN_WIDTH - 448, 53, 1, 1, 1, c_white, alpha);
-	if (!surface_exists(promptsurface))
+	if !surface_exists(promptsurface)
 		promptsurface = surface_create(290, 102);
+	
 	surface_set_target(promptsurface);
 	draw_clear_alpha(0, 0);
 	draw_set_font(lfnt("tvbubblefont"));
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	if (bubblespr == spr_tv_bubble)
+	
+	if bubblespr == spr_tv_bubble
 	{
 		promptx -= promptspd;
-		if (bubblespr != spr_tv_bubbleclose && promptx < (350 - string_width(prompt)))
+		if bubblespr != spr_tv_bubbleclose && promptx < (350 - string_width(prompt))
 		{
 			bubblespr = spr_tv_bubbleclose;
 			bubbleindex = 0;
 		}
 		draw_text_color(promptx - 350, 50, prompt, c_black, c_black, c_black, c_black, 1);
 	}
+	
 	surface_reset_target();
 	draw_surface(promptsurface, SCREEN_WIDTH - 610, 0);
 	draw_set_align();

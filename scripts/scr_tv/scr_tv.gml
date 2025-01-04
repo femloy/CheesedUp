@@ -121,9 +121,9 @@ function tv_do_expression(sprite, force_pep = false)
 	if global.hud != HUD_STYLES.final
 		exit;
 	
-	with (obj_tv)
+	with obj_tv
 	{
-		if (expressionsprite != sprite && bubblespr == noone)
+		if expressionsprite != sprite && bubblespr == noone
 		{
 			state = states.tv_whitenoise;
 			expressionsprite = sprite;
@@ -132,8 +132,8 @@ function tv_do_expression(sprite, force_pep = false)
 				case spr_tv_exprhurt:
 				case spr_tv_exprhurtN:
 				case spr_tv_hurtG:
-					expressionbuffer = 60
-					break
+					expressionbuffer = 60;
+					break;
 				
 				case spr_tv_exprhurt1:
 				case spr_tv_exprhurt2:
@@ -155,53 +155,39 @@ function tv_do_expression(sprite, force_pep = false)
 				case spr_tv_exprhurtN8:
 				case spr_tv_exprhurtN9:
 				case spr_tv_exprhurtN10:
-					expressionbuffer = 100
-					break
+					expressionbuffer = 100;
+					break;
 				
 				case spr_tv_exprcollect:
-					expressionbuffer = 150
+					expressionbuffer = 150;
 					if obj_player.isgustavo
 					{
-						expressionsprite = spr_tv_happyG
-						if (irandom(100) <= 50)
-							sound_play_3d("event:/sfx/voice/brickok", obj_player1.x, obj_player1.y)
+						expressionsprite = spr_tv_happyG;
+						if irandom(100) <= 50
+							sound_play_3d("event:/sfx/voice/brickok", obj_player1.x, obj_player1.y);
 					}
-					if (irandom(100) <= 50)
-						scr_fmod_soundeffect(obj_player1.snd_voiceok, obj_player1.x, obj_player1.y)
-					break;
-				
-				case spr_tv_exprconfecti1:
-				case spr_tv_exprconfecti2:
-				case spr_tv_exprconfecti3:
-				case spr_tv_exprconfecti4:
-				case spr_tv_exprconfecti5:
-				case spr_tv_exprrudejanitor:
-					expressionbuffer = 150;
+					else if irandom(100) <= 50
+						scr_fmod_soundeffect(obj_player1.snd_voiceok, obj_player1.x, obj_player1.y);
 					break;
 			}
-			
-			/*
-			if (!force_pep && instance_exists(obj_player1) && obj_player1.character == "N")
-			{
-				var n = asset_get_index(sprite_get_name(sprite) + "N");
-				if (n > -1)
-					expressionsprite = n;
-			}
-			*/
 		}
 	}
 }
 function scr_tv_get_transfo_sprite()
 {
 	var _state = obj_player1.state;
-	if (_state == states.backbreaker || _state == states.chainsaw)
+	if _state == states.backbreaker || _state == states.chainsaw
 		_state = obj_player1.tauntstoredstate;
 	
+	// custom
+	if scr_modding_hook_any("tv/transfo", [_state]) != undefined && sprite_exists(live_result)
+		return live_result;
+	
 	var _spr = noone;
-	if (instance_exists(obj_bucketfollower))
+	if instance_exists(obj_bucketfollower)
 		_spr = spr_tv_bucket;
 	
-	switch (_state)
+	switch _state
 	{
 		case states.knightpep:
 		case states.knightpepattack:
@@ -209,32 +195,39 @@ function scr_tv_get_transfo_sprite()
 		case states.knightpepslopes:
 			_spr = spr_tv_knight;
 			break;
+		
 		case states.bombpep:
 		case states.bombgrab:
 			_spr = spr_tv_bombpep;
 			break;
+		
 		case states.fireass:
 			_spr = spr_tv_fireass;
-			if (obj_player1.sprite_index == obj_player1.spr_scaredjump1 || obj_player1.sprite_index == obj_player1.spr_scaredjump2)
+			if obj_player1.sprite_index == obj_player1.spr_scaredjump1 || obj_player1.sprite_index == obj_player1.spr_scaredjump2
 				_spr = spr_tv_scaredjump;
 			break;
+		
 		case states.tumble:
-			if (obj_player1.sprite_index == obj_player1.spr_tumble || obj_player1.sprite_index == obj_player1.spr_tumblestart || obj_player1.sprite_index == obj_player1.spr_tumbleend)
+			if obj_player1.sprite_index == obj_player1.spr_tumble || obj_player1.sprite_index == obj_player1.spr_tumblestart || obj_player1.sprite_index == obj_player1.spr_tumbleend
 				_spr = spr_tv_tumble;
-			else if (obj_player1.shotgunAnim)
+			else if obj_player1.shotgunAnim
 				_spr = spr_tv_shotgun;
 			break;
+		
 		case states.firemouth:
 			_spr = spr_tv_firemouth;
 			break;
+		
 		case states.ghost:
 		case states.ghostpossess:
 			_spr = spr_tv_ghost;
 			break;
+		
 		case states.stunned:
-			if (obj_player1.sprite_index == obj_player1.spr_squished)
+			if obj_player1.sprite_index == obj_player1.spr_squished
 				_spr = spr_tv_squished;
 			break;
+		
 		case states.normal:
 		case states.jump:
 		case states.handstandjump:
@@ -243,16 +236,15 @@ function scr_tv_get_transfo_sprite()
 		case states.mach3:
 		case states.machslide:
 		case states.bump:
-			with (obj_player1)
+			with obj_player1
 			{
-				if (shotgunAnim)
+				if shotgunAnim
 					_spr = spr_tv_shotgun;
-				else if (global.mort)
+				else if global.mort
 					_spr = spr_tv_mort;
-				else if sprite_index == spr_player_candyup or sprite_index == spr_player_candytransitionup
-					_spr = spr_tv_croaked;
 			}
 			break;
+		
 		case states.freefallprep:
 		case states.freefall:
 		case states.freefallland:
@@ -314,31 +306,15 @@ function scr_tv_get_transfo_sprite()
 		case states.climbwall:
 		case states.machroll:
 		case states.grind:
-			if (obj_player1.skateboarding)
+			if obj_player1.skateboarding
 				_spr = spr_tv_clown;
-			else if (obj_player1.shotgunAnim)
+			else if obj_player1.shotgunAnim
 				_spr = spr_tv_shotgun;
 			break;
-		
-		// new!
-		case states.removed_state:
-		case states.removed_state:
-		case states.removed_state:
-			_spr = spr_tv_cotton;
-			break;
-		case states.removed_state:
-		case states.removed_state:
-		case states.removed_state:
-		case states.removed_state:
-			_spr = spr_tv_skate;
-			break;
-		case states.removed_state:
-			_spr = spr_tv_croaked;
-			break;
 	}
-	with (obj_player1)
+	with obj_player1
 	{
-		if (state == states.actor && sprite_index == spr_tumble)
+		if state == states.actor && sprite_index == spr_tumble
 			_spr = spr_tv_tumble;
 	}
 	return _spr;

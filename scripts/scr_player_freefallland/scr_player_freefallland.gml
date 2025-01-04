@@ -38,6 +38,7 @@ function scr_player_freefallland()
 	
 	if jump
 	{
+		scr_modmove_jump();
 		if !IT_forced_poundjump()
 		{
 			if spr_groundpoundjump != spr_player_groundpoundjump or character == "P"
@@ -47,14 +48,6 @@ function scr_player_freefallland()
 		}
 		else
 			sprite_index = spr_machfreefall;
-		vsp = IT_jumpspeed();
-		state = states.jump;
-		
-        jumpstop = true;
-		scr_fmod_soundeffect(jumpsnd, x, y);
-		
-		particle_set_scale(part.highjumpcloud2, xscale, 1);
-		create_particle(x, y, part.highjumpcloud2, 0);
 	}
 	image_speed = 0.35;
 }

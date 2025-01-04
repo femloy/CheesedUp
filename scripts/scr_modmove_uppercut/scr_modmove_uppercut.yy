@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_modmove_uppercut",
   "parent":{
-    "name":"Attacks",
-    "path":"folders/Scripts/CheesyPizza/Moves/Attacks.yy",
+    "name":"Player Moves",
+    "path":"folders/Scripts/Player Moves.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

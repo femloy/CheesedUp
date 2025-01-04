@@ -1,35 +1,34 @@
 scr_music_pitch();
 
 // lower music volume for sfx
-var _found = false;
+var _found = 0;
 with obj_totem
 {
 	if fmod_event_instance_is_playing(snd) && distance_to_object(obj_player1) <= 400
-		_found = true;
+		_found = 1;
 }
 with obj_player
 {
 	if state == states.gottreasure
-		_found = true;
+		_found = 1;
 }
 with obj_pumpkin
 {
 	if !trickytreat
 	{
 		if distance_to_object(obj_player1) <= soundradius
-			_found = true;
+			_found = 1;
 	}
 }
-if _found
-	fmod_set_parameter("totem", 1, false);
-else
-{
-	fmod_set_parameter("totem", 0, false);
-	if instance_exists(obj_bossdark)
-		fmod_set_parameter("totem", 1, false);
-	if instance_exists(obj_charswitch_intro)
-		fmod_set_parameter("totem", 2, false);
-}
+with obj_bossdark
+	_found = 1;
+with obj_charswitch_intro
+	_found = 2;
+
+if scr_modding_hook_any("music/totem")
+	_found = live_result;
+
+fmod_set_parameter("totem", _found, false);
 
 // handle jukebox
 if global.jukebox != noone
@@ -129,26 +128,24 @@ if instance_exists(obj_player1) && !obj_pause.pause
 		{
 			destroy_sounds([panicmusicID]);
 			
-			if MOD.CosmicClones
-				panicmusicID = fmod_event_create_instance("event:/modded/cosmicclone");
-			else if global.snickchallenge
-				panicmusicID = fmod_event_create_instance("event:/modded/level/snickchallenge");
-			else if DEATH_MODE && MOD.DeathMode
-				panicmusicID = fmod_event_create_instance("event:/modded/deathmode");
-			else if room == tower_finalhallway or global.leveltosave == "exit" or global.timeattack
-				panicmusicID = fmod_event_create_instance("event:/music/finalescape");
-			else
-			{
-				var char = obj_player1.character;
-				switch char
-				{
-					default: panicmusicID = fmod_event_create_instance("event:/music/pizzatime"); break;
-					case "N": panicmusicID = fmod_event_create_instance("event:/music/pizzatimenoise"); break;
-					case "SP": panicmusicID = fmod_event_create_instance("event:/modded/sugary/escapeSP"); break;
-				}
-			}
-			cyop_freemusic();
+			var event = "event:/music/pizzatime";
 			
+			if MOD.CosmicClones
+				event = "event:/modded/cosmicclone";
+			else if global.snickchallenge
+				event = "event:/modded/level/snickchallenge";
+			else if room == tower_finalhallway or global.leveltosave == "exit" or global.timeattack
+				event = "event:/music/finalescape";
+			else if obj_player1.character == "N"
+				event = "event:/music/pizzatimenoise";
+			
+			if scr_modding_hook_any("music/panic", [event]) != undefined
+				event = live_result;
+			
+			panicmusicEV = event;
+			panicmusicID = fmod_event_create_instance(event);
+			
+			cyop_freemusic();
 			trace("Starting panic music: step");
 			panicstart = true;
 			
@@ -171,11 +168,15 @@ if instance_exists(obj_player1) && !obj_pause.pause
 		}
 		else if fmod_event_instance_is_playing(panicmusicID)
 		{
-			if MOD.CosmicClones
+			if !scr_modding_hook_falser("music/panicstep", [panicmusicID, panicmusicEV])
+			{
+				
+			}
+			else if MOD.CosmicClones
 			{
 				if check_lap_mode(LAP_MODES.laphell) && global.laps >= 2 // pillar john's revenge
 					fmod_event_instance_set_parameter(panicmusicID, "state", 20, true);
-				else if (global.panic && global.leveltosave != "sucrose") or global.lap
+				else if global.panic
 					fmod_event_instance_set_parameter(panicmusicID, "state", 1, true);
 			}
 			else if global.snickchallenge
@@ -185,8 +186,6 @@ if instance_exists(obj_player1) && !obj_pause.pause
 				var secs = 56;
 				if obj_player1.character == "N"
 					secs = 65;
-				if obj_player1.character == "SP"
-					secs = 43;
 				if global.fill <= secs * 12
 					fmod_event_instance_set_parameter(panicmusicID, "state", 1, true);
 			}

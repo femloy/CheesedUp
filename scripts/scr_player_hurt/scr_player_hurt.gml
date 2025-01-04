@@ -1,8 +1,8 @@
 function scr_player_hurt()
 {
-	if (sprite_index == spr_hurtjump)
+	if sprite_index == spr_hurtjump
 		hsp = xscale * movespeed;
-	if (sprite_index == spr_hurt)
+	if sprite_index == spr_hurt
 		hsp = -xscale * movespeed;
 	freefallsmash = 0;
 	combo = 0;
@@ -10,7 +10,7 @@ function scr_player_hurt()
 	bounce = false;
 	jumpAnim = true;
 	dashAnim = true;
-	if (grounded)
+	if grounded
 		landAnim = false;
 	else
 		landAnim = true;

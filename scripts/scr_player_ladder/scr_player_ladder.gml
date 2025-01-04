@@ -74,20 +74,16 @@ function scr_player_ladder()
 		hooked = false;
 	}
 	
-	if (input_buffer_jump > 0)
+	if input_buffer_jump > 0
 	{
-		input_buffer_jump = 0;
+		scr_modmove_jump();
 		hooked = false;
-		sprite_index = spr_jump;
 		ladderbuffer = 20;
-		if (place_meeting(x, y, obj_hookup))
+		if place_meeting(x, y, obj_hookup)
 			ladderbuffer = 30;
-		jumpAnim = true;
-		state = states.jump;
-		vsp = IT_jumpspeed();
-		image_index = 0;
 	}
-	if (key_down && grounded && !place_meeting(x, y, obj_platform))
+	
+	if key_down && grounded && !place_meeting(x, y, obj_platform)
 	{
 		state = states.normal;
 		image_index = 0;

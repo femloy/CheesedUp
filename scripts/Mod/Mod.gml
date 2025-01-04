@@ -1,15 +1,20 @@
+#macro MOD_FORMAT 2
+
 function Mod(_mod_json, _mod_root) constructor
 {
 	name = _mod_json[$ "name"] ?? "Unnamed Mod";
 	desc = _mod_json[$ "desc"] ?? "Add a \"desc\" value to your mod.json!";
 	author = _mod_json[$ "author"] ?? "Unknown";
 	version = _mod_json[$ "version"] ?? "1.0";
+	format = _mod_json[$ "format"] ?? 1;
 	
 	mod_root = _mod_root;
 	enabled = true;
 	icon = noone;
 	lang_map = noone;
 	conditions = scr_load_gml(_mod_root + "/conditions.gml");
+	
+	mod_global = {};
 	
 	code = 
 	{
@@ -201,6 +206,8 @@ function Mod(_mod_json, _mod_root) constructor
 		with {}
 			scr_modding_process(other, "cleanup");
 		set_enabled(false);
+		
+		mod_global = {};
 		
 		// banks
 		while array_length(bank_cache)

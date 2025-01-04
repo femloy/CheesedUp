@@ -1,8 +1,8 @@
 {
 	"spr_beatbox": {"images": 1},
 	"spr_shirt": {"images": 1},
-	
-
+	"spr_breakdancenotes": {"images": 7, "speed": 0},
+	"spr_itspizzatime": {"images": 2, "speed": 0.2},
 
 	"spr_idle": {"images": 33, "xorigin": 50, "yorigin": 50},
 	"spr_move": {"images": 12, "xorigin": 50, "yorigin": 50},
@@ -57,11 +57,13 @@
 	"spr_poundcancel2": {"images": 5, "xorigin": 50, "yorigin": 50},
 	"spr_machfreefall": {"images": 8, "xorigin": 59, "yorigin": 50},
 	"spr_hurt": {"images": 3, "xorigin": 50, "yorigin": 50},
+	"spr_hurtjump": {"images": 3, "xorigin": 50, "yorigin": 50},
 	"spr_entergate": {"images": 47, "xorigin": 50, "yorigin": 50},
 	"spr_walkfront": {"images": 18, "xorigin": 50, "yorigin": 50},
 	"spr_Timesup": {"images": 17, "xorigin": 50, "yorigin": 50},
 	"spr_crouchslip": {"images": 3, "xorigin": 50, "yorigin": 50},
 	"spr_crouch": {"images": 24, "xorigin": 50, "yorigin": 50},
+	"spr_couchstart": {"images": 3, "xorigin": 50, "yorigin": 50},
 	"spr_crouchfall": {"images": 3, "xorigin": 50, "yorigin": 50},
 	"spr_crouchjump": {"images": 3, "xorigin": 50, "yorigin": 50},
 	"spr_crawl": {"images": 8, "xorigin": 50, "yorigin": 50},

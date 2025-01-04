@@ -151,15 +151,6 @@ switch (sprite_index)
 										sprite_index = spr_firemouthidle;
 									}
 									break;
-								case states.removed_state:
-								case states.removed_state:
-								case states.removed_state:
-									hsp = 0;
-									movespeed = 0;
-									drillspeed = 0;
-									state = states.removed_state;
-									sprite_index = spr_cotton_drill;
-									break;
 							}
 						}
 					}

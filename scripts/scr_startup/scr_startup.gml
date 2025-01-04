@@ -85,7 +85,7 @@ if !directory_exists(exe_folder + "data")
 if TESTBUILD
 	global.debug_mode = true;
 
-#macro TESTBUILD GM_build_type == "run"
+#macro TESTBUILD (GM_build_type == "run")
 #macro DEBUG scr_debugmode()
 #macro YYC code_is_compiled()
 #macro PLAYTEST 0
