@@ -151,7 +151,7 @@ function scr_player_climbwall()
 	
 	if input_buffer_jump > 8 && !CHAR_BASENOISE
 	{
-		if scr_modding_hook_falser("player/climbwall/jump")
+		if scr_modding_hook_falser("player/climbwall/prejump")
 		{
 			scr_fmod_soundeffect(jumpsnd, x, y);
 			input_buffer_jump = 0;
@@ -169,6 +169,8 @@ function scr_player_climbwall()
 			xscale *= -1;
 			jumpstop = false;
 			walljumpbuffer = 4;
+			
+			scr_modding_hook("player/climbwall/postjump");
 		}
 		
 		/*

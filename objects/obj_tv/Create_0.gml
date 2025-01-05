@@ -86,7 +86,6 @@ tv_bg = {surf: noone, sprite: spr_gate_entranceBG, parallax: [0.65, 0.75, 0.85],
 lapflag_index = 0;
 targetspr = spr_tv_off;
 targetspr_old = spr_tv_off;
-propeller_index = 0;
 hand_x = 0;
 hand_y = 0;
 fill_lerp = 0;

@@ -1,6 +1,6 @@
 function scr_modmove_grab(move_type = MOD_MOVE_TYPE.grabattack, required_state = state)
 {
-	if scr_modding_hook_falser("player/suplexdash/perform", [move_type, required_state])
+	if scr_modding_hook_falser("player/suplexdash/preperform", [move_type, required_state])
 	{
 		if suplexmove && IT_grab_suplexmove_check()
 			exit;
@@ -40,8 +40,10 @@ function scr_modmove_grab(move_type = MOD_MOVE_TYPE.grabattack, required_state =
 			with instance_create(x, y, obj_crazyrunothereffect)
 				copy_player_scale(other);
 		}
-	
+		
 		particle_set_scale(part.jumpdust, xscale, 1);
 		create_particle(x, y, part.jumpdust, 0);
+		
+		scr_modding_hook("suplexdash/postperform", [move_type, required_state]);
 	}
 }

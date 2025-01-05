@@ -27,7 +27,7 @@ function scr_player_tumble()
 	{
 		machrollspr = spr_lonegustavo_roll;
 		divespr = spr_lonegustavo_dive;
-		crouchslipspr = spr_lonegustavocrouchwalk;
+		crouchslipspr = spr_lonegustavo_crouchslide;
 	}
 	
 	// vigi states

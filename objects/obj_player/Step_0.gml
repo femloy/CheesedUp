@@ -1101,7 +1101,8 @@ if (character != "M")
 	if !scr_solid_player(x, y)
 	{
 		if (state != states.ratmountcrouch && state != states.boxxedpepjump && state != states.boxxedpepspin && !(state == states.bump && sprite_index == spr_tumbleend) && (state != states.barrelslide && state != states.barrelclimbwall) && sprite_index != spr_player_breakdancesuper && sprite_index != spr_barrelslipnslide && sprite_index != spr_barrelroll && sprite_index != spr_bombpepintro && sprite_index != spr_knightpepthunder && state != states.stunned && state != states.crouch && state != states.shotguncrouch && state != states.shotguncrouchjump && state != states.boxxedpep && (state != states.pistol && sprite_index != spr_player_crouchshoot) && state != states.Sjumpprep && state != states.crouchslide && state != states.chainsaw && (state != states.machroll or character == "S") && state != states.hurt && state != states.crouchjump && state != states.cheesepepstickup && state != states.cheesepepstickside && state != states.tumble
-		&& sprite_index != spr_playerN_jetpackslide && state != states.removed_state && sprite_index != spr_pizzano_crouchslide && sprite_index != spr_breakdancesuper)
+		&& sprite_index != spr_playerN_jetpackslide && sprite_index != spr_breakdancesuper)
+		&& !scr_modding_hook_truer("player/crouchmask")
 			mask_index = spr_player_mask;
 		else
 			mask_index = spr_crouchmask;

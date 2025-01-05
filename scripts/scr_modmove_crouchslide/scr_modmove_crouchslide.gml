@@ -5,13 +5,14 @@ function scr_modmove_crouchslide()
 	
 	machhitAnim = false;
 	grav = 0.5;
+	
+	image_index = 0;
 	sprite_index = spr_crouchslip;
 	
 	if !IT_old_machroll()
 	{
-		movespeed = 12;
+		movespeed = REMIX ? max(movespeed, 12) : 12;
 		crouchslipbuffer = 25;
-		image_index = 0;
 		state = states.tumble;
 		fmod_event_instance_play(snd_crouchslide);
 	}
@@ -19,7 +20,6 @@ function scr_modmove_crouchslide()
 	{
 		movespeed = 15;
 		state = states.crouchslide;
-			
 		if IT_crouchslide_super()
 			sprite_index = spr_breakdancesuper;
 	}

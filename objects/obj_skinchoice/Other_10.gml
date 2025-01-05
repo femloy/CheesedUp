@@ -304,7 +304,7 @@ if global.sandbox
 }
 
 // custom
-scr_modding_hook("skinchoice/postpalettes");
+scr_modding_hook("dresser/postpalettes");
 
 // calculate all that
 init = true;

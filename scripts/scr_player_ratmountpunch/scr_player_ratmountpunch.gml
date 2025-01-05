@@ -42,7 +42,7 @@ function scr_player_ratmountpunch()
 			create_particle(x, y, part.jumpdust);
 			movespeed = 12;
 			crouchslipbuffer = 25;
-			sprite_index = spr_lonegustavocrouchwalk; // crouchslip
+			sprite_index = spr_lonegustavo_crouchslide;
 			machhitAnim = false;
 			state = states.tumble;
 			fmod_event_instance_play(snd_crouchslide);

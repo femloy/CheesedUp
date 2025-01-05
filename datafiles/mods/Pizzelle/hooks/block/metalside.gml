@@ -1,2 +1,2 @@
 // Break metal blocks when rolling
-return (state == states.tumble && grounded && movespeed > 12);
+return (character == "PZ" && state == states.tumble && grounded && movespeed > 12);

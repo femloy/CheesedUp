@@ -20,6 +20,7 @@ function scr_modding_hooks()
 		"player/reset",
 		"player/prestate",
 		"player/poststate",
+		"player/crouchmask",
 		"player/instakill",
 		"player/mach3effect",
 		"player/blureffect",
@@ -37,9 +38,15 @@ function scr_modding_hooks()
 		"block/preventbump",
 		
 		// Player states
-		"player/suplexdash/anim",
-		"player/suplexdash/perform",
-		"player/climbwall/jump",
+		"player/suplexdash/animation",
+		"player/suplexdash/preperform",
+		"player/suplexdash/postperform",
+		"player/suplexdash/precancel",
+		"player/suplexdash/postcancel",
+		"player/suplexdash/prelongjump",
+		"player/suplexdash/postlongjump",
+		"player/climbwall/prejump",
+		"player/climbwall/postjump",
 		
 		// Enemy states
 		"enemy/grabbed/position",
@@ -58,8 +65,9 @@ function scr_modding_hooks()
 		"music/panic",
 		"music/panicstep",
 		
-		// Skinchoice
-		"skinchoice/postpalettes"
+		// Menus
+		"dresser/postpalettes",
+		"jukebox/postsongs",
 	];
 }
 

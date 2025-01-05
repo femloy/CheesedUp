@@ -375,7 +375,12 @@ if sprite_exists(targetspr) && targetspr_old != targetspr && global.hud != HUD_S
 		spr_bgfinal = custom.sprites.hud[$ "spr_tv_bgfinal"] ?? spr_tv_bgfinal;
 		spr_clip = custom.sprites.hud[$ "spr_tv_clip"] ?? spr_tv_clip;
 		placeholderspr = custom.sprites.hud[$ "spr_tv_placeholder"] ?? targetspr;
-		sprite_index = custom.sprites.hud[$ sprite_get_name(targetspr)] ?? placeholderspr;
+		
+		var name = sprite_get_name(targetspr);
+		if !string_starts_with(name, "__newsprite")
+			sprite_index = custom.sprites.hud[$ sprite_get_name(targetspr)] ?? placeholderspr;
+		else
+			sprite_index = targetspr;
 	}
 	else
 	{

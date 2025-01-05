@@ -218,14 +218,10 @@ function scr_player_revolver()
 	{
 		if floor(image_index) >= image_number - 6 && move == -xscale
 		{
-			sound_play_3d("event:/sfx/pep/grabcancel", x, y);
-			sprite_index = spr_suplexcancel;
-			jumpAnim = true;
-			image_index = 0;
-			
-			state = states.jump;
+			scr_modmove_grabcancel();
 			pistolcooldown = 25;
 			xscale = move;
+			dir = move;
 		}
 	}
 	

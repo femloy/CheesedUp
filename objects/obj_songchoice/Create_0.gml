@@ -19,6 +19,7 @@ sections = [];
 function JukeboxSection(game_name, disc_index) constructor
 {
 	name = game_name;
+	sprite = bg_jukeboxdisc;
 	index = disc_index;
 	songs = [];
 	
@@ -270,6 +271,8 @@ if SUGARY_SPIRE
 	}
 }
 
+scr_modding_hook("jukebox/postsongs");
+
 // select automatically
 if global.jukebox != noone
 {
@@ -306,7 +309,7 @@ draw = function(curve)
 	else
 		xscale = lerp(2, 0, discanim * 2);
 	
-	draw_sprite_ext(bg_jukeboxdisc, sections[sel.game].index, 640, 280, xscale, 2, discrot, c_white, talpha * 0.8);
+	draw_sprite_ext(sections[sel.game].sprite, sections[sel.game].index, 640, 280, xscale, 2, discrot, c_white, talpha * 0.8);
 	
 	// current song
 	var song = sections[sel.game].songs[sel.song];

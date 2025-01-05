@@ -81,7 +81,7 @@ if character == "PZ"
     // wallkick sound
     if sprite_index == spr_walljumpstart or sprite_index == spr_walljumpend
         sound_instance_move(MOD_GLOBAL.PZ_snd_wallkick, x, y);
-    else if sound_is_playing(MOD_GLOBAL.PZ_snd_wallkick)
+    else if sound_is_playing(MOD_GLOBAL.PZ_snd_wallkick) && state != states.backbreaker
         fmod_event_instance_set_parameter(MOD_GLOBAL.PZ_snd_wallkick, "state", 1, true);
     
     // state specific
@@ -142,6 +142,8 @@ if character == "PZ"
         #region WALL KICK
 
         case "PZ_wallkick":
+            tv_do_expression(MOD_GLOBAL.spr_tv_exprmach2);    
+            
             suplexmove = true;
             move = key_left + key_right;
             hsp = movespeed;
@@ -245,6 +247,9 @@ if character == "PZ"
                 if sprite_index == spr_walljumpfastfallstart
                     sprite_index = spr_walljumpfastfall;
             }
+
+            if key_shoot2
+			    scr_perform_move(2, state);
             
             //if !instance_exists(obj_wallkickDust)
             //    instance_create(x + random_range(-40, 40), y + random_range(-40, 40), obj_wallkickDust);

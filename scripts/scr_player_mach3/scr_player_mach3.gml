@@ -238,7 +238,7 @@ function scr_player_mach3()
 			state = states.machslide;
 			image_index = 0;
 		}
-		if (scr_mach_check_dive() && fightball == 0 && (sprite_index != spr_dashpadmach or SUGARY))
+		if scr_mach_check_dive() && !fightball && sprite_index != spr_dashpadmach
 		{
 			particle_set_scale(part.jumpdust, xscale, 1);
 			create_particle(x, y, part.jumpdust, 0);
@@ -249,7 +249,7 @@ function scr_player_mach3()
 			if !IT_old_machroll()
 			{
 				image_index = 0;
-				if (!grounded)
+				if !grounded
 					sprite_index = spr_mach2jump;
 				else
 					sprite_index = spr_machroll;
@@ -257,7 +257,7 @@ function scr_player_mach3()
 			else
 			{
 				state = states.machroll;
-				if (character == "V")
+				if character == "V"
 					sprite_index = spr_playerV_divekickstart;
 			}
 		}

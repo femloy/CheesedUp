@@ -320,67 +320,30 @@ function scr_player_punch()
 		
 		if _kungfuground && input_buffer_jump > 0 && can_jump
 		{
-			scr_fmod_soundeffect(jumpsnd, x, y);
-			input_buffer_jump = 0;
-			particle_set_scale(part.jumpdust, xscale, 1);
-			create_particle(x, y, part.jumpdust, 0);
-			jumpstop = false;
-			image_index = 0;
-			vsp = IT_jumpspeed();
-			
-			if SUGARY_SPIRE && character == "SN"
-			{
-				// unfun sugary way
-				/*
-				state = states.punch;
-				sprite_index = choose(spr_kungfuair1transition, spr_kungfuair2transition, spr_kungfuair3transition);
-				*/
-				
-				// fun cheesed up way
-				state = states.removed_state;
-				if movespeed > 12
-					sprite_index = spr_pizzano_machtwirl;
-				else
-					sprite_index = spr_pizzano_twirl;
-			}
-			else if CHAR_POGONOISE
+			scr_modmove_longjump();
+			if CHAR_POGONOISE
 			{
 				state = states.jump;
 				jumpAnim = true;
 			}
-			else
-			{
-				state = states.mach2;
-				if character == "P" or spr_longjump != spr_player_longjump
-					sprite_index = spr_longjump;
-				else
-					sprite_index = spr_mach2jump;
-			}
-			movespeed = max(movespeed, 6);
 		}
 		else if _kungfuground && vsp < 0
 			sprite_index = choose(spr_kungfuair1, spr_kungfuair2, spr_kungfuair3);
 		
 		if scr_mach_check_dive() && (_kungfuair or _kungfuground) && !IT_old_machroll()
 		{
-			particle_set_scale(part.jumpdust, xscale, 1);
-			create_particle(x, y, part.jumpdust, 0);
-			state = states.tumble;
-			image_index = 0;
-			
 			if !grounded
 			{
+				particle_set_scale(part.jumpdust, xscale, 1);
+				create_particle(x, y, part.jumpdust, 0);
+				state = states.tumble;
+				image_index = 0;
 				sprite_index = spr_mach2jump;
 				flash = false;
 				vsp = 10;
 			}
 			else
-			{
-				sprite_index = spr_crouchslip;
-				movespeed = max(movespeed, 12);
-				crouchslipbuffer = 25;
-				fmod_event_instance_play(snd_crouchslide);
-			}
+				scr_modmove_crouchslide();
 		}
 		if !key_jump2 && jumpstop == 0 && vsp < 0 && _kungfuair
 		{

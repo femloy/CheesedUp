@@ -2,7 +2,6 @@ function scr_player_handstandjump()
 {
 	var maxmovespeed = 10;
 	var accel = 0.5;
-	var jumpspeed = IT_jumpspeed();
 	
 	landAnim = false;
 	hsp = xscale * movespeed;
@@ -60,26 +59,7 @@ function scr_player_handstandjump()
 	}
 	
 	if input_buffer_jump > 0 && (can_jump or sprite_index == spr_lunge) && !key_down
-	{
-		input_buffer_jump = 0;
-		particle_set_scale(part.jumpdust, xscale, 1);
-		create_particle(x, y, part.jumpdust, 0);
-		jumpstop = false;
-		image_index = 0;
-		vsp = jumpspeed;
-		
-		if !CHAR_POGONOISE && IT_grabjump_mach2()
-		{
-			state = states.mach2;
-			if IT_longjump() && (character == "P" or spr_longjump != spr_player_longjump)
-			{
-				fmod_event_instance_play(rollgetupsnd);
-				sprite_index = spr_longjump;
-			}
-			else
-				sprite_index = spr_mach2jump;
-		}
-	}
+		scr_modmove_longjump();
 	
 	// end ungrounded grab
 	if grounded && sprite_index == airattackdash
@@ -185,25 +165,9 @@ function scr_player_handstandjump()
 	
 	// grab cancel
 	if state != states.bump && move != xscale && move != 0
-	{
-		image_index = 0;
-		if !grounded && IT_grab_cancel()
-		{
-			sound_play_3d("event:/sfx/pep/grabcancel", x, y);
-			sprite_index = spr_suplexcancel;
-			jumpAnim = true;
-			grav = 0.5;
-			state = states.jump;
-		}
-		else
-		{
-			state = states.normal;
-			movespeed = 2;
-			grav = 0.5;
-		}
-	}
+		scr_modmove_grabcancel();
 	
-	if scr_modding_hook_falser("player/suplexdash/anim")
+	if scr_modding_hook_falser("player/suplexdash/animation")
 	{
 		// animation
 		if sprite_index == attackdash && !grounded && sprite_index != spr_lunge
