@@ -44,6 +44,6 @@ function scr_modmove_grab(move_type = MOD_MOVE_TYPE.grabattack, required_state =
 		particle_set_scale(part.jumpdust, xscale, 1);
 		create_particle(x, y, part.jumpdust, 0);
 		
-		scr_modding_hook("suplexdash/postperform", [move_type, required_state]);
+		scr_modding_hook("player/suplexdash/postperform", [move_type, required_state]);
 	}
 }

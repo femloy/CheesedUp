@@ -26,8 +26,6 @@ if (room == hub_loadingscreen && state != 2)
 			player_patterntexture[1] = scr_get_texture_palette(_texture2);
 			global.palettetexture = player_patterntexture[0];
 			
-			
-			
 			if (_intro or global.sandbox)
 			{
 				targetRoom = tower_entrancehall;
@@ -35,8 +33,15 @@ if (room == hub_loadingscreen && state != 2)
 				state = states.victory;
 				
 				character = ini_read_string("Game", "character", "P");
-				if global.swapmode
-					character = global.swap_characters[global.swap_index];
+				if !array_contains(scr_charlist(), character)
+				{
+					character = "P";
+					player_paletteselect[0] = 1;
+				}
+				
+				//if global.swapmode
+				//	character = global.swap_characters[global.swap_index];
+				
 				noisetype = noisetype.base;
 				scr_characterspr();
 				
@@ -72,8 +77,9 @@ if (room == hub_loadingscreen && state != 2)
 				
 				if character == ""
 					character = "P";
-				if global.swapmode
-					character = global.swap_characters[global.swap_index];
+				
+				//if global.swapmode
+				//	character = global.swap_characters[global.swap_index];
 				
 				obj_savesystem.ini_str = ini_close();
 				gamesave_async_save();

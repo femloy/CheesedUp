@@ -25,7 +25,9 @@ function scr_load_file(filename)
 	if b == -1
 		return undefined;
 	
-	var s = buffer_read(b, buffer_text);
+	var s = "";
+	if buffer_get_size(b) > 0
+		s = buffer_read(b, buffer_text);
 	buffer_delete(b);
 	return s;
 }
