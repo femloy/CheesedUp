@@ -12,6 +12,7 @@ function scr_charactername(character, isgustavo)
 		case "V": return "Vigilante"; break;
 		case "S": return "Snick"; break;
 		case "M": return "Pepperman"; break;
+		case "MS": return "Mr Stick"; break;
 	}
 	
 	var custom = scr_modding_character(character);

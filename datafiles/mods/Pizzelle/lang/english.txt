@@ -58,7 +58,7 @@ dresser_PZ11D = "Also known as... grayscale."
 dresser_PZ7_mix = "GRAYSCALE"
 
 dresser_PZ15 = "Zombified"
-dresser_PZ15D = "The inspiration-ception bullet ricocheted into my skull."
+dresser_PZ15D = "Sorry about that."
 dresser_PZ15_mix = "ZOMBIE"
 
 dresser_PZ16 = "Forestation"

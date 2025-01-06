@@ -3,6 +3,7 @@ hsp = lengthdir_x(spd, _dir);
 vsp = lengthdir_y(spd, _dir);
 x = Approach(x, x_to, abs(hsp));
 y = Approach(y, y_to, abs(vsp));
+
 if (!finish)
 {
 	if (abs(x - x_to) <= 18 && abs(y - y_to) <= 18)

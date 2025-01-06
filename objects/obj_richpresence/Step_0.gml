@@ -282,7 +282,7 @@ if state == ""
 			case tower_cheftaskextra: state = "Outer Achievements"; break;
 			case tower_basement: state = "Rock Bottom"; break;
 			case tower_cheftaskbasement: state = "Sub Achievements"; break;
-			case tower_meta: state = "Slop Zone"; break;
+			case tower_slop: state = "Slop Zone"; break;
 			case tower_hubroomE: state = "Abandoned Lobby"; break;
 			case tower_freerun: state = "Freerunning"; break;
 			case tower_shop: state = "Weekend Delight"; break;

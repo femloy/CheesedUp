@@ -98,7 +98,7 @@ function hub_state(_room, _sound, _secretsound)
 		
 		case tower_extra:
 		case tower_sage:
-		case tower_meta:
+		case tower_slop:
 		case tower_hubroomE:
 		case tower_cheftaskextra:
 			s = 5;

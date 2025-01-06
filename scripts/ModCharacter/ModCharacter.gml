@@ -150,7 +150,17 @@ function ModCharacter(_character, _json, _path) constructor
 		// sprite data
 		var sprite_data_file = scr_load_file(path + "/spritedata.json");
 		if sprite_data_file != undefined
-			sprite_data = json_parse(sprite_data_file);
+		{
+			try
+			{
+				sprite_data = json_parse(sprite_data_file);
+			}
+			catch (e)
+			{
+				audio_play_sound(sfx_pephurt, 0, false);
+				show_message("The spritedata.json failed to load!\n\n" + string(e));
+			}
+		}
 		
 		// sprites
 		find_sprites(path + "/player/", sprites.player);

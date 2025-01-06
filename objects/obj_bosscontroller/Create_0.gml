@@ -65,6 +65,17 @@ bossspr = spr_vsnoise;
 refresh_sprites = function()
 {
 	playersprshadow = noone;
+	
+	var custom = scr_modding_character(obj_player1.character);
+	if custom != noone
+	{
+		playerspr = custom.sprites.misc[$ "spr_vsplayer"] ?? spr_vspeppino;
+		vstitleplayer = custom.sprites.misc[$ "spr_vstitle"] ?? spr_vstitle_player;
+		playersprshadow = custom.sprites.misc[$ "spr_vsplayershadow"] ?? noone;
+		player_hpsprite = custom.sprites.misc[$ "spr_bossfight_playerhp"] ?? spr_bossfight_playerhp;
+		exit;
+	}
+	
 	switch obj_player1.character
 	{
 		case "N":

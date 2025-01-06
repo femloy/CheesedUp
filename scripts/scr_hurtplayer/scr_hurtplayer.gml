@@ -398,7 +398,7 @@ function scr_hurtplayer(player)
 				else
 				{
 					var d = instance_find(obj_hpeffect, instance_number(obj_hpeffect) - 1);
-					scr_bosscontroller_particle_hp(spr_bossfight_playerhp, irandom(sprite_get_number(spr_bossfight_playerhp) - 1), d.x, d.y, (d.x > (room_width / 2)) ? -1 : 1, obj_player1.spr_palette, obj_player1.paletteselect, global.palettetexture);
+					scr_bosscontroller_particle_hp(player_hpsprite, irandom(sprite_get_number(player_hpsprite) - 1), d.x, d.y, (d.x > (room_width / 2)) ? -1 : 1, obj_player1.spr_palette, obj_player1.paletteselect, global.palettetexture);
 					instance_destroy(d);
 				}
 			}

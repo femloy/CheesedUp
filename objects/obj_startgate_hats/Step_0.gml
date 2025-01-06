@@ -25,12 +25,20 @@ switch (state)
 }
 
 var char = obj_player1.character;
-switch char
+if char != char_prev
 {
-	case "P": sprite_index = spr_bossfight_playerhp; break;
-	case "V": sprite_index = spr_bossfight_vigiHP; break;
-	case "N": sprite_index = spr_bossfight_noiseHP; break;
-	case "M": sprite_index = spr_bossfight_pepperhp; break;
-	case "F": sprite_index = spr_bossfight_fakepephp; break;
-	case "SP": if SUGARY_SPIRE sprite_index = spr_bossfight_pizzyhp; break;
+	var custom = scr_modding_character(char);
+	if custom != noone
+		sprite_index = custom.sprites.misc[$ "spr_bossfight_playerhp"] ?? spr_bossfight_playerhp;
+	else
+	{
+		switch char
+		{
+			case "P": sprite_index = spr_bossfight_playerhp; break;
+			case "V": sprite_index = spr_bossfight_vigiHP; break;
+			case "N": sprite_index = spr_bossfight_noiseHP; break;
+			case "M": sprite_index = spr_bossfight_pepperhp; break;
+		}
+	}
+	char_prev = char;
 }
