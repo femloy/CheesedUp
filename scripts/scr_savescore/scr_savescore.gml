@@ -1,37 +1,37 @@
-function scr_savescore(level, do_save)
+function scr_get_rank()
 {
 	if MOD.EasyMode
-		global.rank = "f";
+		return "f";
 	else if global.timeattack
 	{
 		if global.tatime <= global.tasrank
-			global.rank = scr_is_p_rank() ? "p" : "s";
+			return scr_is_p_rank() ? "p" : "s";
 		else if global.tatime <= global.taarank
-			global.rank = "a";
+			return "a";
 		else if global.tatime <= global.tabrank
-			global.rank = "b";
+			return "b";
 		else if global.tatime <= global.tacrank
-			global.rank = "c";
+			return "c";
 		else
-			global.rank = "d";
+			return "d";
 	}
 	else if global.collect + global.collectN >= global.srank
-	{
-		global.rank = "s";
-		if scr_is_p_rank()
-			global.rank = "p";
-	}
+		return scr_is_p_rank() ? "p" : "s";
 	else if global.collect + global.collectN > global.arank
-		global.rank = "a";
+		return "a";
 	else if global.collect + global.collectN > global.brank
-		global.rank = "b";
+		return "b";
 	else if global.collect + global.collectN > global.crank
-		global.rank = "c";
+		return "c";
 	else
-		global.rank = "d";
+		return "d";
+}
+function scr_savescore(level, do_save)
+{
+	global.rank = scr_get_rank();
 	scr_play_rank_music();
 	
-	if global.saveloaded && MOD.EasyMode
+	if global.saveloaded && !do_save && global.rank == "f"
 	{
 		ini_open_from_string(obj_savesystem.ini_str);
 		scr_write_rank(level);
@@ -43,6 +43,7 @@ function scr_savescore(level, do_save)
 		trace("[scr_savescore] Saving to: ", get_savefile_ini());
 		
 		ini_open_from_string(obj_savesystem.ini_str);
+		ini_write_real("Game", "pizzacoin", global.pizzacoin);
 		
 		// global stats
 		if global.timeattack
@@ -57,7 +58,7 @@ function scr_savescore(level, do_save)
 		{
 			ini_write_real("Game", "laps", ini_read_real("Game", "laps", 0) + global.laps + 1);
 			ini_write_real("Game", "retries", ini_read_real("Game", "retries", 0) + global.levelattempts);
-		
+			
 			if DEATH_MODE
 			{
 				if MOD.DeathMode
@@ -137,16 +138,14 @@ function scr_play_rank_music()
 		exit;
 	
 	var s = 4.5;
-	if (global.rank == "p")
-		s = 5.5;
-	if (global.rank == "s")
-		s = 0.5;
-	if (global.rank == "a")
-		s = 1.5;
-	if (global.rank == "b")
-		s = 2.5;
-	if (global.rank == "c")
-		s = 3.5;
+	switch global.rank
+	{
+		case "p": s = 5.5; break;
+		case "s": s = 0.5; break;
+		case "a": s = 1.5; break;
+		case "b": s = 2.5; break;
+		case "c": s = 3.5; break;
+	}
 	
 	if ((room != tower_entrancehall || global.exitrank) && global.leveltosave != "tutorial")
 	{

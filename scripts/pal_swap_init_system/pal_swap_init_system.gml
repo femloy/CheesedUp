@@ -30,7 +30,6 @@ function pal_swap_init_system_fix(shader, map = false)
     global.Pattern_Spr_Tex_Data = shader_get_uniform(shader, "sprite_tex_data");
     global.Pattern_Spr_Scale = shader_get_uniform(shader, "sprite_scale");
     global.Pattern_Color_Array = shader_get_uniform(shader, "color_array");
-	global.Pattern_Index = 0;
 	global.Pattern_Solid_Color = shader_get_uniform(shader, "pattern_solid_color");
 	
 	global.Pal_Super_Noise = shader_get_uniform(shader, "noise_type");

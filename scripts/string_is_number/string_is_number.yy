@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"string_is_number",
   "parent":{
-    "name":"CheesyPizza",
-    "path":"folders/Scripts/CheesyPizza.yy",
+    "name":"Utilities",
+    "path":"folders/Scripts/CheesyPizza/Utilities.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

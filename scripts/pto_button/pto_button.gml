@@ -110,7 +110,7 @@ function pto_textbox(x, y, w = 254, h = 30, maximum = 32, placeholder = "", def 
 	draw_rectangle(x + 1, y + 1, x + w - 1, y + h - 1, true);
 	draw_set_colour(c_white);
 	
-	draw_set_bounds(x + 2, y, x + w - 2, y + h, false);
+	draw_set_bounds(x + 2, y, x + w - 2, y + h);
 	var xx = x, yy = y, scrollw = (h < 60 ? struct.scroll : 0), scrollh = (h >= 60 ? struct.scroll : 0);
 	
 	draw_text(xx + 6 + scrollw, yy + 6 + scrollh, struct.str);

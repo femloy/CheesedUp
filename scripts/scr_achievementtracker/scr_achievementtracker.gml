@@ -1,85 +1,3 @@
-// notification_push types
-enum notifs
-{
-	bodyslam_start,
-	bodyslam_end,
-	baddie_kill,
-	enemies_dead, // obj_achievement_enemiesdead
-	parry,
-	end_level,
-	mort_block,
-	hurt_player,
-	fall_outofbounds,
-	beer_destroy,
-	timedgateclock,
-	flush,
-	baddie_hurtboxkill, // parrying back a projectile
-	treasureguy_unbury,
-	levelblock_break, // asteroids, forest blocks and dead johns
-	destroyed_area, // space was gonna use this for a piledriving achievement
-	pizzaball,
-	pizzaball_killenemy,
-	pizzaball_goal,
-	brickball,
-	hungrypillar_dead,
-	brick_killenemy,
-	pigcitizen_photo,
-	pizzaboy_dead,
-	mrpinch_launch,
-	priest_collect,
-	secret_enter,
-	secret_exit,
-	destroy_iceblock,
-	monster_dead,
-	monster_activate,
-	monster_jumpscare,
-	knightpep_bump,
-	cheeseblock_activate,
-	ratblock_explode,
-	rattumble_dead,
-	ratblock_dead,
-	boilingsauce,
-	cow_kick,
-	cow_kick_count,
-	corpsesurf,
-	johnghost_collide,
-	priest_ghost,
-	superjump_timer,
-	shotgunblast_start,
-	shotgunblast_end,
-	block_break,
-	bazooka_explode,
-	wartimer_endlevel,
-	totem_revive, // machslideboost for a bit in front of it
-	boss_dead,
-	combo_end,
-	unlocked_achievement,
-	crawl_in_shit, // crawl in shit for 10 seconds
-	firsttime_ending, // beat the game for the first time
-	taunt,
-	johnresurrection, // with all treasures
-	knighttaken,
-	mrmooney_donated,
-	UNKNOWN_59,
-	
-	pumpkin_collect,
-	trickytreat_enter,
-	trickytreat_fail,
-	trickytreat_leave,
-	
-	cancel_noisedrill,
-	gate_taunt,
-	player_explosion,
-	endingrank,
-	breakdance,
-	slipbanan,
-	close_call, // do rank with pizzaface on screen
-	antigrav,
-	seen_ptg,
-	interact_granny,
-}
-
-// functions
 function add_achievement_update(_name, _update_rate, _creation_code, _update_func, _local = true, _savesection = noone, _savename = noone)
 {
 	var q = 
@@ -94,18 +12,18 @@ function add_achievement_update(_name, _update_rate, _creation_code, _update_fun
 	};
 	q.update_func = method(q, _update_func);
 	
-	if (_creation_code != noone)
+	if _creation_code != noone
 	{
 		q.creation_code = method(q, _creation_code);
 		q.creation_code();
 	}
 	
-	if (_local == false)
+	if _local == false
 	{
 		ini_open_from_string(obj_savesystem.ini_str_options);
-		if (ini_read_real(_savesection, _savename, false) == true)
+		if ini_read_real(_savesection, _savename, false) == true
 		{
-			trace(_savename, " already unlocked");
+			//trace(_savename, " already unlocked");
 			q.unlocked = true;
 			ini_close();
 			exit;
@@ -136,7 +54,7 @@ function add_achievement_notify(_name, _creation_code, _func, _local = true, _sa
 		ini_open_from_string(obj_savesystem.ini_str_options);
 		if ini_read_real(_savesection, _savename, false)
 		{
-			trace(_savename, " already unlocked");
+			//trace(_savename, " already unlocked");
 			q.unlocked = true;
 			ini_close();
 			exit;
@@ -149,7 +67,7 @@ function add_achievement_notify(_name, _creation_code, _func, _local = true, _sa
 function notification_push(notif, array)
 {
 	//trace("Pushing notification: ", notif, " ", array);
-	with (obj_achievementtracker)
+	with obj_achievementtracker
 		ds_queue_enqueue(notify_queue, [notif, array]);
 }
 function achievement_add_variable(_name, _value, _save = false, _resettable = false)
@@ -183,9 +101,9 @@ function achievement_get_all_variables()
 function achievement_unlock(_name, _display_name, _sprite, _index = 0)
 {
 	var b = achievement_get_struct(_name);
-	with (b)
+	with b
 	{
-		if (!unlocked)
+		if !unlocked
 		{
 			trace("Achievement unlocked! ", _name, " ", _display_name);
 			unlocked = true;
@@ -221,9 +139,9 @@ function scr_steam_unlock_achievement(_achievement)
 		trace("Steam API not initialized!");
 	*/
 }
-function palette_unlock(_achievement, _palettename, _paletteselect, _texture = noone, peppino = true)
+function palette_unlock(_achievement, _palettename, _paletteselect, _texture = noone, _character = "P")
 {
-	if global.sandbox && !array_contains(["grinch"], _palettename)
+	if global.sandbox && !array_contains(scr_sandbox_unlocks().palettes, _palettename)
 		exit;
 	
 	ini_open_from_string(obj_savesystem.ini_str_options);
@@ -242,11 +160,7 @@ function palette_unlock(_achievement, _palettename, _paletteselect, _texture = n
 			{
 				achievement_spr = noone;
 				sprite_index = spr_newclothes;
-				if (!peppino)
-				{
-					sprite_index = spr_newclothesN;
-					spr_palette = spr_noisepalette;
-				}
+				character = _character;
 				paletteselect = _paletteselect;
 				texture = _texture;
 			}
@@ -260,14 +174,14 @@ function achievement_reset_variables(achievement_array)
 	for (var i = 0; i < array_length(achievement_array); i++)
 	{
 		var b = achievement_array[i];
-		with (b)
+		with b
 		{
 			var size = ds_map_size(variables);
 			var key = ds_map_find_first(variables)
 			for (var j = 0; j < size; j++)
 			{
 				var q = ds_map_find_value(variables, key);
-				if (q.resettable)
+				if q.resettable
 					q.value = q.init_value;
 				key = ds_map_find_next(variables, key);
 			}
@@ -280,14 +194,14 @@ function achievement_save_variables(achievement_array)
 	{
 		var b = achievement_array[i];
 		ini_open_from_string(obj_savesystem.ini_str);
-		with (b)
+		with b
 		{
 			var size = ds_map_size(variables);
 			var key = ds_map_find_first(variables);
 			for (var j = 0; j < size; j++)
 			{
 				var q = ds_map_find_value(variables, key);
-				if (q.save)
+				if q.save
 					ini_write_real("achievements_variables", key, q.value);
 				key = ds_map_find_next(variables, key);
 			}
@@ -297,6 +211,7 @@ function achievement_save_variables(achievement_array)
 }
 function achievement_get_steam_achievements(achievement_array)
 {
+	/*
 	for (var i = 0; i < array_length(achievement_array); i++)
 	{
 		var b = achievement_array[i];
@@ -308,13 +223,14 @@ function achievement_get_steam_achievements(achievement_array)
 		}
 		obj_savesystem.ini_str = ini_close();
 	}
+	*/
 }
 function achievements_load(achievement_array)
 {
 	for (var i = 0; i < array_length(achievement_array); i++)
 	{
 		var b = achievement_array[i];
-		with (b)
+		with b
 		{
 			unlocked = ini_read_real("achievements", name, false);
 			var size = ds_map_size(variables);
@@ -322,7 +238,7 @@ function achievements_load(achievement_array)
 			for (var j = 0; j < size; j++)
 			{
 				var q = ds_map_find_value(variables, key);
-				if (q.save)
+				if q.save
 					q.value = ini_read_real("achievements_variables", key, q.init_value);
 				key = ds_map_find_next(variables, key);
 			}
@@ -336,19 +252,19 @@ function achievement_get_struct(_name)
 	for (var i = 0; i < array_length(l); i++)
 	{
 		var q = l[i];
-		if (q.name == _name)
+		if q.name == _name
 		{
 			b = q;
 			break;
 		}
 	}
-	if (b == noone)
+	if b == noone
 	{
 		l = obj_achievementtracker.achievements_notify;
 		for (i = 0; i < array_length(l); i++)
 		{
 			q = l[i];
-			if (q.name == _name)
+			if q.name == _name
 			{
 				b = q;
 				break;

@@ -143,7 +143,7 @@ function scr_palette_texture(sprite, subimg, x, y, xscale, yscale, rot = 0, col 
 	if yscale < 0
 		yy = yo - sh;
 	
-	draw_sprite_ext(texture, global.Pattern_Index, 0, 0, (xs + 4) * abs(xscale), (ys + 4) * abs(yscale), 0, col, 1);
+	draw_sprite_ext(texture, pattern_get_subimage(texture), 0, 0, (xs + 4) * abs(xscale), (ys + 4) * abs(yscale), 0, col, 1);
 	gpu_set_blendmode(bm_subtract);
 	draw_surface(global.palettesurfaceclip, 0, 0);
 	

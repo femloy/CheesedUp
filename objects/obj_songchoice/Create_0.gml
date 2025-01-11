@@ -400,7 +400,7 @@ draw = function(curve)
 			
 		}
 	}
-	draw_remove_bounds();
+	draw_clear_mask();
 	
 	draw_set_alpha(talpha);
 	draw_sprite(spr_cursor, image_index, 64 - 36 + xo + charshift[0], 128 + 10 - scroller + sel.song * 16 + textx);
@@ -481,9 +481,9 @@ draw = function(curve)
 	
 	draw_set_alpha(charshift[2]);
 	
-	draw_set_bounds(bar_x + 6, bar_y + 6, lerp(bar_x + 6, bar_x + bar_wd - 6, pos), bar_y + bar_ht - 6, true);
+	draw_set_bounds(bar_x + 6, bar_y + 6, lerp(bar_x + 6, bar_x + bar_wd - 6, pos), bar_y + bar_ht - 6);
 	draw_sprite_tiled(spr_jukebox_barfill, 0, -current_time / 100, bar_y);
-	draw_remove_bounds();
+	draw_clear_mask();
 	
 	toggle_alphafix(false);
 	

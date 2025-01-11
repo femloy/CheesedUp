@@ -1,17 +1,17 @@
-if (room == hub_loadingscreen && state != 2)
+if room == hub_loadingscreen && state != 2
 {
-	with (obj_player)
+	with obj_player
 	{
 		state = states.comingoutdoor;
 		sprite_index = spr_walkfront;
 		image_index = 0;
 	}
-	if (!fadeoutcreate)
+	if !fadeoutcreate
 	{
 		fadeoutcreate = true;
 		
 		var grouparr = ["hubgroup"];
-		with (obj_player1)
+		with obj_player1
 		{
 			ini_open_from_string(obj_savesystem.ini_str);
 			var _intro = ini_read_real("Tutorial", "finished", false);
@@ -84,43 +84,37 @@ if (room == hub_loadingscreen && state != 2)
 				obj_savesystem.ini_str = ini_close();
 				gamesave_async_save();
 			}
-			
-			
 		}
-		with (instance_create(x, y, obj_fadeout))
+		with instance_create(x, y, obj_fadeout)
 		{
 			gamestart = true;
 			restarttimer = true;
 		}
 		icon_alpha = 0;
-		with (obj_achievementtracker)
+		with obj_achievementtracker
 		{
 			achievement_get_steam_achievements(achievements_update);
 			achievement_get_steam_achievements(achievements_notify);
 		}
-		with (instance_create(0, 0, obj_loadingscreen))
+		with instance_create(0, 0, obj_loadingscreen)
 		{
 			dark = true;
 			group_arr = grouparr;
-			offload_arr = ["menugroup"/*, "characterselectgroup"*/];
+			offload_arr = ["menugroup"];
 		}
 	}
 }
-if (state != 0)
+
+if state != 0
 {
 	showicon = true;
 	icon_alpha = 3;
 }
-else if (showicon)
+else if showicon
 {
 	icon_alpha = Approach(icon_alpha, 0, 0.05);
-	if (icon_alpha <= 0)
+	if icon_alpha <= 0
 		showicon = false;
 }
-if (showicon)
-{
-	if SUGARY_SPIRE && check_sugary()
-		icon_index += .35;
-	else
-		icon_index = (icon_index + 0.35) % icon_max;
-}
+if showicon
+	icon_index = (icon_index + 0.35) % icon_max;

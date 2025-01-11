@@ -56,22 +56,18 @@ function seq_groundpound_sound()
 	sound_play_centered(sfx_groundpound);
 }
 
+global.seq_freefallsnd = undefined;
 function seq_freefall_sound()
 {
-	with obj_modconfig
-	{
-		freefallsnd = fmod_event_create_instance(sfx_freefall);
-		sound_play_centered(freefallsnd);
-	}
+	if global.seq_freefallsnd == undefined
+		global.seq_freefallsnd = fmod_event_create_instance(sfx_freefall);
+	sound_play_centered(global.seq_freefallsnd);
 }
 function seq_stop_freefall_sound()
 {
-	with obj_modconfig
+	if global.seq_freefallsnd != undefined
 	{
-		if self[$ "freefallsnd"] != undefined && freefallsnd != noone
-		{
-			destroy_sounds([freefallsnd]);
-			freefallsnd = noone;
-		}
+		destroy_sounds([global.seq_freefallsnd]);
+		global.seq_freefallsnd = undefined;
 	}
 }

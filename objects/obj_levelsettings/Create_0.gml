@@ -317,7 +317,7 @@ add_modifier("CosmicClones", #9850f8, function(val)
 	var x_pos = width / 2 - (surf_size / 2);
 	var y_pos = height / 2 - (surf_size / 2) - 25;
 	
-	draw_set_mask_texture(x_pos, y_pos, surface_get_texture(cosmic_surf));
+	draw_set_mask_surface(x_pos, y_pos, cosmic_surf);
 	
 	var layers = [
 		[spr_cosmicclone_layer1, 0.1],
@@ -333,7 +333,7 @@ add_modifier("CosmicClones", #9850f8, function(val)
 		draw_sprite_stretched(this[0], global.time * 0.1, (-bowel_movement * this[1]) % width, 0, width * 2, height);
 	}
 	
-	draw_reset_clip();
+	draw_clear_mask();
 });
 
 if DEATH_MODE

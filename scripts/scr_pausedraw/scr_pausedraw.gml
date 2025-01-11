@@ -78,7 +78,7 @@ function scr_pausedraw()
 	if (fade > 0 && lvlsave != -4 && lvlsave != "tutorial" && lvlsave != "exit" && lvlsave != "secretworld" && room != boss_fakepep && room != boss_fakepephallway && room != boss_fakepepkey && room != boss_vigilante && room != boss_noise && room != boss_pepperman && room != boss_pizzaface && room != Endingroom && room != Johnresurrectionroom && room != Creditsroom
 	&& lvlsave != "grinch" && lvlsave != "dragonlair" && lvlsave != "snickchallenge")
 	{
-		if (!instance_exists(obj_achievement_pause))
+		if !instance_exists(obj_achievement_pause)
 		{
 			draw_set_alpha(fade - treasurealpha);
 			lang_draw_sprite(spr_treasurefound_pause, !treasurefound, 80, SCREEN_HEIGHT - 60);
@@ -88,13 +88,7 @@ function scr_pausedraw()
 			draw_set_halign(fa_right);
 			draw_set_valign(fa_middle);
 			draw_set_color(c_white);
-			var count = 3;
-			if MOD.OldLevels
-				count = 6;
-			if lvlsave == "etb"
-				count = 2;
-	
-			draw_text(SCREEN_WIDTH - 132 - 60, SCREEN_HEIGHT - 124 - 8, concat(secretcount, "/", count));
+			draw_text(SCREEN_WIDTH - 132 - 60, SCREEN_HEIGHT - 124 - 8, concat(secretcount, "/", scr_secretcount(lvlsave)));
 			draw_set_alpha(1);
 		}
 	}
@@ -116,7 +110,7 @@ function scr_pausedraw()
 			var bar_x = floor(SCREEN_WIDTH / 2 - bar_wd / 2);
 			var bar_y = SCREEN_HEIGHT - 70 + jukebox_pos;
 		
-			draw_set_bounds(bar_x + 6, bar_y + 6, lerp(bar_x + 6, bar_x + bar_wd - 6, pos / len), bar_y + bar_ht - 6, true);
+			draw_set_bounds(bar_x + 6, bar_y + 6, lerp(bar_x + 6, bar_x + bar_wd - 6, pos / len), bar_y + bar_ht - 6);
 			draw_sprite_tiled(spr_jukebox_barfill, 0, -current_time / 100, bar_y);
 			draw_reset_clip();
 		

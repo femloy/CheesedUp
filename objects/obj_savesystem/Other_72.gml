@@ -34,6 +34,7 @@ switch (state)
 			}
 			global.file_minutes = ini_read_real("Game", "minutes", 0);
 			global.file_seconds = ini_read_real("Game", "seconds", 0);
+			global.pizzacoin = ini_read_real("Game", "pizzacoin", 0);
 			ini_str = ini_close();
 			
 			buffer_delete(loadbuff);

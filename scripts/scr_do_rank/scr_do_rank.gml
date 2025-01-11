@@ -2,6 +2,7 @@ function scr_is_p_rank()
 {
 	var lap = global.lap or MOD.FromTheTop or global.lapmode == LAP_MODES.april;
 	var treasure = global.treasure or (check_lap_mode(LAP_MODES.april) && string_ends_with(room_get_name(room), "_treasure"));
+	var secrets = global.secretfound >= scr_secretcount(global.leveltosave);
 	
 	if scr_modding_hook_any("prankcondition")
 		return live_result;
@@ -12,19 +13,19 @@ function scr_is_p_rank()
 	if DEATH_MODE
 	{
 		if MOD.DeathMode
-			return global.secretfound >= 3 && treasure && scr_can_p_rank() && global.shroomfollow && global.cheesefollow && global.tomatofollow && global.sausagefollow && global.pineapplefollow;
+			return secrets && treasure && scr_can_p_rank() && global.shroomfollow && global.cheesefollow && global.tomatofollow && global.sausagefollow && global.pineapplefollow;
 	}
 	
 	if global.leveltosave == "etb"
-		return scr_can_p_rank() && global.secretfound >= 2 && (global.lap or MOD.DeathMode);
+		return scr_can_p_rank() && secrets && (global.lap or MOD.DeathMode);
 	if global.leveltosave == "snickchallenge"
 		return scr_can_p_rank() && global.combo >= 100;
 	
 	if MOD.OldLevels
-		return global.secretfound >= 6 && treasure && scr_can_p_rank();
+		return secrets && treasure && scr_can_p_rank();
 	else if global.leveltosave != "exit" && global.leveltosave != "secretworld"
 	&& global.leveltosave != "dragonlair" && global.leveltosave != "grinch"
-		return lap && global.secretfound >= 3 && treasure && scr_can_p_rank();
+		return lap && secrets && treasure && scr_can_p_rank();
 	else
 		return scr_can_p_rank();
 }
@@ -69,7 +70,15 @@ function scr_do_rank(showtoppins = true, boss = false)
 	
 	var do_save = get_modifier_saving();
 	if !do_save
+	{
+		global.pizzacoin_earned = 0;
 		showtoppins = false;
+	}
+	else
+	{
+		global.pizzacoin_earned = scr_pizzacoin_result();
+		global.pizzacoin += global.pizzacoin_earned;
+	}
 	
 	if !global.tutorial_room
 	{

@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"texturegroup_free",
   "parent":{
-    "name":"CheesyPizza",
-    "path":"folders/Scripts/CheesyPizza.yy",
+    "name":"Utilities",
+    "path":"folders/Scripts/CheesyPizza/Utilities.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

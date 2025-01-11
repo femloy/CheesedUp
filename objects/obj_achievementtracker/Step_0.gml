@@ -1,11 +1,11 @@
 for (var i = 0; i < array_length(achievements_update); i++)
 {
 	var b = achievements_update[i];
-	with (b)
+	with b
 	{
-		if (!unlocked)
+		if !unlocked
 		{
-			if (frames >= update_rate)
+			if frames >= update_rate
 			{
 				frames = 0;
 				update_func();
@@ -14,7 +14,8 @@ for (var i = 0; i < array_length(achievements_update); i++)
 		}
 	}
 }
-while (!ds_queue_empty(notify_queue))
+
+while !ds_queue_empty(notify_queue)
 {
 	var b = ds_queue_dequeue(notify_queue);
 	for (i = 0; i < array_length(achievements_notify); i++)
@@ -27,19 +28,20 @@ while (!ds_queue_empty(notify_queue))
 		}
 	}
 }
-if (!ds_queue_empty(unlock_queue) && !instance_exists(obj_cheftask))
+
+if !ds_queue_empty(unlock_queue) && !instance_exists(obj_cheftask)
 {
 	var b = ds_queue_dequeue(unlock_queue);
-	with (instance_create(0, 0, obj_cheftask))
+	with instance_create(0, 0, obj_cheftask)
 	{
 		achievement_spr = b[0];
 		achievement_index = b[1];
 	}
-	repeat (10)
+	repeat 10
 		instance_create(SCREEN_WIDTH - 100, SCREEN_HEIGHT - 50, obj_confettieffect);
 }
 
-if (instance_exists(obj_player1))
+if instance_exists(obj_player1)
 	character = obj_player1.character;
-if (global.swapmode)
+if global.swapmode
 	character = global.swap_characters[0];

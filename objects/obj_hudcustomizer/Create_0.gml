@@ -213,7 +213,7 @@ array_push(menus, add_menu(lstr("mod_customize_minimal"),
 		draw_sprite(spr_bartimer_minimal, 0, tx, ty);
 		
 		var barw = sprite_get_width(spr_timer_barfill);
-		draw_set_mask(tx - txo, ty, spr_bartimer_minimal, 1);
+		draw_set_mask(tx, ty, spr_bartimer_minimal, 1);
 		draw_sprite(spr_timer_barfill, 0, tx - txo + (-current_time / 100) % barw, ty);
 		draw_sprite(spr_timer_barfill, 0, tx - txo + barw + (-current_time / 100) % barw, ty);
 		draw_reset_clip();

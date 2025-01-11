@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_sandbox_unlocks",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_sandbox_unlocks",
+  "parent":{
+    "name":"Achievements",
+    "path":"folders/Scripts/Achievements.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

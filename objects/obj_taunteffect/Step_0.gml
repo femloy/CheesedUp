@@ -6,4 +6,5 @@ if instance_exists(player)
 	x = player.x;
 	y = player.y;
 	image_xscale = player.xscale;
+	image_yscale = player.yscale;
 }

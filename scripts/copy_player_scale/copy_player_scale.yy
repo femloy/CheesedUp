@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"copy_player_scale",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"copy_player_scale",
+  "parent":{
+    "name":"CheesyPizza",
+    "path":"folders/Scripts/CheesyPizza.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

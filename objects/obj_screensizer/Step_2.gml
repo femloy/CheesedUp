@@ -148,8 +148,8 @@ switch global.option_scale_mode
 		mygui = device_mouse_y_to_gui(0);
 		break;
 }
-mx = mxgui / (960 / CAMW);
-my = mygui / (540 / CAMH);
+mx = mxgui / (SCREEN_WIDTH / CAMW);
+my = mygui / (SCREEN_HEIGHT / CAMH);
 
 var mirror = MOD.Mirror && !instance_exists(obj_rank);
 var flip = (safe_get(obj_player1, "gravityjump") && !MOD.GravityJump);

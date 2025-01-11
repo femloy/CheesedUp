@@ -1,6 +1,6 @@
 function scr_tvdraw_mini()
 {
-	//if live_call() return live_result;
+	if live_call() return live_result;
 	
 	static combo_prev = 0;
 	static combo_shake = 0;
@@ -80,11 +80,11 @@ function scr_tvdraw_mini()
 	var war = instance_find(obj_wartimer, 0);
 	var ta = global.timeattack;
 	
-	if (global.panic or global.snickchallenge or war) && !ta // TODO
+	if (global.panic or global.snickchallenge or war) && !ta
 	{
 		draw_set_align(fa_center);
 		if war
-			timer_y = min(timer_y, SCREEN_HEIGHT + 10);
+			timer_y = max(timer_y, SCREEN_HEIGHT + 10);
 		
 		var tx = SCREEN_WIDTH / 2, ty = max(timer_y, SCREEN_HEIGHT - 50) - pad;
 		var txo = sprite_get_xoffset(spr_bartimer_minimal);
@@ -93,7 +93,7 @@ function scr_tvdraw_mini()
 		if !war
 		{
 			var barw = sprite_get_width(spr_timer_barfill);
-			draw_set_mask(tx - txo, ty, spr_bartimer_minimal, 1);
+			draw_set_mask(tx, ty, spr_bartimer_minimal, 1);
 			draw_sprite(spr_timer_barfill, 0, tx - txo + barfill_x % barw, ty);
 			draw_sprite(spr_timer_barfill, 0, tx - txo + barw + barfill_x % barw, ty);
 			draw_reset_clip();

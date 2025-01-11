@@ -18,15 +18,15 @@ if show > 0
 if REMIX
 {
 	image_speed = Approach(image_speed, 0.35, 0.02);
-	if global.pizzacoin != coin_prev
+	if global.pizzacoinOLD != coin_prev
 	{
-		if global.pizzacoin > coin_prev
+		if global.pizzacoinOLD > coin_prev
 		{
 			yo = 0;
 			vsp = -4;
 		}
 		image_speed = 1;
-		coin_prev = global.pizzacoin;
+		coin_prev = global.pizzacoinOLD;
 	}
 	if yo < 0 or vsp < 0
 	{

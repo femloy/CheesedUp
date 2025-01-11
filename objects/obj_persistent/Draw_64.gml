@@ -110,43 +110,12 @@ if gotmessage.time != -1
 	gotmessage.time--;
 }
 
-if !DEBUG
+// pizza coin count
+if debugpizzacoin
 {
-	with obj_player
-	{
-		if !visible
-			break;
-		if character == "MS"
-		{
-			toggle_alphafix(false);
-		
-			draw_set_color(c_white);
-			var xx = x - CAMX;
-			var yy = y - CAMY;
-		
-			var dir = (-current_time) % 360;
-			var dis1 = 50, dis2 = 150;
-			draw_arrow(xx + lengthdir_x(dis2, dir), yy + lengthdir_y(dis2, dir), xx + lengthdir_x(dis1, dir), yy + lengthdir_y(dis1, dir), 20);
-		
-			draw_sprite_ext(spr_uparrow, 0, xx - Wave(100, 150, 1, 0), yy, 1, 1, -90, c_white, 1);
-		
-			draw_set_font(lang_get_font("font_small"));
-			draw_set_align(fa_center);
-			draw_text(xx + random_range(-3, 3), yy - 120 + random_range(-3, 3), "DOGSHIT SPRITES!");
-		
-			draw_set_colour(c_red);
-		
-			if (current_time / 10) % 100 > 50
-			{
-				var rad = 100;
-				repeat 5
-				{
-					draw_circle(xx, yy, rad, true);
-					rad--;
-				}
-			}
-		
-			toggle_alphafix(true);
-		}
-	}
+	draw_set_colour(c_white);
+	draw_set_align(fa_center);
+	draw_set_font(global.font_small);
+	global.rank = scr_get_rank();
+	draw_text(SCREEN_WIDTH / 2, 32, $"Current: {global.pizzacoin}\nResult: {scr_pizzacoin_result()}");
 }

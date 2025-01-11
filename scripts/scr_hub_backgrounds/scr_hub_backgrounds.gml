@@ -87,14 +87,14 @@ function scr_hub_bg_draw(x, y, sprite, frame, gui = false)
 			
 			var xpad = 38;
 			
-			draw_set_mask(x - x1, y - y1, sprite, frame);
+			draw_set_mask(x, y, sprite, frame);
 			draw_sprite_tiled(spr_gate_lock, 0, x - x1, y - y1);
 			draw_surface(bgmask_surface, x - x1, y - y1);
 			draw_sprite_stretched(spr_gate_lockbase, 0, x - x1 + xpad, bbox_bottom - 18, w - xpad, 19);
 		}
 		else
 		{
-			draw_set_mask(x - x1, y - y1, sprite, frame);
+			draw_set_mask(x, y, sprite, frame);
 			
 			for (var i = 0; i < array_length(bgspritepos); i++)
 			{

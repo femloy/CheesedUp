@@ -14,16 +14,7 @@ function scr_debugdraw()
 		str = $"Score: {global.collect}\n";
 	
 		// rank
-		var rank = "D";
-		if global.collect >= global.srank
-			rank = scr_is_p_rank() ? "P" : "S";
-		else if global.collect >= global.arank
-			rank = "A";
-		else if global.collect >= global.brank
-			rank = "B";
-		else if global.collect >= global.crank
-			rank = "C";
-		str += $"Rank: {rank}\n";
+		str += $"Rank: {string_upper(scr_get_rank())}\n";
 	}
 	else
 	{

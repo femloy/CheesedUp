@@ -37,7 +37,7 @@ switch (state)
 		{
 			sprite_index = walkspr;
 			state = states.walk;
-			bombreset = global.throw_data[object_index].time;
+			bombreset = global.throw_data[? obj_noisegoblin].time;
 		}
 		break;
 }

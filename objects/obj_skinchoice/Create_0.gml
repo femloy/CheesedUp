@@ -40,17 +40,6 @@ mixables = [];
 unlockables = [];
 custom_palettes = global.custom_palettes;
 
-if !global.sandbox
-{
-	array_push(unlockables, "unfunny", "money", "sage", "blood", "tv", "dark", "shitty", "golden", "garish", "mooney",
-		"funny", "itchy", "pizza", "stripes", "goldemanne", "bones", "pp", "war", "john",
-		"candy", "bloodstained", "bat", "pumpkin", "fur", "flesh");
-	
-	array_push(unlockables, "boise", "roise", "poise", "reverse", "critic", "outlaw", "antidoise", "flesheater", "super", "porcupine", "feminine", "realdoise", "forest",
-		"racer", "comedian", "banana", "noiseTV", "madman", "bubbly", "welldone", "grannykisses", "towerguy");
-}
-array_push(unlockables, "mario", "grinch");
-
 // palette struct
 function DresserPalette() constructor
 {
@@ -64,41 +53,12 @@ function DresserPalette() constructor
 	mix_prefix = "";
 	unlock_desc = lstr("dresser_sandbox");
 	mixable = false;
+	mix_child = noone;
 	
-	set_entry = function(entry)
+	set_entry = function(_entry)
 	{
+		entry = string(_entry);
 		unlock_desc = lstr(concat("dresser_", entry));
-		
-		if array_get_index(obj_skinchoice.unlockables, entry, 0, infinity) == -1
-			return self;
-		
-		ini_open_from_string(obj_savesystem.ini_str_options);
-		if !ini_read_real("Palettes", entry, false)
-		{
-			var pals = obj_skinchoice.palettes;
-			for(var i = 0; i < array_length(pals); i++)
-			{
-				if pals[i] == self
-				{
-					array_delete(obj_skinchoice.palettes, i, 1);
-					ini_close();
-					break;
-				}
-			}
-			
-			var pals = obj_skinchoice.mixables;
-			for(var i = 0; i < array_length(pals); i++)
-			{
-				if pals[i].entry == entry
-				{
-					array_delete(obj_skinchoice.mixables, i, 1);
-					ini_close();
-					break;
-				}
-			}
-		}
-		ini_close();
-		
 		return self;
 	}
 	set_prefix = function(prefix = undefined)
@@ -108,13 +68,16 @@ function DresserPalette() constructor
 		if string_pos("-", prefix) != string_length(prefix)
 			prefix = prefix + " ";
 		
-		array_push(obj_skinchoice.mixables, {
+		mix_child =
+		{
 			palette: palette,
 			prefix: prefix,
 			name: name,
 			color: mix_color,
 			entry: entry
-		});
+		};
+		
+		array_push(obj_skinchoice.mixables, mix_child);
 		return self;
 	}
 	set_palette = function(palette)

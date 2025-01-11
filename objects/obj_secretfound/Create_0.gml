@@ -5,12 +5,7 @@ if in_saveroom() or instance_exists(obj_randomsecret) or global.snickchallenge
 
 global.secretfound++;
 
-var count = 3;
-if MOD.OldLevels
-	count = 6;
-if global.leveltosave == "etb"
-	count = 2;
-
+var count = scr_secretcount(global.leveltosave);
 if global.hud == HUD_STYLES.final
 {
 	var val = min(global.secretfound, count);

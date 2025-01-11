@@ -21,11 +21,10 @@ function scr_pausedraw_ss()
 			
 			var bordercolor = #05002A;
 			
-			draw_reset_clip();
-			draw_set_bounds(xx + 1, yy + 1, xx + 960 - 1, yy + 540 - 1, false, false, true);
+			draw_set_bounds(xx, yy, xx + 960, yy + 540, true);
 			draw_rectangle_color(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, bordercolor, bordercolor, bordercolor, bordercolor, false);
 			draw_reset_clip();
-		
+			
 			draw_sprite(spr_pause_ss, 0, xx, yy);
 			lang_draw_sprite(spr_pause_ss_text, 0, xx, yy);
 			

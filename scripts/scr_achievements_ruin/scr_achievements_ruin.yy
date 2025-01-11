@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_achievements_ruin",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_achievements_ruin",
+  "parent":{
+    "name":"Achievements",
+    "path":"folders/Scripts/Achievements.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

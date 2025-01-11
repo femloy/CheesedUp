@@ -286,7 +286,7 @@ function scr_playerreset(roomstart = false, restart = false)
 		global.combo = 0;
 		global.combotime = 0;
 		global.heattime = 0;
-		global.pizzacoin = 0;
+		global.pizzacoinOLD = 0;
 		global.toppintotal = 1;
 		global.hit = 0;
 		global.playerhealth = 100;

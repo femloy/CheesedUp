@@ -136,23 +136,20 @@ else
 	
 		if (object_index == obj_startgate && level != "exit" && level != "tutorial" && level != "dragonlair" && level != "snickchallenge" && level != "grinch" && level != "oldexit" && level != "secretworld")
 		{
-			var count = 3;
-			if level == "etb"
-				count = 2;
-	
-			for (i = 1; i <= count; i++)
+			var count = scr_secretcount(level);
+			for (var i = 1; i <= count; i++)
 			{
-				b = true;
-				if (i > secret_count)
+				var b = true;
+				if i > secret_count
 					b = false;
-				with (instance_create(x, y, obj_startgate_secreteye))
+				with instance_create(x, y, obj_startgate_secreteye)
 				{
 					last_current_time = current_time + (600000 * i * 2);
 					timer = last_current_time;
 					//trace(other.level, " secret eye ", i, timer);
 					time_x += (i - 1);
 					time_y += ((i - 1) * 2);
-					if (b)
+					if b
 						sprite_index = spr_gatesecreteyeopen;
 					else
 						sprite_index = spr_gatesecreteyeclosed;
@@ -162,19 +159,6 @@ else
 	}
 }
 scr_hub_bg_reinit(x, y);
-
-// fuck it, I give up, this will work, and if it doesn't
-// then you can write it better loy
-/*
-for (var i = 0; i < array_length(group_arr); i++)
-{
-	if group_arr[i] == "hubgroup"
-		continue;
-	var textures = texturegroup_get_textures(group_arr[i]);
-	for (var j = 0; j < array_length(textures); j++)
-		texture_flush(textures[j]);
-}
-*/
 
 // level name
 if lang_value_exists(concat("level_", level)) && !string_length(msg)

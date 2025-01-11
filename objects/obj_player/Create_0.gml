@@ -828,7 +828,7 @@ if !variable_global_exists("saveroom") or !ds_exists(global.saveroom, ds_type_li
 	global.savedcomboscore = 0;
 	global.savedcombo = 0;
 	global.heattime = 0;
-	global.pizzacoin = 0;
+	global.pizzacoinOLD = 0;
 	global.toppintotal = 1;
 	global.hit = 0;
 	global.baddieroom = ds_list_create();

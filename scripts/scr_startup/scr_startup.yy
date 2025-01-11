@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_startup",
   "parent":{
-    "name":"CheesyPizza",
-    "path":"folders/Scripts/CheesyPizza.yy",
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -5,12 +5,14 @@ function draw_cosmic_clone(sprite, image, x, y, xscale, yscale, rot, blend, alph
 	// setup
 	static surf = -1;
 	static surf_size = [100, 100];
-	static color1 = undefined;
-	if color1 == undefined
-		color1 = shader_get_uniform(shd_mach3effect, "color1");
-	static color2 = undefined;
-	if color2 == undefined
-		color2 = shader_get_uniform(shd_mach3effect, "color2");
+	
+	static uniform_color1 = undefined;
+	if uniform_color1 == undefined
+		uniform_color1 = shader_get_uniform(shd_mach3effect, "color1");
+	static uniform_no_outline = undefined;
+	if uniform_no_outline == undefined
+		uniform_no_outline = shader_get_uniform(shd_mach3effect, "no_outline");
+	
 	static layers = [spr_cosmicclone_layer1, spr_cosmicclone_layer2, spr_cosmicclone_layer3, spr_cosmicclone_layer4];
 	
 	if self[$ "cosmic_index"] == undefined
@@ -47,15 +49,17 @@ function draw_cosmic_clone(sprite, image, x, y, xscale, yscale, rot, blend, alph
 	draw_clear_alpha(c_black, 0);
 	
 	shader_set(shd_mach3effect);
-	shader_set_uniform_f(color1, 1, 1, 1);
-	shader_set_uniform_f(color2, 0, 0, 0);
+	shader_set_uniform_f(uniform_color1, 1, 1, 1);
+	shader_set_uniform_i(uniform_no_outline, 1);
 	draw_sprite_ext(sprite, image, xo, yo, xscale, yscale, rot, blend, alpha);
+	shader_set_uniform_i(uniform_no_outline, 0);
 	shader_reset();
 	
 	surface_reset_target();
 	
 	var xx = x - xo, yy = y - yo;
-	draw_set_mask_texture(xx, yy, surface_get_texture(surf));
+	draw_sprite_ext(sprite, image, x, y, xscale, yscale, rot, c_black, alpha);
+	draw_set_mask_surface(xx, yy, surf);
 	
 	for(var i = 0; i < array_length(layers); i++)
 	{
@@ -72,5 +76,5 @@ function draw_cosmic_clone(sprite, image, x, y, xscale, yscale, rot, blend, alph
 		draw_sprite_stretched(layers[i], cosmic_index, floor(xx + x_offset), floor(yy + y_offset), surf_size[0] - x_offset, surf_size[1] - y_offset);
 	}
 	 
-	draw_reset_clip();
+	draw_clear_mask();
 }

@@ -77,15 +77,15 @@ else switch character
 		add_palette(16).set_entry("feminine").set_prefix();
 		add_palette(17).set_entry("realdoise").set_prefix();
 		add_palette(18).set_entry("forest").set_prefix();
-			
+		
 		// cheesed up
 		if global.sandbox 
 		{
-			add_palette(30); // Hardoween
+			add_palette(30).set_entry("hardoween"); // Hardoween
 			add_palette(33); // Peppoise
-			add_palette(41).set_prefix(); // Nice Face - Loy
+			add_palette(41).set_prefix(); // Nice Face - Lila
 			add_palette(32).set_prefix(); // XMAS
-			add_palette(31).set_prefix(); // Neon Green - Loy
+			add_palette(31).set_prefix(); // Neon Green - Lila
 			add_palette(37).set_prefix(); // Mint - tuki4651 (1041806669086212168)
 			add_palette(38).set_prefix(); // Wild Berry - tuki4651
 		}
@@ -257,7 +257,7 @@ if global.sandbox && character != "N"
 }
 if global.sandbox or character == "V"
 {
-	add_pattern(spr_pattern_target, "pattern_V1")//.set_entry("bullseye");
+	add_pattern(spr_pattern_target, "pattern_V1").set_entry("bullseye");
 	
 }
 add_pattern(spr_peppattern10, "pattern_10").set_entry("candy");
@@ -270,41 +270,82 @@ add_pattern(spr_peppattern15, "pattern_15").set_entry("flesh");
 // post-game unlockables
 add_pattern(spr_pattern_mario).set_entry("mario");
 add_pattern(spr_pattern_grinch).set_entry("grinch");
+add_pattern(spr_pattern_time).set_entry("time"); // beebawp
+add_pattern(spr_pattern_arrows).set_entry("arrows"); // beebawp
+add_pattern(spr_pattern_cosmic).set_entry("cosmic").mixable = false; // ameliako
+add_pattern(spr_pattern_storm).set_entry("storm"); // red
 
-// sandbox exclusive (at the moment)
-if global.sandbox
-{
-	add_pattern(spr_pattern_missing); // PTT
-	add_pattern(spr_pattern_supreme); // Loy
-	add_pattern(spr_pattern_secret); // beebawp
-	add_pattern(spr_pattern_flamin); // beebawp
-	add_pattern(spr_pattern_jalapeno); // beebawp
-	add_pattern(spr_pattern_zapped); // beebawp
-	add_pattern(spr_pattern_evil); // Tictorian
-	add_pattern(spr_pattern_gba); // ???
-	add_pattern(spr_pattern_windows); // ???
-	add_pattern(spr_pattern_1034); // Loy
-	add_pattern(spr_pattern_snowflake); // itshaz (1062801794708803624)
-	add_pattern(spr_pattern_marble); // beebawp
-	add_pattern(spr_pattern_time); // beebawp
-	add_pattern(spr_pattern_arrows); // beebawp
-	add_pattern(spr_pattern_cosmic).mixable = false; // ameliako
-}
+add_pattern(spr_pattern_missing); // PTT
+add_pattern(spr_pattern_supreme); // Lila
+add_pattern(spr_pattern_secret); // beebawp
+add_pattern(spr_pattern_flamin); // beebawp
+add_pattern(spr_pattern_jalapeno); // beebawp
+add_pattern(spr_pattern_zapped); // beebawp
+add_pattern(spr_pattern_evil); // Tictorian
+add_pattern(spr_pattern_gba); // ???
+add_pattern(spr_pattern_windows); // ???
+add_pattern(spr_pattern_1034); // Lila
+add_pattern(spr_pattern_snowflake); // itshaz (1062801794708803624)
+add_pattern(spr_pattern_marble); // beebawp
+add_pattern(spr_pattern_tetris); // Galaxian (1165769858999402606)
 
-// pride pack
-if global.sandbox
-{
-	add_pattern(spr_pattern_trans); // ameliako.yy (576650935691116554)
-	add_pattern(spr_pattern_rainbow); // ameliako
-	add_pattern(spr_pattern_lesbian); // ameliako
-	add_pattern(spr_pattern_nonbinary); // ameliako
-	add_pattern(spr_pattern_bisexual); // ameliako
-	add_pattern(spr_pattern_asexual); // ameliako
-	add_pattern(spr_pattern_pansexual); // ameliako
-}
+add_pattern(spr_pattern_trans).set_entry("pack_pride"); // ameliako.yy (576650935691116554)
+add_pattern(spr_pattern_rainbow).set_entry("pack_pride"); // ameliako
+add_pattern(spr_pattern_lesbian).set_entry("pack_pride"); // ameliako
+add_pattern(spr_pattern_nonbinary).set_entry("pack_pride"); // ameliako
+add_pattern(spr_pattern_bisexual).set_entry("pack_pride"); // ameliako
+add_pattern(spr_pattern_asexual).set_entry("pack_pride"); // ameliako
+add_pattern(spr_pattern_pansexual).set_entry("pack_pride"); // ameliako
 
 // custom
 scr_modding_hook("dresser/postpalettes");
+
+// remove not unlockeds
+ini_open_from_string(obj_savesystem.ini_str_options);
+for(var i = 0; i < array_length(palettes); i++)
+{
+	with palettes[i]
+	{
+		if palette == other.characters[other.sel.char].default_palette
+			continue;
+		
+		if entry == noone
+		{
+			if texture != noone
+				entry = string_replace(sprite_get_name(texture), "spr_pattern_", ""); // time
+			else
+				entry = concat(character, palette); // P52
+		}
+		
+		if global.sandbox && !array_contains(scr_sandbox_unlocks().palettes, entry)
+			continue;
+		
+		if !ini_read_real("Palettes", entry, false)
+		{
+			// If not unlocked, remove from menu
+			var pals = other.palettes;
+			for(var i = 0, n = array_length(pals); i < n; ++i)
+			{
+				if pals[i] == self
+				{
+					array_delete(other.palettes, i, 1);
+					break;
+				}
+			}
+			
+			var pals = other.mixables;
+			for(var i = 0, n = array_length(pals); i < n; ++i)
+			{
+				if pals[i] == mix_child
+				{
+					array_delete(other.mixables, i, 1);
+					break;
+				}
+			}
+		}
+	}
+}
+ini_close();
 
 // calculate all that
 init = true;

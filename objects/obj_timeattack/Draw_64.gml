@@ -80,7 +80,7 @@ if global.timeattack
 			draw_reset_clip();
 	
 			// lines
-			draw_set_bounds(clip_x1, clip_y1, clip_x2, clip_y2, , true);
+			draw_set_bounds(clip_x1, clip_y1, clip_x2, clip_y2);
 			var arank_pos = lerp(clip_x1, clip_x2, global.tasrank / global.tacrank);
 			var brank_pos = lerp(clip_x1, clip_x2, global.taarank / global.tacrank);
 			var crank_pos = lerp(clip_x1, clip_x2, global.tabrank / global.tacrank);
@@ -88,7 +88,7 @@ if global.timeattack
 			draw_line_width_color(brank_pos, clip_y1, brank_pos, clip_y2, 1, 0, 0);
 			draw_line_width_color(crank_pos, clip_y1, crank_pos, clip_y2, 1, 0, 0);
 			draw_reset_clip();
-	
+			
 			// bar
 			if global.tatime >= global.tacrank && !lost_clock
 			{

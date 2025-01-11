@@ -100,9 +100,7 @@ for (var i = scroll; i < min(array_length(levelarray), scroll + 5); i++)
 	
 	if b.secrets
 	{
-		var secret_count = 3;
-		if b.level == "etb"
-			secret_count = 2;
+		var secret_count = scr_secretcount(b.level);
 		
 		w = sprite_get_width(spr_list2);
 		x2 = (secret_count * w) / 2;

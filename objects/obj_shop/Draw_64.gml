@@ -19,7 +19,9 @@ if (state == 0 && !fadein) or (state == 1 && fadein)
 	{
 		// shadow
 		draw_set_flash(#D07800);
+		draw_set_bounds(xx - 140, yy - 100, xx + 140, yy + 100);
 		draw_sprite_ext(item_sprite, item_image, xx + item_offset.x + 5, yy + item_offset.y + 3, 2, 2, 0, c_white, 1);
+		draw_reset_clip();
 		draw_reset_flash();
 		
 		// sprite
@@ -29,7 +31,7 @@ if (state == 0 && !fadein) or (state == 1 && fadein)
 			if sprite_exists(item_pattern)
 			{
 				pattern_set(item_color_array, item_sprite, item_image, 2, 2, item_pattern);
-				draw_sprite_stretched(item_pattern, global.Pattern_Index, xx + 50 - 32, yy - 32, 64, 64);
+				draw_sprite_stretched(item_pattern, pattern_get_subimage(item_pattern), xx + 50 - 32, yy - 32, 64, 64);
 				xx -= 50;
 			}
 		}

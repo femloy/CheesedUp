@@ -75,7 +75,8 @@ with obj_player
 				break;
 			
 			case "entryway":
-				global.tasrank = ((1 * 60) + 55) * 60; // 1:55
+				if SUGARY_SPIRE
+					global.tasrank = ((1 * 60) + 55) * 60; // 1:55
 				break;
 			
 			default:

@@ -230,10 +230,7 @@ function get_resolution(resolution, aspect_ratio = aspectratio.normal)
 }
 function screen_clear(color = c_black)
 {
-	//if shader_current() == shd_masterclip or shader_current() == shd_masterclip_basic
-		draw_rectangle_color(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, color, color, color, color, false);
-	//else
-	//	draw_clear(color);
+	draw_rectangle_color(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, color, color, color, color, false);
 }
 function get_options()
 {

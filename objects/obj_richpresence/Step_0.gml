@@ -184,7 +184,6 @@ if !instance_exists(obj_startgate)
 	// add rank and score
 	if state != ""
 	{
-		var rank = "D";
 		if global.timeattack
 		{
 			var seconds = floor(global.tatime / 60);
@@ -199,15 +198,7 @@ if !instance_exists(obj_startgate)
 		else
 		{
 			// Pizzascape - 10000 (S)
-			if global.collect >= global.srank
-				rank = scr_is_p_rank() ? "P" : "S";
-			else if global.collect >= global.arank
-				rank = "A";
-			else if global.collect >= global.brank
-				rank = "B";
-			else if global.collect >= global.crank
-				rank = "C";
-			state += string(" - {0} ({1})", global.collect, rank);
+			state += string(" - {0} ({1})", global.collect, string_upper(scr_get_rank()));
 		}
 	}
 }

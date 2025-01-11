@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_saveroom",
   "parent":{
-    "name":"CheesyPizza",
-    "path":"folders/Scripts/CheesyPizza.yy",
+    "name":"General",
+    "path":"folders/Scripts/CheesyPizza/General.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

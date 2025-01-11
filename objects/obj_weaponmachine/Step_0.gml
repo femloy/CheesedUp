@@ -8,10 +8,10 @@ with obj_player
 }
 if col && image_speed == 0
 {
-	if global.pizzacoin >= coins
+	if global.pizzacoinOLD >= coins
 	{
 		sound_play_3d("event:/modded/sfx/weaponmachine", x, y);
-		global.pizzacoin -= coins;
+		global.pizzacoinOLD -= coins;
 		image_speed = 0.35;
 	}
 	else if sprite_index == spr_weaponmachine_custom

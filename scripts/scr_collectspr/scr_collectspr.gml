@@ -6,22 +6,26 @@ function scr_collectspr(obj = object_index, player = obj_player1, set = true)
 	if global.snickchallenge
 		char = "S";
 	
-	if global.timeattack
-	{
-		if set
-			sprite_index = (((x / 32) + (y / 32)) % 2) ? spr_collect_timeattack1 : spr_collect_timeattack2;
-		return spr_collect_timeattack1;
-	}
-	
 	switch obj
 	{
 		default:
+			if global.timeattack
+			{
+				if set
+					sprite_index = (((x / 32) + (y / 32)) % 2) ? spr_collect_timeattack1 : spr_collect_timeattack2;
+				return spr_collect_timeattack1;
+			}
 			switch char
 			{
 				default:
 					spr = choose(spr_shroomcollect, spr_tomatocollect, spr_cheesecollect, spr_sausagecollect, spr_pineapplecollect);
 					if global.blockstyle == BLOCK_STYLES.old
-						spr = SPRITES[? sprite_get_name(spr) + "_old"];
+					{
+						if char == "N"
+							spr = choose(spr_halloweencollectibles1, spr_halloweencollectibles2, spr_halloweencollectibles3, spr_halloweencollectibles4, spr_halloweencollectibles5);
+						else
+							spr = SPRITES[? sprite_get_name(spr) + "_old"];
+					}
 					break;
 				
 				/*case "N":
@@ -43,11 +47,6 @@ function scr_collectspr(obj = object_index, player = obj_player1, set = true)
 				case "S":
 					spr = spr_snickcollectible1;
 					break;
-				
-				case "BN":
-					if BO_NOISE
-						spr = choose(spr_halloweencollectibles1_bo, spr_halloweencollectibles2_bo, spr_halloweencollectibles3_bo, spr_halloweencollectibles4_bo, spr_halloweencollectibles5_bo);
-					break;
 			}
 			break;
 		
@@ -57,12 +56,13 @@ function scr_collectspr(obj = object_index, player = obj_player1, set = true)
 				default:
 					spr = choose(spr_pizzacollect1, spr_pizzacollect2, spr_pizzacollect3, spr_pizzacollect4, spr_pizzacollect5);
 					if global.blockstyle == BLOCK_STYLES.old
-						spr = choose(spr_pizzacollect1_old, spr_pizzacollect2_old, spr_pizzacollect3_old);
+					{
+						if char == "N"
+							spr = choose(spr_pizzacollect1halloween, spr_pizzacollect2halloween, spr_pizzacollect3halloween);
+						else
+							spr = choose(spr_pizzacollect1_old, spr_pizzacollect2_old, spr_pizzacollect3_old);
+					}
 					break;
-				
-				/*case "N":
-					spr = choose(spr_pizzacollect1halloween, spr_pizzacollect2halloween, spr_pizzacollect3halloween);
-					break;*/
 				
 				case "SP":
 					if SUGARY_SPIRE
@@ -81,11 +81,6 @@ function scr_collectspr(obj = object_index, player = obj_player1, set = true)
 				case "S":
 					spr = spr_snickcollectible2;
 					break;
-				
-				case "BN":
-					if BO_NOISE
-						spr = choose(spr_pizzacollect1halloween_bo, spr_pizzacollect2halloween_bo, spr_pizzacollect3halloween_bo);
-					break;
 			}
 			break;
 		
@@ -94,11 +89,9 @@ function scr_collectspr(obj = object_index, player = obj_player1, set = true)
 			{
 				default:
 					spr = spr_giantpizza;
+					if global.blockstyle == BLOCK_STYLES.old && char == "N"
+						spr = spr_giantpizzahalloween;
 					break;
-				
-				/*case "N":
-					spr = spr_giantpizzahalloween;
-					break;*/
 				
 				case "SP":
 					if SUGARY_SPIRE

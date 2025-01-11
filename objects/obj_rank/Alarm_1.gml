@@ -1,3 +1,4 @@
+/// @description go
 global.levelcomplete = true;
 global.noisejetpack = false;
 global.pistol = false;

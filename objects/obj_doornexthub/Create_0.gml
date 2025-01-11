@@ -1,16 +1,7 @@
 // checks if you beat the game on this savefile
 if !instance_exists(obj_cyop_loader)
 {
-	var unlock = false;
-	if global.sandbox or instance_exists(obj_elevatorcutscene)
-		unlock = true;
-	else
-	{
-		ini_open_from_string(obj_savesystem.ini_str);
-		unlock = ini_key_exists("Ranks", "exit");
-		ini_close();
-	}
-	if unlock
+	if instance_exists(obj_elevatorcutscene) or scr_postgame()
 	{
 		instance_change(obj_hubelevator, true);
 		exit;

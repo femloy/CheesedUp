@@ -2,7 +2,6 @@
 
 // optimizations
 gml_pragma("forceinline");
-surface_depth_disable(true); // disable the depth buffer.
 gpu_set_sprite_cull(true);
 
 function toggle_texture_debug(enable)

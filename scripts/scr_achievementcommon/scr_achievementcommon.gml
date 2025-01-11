@@ -3,7 +3,7 @@ function add_secrets_achievement(secret, levelarray)
 	var b = add_achievement_notify(concat("secrets", secret), noone, function(achievement)
 	{
 		var type = achievement[0];
-		if (type == notifs.end_level)
+		if type == notifs.end_level
 		{
 			var n = levelarray;
 			var _unfinished = false;
@@ -12,11 +12,11 @@ function add_secrets_achievement(secret, levelarray)
 			{
 				var b = n[i];
 				var s = ini_read_real("Secret", b, 0);
-				if (s < 3)
+				if s < 3
 					_unfinished = true;
 			}
 			ini_close();
-			if (!_unfinished)
+			if !_unfinished
 				achievement_unlock(name, noone, spr_achievement_farm, 0);
 		}
 	});
@@ -28,7 +28,7 @@ function add_rank_achievements(world, rank, sprite, index, levelarray)
 	var b = add_achievement_notify(concat(rank, "ranks", world), noone, function(achievement)
 	{
 		var type = achievement[0];
-		if (type == notifs.end_level)
+		if type == notifs.end_level
 		{
 			var n = levelarray;
 			var _finished = true;
@@ -44,12 +44,12 @@ function add_rank_achievements(world, rank, sprite, index, levelarray)
 			{
 				var b = n[i];
 				var s = ini_read_string("Ranks", b, "d");
-				if (ds_map_find_value(map, s) < ds_map_find_value(map, rank))
+				if ds_map_find_value(map, s) < ds_map_find_value(map, rank)
 					_finished = false;
 			}
 			ds_map_destroy(map);
 			ini_close();
-			if (_finished)
+			if _finished
 				achievement_unlock(name, "", sprite, index);
 		}
 	});

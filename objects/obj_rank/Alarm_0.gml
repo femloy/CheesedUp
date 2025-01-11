@@ -1,6 +1,4 @@
-if SUGARY_SPIRE && sugary
-	destroy_sounds([sugaryrank]);
-
+/// @description ready to go
 if do_wait
 	continue_state = 1;
 else

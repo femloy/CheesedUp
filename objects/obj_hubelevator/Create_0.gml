@@ -1,8 +1,6 @@
 live_auto_call;
 
-ini_open_from_string(obj_savesystem.ini_str);
-if (!ini_key_exists("Ranks", "exit") && !global.sandbox && !instance_exists(obj_elevatorcutscene)) // checks if you beat the game on this savefile
-or instance_exists(obj_cyop_loader)
+if (!instance_exists(obj_elevatorcutscene) && !scr_postgame()) or instance_exists(obj_cyop_loader)
 {
 	var tr = room;
 	if variable_instance_exists(id, "targetRoom")
@@ -12,10 +10,8 @@ or instance_exists(obj_cyop_loader)
 	targetRoom = tr;
 	
 	event_perform_object(obj_door, ev_other, ev_room_start);
-	ini_close();
 	exit;
 }
-ini_close();
 
 // elevator here
 with instance_create(0, 0, obj_hubelevator_ui)

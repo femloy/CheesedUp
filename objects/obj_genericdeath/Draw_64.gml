@@ -37,7 +37,7 @@ with death
 				SCREEN_HEIGHT / 2 - sprite_get_height(spr_greendemondeath) * scale / 2 + 4,
 				SCREEN_WIDTH / 2 + sprite_get_width(spr_greendemondeath) * scale / 2 - 4,
 				SCREEN_HEIGHT / 2 + sprite_get_height(spr_greendemondeath) * scale / 2 - 4,
-			true, true, true);
+			true);
 		
 			draw_rectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, false);
 			draw_reset_clip();

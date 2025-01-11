@@ -1,4 +1,4 @@
-function pattern_set(color_array, sprite, subimg, xscale, yscale, pattern, use_lang = false, pattern_subimage = global.Pattern_Index, pattern_xoffset = 0, pattern_yoffset = 0)
+function pattern_set(color_array, sprite, subimg, xscale, yscale, pattern, use_lang = false, pattern_subimage = pattern_get_subimage(pattern), pattern_xoffset = 0, pattern_yoffset = 0)
 {
 	static shade_multiplier = shader_get_uniform(global.Pal_Shader, "shade_multiplier");
     if !sprite_exists(pattern) or !sprite_exists(sprite)
@@ -12,4 +12,10 @@ function pattern_set(color_array, sprite, subimg, xscale, yscale, pattern, use_l
     pattern_set_color_array(color_array);
 	
 	shader_set_uniform_f(shade_multiplier, 1);
+}
+function pattern_get_subimage(pattern)
+{
+	if !sprite_exists(pattern)
+		return 0;
+	return (global.time * sprite_get_speed(pattern)) % sprite_get_number(pattern);
 }

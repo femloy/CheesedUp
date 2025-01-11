@@ -1707,7 +1707,7 @@ with new ModSection("visual", 2)
 				var clip_x = timer_x + 3;
 				var clip_y = timer_y + 5;
 		
-				draw_set_bounds(clip_x, clip_y, clip_x + _barpos, clip_y + 30, true);
+				draw_set_bounds(clip_x, clip_y, clip_x + _barpos, clip_y + 30);
 				draw_sprite_tiled(spr_timer_barfill, 0, clip_x + -current_time / 200, clip_y);
 				draw_reset_clip();
 		

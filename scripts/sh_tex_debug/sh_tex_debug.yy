@@ -6,7 +6,7 @@
   "name":"sh_tex_debug",
   "parent":{
     "name":"Shell",
-    "path":"folders/Scripts/CheesyPizza/Shell.yy",
+    "path":"folders/Scripts/Shell.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
