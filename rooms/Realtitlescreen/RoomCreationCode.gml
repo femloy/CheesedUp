@@ -1,51 +1,8 @@
-global.coop = false;
+scr_basegame_startup();
+scr_player_startup();
 
-global.currentsavefile = 9;
-scr_load_savefiles();
-
-global.stickreq[0] = 100;
-global.stickreq[1] = 150;
-global.stickreq[2] = 200;
-global.stickreq[3] = 200;
-global.stickreq[4] = 210;
-global.levelattempts = 0;
-global.palette_arr = [false, false, false, false, false];
-global.newtoppin[0] = false;
-global.newtoppin[1] = false;
-global.newtoppin[2] = false;
-global.newtoppin[3] = false;
-global.newtoppin[4] = false;
-global.afterimage_color1 = make_colour_rgb(255, 0, 0);
-global.afterimage_color2 = make_colour_rgb(0, 255, 0);
-global.smallnumber_color1 = make_colour_rgb(255, 255, 255);
-global.smallnumber_color2 = make_colour_rgb(248, 0, 0);
-global.optimize = 0;
-global.autotile = true;
-global.pigreduction = 0;
-global.pigtotal = 0;
-global.levelcomplete = false;
+/*
 global.levelcompletename = noone;
-
-global.entrancetreasure = false;
-global.medievaltreasure = false;
-global.ruintreasure = false;
-global.dungeontreasure = false;
-global.deserttreasure = false;
-global.graveyardtreasure = false;
-global.farmtreasure = false;
-global.spacetreasure = false;
-global.beachtreasure = false;
-global.foresttreasure = false;
-global.pinballtreasure = false;
-global.golftreasure = false;
-global.streettreasure = false;
-global.sewertreasure = false;
-global.factorytreasure = false;
-global.freezertreasure = false;
-global.chateautreasure = false;
-global.mansiontreasure = false;
-global.kidspartytreasure = false;
-global.wartreasure = false;
 global.entrancecutscene = noone;
 global.medievalcutscene = noone;
 global.ruincutscene = noone;
@@ -100,15 +57,4 @@ global.mrstickcutscene2 = noone;
 global.mrstickcutscene3 = noone;
 global.chateauswap = noone;
 global.warcutscene = noone;
-
-with obj_player1
-	state = states.normal;
-global.loadeditor = false;
-if global.longintro
-{
-	global.longintro = false;
-	room_goto(Longintro);
-}
-else
-	room_goto(Mainmenu);
-instance_destroy(obj_cutscene_handler);
+*/

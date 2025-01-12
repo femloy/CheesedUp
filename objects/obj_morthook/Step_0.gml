@@ -2,7 +2,7 @@ var _found = false;
 with obj_player
 {
 	if (state == states.mort || state == states.mortjump || state == states.mortattack || state == states.morthook)
-	or (character == "V" && global.vigiweapon == vweapons.hook)
+	or (character == "V" && global.vigiweapon == VIGI_WEAPONS.hook)
 		_found = true;
 }
 if _found

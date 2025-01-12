@@ -42,20 +42,23 @@ if !hub or (instance_exists(obj_cyop_loader) && !is_string(obj_player1.backtohub
 		with obj_player
 			targetRoom = Realtitlescreen;
 		scr_room_goto(Realtitlescreen);
-		with (obj_player1)
+		with obj_player1
 		{
 			character = "P";
 			scr_characterspr();
 		}
 	}
+	
 	global.leveltosave = noone;
 	global.leveltorestart = noone;
 	alarm[0] = 1;
+	
 	with obj_player
 	{
 		state = states.titlescreen;
 		targetDoor = "A";
 	}
+	
 	global.cowboyhat = false;
 	global.coop = false;
 }

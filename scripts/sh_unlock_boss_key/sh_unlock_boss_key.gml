@@ -2,7 +2,7 @@ function sh_unlock_boss_key(args)
 {
 	if !WC_debug
 		return WC_NODEBUG;
-	if global.sandbox
+	if global.sandbox or !global.saveloaded
 		return "Unavailable in this mode";
 	if array_length(args) < 2
 		return "Missing number argument";
@@ -11,11 +11,13 @@ function sh_unlock_boss_key(args)
 	if number != "1" && number != "2" && number != "3" && number != "4"
 		return "Invalid world. Must be 1, 2, 3 or 4";
 	
-	ini_open_from_string(obj_savesystem.ini_str);
-	var n = concat("w", number, "stick");
-	ini_write_real(n, "bosskey", true);
-	obj_savesystem.ini_str = ini_close();
-	gamesave_async_save();
+	if gamesave_open_ini()
+	{
+		var n = concat("w", number, "stick");
+		ini_write_real(n, "bosskey", true);
+		gamesave_close_ini(true);
+		gamesave_async_save();
+	}
 }
 function meta_unlock_boss_key()
 {

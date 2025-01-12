@@ -110,8 +110,13 @@ switch state
 		fade = Approach(fade, 2, 0.01);
 		if fade >= 1.4
 		{
-			ini_open_from_string(obj_savesystem.ini_str);
-			if !global.sandbox && !ini_read_real("Game", "elevator", false)
+			var unlocked = true;
+			if !global.sandbox && gamesave_open_ini()
+			{
+				unlocked = ini_read_real("Game", "elevator", false);
+				gamesave_close_ini(false);
+			}
+			if !unlocked
 			{
 				with obj_player
 				{

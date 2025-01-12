@@ -83,20 +83,24 @@ function tv_push_prompt_array(prompt_array)
 }
 function tv_push_prompt_once(prompt_array, prompt_entry)
 {
-	with (obj_tv)
+	with obj_tv
 	{
-		if (special_prompts == noone)
+		if special_prompts == noone
 			return false;
 		var b = ds_map_find_value(special_prompts, prompt_entry);
-		if (is_undefined(b))
+		if is_undefined(b)
 			return false;
-		if (b != true)
+		if b != true
 		{
 			tv_push_prompt(prompt_array[0], prompt_array[1], prompt_array[2], prompt_array[3]);
 			ds_map_set(special_prompts, prompt_entry, 1);
-			ini_open_from_string(obj_savesystem.ini_str);
-			ini_write_real("Prompts", prompt_entry, 1);
-			obj_savesystem.ini_str = ini_close();
+			
+			if gamesave_open_ini()
+			{
+				ini_write_real("Prompts", prompt_entry, 1);
+				gamesave_close_ini(true);
+			}
+			
 			return true;
 		}
 		return false;

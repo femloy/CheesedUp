@@ -16,7 +16,9 @@ elevator_y = 0;
 with obj_camera
 	followtarget = other.id;
 
-ini_open_from_string(obj_savesystem.ini_str);
-ini_write_real("Game", "elevator", true);
-obj_savesystem.ini_str = ini_close();
-gamesave_async_save();
+if gamesave_open_ini()
+{
+	ini_write_real("Game", "elevator", true);
+	gamesave_close_ini(true);
+	gamesave_async_save();
+}

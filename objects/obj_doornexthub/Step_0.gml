@@ -36,10 +36,12 @@ if (floor(image_index) == (image_number - 1))
 if (_save)
 {
 	unlocked = true;
-	ini_open_from_string(obj_savesystem.ini_str);
-	ini_write_real(save, "door", true);
-	obj_savesystem.ini_str = ini_close();
-	gamesave_async_save();
+	if gamesave_open_ini()
+	{
+		ini_write_real(save, "door", true);
+		gamesave_close_ini(true);
+		gamesave_async_save();
+	}
 }
 if (sprite_index == spr_elevatoropening && floor(image_index) == (image_number - 1) && player && !instance_exists(obj_jumpscare) && floor(player.image_index) == (player.image_number - 1) && player.state == states.victory)
 {

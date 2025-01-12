@@ -9,13 +9,15 @@ if snotty
 	}
 	important = true;
 	
-	ini_open_from_string(obj_savesystem.ini_str);
-	if ini_read_real("Game", "snotty", false)
+	if gamesave_open_ini()
 	{
-		add_baddieroom();
-		instance_destroy();
-		if !global.panic
-			instance_create(x, y, obj_snotty);
+		if ini_read_real("Game", "snotty", false)
+		{
+			add_baddieroom();
+			instance_destroy();
+			if !global.panic
+				instance_create(x, y, obj_snotty);
+		}
+		gamesave_close_ini(false);
 	}
-	ini_close();
 }

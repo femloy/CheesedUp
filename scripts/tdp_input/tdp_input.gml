@@ -5,16 +5,19 @@ enum tdp_input
 	joystick
 }
 
-function tdp_input_init()
+global.input_list = ds_map_create();
+global.input_controller_deadzone = 0.4;
+global.input_controller_deadzone_vertical = 0.5;
+global.input_controller_deadzone_horizontal = 0.5;
+global.input_controller_deadzone_press = 0.5;
+
+global.spr_gamepadbuttons = spr_gamepadbuttons_style1;
+global.spr_joystick = spr_joystick_style1;
+
+if SWITCH
 {
-	if !variable_global_exists("input_list")
-	{
-		global.input_list = ds_map_create();
-		global.input_controller_deadzone = 0.4;
-		global.input_controller_deadzone_vertical = 0.5;
-		global.input_controller_deadzone_horizontal = 0.5;
-		global.input_controller_deadzone_press = 0.5;
-	}
+	global.spr_gamepadbuttons = spr_gamepadbuttons_style2;
+	global.spr_joystick = spr_joystick_style2;
 }
 
 function tdp_input_destroy()

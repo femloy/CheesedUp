@@ -15,6 +15,14 @@ scr_hub_bg_init();
 msg = "";
 locked = false;
 
+// pto
+highscore = 0;
+laps = 0;
+hats = 0;
+secret_count = 0;
+toppin = [0, 0, 0, 0, 0];
+rank = "d";
+timed_rank = "";
 transfotip = noone;
 
 // cyop

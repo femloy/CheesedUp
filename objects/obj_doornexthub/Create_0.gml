@@ -1,11 +1,7 @@
-// checks if you beat the game on this savefile
-if !instance_exists(obj_cyop_loader)
+if !instance_exists(obj_cyop_loader) && (instance_exists(obj_elevatorcutscene) or scr_postgame())
 {
-	if instance_exists(obj_elevatorcutscene) or scr_postgame()
-	{
-		instance_change(obj_hubelevator, true);
-		exit;
-	}
+	instance_change(obj_hubelevator, true);
+	exit;
 }
 
 event_inherited();

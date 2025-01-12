@@ -30,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_finaljudgement2",
+    "path":"sprites/spr_finaljudgement2/spr_finaljudgement2.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

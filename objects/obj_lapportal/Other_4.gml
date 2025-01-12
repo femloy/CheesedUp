@@ -24,10 +24,12 @@ else if check_lap_mode(LAP_MODES.april)
 
 if array_contains(base_game_levels(), global.leveltosave) && !global.sandbox
 {
-	ini_open_from_string(obj_savesystem.ini_str);
-	if ini_read_real("Highscore", global.leveltosave, 0) == 0 && !ini_read_real("Tutorial", "lapunlocked", false)
-		sprite_index = spr_outline;
-	ini_close();
+	if gamesave_open_ini()
+	{
+		if ini_read_real("Highscore", global.leveltosave, 0) == 0 && !ini_read_real("Tutorial", "lapunlocked", false)
+			sprite_index = spr_outline;
+		gamesave_close_ini(false);
+	}
 }
 
 if global.in_afom

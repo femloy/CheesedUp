@@ -1,13 +1,15 @@
-ini_open_from_string(obj_savesystem.ini_str);
-unlocked = ini_read_real(save, "unlocked", false);
-with (obj_bossdoor)
+if gamesave_open_ini()
 {
-	if (save == other.save && !other.unlocked)
+	unlocked = ini_read_real(save, "unlocked", false);
+	with obj_bossdoor
 	{
-		other.bossdoorID = id;
-		instance_deactivate_object(id);
+		if save == other.save && !other.unlocked
+		{
+			other.bossdoorID = id;
+			instance_deactivate_object(id);
+		}
 	}
+	gamesave_close_ini(false);
 }
-ini_close();
-if (unlocked)
+if unlocked
 	instance_destroy();

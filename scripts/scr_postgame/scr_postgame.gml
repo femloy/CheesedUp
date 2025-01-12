@@ -1,10 +1,12 @@
 function scr_postgame()
 {
-	if global.sandbox
+	if global.sandbox or !global.saveloaded
 		return true;
-	
-	ini_open_from_string(obj_savesystem.ini_str);
-	var r = ini_key_exists("Ranks", "exit");
-	ini_close();
-	return r;
+	if gamesave_open_ini()
+	{
+		var r = ini_key_exists("Ranks", "exit");
+		gamesave_close_ini(false);
+		return r;
+	}
+	return false;
 }

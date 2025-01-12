@@ -32,7 +32,10 @@ if state == states.normal && !instance_exists(obj_option) && !instance_exists(ob
 			}
 		}
 		else
-			instance_create(0, 0, obj_softlockcrash);
+		{
+			with instance_create(0, 0, obj_softlockcrash)
+				sprite_index = spr_pickledestroyer;
+		}
 		punch_count = 0;
 	}
 }

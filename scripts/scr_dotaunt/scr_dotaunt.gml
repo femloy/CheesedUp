@@ -1,6 +1,6 @@
 function scr_dotaunt()
 {
-	if ((key_taunt2 || input_finisher_buffer > 0 || (state == states.backbreaker && key_up && supercharged)) && !skateboarding)
+	if (key_taunt2 || input_finisher_buffer > 0 || (state == states.backbreaker && key_up && supercharged)) && !skateboarding
 	{
 		if SUGARY_SPIRE
 		{
@@ -14,7 +14,7 @@ function scr_dotaunt()
 		flash = false;
 		notification_push(notifs.taunt, [room]);
 		
-		if ((!key_up || !supercharged) && room != war_1 && global.tauntcount < 10 && place_meeting(x, y, obj_exitgate) && (global.panic == true || instance_exists(obj_wartimer) || (instance_exists(obj_randomsecret) && obj_randomsecret.start)) && global.combotime > 0 && global.leveltosave != "grinch" && global.leveltosave != "tutorial")
+		if (!key_up || !supercharged) && room != war_1 && global.tauntcount < 10 && place_meeting(x, y, obj_exitgate) && (global.panic == true || instance_exists(obj_wartimer) || (instance_exists(obj_randomsecret) && obj_randomsecret.start)) && global.combotime > 0 && global.leveltosave != "grinch" && global.leveltosave != "tutorial"
 		{
 			if global.combokeeper
 				global.combotime = min(global.combotime + 5, 60);
@@ -30,10 +30,10 @@ function scr_dotaunt()
 			scr_sound_multiple(global.snd_collect, x, y);
 		}
 		
-		if (!finisher)
+		if !finisher
 		{
 			taunttimer = 20;
-			if (state != states.backbreaker && sprite_index != spr_supertaunt1 && sprite_index != spr_supertaunt2 && sprite_index != spr_supertaunt3 && sprite_index != spr_supertaunt4 && sprite_index != spr_ratmount_supertaunt)
+			if state != states.backbreaker && sprite_index != spr_supertaunt1 && sprite_index != spr_supertaunt2 && sprite_index != spr_supertaunt3 && sprite_index != spr_supertaunt4 && sprite_index != spr_ratmount_supertaunt
 			{
 				tauntstoredmovespeed = movespeed;
 				tauntstoredhsp = hsp;
@@ -42,11 +42,13 @@ function scr_dotaunt()
 				tauntstoredstate = state;
 			}
 			state = states.backbreaker;
-			if (supercharged && key_up)
+			if supercharged && key_up
 			{
-				ini_open_from_string(obj_savesystem.ini_str);
-				ini_write_real("Game", "supertaunt", true);
-				obj_savesystem.ini_str = ini_close();
+				if gamesave_open_ini()
+				{
+					ini_write_real("Game", "supertaunt", true);
+					gamesave_close_ini(true);
+				}
 				sound_instance_move(global.snd_supertaunt, x, y);
 				fmod_event_instance_play(global.snd_supertaunt);
 				image_index = 0;
@@ -54,7 +56,7 @@ function scr_dotaunt()
 					sprite_index = choose(spr_supertaunt1, spr_supertaunt2, spr_supertaunt3, spr_supertaunt4, spr_player_supertaunt5);
 				else
 					sprite_index = choose(spr_supertaunt1, spr_supertaunt2, spr_supertaunt3, spr_supertaunt4);
-				if (isgustavo)
+				if isgustavo
 					sprite_index = spr_ratmount_supertaunt;
 			}
 			else
@@ -69,7 +71,7 @@ function scr_dotaunt()
 				else
 					image_index = irandom(image_number - 1);
 			}
-			with (instance_create(x, y, obj_taunteffect))
+			with instance_create(x, y, obj_taunteffect)
 				player = other.id;
 		}
 	}

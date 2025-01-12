@@ -1,3 +1,7 @@
+auto_targetdoor();
+if !instance_exists(obj_player)
+	exit;
+
 if global.in_afom
 {
 	if sprite_index == spr_doorunvisited
@@ -21,16 +25,10 @@ if global.in_afom
 	
 	if in_saveroom()
 		visited = true;
-	else
+	else if obj_player1.targetDoor == targetDoor
 	{
-		alarm[0] = -1;
-		auto_targetdoor();
-		
-		if obj_player1.targetDoor == targetDoor
-		{
-			add_saveroom();
-			visited = true;
-		}
+		add_saveroom();
+		visited = true;
 	}
 	if visited && sprite_index != spr_cheftaskdoor && sprite_index != spr_pepperdoor && sprite_index != spr_elevatordown1 && sprite_index != spr_elevatordown2 && sprite_index != spr_elevatordown3 && sprite_index != spr_elevatordown4
 		sprite_index = spr_visited;
@@ -52,7 +50,7 @@ if string_ends_with(room_get_name(room), "_treasure")
 if variable_instance_exists(id, "target_x") && variable_instance_exists(id, "target_y")
 	compatibility = true;
 
-if old
+if old or room == Realtitlescreen
 	exit;
 
 if sprite_index != spr_pumpkingate && sprite_index != spr_cheftaskdoor && sprite_index != spr_pepperdoor && sprite_index != spr_elevatordown1 && sprite_index != spr_elevatordown2 && sprite_index != spr_elevatordown3 && sprite_index != spr_elevatordown4 && sprite_index != spr_blastdooropen
@@ -105,24 +103,23 @@ if sprite_index == spr_cheftaskdoor
 	}
 	
 	// look for non unlocked achievements
-	var _found = false;
-	ini_open_from_string(obj_savesystem.ini_str);
-	for (var i = 0; i < array_length(arr); i++)
+	var _found = true;
+	if gamesave_open_ini()
 	{
-		var b = arr[i];
-		if !ini_read_real("achievements", b, false)
+		_found = false;
+		for (var i = 0; i < array_length(arr); i++)
 		{
-			_found = true;
-			break;
+			var b = arr[i];
+			if !ini_read_real("achievements", b, false)
+			{
+				_found = true;
+				break;
+			}
 		}
+		gamesave_close_ini(false);
 	}
-	ini_close();
 	
 	// if every achievement is unlocked for this floor, make it gold
 	if !_found
 		sprite_index = spr_cheftaskdoor_gold;
 }
-if MIDWAY
-	sprite_index = spr_midwaydoor;
-if room == steamy_8
-	sprite_index = spr_clockdoor;

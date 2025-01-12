@@ -1,11 +1,13 @@
-ini_open_from_string(obj_savesystem.ini_str);
-global.entrancetime = ini_read_string("Time", "entrance", "none");
-global.medievaltime = ini_read_string("Time", "medieval", "none");
-global.ruintime = ini_read_string("Time", "ruin", "none");
-global.dungeontime = ini_read_string("Time", "dungeon", "none");
-global.chateautime = ini_read_string("Time", "chateau", "none");
-global.strongcoldtime = ini_read_string("Time", "strongcold", "none");
-ini_close();
+if gamesave_open_ini()
+{
+	global.entrancetime = ini_read_string("Time", "entrance", "none");
+	global.medievaltime = ini_read_string("Time", "medieval", "none");
+	global.ruintime = ini_read_string("Time", "ruin", "none");
+	global.dungeontime = ini_read_string("Time", "dungeon", "none");
+	global.chateautime = ini_read_string("Time", "chateau", "none");
+	global.strongcoldtime = ini_read_string("Time", "strongcold", "none");
+	gamesave_close_ini(false);
+}
 switch (levelsign)
 {
 	case "entrance":

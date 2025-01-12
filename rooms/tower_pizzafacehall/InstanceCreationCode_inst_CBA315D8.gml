@@ -7,12 +7,17 @@ title_sprite = spr_titlecards_title2;
 titlecard_index = 15;
 title_music = noone;
 
-var _found = false;
-ini_open_from_string(obj_savesystem.ini_str);
-if (ini_read_string("Game", "finalrank", "none") != "none")
-	_found = true;
-ini_close();
-if (!_found && !global.sandbox)
-	instance_destroy();
+if !global.sandbox
+{
+	if gamesave_open_ini()
+	{
+		var _found = false;
+		if ini_read_string("Game", "finalrank", "none") != "none"
+			_found = true;
+		gamesave_close_ini(false);
+		if !_found
+			instance_destroy();
+	}
+}
 
 group_arr = ["hubgroup"];

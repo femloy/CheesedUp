@@ -75,7 +75,7 @@ else if (state == states.ending)
 
 
 // 
-if DEBUG
+/*if DEBUG
 {
 	draw_set_font(lang_get_font("font_small"));
 	draw_set_align(fa_center);
@@ -83,7 +83,7 @@ if DEBUG
 	draw_text(SCREEN_WIDTH / 2, 32, $"Debug build - {date_date_string(GM_build_date)} {date_time_string(GM_build_date)}");
 	draw_set_align();
 }
-/*else if GM_build_type == "exe" && !code_is_compiled()
+else if GM_build_type == "exe" && !code_is_compiled()
 {
 	draw_set_font(lang_get_font("font_small"));
 	draw_set_align(fa_center);

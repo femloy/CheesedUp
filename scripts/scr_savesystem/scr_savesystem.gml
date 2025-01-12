@@ -101,6 +101,11 @@ function gamesave_async_load()
 }
 function gamesave_async_save()
 {
+	if !global.saveloaded
+	{
+		trace("[WARNING] Tried saving without save loaded, stacktrace: ", debug_get_callstack());
+		exit;
+	}
 	with obj_savesystem
 	{
 		trace("[obj_savesystem] Saving...");
@@ -116,4 +121,18 @@ function gamesave_async_save_options()
 		dirty = true;
 		saveoptions = true;
 	}
+}
+function gamesave_open_ini()
+{
+	if !global.saveloaded
+		return false;
+	ini_open_from_string(obj_savesystem.ini_str);
+	return true;
+}
+function gamesave_close_ini(save)
+{
+	if save
+		obj_savesystem.ini_str = ini_close();
+	else
+		ini_close();
 }

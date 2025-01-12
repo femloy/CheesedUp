@@ -24,11 +24,13 @@ select = function()
 		
 		if hatprev != hat or petprev != pet
 		{
-			ini_open_from_string(obj_savesystem.ini_str);
-			ini_write_string("Game", "hat", hat);
-			ini_write_real("Game", "pet", pet);
-			obj_savesystem.ini_str = ini_close();
-			gamesave_async_save();
+			if gamesave_open_ini()
+			{
+				ini_write_string("Game", "hat", hat);
+				ini_write_real("Game", "pet", pet);
+				gamesave_close_ini(true);
+				gamesave_async_save();
+			}
 		}
 		sound_play("event:/sfx/misc/collecttoppin");
 	}

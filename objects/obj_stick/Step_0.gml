@@ -91,11 +91,13 @@ switch state
 			sound_play_3d("event:/sfx/misc/kashing", x, y);
 			instance_destroy(arrowID);
 			obj_stick_forsale.visible = false;
-			ini_open_from_string(obj_savesystem.ini_str);
-			ini_write_real(save, "unlocked", true);
-			ini_write_real(save, "reduction", maxscore);
+			if gamesave_open_ini()
+			{
+				ini_write_real(save, "unlocked", true);
+				ini_write_real(save, "reduction", maxscore);
+				gamesave_close_ini(true);
+			}
 			global.pigreduction += maxscore;
-			obj_savesystem.ini_str = ini_close();
 			state = states.jump;
 			sprite_index = spr_stick_takemoney1;
 			image_index = 0;

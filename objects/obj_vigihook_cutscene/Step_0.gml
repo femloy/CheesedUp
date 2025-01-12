@@ -74,7 +74,7 @@ switch state
 		{
 			obj_player1.state = states.normal;
 			obj_player1.sprite_index = obj_player1.spr_idle;
-			global.vigiweapon = vweapons.hook;
+			global.vigiweapon = VIGI_WEAPONS.hook;
 			create_transformation_tip(lang_get_value("vigihooktip"),,,true);
 			instance_destroy();
 		}

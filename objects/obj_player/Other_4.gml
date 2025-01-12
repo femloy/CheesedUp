@@ -107,33 +107,9 @@ if object_index != obj_player2 or global.coop
 	}
 	if instance_exists(door_obj)
 	{
-		with door_obj
-		{
-			with instance_place(x, y, obj_door)
-				event_user(0);
-		}
-		
-		if hallway && !global.in_cyop
-			x = door_obj.x + (hallwaydirection * 100);
-		else if box
-			x = door_obj.x + 32;
-		else
-			x = door_obj.x + 16 + (REMIX * 2);
-		
-		y = door_obj.y - 14;
-		if hallway && flip < 0
-		{
-			var hall_obj = noone;
-			with door_obj
-				hall_obj = instance_place(x, y, obj_hallway);
-			
-			if hall_obj
-			{
-				y = hall_obj.y + 46;
-				while !scr_solid(x, y + 1) && !place_meeting(x, y, hall_obj)
-					x -= hallwaydirection;
-			}
-		}
+		var pos = scr_door_spawnpos(door_obj);
+		x = pos[0];
+		y = pos[1];
 	}
 }
 

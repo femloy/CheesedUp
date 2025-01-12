@@ -107,9 +107,11 @@ function achievement_unlock(_name, _display_name, _sprite, _index = 0)
 		{
 			trace("Achievement unlocked! ", _name, " ", _display_name);
 			unlocked = true;
-			ini_open_from_string(obj_savesystem.ini_str);
-			ini_write_real("achievements", name, true);
-			obj_savesystem.ini_str = ini_close();
+			if gamesave_open_ini()
+			{
+				ini_write_real("achievements", name, true);
+				gamesave_close_ini(true);
+			}
 			notification_push(notifs.unlocked_achievement, [name]);
 			obj_achievementtracker.alarm[0] = 2;
 			ds_queue_enqueue(obj_achievementtracker.unlock_queue, [_sprite, _index]);
@@ -190,10 +192,12 @@ function achievement_reset_variables(achievement_array)
 }
 function achievement_save_variables(achievement_array)
 {
+	if !gamesave_open_ini()
+		exit;
+	
 	for (var i = 0; i < array_length(achievement_array); i++)
 	{
 		var b = achievement_array[i];
-		ini_open_from_string(obj_savesystem.ini_str);
 		with b
 		{
 			var size = ds_map_size(variables);
@@ -206,22 +210,25 @@ function achievement_save_variables(achievement_array)
 				key = ds_map_find_next(variables, key);
 			}
 		}
-		obj_savesystem.ini_str = ini_close();
 	}
+	
+	gamesave_close_ini(true);
 }
 function achievement_get_steam_achievements(achievement_array)
 {
 	/*
-	for (var i = 0; i < array_length(achievement_array); i++)
+	if gamesave_open_ini()
 	{
-		var b = achievement_array[i];
-		ini_open_from_string(obj_savesystem.ini_str);
-		with (b)
+		for (var i = 0; i < array_length(achievement_array); i++)
 		{
-			if ini_read_real("achievements", name, 0)
-				scr_steam_unlock_achievement(name);
+			var b = achievement_array[i];
+			with b
+			{
+				if ini_read_real("achievements", name, 0)
+					scr_steam_unlock_achievement(name);
+			}
+			gamesave_close_ini(true);
 		}
-		obj_savesystem.ini_str = ini_close();
 	}
 	*/
 }

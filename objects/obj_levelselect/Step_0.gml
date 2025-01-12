@@ -1,49 +1,57 @@
-if (!instance_exists(obj_option))
+live_auto_call;
+
+with obj_backtohub_fadeout
 {
-	scr_getinput();
-	if (!instance_exists(obj_fadeout))
-	{
-		var _m = key_down2 - key_up2;
-		selected_world += _m;
-		selected_world = clamp(selected_world, 0, array_length(level_array) - 1);
-		if (_m != 0)
-			selected_level = 0;
-		selected_level += (key_left2 + key_right2);
-		selected_level = clamp(selected_level, 0, array_length(level_array[selected_world]) - 1);
-	}
-	with (obj_player)
-	{
-		movespeed = 0;
-		hsp = 0;
-		vsp = 0;
-	}
-	if (!active)
-		exit;
-	if (key_jump2 && !instance_exists(obj_fadeout))
-	{
-		var _levelinfo = level_array[selected_world][selected_level];
-		with (obj_player)
-		{
-			global.leveltosave = _levelinfo[2];
-			global.leveltorestart = _levelinfo[1];
-			state = states.comingoutdoor;
-			movespeed = 0;
-			hsp = 0;
-			vsp = 0;
-			targetRoom = _levelinfo[1];
-			targetDoor = "A";
-			instance_create(x, y, obj_fadeout);
-		}
-	}
-	if (instance_exists(obj_fadeout))
-	{
-		with (obj_player)
-			image_index = 0;
-	}
+	instance_create(0, 0, obj_genericfade);
+	instance_destroy();
 }
-for (var i = 0; i < array_length(toppin_info); i++)
+
+if buffer != 0
 {
-	toppin_info[i][0] += 0.35;
-	if (toppin_info[i][0] > sprite_get_number(toppin_info[i][1]))
-		toppin_info[i][0] = frac(toppin_info[i][0]);
+	buffer--;
+	exit;
+}
+
+if instance_exists(obj_levelsettings)
+	exit;
+
+with obj_player
+{
+	state = states.titlescreen;
+	movespeed = 0;
+	hsp = 0;
+	vsp = 0;
+}
+
+scr_menu_getinput();
+
+if key_taunt2
+{
+	instance_create(0, 0, obj_levelsettings);
+	exit;
+}
+
+var _m = key_down2 - key_up2;
+if _m != 0
+{
+	sound_play(sfx_step);
+	selected_level = 0;
+	selected_world += _m;
+	selected_world = clamp(selected_world, 0, array_length(worlds) - 1);
+}
+
+var levels = worlds[selected_world].levels;
+
+var _n = key_left2 + key_right2;
+if _n != 0
+{
+	sound_play(sfx_step);
+	selected_level += _n;
+	selected_level = clamp(selected_level, 0, array_length(levels) - 1);
+}
+
+if key_jump2 && selected_level >= 0 && selected_level < array_length(levels)
+{
+	buffer = -1;
+	levels[selected_level].func();
 }

@@ -19,29 +19,17 @@ function sh_level(args)
 	}
 	else
 	{
-		switch level
-		{
-			default: targetRoom = asset_get_index(level + "_1"); break;
-		
-			case "farm": targetRoom = farm_2; break;
-			case "plage": targetRoom = plage_entrance; break;
-			case "street": targetRoom = street_intro; break;
-			case "exit": targetRoom = tower_finalhallway; break;
-			case "secretworld": targetRoom = secret_entrance; break;
-			
-			case "oldexit": targetRoom = exit_1; break;
-			case "strongcold": targetRoom = strongcold_10; break;
-			
-			case "snickchallenge":
-				targetRoom = medieval_1;
-				activate_snickchallenge();
-				break;
-		}
+		var _i = level_get_info(level);
+		if _i != noone
+			targetRoom = _i.gate_room;
+		else
+			targetRoom = asset_get_index(level + "_1");
 		
 		if room_exists(targetRoom)
 		{
 			with obj_player1
 			{
+				global.exitrank = true;
 				global.startgate = true;
 				global.leveltosave = level;
 				global.leveltorestart = targetRoom;
@@ -52,6 +40,8 @@ function sh_level(args)
 				backtohubroom = room;
 				targetDoor = "A";
 			}
+			if level == "snickchallenge"
+				activate_snickchallenge();
 			scr_room_goto(targetRoom);
 		}
 	}

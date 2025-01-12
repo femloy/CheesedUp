@@ -31,20 +31,22 @@ function scr_achievements_peppino()
 		var type = data[0];
 		if type == notifs.end_level
 		{
-			var _found = false;
-			ini_open_from_string(obj_savesystem.ini_str);
-			var lvl = ["entrance", "medieval", "ruin", "dungeon"];
-			for (var i = 0; i < array_length(lvl); i++)
+			if gamesave_open_ini()
 			{
-				if (ini_read_real("Highscore", lvl[i], 0) == 0)
+				var _found = false;
+				var lvl = ["entrance", "medieval", "ruin", "dungeon"];
+				for (var i = 0; i < array_length(lvl); i++)
 				{
-					_found = true;
-					break;
+					if ini_read_real("Highscore", lvl[i], 0) == 0
+					{
+						_found = true;
+						break;
+					}
 				}
+				gamesave_close_ini(false);
+				if !_found && global.file_minutes < 60
+					palette_unlock(name, "sage", 5);
 			}
-			ini_close();
-			if !_found && global.file_minutes < 60
-				palette_unlock(name, "sage", 5);
 		}
 	}, false, "Palettes", "sage");
 
@@ -56,22 +58,24 @@ function scr_achievements_peppino()
 		var type = data[0];
 		if type == notifs.end_level
 		{
-			var _money = 0;
-			ini_open_from_string(obj_savesystem.ini_str);
-			var lvl = ["entrance", "medieval", "ruin", "dungeon", "badland", "graveyard", "farm", "saloon"];
-			for (var i = 0; i < array_length(lvl); i++)
+			if gamesave_open_ini()
 			{
-				for (var j = 0; j < 5; j++)
+				var _money = 0;
+				var lvl = ["entrance", "medieval", "ruin", "dungeon", "badland", "graveyard", "farm", "saloon"];
+				for (var i = 0; i < array_length(lvl); i++)
 				{
-					if (ini_read_real("Toppin", concat(lvl[i], j + 1), false) == 1)
-						_money += 10;
+					for (var j = 0; j < 5; j++)
+					{
+						if ini_read_real("Toppin", concat(lvl[i], j + 1), false) == true
+							_money += 10;
+					}
 				}
+				_money -= ini_read_real("w1stick", "reduction", 0);
+				_money -= ini_read_real("w2stick", "reduction", 0);
+				gamesave_close_ini(false);
+				if _money >= 300
+					palette_unlock(name, "money", 4);
 			}
-			_money -= ini_read_real("w1stick", "reduction", 0);
-			_money -= ini_read_real("w2stick", "reduction", 0);
-			ini_close();
-			if _money >= 300
-				palette_unlock(name, "money", 4);
 		}
 	}, false, "Palettes", "money");
 
@@ -83,11 +87,13 @@ function scr_achievements_peppino()
 		var type = data[0];
 		if type == notifs.end_level
 		{
-			ini_open_from_string(obj_savesystem.ini_str);
-			var _count = ini_read_real("Game", "enemies", 0);
-			ini_close();
-			if _count >= 1000
-				palette_unlock(name, "blood", 6);
+			if gamesave_open_ini()
+			{
+				var _count = ini_read_real("Game", "enemies", 0);
+				gamesave_close_ini(false);
+				if _count >= 1000
+					palette_unlock(name, "blood", 6);
+			}
 		}
 	}, false, "Palettes", "blood");
 
@@ -99,26 +105,28 @@ function scr_achievements_peppino()
 		var type = data[0];
 		if type == notifs.end_level
 		{
-			ini_open_from_string(obj_savesystem.ini_str);
-			var _found = false;
-			var lvl = ["entrance", "medieval", "ruin", "dungeon", "badland", "graveyard", "farm", "saloon", "plage", "forest", "space", "minigolf", "street", "sewer", "industrial", "freezer", "chateau", "kidsparty", "war"];
-			var map = ds_map_create();
-			ds_map_set(map, "p", 5);
-			ds_map_set(map, "s", 4);
-			ds_map_set(map, "a", 3);
-			ds_map_set(map, "b", 2);
-			ds_map_set(map, "c", 1);
-			ds_map_set(map, "d", 0);
-			for (var i = 0; i < array_length(lvl); i++)
+			if gamesave_open_ini()
 			{
-				var rank = ini_read_string("Ranks", lvl[i], "d");
-				if (ds_map_find_value(map, rank) < ds_map_find_value(map, "p"))
-					_found = true;
+				var _found = false;
+				var lvl = ["entrance", "medieval", "ruin", "dungeon", "badland", "graveyard", "farm", "saloon", "plage", "forest", "space", "minigolf", "street", "sewer", "industrial", "freezer", "chateau", "kidsparty", "war"];
+				var map = ds_map_create();
+				ds_map_set(map, "p", 5);
+				ds_map_set(map, "s", 4);
+				ds_map_set(map, "a", 3);
+				ds_map_set(map, "b", 2);
+				ds_map_set(map, "c", 1);
+				ds_map_set(map, "d", 0);
+				for (var i = 0; i < array_length(lvl); i++)
+				{
+					var rank = ini_read_string("Ranks", lvl[i], "d");
+					if ds_map_find_value(map, rank) < ds_map_find_value(map, "p")
+						_found = true;
+				}
+				ds_map_destroy(map);
+				gamesave_close_ini(false);
+				if !_found
+					palette_unlock(name, "tv", 7);
 			}
-			ds_map_destroy(map);
-			ini_close();
-			if !_found
-				palette_unlock(name, "tv", 7);
 		}
 	}, false, "Palettes", "tv");
 
@@ -131,17 +139,19 @@ function scr_achievements_peppino()
 		var arr = data[1];
 		if type == notifs.unlocked_achievement && (arr[0] == "pepperman" || arr[0] == "vigilante" || arr[0] == "noise" || arr[0] == "fakepep" || arr[0] == "pizzaface")
 		{
-			ini_open_from_string(obj_savesystem.ini_str);
-			var _found = false;
-			var ach = ["pepperman", "vigilante", "noise", "fakepep", "pizzaface"];
-			for (var i = 0; i < array_length(ach); i++)
+			if gamesave_open_ini()
 			{
-				if (ini_read_real("achievements", ach[i], false) == 0)
-					_found = true;
+				var _found = false;
+				var ach = ["pepperman", "vigilante", "noise", "fakepep", "pizzaface"];
+				for (var i = 0; i < array_length(ach); i++)
+				{
+					if ini_read_real("achievements", ach[i], false) == false
+						_found = true;
+				}
+				gamesave_close_ini(false);
+				if !_found
+					palette_unlock(name, "dark", 8);
 			}
-			ini_close();
-			if !_found
-				palette_unlock(name, "dark", 8);
 		}
 	}, false, "Palettes", "dark");
 
@@ -163,26 +173,28 @@ function scr_achievements_peppino()
 		var type = data[0];
 		if type == notifs.end_level
 		{
-			ini_open_from_string(obj_savesystem.ini_str);
-			var _found = false;
-			var lvl = ["entrance", "medieval", "ruin", "dungeon", "badland", "graveyard", "farm", "saloon", "plage", "forest", "space", "minigolf", "street", "sewer", "industrial", "freezer", "chateau", "kidsparty", "war"];
-			var map = ds_map_create();
-			ds_map_set(map, "p", 5);
-			ds_map_set(map, "s", 4);
-			ds_map_set(map, "a", 3);
-			ds_map_set(map, "b", 2);
-			ds_map_set(map, "c", 1);
-			ds_map_set(map, "d", 0);
-			for (var i = 0; i < array_length(lvl); i++)
+			if gamesave_open_ini()
 			{
-				var rank = ini_read_string("Ranks", lvl[i], "d");
-				if (ds_map_find_value(map, rank) < ds_map_find_value(map, "s"))
-					_found = true;
+				var _found = false;
+				var lvl = ["entrance", "medieval", "ruin", "dungeon", "badland", "graveyard", "farm", "saloon", "plage", "forest", "space", "minigolf", "street", "sewer", "industrial", "freezer", "chateau", "kidsparty", "war"];
+				var map = ds_map_create();
+				ds_map_set(map, "p", 5);
+				ds_map_set(map, "s", 4);
+				ds_map_set(map, "a", 3);
+				ds_map_set(map, "b", 2);
+				ds_map_set(map, "c", 1);
+				ds_map_set(map, "d", 0);
+				for (var i = 0; i < array_length(lvl); i++)
+				{
+					var rank = ini_read_string("Ranks", lvl[i], "d");
+					if ds_map_find_value(map, rank) < ds_map_find_value(map, "s")
+						_found = true;
+				}
+				ds_map_destroy(map);
+				gamesave_close_ini(false);
+				if !_found
+					palette_unlock(name, "golden", 10);
 			}
-			ds_map_destroy(map);
-			ini_close();
-			if !_found
-				palette_unlock(name, "golden", 10);
 		}
 	}, false, "Palettes", "golden");
 
@@ -251,7 +263,7 @@ function scr_achievements_peppino()
 		if type == notifs.rattumble_dead
 		{
 			achievement_get_variable("stripes_count").value += 1;
-			if (achievement_get_variable("stripes_count").value >= 30)
+			if achievement_get_variable("stripes_count").value >= 30
 				palette_unlock(name, "stripes", 12, spr_peppattern4);
 		}
 	}, false, "Palettes", "stripes");
@@ -264,27 +276,29 @@ function scr_achievements_peppino()
 		var type = data[0];
 		if type == notifs.unlocked_achievement
 		{
-			var lvl = ["entrance", "medieval", "ruin", "dungeon", "badland", "graveyard", "farm", "saloon", "plage", "forest", "space", "minigolf", "street", "sewer", "industrial", "freezer", "chateau", "kidsparty", "war"];
-			var ach = ["pepperman", "vigilante", "noise", "fakepep", "pizzaface", "sranks1", "sranks2", "sranks3", "sranks4", "sranks5"];
-			for (var i = 0; i < array_length(lvl); i++)
+			if gamesave_open_ini()
 			{
-				var b = lvl[i]
-				for (var j = 0; j < 3; j++)
-					array_push(ach, concat(b, j + 1));
-			}
-			var _found = false;
-			ini_open_from_string(obj_savesystem.ini_str);
-			for (i = 0; i < array_length(ach); i++)
-			{
-				if (ini_read_real("achievements", ach[i], false) == 0)
+				var lvl = ["entrance", "medieval", "ruin", "dungeon", "badland", "graveyard", "farm", "saloon", "plage", "forest", "space", "minigolf", "street", "sewer", "industrial", "freezer", "chateau", "kidsparty", "war"];
+				var ach = ["pepperman", "vigilante", "noise", "fakepep", "pizzaface", "sranks1", "sranks2", "sranks3", "sranks4", "sranks5"];
+				for (var i = 0; i < array_length(lvl); i++)
 				{
-					_found = true;
-					break;
+					var b = lvl[i]
+					for (var j = 0; j < 3; j++)
+						array_push(ach, concat(b, j + 1));
 				}
+				var _found = false;
+				for (i = 0; i < array_length(ach); i++)
+				{
+					if ini_read_real("achievements", ach[i], false) == false
+					{
+						_found = true;
+						break;
+					}
+				}
+				gamesave_close_ini(false);
+				if !_found
+					palette_unlock(name, "goldemanne", 12, spr_peppattern5);
 			}
-			ini_close();
-			if !_found
-				palette_unlock(name, "goldemanne", 12, spr_peppattern5);
 		}
 	}, false, "Palettes", "goldemanne");
 
@@ -333,11 +347,13 @@ function scr_achievements_peppino()
 		var arr = data[1];
 		if type == notifs.end_level && arr[0] == "war"
 		{
-			ini_open_from_string(obj_savesystem.ini_str);
-			var n = ini_read_real("Attempts", "war", 0);
-			ini_close();
-			if n <= 1
-				palette_unlock(name, "war", 12, spr_peppattern8);
+			if gamesave_open_ini()
+			{
+				var n = ini_read_real("Attempts", "war", 0);
+				gamesave_close_ini(false);
+				if n <= 1
+					palette_unlock(name, "war", 12, spr_peppattern8);
+			}
 		}
 	}, false, "Palettes", "war");
 

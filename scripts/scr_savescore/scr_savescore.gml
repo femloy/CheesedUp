@@ -33,16 +33,20 @@ function scr_savescore(level, do_save)
 	
 	if global.saveloaded && !do_save && global.rank == "f"
 	{
-		ini_open_from_string(obj_savesystem.ini_str);
-		scr_write_rank(level);
-		obj_savesystem.ini_str = ini_close();
+		if gamesave_open_ini()
+		{
+			scr_write_rank(level);
+			gamesave_close_ini(true);
+		}
 	}
 	
 	if global.saveloaded && do_save
 	{
 		trace("[scr_savescore] Saving to: ", get_savefile_ini());
 		
-		ini_open_from_string(obj_savesystem.ini_str);
+		if !gamesave_open_ini()
+			exit;
+		
 		ini_write_real("Game", "pizzacoin", global.pizzacoin);
 		
 		// global stats
@@ -127,7 +131,7 @@ function scr_savescore(level, do_save)
 		}
 		
 		scr_write_rank(level);
-		obj_savesystem.ini_str = ini_close();
+		gamesave_close_ini(true);
 	}
 	else
 		global.levelattempts = 0;

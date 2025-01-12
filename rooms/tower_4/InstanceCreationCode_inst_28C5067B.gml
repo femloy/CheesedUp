@@ -8,8 +8,10 @@ maxscore = global.stickreq[3];
 msg = lstr("boss_fakepep2"); // Fake Peppino
 if !global.sandbox
 {
-	ini_open_from_string(obj_savesystem.ini_str);
-	if !ini_read_string("Game", "fakepepportrait", false)
-		msg = lstr("boss_fakepep1"); // Peppino
-	ini_close();
+	if gamesave_open_ini()
+	{
+		if !ini_read_string("Game", "fakepepportrait", false)
+			msg = lstr("boss_fakepep1"); // Peppino
+		gamesave_close_ini(false);
+	}
 }

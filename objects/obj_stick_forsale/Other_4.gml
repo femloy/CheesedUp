@@ -1,30 +1,32 @@
-ini_open_from_string(obj_savesystem.ini_str);
-unlocked = ini_read_real(save, "unlocked", false);
-first = ini_read_real(save, "first", false);
-ini_close();
+first = true;
+unlocked = true;
 
-if global.sandbox
+if !global.sandbox
 {
-	first = true;
-	unlocked = true;
+	if gamesave_open_ini()
+	{
+		unlocked = ini_read_real(save, "unlocked", false);
+		first = ini_read_real(save, "first", false);
+		gamesave_close_ini(false);
+	}
 }
 
-if (first && !unlocked)
+if first && !unlocked
 {
-	with (instance_create(obj_stick_target.x, obj_stick_target.y, obj_stick))
+	with instance_create(obj_stick_target.x, obj_stick_target.y, obj_stick)
 	{
 		state = states.normal;
 		maxscore = other.maxscore;
 		save = other.save;
 	}
 }
-if (!unlocked && (global.pigtotal - global.pigreduction) >= maxscore)
+if !unlocked && (global.pigtotal - global.pigreduction) >= maxscore
 	instance_create(0, 0, obj_mrsticknotification);
-if (unlocked)
+if unlocked
 {
-	if (room != tower_5)
+	if room != tower_5
 	{
-		with (instance_create(x, y, obj_bossdoor))
+		with instance_create(x, y, obj_bossdoor)
 		{
 			sprite_index = other.gate_sprite;
 			bgsprite = other.bgsprite;
@@ -35,7 +37,7 @@ if (unlocked)
 	}
 	else
 	{
-		with (instance_create(x, y, obj_door))
+		with instance_create(x, y, obj_door)
 			targetRoom = other.targetRoom;
 	}
 	instance_destroy();

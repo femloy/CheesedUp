@@ -1,22 +1,10 @@
-var current_scene = scene_info[scene];
-switch (array_length(current_scene) - 1)
+var call = scene_info[scene][0];
+if is_callable(call)
+	script_execute_ext(call, scene_info[scene], 1);
+else
 {
-	case 0:
-		current_scene[0]();
-		break;
-	case 1:
-		current_scene[0](current_scene[1]);
-		break;
-	case 2:
-		current_scene[0](current_scene[1], current_scene[2]);
-		break;
-	case 3:
-		current_scene[0](current_scene[1], current_scene[2], current_scene[3]);
-		break;
-	case 4:
-		current_scene[0](current_scene[1], current_scene[2], current_scene[3], current_scene[4]);
-		break;
-	case 5:
-		current_scene[0](current_scene[1], current_scene[2], current_scene[3], current_scene[4], current_scene[5]);
-		break;
+	trace();
+	trace("Invalid cutscene handler ", call, ":\n", scene_info);
+	trace();
+	instance_destroy();
 }

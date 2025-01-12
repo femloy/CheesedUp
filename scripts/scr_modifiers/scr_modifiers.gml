@@ -194,7 +194,7 @@ function pre_player_modifiers()
 	
 			if obj_player1.targetDoor == "A" && !instance_exists(obj_randomsecret)
 			{
-				var levelinfo = level_info(global.leveltosave);
+				var levelinfo = level_get_info(global.leveltosave);
 				if levelinfo != noone
 				{
 					if room == levelinfo.gate_room

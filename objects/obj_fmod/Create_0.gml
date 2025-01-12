@@ -1,23 +1,20 @@
 /// @description load banks / define sounds.
-if variable_global_exists("sound_map")
-	exit;
-
 banks =
 [
 	{
-		eventPath : "data\\sound\\Desktop\\Master.strings.bank",
+		path : "data\\sound\\Desktop\\Master.strings.bank",
 		handle : FMOD_INVALID_BANK
 	},
 	{
-		eventPath : "data\\sound\\Desktop\\Master.bank",
+		path : "data\\sound\\Desktop\\Master.bank",
 		handle : FMOD_INVALID_BANK
 	},
 	{
-		eventPath : "data\\sound\\Desktop\\music.bank",
+		path : "data\\sound\\Desktop\\music.bank",
 		handle : FMOD_INVALID_BANK
 	},
 	{
-		eventPath : "data\\sound\\Desktop\\sfx.bank",
+		path : "data\\sound\\Desktop\\sfx.bank",
 		handle : FMOD_INVALID_BANK
 	}
 ];
@@ -29,7 +26,7 @@ banks =
 
 for (var i = 0; i < array_length(banks); i++)
 {
-	var b = scr_load_bank(banks[i].eventPath);
+	var b = scr_load_bank(banks[i].path);
 	if is_string(b)
 		show_message(b);
 	else

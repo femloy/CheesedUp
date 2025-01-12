@@ -17,7 +17,9 @@ if (state == states.normal)
 		with (obj_hpeffect)
 			spd = 16;
 	}
-	ini_open_from_string(obj_savesystem.ini_str);
-	ini_write_real(save, "bosskey", true);
-	obj_savesystem.ini_str = ini_close();
+	if gamesave_open_ini()
+	{
+		ini_write_real(save, "bosskey", true);
+		gamesave_close_ini(true);
+	}
 }

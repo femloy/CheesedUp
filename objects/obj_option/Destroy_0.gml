@@ -1,7 +1,10 @@
-with (obj_player)
+with obj_player
 {
-	if (state == states.actor)
+	if state == states.actor
+	{
+		close_menu();
 		state = states.normal;
+	}
 }
 gamesave_async_save_options();
 fmod_event_instance_stop(global.snd_slidermaster, true);

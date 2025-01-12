@@ -13,6 +13,25 @@ toggle_texture_debug(false);
 if TESTBUILD
 	debug_event("OutputDebugOn");
 
+// game version
+global.game_version = GM_version;
+global.game_version = string_copy(global.game_version, 3, string_length(global.game_version));
+
+if string_starts_with(GM_version, "0.")
+	global.game_version = $"B{global.game_version}";
+else if string_starts_with(GM_version, "2.")
+	global.game_version = $"P{global.game_version}";
+else
+	global.game_version = $"V{global.game_version}";
+
+if string_ends_with(global.game_version, ".0")
+	global.game_version = string_delete(global.game_version, string_length(global.game_version) - 1, 2);
+
+if !YYC
+	global.game_version += " VM";
+if DEBUG
+	global.game_version += " DEBUG";
+
 // crash handler
 exception_unhandled_handler
 (
@@ -231,11 +250,6 @@ global.custom_palettes = [];
 global.custom_patterns = ds_map_create();
 
 // etc
-global.disclaimer_section = 0;
-global.goodmode = false; // makes everything a living nightmare
-global.sandbox = true;
-global.saveloaded = false;
-
 global.secrettile_clip_distance = 150; // distance before we cut off tiles
 global.secrettile_fade_size = 0.85; // distance before we start to fade
 global.secrettile_fade_intensity = 32; // dropoff intensity

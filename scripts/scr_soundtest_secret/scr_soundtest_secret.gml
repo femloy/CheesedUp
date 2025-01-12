@@ -5,25 +5,26 @@ function scr_soundtest_secret()
 	
 	if !global.sandbox
 	{
-		var found = false;
-		ini_open_from_string(obj_savesystem.ini_str);
-		var lvl = ["entrance", "medieval", "ruin", "dungeon", "badland", "graveyard", "farm", "saloon", "plage", "forest", "space", "minigolf", "street", "sewer", "industrial", "freezer", "chateau", "kidsparty", "war"];
-		for (var i = 0; i < array_length(lvl); i++)
+		if gamesave_open_ini()
 		{
-			var b = lvl[i];
-			if (ini_read_real("Secret", b, 0) < 3)
+			var found = false;
+			var lvl = ["entrance", "medieval", "ruin", "dungeon", "badland", "graveyard", "farm", "saloon", "plage", "forest", "space", "minigolf", "street", "sewer", "industrial", "freezer", "chateau", "kidsparty", "war"];
+			for (var i = 0; i < array_length(lvl); i++)
 			{
-				found = true;
-				break;
+				var b = lvl[i];
+				if ini_read_real("Secret", b, 0) < 3
+				{
+					found = true;
+					break;
+				}
 			}
+			if ini_read_string("Game", "finalrank", "none") == "none"
+				found = true;
+			if found
+				instance_destroy();
+			gamesave_close_ini(false);
 		}
-		if (ini_read_string("Game", "finalrank", "none") == "none")
-			found = true;
-		ini_close();
-	
-		if (found)
-			instance_destroy();
 	}
-	if (global.panic)
+	if global.panic
 		instance_destroy();
 }

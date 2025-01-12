@@ -5,19 +5,21 @@ function add_secrets_achievement(secret, levelarray)
 		var type = achievement[0];
 		if type == notifs.end_level
 		{
-			var n = levelarray;
-			var _unfinished = false;
-			ini_open_from_string(obj_savesystem.ini_str);
-			for (var i = 0; i < array_length(n); i++)
+			if gamesave_open_ini()
 			{
-				var b = n[i];
-				var s = ini_read_real("Secret", b, 0);
-				if s < 3
-					_unfinished = true;
+				var n = levelarray;
+				var _unfinished = false;
+				for (var i = 0; i < array_length(n); i++)
+				{
+					var b = n[i];
+					var s = ini_read_real("Secret", b, 0);
+					if s < 3
+						_unfinished = true;
+				}
+				gamesave_close_ini(false);
+				if !_unfinished
+					achievement_unlock(name, noone, spr_achievement_farm, 0);
 			}
-			ini_close();
-			if !_unfinished
-				achievement_unlock(name, noone, spr_achievement_farm, 0);
 		}
 	});
 	
@@ -30,27 +32,29 @@ function add_rank_achievements(world, rank, sprite, index, levelarray)
 		var type = achievement[0];
 		if type == notifs.end_level
 		{
-			var n = levelarray;
-			var _finished = true;
-			ini_open_from_string(obj_savesystem.ini_str);
-			var map = ds_map_create();
-			ds_map_set(map, "d", 0);
-			ds_map_set(map, "c", 1);
-			ds_map_set(map, "b", 2);
-			ds_map_set(map, "a", 3);
-			ds_map_set(map, "s", 4);
-			ds_map_set(map, "p", 5);
-			for (var i = 0; i < array_length(n); i++)
+			if gamesave_open_ini()
 			{
-				var b = n[i];
-				var s = ini_read_string("Ranks", b, "d");
-				if ds_map_find_value(map, s) < ds_map_find_value(map, rank)
-					_finished = false;
+				var n = levelarray;
+				var _finished = true;
+				var map = ds_map_create();
+				ds_map_set(map, "d", 0);
+				ds_map_set(map, "c", 1);
+				ds_map_set(map, "b", 2);
+				ds_map_set(map, "a", 3);
+				ds_map_set(map, "s", 4);
+				ds_map_set(map, "p", 5);
+				for (var i = 0; i < array_length(n); i++)
+				{
+					var b = n[i];
+					var s = ini_read_string("Ranks", b, "d");
+					if ds_map_find_value(map, s) < ds_map_find_value(map, rank)
+						_finished = false;
+				}
+				ds_map_destroy(map);
+				gamesave_close_ini(false);
+				if _finished
+					achievement_unlock(name, "", sprite, index);
 			}
-			ds_map_destroy(map);
-			ini_close();
-			if _finished
-				achievement_unlock(name, "", sprite, index);
 		}
 	});
 	

@@ -72,7 +72,10 @@ if sel >= 0 && move != 0
 		if m.enabled
 			m.mod_struct.init();
 		else
+		{
 			m.mod_struct.cleanup();
+			m.mod_struct.set_enabled(false);
+		}
 	}
 	else
 	{

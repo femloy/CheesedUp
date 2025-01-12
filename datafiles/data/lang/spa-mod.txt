@@ -96,6 +96,7 @@ mod_title_chasekind = "Cambios del nivel"
 mod_title_keyalpha = "Opacidad"
 mod_title_tvcolor = "Color del HUD"
 mod_title_eggplantslope = "Rampas rápidas"
+mod_title_combokeeper = "Combo fácil"
 mod_title_taskpausestyle = "Botón de tareas"
 
 mod_desc_gameplay = "Introduce mejoras en algunas partes del juego."
@@ -145,9 +146,10 @@ mod_desc_chasekind_2 = "Realentiza a Pizzaface en algunas salas en la vuelta 3, 
 mod_desc_keyalpha = "Opacidad de las teclas visuales."
 mod_desc_tvcolor = "Normal hace que dependa del personaje."
 mod_desc_eggplantslope = "Tu velocidad en el aire será transferida con una rampa."
-mod_desc_taskpausestyle_0 = "El botón de tareas del chef. Se ocultará."
-mod_desc_taskpausestyle_1 = "El botón de tareas del chef. Se mostrará si te faltan tareas."
-mod_desc_taskpausestyle_2 = "El botón de tareas del chef. Se mostrará siempre.-"
+mod_desc_combokeeper = "El supervacile y vacilar frente a la puerta recargan tu combo."
+mod_desc_taskpausestyle_0 = "El botón se ocultará."
+mod_desc_taskpausestyle_1 = "El botón se mostrará si no terminaste todas las tareas del nivel."
+mod_desc_taskpausestyle_2 = "El botón siempre se mostrará."
 
 mod_title_online_player_opacity = "Opacidad"
 mod_desc_online_player_opacity = "Opacidad de otros jugadores."
@@ -282,6 +284,7 @@ mod_desc_noiseworld = "¡Llena el nivel de pegatinas gigantes!"
 # WINDOW CAPTIONS
 # ---------------
 caption_soundtest = "Fiesta en la Torre de Pizza."
+caption_towerextra = "¡No me canso de la Torre de Pizza!"
 caption_towerbasement = "La capa mas profunda de la Torre de Pizza."
 caption_undefined = "error"
 caption_editormenu = "Elige tu Torre de Pizza."
@@ -309,12 +312,15 @@ caption_cyop = "Crea tu propia Torre de Pizza."
 # -----------------------
 # ROOM NAMES (not levels)
 # -----------------------
+room_towerextra = "INTERPLANTA"
+room_towerextra = "OUTERFLOOR"
 room_towerbasement = "SÓTANO"
 room_towermeta = "PORQUERÍA"
 room_freerun = "ARENERO"
 room_hubroomE = "VESTÍBULO ABANDONADO"
 room_towersage = "LA TUYA EN VINAGRE"
 room_towershop = "¡QUÉ DELICIA!"
+room_towertaskextra = "LOGROS DEL ESPACIO"
 room_towertaskbasement = "LOGROS DEL SÓTANO"
 
 # -----------------

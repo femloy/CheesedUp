@@ -1,7 +1,7 @@
 # ---------------
 # IMPORTANT NOTE
 # ---------------
-# This file is updated between versions. (B1.5.0 now)
+# This file is updated between versions.
 # Keep that in mind if you want to maintain translations.
 # It might also contain some secrets... so tread lightly.
 # 
@@ -61,7 +61,6 @@ afom_finalround = "{s}Final Round!/"
 afom_endarena = "{s}Arena mastered!/"
 computer_text2_sandbox = "Achievements: % out of %\nDamage: %"
 computer_text3 = "Laps: %\nRetries: %"
-fake_player_name = "Player"
 rank_devtime = "DEV TIME: "
 timeattack_tip = "Are you looking for Time Attack? You can't enter the portal with an active combo, so restart the level and avoid any enemies!"
 unloading_language = "Unloading %"
@@ -226,8 +225,6 @@ mod_shotgunonly = "SHOTGUN ONLY"
 mod_onblur = "ON + BLUR"
 mod_normal = "NORMAL"
 mod_spotlight = "SPOTLIGHT"
-mod_dynamite = "BOMB JUMP"
-mod_mach3 = "PEPPINO"
 mod_minimal = "MINIMAL"
 mod_gerome = "GEROME"
 mod_infinite = "INFINITE"

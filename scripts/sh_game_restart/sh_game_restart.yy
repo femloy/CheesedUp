@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"sh_game_restart",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sh_game_restart",
+  "parent":{
+    "name":"Shell",
+    "path":"folders/Scripts/Shell.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

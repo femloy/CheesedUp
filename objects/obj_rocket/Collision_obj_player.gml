@@ -17,7 +17,7 @@ with other
 				sprite_index = spr_playerV_rocketget;
 				image_index = 0;
 				image_speed = 0.35;
-				global.vigiweapon = vweapons.rocket;
+				global.vigiweapon = VIGI_WEAPONS.rocket;
 				instance_destroy(other);
 				create_transformation_tip(lstr("rockettipV"), "rocketV", , true);
 			}

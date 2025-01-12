@@ -1,51 +1,67 @@
-function __levelinfo(gate_room, john_room, name) constructor
+function LevelInfo(_gate_room, _john_room, _gate_spr = spr_gate_entrance, _gate_bgspr = spr_gate_entranceBG) constructor
 {
-	self.gate_room = gate_room;
-	self.john_room = john_room;
-	self.name = name;
+	gate_room = _gate_room;
+	john_room = _john_room;
+	gate_spr = _gate_spr;
+	gate_bgspr = _gate_bgspr;
 }
-function level_info(levelname)
+function level_get_info(levelname)
 {
 	switch levelname
 	{
 		case "entrance":
-			return new __levelinfo(entrance_1, entrance_10, levelname);
+			return new LevelInfo(entrance_1, entrance_10, spr_gate_entrance, spr_gate_entranceBG);
 		case "medieval":
-			return new __levelinfo(medieval_1, medieval_10, levelname);
+			return new LevelInfo(medieval_1, medieval_10, spr_gate_medieval, spr_gate_medievalBG);
 		case "ruin":
-			return new __levelinfo(ruin_1, ruin_11, levelname);
+			return new LevelInfo(ruin_1, ruin_11, spr_gate_ruin, spr_gate_ruinBG);
 		case "dungeon":
-			return new __levelinfo(dungeon_1, dungeon_10, levelname);
+			return new LevelInfo(dungeon_1, dungeon_10, spr_gate_dungeon, spr_gate_dungeonBG);
 		case "badland":
-			return new __levelinfo(badland_1, badland_9, levelname);
+			return new LevelInfo(badland_1, badland_9, spr_gate_badland, spr_gate_badlandBG);
 		case "graveyard":
-			return new __levelinfo(graveyard_1, graveyard_6, levelname);
+			return new LevelInfo(graveyard_1, graveyard_6, spr_gate_graveyard, spr_gate_graveyardBG);
 		case "farm":
-			return new __levelinfo(farm_2, farm_11, levelname);
+			return new LevelInfo(farm_2, farm_11, spr_gate_farm, spr_gate_farmBG);
 		case "saloon":
-			return new __levelinfo(saloon_1, saloon_6, levelname);
+			return new LevelInfo(saloon_1, saloon_6, spr_gate_saloon, spr_gate_saloonBG);
 		case "plage":
-			return new __levelinfo(plage_entrance, plage_cavern2, levelname);
+			return new LevelInfo(plage_entrance, plage_cavern2, spr_gate_plage, spr_gate_plageBG);
 		case "forest":
-			return new __levelinfo(forest_1, forest_john, levelname);
+			return new LevelInfo(forest_1, forest_john, spr_gate_forest, spr_gate_forestBG);
 		case "space":
-			return new __levelinfo(space_1, space_9, levelname);
+			return new LevelInfo(space_1, space_9, spr_gate_space, spr_gate_spaceBG);
 		case "minigolf":
-			return new __levelinfo(minigolf_1, minigolf_8, levelname);
+			return new LevelInfo(minigolf_1, minigolf_8, spr_gate_golf, spr_gate_golfBG);
 		case "street":
-			return new __levelinfo(street_intro, street_john, levelname);
+			return new LevelInfo(street_intro, street_john, spr_gate_street, spr_gate_streetBG);
 		case "sewer":
-			return new __levelinfo(sewer_1, sewer_8, levelname);
+			return new LevelInfo(sewer_1, sewer_8, spr_gate_sewer, spr_gate_sewerBG);
 		case "industrial":
-			return new __levelinfo(industrial_1, industrial_5, levelname);
+			return new LevelInfo(industrial_1, industrial_5, spr_gate_industrial, spr_gate_industrialBG);
 		case "freezer":
-			return new __levelinfo(freezer_1, freezer_escape1, levelname);
+			return new LevelInfo(freezer_1, freezer_escape1, spr_gate_freezer, spr_gate_freezerBG);
 		case "chateau":
-			return new __levelinfo(chateau_1, chateau_9, levelname);
+			return new LevelInfo(chateau_1, chateau_9, spr_gate_chateau, spr_gate_chateauBG);
 		case "kidsparty":
-			return new __levelinfo(kidsparty_1, kidsparty_john, levelname);
-		//case "exit":
-		//	return new __levelinfo(tower_finalhallway, tower_entrancehall, "The Crumbling Tower Of Pizza");
+			return new LevelInfo(kidsparty_1, kidsparty_john, spr_gate_kidsparty, spr_gate_kidspartyBG);
+		case "exit":
+			return new LevelInfo(tower_finalhallway, tower_entrancehall, spr_gate_exit, spr_gate_exitBG);
+		case "secretworld":
+			return new LevelInfo(secret_entrance, secret_entrance, spr_gate_secret, spr_gate_secretBG);
+		
+		case "custom":
+			return new LevelInfo(editor_entrance, editor_entrance, spr_gate_cyop, spr_gate_cyopBG);
+		case "strongcold":
+			return new LevelInfo(strongcold_10, strongcold_1, spr_gate_strongcold, spr_gate_strongcoldBG);
+		case "etb":
+			return new LevelInfo(etb_1, etb_8, spr_gate_etb, spr_gate_etbBG);
+		case "grinch":
+			return new LevelInfo(grinch_1, grinch_10, spr_gate_etb, spr_gate_etbBG);
+		case "beach":
+			return new LevelInfo(beach_1, beach_13, spr_gate_plage, spr_gate_plageBG);
+		case "snickchallenge":
+			return new LevelInfo(medieval_1, snick_challengeend, spr_gate_snickchallenge, spr_gate_snickchallengeBG);
 	}
 	return noone;
 }

@@ -50,14 +50,19 @@ function create_transformation_tip(str, save_entry = noone, destroy = false, imp
 	// save
 	if save_entry != noone
 	{
-		ini_open_from_string(obj_savesystem.ini_str);
-		if ini_read_real("Tip", save_entry, false) or instance_exists(obj_cyop_loader)
-		{
-			ini_close();
+		if !global.saveloaded
 			exit;
+		
+		if gamesave_open_ini()
+		{
+			if ini_read_real("Tip", save_entry, false) or instance_exists(obj_cyop_loader)
+			{
+				ini_close();
+				exit;
+			}
+			ini_write_real("Tip", save_entry, true);
+			gamesave_close_ini(true);
 		}
-		ini_write_real("Tip", save_entry, true);
-		obj_savesystem.ini_str = ini_close();
 	}
 	
 	// spawn tip

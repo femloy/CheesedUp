@@ -13,9 +13,17 @@ if room == hub_loadingscreen && state != 2
 		var grouparr = ["hubgroup"];
 		with obj_player1
 		{
-			ini_open_from_string(obj_savesystem.ini_str);
-			var _intro = ini_read_real("Tutorial", "finished", false);
+			targetRoom = tower_entrancehall;
+			targetDoor = "A";
+			state = states.victory;
 			
+			if !gamesave_open_ini()
+			{
+				character = "P";
+				break;
+			}
+			
+			var _intro = ini_read_real("Tutorial", "finished", false);
 			player_paletteselect[0] = ini_read_real("Game", "palette", 1);
 			player_paletteselect[1] = ini_read_real("Game", "palette_player2", 1);
 			paletteselect = player_paletteselect[0];
@@ -26,12 +34,8 @@ if room == hub_loadingscreen && state != 2
 			player_patterntexture[1] = scr_get_texture_palette(_texture2);
 			global.palettetexture = player_patterntexture[0];
 			
-			if (_intro or global.sandbox)
+			if _intro or global.sandbox
 			{
-				targetRoom = tower_entrancehall;
-				targetDoor = "A";
-				state = states.victory;
-				
 				character = ini_read_string("Game", "character", "P");
 				if !array_contains(scr_charlist(), character)
 				{
@@ -81,7 +85,7 @@ if room == hub_loadingscreen && state != 2
 				//if global.swapmode
 				//	character = global.swap_characters[global.swap_index];
 				
-				obj_savesystem.ini_str = ini_close();
+				gamesave_close_ini(true);
 				gamesave_async_save();
 			}
 		}
@@ -117,4 +121,4 @@ else if showicon
 		showicon = false;
 }
 if showicon
-	icon_index = (icon_index + 0.35) % icon_max;
+	icon_index = (icon_index + 0.35) % sprite_get_number(icon_spr);

@@ -143,12 +143,14 @@ if (!in_baddieroom() && (!elite || elitehit <= 0) && destroyable)
 			}
 		}
 	}
-	if (object_index == obj_cheeseslime && snotty)
+	if object_index == obj_cheeseslime && snotty
 	{
-		ini_open_from_string(obj_savesystem.ini_str);
-		ini_write_real("Game", "snotty", true);
-		obj_savesystem.ini_str = ini_close();
-		gamesave_async_save();
+		if gamesave_open_ini()
+		{
+			ini_write_real("Game", "snotty", true);
+			gamesave_close_ini(true);
+			gamesave_async_save();
+		}
 	}
 	notification_push(notifs.baddie_kill, [room, id, object_index]);
 }

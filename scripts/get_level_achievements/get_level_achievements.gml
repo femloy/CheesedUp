@@ -1,6 +1,6 @@
 function get_level_achievements(lvl)
 {
-	ini_open_from_string(obj_savesystem.ini_str);
+	var opened_ini = gamesave_open_ini();
 	
 	var boss = false;
 	if string_starts_with(lvl, "b_")
@@ -26,7 +26,7 @@ function get_level_achievements(lvl)
 		for (var i = 0; i < len; i++)
 	    {
 	        var entry = concat("achievement_", lvl, i + 1);
-	        var got = ini_read_real("achievements", concat(lvl, i + 1), false);
+	        var got = !opened_ini ? true : ini_read_real("achievements", concat(lvl, i + 1), false);
 			
 			var a =
 			{
@@ -72,7 +72,7 @@ function get_level_achievements(lvl)
 		
 		var len = sprite_get_number(struct.sprite) / 2;
 		var entry = concat("achievement_", lvl);
-	    var got = ini_read_real("achievements", lvl, false);
+	    var got = !opened_ini ? true : ini_read_real("achievements", lvl, false);
 		
 		var a =
 		{
@@ -88,6 +88,8 @@ function get_level_achievements(lvl)
 	    array_push(struct.achievements, a);
 	}
 	
-	ini_close();
+	if opened_ini
+		gamesave_close_ini(false);
+	
 	return struct;
 }

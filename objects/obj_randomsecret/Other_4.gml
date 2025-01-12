@@ -18,7 +18,7 @@ global.noisejetpack = false;
 if room != chateau_secret2
     instance_destroy(obj_trapghost);
 
-global.vigiweapon = vweapons.dynamite;
+global.vigiweapon = VIGI_WEAPONS.dynamite;
 
 if obj_player1.character == "V"
 {
@@ -30,12 +30,12 @@ if obj_player1.character == "V"
 		case farm_secret1:
 		case farm_secret2:
 		case farm_secret3:
-			global.vigiweapon = vweapons.hook;
+			global.vigiweapon = VIGI_WEAPONS.hook;
 			break;
 		case space_secret1:
 		case space_secret2:
 		case space_secret3:
-			global.vigiweapon = vweapons.rocket;
+			global.vigiweapon = VIGI_WEAPONS.rocket;
 			break;
 	}
 }

@@ -1,6 +1,4 @@
 // fetch toppins, secrets, treasures, achievements and damage
-ini_open_from_string(obj_savesystem.ini_str);
-
 var lvl = ["entrance", "medieval", "ruin", "dungeon", "badland", "graveyard", "farm", "saloon", "plage", "forest", "space", "minigolf", "street", "sewer", "industrial", "freezer", "chateau", "kidsparty", "war"];
 var extra_ach = ["sranks1", "pranks1", "sranks2", "pranks2", "sranks3", "pranks3", "sranks4", "pranks4", "sranks5", "pranks5", "pepperman", "vigilante", "noise", "fakepep", "pizzaface"];
 
@@ -13,28 +11,35 @@ treasure = 0;
 maxachievements = array_length(lvl) * 3;
 maxachievements += array_length(extra_ach);
 achievements = 0;
+damage = 0;
 
-for (var i = 0; i < array_length(lvl); i++)
+laps = 0;
+retries = 0;
+
+if gamesave_open_ini()
 {
-	var name = lvl[i];
+	for (var i = 0; i < array_length(lvl); i++)
+	{
+		var name = lvl[i];
 	
-	secrets += ini_read_real("Secret", name, 0);
-	treasure += ini_read_real("Treasure", name, false);
+		secrets += ini_read_real("Secret", name, 0);
+		treasure += ini_read_real("Treasure", name, false);
 	
-	for (var j = 0; j < 5; j++)
-		toppins += ini_read_real("Toppin", concat(name, j + 1), false);
-	for (var j = 0; j < 3; j++)
-		achievements += ini_read_real("achievements", concat(name, j + 1), false);
+		for (var j = 0; j < 5; j++)
+			toppins += ini_read_real("Toppin", concat(name, j + 1), false);
+		for (var j = 0; j < 3; j++)
+			achievements += ini_read_real("achievements", concat(name, j + 1), false);
+	}
+	for (var i = 0; i < array_length(extra_ach); i++)
+		achievements += ini_read_real("achievements", extra_ach[i], false);
+
+	damage = ini_read_real("Game", "damage", 0);
+
+	laps = ini_read_real("Game", "laps", 0);
+	retries = ini_read_real("Game", "retries", 0);
+
+	gamesave_close_ini(false);
 }
-for (var i = 0; i < array_length(extra_ach); i++)
-	achievements += ini_read_real("achievements", extra_ach[i], false);
-
-damage = ini_read_real("Game", "damage", 0);
-
-laps = ini_read_real("Game", "laps", 0);
-retries = ini_read_real("Game", "retries", 0);
-
-ini_close();
 
 // fetch palettes
 ini_open_from_string(obj_savesystem.ini_str_options);

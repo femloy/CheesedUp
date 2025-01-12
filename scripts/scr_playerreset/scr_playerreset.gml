@@ -39,7 +39,7 @@ function scr_playerreset(roomstart = false, restart = false)
 		sucrose_state = 0;
 	
 	global.modifier_failed = false;
-	global.vigiweapon = vweapons.dynamite;
+	global.vigiweapon = VIGI_WEAPONS.dynamite;
 	
 	global.lap4time = 1;
 	if !from_checkpoint

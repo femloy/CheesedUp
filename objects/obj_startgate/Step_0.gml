@@ -86,14 +86,17 @@ if (!pizza && (highscore > 0 || (boss && hats > 0)) && bbox_in_camera(view_camer
 			}
 		}
 	}
-	else if (!SUGARY)
+	else if !SUGARY
 	{
-		with (instance_create(x, y - 125, obj_startgate_hats))
+		with instance_create(x, y - 125, obj_startgate_hats)
 		{
-			ini_open_from_string(obj_savesystem.ini_str);
-			hats = ini_read_real("Hats", other.level, 0);
-			extrahats = ini_read_real("Extrahats", other.level, 0);
-			switch (other.rank)
+			if gamesave_open_ini()
+			{
+				hats = ini_read_real("Hats", other.level, 0);
+				extrahats = ini_read_real("Extrahats", other.level, 0);
+				gamesave_close_ini(false);
+			}
+			switch other.rank
 			{
 				case "p":
 					rank_index = 5;
@@ -114,19 +117,18 @@ if (!pizza && (highscore > 0 || (boss && hats > 0)) && bbox_in_camera(view_camer
 					rank_index = 0;
 					break;
 			}
-			ini_close();
 		}
 	}
 }
 
-if (!drawing)
+if !drawing
 {
 	var dis = 250;
 	bgalpha = distance_to_object(obj_player) / dis;
 	bgalpha -= 0.25;
-	if (bgalpha > 1)
+	if bgalpha > 1
 		bgalpha = 1;
-	if (bgalpha < 0)
+	if bgalpha < 0
 		bgalpha = 0;
 }
 else

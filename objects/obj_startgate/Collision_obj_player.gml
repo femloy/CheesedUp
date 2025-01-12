@@ -56,7 +56,7 @@ else if (floor(other.image_index) == other.image_number - 1 or (other.key_taunt2
 		targetDoor = other.targetDoor;
 		targetRoom = other.targetRoom;
 		
-		if (targetRoom == tower_finalhallway or targetRoom == exit_1)
+		if targetRoom == tower_finalhallway or targetRoom == exit_1
 			global.exitrank = true;
 		
 		obj_tv.tv_bg.sprite = gate.bgsprite;

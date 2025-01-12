@@ -8,7 +8,7 @@ if (!instance_exists(obj_keyconfig))
 if (optionselected == 1 && (obj_player.key_jump || keyboard_check_pressed(vk_enter)))
 {
 	file_delete("saveData.ini");
-	scr_initinput();
+	//scr_initinput();
 	ini_open("saveData.ini");
 	if (!ini_section_exists("SAGE2019"))
 	{

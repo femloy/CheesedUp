@@ -1,10 +1,12 @@
 function scr_add_grannypizzaboss(section, entry, icon)
 {
-	var q = scr_add_grannypizzalevel(entry, icon, false, false, false, true);
-	ini_open_from_string(obj_savesystem.ini_str);
-	if !ini_read_real(section, "unlocked", false) && !global.sandbox
-		array_pop(levelarray);
-	ini_close();
+	scr_add_grannypizzalevel(entry, icon, false, false, false, true);
+	if gamesave_open_ini()
+	{
+		if !ini_read_real(section, "unlocked", false) && !global.sandbox
+			array_pop(levelarray);
+		gamesave_close_ini(false);
+	}
 }
 function scr_add_grannypizzalevel(level, _icon, _secrets = true, _toppins = true, _treasure = true, _rank = true)
 {
@@ -22,22 +24,26 @@ function scr_add_grannypizzalevel(level, _icon, _secrets = true, _toppins = true
 		timedrank: noone,
 		level: level
 	};
-	ini_open_from_string(obj_savesystem.ini_str);
-	if (q.secrets)
-		q.secretcount = ini_read_real("Secret", level, 0);
-	if (q.toppins)
+	
+	if gamesave_open_ini()
 	{
-		for (var i = 0; i < array_length(q.toppinarr); i++)
-			q.toppinarr[i] = ini_read_real("Toppin", concat(level, i + 1), false);
+		if q.secrets
+			q.secretcount = ini_read_real("Secret", level, 0);
+		if q.toppins
+		{
+			for (var i = 0; i < array_length(q.toppinarr); i++)
+				q.toppinarr[i] = ini_read_real("Toppin", concat(level, i + 1), false);
+		}
+		if q.treasure
+			q.gottreasure = ini_read_real("Treasure", level, false);
+		if q.rank
+		{
+			q.gotrank = ini_read_string("Ranks", level, "none");
+			q.timedrank = ini_read_string("Ranks", string(level) + "-timed", "none");
+		}
+		gamesave_close_ini(false);
 	}
-	if (q.treasure)
-		q.gottreasure = ini_read_real("Treasure", level, false);
-	if (q.rank)
-	{
-		q.gotrank = ini_read_string("Ranks", level, "none");
-		q.timedrank = ini_read_string("Ranks", string(level) + "-timed", "none");
-	}
-	ini_close();
+	
 	array_push(levelarray, q);
 	return q;
 }

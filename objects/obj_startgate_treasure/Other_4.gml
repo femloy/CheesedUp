@@ -1,6 +1,8 @@
-if (level != noone)
+if level != noone
 {
-	ini_open_from_string(obj_savesystem.ini_str);
-	collect = ini_read_real("Treasure", level, false);
-	ini_close();
+	if gamesave_open_ini()
+	{
+		collect = ini_read_real("Treasure", level, false);
+		gamesave_close_ini(false);
+	}
 }

@@ -1,7 +1,8 @@
 global.roommessage = "PIZZA TOWER ISLAND";
 global.leveltosave = "exit";
 global.exitrank = false;
-with (obj_player)
+
+with obj_player
 {
 	state = states.titlescreen;
 	targetRoom = tower_finalhallway;

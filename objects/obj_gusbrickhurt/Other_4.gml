@@ -1,10 +1,14 @@
-if global.sandbox or global.panic or (obj_player1.character == "N" && !global.swapmode)
+if global.panic or (obj_player1.character == "N" && !global.swapmode)
 {
 	instance_destroy();
 	exit;
 }
 
-ini_open_from_string(obj_savesystem.ini_str);
-if ini_read_real("w3stick", "door", false) || ini_read_real("Highscore", "forest", 0) > 0
+if !global.sandbox && gamesave_open_ini()
+{
+	if ini_read_real("w3stick", "door", false) || ini_read_real("Highscore", "forest", 0) > 0
+		instance_destroy();
+	gamesave_close_ini(false);
+}
+else
 	instance_destroy();
-ini_close();

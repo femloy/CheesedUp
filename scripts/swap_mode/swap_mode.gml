@@ -1,3 +1,9 @@
+global.swap_damage[0] = 0;
+global.swap_damage[1] = 0;
+global.swap_characters = ["N", "P"];
+global.swap_index = 0;
+global.swapmode = false;
+
 function swap_alone()
 {
 	return obj_inputAssigner.player_input_device[0] == obj_inputAssigner.player_input_device[1];

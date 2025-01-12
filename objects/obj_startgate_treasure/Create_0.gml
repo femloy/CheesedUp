@@ -1,4 +1,4 @@
-level = -4;
+level = noone;
 treasurespr = spr_treasure1;
 treasureindex = 0;
 collect = false;

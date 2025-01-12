@@ -5,5 +5,5 @@ buffer = 0;
 
 if SUGARY
 	sprite_index = spr_bottlerocket;
-if global.vigiweapon == vweapons.rocket
+if global.vigiweapon == VIGI_WEAPONS.rocket
 	instance_destroy();

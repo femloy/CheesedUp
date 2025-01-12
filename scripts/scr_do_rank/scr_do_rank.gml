@@ -84,10 +84,8 @@ function scr_do_rank(showtoppins = true, boss = false)
 	{
 		if !boss
 			scr_savescore(leveltosave, do_save);
-		else
+		else if gamesave_open_ini()
 		{
-			ini_open_from_string(obj_savesystem.ini_str);
-			
 			var _hats = global.hats;
 			if ini_read_real("Hats", leveltosave, 0) < _hats
 				ini_write_real("Hats", leveltosave, _hats);
@@ -114,18 +112,17 @@ function scr_do_rank(showtoppins = true, boss = false)
 			global.rank = _rank;
 			scr_write_rank(leveltosave);
 			scr_play_rank_music();
-			obj_savesystem.ini_str = ini_close();
+			
+			gamesave_close_ini(true);
 			gamesave_async_save();
 		}
 		notification_push(notifs.end_level, [global.leveltosave, global.secretfound, global.level_minutes, global.level_seconds]);
 		with obj_achievementtracker
 			event_perform(ev_step, ev_step_normal);
 	}
-	else
+	else if gamesave_open_ini()
 	{
 		var _lap = false;
-		
-		ini_open_from_string(obj_savesystem.ini_str);
 		ini_write_real("Tutorial", "finished", true);
 		
 		if (global.level_minutes < 2 || (global.level_minutes < 1 || (global.level_minutes == 1 && global.level_seconds <= 40)))
@@ -134,7 +131,7 @@ function scr_do_rank(showtoppins = true, boss = false)
 			ini_write_real("Tutorial", "lapunlocked", true);
 			_lap = true;
 		}
-		obj_savesystem.ini_str = ini_close();
+		gamesave_close_ini(true);
 		
 		if _lap && !global.sandbox
 			create_transformation_tip(lang_get_value("tutorial_lapunlock"),,, true);
@@ -213,5 +210,7 @@ function scr_do_rank(showtoppins = true, boss = false)
 	global.panic = false;
 	global.snickchallenge = false;
 	global.leveltorestart = noone;
-	gamesave_async_save();
+	
+	if global.saveloaded
+		gamesave_async_save();
 }

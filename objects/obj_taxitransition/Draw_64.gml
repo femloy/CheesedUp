@@ -18,10 +18,7 @@ if start
 	pal_swap_reset();
 	
 	if sprite_index == spr_taxitransition_gusN
-	{
-		draw_set_alpha(0.3);
-		draw_sprite_ext(spr_taxitransition_gusN_shadow, 0, xx, cy, xscale, yscale, 0, c_white, 1);
-	}
+		draw_sprite_ext(spr_taxitransition_gusN_shadow, 0, xx, cy, xscale, yscale, 0, c_white, 0.3);
 }
 
 draw_set_alpha(fade);

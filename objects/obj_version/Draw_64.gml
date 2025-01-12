@@ -5,7 +5,7 @@ draw_set_font(global.smallfont);
 draw_set_halign(fa_right);
 draw_set_valign(fa_bottom);
 
-var a = 0;
+var a = instance_exists(obj_cyop_loader) ? 0 : 1;
 with obj_mainmenu
 	a = extrauialpha;
 

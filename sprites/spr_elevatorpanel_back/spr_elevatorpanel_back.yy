@@ -44,8 +44,8 @@
   },
   "origin":4,
   "parent":{
-    "name":"HUB",
-    "path":"folders/Sprites/CheesyPizza/HUB.yy",
+    "name":"Lobby",
+    "path":"folders/Sprites/CheesyPizza/Level Assets/Lobby.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

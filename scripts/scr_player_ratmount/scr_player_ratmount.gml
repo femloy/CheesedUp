@@ -303,7 +303,7 @@ function scr_player_ratmount()
 }
 function ratmount_dotaunt()
 {
-	if (key_taunt2 && state != states.backbreaker && brick && gusdashpadbuffer == 0)
+	if key_taunt2 && state != states.backbreaker && brick && gusdashpadbuffer == 0
 	{
 		notification_push(notifs.taunt, [room]);
 		tauntstoredisgustavo = true;
@@ -315,7 +315,7 @@ function ratmount_dotaunt()
 		tauntstoredvsp = vsp;
 		state = states.backbreaker;
 		
-		if ((!key_up || !supercharged) && global.tauntcount < 10 && place_meeting(x, y, obj_exitgate) && (global.panic == true || instance_exists(obj_wartimer)) && global.combotime > 0 && global.leveltosave != "grinch")
+		if (!key_up || !supercharged) && global.tauntcount < 10 && place_meeting(x, y, obj_exitgate) && (global.panic == true || instance_exists(obj_wartimer)) && global.combotime > 0 && global.leveltosave != "grinch"
 		{
 			if global.combokeeper
 				global.combotime = min(global.combotime + 10, 60);
@@ -332,21 +332,23 @@ function ratmount_dotaunt()
 			scr_sound_multiple(global.snd_collect, x, y);
 		}
 		
-		if (!supercharged || !key_up)
+		if !supercharged || !key_up
 		{
 			scr_create_parryhitbox();
 			scr_dotauntsound();
 			
 			sprite_index = spr_ratmount_taunt;
 			image_index = irandom(sprite_get_number(sprite_index) - 1);
-			with (instance_create(x, y, obj_taunteffect))
+			with instance_create(x, y, obj_taunteffect)
 				player = other.id;
 		}
-		else if (supercharged && key_up)
+		else if supercharged && key_up
 		{
-			ini_open_from_string(obj_savesystem.ini_str);
-			ini_write_real("Game", "supertaunt", true);
-			obj_savesystem.ini_str = ini_close();
+			if gamesave_open_ini()
+			{
+				ini_write_real("Game", "supertaunt", true);
+				gamesave_close_ini(true);
+			}
 			sound_play_3d("event:/sfx/pep/supertaunt", x, y);
 			sprite_index = spr_ratmount_supertaunt;
 			image_index = 0;

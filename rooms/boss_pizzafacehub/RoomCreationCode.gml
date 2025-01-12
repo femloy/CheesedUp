@@ -2,10 +2,12 @@ pal_swap_init_system(shd_pal_swapper);
 notification_push(notifs.boss_dead, [boss_pizzafacehub]);
 gameframe_caption_text = lang_get_value("caption_boss_pizzafacehub");
 
-ini_open_from_string(obj_savesystem.ini_str);
-ini_write_real("w5stick", "bosskey", true);
-obj_savesystem.ini_str = ini_close();
-gamesave_async_save();
+if gamesave_open_ini()
+{
+	ini_write_real("w5stick", "bosskey", true);
+	gamesave_close_ini(true);
+	gamesave_async_save();
+}
 
 if obj_player1.character == "N" or global.swapmode
 {

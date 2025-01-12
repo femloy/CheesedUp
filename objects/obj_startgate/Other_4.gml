@@ -78,35 +78,23 @@ if (object_index != obj_bossdoor && sprite_index != spr_gate_snickchallenge)
 if levelName != ""
 	level = string_lower(levelName);
 
-if level == noone or locked
+if level != noone && !locked
 {
-	highscore = 0;
-	laps = 0;
-	hats = 0;
-	secret_count = 0;
-	toppin = [0, 0, 0, 0, 0];
-	rank = "d";
-	if DEATH_MODE
-		death_rank = "";
-	timed_rank = "";
-}
-else
-{
-	ini_open_from_string(obj_savesystem.ini_str);
-	highscore = ini_read_real("Highscore", string(level), 0);
-	laps = ini_read_real("Laps", string(level), 0);
-	hats = ini_read_real("Hats", string(level), 0);
-	secret_count = ini_read_string("Secret", string(level), 0);
-	toppin[0] = ini_read_real("Toppin", string(level) + "1", 0);
-	toppin[1] = ini_read_real("Toppin", string(level) + "2", 0);
-	toppin[2] = ini_read_real("Toppin", string(level) + "3", 0);
-	toppin[3] = ini_read_real("Toppin", string(level) + "4", 0);
-	toppin[4] = ini_read_real("Toppin", string(level) + "5", 0);
-	rank = ini_read_string("Ranks", string(level), "d");
-	if DEATH_MODE
-		death_rank = ini_read_string("Ranks", string(level) + "-death", "");
-	timed_rank = ini_read_string("Ranks", string(level) + "-timed", "");
-	ini_close();
+	if gamesave_open_ini()
+	{
+		highscore = ini_read_real("Highscore", string(level), 0);
+		laps = ini_read_real("Laps", string(level), 0);
+		hats = ini_read_real("Hats", string(level), 0);
+		secret_count = ini_read_string("Secret", string(level), 0);
+		toppin[0] = ini_read_real("Toppin", string(level) + "1", 0);
+		toppin[1] = ini_read_real("Toppin", string(level) + "2", 0);
+		toppin[2] = ini_read_real("Toppin", string(level) + "3", 0);
+		toppin[3] = ini_read_real("Toppin", string(level) + "4", 0);
+		toppin[4] = ini_read_real("Toppin", string(level) + "5", 0);
+		rank = ini_read_string("Ranks", string(level), "d");
+		timed_rank = ini_read_string("Ranks", string(level) + "-timed", "");
+		gamesave_close_ini(false);
+	}
 	
 	if !SUGARY
 	{
@@ -134,7 +122,7 @@ else
 			}
 		}
 	
-		if (object_index == obj_startgate && level != "exit" && level != "tutorial" && level != "dragonlair" && level != "snickchallenge" && level != "grinch" && level != "oldexit" && level != "secretworld")
+		if object_index == obj_startgate && level != "exit" && level != "tutorial" && level != "dragonlair" && level != "snickchallenge" && level != "grinch" && level != "oldexit" && level != "secretworld"
 		{
 			var count = scr_secretcount(level);
 			for (var i = 1; i <= count; i++)

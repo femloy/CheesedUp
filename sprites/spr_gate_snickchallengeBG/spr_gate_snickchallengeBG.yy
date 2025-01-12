@@ -28,7 +28,7 @@
   "origin":7,
   "parent":{
     "name":"Level Gates",
-    "path":"folders/Sprites/CheesyPizza/HUB/Level Gates.yy",
+    "path":"folders/Sprites/CheesyPizza/Level Assets/Lobby/Level Gates.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

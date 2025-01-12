@@ -1,6 +1,42 @@
 global.mods = [];
 global.processing_mod = noone;
 
+function scr_modding_load_mods()
+{
+	array_foreach(global.mods, function(_mod, _ix)
+	{
+		if _mod.enabled
+			_mod.cleanup();
+	});
+	
+	global.mods = [];
+	
+	var path = exe_folder + "mods";
+	for(var file = file_find_first(path + "/*", fa_directory); file != ""; file = file_find_next())
+	{
+		var mod_root = path + "\\" + file;
+		var json_path = mod_root + "/mod.json";
+		
+		if file_exists(json_path)
+		{
+			try
+			{
+				var b = scr_load_file(json_path);
+				var j = json_parse(b);
+				var s = scr_process_mod(j, mod_root);
+				if s != undefined
+					array_push(global.mods, s);
+			}
+			catch (e)
+			{
+				audio_play_sound(sfx_pephurt, 0, false);
+				show_message("The mod " + file + " couldn't load!\n\n" + string(e));
+			}
+		}
+	}
+	file_find_close();
+}
+
 function scr_modding_init()
 {
 	// gmlive setup
@@ -116,33 +152,8 @@ function scr_modding_init()
 		return sprite;
 	});
 	
-	// find mods
-	var path = exe_folder + "mods";
-	for(var file = file_find_first(path + "/*", fa_directory); file != ""; file = file_find_next())
-	{
-		var mod_root = path + "\\" + file;
-		var json_path = mod_root + "/mod.json";
-		
-		if file_exists(json_path)
-		{
-			try
-			{
-				var b = scr_load_file(json_path);
-				var j = json_parse(b);
-				var s = scr_process_mod(j, mod_root);
-				if s != undefined
-					array_push(global.mods, s);
-			}
-			catch (e)
-			{
-				audio_play_sound(sfx_pephurt, 0, false);
-				show_message("The mod " + file + " couldn't load!\n\n" + string(e));
-			}
-		}
-	}
-	file_find_close();
-	
 	// initialize them
+	scr_modding_load_mods();
 	array_foreach(global.mods, function(_mod, _ix)
 	{
 		if _mod.enabled
@@ -176,4 +187,9 @@ function scr_process_mod(mod_json, mod_root)
 function scr_modding_is_standalone()
 {
 	return array_length(global.mods) == 0;
+}
+
+function scr_modding_cleanup()
+{
+	
 }

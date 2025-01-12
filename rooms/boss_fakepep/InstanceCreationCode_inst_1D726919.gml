@@ -1,13 +1,15 @@
-var _first = true;
-if global.sandbox
-	_first = false;
-else
+var _first = false;
+
+if !global.sandbox
 {
-	ini_open_from_string(obj_savesystem.ini_str);
-	if ini_read_real("Game", "fakepepportrait", false)
-		_first = false;
-	ini_write_real("Game", "fakepepportrait", true);
-	obj_savesystem.ini_str = ini_close();
+	if gamesave_open_ini()
+	{
+		_first = true;
+		if ini_read_real("Game", "fakepepportrait", false)
+			_first = false;
+		ini_write_real("Game", "fakepepportrait", true);
+		gamesave_close_ini(true);
+	}
 }
 
 if _first

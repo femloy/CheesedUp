@@ -88,7 +88,7 @@ function scr_vigi_throw()
 		
 		switch global.vigiweapon
 		{
-			case vweapons.dynamite:
+			case VIGI_WEAPONS.dynamite:
 				with instance_create(x, y, obj_dynamite)
 				{
 					image_xscale = other.xscale;
@@ -114,7 +114,7 @@ function scr_vigi_throw()
 				}
 				break;
 		
-			case vweapons.hook:
+			case VIGI_WEAPONS.hook:
 				var spd = 24, move_v = (key_down - key_up), move_h = (key_right + key_left);
 				with instance_create(x, y, obj_vigihook)
 				{
@@ -127,7 +127,7 @@ function scr_vigi_throw()
 				}
 				break;
 			
-			case vweapons.rocket:
+			case VIGI_WEAPONS.rocket:
 				state = states.rocket;
 				create_transformation_tip(lang_get_value("rockettip"), "rocket");
 				sprite_index = spr_rocketstart;
@@ -293,7 +293,7 @@ function scr_player_dynamite()
 			image_speed = 0.4;
 			break;
 		
-		case vweapons.hook:
+		case VIGI_WEAPONS.hook:
 			if grounded
 				hsp = Approach(hsp, 0, 0.25);
 		

@@ -1,6 +1,6 @@
 if in_saveroom()
 	instance_destroy();
-if (!global.panic)
+if !global.panic
 	instance_destroy();
-if (global.exitrank)
+if global.exitrank
 	instance_destroy();

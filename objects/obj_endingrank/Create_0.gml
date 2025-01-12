@@ -40,63 +40,75 @@ var levels = [
 	"w1stick", "w2stick", "w3stick", "w4stick", "w5stick"
 ];
 
-ini_open_from_string(obj_savesystem.ini_str);
-var damage = ini_read_real("Game", "damage", 0);
+var damage = 0;
 var _score = 0;
-var _enemies = ini_read_real("Game", "enemies", 0);
-for (var i = 0; i < array_length(levels); i++)
-	_score += ini_read_real("Highscore", levels[i], 0);
+var _enemies = 0;
 
-var _perc = get_percentage();
-if _perc >= 95
-	rank_spr = spr_rank_wow;
-else if _perc >= 83
-	rank_spr = spr_rank_notbad;
-else if _perc >= 72
-	rank_spr = spr_rank_nojudgement;
-else if _perc >= 61
-	rank_spr = spr_rank_officer;
-else if _perc >= 50
-	rank_spr = spr_rank_confused;
-else
-	rank_spr = spr_rank_yousuck;
-
-if ini_read_string("Game", "finalrank", "none") == "none"
+if gamesave_open_ini()
 {
-	if global.file_minutes < 240 && _perc >= 95
+	var damage = ini_read_real("Game", "damage", 0);
+	var _score = 0;
+	var _enemies = ini_read_real("Game", "enemies", 0);
+	for (var i = 0; i < array_length(levels); i++)
+		_score += ini_read_real("Highscore", levels[i], 0);
+
+	var _perc = get_percentage();
+	if _perc >= 95
+		rank_spr = spr_rank_wow;
+	else if _perc >= 83
+		rank_spr = spr_rank_notbad;
+	else if _perc >= 72
+		rank_spr = spr_rank_nojudgement;
+	else if _perc >= 61
+		rank_spr = spr_rank_officer;
+	else if _perc >= 50
+		rank_spr = spr_rank_confused;
+	else
+		rank_spr = spr_rank_yousuck;
+
+	if ini_read_string("Game", "finalrank", "none") == "none"
+	{
+		if global.file_minutes < 240 && _perc >= 95
+			rank_spr = spr_rank_holyshit;
+		else if global.file_minutes < 120
+			rank_spr = spr_rank_quick;
+	}
+	if ini_read_string("Game", "finalrank", "none") == "holyshit"
 		rank_spr = spr_rank_holyshit;
-	else if global.file_minutes < 120
-		rank_spr = spr_rank_quick;
-}
-if ini_read_string("Game", "finalrank", "none") == "holyshit"
-	rank_spr = spr_rank_holyshit;
 
-var r = "yousuck";
-switch rank_spr
-{
-	case spr_rank_wow:
-		r = "wow";
-		break;
-	case spr_rank_notbad:
-		r = "notbad";
-		break;
-	case spr_rank_nojudgement:
-		r = "nojudgement";
-		break;
-	case spr_rank_confused:
-		r = "confused";
-		break;
-	case spr_rank_holyshit:
-		r = "holyshit";
-		break;
-	case spr_rank_quick:
-		r = "quick";
-		break;
-	case spr_rank_officer:
-		r = "officer";
-		break;
+	var r = "yousuck";
+	switch rank_spr
+	{
+		case spr_rank_wow:
+			r = "wow";
+			break;
+		case spr_rank_notbad:
+			r = "notbad";
+			break;
+		case spr_rank_nojudgement:
+			r = "nojudgement";
+			break;
+		case spr_rank_confused:
+			r = "confused";
+			break;
+		case spr_rank_holyshit:
+			r = "holyshit";
+			break;
+		case spr_rank_quick:
+			r = "quick";
+			break;
+		case spr_rank_officer:
+			r = "officer";
+			break;
+	}
+	rank_name = r;
+
+	ini_write_string("Game", "finalrank", r);
+	if !ini_read_real("Game", "snotty", false)
+		ini_write_real("Game", "finalsnotty", true);
+	gamesave_close_ini(true);
+	gamesave_async_save();
 }
-rank_name = r;
 
 switch rank_spr
 {
@@ -155,12 +167,6 @@ if character == "N"
 			break;
 	}
 }
-
-ini_write_string("Game", "finalrank", r);
-if !ini_read_real("Game", "snotty", false)
-	ini_write_real("Game", "finalsnotty", true);
-obj_savesystem.ini_str = ini_close();
-gamesave_async_save();
 
 percentage = _perc;
 percvisual = 0;

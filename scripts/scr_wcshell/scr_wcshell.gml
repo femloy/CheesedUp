@@ -15,6 +15,12 @@ function scr_wc_cleanup()
 {
 	if ds_exists(WC_builtins, ds_type_map)
 		ds_map_destroy(WC_builtins);
+	if ds_exists(WC_binds, ds_type_map)
+		ds_map_destroy(WC_binds);
+	if ds_exists(WC_frozen, ds_type_list)
+		ds_list_destroy(WC_frozen);
+	if ds_exists(WC_win_list, ds_type_list)
+		ds_list_destroy(WC_win_list);
 }
 
 function scr_wc_apply_props(inst, props)
@@ -109,7 +115,8 @@ function scr_wc_create()
 	// shortcuts
 	WC_bindsenabled = true;
 	WC_binds = ds_map_create();
-	function WCscr_addbind(key, command_or_method) {
+	function WCscr_addbind(key, command_or_method)
+	{
 		ds_map_add(WC_binds, string(key), command_or_method);
 	}
 	
@@ -146,7 +153,8 @@ function scr_wc_create()
 	}
 	
 	// open console bind
-	WCscr_addbind(220, function() {
+	WCscr_addbind(220, function()
+	{
 		if !isOpen
 			self.open();
 		else
@@ -299,7 +307,7 @@ function scr_wc_create()
 		else if ds_map_exists(WC_builtins, value) 
 		{
 			value = ds_map_find_value(WC_builtins, value);
-			if is_callable(value)
+			if is_method(value)
 				value = value();
 		}
 		

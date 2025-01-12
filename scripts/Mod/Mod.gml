@@ -205,8 +205,7 @@ function Mod(_mod_json, _mod_root) constructor
 		// end
 		with {}
 			scr_modding_process(other, "cleanup");
-		set_enabled(false);
-		
+		enabled = false;
 		mod_global = {};
 		
 		// banks

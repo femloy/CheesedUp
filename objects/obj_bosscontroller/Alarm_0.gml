@@ -1,22 +1,23 @@
-with (obj_bosskeyspawn)
+with obj_bosskeyspawn
 {
-	ini_open_from_string(obj_savesystem.ini_str);
-	var _spawn = !ini_read_real(save, "bosskey", false);
-	if global.sandbox
-		_spawn = false;
-	ini_close();
+	var _spawn = false;
+	if !global.sandbox && gamesave_open_ini()
+	{
+		_spawn = !ini_read_real(save, "bosskey", false);
+		gamesave_close_ini(false);
+	}
 	
 	if _spawn
 	{
-		with (obj_player1)
+		with obj_player1
 		{
-			if (state == states.arenaintro)
+			if state == states.arenaintro
 			{
 				state = states.normal;
 				isgustavo = false;
 			}
 		}
-		with (instance_create(x, -100, obj_bosskey))
+		with instance_create(x, -100, obj_bosskey)
 		{
 			save = other.save;
 			y_to = other.y;
@@ -24,10 +25,10 @@ with (obj_bosskeyspawn)
 	}
 	else
 	{
-		with (other)
+		with other
 		{
 			state = states.victory;
-			with (obj_hpeffect)
+			with obj_hpeffect
 				spd = 16;
 		}
 	}

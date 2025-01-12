@@ -8,10 +8,12 @@ if sprite_index == idlespr
 			alarm[0] = 100;
 		sound_play_3d("event:/sfx/misc/kashing", x, y);
 		instance_destroy(uparrowID);
-		ini_open_from_string(obj_savesystem.ini_str);
-		ini_write_real("w5stick", "mooneyunlocked", true);
-		obj_savesystem.ini_str = ini_close();
-		gamesave_async_save();
+		if gamesave_open_ini()
+		{
+			ini_write_real("w5stick", "mooneyunlocked", true);
+			gamesave_close_ini(true);
+			gamesave_async_save();
+		}
 		notification_push(notifs.mrmooney_donated, [room]);
 		with obj_palettedresser
 		{

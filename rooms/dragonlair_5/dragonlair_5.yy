@@ -210,7 +210,7 @@
   "name":"dragonlair_5",
   "parent":{
     "name":"Dragon's Lair",
-    "path":"folders/Rooms/CheesyPizza/Dragon's Lair.yy",
+    "path":"folders/Rooms/Unused/Dragon's Lair.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

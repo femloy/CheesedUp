@@ -312,7 +312,7 @@ switch menu
 			
 			if surface_exists(global.modsurf)
 			{
-				draw_set_mask(xx - wd / 2, yy - ht / 2 - sprite_get_yoffset(spr_modifiertv), spr_modifiertv, 1);
+				draw_set_mask(xx - wd / 2, yy - ht / 2, spr_modifiertv, 1);
 				
 				draw_surface_ext(global.modsurf, 3 + xx - wd / 2, 3 + yy - ht / 2, 1, 1, 0, 0, 0.25 * alpha);
 				draw_surface_ext(global.modsurf, xx - wd / 2, yy - ht / 2, 1, 1, 0, c_white, alpha);

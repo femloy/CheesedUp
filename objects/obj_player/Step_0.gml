@@ -521,28 +521,30 @@ if (pistolanim != noone)
 }
 if (pistolcooldown > 0)
 	pistolcooldown--;
-if (prevstate != state && state != states.chainsaw)
+if prevstate != state && state != states.chainsaw
 {
-	if (prevstate == states.trashroll && prevsprite != spr_playercorpsestart && prevsprite != spr_playercorpsesurf)
+	if prevstate == states.trashroll && prevsprite != spr_playercorpsestart && prevsprite != spr_playercorpsesurf
 		create_debris(x, y, spr_player_trashlid);
-	if (prevstate == states.slipnslide && character == "N" && instance_exists(obj_surfback))
+	if prevstate == states.slipnslide && character == "N" && instance_exists(obj_surfback)
 	{
-		with (instance_create(x, y, obj_playernoisedebris))
+		with instance_create(x, y, obj_playernoisedebris)
 			sprite_index = spr_surfback;
 	}
-	if (prevstate == states.ghost)
+	if prevstate == states.ghost
 		instance_create(x, y, obj_ghostdrapes);
-	if (room == tower_3 && state == states.backbreaker && place_meeting(x, y, obj_bossdoor))
+	if room == tower_3 && state == states.backbreaker && place_meeting(x, y, obj_bossdoor)
 	{
 		resetdoisecount++;
-		if (resetdoisecount >= 3)
+		if resetdoisecount >= 3
 		{
 			if !global.resetdoise && REMIX && character == "N"
 			{
 				var _dead = false;
-				ini_open_from_string(obj_savesystem.ini_str);
-				_dead = ini_read_real("w3stick", "bosskey", false) || ini_read_real("Hats", "b_noise", 0) > 0;
-				ini_close();
+				if gamesave_open_ini()
+				{
+					_dead = ini_read_real("w3stick", "bosskey", false) || ini_read_real("Hats", "b_noise", 0) > 0;
+					gamesave_close_ini(false);
+				}
 				
 				if _dead
 				{
@@ -745,10 +747,12 @@ if (supercharge > 9 && state != states.backbreaker)
 {
 	if (!supercharged)
 	{
-		ini_open_from_string(obj_savesystem.ini_str);
-		if (ini_read_real("Game", "supertaunt", false) == 0)
-			create_transformation_tip(lang_get_value("supertaunttip"));
-		ini_close();
+		if gamesave_open_ini()
+		{
+			if ini_read_real("Game", "supertaunt", false) == false
+				create_transformation_tip(lang_get_value("supertaunttip"));
+			gamesave_close_ini(false);
+		}
 		sound_play("event:/sfx/pep/gotsupertaunt");
 	}
 	supercharged = true;

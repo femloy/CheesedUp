@@ -442,8 +442,9 @@ add_modifier("Spotlight", #283040, function(val)
 	pal_swap_reset();
 });
 
-var l = level_info(level);
-if is_instanceof(l, __levelinfo) && global.experimental
+/*
+var l = level_get_info(level);
+if is_instanceof(l, LevelInfo) && global.experimental
 {
 	add_modifier("FromTheTop", #786898, function(val)
 	{
@@ -454,6 +455,7 @@ if is_instanceof(l, __levelinfo) && global.experimental
 		draw_sprite_ext(spr_palettearrow, 0, width / 2 + sin(current_time / 200) * -10, height / 2 + 25, 1, 1, val ? -90 : 90, c_white, 1);
 	});
 }
+*/
 	
 add_modifier("GravityJump", #8038f0, function(val)
 {

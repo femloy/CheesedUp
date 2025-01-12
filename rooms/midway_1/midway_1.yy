@@ -16,8 +16,8 @@
   ],
   "name":"midway_1",
   "parent":{
-    "name":"Midway",
-    "path":"folders/Rooms/CheesyPizza/Midway.yy",
+    "name":"CheesyPizza",
+    "path":"folders/Rooms/CheesyPizza.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

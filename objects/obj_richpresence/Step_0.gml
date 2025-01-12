@@ -9,10 +9,8 @@ if !global.richpresence
 }
 
 // prep
-var smallimagetext = "", largeimagetext = DEBUG ? "TEST" : GM_version;
-var state = "", details = "", largeimage = "", smallimage = "";
-
-largeimage = "big_icon";
+var smallimagetext = "", largeimagetext = global.game_version;
+var state = "", details = "", largeimage = "big_icon", smallimage = "";
 
 // player character
 if room != Mainmenu && room != Longintro && room != Realtitlescreen && room != Finalintro

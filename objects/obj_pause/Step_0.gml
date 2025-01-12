@@ -1,8 +1,8 @@
 ensure_order;
 
-if (pause && !instance_exists(obj_loadingscreen) && alarm[3] == -1)
+if pause && !instance_exists(obj_loadingscreen) && alarm[3] == -1
 {
-	with (obj_music)
+	with obj_music
 	{
 		fmod_event_instance_set_paused(pillarmusicID, true);
 		fmod_event_instance_set_paused(panicmusicID, true);
@@ -12,12 +12,13 @@ if (pause && !instance_exists(obj_loadingscreen) && alarm[3] == -1)
 
 if instance_exists(obj_popupscreen)
 	exit;
-
 if pause_buffer > 0
 	pause_buffer--;
-if (!pause && instance_exists(obj_player1) && alarm[3] == -1 && (obj_player1.key_start or (!window_has_focus() && global.unfocus_pause)) && room != Mainmenu && room != Finalintro && room != hub_loadingscreen && room != Endingroom && room != Creditsroom && room != Johnresurrectionroom && room != Longintro && room != Realtitlescreen && room != rank_room)
+
+if !pause && instance_exists(obj_player1) && alarm[3] == -1 && (obj_player1.key_start or (!window_has_focus() && global.unfocus_pause))
+&& room != Mainmenu && room != Finalintro && room != hub_loadingscreen && room != Endingroom && room != Creditsroom && room != Johnresurrectionroom && room != Longintro && room != rank_room && room != Realtitlescreen && room != timesuproom
 {
-	with (obj_player1)
+	with obj_player1
 	{
 		other.spr_palette = spr_palette;
 		other.paletteselect = paletteselect;
@@ -25,35 +26,35 @@ if (!pause && instance_exists(obj_player1) && alarm[3] == -1 && (obj_player1.key
 	}
 	
 	var _cutscenehandler = false;
-	with (obj_cutscene_handler)
+	with obj_cutscene_handler
 	{
-		if (!loop)
+		if !loop
 			_cutscenehandler = true;
 	}
-	with (obj_player1)
+	with obj_player1
 	{
 		if ((instance_exists(obj_bosskey) && state == states.victory) || (state == states.victory && place_meeting(x, y, obj_startgate)) || (state == states.door && place_meeting(x, y, obj_exitgate)))
 			_cutscenehandler = true;
 	}
-	with (obj_charswitch_intro)
+	with obj_charswitch_intro
 		_cutscenehandler = true;
-	with (obj_bossplayerdeath)
+	with obj_bossplayerdeath
         _cutscenehandler = true;
-	with (obj_titlecard)
+	with obj_titlecard
 		_cutscenehandler = true;
-	with (obj_taxi)
+	with obj_taxi
 	{
 		if move
 			_cutscenehandler = true;
 	}
-	with (obj_taxidud)
+	with obj_taxidud
 	{
-		if (!start)
+		if !start
 			_cutscenehandler = true;
 	}
-	with (obj_pizzafaceboss_p3intro)
+	with obj_pizzafaceboss_p3intro
         _cutscenehandler = true;
-    with (obj_pizzahead_finalecutscene)
+    with obj_pizzahead_finalecutscene
         _cutscenehandler = true;
 	if global.in_menu
 		_cutscenehandler = true;
@@ -72,10 +73,16 @@ if (!pause && instance_exists(obj_player1) && alarm[3] == -1 && (obj_player1.key
 		_cutscenehandler = true;
 	if pause_buffer > 0
 		_cutscenehandler = true;
+	with obj_levelselect
+		buffer = 30;
+	with obj_savesystem
+	{
+		if state != 0
+			_cutscenehandler = true;
+	}
 	
 	// pause
-	if (obj_savesystem.state == 0 && !_cutscenehandler
-	&& (room != rank_room && room != Realtitlescreen && room != timesuproom))
+	if !_cutscenehandler
 	{
 		destroy_sounds([pausemusicID]);
 		if SUGARY_SPIRE && check_sugary()
@@ -123,11 +130,11 @@ if (!pause && instance_exists(obj_player1) && alarm[3] == -1 && (obj_player1.key
 		else
 			array_push(pause_menu, room == editor_entrance ? "pause_exit_menu" : "pause_exit_title");
 		
-		with (obj_music)
+		with obj_music
 		{
 			if global.jukebox != noone
 				waiting = true;
-			if (music != noone)
+			if music != noone
 			{
 				other.savedmusicpause = fmod_event_instance_get_paused(music.event);
 				other.savedsecretpause = fmod_event_instance_get_paused(music.event_secret);
@@ -141,32 +148,40 @@ if (!pause && instance_exists(obj_player1) && alarm[3] == -1 && (obj_player1.key
 			fmod_event_instance_set_paused(panicmusicID, true);
 			fmod_event_instance_set_paused(kidspartychaseID, true);
 		}
-		if (global.leveltosave != noone)
+		
+		if global.leveltosave != noone
 		{
-			ini_open_from_string(obj_savesystem.ini_str);
-			treasurefound = ini_read_real("Treasure", global.leveltosave, false);
-			secretcount = ini_read_real("Secret", global.leveltosave, 0);
-			ini_close();
+			treasurefound = false;
+			secretcount = 0;
 			
-			if (!treasurefound)
+			if gamesave_open_ini()
+			{
+				treasurefound = ini_read_real("Treasure", global.leveltosave, false);
+				secretcount = ini_read_real("Secret", global.leveltosave, 0);
+				gamesave_close_ini(false);
+			}
+			
+			if !treasurefound
 			{
 				treasurefound = global.treasure;
 				treasurealpha = 0;
 			}
-			else if (!global.treasure)
+			else if !global.treasure
 				treasurealpha = 0.5;
 			else
 				treasurealpha = 0;
-			if (global.secretfound > secretcount)
+			
+			if global.secretfound > secretcount
 			{
 				secretcount = global.secretfound;
 				secretalpha = 0;
 			}
-			else if (global.secretfound < secretcount)
+			else if global.secretfound < secretcount
 				secretalpha = 0.5;
 			else
 				secretalpha = 0;
-			if (secretcount > 3)
+			
+			if secretcount > 3
 				secretcount = 3;
 		}
 		else

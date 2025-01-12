@@ -15,10 +15,12 @@ if (fadealpha > f)
 			with obj_cyop_loader
 				gamestart = false;
 			
-			ini_open_from_string(obj_savesystem.ini_str);
-			global.file_minutes = ini_read_real("Game", "minutes", 0);
-			global.file_seconds = ini_read_real("Game", "seconds", 0);
-			ini_close();
+			if gamesave_open_ini()
+			{
+				global.file_minutes = ini_read_real("Game", "minutes", 0);
+				global.file_seconds = ini_read_real("Game", "seconds", 0);
+				gamesave_close_ini(false);
+			}
 		}
 		if (restarttimer)
 		{

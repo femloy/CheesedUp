@@ -1,7 +1,10 @@
 function scr_get_endingrank(open_ini = true)
 {
 	if open_ini
-		ini_open_from_string(obj_savesystem.ini_str);
+	{
+		if !gamesave_open_ini()
+			return 0;
+	}
 	
 	var _perc = get_percentage(), r = "yousuck";
 	if _perc >= 95
@@ -26,15 +29,17 @@ function scr_get_endingrank(open_ini = true)
 		r = "holyshit"; // never lose holy shit rank
 	
 	if open_ini
-		ini_close();
+		gamesave_close_ini(false);
 	return r;
 }
 function scr_save_endingrank()
 {
-	ini_open_from_string(obj_savesystem.ini_str);
-	ini_write_string("Game", "finalrank", scr_get_endingrank(false));
-	if !ini_read_real("Game", "snotty", false)
-		ini_write_real("Game", "finalsnotty", true);
-	obj_savesystem.ini_str = ini_close();
-	gamesave_async_save();
+	if gamesave_open_ini()
+	{
+		ini_write_string("Game", "finalrank", scr_get_endingrank(false));
+		if !ini_read_real("Game", "snotty", false)
+			ini_write_real("Game", "finalsnotty", true);
+		gamesave_close_ini(true);
+		gamesave_async_save();
+	}
 }

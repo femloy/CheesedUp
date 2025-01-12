@@ -1,7 +1,7 @@
 reset_modifier();
-if (do_rank)
+if do_rank
 {
-	with (instance_create(room_width / 2, room_height / 2, obj_rank))
+	with instance_create(room_width / 2, room_height / 2, obj_rank)
 	{
 		toppinvisible = other.toppinvisible;
 		if !toppinvisible && global.leveltosave != "exit" && global.leveltosave != "secretworld" && !global.timeattack
@@ -13,22 +13,26 @@ if (do_rank)
 			array_pop(text);
 		}
 		depth = other.depth - 2;
-		ini_open_from_string(obj_savesystem.ini_str);
 		
 		var leveltosave = global.leveltosave;
 		if instance_exists(obj_cyop_loader)
 			leveltosave = string_replace(leveltosave, "cyop_", "");
 		
-		for (var i = 0; i < array_length(toppin); i++)
+		if gamesave_open_ini()
 		{
-			if global.newtoppin[i] && array_contains(base_game_levels(false), global.leveltosave) && !global.sandbox
-				toppin[i] = 1;
-			else if ini_read_real("Toppin", leveltosave + string(i + 1), false)
-				toppin[i] = 2;
-			else
-				toppin[i] = 0;
+			for (var i = 0; i < array_length(toppin); i++)
+			{
+				if !global.sandbox && global.newtoppin[i] && array_contains(base_game_levels(false), global.leveltosave)
+					toppin[i] = 1;
+				else if ini_read_real("Toppin", leveltosave + string(i + 1), false)
+					toppin[i] = 2;
+				else
+					toppin[i] = 0;
+			}
+			gamesave_close_ini(false);
 		}
-		ini_close();
+		else
+			toppinvisible = false;
 	}
 }
 else

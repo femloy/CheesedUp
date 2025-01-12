@@ -5,8 +5,8 @@ group_arr = noone;
 offload_arr = noone;
 locked = false;
 john = false;
-alarm[0] = 1;
 uparrowID = scr_create_uparrowhitbox();
+
 if room == tower_5
 {
 	if global.panic
@@ -17,21 +17,8 @@ if room == tower_5
 			instance_create(x + 50, y + 96, obj_rubble);
 	}
 }
-compatibility = false;
 
-// AFOM / old doors
+compatibility = false;
 old = false;
 spr_blocked = spr_doorblocked;
 spr_visited = spr_doorvisited;
-
-if SUGARY_SPIRE
-{
-	sugary = SUGARY;
-	if sugary
-	{
-		depth = 50;
-		sprite_index = spr_doorunvisited_ss;
-		spr_visited = spr_doorvisited_ss;
-		old = true;
-	}
-}

@@ -47,10 +47,9 @@ if (!selecting)
 		key_select = 0;
 	if (key_reset)
 	{
-		ini_open_from_string(obj_savesystem.ini_str);
-		ini_section_delete("Input");
+		ini_open_from_string("");
 		scr_initinput(false);
-		obj_savesystem.ini_str = ini_close();
+		ini_close();
 	}
 	key_select = clamp(key_select, -1, array_length(input) - 1);
 	if (((key_jump || key_back) && key_select <= -1) || (key_select > -1 && key_back))

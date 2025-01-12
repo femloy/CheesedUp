@@ -7,14 +7,6 @@ function ini_read_input(section, key, def)
 }
 function scr_initinput(open_savedata = true)
 {
-	trace("tdp_input_init");
-	tdp_input_init();
-	
-	global.spr_gamepadbuttons = spr_gamepadbuttons_style1;
-	global.spr_joystick = spr_joystick_style1;
-	
-	// switch code here for switching style?
-
 	if open_savedata
 		ini_open(save_folder + "saveData.ini");
 	

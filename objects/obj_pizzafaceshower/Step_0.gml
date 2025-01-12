@@ -87,11 +87,13 @@ switch (state)
 			
 			case states.dead:
 				y -= 20;
-				if (y < -200)
+				if y < -200
 				{
-					ini_open_from_string(obj_savesystem.ini_str);
-					ini_write_real("Game", "shower", true);
-					obj_savesystem.ini_str = ini_close();
+					if gamesave_open_ini()
+					{
+						ini_write_real("Game", "shower", true);
+						gamesave_close_ini(true);
+					}
 					instance_destroy();
 				}
 				break;

@@ -338,13 +338,15 @@ select = function()
 					pat = "none";
 				else
 					pat = sprite_get_name(pat);
-			
-				ini_open_from_string(obj_savesystem.ini_str);
-				ini_write_string("Game", "character", character);
-				ini_write_real("Game", "palette", paletteselect);
-				ini_write_string("Game", "palettetexture", pat);
-				obj_savesystem.ini_str = ini_close();
-				gamesave_async_save();
+				
+				if gamesave_open_ini()
+				{
+					ini_write_string("Game", "character", character);
+					ini_write_real("Game", "palette", paletteselect);
+					ini_write_string("Game", "palettetexture", pat);
+					gamesave_close_ini(true);
+					gamesave_async_save();
+				}
 			}
 		}
 		else

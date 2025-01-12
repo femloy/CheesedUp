@@ -84,9 +84,12 @@ function scr_noise_arenaintro()
 	if doise && !global.resetdoise
 	{
 		var _dead = false;
-		ini_open_from_string(obj_savesystem.ini_str);
-		_dead = ini_read_real("w3stick", "bosskey", false) || ini_read_real("Hats", "b_noise", 0) > 0;
-		ini_close();
+		if gamesave_open_ini()
+		{
+			_dead = ini_read_real("w3stick", "bosskey", false) || ini_read_real("Hats", "b_noise", 0) > 0;
+			gamesave_close_ini(false);
+		}
+		
 		if _dead
 		{
 			with obj_music

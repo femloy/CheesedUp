@@ -1,18 +1,23 @@
-treasure = true;
-var levels = ["entrance", "medieval", "ruin", "dungeon", "badland", "graveyard", "farm", "saloon", "plage", "forest", "minigolf", "space", "sewer", "industrial", "street", "freezer", "chateau", "kidsparty", "war"];
-ini_open_from_string(obj_savesystem.ini_str);
-for (var i = 0; i < array_length(levels); i++)
+treasure = false;
+if gamesave_open_ini()
 {
-	if (!ini_read_real("Treasure", levels[i], false))
+	treasure = true;
+	
+	var levels = ["entrance", "medieval", "ruin", "dungeon", "badland", "graveyard", "farm", "saloon", "plage", "forest", "minigolf", "space", "sewer", "industrial", "street", "freezer", "chateau", "kidsparty", "war"];
+	for (var i = 0; i < array_length(levels); i++)
 	{
-		treasure = false;
-		break;
+		if !ini_read_real("Treasure", levels[i], false)
+		{
+			treasure = false;
+			break;
+		}
 	}
+	ini_write_real("Game", "john", treasure);
+	gamesave_close_ini(true);
 }
-ini_write_real("Game", "john", treasure);
-obj_savesystem.ini_str = ini_close();
+
 global.johnresurrection = treasure;
-if (treasure)
+if treasure
 	notification_push(notifs.johnresurrection, []);
 depth = -600;
 state = 0; // not an enum
