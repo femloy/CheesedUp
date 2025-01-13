@@ -1,9 +1,6 @@
 // anti-decomp in log_source
 
 // optimizations
-gml_pragma("forceinline");
-gpu_set_sprite_cull(true);
-
 function toggle_texture_debug(enable)
 {
 	texturegroup_set_mode(true, enable, spr_missing);
