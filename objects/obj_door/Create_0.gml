@@ -22,3 +22,4 @@ compatibility = false;
 old = false;
 spr_blocked = spr_doorblocked;
 spr_visited = spr_doorvisited;
+alarm[0] = 1;

@@ -12,7 +12,6 @@ custom_palette = array_create(64, 1);
 
 // selection
 show_unlock = false;
-noisetype = noisetype.base;
 sel =
 {
 	pal: 1,
@@ -20,7 +19,8 @@ sel =
 	mix: 0,
 	side: 0,
 	page: 0,
-	mixpage: 0
+	mixpage: 0,
+	echochar: 0
 };
 sel_p2 =
 {
@@ -158,7 +158,6 @@ if instance_exists(obj_player1)
 		if pchar == characters[i].char
 			sel.char = i;
 	}
-	noisetype = obj_player1.noisetype;
 }
 
 // DO THE FUNNY
@@ -180,12 +179,11 @@ select = function()
 	with obj_player1
 	{
 		var prevchar = character, prevpal = paletteselect;
-		var prevtex = global.palettetexture, prevnoise = noisetype;
+		var prevtex = global.palettetexture;
 		var prevcolors = global.Base_Pattern_Color;
 		
 		// apply it
 		character = other.characters[other.sel.char].char;
-		noisetype = other.noisetype;
 		
 		if state == states.ratmount
 			state = states.normal;
@@ -291,7 +289,7 @@ select = function()
 		}
 		
 		// if nothing changed, don't save
-		if !(!custom && character == prevchar && paletteselect == prevpal && global.palettetexture == prevtex && noisetype == prevnoise)
+		if !(!custom && character == prevchar && paletteselect == prevpal && global.palettetexture == prevtex)
 		{
 			// setup animation
 			if character != prevchar
@@ -422,29 +420,6 @@ player_draw = function(charx, chary, sel_char, pal, sel_mix)
 	if anim_con != 2 or obj_player1.visible
 	{
 		// special skins
-		if characters[sel_char].char == "N"
-		{
-			if check_skin(SKIN.n_chungus, "N", pal.palette)
-			{
-				characters[sel_char].spr_idle = spr_playerN_chungus;
-				if noisetype == noisetype.pogo
-				{
-					draw_set_font(lang_get_font("font_small"));
-					draw_set_align(fa_center);
-					draw_set_colour(c_white);
-						
-					draw_text(charx, chary - 68, "Pogo");
-				}
-			}
-			else
-			{
-				switch noisetype
-				{
-					case noisetype.base: characters[sel_char].spr_idle = spr_playerN_idle; break;
-					case noisetype.pogo: characters[sel_char].spr_idle = spr_playerN_pogofallmach; break;
-				}
-			}
-		}
 		if characters[sel_char].char == "P"
 		{
 			characters[sel_char].spr_idle = spr_player_idle;

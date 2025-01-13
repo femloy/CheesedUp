@@ -1,11 +1,15 @@
-function scr_get_timer_string(minutes, seconds, include_hours = false)
+function scr_get_timer_string(minutes, seconds, include_hours = false, include_ms = true)
 {
+	if !include_ms
+		seconds = floor(seconds);
+	
 	if seconds < 10
 	{
-		seconds = string_format(seconds, 1, 3);
+		if include_ms
+			seconds = string_format(seconds, 1, 3);
 		seconds = "0" + seconds;
 	}
-	else
+	else if include_ms
 		seconds = string_format(seconds, 2, 3);
 	
 	if include_hours

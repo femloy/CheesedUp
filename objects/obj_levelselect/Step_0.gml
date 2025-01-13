@@ -34,7 +34,6 @@ if key_taunt2
 var _m = key_down2 - key_up2;
 if _m != 0
 {
-	sound_play(sfx_step);
 	selected_level = 0;
 	selected_world += _m;
 	selected_world = clamp(selected_world, 0, array_length(worlds) - 1);
@@ -45,7 +44,6 @@ var levels = worlds[selected_world].levels;
 var _n = key_left2 + key_right2;
 if _n != 0
 {
-	sound_play(sfx_step);
 	selected_level += _n;
 	selected_level = clamp(selected_level, 0, array_length(levels) - 1);
 }

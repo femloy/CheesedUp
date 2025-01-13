@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"level_info",
+  "%Name":"level_get_info",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"level_info",
+  "name":"level_get_info",
   "parent":{
     "name":"CheesyPizza",
     "path":"folders/Scripts/CheesyPizza.yy",

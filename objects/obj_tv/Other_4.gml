@@ -3,10 +3,10 @@ manualhide = false;
 
 // tower escape
 var r = string_letters(room_get_name(room));
-if (r != "towertutorial" && r != "towertutorialN" && string_copy(r, 1, 5) == "tower")
+if r != "towertutorial" && r != "towertutorialN" && string_copy(r, 1, 5) == "tower"
 {
 	timer_tower = true;
-	if (global.panic)
+	if global.panic
 	{
 		instance_destroy(obj_gusbrickchase);
 		instance_destroy(obj_gusbrickfightball);
@@ -24,7 +24,7 @@ else
 	timer_tower = false;
 
 // transfo prompts
-if (special_prompts == noone && room != Realtitlescreen && room != characterselect)
+if special_prompts == noone && room != Realtitlescreen && room != characterselect
 {
 	special_prompts = ds_map_create();
 	/*
@@ -44,11 +44,11 @@ if (special_prompts == noone && room != Realtitlescreen && room != charactersele
 	ini_close();
 	*/
 }
-if (room == Realtitlescreen)
+if room == Realtitlescreen
 {
-	if (special_prompts != noone)
+	if special_prompts != noone
 		ds_map_destroy(special_prompts);
-	special_prompts = -4;
+	special_prompts = noone;
 }
 
 // level settings
@@ -59,7 +59,7 @@ if sprite_exists(tvbg_sprite)
 	tv_bg.sprite = tvbg_sprite;
 
 tv_bg.y = 134;
-switch (global.leveltosave)
+switch global.leveltosave
 {
 	case "entrance":
 		tv_bg_index = 1;
@@ -133,22 +133,10 @@ switch (global.leveltosave)
 	case "pinball": tv_bg_index = 22; break;
 	case "mansion": tv_bg_index = 21; break;
 	case "strongcold": tv_bg_index = 23; break;
-	case "grinch": tv_bg_index = 25; break;
+	case "grinch": tv_bg_index = 25; tv_bg.sprite = spr_gate_grinchraceBG; break;
 	case "desert": tv_bg_index = 5; tv_bg.sprite = spr_gate_badlandBG; break;
 	
-	// sugary
-	case "entryway": tv_bg_index = 0; break;
-	case "steamy": tv_bg_index = 1; break;
-	case "molasses": tv_bg_index = 2; break;
-	case "mines": tv_bg_index = 3; break;
-	case "fudge": tv_bg_index = 4; break;
-	case "dance": tv_bg_index = 5; break;
-	case "estate": tv_bg_index = 6; break;
-	case "bee": tv_bg_index = 7; break;
-	case "sucrose": tv_bg_index = 8; break;
-	
 	// pto exclusive
-	case "midway": tv_bg_index = 24; break;
 	case "snickchallenge":
 		if string_starts_with(r, "medieval")
 		{
@@ -174,7 +162,7 @@ switch (global.leveltosave)
 }
 
 var balls = global.srank;
-switch (room)
+switch room
 {
 	case entrance_1:
 		global.srank = 16000;
@@ -270,20 +258,6 @@ switch (room)
 	case etb_1:
 		global.srank = 14000;
 		break;
-		
-	// sugary
-	case entryway_1:
-		global.srank = 19500;
-		break;
-	case steamy_1:
-		global.srank = 23000;
-		break;
-	case molasses_1:
-		global.srank = 23500;
-		break;
-	case sucrose_1:
-		global.srank = 18000;
-		break;
 }
 if global.snickchallenge
 	global.srank = 8000;
@@ -299,7 +273,7 @@ if global.srank != balls
 global.arank = floor(global.srank / 2);
 global.brank = floor(global.arank / 2);
 global.crank = floor(global.brank / 2);
-if (room == custom_lvl_room)
+if room == custom_lvl_room
 	alarm[1] = 4;
 
 if SUGARY_SPIRE

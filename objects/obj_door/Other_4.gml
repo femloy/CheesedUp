@@ -1,4 +1,6 @@
-auto_targetdoor();
+alarm[0] = -1;
+event_perform(ev_alarm, 0);
+
 if !instance_exists(obj_player)
 	exit;
 

@@ -96,7 +96,7 @@ function gamesave_async_load()
 			state = 2;
 		}
 		else
-			trace("[WARNING] Skipped switching savefiles!!!");
+			trace("[WARNING] Switching savefiles WAY too quickly! Skipping!");
 	}
 }
 function gamesave_async_save()

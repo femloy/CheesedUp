@@ -78,7 +78,7 @@ else if (floor(other.image_index) == other.image_number - 1 or (other.key_taunt2
 		}
 		else if gate.level != "tutorial" && gate.show_titlecard
 		{
-			if (gate.object_index != obj_bossdoor)
+			if gate.object_index != obj_bossdoor
 			{
 				if SUGARY_SPIRE && gate.info != noone
 				{

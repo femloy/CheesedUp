@@ -5,8 +5,8 @@ enum noisetype
 }
 
 #macro CHAR_OLDNOISE (obj_player1.character == "N" && !IT_updated_noise())
-#macro CHAR_BASENOISE (obj_player1.character == "N" && obj_player1.noisetype == noisetype.base && IT_updated_noise())
-#macro CHAR_POGONOISE (obj_player1.character == "N" && obj_player1.noisetype == noisetype.pogo)
+#macro CHAR_BASENOISE (obj_player1.character == "N" && IT_updated_noise())
+#macro CHAR_POGONOISE (false)
 
 #macro SKIN_SNOTTY 17
 

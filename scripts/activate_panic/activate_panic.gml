@@ -52,14 +52,19 @@ function activate_panic(instapanic = false, debris = noone)
 			with instance_create_unique(0, 0, obj_hungrypillarflash)
 				debrisid = debris;
 		}
-		instance_create(0, 0, obj_itspizzatime);
+		
+		if !global.timeattack
+			instance_create(0, 0, obj_itspizzatime);
 		
 		with obj_camera
 			alarm[1] = 60;
 		shake_camera(3, 3 / room_speed);
 		
-		with obj_deathmode
-			time_fx = 30;
+		if DEATH_MODE
+		{
+			with obj_deathmode
+				time_fx = 30;
+		}
 	}
 	
 	global.fill = 4000;

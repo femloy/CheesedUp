@@ -15,7 +15,7 @@ global.level_seconds = 0;
 var _r = obj_player1.backtohubroom;
 if instance_exists(obj_cyop_loader)
 {
-	if (global.cyop_is_hub or global.cyop_hub_level == "")
+	if global.cyop_is_hub or global.cyop_hub_level == ""
 	{
 		_r = editor_entrance;
 		instance_destroy(obj_cyop_loader);
@@ -24,7 +24,7 @@ if instance_exists(obj_cyop_loader)
 		cyop_load_level_internal(global.cyop_hub_level, true);
 }
 
-with (obj_player1)
+with obj_player1
 {
 	swap_player();
 	global.pistol = false;

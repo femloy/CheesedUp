@@ -160,6 +160,7 @@ function scr_do_rank(showtoppins = true, boss = false)
 		{
 			do_rank = true;
 			toppinvisible = showtoppins;
+			
 			with obj_pizzaface
 			{
 				if bbox_in_camera(view_camera[0])
@@ -169,7 +170,7 @@ function scr_do_rank(showtoppins = true, boss = false)
 			if global.leveltosave == "tutorial"
 			{
 				do_rank = false;
-				targetRoom = tower_entrancehall;
+				targetRoom = obj_player1.backtohubroom;
 				targetDoor = "HUB";
 			}
 			else if global.leveltosave == "secretworld"
@@ -201,10 +202,6 @@ function scr_do_rank(showtoppins = true, boss = false)
 	}
 	
 	obj_endlevelfade.alarm[0] = 235;
-	if REMIX
-		obj_endlevelfade.alarm[0] = 230;
-	if SUGARY_SPIRE && check_sugarychar()
-		obj_endlevelfade.alarm[0] = 190;
 	
 	image_index = 0;
 	global.panic = false;

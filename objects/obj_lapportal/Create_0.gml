@@ -33,36 +33,12 @@ var allowed_ta_levels = [
 	"badland", "farm", "graveyard", "saloon",
 	"plage", "forest", "space", "minigolf",
 	"street", "industrial", "sewer", "freezer",
-	"chateau", "kidsparty", "war",
-	
-	"entryway", "steamy", "molasses", "sucrose"
+	"chateau", "kidsparty", "war", "exit"
 ];
 
 time_attack = !global.panic && !global.timeattack && !global.in_cyop && array_contains(allowed_ta_levels, global.leveltosave);
-if time_attack && !global.can_timeattack //(global.combo > 0 or global.combodropped or global.prank_enemykilled)
-{
+if time_attack && !global.can_timeattack
 	time_attack = false;
-	/*
-	with instance_create(x + image_xscale * 200, y, obj_tutorialbook)
-	{
-		in_level = true;
-		text = lstr("timeattack_tip");
-		
-		// floor
-		while scr_solid(x, y)
-			x += other.image_xscale;
-		
-		for(var yy = y; yy < room_height; yy++)
-		{
-			if scr_solid(x, yy + 1)
-			{
-				y = yy;
-				break;
-			}
-		}
-	}
-	*/
-}
 
 // afom
 if global.in_afom

@@ -23,16 +23,18 @@ draw_sprite(spr_controlseggplant, 1, 800, 128);
 draw_sprite(spr_title, 1, -9, 13);
 */
 
+var _levelinfo = noone;
 if selected_level >= 0 && selected_level < array_length(_worldinfo.levels)
 {
-	var _levelinfo = _worldinfo.levels[selected_level];
-	
+	_levelinfo = _worldinfo.levels[selected_level];
 	str += concat("\n", selected_level + 1, ". ", string_upper(_levelinfo.display_name));
-	
-	if is_callable(_levelinfo.draw_func)
-		_levelinfo.draw_func();
 }
+else
+	str += "\nNO LEVELS";
 draw_text(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 100, str);
 
 if _worldinfo.door_index != noone
 	draw_sprite(spr_door, _worldinfo.door_index, SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2);
+
+if _levelinfo != noone && is_callable(_levelinfo.draw_func)
+	_levelinfo.draw_func();

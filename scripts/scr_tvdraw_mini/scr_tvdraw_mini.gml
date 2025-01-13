@@ -84,7 +84,7 @@ function scr_tvdraw_mini()
 	{
 		draw_set_align(fa_center);
 		if war
-			timer_y = max(timer_y, SCREEN_HEIGHT + 10);
+			timer_y = min(timer_y, SCREEN_HEIGHT + 10);
 		
 		var tx = SCREEN_WIDTH / 2, ty = max(timer_y, SCREEN_HEIGHT - 50) - pad;
 		var txo = sprite_get_xoffset(spr_bartimer_minimal);

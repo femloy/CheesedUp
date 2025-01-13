@@ -229,6 +229,7 @@ if submenu == 0
 	// toggle noise pogo
 	if sel.side == 0
 	{
+		/*
 		if characters[sel.char].char == "N" && global.sandbox
 		{
 			if check_char("N")
@@ -239,6 +240,7 @@ if submenu == 0
 				noisetype = !noisetype;
 			}
 		}
+		*/
 	}
 	else if key_taunt2
 	{

@@ -445,7 +445,7 @@ var minimal_war = global.hud == HUD_STYLES.minimal && instance_exists(obj_wartim
 var hide_timer = (global.fill <= 0 or instance_exists(obj_pizzaface)) && !minimal_war;
 var showtime = global.fill <= (global.snickchallenge ? calculate_panic_timer(2, 0) : 0);
 
-if global.panic or global.snickchallenge
+if global.panic or global.snickchallenge or minimal_war
 {
 	if !showtime && !hide_timer
 	{
@@ -497,7 +497,7 @@ if global.panic or global.snickchallenge
 	{
 		showtime_buffer = 100;
 		if (!instance_exists(obj_ghostcollectibles) && !instance_exists(obj_wartimer))
-		or global.leveltosave == "sucrose" or global.leveltosave == "secretworld" or minimal_war
+		or global.leveltosave == "secretworld" or minimal_war
 			timer_y = Approach(timer_y, timer_ystart, 1);
 		else
 			timer_y = Approach(timer_y, timer_ystart + 212, 4);

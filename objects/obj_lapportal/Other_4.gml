@@ -22,7 +22,7 @@ else if check_lap_mode(LAP_MODES.april)
 	exit;
 }
 
-if array_contains(base_game_levels(), global.leveltosave) && !global.sandbox
+if !global.sandbox && array_contains(base_game_levels(), global.leveltosave)
 {
 	if gamesave_open_ini()
 	{

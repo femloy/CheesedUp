@@ -49,7 +49,8 @@ else if cyop_tower != ""
 else if cyop_changesave
 {
 	global.in_cyop = cyop_changesave == 2 ? false : true;
-	gamesave_async_load();
+	if global.saveloaded
+		gamesave_async_load();
 	cyop_changesave = false;
 	alarm[1] = 1;
 }

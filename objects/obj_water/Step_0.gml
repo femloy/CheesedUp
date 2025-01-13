@@ -1,20 +1,16 @@
 live_auto_call;
 
-if my_solid.object_index == obj_solid
+instance_activate_object(my_solid);
+with my_solid
 {
-	instance_destroy(my_solid);
-	
-	my_solid = instance_create(x, y, obj_platform);
-	with my_solid
-	{
-		image_xscale = other.image_xscale;
-		image_yscale = other.image_yscale;
-	}
+	x = other.x;
+	y = other.y;
+	image_xscale = other.image_xscale;
+	image_yscale = other.image_yscale;
 }
 
 with instance_place(x, y - 1, obj_baddie)
 	instance_destroy();
-
 if instance_exists(obj_genericdeath)
 	exit;
 
@@ -23,14 +19,18 @@ with instance_place(x, y - 1, obj_player)
 	var condition = (state != states.gotoplayer && state != states.trashjump && state != states.trashjumpprep && state != states.mach3 && state != states.parry && sprite_index != spr_mach3boost && !((state == states.ratmount or state == states.ratmountjump) && ratmount_movespeed >= 12))
 	&& (state != states.machcancel || sprite_index == spr_playerN_divebomb || sprite_index == spr_playerN_divebombfall || sprite_index == spr_playerN_divebombland);
 	
+	if place_meeting(x, y, other.my_solid)
+		instance_deactivate_object(other.my_solid);
+	
 	if condition
 	{
-		if (place_meeting(x, y + 1, other))
+		if place_meeting(x, y + 1, other)
 		{
-			if (state != states.trashroll)
+			if state != states.trashroll
 			{
 				if character == "V"
 				{
+					instance_deactivate_object(other.my_solid);
 					if !place_meeting(x, y + 1, obj_solid)
 					{
 						while bbox_bottom <= other.y
@@ -68,7 +68,7 @@ with instance_place(x, y - 1, obj_player)
 					movespeed = hsp;
 					vsp = -14;
 					instance_create(x, y + 20, obj_piranneapplewater);
-					with (instance_create(x, y, obj_superdashcloud))
+					with instance_create(x, y, obj_superdashcloud)
 						sprite_index = spr_watereffect;
 				}
 			}
