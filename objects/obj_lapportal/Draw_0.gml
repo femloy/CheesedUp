@@ -7,7 +7,7 @@ if sprite_index != spr_idle && sprite_index != spr_outline
 	draw_self();
 	pal_swap_reset();
 }
-else if sprite_index == spr_outline
+else if sprite_index == spr_outline or sprite_index == spr_gone
 	draw_sprite_ext(sprite_index, image_index, x, y + Wave(-2, 2, 1, 5), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
 else
 {

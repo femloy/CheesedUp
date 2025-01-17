@@ -11,6 +11,8 @@ function activate_panic(instapanic = false, debris = noone)
 {
 	global.panic = true;
 	
+	global.can_timeattack = false;
+	
 	if room == tower_finalhallway
 		global.leveltosave = "exit";
 	

@@ -23,10 +23,17 @@ else
 	];
 }
 
+var did = false;
 with obj_player1
 {
+	did = true;
+	
 	hallway = false;
 	box = false;
 	var door_pos = scr_door_spawnpos(obj_doorA);
-	array_insert(other.scene_info, 0, [cutscene_set_player_actor], [cutscene_set_player_pos, door_pos[0], door_pos[1]]);
+	
+	repeat 2
+		array_insert(other.scene_info, 0, [cutscene_set_player_actor], [cutscene_set_player_pos, door_pos[0], door_pos[1]], [cutscene_wait, 1]);
 }
+if !did
+	trace("[WARNING] Did not did");

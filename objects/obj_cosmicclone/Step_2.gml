@@ -14,12 +14,14 @@ if state != states.dead && state != states.fall
 		state = states.dead;
 		grace_period = 60;
 	}
+	/*
 	else if !instance_exists(tracker)
 	{
 		tracker = instance_create(0, 0, obj_objecticontracker);
 		tracker.objectID = id;
 		tracker.sprite_index = spr_icon_cosmicclone;
 	}
+	*/
 }
 else
 	instance_destroy(tracker);

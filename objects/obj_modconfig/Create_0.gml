@@ -678,12 +678,12 @@ with new ModSection("gameplay", 0)
 			}
 		}
 	
-		if val == 3
+		if val == MOD_MOVES.chainsaw
 		{
 			for(var i = 0; i < floor(bullets); i++)
 				draw_sprite(spr_fuelHUD, super.image_index, 136 - 46 * i, 46);
 		}
-	
+		
 		draw_simuplayer();
 	});
 	opt.opts =

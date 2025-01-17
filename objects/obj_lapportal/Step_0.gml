@@ -1,15 +1,26 @@
-if (global.panic or instance_exists(obj_wartimer) or time_attack) && sprite_index != spr_outline
+if time_attack && sprite_index != spr_gone && !global.can_timeattack
+{
+	image_index = 0;
+	sprite_index = spr_gone;
+	image_alpha = 1;
+}
+
+if sprite_index == spr_gone && image_index >= image_number - 1
+	instance_destroy();
+
+if (global.panic or instance_exists(obj_wartimer) or time_attack)
+&& sprite_index != spr_outline && sprite_index != spr_gone
 {
 	image_alpha = 1;
 	if sprite_index == spr_idle
 	{
 		playerid = noone;
-		with (obj_player)
+		with obj_player
 		{
 			if instance_exists(obj_genericdeath)
 				break;
 			
-			if (other.playerid == noone && place_meeting(x, y, other))
+			if other.playerid == noone && place_meeting(x, y, other)
 			{
 				with obj_camera
 					lock = true;

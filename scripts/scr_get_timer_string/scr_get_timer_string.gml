@@ -7,7 +7,7 @@ function scr_get_timer_string(minutes, seconds, include_hours = false, include_m
 	{
 		if include_ms
 			seconds = string_format(seconds, 1, 3);
-		seconds = "0" + seconds;
+		seconds = concat("0", seconds);
 	}
 	else if include_ms
 		seconds = string_format(seconds, 2, 3);

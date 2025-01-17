@@ -22,6 +22,3 @@ else if room != Loadiingroom
 	}
 }
 */
-
-	
-		

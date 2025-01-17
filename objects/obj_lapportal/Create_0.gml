@@ -4,6 +4,7 @@ playerid = noone;
 spr_idle = spr_pizzaportal;
 spr_enter = spr_pizzaportalend;
 spr_outline = spr_pizzaportal_outline;
+spr_gone = spr_pizzaportalgone;
 
 switch obj_player1.character
 {
