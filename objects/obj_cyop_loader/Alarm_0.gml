@@ -55,10 +55,7 @@ try
 			if is_string(inst_data.object)
 				asset_name = inst_data.object;
 			else
-			{
-				cyop_error_exit("This tower is incompatible, because it was made using a mod that adds extra objects, or it's just corrupted.");
-				exit;
-			}
+				cyop_missing_object_error(inst_data.object);
 		}
 		
 		var objindex = asset_name;
@@ -78,15 +75,9 @@ try
 			default:
 				if is_string(objindex)
 				{
-					var guess;
-					if is_string(inst_data.object)
-						guess = $"Object Name: \"{asset_name}\"";
-					else
-						guess = $"Old AFOM Object Name: \"{asset_name}\"";
-					cyop_error_exit($"This tower is incompatible, because it uses one of those CYOP fixed objects mods.\n{guess}\n\nThis is being worked on.");
-					exit;
+					cyop_missing_object_error(asset_name);
+					continue;
 				}
-				break;
 		}
 		
 		// add instance

@@ -32,6 +32,7 @@ function scr_basegame_startup()
 	basegame_startup_create(0, 0, obj_panicdebris);
 	basegame_startup_create(0, 0, obj_inputdisplay);
 	basegame_startup_create(0, 0, obj_baddietombcontroller);
+	basegame_startup_create(0, 0, obj_langerror);
 	
 	global.coop = false;
 	global.saveloaded = false;

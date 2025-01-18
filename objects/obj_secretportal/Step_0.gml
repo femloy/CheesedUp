@@ -43,8 +43,7 @@ if (floor(image_index) >= (image_number - 1))
 				if targetRoom == room && !secret && !instance_exists(obj_randomsecret) && !instance_exists(obj_cyop_loader)
 				{
 					targetRoom = choose(entrance_secret3, entrance_secret4, entrance_secret5);
-					with instance_create(0, 0, obj_langerror)
-						text = $"{room_get_name(room)}: undefined secret (REPORT THIS!)";
+					lang_error($"{room_get_name(room)}: undefined secret (REPORT THIS!)");
 				}
 				
 				if DEATH_MODE && death
@@ -65,11 +64,11 @@ if (floor(image_index) >= (image_number - 1))
 				}
 				else if !instance_exists(obj_fadeout)
 				{
-					with (obj_player)
+					with obj_player
 					{
 						lastTargetDoor = targetDoor;
 						targetDoor = "S";
-						if (other.soundtest)
+						if other.soundtest
 						{
 							lastroom_soundtest = room;
 							lastroom_secretportalID = other.id;

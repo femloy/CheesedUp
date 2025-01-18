@@ -1620,7 +1620,7 @@ global.afom_objectlist = [
 	obj_noisey,
 	obj_farmer1follow,
 	obj_surprisebox_boss,
-	obj_arenadoor,
+	obj_afom_arenadoor, // obj_arenadoor
 	obj_stick_forsale2,
 	obj_spawner_goblinraid,
 	obj_superattackeffect,
@@ -2065,7 +2065,7 @@ global.afom_objectlist = [
 	obj_pizzakintomato,
 	obj_pizzakinsausage,
 	obj_pizzakinpineapple,
-	obj_noisebomb,
+	obj_afom_noisebomb, // obj_noisebomb
 	obj_bigcollect,
 	obj_giantcollect,
 	obj_key,

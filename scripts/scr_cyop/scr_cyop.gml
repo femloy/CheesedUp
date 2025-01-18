@@ -346,11 +346,13 @@ function cyop_load_level_internal(ini, travel = false)
 				}
 			}
 			
+			/*
 			if global.in_afom && !version_warned
 			{
 				show_message(lstr("cyop_version_mismatch_afom"));
 				version_warned = true;
 			}
+			*/
 			
 			if version_warned
 				obj_cyop_loader.seen_warning = true;
@@ -731,12 +733,16 @@ function cyop_instance_create(x, y, object_array)
 	// looks like [ object, { var1: value }, { var2: value }, ... ]
 	if live_call(x, y, object_array) return live_result;
 	
-	if !cyop_object_exists(object_array)
+	var oix = cyop_get_object(object_array);
+	if oix == noone or is_string(oix)
+	{
+		cyop_missing_object_error(oix);
 		return noone;
+	}
 	
 	if is_array(object_array)
 	{
-		var inst = instance_create(x, y, cyop_get_object(object_array[0]));
+		var inst = instance_create(x, y, oix);
 		for(var i = 1; i < array_length(object_array); i++)
 		{
 			var vars = struct_get_names(object_array[i]);
@@ -748,7 +754,7 @@ function cyop_instance_create(x, y, object_array)
 		return inst;
 	}
 	else
-		return instance_create(x, y, cyop_get_object(object_array));
+		return instance_create(x, y, oix);
 }
 function cyop_get_object_from_string(obj)
 {
@@ -797,4 +803,8 @@ function cyop_fix_object()
 			elitepal = paletteselect;
 		}
 	}
+}
+function cyop_missing_object_error(object_name)
+{
+	lang_error($"Missing object {object_name}");
 }

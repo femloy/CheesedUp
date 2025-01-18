@@ -3898,6 +3898,7 @@
     {"id":{"name":"instance_create","path":"scripts/instance_create/instance_create.yy",},},
     {"id":{"name":"is_bossroom","path":"scripts/is_bossroom/is_bossroom.yy",},},
     {"id":{"name":"is_holiday","path":"scripts/is_holiday/is_holiday.yy",},},
+    {"id":{"name":"lang_error","path":"scripts/lang_error/lang_error.yy",},},
     {"id":{"name":"layer_background_get_id_fixed","path":"scripts/layer_background_get_id_fixed/layer_background_get_id_fixed.yy",},},
     {"id":{"name":"level_get_info","path":"scripts/level_get_info/level_get_info.yy",},},
     {"id":{"name":"lila_util","path":"scripts/lila_util/lila_util.yy",},},
