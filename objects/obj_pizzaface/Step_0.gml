@@ -222,8 +222,11 @@ if _move && image_alpha >= 1
 		
 		instance_create(x, y, obj_flash);
 		global.fill += calculate_panic_timer(0, 10);
+		
 		with _parry
 			event_user(0);
+		playerid.parryID = noone;
+		
 		instance_destroy();
 	}
 	else if place_meeting(x, y, playerid) && !playerid.cutscene && playerid.state != states.actor && !instance_exists(obj_fadeout) && !instance_exists(obj_endlevelfade)
@@ -231,15 +234,15 @@ if _move && image_alpha >= 1
 		fmod_event_instance_stop(snd, true);
 		if instance_exists(obj_toppinwarrior)
 		{
-			if (variable_global_exists("toppinwarriorid1") && instance_exists(global.toppinwarriorid1))
+			if variable_global_exists("toppinwarriorid1") && instance_exists(global.toppinwarriorid1)
 				instance_destroy(global.toppinwarriorid1);
-			else if (variable_global_exists("toppinwarriorid2") && instance_exists(global.toppinwarriorid2))
+			else if variable_global_exists("toppinwarriorid2") && instance_exists(global.toppinwarriorid2)
 				instance_destroy(global.toppinwarriorid2);
-			else if (variable_global_exists("toppinwarriorid3") && instance_exists(global.toppinwarriorid3))
+			else if variable_global_exists("toppinwarriorid3") && instance_exists(global.toppinwarriorid3)
 				instance_destroy(global.toppinwarriorid3);
-			else if (variable_global_exists("toppinwarriorid4") && instance_exists(global.toppinwarriorid4))
+			else if variable_global_exists("toppinwarriorid4") && instance_exists(global.toppinwarriorid4)
 				instance_destroy(global.toppinwarriorid4);
-			else if (variable_global_exists("toppinwarriorid5") && instance_exists(global.toppinwarriorid5))
+			else if variable_global_exists("toppinwarriorid5") && instance_exists(global.toppinwarriorid5)
 				instance_destroy(global.toppinwarriorid5);
 			
 			instance_create(x, y, obj_flash);
@@ -248,7 +251,7 @@ if _move && image_alpha >= 1
 		}
 		else if !instance_exists(obj_toppinwarrior)
 		{
-			with (playerid)
+			with playerid
 			{
 				instance_destroy(obj_fadeout);
 				targetDoor = "A";

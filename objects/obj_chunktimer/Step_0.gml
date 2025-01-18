@@ -12,7 +12,7 @@ else
 	if !instance_exists(obj_pizzaface)
 	{
 		var s = string_letters(room_get_name(room));
-		var tower = string_copy(s, 1, 5) == "tower";
+		var tower = string_copy(s, 1, 5) == "tower" or global.tutorial_room;
 		
 		if (!tower or global.lapmode == LAP_MODES.laphell) && !global.snickchallenge
 		{

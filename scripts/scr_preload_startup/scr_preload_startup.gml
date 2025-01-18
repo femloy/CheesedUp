@@ -4,6 +4,8 @@ function scr_preload_startup()
 		game_restart();
 	else
 	{
+		global.disclaimer_section = 0;
+		
 		global.longintro = true;
 		global.titlecutscene = true;
 	

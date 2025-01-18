@@ -3,38 +3,37 @@ if place_meeting(x, y, obj_player) && sprite_index != spr_pizzaboxopen
 	global.heattime = 60;
 	global.combotime = 60;
 	
-	if content == obj_bigcollect
+	var _instance_create = global.in_afom ? cyop_instance_create : instance_create;
+	var oix = global.in_afom ? cyop_get_object(content) : content;
+	
+	if oix == obj_bigcollect
 		sound_play(sfx_stompenemy);
 	else
 		sound_play(global.snd_collecttoppin);
 	
-	switch content
+	if oix == obj_noisebomb
 	{
-		case obj_noisebomb:
-			with obj_player
-			{
-				state = states.animation;
-				sprite_index = spr_player_bossintro;
-				image_index = 0;
-			}
-			with instance_create(x, y - 25, content)
-				sprite_index = spr_noisebomb_intro;
-			instance_create(x, y, obj_taunteffect);
-			activate_panic();
-			break;
-		
-		case obj_afom_noisebomb:
-			instance_create(x, y - 25, obj_afom_noisebomb, {box: true});
-			break;
+		with obj_player
+		{
+			state = states.animation;
+			sprite_index = spr_player_bossintro;
+			image_index = 0;
+		}
+		with _instance_create(x, y - 25, content)
+			sprite_index = spr_noisebomb_intro;
+		instance_create(x, y, obj_taunteffect);
+		activate_panic();
 	}
-	if object_is_ancestor(content, obj_pizzakinparent)
+	else if oix == obj_afom_noisebomb
+		_instance_create(x, y - 25, content, {box: true});
+	else if object_is_ancestor(oix, obj_pizzakinparent)
 	{
 		with instance_create(x, y, obj_smallnumber)
 			number = "1000";
 		global.collect += 1000;
 		if IT_toppin_taunt_effect()
 			instance_create(x, y, obj_taunteffect);
-		with instance_create(x, y - 25, content)
+		with _instance_create(x, y - 25, content)
 		{
 			/*
 			if roomname == "strongcold"
@@ -45,7 +44,7 @@ if place_meeting(x, y, obj_player) && sprite_index != spr_pizzaboxopen
 		}
 		global.toppintotal += 1;
 		
-		switch content
+		switch oix
 		{
 			case obj_pizzakinshroom: global.shroomfollow = true; break;
 			case obj_pizzakincheese: global.cheesefollow = true; break;
@@ -76,10 +75,10 @@ if place_meeting(x, y, obj_player) && sprite_index != spr_pizzaboxopen
 			old_hud_message(embed_value_string(lstr(text + ((SUGARY_SPIRE && sugary) ? "ss" : "")), [val]), 150);
 		}
 	}
-	if (content == obj_noisey)
+	else if oix == obj_noisey
 	{
 		sound_play_3d("event:/sfx/enemies/projectile", x, y);
-		with (instance_create(x, y - 25, content))
+		with _instance_create(x, y - 25, content)
 		{
 			image_xscale = other.image_xscale;
 			state = states.stun;
@@ -87,6 +86,8 @@ if place_meeting(x, y, obj_player) && sprite_index != spr_pizzaboxopen
 			vsp = -5;
 		}
 	}
+	else if oix != obj_bigcollect or global.in_afom
+		_instance_create(x, y - 25, content);
 	
 	if sprite_index == spr_pizzaboxunopen_old
 	{
@@ -99,7 +100,7 @@ if place_meeting(x, y, obj_player) && sprite_index != spr_pizzaboxopen
 
 if sprite_index == spr_pizzaboxopen
 {
-	if floor(image_index) >= 3 && !start && content == obj_bigcollect
+	if !global.in_afom && floor(image_index) >= 3 && !start && content == obj_bigcollect
 	{
 		start = true;
 		depth = 105;

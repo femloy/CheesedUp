@@ -4,7 +4,7 @@ alarm[0] = 200;
 level = false;
 
 var r = string_letters(room_get_name(room));
-if room != tower_soundtest && r != "towertutorial" && r != "towertutorialN" && r != "towerup" && (string_copy(r, 1, 5) == "tower" || (string_starts_with(r, "streethouse") && REMIX)) && !global.panic
+if room != tower_soundtest && !global.tutorial_room && r != "towerup" && (string_copy(r, 1, 5) == "tower" || (string_starts_with(r, "streethouse") && REMIX)) && !global.panic
 {
 	if string_starts_with(r, "streethouse")
 		level = true;

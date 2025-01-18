@@ -7,6 +7,7 @@ scr_create_uparrowhitbox();
 spr_locked = spr_doorkey;
 spr_open = spr_doorkeyopen;
 spr_shake = spr_doorkey_shake;
+lockspr = spr_lock;
 
 if SUGARY_SPIRE
 {

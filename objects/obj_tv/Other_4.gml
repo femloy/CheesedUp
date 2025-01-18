@@ -3,7 +3,7 @@ manualhide = false;
 
 // tower escape
 var r = string_letters(room_get_name(room));
-if r != "towertutorial" && r != "towertutorialN" && string_copy(r, 1, 5) == "tower"
+if string_copy(r, 1, 5) == "tower" && !global.tutorial_room
 {
 	timer_tower = true;
 	if global.panic

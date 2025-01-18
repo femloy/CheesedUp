@@ -144,9 +144,8 @@ switch menu
 			if text_button(SCREEN_WIDTH - 16, 16 + (yy++ * 26), lstr("cyop_pickfile")) == 2
 			{
 				var load = get_open_filename_ext($"{lstr("cyop_filekind")} (*.tower.ini)|*.tower.ini|INI file (*.ini)|*.ini", "", environment_get_variable("APPDATA") + "\\PizzaTower_GM2\\towers\\", lstr("cyop_file_prompt"));
-				if load != ""
+				if load != "" && load != undefined
 				{
-					state = 2;
 					with instance_create(0, 0, obj_cyop_loader)
 					{
 						var result = cyop_load(load);
@@ -157,7 +156,10 @@ switch menu
 							other.state = 0;
 						}
 						else
+						{
 							loaded = true;
+							other.state = 2;
+						}
 					}
 				}
 			}

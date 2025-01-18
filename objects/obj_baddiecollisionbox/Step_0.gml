@@ -93,7 +93,7 @@ if (instance_exists(baddieID) && _obj_player && !_obj_player.cutscene)
 				Instakill();
 			
 			// grab
-			else if (instance_exists(other.baddieID) && (state == states.handstandjump or check_kungfu_state()) && sprite_index != spr_lunge && other.baddieID.invtime <= 0 && !other.baddieID.invincible)
+			else if instance_exists(other.baddieID) && (state == states.handstandjump or check_kungfu_state()) && sprite_index != spr_lunge && other.baddieID.invtime <= 0 && !other.baddieID.invincible
 			{
 				swingdingthrow = false;
 				image_index = 0;
@@ -139,74 +139,36 @@ if (instance_exists(baddieID) && _obj_player && !_obj_player.cutscene)
 			}
 			
 			// lunge
-			else if (state == states.handstandjump && !global.pummeltest && !other.baddieID.invincible)
+			else if state == states.handstandjump && !global.pummeltest && !other.baddieID.invincible
 			{
-				var _ms = movespeed;
 				movespeed = 0;
 				baddiegrabbedID = other.baddieID;
 				grabbingenemy = true;
-				var _prevstate = other.baddieID.state;
 				other.baddieID.state = states.grabbed;
 				other.baddieID.grabbedby = _playerindex;
 				heavy = other.baddieID.heavy;
 				
-				if (global.pummeltest)
+				image_index = 0;
+				if key_up
 				{
-					if (image_index > 6)
-					{
-						if (key_up)
-						{
-							state = states.finishingblow;
-							sprite_index = spr_uppercutfinishingblow;
-							image_index = 4;
-							movespeed = 0;
-						}
-						else if (key_down)
-						{
-							sprite_index = spr_piledriver;
-							vsp = -5;
-							state = states.superslam;
-							image_index = 4;
-							image_speed = 0.35;
-						}
-						else
-						{
-							state = states.finishingblow;
-							sprite_index = spr_lungehit;
-							image_index = 0;
-						}
-					}
-					else
-					{
-						other.baddieID.state = _prevstate;
-						grabbingenemy = false;
-						movespeed = _ms;
-					}
+					state = states.finishingblow;
+					sprite_index = spr_uppercutfinishingblow;
+					image_index = 4;
+					movespeed = 0;
+				}
+				else if key_down
+				{
+					sprite_index = spr_piledriver;
+					vsp = -5;
+					state = states.superslam;
+					image_index = 4;
+					image_speed = 0.35;
 				}
 				else
 				{
+					state = states.finishingblow;
+					sprite_index = spr_lungehit;
 					image_index = 0;
-					if (key_up)
-					{
-						state = states.finishingblow;
-						sprite_index = spr_uppercutfinishingblow;
-						image_index = 4;
-						movespeed = 0;
-					}
-					else if (key_down)
-					{
-						sprite_index = spr_piledriver;
-						vsp = -5;
-						state = states.superslam;
-						image_index = 4;
-						image_speed = 0.35;
-					}
-					else
-					{
-						state = states.finishingblow;
-						sprite_index = spr_lungehit;
-						image_index = 0;
-					}
 				}
 			}
 			

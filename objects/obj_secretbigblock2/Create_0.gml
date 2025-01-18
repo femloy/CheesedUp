@@ -1,2 +1,2 @@
 event_inherited();
-content = obj_null;
+content = noone;

@@ -3,42 +3,23 @@ if in_saveroom()
 	instance_destroy();
 	exit;
 }
-if !is_real(content)
-	content = real(content);
 
-if (content == obj_pizzakinshroom && global.shroomfollow)
-{
-	instance_destroy(id, false);
-	exit;
-}
-if (content == obj_pizzakincheese && global.cheesefollow)
-{
-	instance_destroy(id, false);
-	exit;
-}
-if (content == obj_pizzakintomato && global.tomatofollow)
-{
-	instance_destroy(id, false);
-	exit;
-}
-if (content == obj_pizzakinsausage && global.sausagefollow)
-{
-	instance_destroy(id, false);
-	exit;
-}
-if (content == obj_pizzakinpineapple && global.pineapplefollow)
+var oix = content;
+if global.in_afom && is_array(oix)
+	oix = cyop_get_object(oix[0]);
+
+if (oix == obj_pizzakinshroom && global.shroomfollow)
+or (oix == obj_pizzakincheese && global.cheesefollow)
+or (oix == obj_pizzakintomato && global.tomatofollow)
+or (oix == obj_pizzakinsausage && global.sausagefollow)
+or (oix == obj_pizzakinpineapple && global.pineapplefollow)
+or global.snickchallenge or global.timeattack
 {
 	instance_destroy(id, false);
 	exit;
 }
 
-if global.snickchallenge or global.timeattack
-{
-	instance_destroy(id, false);
-	exit;
-}
-
-if content == obj_bigcollect
+if oix == obj_bigcollect
 {
 	sprite_index = spr_pizzaboxunopen_old;
 	mask_index = -1;

@@ -56,13 +56,6 @@ if global.levelcomplete
 	global.leveltosave = noone;
 	global.startgate = false;
 }
-if state == states.comingoutdoor && global.coop == 1 && !place_meeting(x, y, obj_exitgate)
-{
-	if object_index == obj_player1 && obj_player1.spotlight == 0
-		visible = false;
-	if object_index == obj_player2 && obj_player1.spotlight == 1
-		visible = false;
-}
 if global.coop == 1
 {
 	scr_changetoppings();
@@ -96,13 +89,10 @@ if object_index != obj_player2 or global.coop
 		case "F": door_obj = obj_doorF; break;
 		case "G": door_obj = obj_doorG; break;
 		default:
-			with obj_doorX
+			with obj_doorX if self[$ "door"] == other.targetDoor
 			{
-				if self[$ "door"] == other.targetDoor
-				{
-					door_obj = self;
-					break;
-				}
+				door_obj = self;
+				break;
 			}
 	}
 	if instance_exists(door_obj)
@@ -190,12 +180,12 @@ if character == "M" && place_meeting(x, y, obj_boxofpizza)
 		y -= _inst.image_yscale;
 	}
 }
-if state == states.taxi
+if state == states.taxi && instance_exists(obj_stopsign)
 {
 	x = obj_stopsign.x;
 	y = obj_stopsign.y;
 }
-if state == states.spaceshuttle
+if state == states.spaceshuttle && instance_exists(obj_spaceshuttlestop)
 {
 	x = obj_spaceshuttlestop.x;
 	y = obj_spaceshuttlestop.y;
@@ -225,17 +215,14 @@ if place_meeting(x, y, obj_exitgate)
 }
 else if REMIX && !instance_exists(obj_exitgate)
 {
-	var found = false;
 	with obj_baddie
 	{
 		if !escape
 		{
-			found = true;
+			global.prank_cankillenemy = false;
 			break;
 		}
 	}
-	if found
-		global.prank_cankillenemy = false;
 }
 
 if room == rank_room

@@ -1,6 +1,6 @@
 function sh_char(args)
 {
-	if !WC_debug && (!string_starts_with(room_get_name(room), "tower") or global.panic)
+	if !WC_debug && (!string_starts_with(room_get_name(room), "tower") or global.panic or global.tutorial_room)
 		return "You cannot use this command inside of a level";
 	if !instance_exists(obj_player1)
 		return safe_get(obj_pause, "pause") ? "Can't do this while paused" : "The player is not in the room";

@@ -1,6 +1,6 @@
 event_inherited();
 depth = 1;
-content = obj_null;
+content = noone;
 particlespr = -1;
 spr_dead = spr_bigpizzablockdead;
 

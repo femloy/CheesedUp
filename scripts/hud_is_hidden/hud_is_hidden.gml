@@ -3,7 +3,7 @@ function hud_is_hidden(actual = false)
 	if live_call(actual) return live_result;
 	
 	var ret = (room == Realtitlescreen or room == Longintro or room == Mainmenu or room == rank_room or room == rm_levelselect or room == timesuproom or room == boss_room1 or room == characterselect or room == tower_extra or room == hub_loadingscreen or (string_starts_with(room_get_name(room), "tower") && !global.panic)
-	or string_starts_with(room_get_name(room), "PP_room") or room == editor_entrance or global.cyop_is_hub);
+	or global.tutorial_room or string_starts_with(room_get_name(room), "PP_room") or room == editor_entrance or global.cyop_is_hub);
 	
 	#region force show
 	

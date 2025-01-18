@@ -38,6 +38,7 @@ voicecooldown = 0;
 
 spr_sleep = spr_tutorialgranny_sleep;
 spr_talk = spr_tutorialgranny_talk;
+snd_voice = "event:/sfx/voice/pizzagranny";
 
 if SUGARY_SPIRE && SUGARY
 {

@@ -89,7 +89,7 @@ function scr_characters(type)
 	add_character("V", spr_playerV_idle, spr_vigipalette, 1, 5, spr_playerV_dead, spr_palettedresserdebrisV, 0);
 	add_character("G", spr_player_ratmountidle, spr_peppalette, 1, 3, spr_player_ratmounthurt, spr_palettedresserdebris, 1);
 	
-	add_character("S", spr_snick_idle, spr_snickpalette, 1, 4, spr_snick_stunned, spr_palettedresserdebrisS);
+	//add_character("S", spr_snick_idle, spr_snickpalette, 1, 4, spr_snick_stunned, spr_palettedresserdebrisS);
 	
 	if (irandom(100) == 0 && type == 1) or (DEBUG && keyboard_check(ord("D")))
 		add_character("D", spr_playerN_idle, spr_noisepalette, 1, 7, spr_playerN_hurt, spr_palettedresserdebrisN, 17);

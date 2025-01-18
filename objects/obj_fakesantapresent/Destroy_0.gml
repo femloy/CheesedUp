@@ -1,7 +1,7 @@
-if (spawn)
+if spawn
 {
 	sound_play_3d("event:/sfx/misc/breakice", x, y);
-	with (instance_create(x, y, content))
+	with _instance_create(x, y, content)
 	{
 		santaID = other.baddieID;
 		important = true;
@@ -9,20 +9,20 @@ if (spawn)
 		vsp = -8;
 		stunned = 20;
 		create_particle(x, y, part.genericpoofeffect);
-		switch (object_index)
+		switch object_index
 		{
 			case obj_spike:
 				fake = true;
 				y -= 32;
 				break;
 			default:
-				if (scr_solid(x, y))
+				if scr_solid(x, y)
 				{
 					var old_y = y;
-					while (scr_solid(x, y))
+					while scr_solid(x, y)
 					{
 						y--;
-						if (abs(old_y - y) > room_height)
+						if abs(old_y - y) > room_height
 						{
 							y = old_y;
 							break;

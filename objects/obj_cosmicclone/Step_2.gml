@@ -97,6 +97,9 @@ switch state
 			
 			with par
 				event_user(0);
+			with obj_player1
+				parryID = noone;
+			
 			grace_period = 60;
 			state = states.hurt;
 			ds_queue_clear(queue);

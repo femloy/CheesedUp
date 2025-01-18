@@ -70,15 +70,15 @@ var exit_function = function()
 		music = noone;
 	
 	var offload = noone;
-	if global.leveltorestart != -4 or room == editor_entrance
+	if global.leveltorestart != noone or room == editor_entrance
 	{
-		if global.leveltorestart != tower_tutorial1 && global.leveltorestart != tower_tutorial1N
+		if global.leveltosave != "tutorial"
 			gamesave_async_save();
 		
 		hub = true;
 		offload = ["hubgroup"];
 		global.stargate = false;
-		global.leveltorestart = -4;
+		global.leveltorestart = noone;
 	}
 	else
 	{

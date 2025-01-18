@@ -304,19 +304,21 @@ add_modifier("CosmicClones", #9850f8, function(val)
 	draw_clear_alpha(c_black, 0);
 	
 	var color1 = shader_get_uniform(shd_mach3effect, "color1");
-	var color2 = shader_get_uniform(shd_mach3effect, "color2");
+	var no_outline = shader_get_uniform(shd_mach3effect, "no_outline");
 	
 	shader_set(shd_mach3effect);
 	shader_set_uniform_f(color1, 1, 1, 1);
-	shader_set_uniform_f(color2, 0, 0, 0);
+	shader_set_uniform_i(no_outline, 1);
 	draw_sprite_ext(spr_noise_vulnerable2, -1, 100, 100, 2, 2, 0, c_white, 1);
+	shader_set_uniform_i(no_outline, 0);
+	shader_reset();
 	
 	surface_reset_target();
-	shader_reset();
 	
 	var x_pos = width / 2 - (surf_size / 2);
 	var y_pos = height / 2 - (surf_size / 2) - 25;
 	
+	draw_sprite_ext(spr_noise_vulnerable2, -1, width / 2, height / 2 - 25, 2, 2, 0, c_black, 1);
 	draw_set_mask_surface(x_pos, y_pos, cosmic_surf);
 	
 	var layers = [

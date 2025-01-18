@@ -11,15 +11,3 @@ if global.blockstyle == BLOCK_STYLES.old
 	sprite_index = spr_pizzaboxunopen_old;
 	mask_index = -1;
 }
-if SUGARY_SPIRE
-{
-	sugary = SUGARY;
-	if sugary
-		sprite_index = spr_confecticage;
-}
-if BO_NOISE
-{
-	bo = MIDWAY;
-	if bo
-		sprite_index = spr_pizzaboxunopen_bo;
-}

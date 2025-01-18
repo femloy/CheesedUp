@@ -1955,11 +1955,11 @@ with new ModSection("presets", 5)
 				
 				try
 				{
-					var json = json_parse(content, undefined, undefined);
+					var json = json_parse(content);
 					
 					var preset = new ModPreset(json.name, json.desc, json[$ "version"] ?? 1);
 					preset.preset_copy_struct(json.options);
-					preset.preset_backwards(preset.version);
+					preset.preset_backwards(preset.preset_version);
 					
 					with add_preset(preset)
 					{

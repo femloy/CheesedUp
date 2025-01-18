@@ -12,7 +12,8 @@ function scr_pizzacoin_result()
 	if global.tutorial_room
 		return 0;
 	
-	switch global.rank
+	var rank = scr_get_rank();
+	switch rank
 	{
 		case "d": pizzacoin = global.level_minutes >= 2 ? 5 : 0; break;
 		// 5 pizzacoins if spent at least 2 minutes in the level, otherwise 0
@@ -63,7 +64,7 @@ function scr_pizzacoin_result()
 	if MOD.HardMode
 		pizzacoin *= 0.75;
 	
-	if (global.rank == "s" or global.rank == "p") && global.hurtcounter == 0
+	if (rank == "s" or rank == "p") && global.hurtcounter == 0
 		pizzacoin += 2;
 	
 	return floor(pizzacoin);

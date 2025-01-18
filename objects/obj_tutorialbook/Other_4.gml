@@ -1,5 +1,16 @@
 if !instance_exists(self)
 	exit;
+
+if global.in_afom
+{
+	if self[$ "idlespr"] != undefined
+		spr_sleep = idlespr;
+	if self[$ "talkspr"] != undefined
+		spr_talk = talkspr;
+	if self[$ "silent"] != undefined && silent
+		snd_voice = noone;
+}
+
 if is_undefined(text)
 {
 	instance_destroy();

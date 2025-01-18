@@ -1,9 +1,10 @@
 image_speed = 0;
-content = obj_bossdoor;
+content = noone;
 refresh = 20;
 depth = 1;
-baddieid[0] = -1;
-baddieid[1] = -1;
-baddieid[2] = -1;
-baddieid[3] = -1;
-baddieid[4] = -1;
+
+baddie_max = 5;
+baddieid = [];
+
+_object_exists = global.in_afom ? cyop_object_exists : object_exists;
+_instance_create = global.in_afom ? cyop_instance_create : instance_create;

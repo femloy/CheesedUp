@@ -22,7 +22,6 @@ if tip != noone
 	draw_set_font(lfnt("creditsfont"));
 	var wd = sprite_get_width(spr_tutorialbubble) * text_xscale;
 	var ht = sprite_get_width(spr_tutorialbubble) * text_yscale;
-	var newline = string_height(lang_get_value("default_letter"));
 	scr_draw_text_arr(32 + text_wave_x + wd - tip[2] - 16, yy + ht + 8 + tip_y, tip[0]);
 }
 

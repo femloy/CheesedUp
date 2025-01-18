@@ -1,26 +1,27 @@
-if (global.panic && !donepanic)
+if global.panic && !donepanic
 {
 	donepanic = true;
 	text = lang_get_value("getout");
 	event_perform(ev_other, ev_room_start);
 }
+
 text_xscale = (SCREEN_WIDTH - 64) / sprite_get_width(bubble_spr);
 wave_timer += 20;
-if (text_xscale != text_oldxscale)
+if text_xscale != text_oldxscale
 	event_perform(ev_other, ev_room_start);
 
-if (showgranny)
+if showgranny
 {
-	if (voicecooldown > 1)
+	if voicecooldown > 1
 		voicecooldown--;
-	else if (!place_meeting(x, y, obj_player))
+	else if !place_meeting(x, y, obj_player)
 		voicecooldown = 0;
-	if (place_meeting(x, y, obj_player))
+	if place_meeting(x, y, obj_player)
 	{
 		sprite_index = spr_talk;
-		if (voicecooldown == 0 && !SUGARY)
+		if voicecooldown == 0 && snd_voice != noone
 		{
-			sound_play_3d("event:/sfx/voice/pizzagranny", x, y);
+			sound_play_3d(snd_voice, x, y);
 			voicecooldown = 100;
 		}
 	}

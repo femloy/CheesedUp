@@ -11,7 +11,6 @@ function scr_tvdraw()
 	}
 	
 	var char = obj_player1.character;
-	var sugary = check_sugarychar();
 	
 	var tv_x = SCREEN_WIDTH - 115;
 	var tv_y = 80;

@@ -44,6 +44,16 @@ function scr_player_handstandjump()
 	if movespeed < maxmovespeed
 		movespeed += accel;
 	
+	// lunge
+	if global.pummeltest && sprite_index == spr_lunge && !instance_exists(lungeattackID)
+	{
+		with instance_create(x, y, obj_lungehitbox)
+		{
+			playerid = other.id;
+			other.lungeattackID = id;
+		}
+	}
+	
 	// double tap move
 	if scr_slapbuffercheck()
 	{

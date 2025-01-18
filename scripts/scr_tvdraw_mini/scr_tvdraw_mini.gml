@@ -16,8 +16,9 @@ function scr_tvdraw_mini()
 	
 	if slice > 0
 	{
-		draw_set_mask(cx, cy, spr_combobar_minimal, 1);
-		draw_set_bounds(cx, cy, cx + cw * slice, cy + ch);
+		draw_mask_start();
+		draw_sprite_part(spr_combobar_minimal, 1, 0, 0, cw * slice, ch, cx, cy);
+		draw_mask_end();
 		
 		var img = scr_can_p_rank() ? 0 : 1;
 		draw_sprite(spr_combofill_minimal, img, cx - (scr_current_time() / 100) % cw, cy);

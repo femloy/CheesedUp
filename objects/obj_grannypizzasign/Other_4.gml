@@ -6,13 +6,28 @@ if global.panic
 	exit;
 }
 
-if instance_exists(obj_cyop_loader)
+if global.in_afom
 {
-	for(var i = 0; self[$ concat("level", i)] != undefined; i++)
+	for(var i = 0; i < 100; ++i)
 	{
-		var level = self[$ concat("level", i)];
-		var iconspr = self[$ concat("iconspr", i)];
-		scr_add_grannypizzalevel(string_lower(level), iconspr);
+		var l = self[$ concat("level", i)];
+		if l == undefined or l == "none"
+			break;
+		
+		var level = string_lower(string(l));
+		var iconspr = self[$ concat("iconspr", i)] ?? spr_list5;
+		scr_add_grannypizzalevel(level, iconspr);
+	}
+	for(var i = 0; i < 100; ++i)
+	{
+		var l = self[$ concat("boss", i)];
+		if l == undefined or l == "none"
+			break;
+		
+		var level = string_lower(string(l));
+		var levelsave = self[$ concat("bosssave", i)] ?? "w1stick";
+		var iconspr = self[$ concat("bossspr", i)] ?? spr_list5;
+		scr_add_grannypizzaboss(levelsave, level, iconspr);
 	}
 }
 else

@@ -37,7 +37,7 @@ if room == hub_loadingscreen && state != 2
 			if _intro or global.sandbox
 			{
 				character = ini_read_string("Game", "character", "P");
-				if !array_contains(scr_charlist(), character)
+				if !array_contains(scr_charlist(false), character)
 				{
 					character = "P";
 					player_paletteselect[0] = 1;

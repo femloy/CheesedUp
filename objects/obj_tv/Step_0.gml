@@ -384,12 +384,18 @@ if sprite_exists(targetspr) && targetspr_old != targetspr && global.hud != HUD_S
 	}
 	else
 	{
+		spr_empty = spr_tv_empty;
+		spr_whitenoise = spr_tv_whitenoise;
+		spr_bgfinal = spr_tv_bgfinal;
+		spr_clip = spr_tv_clip;
+		placeholderspr = targetspr;
+		
 		if targetspr == spr_tv_open or targetspr == spr_tv_off
 			sprite_index = targetspr;
 		else
 		{
 			var new_sprite = targetspr;
-			if char != "P"
+			if char != "P" && char != "G"
 			{
 				new_sprite = SPRITES[? sprite_get_name(targetspr) + char];
 				if is_undefined(new_sprite)

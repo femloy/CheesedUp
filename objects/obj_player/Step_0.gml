@@ -976,6 +976,7 @@ if (object_index == obj_player1)
 	global.fuel = Approach(global.fuel, MAX_FUEL, 0.004);
 	
 	if string_copy(room_get_name(room), 1, 5) == "tower" && !global.panic
+	&& !global.tutorial_room
 	{
 		global.bullet = MAX_BULLETS;
 		global.fuel = MAX_FUEL;

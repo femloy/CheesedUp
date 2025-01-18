@@ -18,6 +18,7 @@ global.cyop_is_hub = false;
 global.afom_wfixed = false;
 global.afom_secrets = 0;
 global.afom_lapmode = LAP_MODES.normal;
+global.afom_noiseupdate = false;
 
 function cyop_cleanup()
 {
@@ -99,6 +100,9 @@ function cyop_load_internal(ini)
 	if live_call(ini) return live_result;
 	
 	// load ini
+	if !file_exists(ini)
+		return "The INI file doesn't exist.";
+	
 	ini_open(ini);
 	var type = ini_read_real("properties", "type", 0); // 0 - tower, 1 - level
 	global.cyop_tower_name = ini_read_string("properties", "name", "");
@@ -331,7 +335,10 @@ function cyop_load_level_internal(ini, travel = false)
 			if json.editorVersion > 5
 			{
 				if json[$ "isNoiseUpdate"]
+				{
 					global.in_afom = true;
+					global.afom_noiseupdate = true;
+				}
 				else if !version_warned
 				{
 					show_message(embed_value_string(lstr("cyop_version_mismatch"), [json.editorVersion]));
@@ -568,8 +575,10 @@ function cyop_resolvevalue(value, var_name)
 	
 	if is_string(value)
 	{
-		if asset_get_type(value) == asset_object
-			return OBJECTS[? value];
+		var cyop_object = cyop_get_object_from_string(value);
+		if cyop_object != noone
+			return cyop_object;
+		
 		if var_name == "sound" or var_name == "title_music"
 			return global.cyop_audio[? value] ?? value;
 		
@@ -738,27 +747,32 @@ function cyop_instance_create(x, y, object_array)
 			cyop_fix_object();
 		return inst;
 	}
-	else // already handled
-		return instance_create(x, y, object_array);
-}
-function cyop_get_object(obj, allow_string = false)
-{
-	if live_call(obj, allow_string) return live_result;
-	
-	if is_string(obj) // AFOM 2.0
-	{
-		var map = global.afom_objectmap[? obj];
-		if map != undefined
-			return map;
-		if asset_get_type(obj) == asset_object
-			return asset_get_index(obj);
-		if allow_string
-			return obj;
-	}
 	else
+		return instance_create(x, y, cyop_get_object(object_array));
+}
+function cyop_get_object_from_string(obj)
+{
+	var map = global.afom_objectmap[? obj];
+	if map != undefined
+		return map;
+	if asset_get_type(obj) == asset_object
+		return asset_get_index(obj);
+	return noone;
+}
+function cyop_get_object(obj)
+{
+	if is_handle(obj)
+		return obj;
+	if is_string(obj)
+		return cyop_get_object_from_string(obj);
+	if is_array(obj)
+		return cyop_get_object(obj[0]);
+	if is_real(obj)
 	{
-		if obj < array_length(global.cyop_objectlist) && obj >= 0
-			return global.cyop_objectlist[obj];
+		message = "FUCK YOU SO MUCH AFOM FUCK YOU FUCK YOU FUUUUUUCK";
+		var list = global.afom_noiseupdate ? global.afom_objectlist : global.cyop_objectlist;
+		if obj < array_length(list) && obj >= 0
+			return list[obj];
 	}
 	return noone;
 }
@@ -766,10 +780,7 @@ function cyop_object_exists(obj)
 {
 	if live_call(obj) return live_result;
 	
-	if is_array(obj)
-		return cyop_get_object(obj) != noone;
-	else // already handled
-		return object_exists(obj);
+	return cyop_get_object(obj) != noone;
 }
 function cyop_fix_object()
 {

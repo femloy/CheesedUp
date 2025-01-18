@@ -49,29 +49,34 @@ try
 			lay = layer_get_id(layer_name);
 		
 		// figure out object
-		var asset_name = cyop_get_object(inst_data.object, true);
+		var asset_name = cyop_get_object(inst_data.object);
 		if asset_name == noone
 		{
-			cyop_error_exit("This tower is incompatible, because it was made using a mod that adds extra objects, or it's just corrupted.");
-			exit;
+			if is_string(inst_data.object)
+				asset_name = inst_data.object;
+			else
+			{
+				cyop_error_exit("This tower is incompatible, because it was made using a mod that adds extra objects, or it's just corrupted.");
+				exit;
+			}
 		}
 		
-		var asset = asset_name;
-		switch asset
+		var objindex = asset_name;
+		switch objindex
 		{
-			case "obj_teleporter_receptor": asset = obj_teleporter; break;
-			case "obj_pizzasona_spawn": asset = obj_bigcollect; break;
-			case "obj_warp_number": asset = obj_doorX; break;
-			case "obj_bigcollectarena": asset = obj_bigcollect; break;
-			case "obj_collectarena": asset = obj_collect; break;
-			case "obj_playersprcontroller": asset = obj_null; break;
+			case "obj_teleporter_receptor": objindex = obj_teleporter; break;
+			case "obj_pizzasona_spawn": objindex = obj_bigcollect; break;
+			case "obj_warp_number": objindex = obj_doorX; break;
+			case "obj_bigcollectarena": objindex = obj_bigcollect; break;
+			case "obj_collectarena": objindex = obj_collect; break;
+			case "obj_playersprcontroller": objindex = obj_null; break;
 			
 			case obj_roomname:
 				global.roommessage = inst_data.variables[$ "msg"];
 				continue;
 			
 			default:
-				if is_string(asset)
+				if is_string(objindex)
 				{
 					var guess;
 					if is_string(inst_data.object)
@@ -85,7 +90,7 @@ try
 		}
 		
 		// add instance
-		var inst = instance_create_layer(floor(inst_data.variables.x - prop.roomX), floor(inst_data.variables.y - prop.roomY), lay, asset);
+		var inst = instance_create_layer(floor(inst_data.variables.x - prop.roomX), floor(inst_data.variables.y - prop.roomY), lay, objindex);
 		if instance_exists(inst) // sometimes it fucking doesn't
 		{
 			inst.targetRoom = "main";
@@ -122,7 +127,7 @@ try
 			
 			for (var j = 0; j < array_length(varNames); j++)
 			{
-				if varNames[j] == "trigger" && asset == obj_doorX
+				if varNames[j] == "trigger" && objindex == obj_doorX
 					inst.door = struct.trigger;
 				else if asset_name == "obj_playersprcontroller"
 				{
@@ -139,7 +144,7 @@ try
 				array_push(forced_layers, [inst, lay]);
 			
 			// level name
-			if (asset == obj_startgate or asset == obj_bossdoor) && REMIX
+			if (objindex == obj_startgate or objindex == obj_bossdoor) && REMIX
 			{
 				var ini = concat(global.cyop_path, "/levels/", inst.levelName, "/level.ini");
 				if file_exists(ini)
