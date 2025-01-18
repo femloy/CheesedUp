@@ -1,7 +1,6 @@
 scr_basegame_startup();
 scr_player_startup();
 
-/*
 global.levelcompletename = noone;
 global.entrancecutscene = noone;
 global.medievalcutscene = noone;
@@ -57,4 +56,3 @@ global.mrstickcutscene2 = noone;
 global.mrstickcutscene3 = noone;
 global.chateauswap = noone;
 global.warcutscene = noone;
-*/

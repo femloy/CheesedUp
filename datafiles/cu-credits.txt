@@ -6,7 +6,6 @@ PIZZA TOWER CHEESED UP (WIP)
 
 - Spriters -
 	Red
-	Carrot
 
 - Music/SFX -
 	Lila
@@ -20,6 +19,7 @@ PIZZA TOWER CHEESED UP (WIP)
 	Red - Missing base game room names
 	Tictorian - A lot of sprites
 	Ven - A couple of sprites
+	Carrot - A couple of sprites
 	Travelbot - Some Gustavo sprites
 	ReubenUT - Mort idle TV
 	Duuzy - A couple of patterns
