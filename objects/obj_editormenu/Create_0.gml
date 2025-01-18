@@ -35,8 +35,8 @@ global.leveltorestart = noone;
 // lists
 towers = [];
 
-root_folder = environment_get_variable("APPDATA") + "\\PizzaTower_GM2";
-towers_folder = root_folder + "\\towers";
+root_folder = concat(environment_get_variable("APPDATA"), "\\PizzaTower_GM2");
+towers_folder = concat(root_folder, "\\towers");
 
 add_tower = function(ini, fresh = false)
 {
@@ -94,14 +94,16 @@ refresh_list = function()
 }
 refresh_list();
 
-sel = {
+sel =
+{
 	x: 0,
 	y: 0
-}
-cam = {
+};
+cam =
+{
 	x: 0,
 	y: 0
-}
+};
 textscroll = 0;
 movehold = -1;
 state = 0;
@@ -109,15 +111,29 @@ menu = 0;
 delete_time = 0;
 reset_music = false;
 
+list_search = "";
+filtered_towers = [];
+refresh_list_search = function()
+{
+	filtered_towers = [];
+	for(var i = 0, n = array_length(towers); i < n; ++i)
+	{
+		if string_pos(string_lower(list_search), string_lower(towers[i].name))
+			array_push(filtered_towers, towers[i]);
+	}
+}
+refresh_list_search();
+
 smooth_buffer = 2;
 scr_init_input();
 pto_textbox_init();
 
-controls = {
+controls =
+{
 	text: "",
 	text_prev: "",
 	compiled: noone
-}
+};
 fader = 1;
 
 shake = 0;

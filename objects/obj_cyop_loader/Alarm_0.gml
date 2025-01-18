@@ -34,8 +34,9 @@ try
 {
 	// add instances
 	var _room = global.cyop_rooms[room_ind][1];
-	
 	var prop = _room.properties;
+	global.afom_noiseupdate = global.in_afom && _room[$ "isNoiseUpdate"];
+	
 	for(var i = 0, n = array_length(_room.instances); i < n; ++i)
 	{
 		var inst_data = _room.instances[i];

@@ -9,8 +9,8 @@ switch menu
 		draw_set_font(global.creditsfont);
 		
 		// levels
-		var array = towers;
-		for(var i = 0; i < array_length(array); i++)
+		var array = filtered_towers;
+		for(var i = 0, n = array_length(array); i < n; ++i)
 		{
 			var xx = 100 - cam.x + random_range(-shake, shake), yy = i * 36 - cam.y + random_range(-shake, shake);
 			if fader <= 0 && sel.y != i
@@ -79,7 +79,26 @@ switch menu
 				draw_text_new((xx - 72 + 8) + (this.type == 1 ? 40 : 0), yy + min(sin(current_time / 200) * 15 + 5, 0) + 20, "!");
 			}
 		}
-
+		
+		// search
+		if array_length(towers) > 0
+		{
+			var xx = 100 - cam.x - 42, yy = -36 - cam.y + 8;
+			tdp_draw_set_font(lfnt("font_small"));
+			
+			draw_set_colour(c_gray);
+			if list_search == ""
+				draw_text_new(xx, yy, "Search...");
+			
+			if sel.y == -1
+			{
+				draw_set_colour(c_white);
+				draw_text_new(xx, yy, concat(list_search, (global.time % 60) > 30 ? "|" : ""));
+			}
+			else
+				draw_text_new(xx, yy, list_search);
+		}
+		
 		// control help
 		tdp_draw_set_font(lfnt("creditsfont"));
 		if controls.text == ""
@@ -158,6 +177,9 @@ switch menu
 						else
 						{
 							loaded = true;
+							stop_music();
+							other.reset_music = true;
+							sound_play(sfx_collectpizza);
 							other.state = 2;
 						}
 					}
@@ -166,14 +188,16 @@ switch menu
 			
 			if array_length(towers) > 0
 			{
-				var level = towers[sel.y];
-				
-				// level filename
-				draw_set_font(global.font_small);
-				draw_set_align(fa_right);
-				draw_set_color(c_gray);
-				draw_text(SCREEN_WIDTH - 16, 16 + (yy++ * 26), $"{filename_name(filename_dir(level.file))}/{string_replace(filename_name(level.file), ".tower.ini", "")}");
-				draw_set_align();
+				if sel.y >= 0
+				{
+					// level filename
+					var level = array[sel.y];
+					draw_set_font(global.font_small);
+					draw_set_align(fa_right);
+					draw_set_color(c_gray);
+					draw_text(SCREEN_WIDTH - 16, 16 + (yy++ * 26), $"{filename_name(filename_dir(level.file))}/{string_replace(filename_name(level.file), ".tower.ini", "")}");
+					draw_set_align();
+				}
 			}
 			else
 			{

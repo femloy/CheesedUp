@@ -24,6 +24,7 @@ function cyop_cleanup()
 {
 	if live_call() return live_result;
 	
+	global.in_cyop = false;
 	global.in_afom = false;
 	global.cyop_is_hub = false;
 	global.cyop_level_name = "";
@@ -335,10 +336,7 @@ function cyop_load_level_internal(ini, travel = false)
 			if json.editorVersion > 5
 			{
 				if json[$ "isNoiseUpdate"]
-				{
 					global.in_afom = true;
-					global.afom_noiseupdate = true;
-				}
 				else if !version_warned
 				{
 					show_message(embed_value_string(lstr("cyop_version_mismatch"), [json.editorVersion]));
