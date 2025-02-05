@@ -151,7 +151,7 @@ function ModPreset(name = "PRESET", desc = "Wow that's Cray Zay!", version = PRE
 		swapgrab = false;
 		hitstun = HITSTUN_STYLES.final;
 		banquet = true; // mod that got merged into base game
-		eggplantslope = false;
+		//eggplantslope = false;
 		combokeeper = true;
 		
 		// vigi gameplay

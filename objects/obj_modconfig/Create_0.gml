@@ -819,7 +819,7 @@ with new ModSection("gameplay", 0)
 	#endregion
 	#region BUFFED SLOPES
 	
-	var opt = add_option("eggplantslope", [seq_eggplantslope_off, seq_eggplantslope_on]);
+	//var opt = add_option("eggplantslope", [seq_eggplantslope_off, seq_eggplantslope_on]);
 	
 	#endregion
 	#region COMBO KEEPER

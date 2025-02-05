@@ -27,6 +27,7 @@ function reset_modifier()
 		SuddenDeath: false,
 		Golf: false,
 		NoiseWorld: false,
+		ShuffledSlop: false,
 		
 		// CTOP
 		CTOPLaps: false,

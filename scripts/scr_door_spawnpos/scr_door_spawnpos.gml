@@ -26,8 +26,17 @@ function scr_door_spawnpos(door_obj)
 		if hall_obj
 		{
 			_y = hall_obj.y + 46;
-			while !scr_solid(x, y + 1) && !place_meeting(x, y, hall_obj)
-				_x -= hallwaydirection;
+			
+			var i = 0;
+			repeat 100
+			{
+				i += hallwaydirection;
+				if !(!scr_solid(x, y + 1) && !place_meeting(x, y, hall_obj))
+				{
+					_x -= i;
+					break;
+				}
+			}
 		}
 	}
 	

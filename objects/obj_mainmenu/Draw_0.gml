@@ -139,11 +139,6 @@ else if is_struct(game)
 				sel_spr = spr_menusandbox_snickselect;
 				pal_spr = spr_snickpalette;
 				break;
-			case "SP":
-				idle_spr = spr_menusandbox_pizzelleidle;
-				sel_spr = spr_menusandbox_pizzelleselect;
-				pal_spr = spr_pizzypalette;
-				break;
 		}
 	}
 	

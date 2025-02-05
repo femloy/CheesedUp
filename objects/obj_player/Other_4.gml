@@ -213,7 +213,7 @@ if place_meeting(x, y, obj_exitgate)
 	with instance_place(x, y, obj_exitgate)
 		other.x = x;
 }
-else if REMIX && !instance_exists(obj_exitgate)
+else if REMIX && targetDoor != "A"
 {
 	with obj_baddie
 	{

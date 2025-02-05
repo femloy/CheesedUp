@@ -165,9 +165,9 @@ function scr_player_freefall()
 		{
 			with slope
 			{
-				if global.eggplantslope
-					other.movespeed = max(other.freefallsmash * 0.6, 6);
-				else
+				//if global.eggplantslope
+				//	other.movespeed = max(other.freefallsmash * 0.6, 6);
+				//else
 				{
 					if other.freefallsmash > 20
 						other.movespeed = 12;
