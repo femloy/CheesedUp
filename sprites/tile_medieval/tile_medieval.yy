@@ -2,8 +2,8 @@
   "$GMSprite":"",
   "%Name":"tile_medieval",
   "bboxMode":0,
-  "bbox_bottom":480,
-  "bbox_left":32,
+  "bbox_bottom":575,
+  "bbox_left":0,
   "bbox_right":319,
   "bbox_top":0,
   "collisionKind":1,
@@ -13,7 +13,6 @@
   "For3D":false,
   "frames":[
     {"$GMSpriteFrame":"","%Name":"61882c53-96a8-464c-8de3-7f35a3a10b37","name":"61882c53-96a8-464c-8de3-7f35a3a10b37","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"a5d64218-5b00-4c90-9bde-ff84dcfd97cb","name":"a5d64218-5b00-4c90-9bde-ff84dcfd97cb","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
@@ -50,7 +49,7 @@
     },
     "eventStubScript":null,
     "eventToFunction":{},
-    "length":2.0,
+    "length":1.0,
     "lockOrigin":false,
     "moments":{
       "$KeyframeStore<MomentsEventKeyframe>":"",
@@ -72,9 +71,6 @@
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"61882c53-96a8-464c-8de3-7f35a3a10b37","path":"sprites/tile_medieval/tile_medieval.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"ab155498-2a57-472e-8ced-737c6748b140","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"a5d64218-5b00-4c90-9bde-ff84dcfd97cb","path":"sprites/tile_medieval/tile_medieval.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"d419a480-ec0b-4801-bff8-cb844832cb4f","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

@@ -38,7 +38,7 @@ var allowed_ta_levels = [
 ];
 
 time_attack = !global.panic && !global.timeattack && !global.in_cyop && array_contains(allowed_ta_levels, global.leveltosave);
-if time_attack && !global.can_timeattack
+//if time_attack && !global.can_timeattack
 	time_attack = false;
 
 // afom

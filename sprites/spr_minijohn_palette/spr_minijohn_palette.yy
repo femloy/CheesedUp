@@ -2,7 +2,7 @@
   "$GMSprite":"",
   "%Name":"spr_minijohn_palette",
   "bboxMode":0,
-  "bbox_bottom":5,
+  "bbox_bottom":6,
   "bbox_left":0,
   "bbox_right":1,
   "bbox_top":0,

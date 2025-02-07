@@ -40,14 +40,11 @@ spr_sleep = spr_tutorialgranny_sleep;
 spr_talk = spr_tutorialgranny_talk;
 snd_voice = "event:/sfx/voice/pizzagranny";
 
-if SUGARY_SPIRE && SUGARY
-{
-	bubble_spr = spr_icepop_bubble;
-	rope_spr = spr_icepop_rope;
-	background_spr = spr_icepopbg;
-	spr_sleep = spr_grandpop;
-	spr_talk = spr_grandpop_speak;
-}
+bubble_spr = spr_icepop_bubble;
+rope_spr = spr_icepop_rope;
+background_spr = spr_icepopbg;
+spr_sleep = spr_grandpop;
+spr_talk = spr_grandpop_speak;
 
 refresh_func = noone;
 font = lang_get_font("tutorialfont");

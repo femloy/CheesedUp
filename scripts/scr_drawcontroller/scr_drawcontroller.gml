@@ -126,10 +126,16 @@ function draw_enemy(healthbar, palette, color = c_white)
 			}
 		}
 		
+		var spr = sprite_index;
+		if object_index == obj_swedishmonkey
+			spr = spr_googlyjuice_walk;
+		if object_index == obj_pepgoblin
+			spr = spr_crackerkicker_walk;
+		
 		if obj_drawcontroller.use_dark && SUGARY
 		{
 			draw_set_flash(b);
-			draw_sprite_ext(sprite_index, image_index, xx, yy + _stun, xscale * image_xscale, yscale * _ys, angle, b, image_alpha);
+			draw_sprite_ext(spr, image_index, xx, yy + _stun, xscale * image_xscale, yscale * _ys, angle, b, image_alpha);
 			draw_reset_flash();
 		}
 		else
@@ -140,11 +146,11 @@ function draw_enemy(healthbar, palette, color = c_white)
 			else if (usepalette && palette)
 			{
 				if (object_index == obj_fakepepboss || object_index == obj_gustavograbbable)
-					pal_swap_player_palette(sprite_index, image_index, image_xscale * xscale, image_yscale * yscale, , true);
+					pal_swap_player_palette(spr, image_index, image_xscale * xscale, image_yscale * yscale, , true);
 				else
 					pal_swap_set(spr_palette, paletteselect, false);
 			}
-			draw_sprite_ext(sprite_index, image_index, xx, yy + _stun, xscale * image_xscale, yscale * _ys, angle, b, image_alpha);
+			draw_sprite_ext(spr, image_index, xx, yy + _stun, xscale * image_xscale, yscale * _ys, angle, b, image_alpha);
 			cuspal_reset();
 		}
 		
@@ -160,7 +166,7 @@ function draw_enemy(healthbar, palette, color = c_white)
 			if (miniflash)
 			{
 				pal_swap_set(spr_peppalette, 14, false);
-				draw_sprite_ext(sprite_index, image_index, x, y + _stun, xscale * image_xscale, yscale * _ys, angle, b, image_alpha);
+				draw_sprite_ext(spr, image_index, x, y + _stun, xscale * image_xscale, yscale * _ys, angle, b, image_alpha);
 			}
 		}
 		if object_index == obj_peppinoclone
@@ -169,7 +175,7 @@ function draw_enemy(healthbar, palette, color = c_white)
 			if elite or global.stylethreshold >= 3
 			{
 				pal_swap_set(spr_peppalette, 2, false);
-				draw_sprite_ext(sprite_index, image_index, xx, yy + _stun, xscale * image_xscale, yscale * _ys, angle, b, image_alpha);
+				draw_sprite_ext(spr, image_index, xx, yy + _stun, xscale * image_xscale, yscale * _ys, angle, b, image_alpha);
 			}
 			pal_swap_reset();
 		}
@@ -184,7 +190,7 @@ function draw_enemy(healthbar, palette, color = c_white)
 			{
 				var x1 = x + (6 * image_xscale);
 				var y1 = y + 29;
-				if (sprite_index == spr_hamkuff_chain2)
+				if (spr == spr_hamkuff_chain2)
 				{
 					x1 = x + (15 * image_xscale);
 					y1 = y + 33;

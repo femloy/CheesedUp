@@ -1,7 +1,7 @@
 if (obj_drawcontroller.use_dark && SUGARY) or global.performance
 	exit;
 
-var f = function(c, i)
+array_foreach(cutoffs, function(c, i)
 {
 	x = c.x;
 	y = c.y;
@@ -22,5 +22,4 @@ var f = function(c, i)
 		
 		draw_self();
 	}
-}
-array_foreach(cutoffs, f, 0, infinity);
+}, 0, infinity);

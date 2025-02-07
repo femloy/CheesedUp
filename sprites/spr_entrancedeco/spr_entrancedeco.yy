@@ -2,7 +2,7 @@
   "$GMSprite":"",
   "%Name":"spr_entrancedeco",
   "bboxMode":0,
-  "bbox_bottom":735,
+  "bbox_bottom":836,
   "bbox_left":0,
   "bbox_right":621,
   "bbox_top":0,

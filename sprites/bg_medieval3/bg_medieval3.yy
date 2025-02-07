@@ -12,14 +12,14 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"bbb393b2-7ab0-412f-bb59-12d7dc0c909b","name":"bbb393b2-7ab0-412f-bb59-12d7dc0c909b","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"e251a949-4f67-4b3c-acd9-3ca83e086f8b","name":"e251a949-4f67-4b3c-acd9-3ca83e086f8b","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
   "height":540,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"16081d11-11ef-4bf6-bfdf-9e2bfb9bad35","blendMode":0,"displayName":"default","isLocked":false,"name":"16081d11-11ef-4bf6-bfdf-9e2bfb9bad35","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"baf7b152-3cc0-4419-980c-7a7cc467bd90","blendMode":0,"displayName":"default","isLocked":false,"name":"baf7b152-3cc0-4419-980c-7a7cc467bd90","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"bg_medieval3",
   "nineSlice":null,
@@ -59,7 +59,7 @@
     },
     "name":"bg_medieval3",
     "playback":1,
-    "playbackSpeed":15.0,
+    "playbackSpeed":20.0,
     "playbackSpeedType":0,
     "resourceType":"GMSequence",
     "resourceVersion":"2.0",
@@ -69,8 +69,8 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"bbb393b2-7ab0-412f-bb59-12d7dc0c909b","path":"sprites/bg_medieval3/bg_medieval3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"6f152c44-f2bc-4fa7-a7bf-69a2903ab348","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"e251a949-4f67-4b3c-acd9-3ca83e086f8b","path":"sprites/bg_medieval3/bg_medieval3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"edfbe930-58a3-412a-b042-3b901e32de92","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

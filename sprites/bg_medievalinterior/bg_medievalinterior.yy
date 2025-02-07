@@ -2,9 +2,9 @@
   "$GMSprite":"",
   "%Name":"bg_medievalinterior",
   "bboxMode":0,
-  "bbox_bottom":511,
-  "bbox_left":0,
-  "bbox_right":959,
+  "bbox_bottom":555,
+  "bbox_left":44,
+  "bbox_right":991,
   "bbox_top":0,
   "collisionKind":1,
   "collisionTolerance":0,
@@ -12,14 +12,14 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"64be6e4c-3881-4b50-8516-7a20ba172f0a","name":"64be6e4c-3881-4b50-8516-7a20ba172f0a","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"de4c4399-f9a3-42ef-aae5-0b667aab3a26","name":"de4c4399-f9a3-42ef-aae5-0b667aab3a26","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
-  "height":512,
+  "height":556,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"b058e984-b587-4a81-9280-b563e4999108","blendMode":0,"displayName":"default","isLocked":false,"name":"b058e984-b587-4a81-9280-b563e4999108","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"db1beb29-4ddd-41bc-af93-c808cf84a431","blendMode":0,"displayName":"default","isLocked":false,"name":"db1beb29-4ddd-41bc-af93-c808cf84a431","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"bg_medievalinterior",
   "nineSlice":null,
@@ -69,8 +69,8 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"64be6e4c-3881-4b50-8516-7a20ba172f0a","path":"sprites/bg_medievalinterior/bg_medievalinterior.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"2a65e218-b0a5-41c1-8053-00d8afcb3560","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"de4c4399-f9a3-42ef-aae5-0b667aab3a26","path":"sprites/bg_medievalinterior/bg_medievalinterior.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"e3f01e3d-41c2-4b14-ba6c-c557af9ec993","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,
@@ -86,5 +86,5 @@
   },
   "type":0,
   "VTile":false,
-  "width":960,
+  "width":992,
 }

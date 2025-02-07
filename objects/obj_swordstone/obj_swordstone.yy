@@ -31,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_swordstone",
-    "path":"sprites/spr_swordstone/spr_swordstone.yy",
+    "name":"spr_cottonmaker",
+    "path":"sprites/spr_cottonmaker/spr_cottonmaker.yy",
   },
   "spriteMaskId":null,
   "visible":true,

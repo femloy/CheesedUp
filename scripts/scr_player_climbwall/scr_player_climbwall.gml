@@ -124,24 +124,6 @@ function scr_player_climbwall()
 			hsp = xscale;
 		vsp = 0;
 	}
-			
-	// noise walljump
-	if CHAR_BASENOISE && !skateboarding
-	{
-		with create_noise_effect(x, y)
-			sprite_index = spr_noisewalljumpeffect;
-		sprite_index = spr_playerN_wallbounce;
-		state = states.machcancel;
-		savedmove = xscale;
-		vsp = -(17 * (1 - (noisewalljump * 0.15)));
-		noisewalljump++;
-		hsp = 0;
-		movespeed = 0;
-		image_index = 0;
-				
-		if REMIX
-			exit;
-	}
 	
 	if character == "MS"
 	{
@@ -149,26 +131,46 @@ function scr_player_climbwall()
 		exit;
 	}
 	
-	if input_buffer_jump > 8 && !CHAR_BASENOISE
+	if input_buffer_jump > 8
 	{
 		if scr_modding_hook_falser("player/climbwall/prejump")
 		{
-			scr_fmod_soundeffect(jumpsnd, x, y);
-			input_buffer_jump = 0;
-			key_jump = false;
-			railmovespeed = 0;
+			// noise walljump
+			if CHAR_BASENOISE && !skateboarding
+			{
+				with create_noise_effect(x, y)
+					sprite_index = spr_noisewalljumpeffect;
+				sprite_index = spr_playerN_wallbounce;
+				state = states.machcancel;
+				savedmove = xscale;
+				vsp = -(17 * (1 - (noisewalljump * 0.15)));
+				noisewalljump++;
+				hsp = 0;
+				movespeed = 0;
+				image_index = 0;
+				
+				if REMIX
+					exit;
+			}
+			else
+			{
+				scr_fmod_soundeffect(jumpsnd, x, y);
+				input_buffer_jump = 0;
+				key_jump = false;
+				railmovespeed = 0;
 		
-			movespeed = 10;
-			state = states.mach2;
-			image_index = 0;
-			sprite_index = spr_walljumpstart;
-			if skateboarding
-				sprite_index = spr_clownjump;
-			vsp = IT_jumpspeed();
+				movespeed = 10;
+				state = states.mach2;
+				image_index = 0;
+				sprite_index = spr_walljumpstart;
+				if skateboarding
+					sprite_index = spr_clownjump;
+				vsp = IT_jumpspeed();
 		
-			xscale *= -1;
-			jumpstop = false;
-			walljumpbuffer = 4;
+				xscale *= -1;
+				jumpstop = false;
+				walljumpbuffer = 4;
+			}
 			
 			scr_modding_hook("player/climbwall/postjump");
 		}

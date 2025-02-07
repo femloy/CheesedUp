@@ -18,6 +18,6 @@ spr_palette = noone;
 d = 255;
 
 sugary = false;
-rotatedirection = choose(-1, 0, 1);
+rotatedirection = choose(-3, 3);
 rotatevalue = irandom_range(-20, 20);
 pattern_color = noone;

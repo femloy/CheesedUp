@@ -1311,7 +1311,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.1300.0.720",
+    "IDEVersion":"2024.1300.0.732",
   },
   "name":"PizzaTower_CHEESEDUP",
   "resources":[
@@ -2465,8 +2465,10 @@
     {"id":{"name":"obj_softlockspot","path":"objects/obj_softlockspot/obj_softlockspot.yy",},},
     {"id":{"name":"obj_softlocktarget","path":"objects/obj_softlocktarget/obj_softlocktarget.yy",},},
     {"id":{"name":"obj_soldier","path":"objects/obj_soldier/obj_soldier.yy",},},
+    {"id":{"name":"obj_solid_big","path":"objects/obj_solid_big/obj_solid_big.yy",},},
     {"id":{"name":"obj_solid_goblinraid","path":"objects/obj_solid_goblinraid/obj_solid_goblinraid.yy",},},
     {"id":{"name":"obj_solid","path":"objects/obj_solid/obj_solid.yy",},},
+    {"id":{"name":"obj_solidfill","path":"objects/obj_solidfill/obj_solidfill.yy",},},
     {"id":{"name":"obj_solidpillar","path":"objects/obj_solidpillar/obj_solidpillar.yy",},},
     {"id":{"name":"obj_songchoice","path":"objects/obj_songchoice/obj_songchoice.yy",},},
     {"id":{"name":"obj_soundtest_button","path":"objects/obj_soundtest_button/obj_soundtest_button.yy",},},
@@ -12469,7 +12471,7 @@
     {"$GMTextureGroup":"","%Name":"etbgroup","autocrop":true,"border":2,"compressFormat":"qoi","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"etbgroup","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
     {"$GMTextureGroup":"","%Name":"grinchgroup","autocrop":true,"border":2,"compressFormat":"qoi","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"grinchgroup","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
     {"$GMTextureGroup":"","%Name":"debuggroup","autocrop":true,"border":2,"compressFormat":"qoi","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"debuggroup","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
-    {"$GMTextureGroup":"","%Name":"mod_sugaryspire","autocrop":true,"border":2,"compressFormat":"qoi","ConfigValues":{},"customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"mod_sugaryspire","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-9106278605694959855,},
+    {"$GMTextureGroup":"","%Name":"mod_sugaryspire","autocrop":true,"border":2,"compressFormat":"qoi","ConfigValues":{},"customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"mod_sugaryspire","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-6070852435372408833,},
     {"$GMTextureGroup":"","%Name":"mod_bonoise","autocrop":true,"border":2,"compressFormat":"qoi","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"mod_bonoise","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-65,},
     {"$GMTextureGroup":"","%Name":"mod_cyop","autocrop":true,"border":2,"compressFormat":"qoi","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"mod_cyop","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
     {"$GMTextureGroup":"","%Name":"abyssgroup","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"abyssgroup","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},

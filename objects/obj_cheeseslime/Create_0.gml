@@ -1,6 +1,9 @@
 event_inherited();
 usepalette = true;
-elitepal = 2;
+basepal = 1;
+elitepal = 1;
+paletteselect = 1;
+
 is_controllable = true;
 possess_movespeed = 0;
 grav = 0.5;
@@ -39,7 +42,7 @@ spr_dead = spr_slimedead;
 important = false;
 heavy = false;
 depth = 0;
-paletteselect = 0;
+paletteselect = 1;
 spr_palette = palette_cheeseslime;
 sprite_index = spr_slimemove;
 grabbedby = 0;

@@ -59,3 +59,4 @@ else if check_char("V")
 	elitepal = 3;
 	paletteselect = basepal;
 }
+elite = 1;

@@ -49,6 +49,7 @@ function scr_player_tumble()
 		movespeed = 6;
 	if (!grounded && (sprite_index == crouchslipspr || sprite_index == machrollspr || sprite_index == spr_mach2jump || sprite_index == spr_backslide || sprite_index == spr_backslideland) && !CHAR_POGONOISE)
 	{
+		/*
 		if (CHAR_BASENOISE)
 		{
 			sprite_index = spr_playerN_divebomb;
@@ -63,10 +64,11 @@ function scr_player_tumble()
 		}
 		else
 		{
+		*/
 			vsp = 10;
 			sprite_index = divespr;
 			fmod_event_instance_play(snd_dive);
-		}
+		//}
 	}
 	if sprite_index == spr_tumble
 	{
